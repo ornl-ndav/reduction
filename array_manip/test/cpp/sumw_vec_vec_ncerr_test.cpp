@@ -74,8 +74,8 @@ int main()
 
       f_input1_err2.push_back((float)i);
       d_input1_err2.push_back((double)i);      
-      i_input1_err2.push_back((int)i);
-      u_input1_err2.push_back((unsigned)i);
+      i_input1_err2.push_back((int)i+1);
+      u_input1_err2.push_back((unsigned)i+1);
       
       //_input2 array
       f_input2.push_back(4.*(float)i);
