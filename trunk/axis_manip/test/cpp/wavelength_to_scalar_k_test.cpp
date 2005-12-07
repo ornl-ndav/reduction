@@ -67,13 +67,13 @@ int main()
       //_input1 array
       f_wavelength.push_back(2.*(float)i);
       d_wavelength.push_back(2.*(double)i); 
-      i_wavelength.push_back(2*(int)i);
-      u_wavelength.push_back(2*(unsigned)i);
+      i_wavelength.push_back(2*(int)i+1);
+      u_wavelength.push_back(2*(unsigned)i+1);
 
       f_wavelength_err2.push_back((float)i);
       d_wavelength_err2.push_back((double)i);      
-      i_wavelength_err2.push_back((int)i);
-      u_wavelength_err2.push_back((unsigned)i);
+      i_wavelength_err2.push_back((int)i+1);
+      u_wavelength_err2.push_back((unsigned)i+1);
     }
   
   AxisManip::wavelength_to_scalar_k(f_wavelength, f_wavelength_err2,  
