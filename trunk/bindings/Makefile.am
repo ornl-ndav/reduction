@@ -18,10 +18,10 @@ AXIS_MANIP_LIB=-L$(top_srcdir)/axis_manip/src/.libs
 PHYS_CORR_LIB=-L$(top_srcdir)/phys_corr/src/.libs
 UTILS_LIB=-L$(top_srcdir)/utils/src/.libs
 
-ARRAY_MANIP_SRC=$(top_srcdir)/array_manip/src/.libs/*.o
-AXIS_MANIP_SRC=$(top_srcdir)/axis_manip/src/.libs/*.o
-PHYS_CORR_SRC=$(top_srcdir)/phys_corr/src/.libs/*.o
-UTILS_SRC=$(top_srcdir)/utils/src/.libs/*.o
+ARRAY_MANIP_SRC=$(top_srcdir)/array_manip/src/*.lo
+AXIS_MANIP_SRC=$(top_srcdir)/axis_manip/src/*.lo
+PHYS_CORR_SRC=$(top_srcdir)/phys_corr/src/*.lo
+UTILS_SRC=$(top_srcdir)/utils/src/*.lo
 
 PYTHON_INC=-I$(PYTHONROOT)/include/python$(PYTHON_VERSION)
 
