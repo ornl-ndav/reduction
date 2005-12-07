@@ -1,0 +1,15 @@
+#!/bin/sh
+
+###############################################################################
+#
+# This script creates a PDF file from the SNS Common Library documentation.
+#
+# $Id$
+#
+###############################################################################
+
+# Put in error check on argument number
+
+cd latex
+make pdf
+mv refman.pdf $1-$2.pdf
