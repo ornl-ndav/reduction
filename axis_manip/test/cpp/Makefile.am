@@ -5,6 +5,7 @@ test: check
 AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc
 
 AXIS_MANIP_TARGETS = \
+	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
 	wavelength_to_scalar_k_test
@@ -17,6 +18,10 @@ check_PROGRAMS = $(AXIS_MANIP_TARGETS)
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp
 tof_to_wavelength_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
 tof_to_wavelength_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_wavelength.o
+
+tof_to_initial_wavelength_igs_test_SOURCES = tof_to_initial_wavelength_igs_test.cpp
+tof_to_initial_wavelength_igs_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
+tof_to_initial_wavelength_igs_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_initial_wavelength_igs.o
 
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp
 wavelength_to_energy_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc

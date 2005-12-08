@@ -12,6 +12,12 @@ AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the TOF to Initial Wavelength for IGS Function.  ])
+AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
+[[tof_to_initial_wavelength_igs_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Wavelength to Energy Function.  ])
 AT_CHECK([wavelength_to_energy_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_energy_test.cpp..........Functionality OK
