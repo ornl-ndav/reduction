@@ -38,7 +38,7 @@ namespace AxisManip
   // explicit instantiations
 
   /**
-   * This is the float declaration of the function defined in 3.30.
+   * This is the float declaration of the function defined in 3.24.
    *
    * \see wavelength_to_scalar_k()
    */
@@ -51,7 +51,7 @@ namespace AxisManip
   
   /**
    * This is the double precision float declaration of the function
-   * defined in 3.30.
+   * defined in 3.24.
    *
    * \see wavelength_to_scalar_k()
    */
@@ -63,7 +63,7 @@ namespace AxisManip
 				 void *temp);
   
   /**
-   * This is the integer declaration of the function defined in 3.30.
+   * This is the integer declaration of the function defined in 3.24.
    *
    * \see wavelength_to_scalar_k()
    */
@@ -76,7 +76,7 @@ namespace AxisManip
   
   /**
    * This is the unsigned integer declaration of the function defined
-   * in 3.30.
+   * in 3.24.
    *
    * \see wavelength_to_scalar_k()
    */
