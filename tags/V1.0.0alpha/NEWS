@@ -1,0 +1,7 @@
+Initial Release 0.1.0
+=====================
+
+- SNS Common Libraries provide the data reduction functions tailored towards 
+  the Backscattering Spectrometer and the Liquid and Magnetic Reflectometers.
+
+$Id$

@@ -1,0 +1,31 @@
+# $Id$
+
+m4_version_prereq([2.57])
+
+AT_INIT
+
+AT_BANNER([[Checking Functionality of the Axis Manipulation Functions]])
+
+AT_SETUP([Checking the TOF to Wavelength Function.  ])
+AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
+[[tof_to_wavelength_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the TOF to Initial Wavelength for IGS Function.  ])
+AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
+[[tof_to_initial_wavelength_igs_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Wavelength to Energy Function.  ])
+AT_CHECK([wavelength_to_energy_test | sed -e 's/\r$//' ],[],
+[[wavelength_to_energy_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Wavelength to Scalar Wavevector Function.  ])
+AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
+[[wavelength_to_scalar_k_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
