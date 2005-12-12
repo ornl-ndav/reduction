@@ -27,6 +27,11 @@
 %template(reverse_array_i) AxisManip::reverse_array<int>;
 %template(reverse_array_u) AxisManip::reverse_array<unsigned>;
 
+%template(reverse_array_nc_f) AxisManip::reverse_array_nc<float>;
+%template(reverse_array_nc_d) AxisManip::reverse_array_nc<double>;
+%template(reverse_array_nc_i) AxisManip::reverse_array_nc<int>;
+%template(reverse_array_nc_u) AxisManip::reverse_array_nc<unsigned>;
+
 // Instantiate rebinning templates
 template <typename NumT> std::string 
     rebin_axis_1D(std::vector<NumT> const & axis_in,
