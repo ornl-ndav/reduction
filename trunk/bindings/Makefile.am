@@ -23,6 +23,11 @@ AXIS_MANIP_SRC=$(top_srcdir)/axis_manip/src/*.lo
 PHYS_CORR_SRC=$(top_srcdir)/phys_corr/src/*.lo
 UTILS_SRC=$(top_srcdir)/utils/src/*.lo
 
+ARRAY_MANIP_VERSION=-version-info 1:0:0
+AXIS_MANIP_VERSION=-version-info 1:0:0
+PHYS_CORR_VERSION=-version-info 1:0:0
+UTILS_VERSION=-version-info 1:0:0
+
 PYTHON_INC=-I$(PYTHONROOT)/include/python$(PYTHON_VERSION)
 
 lib_LTLIBRARIES=$(LIBPYARRAYMANIP) $(LIBPYAXISMANIP) $(LIBPYPHYSCORR) $(LIBPYUTILS)
@@ -34,7 +39,7 @@ if HAVE_PYTHON
 LIBPYARRAYMANIP=libPyArrayManip.la
 libPyArrayManip_la_SOURCES=$(ARRAYMANIPPYTHONWRAP) 
 libPyArrayManip_la_CPPFLAGS= $(PYTHON_INC) $(ARRAY_MANIP_INC) $(CFLAGS) 
-libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(ARRAY_MANIP_SRC)
+libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(ARRAY_MANIP_VERSION) $(ARRAY_MANIP_SRC)
 libPyArrayManip_la_LIBS=$(ARRAY_MANIP_LIB)
 ARRAYMANIPPYTHONWRAP=array_manip_wrap.cpp
 endif
@@ -48,7 +53,7 @@ if HAVE_PYTHON
 LIBPYAXISMANIP=libPyAxisManip.la
 libPyAxisManip_la_SOURCES=$(AXISMANIPPYTHONWRAP) 
 libPyAxisManip_la_CPPFLAGS= $(PYTHON_INC) $(AXIS_MANIP_INC) $(CFLAGS) 
-libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(AXIS_MANIP_SRC)
+libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(AXIS_MANIP_VERSION) $(AXIS_MANIP_SRC)
 libPyAxisManip_la_LIBS=$(AXIS_MANIP_LIB)
 AXISMANIPPYTHONWRAP=axis_manip_wrap.cpp
 endif
@@ -62,7 +67,7 @@ if HAVE_PYTHON
 LIBPYPHYSCORR=libPyPhysCorr.la
 libPyPhysCorr_la_SOURCES=$(PHYSCORRPYTHONWRAP) 
 libPyPhysCorr_la_CPPFLAGS= $(PYTHON_INC) $(PHYS_CORR_INC) $(CFLAGS) 
-libPyPhysCorr_la_LDFLAGS=$(LDFLAGS) $(PHYS_CORR_SRC)
+libPyPhysCorr_la_LDFLAGS=$(LDFLAGS) $(PHYS_CORR_VERSION) $(PHYS_CORR_SRC)
 libPyPhysCorr_la_LIBS=$(PHYS_CORR_LIB)
 PHYSCORRPYTHONWRAP=phys_corr_wrap.cpp
 endif
@@ -76,7 +81,7 @@ if HAVE_PYTHON
 LIBPYUTILS=libPyUtils.la
 libPyUtils_la_SOURCES=$(UTILSPYTHONWRAP) 
 libPyUtils_la_CPPFLAGS= $(PYTHON_INC) $(UTILS_INC) $(CFLAGS) 
-libPyUtils_la_LDFLAGS=$(LDFLAGS) $(UTILS_SRC)
+libPyUtils_la_LDFLAGS=$(LDFLAGS) $(UTILS_VERSION) $(UTILS_SRC)
 libPyUtils_la_LIBS=$(UTILS_LIB)
 UTILSPYTHONWRAP=utils_wrap.cpp
 endif
