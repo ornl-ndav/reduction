@@ -20,7 +20,7 @@ template <typename NumT>
    void check_sizes_2in1out(std::string & errstr, 
                             std::vector<NumT> const & input1, 
                             std::vector<NumT> const & input2, 
-                            std::vector<NumT> output);
+                            std::vector<NumT> const & output);
 
 %template(check_sizes_2in1out_f) ArrayManip::check_sizes_2in1out<float>;
 %template(check_sizes_2in1out_d) ArrayManip::check_sizes_2in1out<double>;
