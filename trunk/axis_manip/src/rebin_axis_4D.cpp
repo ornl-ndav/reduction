@@ -18,13 +18,13 @@ namespace AxisManip
 		std::vector<NumT> const & axis_in_3,
 		std::vector<NumT> const & axis_in_4,
 		std::vector<NumT> const & input,
-		std::vector<NumT> const & input_err,
+		std::vector<NumT> const & input_err2,
 		std::vector<NumT> const & axis_out_1,
 		std::vector<NumT> const & axis_out_2,
 		std::vector<NumT> const & axis_out_3,
 		std::vector<NumT> const & axis_out_4,
 		std::vector<NumT> & output,
-		std::vector<NumT> & output_err,
+		std::vector<NumT> & output_err2,
 		void *temp=NULL)
   {
     throw std::runtime_error("Function [rebin_axis_4D] not implemented");
@@ -43,13 +43,13 @@ namespace AxisManip
 		       std::vector<float> const & axis_in_3,
 		       std::vector<float> const & axis_in_4,
 		       std::vector<float> const & input,
-		       std::vector<float> const & input_err,
+		       std::vector<float> const & input_err2,
 		       std::vector<float> const & axis_out_1,
 		       std::vector<float> const & axis_out_2,
 		       std::vector<float> const & axis_out_3,
 		       std::vector<float> const & axis_out_4,
 		       std::vector<float> & output,
-		       std::vector<float> & output_err,
+		       std::vector<float> & output_err2,
 		       void *temp);
   
   /**
@@ -64,13 +64,13 @@ namespace AxisManip
 			std::vector<double> const & axis_in_3,
 			std::vector<double> const & axis_in_4,
 			std::vector<double> const & input,
-			std::vector<double> const & input_err,
+			std::vector<double> const & input_err2,
 			std::vector<double> const & axis_out_1,
 			std::vector<double> const & axis_out_2,
 			std::vector<double> const & axis_out_3,
 			std::vector<double> const & axis_out_4,
 			std::vector<double> & output,
-			std::vector<double> & output_err,
+			std::vector<double> & output_err2,
 			void *temp);
   
   /**
@@ -84,13 +84,13 @@ namespace AxisManip
 		     std::vector<int> const & axis_in_3,
 		     std::vector<int> const & axis_in_4,
 		     std::vector<int> const & input,
-		     std::vector<int> const & input_err,
+		     std::vector<int> const & input_err2,
 		     std::vector<int> const & axis_out_1,
 		     std::vector<int> const & axis_out_2,
 		     std::vector<int> const & axis_out_3,
 		     std::vector<int> const & axis_out_4,
 		     std::vector<int> & output,
-		     std::vector<int> & output_err,
+		     std::vector<int> & output_err2,
 		     void *temp);
   
   /**
@@ -105,13 +105,13 @@ namespace AxisManip
                               std::vector<unsigned int> const & axis_in_3,
                               std::vector<unsigned int> const & axis_in_4,
                               std::vector<unsigned int> const & input,
-                              std::vector<unsigned int> const & input_err,
+                              std::vector<unsigned int> const & input_err2,
                               std::vector<unsigned int> const & axis_out_1,
                               std::vector<unsigned int> const & axis_out_2,
                               std::vector<unsigned int> const & axis_out_3,
                               std::vector<unsigned int> const & axis_out_4,
                               std::vector<unsigned int> & output,
-                              std::vector<unsigned int> & output_err,
+                              std::vector<unsigned int> & output_err2,
                               void *temp);
   
 } // AxisManip
