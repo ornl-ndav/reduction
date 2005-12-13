@@ -14,23 +14,24 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-                             std::vector<NumT> const & initial_wavevector,
-                             std::vector<NumT> const & initial_wavevector_err2,
-                             std::vector<NumT> const & final_wavevector,
-                             std::vector<NumT> const & final_wavevector_err2,
-                             const NumT polar_angle,
-                             std::vector<NumT> & Q,
-                             std::vector<NumT> & Q_err2,
-                             void *temp=NULL)
+				    std::vector<NumT> const & initial_wavevector,
+				    std::vector<NumT> const & initial_wavevector_err2,
+				    std::vector<NumT> const & final_wavevector,
+				    std::vector<NumT> const & final_wavevector_err2,
+				    const NumT polar_angle,
+				    const NumT polar_angle_err2,
+				    std::vector<NumT> & Q,
+				    std::vector<NumT> & Q_err2,
+				    void *temp=NULL)
   {
     std::string retstr("");
-
+    
     size_t sz1 = initial_wavevector.size();
     size_t sz2 = final_wavevector.size();
-
+    
     // FIXME
     // Need a zero length check for all vectors
-
+    
     NumT a = static_cast<NumT>(2 * std::cos(static_cast<double>(polar_angle)));
     NumT pang = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
 
@@ -139,14 +140,15 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<float>(
-                            std::vector<float> const & initial_wavevector,
-                            std::vector<float> const & initial_wavevector_err2,
-                            std::vector<float> const & final_wavevector,
-                            std::vector<float> const & final_wavevector_err2,
-                            const float polar_angle,
-                            std::vector<float> & Q,
-                            std::vector<float> & Q_err2,
-                            void *temp);
+					   std::vector<float> const & initial_wavevector,
+					   std::vector<float> const & initial_wavevector_err2,
+					   std::vector<float> const & final_wavevector,
+					   std::vector<float> const & final_wavevector_err2,
+					   const float polar_angle,
+					   const float polar_angle_err2,
+					   std::vector<float> & Q,
+					   std::vector<float> & Q_err2,
+					   void *temp);
   
   /**
    * This is the double precision float declaraion of the function
@@ -156,14 +158,15 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<double>(
-                           std::vector<double> const & initial_wavevector,
-                           std::vector<double> const & initial_wavevector_err2,
-                           std::vector<double> const & final_wavevector,
-                           std::vector<double> const & final_wavevector_err2,
-                           const double polar_angle,
-                           std::vector<double> & Q,
-                           std::vector<double> & Q_err2,
-                           void *temp);
+					    std::vector<double> const & initial_wavevector,
+					    std::vector<double> const & initial_wavevector_err2,
+					    std::vector<double> const & final_wavevector,
+					    std::vector<double> const & final_wavevector_err2,
+					    const double polar_angle,
+					    const double polar_angle_err2,
+					    std::vector<double> & Q,
+					    std::vector<double> & Q_err2,
+					    void *temp);
   
   /**
    * This is the integer declaraion of the function defined in 3.33.
@@ -172,14 +175,15 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<int>(
-                              std::vector<int> const & initial_wavevector,
-			      std::vector<int> const & initial_wavevector_err2,
-                              std::vector<int> const & final_wavevector,
-                              std::vector<int> const & final_wavevector_err2,
-                              const int polar_angle,
-                              std::vector<int> & Q,
-                              std::vector<int> & Q_err2,
-                              void *temp);
+					 std::vector<int> const & initial_wavevector,
+					 std::vector<int> const & initial_wavevector_err2,
+					 std::vector<int> const & final_wavevector,
+					 std::vector<int> const & final_wavevector_err2,
+					 const int polar_angle,
+					 const int polar_angle_err2,
+					 std::vector<int> & Q,
+					 std::vector<int> & Q_err2,
+					 void *temp);
   
   /**
    * This is the unsigned integer declaraion of the function defined
@@ -189,13 +193,14 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<unsigned int>(
-                     std::vector<unsigned int> const & initial_wavevector,
-                     std::vector<unsigned int> const & initial_wavevector_err2,
-                     std::vector<unsigned int> const & final_wavevector,
-                     std::vector<unsigned int> const & final_wavevector_err2,
-                     const unsigned int polar_angle,
-                     std::vector<unsigned int> & Q,
-                     std::vector<unsigned int> & Q_err2,
-                     void *temp);
+						  std::vector<unsigned int> const & initial_wavevector,
+						  std::vector<unsigned int> const & initial_wavevector_err2,
+						  std::vector<unsigned int> const & final_wavevector,
+						  std::vector<unsigned int> const & final_wavevector_err2,
+						  const unsigned int polar_angle,
+						  const unsigned int polar_angle_err2,
+						  std::vector<unsigned int> & Q,
+						  std::vector<unsigned int> & Q_err2,
+						  void *temp);
   
 } // AxisManip

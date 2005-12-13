@@ -4,9 +4,9 @@
  * \file axis_manip/src/tof_to_Q.cpp
  */
 #include "conversions.hpp"
+#include <stdexcept>
 #include <string>
 #include <vector>
-#include <stdexcept>
 
 namespace AxisManip
 {
@@ -16,8 +16,11 @@ namespace AxisManip
   tof_to_Q(std::vector<NumT> const & tof,
 	   std::vector<NumT> const & tof_err2,
 	   const NumT total_pathlength,
+	   const NumT total_pathlength_err2,
 	   const NumT azimuthal_angle,
+	   const NumT azimuthal_angle_err2,
 	   const NumT polar_angle,
+	   const NumT polar_angle_err2,
 	   std::vector<NumT> & Qx,
 	   std::vector<NumT> & Qx_err2,
 	   std::vector<NumT> & Qy,
@@ -40,8 +43,11 @@ namespace AxisManip
   tof_to_Q<float>(std::vector<float> const & tof,
 		  std::vector<float> const & tof_err2,
 		  const float total_pathlength,
+		  const float total_pathlength_err2,
 		  const float azimuthal_angle,
+		  const float azimuthal_angle_err2,
 		  const float polar_angle,
+		  const float polar_angle_err2,
 		  std::vector<float> & Qx,
 		  std::vector<float> & Qx_err2,
 		  std::vector<float> & Qy,
@@ -60,8 +66,11 @@ namespace AxisManip
   tof_to_Q<double>(std::vector<double> const & tof,
 		   std::vector<double> const & tof_err2,
 		   const double total_pathlength,
+		   const double total_pathlength_err2,
 		   const double azimuthal_angle,
+		   const double azimuthal_angle_err2,
 		   const double polar_angle,
+		   const double polar_angle_err2,
 		   std::vector<double> & Qx,
 		   std::vector<double> & Qx_err2,
 		   std::vector<double> & Qy,
@@ -79,8 +88,11 @@ namespace AxisManip
   tof_to_Q<int>(std::vector<int> const & tof,
 		std::vector<int> const & tof_err2,
 		const int total_pathlength,
+		const int total_pathlength_err2,
 		const int azimuthal_angle,
+		const int azimuthal_angle_err2,
 		const int polar_angle,
+		const int polar_angle_err2,
 		std::vector<int> & Qx,
 		std::vector<int> & Qx_err2,
 		std::vector<int> & Qy,
@@ -98,9 +110,12 @@ namespace AxisManip
   template std::string
   tof_to_Q<unsigned int>(std::vector<unsigned int> const & tof,
                          std::vector<unsigned int> const & tof_err2,
-                         const unsigned int total_pathlength,
-                         const unsigned int azimuthal_angle,
-                         const unsigned int polar_angle,
+			 const unsigned int total_pathlength,
+			 const unsigned int total_pathlength_err2,
+			 const unsigned int azimuthal_angle,
+			 const unsigned int azimuthal_angle_err2,
+			 const unsigned int polar_angle,
+			 const unsigned int polar_angle_err2,
                          std::vector<unsigned int> & Qx,
                          std::vector<unsigned int> & Qx_err2,
                          std::vector<unsigned int> & Qy,
