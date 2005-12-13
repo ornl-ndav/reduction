@@ -4,8 +4,8 @@
  * \file axis_manip/src/final_velocity_igs.cpp
  */
 #include "conversions.hpp"
-#include <string>
 #include <stdexcept>
+#include <string>
 
 namespace AxisManip 
 {
@@ -13,7 +13,9 @@ namespace AxisManip
   template <typename NumT>
   std::string
   final_velocity_igs(const NumT analyzer_wavelength,
+		     const NumT analyzer_wavelength_err2,
 		     NumT & final_velocity,
+		     NumT & final_velocity_err2,
 		     void *temp=NULL)
   {
     throw std::runtime_error("Function [final_velocity_igs] not implemented");
@@ -27,7 +29,9 @@ namespace AxisManip
    */
   template std::string
   final_velocity_igs<float>(const float analyzer_wavelength,
+			    const float analyzer_wavelength_err2,
 			    float & final_velocity,
+			    float & final_velocity_err2,
 			    void *temp);
  
   /**
@@ -38,7 +42,9 @@ namespace AxisManip
    */
   template std::string
   final_velocity_igs<double>(const double analyzer_wavelength,
+			     const double analyzer_wavelength_err2,
 			     double & final_velocity,
+			     double & final_velocity_err2,
 			     void *temp);
   
   /**
@@ -48,7 +54,9 @@ namespace AxisManip
    */
   template std::string
   final_velocity_igs<int>(const int analyzer_wavelength,
+			  const int analyzer_wavelength_err2,
 			  int & final_velocity,
+			  int & final_velocity_err2,
 			  void *temp);
   
   /**
@@ -59,7 +67,9 @@ namespace AxisManip
    */
   template std::string
   final_velocity_igs<unsigned int>(const unsigned int analyzer_wavelength,
-			       unsigned & final_velocity,
-			       void *temp);
+				   const unsigned int analyzer_wavelength_err2,
+				   unsigned int & final_velocity,
+				   unsigned int & final_velocity_err2,
+				   void *temp);
   
 } // AxisManip

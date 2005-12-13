@@ -4,9 +4,9 @@
  * \file axis_manip/src/d_spacing_to_tof_focused_det.cpp
  */
 #include "conversions.hpp"
+#include <stdexcept>
 #include <string>
 #include <vector>
-#include <stdexcept>
 
 namespace AxisManip
 {
@@ -16,7 +16,9 @@ namespace AxisManip
   d_spacing_to_tof_focused_det(std::vector<NumT> const & d_spacing,
 			       std::vector<NumT> const & d_spacing_err2,
 			       const NumT pathlength_focused,
+			       const NumT pathlength_focused_err2,
 			       const NumT polar_angle_focused,
+			       const NumT polar_angle_focused_err2,
 			       std::vector<NumT> & tof,
 			       std::vector<NumT> & tof_err2,
 			       void *temp=NULL)
@@ -35,7 +37,9 @@ namespace AxisManip
   d_spacing_to_tof_focused_det<float>(std::vector<float> const & d_spacing,
 				      std::vector<float> const & d_spacing_err2,
 				      const float pathlength_focused,
+				      const float pathlength_focused_err2,
 				      const float polar_angle_focused,
+				      const float polar_angle_focused_err2,
 				      std::vector<float> & tof,
 				      std::vector<float> & tof_err2,
 				      void *temp);
@@ -50,7 +54,9 @@ namespace AxisManip
   d_spacing_to_tof_focused_det<double>(std::vector<double> const & d_spacing,
 				       std::vector<double> const & d_spacing_err2,
 				       const double pathlength_focused,
+				       const double pathlength_focused_err2,
 				       const double polar_angle_focused,
+				       const double polar_angle_focused_err2,
 				       std::vector<double> & tof,
 				       std::vector<double> & tof_err2,
 				       void *temp);
@@ -64,7 +70,9 @@ namespace AxisManip
   d_spacing_to_tof_focused_det<int>(std::vector<int> const & d_spacing,
 				    std::vector<int> const & d_spacing_err2,
 				    const int pathlength_focused,
+				    const int pathlength_focused_err2,
 				    const int polar_angle_focused,
+				    const int polar_angle_focused_err2,
 				    std::vector<int> & tof,
 				    std::vector<int> & tof_err2,
 				    void *temp);
@@ -76,11 +84,12 @@ namespace AxisManip
    * \see d_spacing_to_tof_focused_det()
    */
   template std::string
-  d_spacing_to_tof_focused_det<unsigned int>(
-					     std::vector<unsigned int> const & d_spacing,
+  d_spacing_to_tof_focused_det<unsigned int>(std::vector<unsigned int> const & d_spacing,
 					     std::vector<unsigned int> const & d_spacing_err2,
 					     const unsigned int pathlength_focused,
+					     const unsigned int pathlength_focused_err2,
 					     const unsigned int polar_angle_focused,
+					     const unsigned int polar_angle_focused_err2,
 					     std::vector<unsigned int> & tof,
 					     std::vector<unsigned int> & tof_err2,
 					     void *temp);
