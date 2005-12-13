@@ -29,7 +29,7 @@ namespace ArrayManip
     void check_sizes_2in1out(std::string & errstr, 
 			     std::vector<NumT> const & input1, 
 			     std::vector<NumT> const & input2, 
-			     std::vector<NumT> output);
+			     std::vector<NumT> const & output);
 			      
 } // ArrayManip
 
