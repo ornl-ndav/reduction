@@ -56,6 +56,7 @@ namespace AxisManip
     tof_to_wavelength(std::vector<NumT> const & tof,
 		      std::vector<NumT> const & tof_err2,
 		      const NumT pathlength,
+		      const NumT pathlength_err2,
 		      std::vector<NumT> & wavelength,
 		      std::vector<NumT> & wavelength_err2,
 		      void *temp=NULL);
@@ -94,6 +95,7 @@ namespace AxisManip
     wavelength_to_tof(std::vector<NumT> const & wavelength,
 		      std::vector<NumT> const & wavelength_err2,
 		      const NumT pathlength,
+		      const NumT pathlength_err2,
 		      std::vector<NumT> & tof,
 		      std::vector<NumT> & tof_err2,
 		      void *temp=NULL);
@@ -136,7 +138,9 @@ namespace AxisManip
     tof_to_scalar_Q(std::vector<NumT> const & tof,
 		    std::vector<NumT> const & tof_err2,
 		    const NumT pathlength,
+		    const NumT pathlength_err2,
                     const NumT polar,
+		    const NumT polar_err2,
 		    std::vector<NumT> & Q,
 		    std::vector<NumT> & Q_err2,
 		    void *temp=NULL);
@@ -174,6 +178,7 @@ namespace AxisManip
     wavelength_to_scalar_Q(std::vector<NumT> const & wavelength,
 			   std::vector<NumT> const & wavelength_err2,
 			   const NumT polar,
+			   const NumT polar_err2,
 			   std::vector<NumT> & Q,
 			   std::vector<NumT> & Q_err2,
 			   void *temp=NULL);
@@ -215,10 +220,15 @@ namespace AxisManip
   template <typename NumT>
     std::string
     initial_velocity_dgs(const NumT dist_upstream_mon,
+			 const NumT dist_upstream_mon_err2,
 			 const NumT time_upstream_mon,
+			 const NumT time_upstream_mon_err2,
 			 const NumT dist_downstream_mon,
+			 const NumT dist_downstream_mon_err2,
 			 const NumT time_downstream_mon,
+			 const NumT time_downstream_mon_err2,
 			 NumT & initial_velocity,
+			 NumT & initial_velocity_err2,
 			 void *temp=NULL);
 
   /**
@@ -248,7 +258,9 @@ namespace AxisManip
   template <typename NumT>
     std::string
     final_velocity_igs(const NumT analyzer_wavelength,
+		       const NumT analyzer_wavelength_err2,
 		       NumT & final_velocity,
+		       NumT & final_velocity_err2,
 		       void *temp=NULL);
  
 
@@ -417,6 +429,7 @@ namespace AxisManip
     wavelength_to_d_spacing(std::vector<NumT> const & wavelength,
 			    std::vector<NumT> const & wavelength_err2,
 			    const NumT polar,
+			    const NumT polar_err2,
 			    std::vector<NumT> & d_spacing,
 			    std::vector<NumT> & d_spacing_err2,
 			    void *temp=NULL);
@@ -454,9 +467,13 @@ namespace AxisManip
   template <typename NumT>
     std::string
     time_offset_dgs(const NumT dist_downstream_monitor,
+		    const NumT dist_downstream_monitor_err2,
 		    const NumT time_downstream_monitor,
+		    const NumT time_downstream_monitor_err2,
 		    const NumT initial_velocity,
+		    const NumT initial_velocity_err2,
 		    NumT & time_offset,
+		    NumT & time_offset_err2,
 		    void *temp=NULL);
 
   /**
@@ -503,9 +520,13 @@ namespace AxisManip
    tof_to_final_velocity_dgs(std::vector<NumT> const & tof,
 			     std::vector<NumT> const & tof_err2,
 			     const NumT initial_velocity,
+			     const NumT initial_velocity_err2,
 			     const NumT time_offset,
+			     const NumT time_offset_err2,
 			     const NumT dist_source_sample,
+			     const NumT dist_source_sample_err2,
 			     const NumT dist_sample_detector,
+			     const NumT dist_sample_detector_err2,
 			     std::vector<NumT> & final_velocity,
 			     std::vector<NumT> & final_velocity_err2,
 			     void *temp=NULL);
@@ -554,9 +575,13 @@ namespace AxisManip
    tof_to_initial_velocity_igs(std::vector<NumT> const & tof,
 			       std::vector<NumT> const & tof_err2,
 			       const NumT final_velocity,
+			       const NumT final_velocity_err2,
 			       const NumT time_offset,
+			       const NumT time_offset_err2,
 			       const NumT dist_source_sample,
+			       const NumT dist_source_sample_err2,
 			       const NumT dist_sample_detector,
+			       const NumT dist_sample_detector_err2,
 			       std::vector<NumT> & initial_velocity,
 			       std::vector<NumT> & initial_velocity_err2,
 			       void *temp=NULL);
@@ -607,9 +632,13 @@ namespace AxisManip
    tof_to_initial_wavelength_igs(std::vector<NumT> const & tof,
 				 std::vector<NumT> const & tof_err2,
 				 const NumT final_wavelength,
+				 const NumT final_wavelength_err2,
 				 const NumT time_offset,
+				 const NumT time_offset_err2,
 				 const NumT dist_source_sample,
+				 const NumT dist_source_sample_err2,
 				 const NumT dist_sample_detector,
+				 const NumT dist_sample_detector_err2,
 				 std::vector<NumT> & initial_wavelength,
 				 std::vector<NumT> & initial_wavelength_err2,
 				 void *temp=NULL);
@@ -743,7 +772,9 @@ namespace AxisManip
 			      std::vector<NumT> const & final_wavevector,
 			      std::vector<NumT> const & final_wavevector_err2,
 			      const NumT azimuthal,
+			      const NumT azimuthal_err2,
 			      const NumT polar,
+			      const NumT polar_err2,
 			      std::vector<NumT> & Qx,
 			      std::vector<NumT> & Qx_err2,
 			      std::vector<NumT> & Qy,
@@ -798,6 +829,7 @@ namespace AxisManip
 				      std::vector<NumT> const & final_wavevector,
 				      std::vector<NumT> const & final_wavevector_err2,
 				      const NumT polar,
+				      const NumT polar_err2,
 				      std::vector<NumT> & Q,
 				      std::vector<NumT> & Q_err2,
 				      void *temp=NULL);
@@ -869,8 +901,11 @@ namespace AxisManip
     tof_to_Q(std::vector<NumT> const & tof,
 	     std::vector<NumT> const & tof_err2,
 	     const NumT pathlength,
+	     const NumT pathlength_err2,
 	     const NumT azimuthal,
+	     const NumT azimuthal_err2,
 	     const NumT polar,
+	     const NumT polar_err2,
 	     std::vector<NumT> & Qx,
 	     std::vector<NumT> & Qx_err2,
 	     std::vector<NumT> & Qy,
@@ -917,7 +952,9 @@ namespace AxisManip
     d_spacing_to_tof_focused_det(std::vector<NumT> const & d_spacing,
 				 std::vector<NumT> const & d_spacing_err2,
 				 const NumT pathlength_focused,
+				 const NumT pathlength_focused_err2,
 				 const NumT polar_focused,
+				 const NumT polar_focused_err2,
 				 std::vector<NumT> & tof,
 				 std::vector<NumT> & tof_err2,
 				 void *temp=NULL);
