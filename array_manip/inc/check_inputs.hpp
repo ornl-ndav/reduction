@@ -23,7 +23,7 @@ namespace ArrayManip
    * consistent sizes.
    * \param input1 (INPUT) is an incoming vector that needs size checking
    * \param input2 (INPUT) is an incoming vector that needs size checking
-   * \param output (OUTPUT) is an output vector that needs size checking
+   * \param output (INPUT) is an output vector that needs size checking
    */
   template <typename NumT>
     void check_sizes_2in1out(std::string & errstr, 
