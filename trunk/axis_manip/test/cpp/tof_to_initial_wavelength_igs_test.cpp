@@ -20,9 +20,13 @@ int main()
   vector<float> f_true_initial_wavelength(n);          
   vector<float> f_true_initial_wavelength_err2(n);     
   float f_final_wavelength;
+  float f_final_wavelength_err2;
   float f_time_offset;
+  float f_time_offset_err2;
   float f_dist_source_sample;
+  float f_dist_source_sample_err2;
   float f_dist_sample_detector;
+  float f_dist_sample_detector_err2;
   float f_a;
   float f_a2;
   float f_b;
@@ -35,9 +39,13 @@ int main()
   vector<double> d_true_initial_wavelength(n);          
   vector<double> d_true_initial_wavelength_err2(n);     
   double d_final_wavelength;
+  double d_final_wavelength_err2;
   double d_time_offset;
+  double d_time_offset_err2;
   double d_dist_source_sample;
+  double d_dist_source_sample_err2;
   double d_dist_sample_detector;
+  double d_dist_sample_detector_err2;
   double d_a;
   double d_a2;
   double d_b;
@@ -50,9 +58,13 @@ int main()
   vector<int> i_true_initial_wavelength(n);          
   vector<int> i_true_initial_wavelength_err2(n);     
   int i_final_wavelength;
+  int i_final_wavelength_err2;
   int i_time_offset;
+  int i_time_offset_err2;
   int i_dist_source_sample;
+  int i_dist_source_sample_err2;
   int i_dist_sample_detector;
+  int i_dist_sample_detector_err2;
   int i_a;
   int i_a2;
   int i_b;
@@ -65,9 +77,13 @@ int main()
   vector<unsigned> u_true_initial_wavelength(n);          
   vector<unsigned> u_true_initial_wavelength_err2(n);     
   unsigned u_final_wavelength;
+  unsigned u_final_wavelength_err2;
   unsigned u_time_offset;
+  unsigned u_time_offset_err2;
   unsigned u_dist_source_sample;
+  unsigned u_dist_source_sample_err2;
   unsigned u_dist_sample_detector;
+  unsigned u_dist_sample_detector_err2;
   unsigned u_a;
   unsigned u_a2;
   unsigned u_b;
@@ -75,29 +91,49 @@ int main()
   int error=0;                      //==0,Pass  !=0,Fail
 
   float final_wavelength = 345.34;
+  float final_wavelength_err2 = 35.;
   float time_offset = 0.0245;
+  float time_offset_err2 = 0.002;
   float dist_source_sample = 34.45;
+  float dist_source_sample_err2 = 3.;
   float dist_sample_detector = 3.35;
+  float dist_sample_detector_err2 = .5;
   
   f_final_wavelength = static_cast<float>(final_wavelength);
+  f_final_wavelength_err2 = static_cast<float>(final_wavelength_err2);
   f_time_offset = static_cast<float>(time_offset);
+  f_time_offset_err2 = static_cast<float>(time_offset_err2);
   f_dist_source_sample = static_cast<float>(dist_source_sample);
+  f_dist_source_sample_err2 = static_cast<float>(dist_source_sample_err2);
   f_dist_sample_detector = static_cast<float>(dist_sample_detector);
+  f_dist_sample_detector_err2 = static_cast<float>(dist_sample_detector_err2);
   
   d_final_wavelength = static_cast<double>(final_wavelength);
+  d_final_wavelength_err2 = static_cast<double>(final_wavelength_err2);
   d_time_offset = static_cast<double>(time_offset);
+  d_time_offset_err2 = static_cast<double>(time_offset_err2);
   d_dist_source_sample = static_cast<double>(dist_source_sample);
+  d_dist_source_sample_err2 = static_cast<double>(dist_source_sample_err2);
   d_dist_sample_detector = static_cast<double>(dist_sample_detector);
+  d_dist_sample_detector_err2 = static_cast<double>(dist_sample_detector_err2);
   
   i_final_wavelength = static_cast<int>(final_wavelength);
+  i_final_wavelength_err2 = static_cast<int>(final_wavelength_err2);
   i_time_offset = static_cast<int>(time_offset);
+  i_time_offset_err2 = static_cast<int>(time_offset_err2);
   i_dist_source_sample = static_cast<int>(dist_source_sample);
+  i_dist_source_sample_err2 = static_cast<int>(dist_source_sample_err2);
   i_dist_sample_detector = static_cast<int>(dist_sample_detector);
+  i_dist_sample_detector_err2 = static_cast<int>(dist_sample_detector_err2);
   
   u_final_wavelength = static_cast<unsigned>(final_wavelength);
+  u_final_wavelength_err2 = static_cast<unsigned>(final_wavelength_err2);
   u_time_offset = static_cast<unsigned>(time_offset);
+  u_time_offset_err2 = static_cast<unsigned>(time_offset_err2);
   u_dist_source_sample = static_cast<unsigned>(dist_source_sample);
+  u_dist_source_sample_err2 = static_cast<unsigned>(dist_source_sample_err2);
   u_dist_sample_detector = static_cast<unsigned>(dist_sample_detector);
+  u_dist_sample_detector_err2 = static_cast<unsigned>(dist_sample_detector_err2);
   
   
   for(int i=0; i<n; i++)            //create the arrays
@@ -115,20 +151,28 @@ int main()
     }
   
   AxisManip::tof_to_initial_wavelength_igs(f_tof, f_tof_err2, 
-					   f_final_wavelength, f_time_offset,
-					   f_dist_source_sample, f_dist_sample_detector,
+					   f_final_wavelength, f_final_wavelength_err2,
+                                           f_time_offset, f_time_offset_err2, 
+					   f_dist_source_sample, f_dist_source_sample_err2,
+                                           f_dist_sample_detector, f_dist_sample_detector_err2,
 					   f_initial_wavelength, f_initial_wavelength_err2);
   AxisManip::tof_to_initial_wavelength_igs(d_tof, d_tof_err2,  
-					   d_final_wavelength, d_time_offset,
-					   d_dist_source_sample, d_dist_sample_detector,
+					   d_final_wavelength, d_final_wavelength_err2, 
+                                           d_time_offset, d_time_offset_err2,
+					   d_dist_source_sample, d_dist_source_sample_err2, 
+                                           d_dist_sample_detector, d_dist_sample_detector_err2,
 					   d_initial_wavelength, d_initial_wavelength_err2);
   AxisManip::tof_to_initial_wavelength_igs(i_tof, i_tof_err2, 
-					   i_final_wavelength, i_time_offset,
-					   i_dist_source_sample, i_dist_sample_detector,
+					   i_final_wavelength, i_final_wavelength_err2, 
+                                           i_time_offset, i_time_offset_err2,
+					   i_dist_source_sample, i_dist_source_sample_err2, 
+                                           i_dist_source_sample, i_dist_sample_detector_err2,
 					   i_initial_wavelength, i_initial_wavelength_err2);
   AxisManip::tof_to_initial_wavelength_igs(u_tof, u_tof_err2,  
-					   u_final_wavelength, u_time_offset,
-					   u_dist_source_sample, u_dist_sample_detector,
+					   u_final_wavelength, u_final_wavelength_err2, 
+                                           u_time_offset, u_time_offset_err2,
+					   u_dist_source_sample, u_dist_source_sample_err2,
+                                           u_dist_sample_detector, u_dist_sample_detector_err2,
 					   u_initial_wavelength, u_initial_wavelength_err2);
   
   f_a = static_cast<float>(1 / (H_OVER_MNEUT * f_dist_sample_detector));

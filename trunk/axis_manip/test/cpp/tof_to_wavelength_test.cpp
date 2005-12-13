@@ -14,6 +14,7 @@ int main()
   vector<float> f_tof;                
   vector<float> f_tof_err2;           
   const float f_pathlength = 3.3;
+  const float f_pathlength_err2 = .3;
   vector<float> f_wavelength(n);          
   vector<float> f_wavelength_err2(n);     
   vector<float> f_true_wavelength(n);          
@@ -25,6 +26,7 @@ int main()
   vector<double> d_tof;                
   vector<double> d_tof_err2;           
   const double d_pathlength = 3.3;
+  const double d_pathlength_err2 = .3;
   vector<double> d_wavelength(n);          
   vector<double> d_wavelength_err2(n);     
   vector<double> d_true_wavelength(n);          
@@ -36,6 +38,7 @@ int main()
   vector<int> i_tof;                
   vector<int> i_tof_err2;           
   const int i_pathlength = 3;
+  const int i_pathlength_err2 = 1;
   vector<int> i_wavelength(n);          
   vector<int> i_wavelength_err2(n);     
   vector<int> i_true_wavelength(n);          
@@ -47,6 +50,7 @@ int main()
   vector<unsigned> u_tof;                
   vector<unsigned> u_tof_err2;           
   const unsigned u_pathlength = 3;
+  const unsigned u_pathlength_err2 = 1;
   vector<unsigned> u_wavelength(n);          
   vector<unsigned> u_wavelength_err2(n);     
   vector<unsigned> u_true_wavelength(n);          
@@ -70,13 +74,13 @@ int main()
       u_tof_err2.push_back((unsigned)i);
     }
   
-  AxisManip::tof_to_wavelength(f_tof, f_tof_err2, f_pathlength, 
+  AxisManip::tof_to_wavelength(f_tof, f_tof_err2, f_pathlength, f_pathlength_err2,
 				f_wavelength, f_wavelength_err2);
-  AxisManip::tof_to_wavelength(d_tof, d_tof_err2, d_pathlength,
+  AxisManip::tof_to_wavelength(d_tof, d_tof_err2, d_pathlength, d_pathlength_err2,
 				d_wavelength, d_wavelength_err2);
-  AxisManip::tof_to_wavelength(i_tof, i_tof_err2, i_pathlength,
+  AxisManip::tof_to_wavelength(i_tof, i_tof_err2, i_pathlength, i_pathlength_err2,
 				i_wavelength, i_wavelength_err2);
-  AxisManip::tof_to_wavelength(u_tof, u_tof_err2, u_pathlength,
+  AxisManip::tof_to_wavelength(u_tof, u_tof_err2, u_pathlength, u_pathlength_err2,
 				u_wavelength, u_wavelength_err2);
   
   f_H_OVER_MNEUT2 = f_H_OVER_MNEUT * f_H_OVER_MNEUT;
