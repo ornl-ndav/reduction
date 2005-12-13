@@ -15,5 +15,8 @@
   } catch (std::invalid_argument &e) {
     PyErr_SetString(PyExc_IndexError, e.what());
     return NULL;
+  } catch (std::exception &e) {
+    PyErr_SetString(PyExc_Exception, e.what());
+    return NULL;
   }
 }
