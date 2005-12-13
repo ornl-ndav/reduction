@@ -4,9 +4,9 @@
  * \file axis_manip/src/wavelength_to_d_spacing.cpp
  */
 #include "conversions.hpp"
+#include <stdexcept>
 #include <string>
 #include <vector>
-#include <stdexcept>
 
 namespace AxisManip
 {
@@ -16,6 +16,7 @@ namespace AxisManip
   wavelength_to_d_spacing(std::vector<NumT> const & wavelength,
 			  std::vector<NumT> const & wavelength_err2,
 			  const NumT scatt_angle,
+			  const NumT scatt_angle_err2,
 			  std::vector<NumT> & d_spacing,
 			  std::vector<NumT> & d_spacing_err2,
 			  void *temp=NULL)
@@ -34,6 +35,7 @@ namespace AxisManip
   wavelength_to_d_spacing<float>(std::vector<float> const & wavelength,
 				 std::vector<float> const & wavelength_err2,
 				 const float scatt_angle,
+				 const float scatt_angle_err2,
 				 std::vector<float> & d_spacing,
 				 std::vector<float> & d_spacing_err2,
 				 void *temp);
@@ -48,6 +50,7 @@ namespace AxisManip
   wavelength_to_d_spacing<double>(std::vector<double> const & wavelength,
 				  std::vector<double> const & wavelength_err2,
 				  const double scatt_angle,
+				  const double scatt_angle_err2,
 				  std::vector<double> & d_spacing,
 				  std::vector<double> & d_spacing_err2,
 				  void *temp);
@@ -61,6 +64,7 @@ namespace AxisManip
   wavelength_to_d_spacing<int>(std::vector<int> const & wavelength,
 			       std::vector<int> const & wavelength_err2,
 			       const int scatt_angle,
+			       const int scatt_angle_err2,
 			       std::vector<int> & d_spacing,
 			       std::vector<int> & d_spacing_err2,
 			       void *temp);
@@ -72,11 +76,12 @@ namespace AxisManip
    */
   template std::string
   wavelength_to_d_spacing<unsigned int>(
-                             std::vector<unsigned int> const & wavelength,
-                             std::vector<unsigned int> const & wavelength_err2,
-                             const unsigned int scatt_angle,
-                             std::vector<unsigned int> & d_spacing,
-                             std::vector<unsigned int> & d_spacing_err2,
-                             void *temp);
+					std::vector<unsigned int> const & wavelength,
+					std::vector<unsigned int> const & wavelength_err2,
+					const unsigned int scatt_angle,
+					const unsigned int scatt_angle_err2,
+					std::vector<unsigned int> & d_spacing,
+					std::vector<unsigned int> & d_spacing_err2,
+					void *temp);
   
 } // AxisManip
