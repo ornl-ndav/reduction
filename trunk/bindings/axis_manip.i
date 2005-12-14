@@ -4,6 +4,7 @@
 //
 %module axis_manip
 %{
+#include "check_histo.hpp"
 #include "conversions.hpp"
 #include "rebinning.hpp"
 #include "reverse_array.hpp"
@@ -12,6 +13,7 @@
 %include "libexcept.i"
 
 // Parse the original header file
+%include "check_histo.hpp"
 %include "conversions.hpp"
 %include "rebinning.hpp"
 %include "reverse_array.hpp"
@@ -31,6 +33,12 @@
 %template(reverse_array_nc_d) AxisManip::reverse_array_nc<double>;
 %template(reverse_array_nc_i) AxisManip::reverse_array_nc<int>;
 %template(reverse_array_nc_u) AxisManip::reverse_array_nc<unsigned>;
+
+// Instantiate check histo templates
+%template(check_histo_sizes_f) AxisManip::check_histo_sizes<float>;
+%template(check_histo_sizes_d) AxisManip::check_histo_sizes<double>;
+%template(check_histo_sizes_i) AxisManip::check_histo_sizes<int>;
+%template(check_histo_sizes_u) AxisManip::check_histo_sizes<unsigned>;
 
 // Instantiate rebinning templates
 template <typename NumT> std::string 
