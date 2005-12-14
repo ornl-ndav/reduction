@@ -26,33 +26,33 @@ echo "Using $autoconfversion"
 echo "Using $automakeversion"
 echo "Using $libtoolversion"
 case $autoconfversion in
-    *2.5[2-79])
+    *2.59)
 	;;
     *)
-	echo "This autoconf version is not supported by NeXus."
-	echo "NeXus only supports autoconf 2.5[2-79]."
+	echo "This autoconf version is not supported by SNS Common Libraries."
+	echo "SNS Common Libraries only supports autoconf 2.59."
 	echo "You may download it from ftp://ftp.gnu.org/gnu/autoconf"
 	exit
 	;;
 esac
 
 case $automakeversion in
-    *1.[4-9]*)
+    *1.9.4)
 	;;
     *)
-	echo "This automake version is not supported by NeXus."
-	echo "NeXus only supports automake 1.[5-8].*."
+	echo "This automake version is not supported by SNS Common Libraries."
+	echo "SNS Common Libraries only supports automake 1.9.4."
 	echo "You may download it from ftp://ftp.gnu.org/gnu/automake"
 	exit
 	;;
 esac
 
 case $libtoolversion in
-    *1.[45]*)
+    *1.5.10*)
 	;;
     *)
-	echo "This libtool version is not supported by NeXus."
-	echo "NeXus only supports libtool 1.[45].*."
+	echo "This libtool version is not supported by SNS Common Libraries."
+	echo "SNS Common Libraries only supports libtool 1.5.10."
 	echo "You may download it from ftp://ftp.gnu.org/gnu/libtool"
 	exit
 	;;
