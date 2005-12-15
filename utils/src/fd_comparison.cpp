@@ -4,6 +4,8 @@
 #include <limits>
 #include <vector>
 
+#define Precision_range 1e-6
+
 using namespace std;
 
 namespace Utils
@@ -18,8 +20,9 @@ namespace Utils
   {
       for (int i=0; i< n_max; i++)
 	{
-	  if (fabs(value[i] - true_value[i]) > fabs(value[i]) *
-	      numeric_limits<NumT>::epsilon())
+//	  if (fabs(value[i] - true_value[i]) > fabs(value[i]) 
+//    * numeric_limits<NumT>::epsilon())
+	  if (fabs(value[i]-true_value[i])> fabs(value[i])*Precision_range)
 	    {
 	      error += add_error;
 	      return;
