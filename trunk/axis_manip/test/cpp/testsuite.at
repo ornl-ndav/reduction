@@ -6,15 +6,15 @@ AT_INIT
 
 AT_BANNER([[Checking Functionality of the Axis Manipulation Functions]])
 
-AT_SETUP([Checking the TOF to Wavelength Function.  ])
-AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
-[[tof_to_wavelength_test.cpp..........Functionality OK
+AT_SETUP([Checking the Initial and Scattering Wavevector to Scalar Q.  ])
+AT_CHECK([init_scatt_wavevector_to_scalar_Q_test | sed -e 's/\r$//' ],[],
+[[init_scatt_wavevector_to_scalar_Q.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
-AT_SETUP([Checking the TOF to Initial Wavelength for IGS Function.  ])
-AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
-[[tof_to_initial_wavelength_igs_test.cpp..........Functionality OK
+AT_SETUP([Checking the TOF to Wavelength Function.  ])
+AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
+[[tof_to_wavelength_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
