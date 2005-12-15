@@ -18,6 +18,7 @@ libAxisManip_la_SOURCES = \
 	rebin_axis_2D.cpp \
 	rebin_axis_4D.cpp \
 	reverse_array.cpp \
+	reverse_array_nc.cpp \
 	time_offset_dgs.cpp \
 	tof_to_Q.cpp \
 	tof_to_final_velocity_dgs.cpp \
