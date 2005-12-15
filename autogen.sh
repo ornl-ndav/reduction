@@ -37,7 +37,7 @@ case $autoconfversion in
 esac
 
 case $automakeversion in
-    *1.9.4)
+    *1.9.[4-5])
 	;;
     *)
 	echo "This automake version is not supported by SNS Common Libraries."
@@ -48,7 +48,7 @@ case $automakeversion in
 esac
 
 case $libtoolversion in
-    *1.5.10*)
+    *1.5.[10-16]*)
 	;;
     *)
 	echo "This libtool version is not supported by SNS Common Libraries."
