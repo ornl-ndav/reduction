@@ -31,8 +31,8 @@ tof_to_wavelength_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(
 tof_to_wavelength_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_wavelength.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 tof_to_initial_wavelength_igs_test_SOURCES = tof_to_initial_wavelength_igs_test.cpp
-tof_to_initial_wavelength_igs_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
-tof_to_initial_wavelength_igs_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_initial_wavelength_igs.o
+tof_to_initial_wavelength_igs_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc
+tof_to_initial_wavelength_igs_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_initial_wavelength_igs.o $(top_srcdir)/utils/src/fd_comparison.o
 
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp
 wavelength_to_energy_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc

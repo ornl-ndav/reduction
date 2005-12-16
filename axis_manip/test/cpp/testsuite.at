@@ -18,6 +18,12 @@ AT_CHECK([init_scatt_wavevector_to_scalar_Q_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the TOF to Initial Wavelength for Inverse Geometry Spectrometer Function .  ])
+AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
+[[tof_to_initial_wavelength_igs.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the TOF to Wavelength Function.  ])
 AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
 [[tof_to_wavelength.cpp..........Functionality OK
