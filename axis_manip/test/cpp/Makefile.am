@@ -5,16 +5,22 @@ test: check
 AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc
 
 AXIS_MANIP_TARGETS = \
+	energy_transfer_test \
+	init_scatt_wavevector_to_scalar_Q_test \
 	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
-	wavelength_to_scalar_k_test \
-	init_scatt_wavevector_to_scalar_Q_test 
+	wavelength_to_scalar_k_test 
+
 
 TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(AXIS_MANIP_TARGETS)
+
+energy_transfer_test_SOURCES = energy_transfer_test.cpp
+energy_transfer_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc/ 
+energy_transfer_test_LDADD = $(top_srcdir)/axis_manip/src/energy_transfer.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 init_scatt_wavevector_to_scalar_Q_test_SOURCES = init_scatt_wavevector_to_scalar_Q_test.cpp
 init_scatt_wavevector_to_scalar_Q_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc

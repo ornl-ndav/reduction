@@ -6,6 +6,12 @@ AT_INIT
 
 AT_BANNER([[Checking Functionality of the Axis Manipulation Functions]])
 
+AT_SETUP([Checking the Energy Transfer.  ])
+AT_CHECK([energy_transfer_test | sed -e 's/\r$//' ],[],
+[[energy_transfer.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Initial and Scattering Wavevector to Scalar Q.  ])
 AT_CHECK([init_scatt_wavevector_to_scalar_Q_test | sed -e 's/\r$//' ],[],
 [[init_scatt_wavevector_to_scalar_Q.cpp..........Functionality OK
