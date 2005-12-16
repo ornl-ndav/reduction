@@ -7,7 +7,7 @@ lib_LTLIBRARIES = libAxisManip.la
 libAxisManip_la_LDFLAGS = -version-info 1:0:0
 
 libAxisManip_la_SOURCES = \
-	check_histo.cpp \
+	check_histo_sizes.cpp \
 	d_spacing_to_tof_focused_det.cpp \
 	energy_transfer.cpp \
 	final_velocity_igs.cpp \
