@@ -21,16 +21,16 @@ init_scatt_wavevector_to_scalar_Q_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axi
 init_scatt_wavevector_to_scalar_Q_test_LDADD = $(top_srcdir)/axis_manip/src/init_scatt_wavevector_to_scalar_Q.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp
-tof_to_wavelength_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
-tof_to_wavelength_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_wavelength.o
+tof_to_wavelength_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc/ 
+tof_to_wavelength_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_wavelength.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 tof_to_initial_wavelength_igs_test_SOURCES = tof_to_initial_wavelength_igs_test.cpp
 tof_to_initial_wavelength_igs_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
 tof_to_initial_wavelength_igs_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_initial_wavelength_igs.o
 
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp
-wavelength_to_energy_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
-wavelength_to_energy_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_energy.o
+wavelength_to_energy_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc
+wavelength_to_energy_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_energy.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp
 wavelength_to_scalar_k_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
