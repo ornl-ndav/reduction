@@ -33,31 +33,4 @@ namespace AxisManip
 			       std::vector<double> & energy,
 			       std::vector<double> & energy_err2,
 			       void *temp);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.22.
-   *
-   * \see wavelength_to_energy()
-   */
-  template std::string
-  wavelength_to_energy<int>(std::vector<int> const & wavelength,
-			    std::vector<int> const & wavelength_err2,
-			    std::vector<int> & energy,
-			    std::vector<int> & energy_err2,
-			    void *temp);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.22.
-   *
-   * \see wavelength_to_energy()
-   */
-  template std::string
-  wavelength_to_energy<unsigned int>(
-                             std::vector<unsigned int> const & wavelength,
-                             std::vector<unsigned int> const & wavelength_err2,
-                             std::vector<unsigned int> & energy,
-                             std::vector<unsigned int> & energy_err2,
-                             void *temp);
-  
 } // AxisManip

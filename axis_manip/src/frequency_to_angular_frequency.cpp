@@ -35,31 +35,4 @@ namespace AxisManip
                                   std::vector<double> & angular_frequency,
 			          std::vector<double> & angular_frequency_err2,
                                   void *temp);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.31.
-   *
-   * \see frequency_to_angular_frequency()
-   */
-  template std::string
-  frequency_to_angular_frequency<int>(
-                                     std::vector<int> const & frequency,
-                                     std::vector<int> const & frequency_err2,
-                                     std::vector<int> & angular_frequency,
-				     std::vector<int> & angular_frequency_err2,
-                                     void *temp);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined in 3.31.
-   *
-   * \see frequency_to_angular_frequency()
-   */
-  template std::string
-  frequency_to_angular_frequency<unsigned int>(
-                            std::vector<unsigned int> const & frequency,
-                            std::vector<unsigned int> const & frequency_err2,
-                            std::vector<unsigned int> & angular_frequency,
-                            std::vector<unsigned int> & angular_frequency_err2,
-                            void *temp);
-  
 } // AxisManip

@@ -37,34 +37,4 @@ namespace AxisManip
 			    std::vector<double> & wavelength,
 			    std::vector<double> & wavelength_err2,
 			    void *temp);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.30.
-   *
-   * \see tof_to_wavelength()
-   */
-  template std::string
-  tof_to_wavelength<int>(std::vector<int> const & tof,
-			 std::vector<int> const & tof_err2,
-			 const int pathlength,
-			 const int pathlength_err2,
-			 std::vector<int> & wavelength,
-			 std::vector<int> & wavelength_err2,
-			 void *temp);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.30.
-   *
-   * \see tof_to_wavelength()
-   */
-  template std::string
-  tof_to_wavelength<unsigned int>(std::vector<unsigned int> const & tof,
-                                  std::vector<unsigned int> const & tof_err2,
-                                  const unsigned int pathlength,
-				  const unsigned int pathlength_err2,
-                                  std::vector<unsigned int> & wavelength,
-                                  std::vector<unsigned int> & wavelength_err2,
-                                  void *temp);
-  
 } // AxisManip

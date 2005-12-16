@@ -41,38 +41,4 @@ namespace AxisManip
 			  double & time_offset,
 			  double & time_offset_err2,
 			  void *temp=NULL);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.26.
-   *
-   * \see time_offset_dgs()
-   */
-  template std::string
-  time_offset_dgs<int>(const int dist_downstream_monitor,
-		       const int dist_downstream_monitor_err2,
-		       const int time_downstream_monitor,
-		       const int time_downstream_monitor_err2,
-		       const int initial_velocity,
-		       const int initial_velocity_err2,
-		       int & time_offset,
-		       int & time_offset_err2,
-		       void *temp=NULL);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.26.
-   *
-   * \see time_offset_dgs()
-   */
-  template std::string
-  time_offset_dgs<unsigned int>(const unsigned int dist_downstream_monitor,
-				const unsigned int dist_downstream_monitor_err2,
-				const unsigned int time_downstream_monitor,
-				const unsigned int time_downstream_monitor_err2,
-				const unsigned int initial_velocity,
-				const unsigned int initial_velocity_err2,
-				unsigned int & time_offset,
-				unsigned int & time_offset_err2,
-				void *temp=NULL);
-  
 } // AxisManip

@@ -49,46 +49,4 @@ namespace AxisManip
 				    std::vector<double> & final_velocity,
 				    std::vector<double> & final_velocity_err2,
 				    void *temp=NULL);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.27.
-   *
-   * \see tof_to_final_velocity_dgs()
-   */
-  template std::string
-  tof_to_final_velocity_dgs<int>(std::vector<int> const & tof,
-				 std::vector<int> const & tof_err2,
-				 const int initial_velocity,
-				 const int initial_velocity_err2,
-				 const int time_offset,
-				 const int time_offset_err2,
-				 const int dist_source_sample,
-				 const int dist_source_sample_err2,
-				 const int dist_sample_detector,
-				 const int dist_sample_detector_err2,
-				 std::vector<int> & final_velocity,
-				 std::vector<int> & final_velocity_err2,
-				 void *temp=NULL);
-
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.27.
-   *
-   * \see tof_to_final_velocity_dgs()
-   */
-  template std::string
-  tof_to_final_velocity_dgs<unsigned int>(std::vector<unsigned int> const & tof,
-					  std::vector<unsigned int> const & tof_err2,
-					  const unsigned int initial_velocity,
-					  const unsigned int initial_velocity_err2,
-					  const unsigned int time_offset,
-					  const unsigned int time_offset_err2,
-					  const unsigned int dist_source_sample,
-					  const unsigned int dist_source_sample_err2,
-					  const unsigned int dist_sample_detector,
-					  const unsigned int dist_sample_detector_err2,
-					  std::vector<unsigned int> & final_velocity,
-					  std::vector<unsigned int> & final_velocity_err2,
-					  void *temp=NULL);
-
 } // AxisManip

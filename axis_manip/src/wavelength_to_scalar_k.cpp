@@ -33,31 +33,4 @@ namespace AxisManip
 				 std::vector<double> & wavevector,
 				 std::vector<double> & wavevector_err2,
 				 void *temp);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.24.
-   *
-   * \see wavelength_to_scalar_k()
-   */
-  template std::string
-  wavelength_to_scalar_k<int>(std::vector<int> const & wavelength,
-			      std::vector<int> const & wavelength_err2,
-			      std::vector<int> & wavevector,
-			      std::vector<int> & wavevector_err2,
-			      void *temp);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.24.
-   *
-   * \see wavelength_to_scalar_k()
-   */
-  template std::string
-  wavelength_to_scalar_k<unsigned int>(
-                             std::vector<unsigned int> const & wavelength,
-                             std::vector<unsigned int> const & wavelength_err2,
-                             std::vector<unsigned int> & wavevector,
-                             std::vector<unsigned int> & wavevector_err2,
-                             void *temp);
-  
 } // AxisManip

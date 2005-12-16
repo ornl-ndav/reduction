@@ -37,35 +37,4 @@ namespace AxisManip
 			  std::vector<double> & energy_transfer,
 			  std::vector<double> & energy_transfer_err2,
 			  void *temp);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.30.
-   *
-   * \see energy_transfer()
-   */
-  template std::string
-  energy_transfer<int>(std::vector<int> const & initial_energy,
-		       std::vector<int> const & initial_energy_err2,
-		       std::vector<int> const & final_energy,
-		       std::vector<int> const & final_energy_err2,
-		       std::vector<int> & energy_transfer,
-		       std::vector<int> & energy_transfer_err2,
-		       void *temp);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.30.
-   *
-   * \see energy_transfer()
-   */
-  template std::string
-  energy_transfer<unsigned int>(
-                         std::vector<unsigned int> const & initial_energy,
-                         std::vector<unsigned int> const & initial_energy_err2,
-                         std::vector<unsigned int> const & final_energy,
-                         std::vector<unsigned int> const & final_energy_err2,
-                         std::vector<unsigned int> & energy_transfer,
-                         std::vector<unsigned int> & energy_transfer_err2,
-                         void *temp);
-  
 } // AxisManip
