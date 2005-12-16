@@ -37,34 +37,4 @@ namespace AxisManip
 				  std::vector<double> & d_spacing,
 				  std::vector<double> & d_spacing_err2,
 				  void *temp);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.25.
-   *
-   * \see wavelength_to_d_spacing()
-   */
-  template std::string
-  wavelength_to_d_spacing<int>(std::vector<int> const & wavelength,
-			       std::vector<int> const & wavelength_err2,
-			       const int scatt_angle,
-			       const int scatt_angle_err2,
-			       std::vector<int> & d_spacing,
-			       std::vector<int> & d_spacing_err2,
-			       void *temp);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined in 3.25.
-   *
-   * \see wavelength_to_d_spacing()
-   */
-  template std::string
-  wavelength_to_d_spacing<unsigned int>(
-					std::vector<unsigned int> const & wavelength,
-					std::vector<unsigned int> const & wavelength_err2,
-					const unsigned int scatt_angle,
-					const unsigned int scatt_angle_err2,
-					std::vector<unsigned int> & d_spacing,
-					std::vector<unsigned int> & d_spacing_err2,
-					void *temp);
-  
 } // AxisManip

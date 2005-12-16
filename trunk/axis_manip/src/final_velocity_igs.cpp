@@ -32,30 +32,4 @@ namespace AxisManip
 			     double & final_velocity,
 			     double & final_velocity_err2,
 			     void *temp);
-  
-  /**
-   * This is the integer declaration of the function defined in 3.20.
-   *
-   * \see final_velocity_igs()
-   */
-  template std::string
-  final_velocity_igs<int>(const int analyzer_wavelength,
-			  const int analyzer_wavelength_err2,
-			  int & final_velocity,
-			  int & final_velocity_err2,
-			  void *temp);
-  
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.20.
-   *
-   * \see final_velocity_igs()
-   */
-  template std::string
-  final_velocity_igs<unsigned int>(const unsigned int analyzer_wavelength,
-				   const unsigned int analyzer_wavelength_err2,
-				   unsigned int & final_velocity,
-				   unsigned int & final_velocity_err2,
-				   void *temp);
-  
 } // AxisManip

@@ -41,39 +41,4 @@ namespace AxisManip
 			std::vector<double> & output,
 			std::vector<double> & output_err2,
 			void *temp);
-
-  /**
-   * This is the integer declaraion of the function defined in 3.13.
-   *
-   * \see rebin_axis_2D()
-   */
-  template std::string 
-  rebin_axis_2D<int>(std::vector<int> const & axis_in_1,
-		     std::vector<int> const & axis_in_2,
-		     std::vector<int> const & input,
-		     std::vector<int> const & input_err2,
-		     std::vector<int> const & axis_out_1,
-		     std::vector<int> const & axis_out_2,
-		     std::vector<int> & output,
-		     std::vector<int> & output_err2,
-		     void *temp);
-
-  /**
-   * This is the unsigned integer declaraion of the function defined
-   * in 3.13.
-   *
-   * \see rebin_axis_2D()
-   */
-  template std::string 
-  rebin_axis_2D<unsigned int>(std::vector<unsigned int> const & axis_in_1,
-                              std::vector<unsigned int> const & axis_in_2,
-                              std::vector<unsigned int> const & input,
-                              std::vector<unsigned int> const & input_err2,
-                              std::vector<unsigned int> const & axis_out_1,
-                              std::vector<unsigned int> const & axis_out_2,
-                              std::vector<unsigned int> & output,
-                              std::vector<unsigned int> & output_err2,
-                              void *temp);
-  
-
 } // AxisManip
