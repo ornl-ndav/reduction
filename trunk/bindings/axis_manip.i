@@ -24,10 +24,10 @@
 //                  std::vector<NumT> & output,
 //                  void *temp=NULL);
 
-%template(reverse_array_f) AxisManip::reverse_array<float>;
-%template(reverse_array_d) AxisManip::reverse_array<double>;
-%template(reverse_array_i) AxisManip::reverse_array<int>;
-%template(reverse_array_u) AxisManip::reverse_array<unsigned>;
+%template(reverse_array_cp_f) AxisManip::reverse_array_cp<float>;
+%template(reverse_array_cp_d) AxisManip::reverse_array_cp<double>;
+%template(reverse_array_cp_i) AxisManip::reverse_array_cp<int>;
+%template(reverse_array_cp_u) AxisManip::reverse_array_cp<unsigned>;
 
 %template(reverse_array_nc_f) AxisManip::reverse_array_nc<float>;
 %template(reverse_array_nc_d) AxisManip::reverse_array_nc<double>;
