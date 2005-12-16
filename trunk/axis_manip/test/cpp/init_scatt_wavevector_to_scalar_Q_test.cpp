@@ -123,7 +123,6 @@ int main()
     Utils::fd_comparison(d_Q, d_true_Q, error_case_1, 110, n);
     if (error_case_1 != 0) break;
     Utils::fd_comparison(d_Q_err2, d_true_Q_err2, error_case_1, 120, n);
-    if (error_case_1 != 0) break;
     break;
    }
   
@@ -226,6 +225,7 @@ int main()
 					       d_final_wavevector, d_final_wavevector_err2,
 					       d_polar_angle, d_polar_angle_err2, d_Q, d_Q_err2);
   
+
   f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, f_initial_wavevector_err2,
 					       0,f_final_wavevector, f_final_wavevector_err2,
 					       0,f_polar_angle,f_polar_angle_err2,
@@ -286,7 +286,6 @@ int main()
 					       d_final_wavevector, d_final_wavevector_err2,
 					       d_polar_angle, d_polar_angle_err2, d_Q, d_Q_err2);
   
-  
   for(int i=0; i<n; i++)
     {
       f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, f_initial_wavevector_err2,
@@ -299,7 +298,6 @@ int main()
 						   i,d_final_wavevector, d_final_wavevector_err2,
 						   i,d_polar_angle,d_polar_angle_err2,
 						   d_true_Q, d_true_Q_err2, i);
-
     }  
   
   //compare results for case 4
