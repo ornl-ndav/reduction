@@ -26,6 +26,6 @@ AT_CLEANUP
 
 AT_SETUP([Checking the Wavelength to Scalar Wavevector Function.  ])
 AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
-[[wavelength_to_scalar_k_test.cpp..........Functionality OK
+[[wavelength_to_scalar_k.cpp..........Functionality OK
 ]])
 AT_CLEANUP
