@@ -35,30 +35,6 @@ int main()
   const double d_a = (double)(PhysConst::H_OVER_MNEUT / d_pathlength);
   double d_a2 = d_a * d_a;
   
-  //int
-  vector<int> i_tof;                
-  vector<int> i_tof_err2;           
-  const int i_pathlength = 3;
-  const int i_pathlength_err2 = 1;
-  vector<int> i_wavelength(n);          
-  vector<int> i_wavelength_err2(n);     
-  vector<int> i_true_wavelength(n);          
-  vector<int> i_true_wavelength_err2(n);     
-  const int i_a = (int)(PhysConst::H_OVER_MNEUT / i_pathlength);
-  int i_a2 = i_a * i_a;
-
-  //unsigned
-  vector<unsigned int> u_tof;                
-  vector<unsigned int> u_tof_err2;           
-  const unsigned int u_pathlength = 3;
-  const unsigned int u_pathlength_err2 = 1;
-  vector<unsigned int> u_wavelength(n);          
-  vector<unsigned int> u_wavelength_err2(n);     
-  vector<unsigned int> u_true_wavelength(n);          
-  vector<unsigned int> u_true_wavelength_err2(n);     
-  const unsigned int u_a = (unsigned int)(PhysConst::H_OVER_MNEUT / u_pathlength);
-  unsigned int u_a2 = u_a * u_a;
-
   int error=0;                      //==0,Pass  !=0,Fail
 
   for(int i=0; i<n; i++)            //create the arrays
@@ -66,13 +42,9 @@ int main()
       //_input1 array
       f_tof.push_back(2.*(float)i);
       d_tof.push_back(2.*(double)i); 
-      i_tof.push_back(2*(int)i);
-      u_tof.push_back(2*(unsigned int)i);
 
       f_tof_err2.push_back((float)i);
       d_tof_err2.push_back((double)i);      
-      i_tof_err2.push_back((int)i);
-      u_tof_err2.push_back((unsigned int)i);
     }
   
   AxisManip::tof_to_wavelength(f_tof, f_tof_err2, 
@@ -83,14 +55,6 @@ int main()
 			       d_pathlength, d_pathlength_err2,
 			       d_wavelength, d_wavelength_err2);
 
-  AxisManip::tof_to_wavelength(i_tof, i_tof_err2, 
-			       i_pathlength, i_pathlength_err2,
-			       i_wavelength, i_wavelength_err2);
-
-  AxisManip::tof_to_wavelength(u_tof, u_tof_err2,
-			       u_pathlength, u_pathlength_err2,
-			       u_wavelength, u_wavelength_err2);
-  
   for (int i=0; i<n; i++)
     {
       f_true_wavelength[i] = f_a * f_tof[i];
@@ -98,16 +62,10 @@ int main()
       
       d_true_wavelength[i] = d_a * d_tof[i];
       d_true_wavelength_err2[i] = d_a2 * d_tof_err2[i];
-
-      i_true_wavelength[i] = i_a * i_tof[i];
-      i_true_wavelength_err2[i] = i_a2 * i_tof_err2[i];
-
-      u_true_wavelength[i] = u_a * u_tof[i];
-      u_true_wavelength_err2[i] = u_a2 * u_tof_err2[i];
     }
   
   //check first if the size are in good agreement
-  if ((f_tof.size() != f_wavelength.size())||(d_tof.size() != d_wavelength.size()) || (i_tof.size() != i_wavelength.size()) || (u_tof.size() != u_wavelength.size()))
+  if ((f_tof.size() != f_wavelength.size())||(d_tof.size() != d_wavelength.size()))
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;
@@ -126,14 +84,6 @@ int main()
       Utils::fd_comparison(d_wavelength_err2, d_true_wavelength_err2, error, 120, n);
       if (error != 0) break;
 
-      Utils::iu_comparison(i_wavelength, i_true_wavelength, error, 210, n);
-      if (error != 0) break;
-      Utils::iu_comparison(i_wavelength_err2, i_true_wavelength_err2, error, 220, n);
-      if (error != 0) break;
-
-      Utils::iu_comparison(u_wavelength, u_true_wavelength, error, 310, n);
-      if (error != 0) break;
-      Utils::iu_comparison(u_wavelength_err2, u_true_wavelength_err2, error, 320, n);
       break;
 	}
 
@@ -158,26 +108,6 @@ int main()
 	  if (fabs(d_wavelength_err2[i] - d_true_wavelength_err2[i])> 0.0001)
 	    {
 	      error=error+120;
-	      break;
-	    }
-	  if (i_wavelength[i] != i_true_wavelength[i])
-	    {
-	      error=error+210;
-	      break;
-	    }
-	  if (i_wavelength_err2[i] != i_true_wavelength_err2[i])
-	    {
-	      error=error+220;
-	      break;
-	    }
-	  if (u_wavelength[i] != u_true_wavelength[i])
-	    {
-	      error=error+310;
-	      break;
-	    }
-	  if (u_wavelength_err2[i] != u_true_wavelength_err2[i])
-	    {
-	      error=error+320;
 	      break;
 	    }
       */
@@ -205,18 +135,6 @@ int main()
       break;
     case 120:
       cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
-      break;
-    case 210:
-      cout << "(int) FAILED....Output vector different from vector expected"<<endl;
-      break;
-    case 220:
-      cout << "(int) FAILED....Output error vector different from vector expected"<<endl;
-      break;
-    case 310:
-      cout << "(unsigned int) FAILED....Output vector different from vector expected"<<endl;
-      break;
-    case 320:
-      cout << "(unsigned int) FAILED....Output error vector different from vector expected"<<endl;
       break;
     default:
       cout << "FAILED"<<endl;
