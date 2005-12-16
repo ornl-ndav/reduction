@@ -1,11 +1,11 @@
-#include <vector>
-#include <cmath>
-#include "conversions.hpp"
 #include "constants.hpp"
+#include "conversions.hpp"
+#include "num_comparison.hpp"
+#include <cmath>
 #include <iostream>
+#include <vector>
 
 using namespace std;
-static const double H2_OVER_2MNEUT = 81.83;
 
 int main() 
 {
@@ -42,35 +42,34 @@ int main()
   int i_a2;
 
   //unsigned
-  vector<unsigned> u_wavelength;                
-  vector<unsigned> u_wavelength_err2;           
-  vector<unsigned> u_energy(n);          
-  vector<unsigned> u_energy_err2(n);     
-  vector<unsigned> u_true_energy(n);          
-  vector<unsigned> u_true_energy_err2(n);     
-  unsigned u_wavelength2;
-  unsigned u_a2;
+  vector<unsigned int> u_wavelength;                
+  vector<unsigned int> u_wavelength_err2;           
+  vector<unsigned int> u_energy(n);          
+  vector<unsigned int> u_energy_err2(n);     
+  vector<unsigned int> u_true_energy(n);          
+  vector<unsigned int> u_true_energy_err2(n);     
+  unsigned int u_wavelength2;
+  unsigned int u_a2;
 
 
   int error=0;                      //==0,Pass  !=0,Fail
 
-  f_a2 = 4 * static_cast<float>(H2_OVER_2MNEUT) * static_cast<float>(H2_OVER_2MNEUT);
-  d_a2 = 4 * static_cast<double>(H2_OVER_2MNEUT) * static_cast<double>(H2_OVER_2MNEUT);
-  i_a2 = 4 * static_cast<int>(H2_OVER_2MNEUT) * static_cast<int>(H2_OVER_2MNEUT);
-  u_a2 = 4 * static_cast<unsigned>(H2_OVER_2MNEUT) * static_cast<unsigned>(H2_OVER_2MNEUT);
+  f_a2 = 4 * (float)PhysConst::H2_OVER_2MNEUT * (float)PhysConst::H2_OVER_2MNEUT;
+  d_a2 = 4 * (double)PhysConst::H2_OVER_2MNEUT * (double)PhysConst::H2_OVER_2MNEUT;
+  i_a2 = 4 * (int)PhysConst::H2_OVER_2MNEUT * (int)PhysConst::H2_OVER_2MNEUT;
+  u_a2 = 4 * (unsigned int)PhysConst::H2_OVER_2MNEUT * (unsigned int)PhysConst::H2_OVER_2MNEUT;
 
   for(int i=0; i<n; i++)            //create the arrays
     {
-      //_input1 array
       f_wavelength.push_back(2.*(float)i);
       d_wavelength.push_back(2.*(double)i); 
       i_wavelength.push_back(2*(int)i+1);
-      u_wavelength.push_back(2*(unsigned)i+1);
+      u_wavelength.push_back(2*(unsigned int)i+1);
 
       f_wavelength_err2.push_back((float)i);
       d_wavelength_err2.push_back((double)i);      
       i_wavelength_err2.push_back((int)i+1);
-      u_wavelength_err2.push_back((unsigned)i+1);
+      u_wavelength_err2.push_back((unsigned int)i+1);
     }
   
   AxisManip::wavelength_to_energy(f_wavelength, f_wavelength_err2,  
@@ -86,25 +85,25 @@ int main()
     {
       //float
       f_wavelength2 = f_wavelength[i] * f_wavelength[i];
-      f_true_energy[i] = static_cast<float>(H2_OVER_2MNEUT) / f_wavelength2;
-      f_true_energy_err2[i] = (f_a2 * f_wavelength_err2[i]) / 
+      f_true_energy[i] = (float)(PhysConst::H2_OVER_2MNEUT) / f_wavelength2;
+      f_true_energy_err2[i] = (f_a2 * f_wavelength_err2[i]) /
 	(f_wavelength2 * f_wavelength2 * f_wavelength2);
 
       //double
       d_wavelength2 = d_wavelength[i] * d_wavelength[i];
-      d_true_energy[i] = static_cast<double>(H2_OVER_2MNEUT) / d_wavelength2;
+      d_true_energy[i] = (double)(PhysConst::H2_OVER_2MNEUT) / d_wavelength2;
       d_true_energy_err2[i] = (d_a2 * d_wavelength_err2[i]) / 
 	(d_wavelength2 * d_wavelength2 * d_wavelength2);
-
+      
       //int
       i_wavelength2 = i_wavelength[i] * i_wavelength[i];
-      i_true_energy[i] = static_cast<int>(H2_OVER_2MNEUT) / i_wavelength2;
+      i_true_energy[i] = (int)(PhysConst::H2_OVER_2MNEUT) / i_wavelength2;
       i_true_energy_err2[i] = (i_a2 * i_wavelength_err2[i]) / 
 	(i_wavelength2 * i_wavelength2 * i_wavelength2);
-
+      
       //unsigned
       u_wavelength2 = u_wavelength[i] * u_wavelength[i];
-      u_true_energy[i] = static_cast<unsigned>(H2_OVER_2MNEUT) / u_wavelength2;
+      u_true_energy[i] = (unsigned int)(PhysConst::H2_OVER_2MNEUT) / u_wavelength2;
       u_true_energy_err2[i] = (u_a2 * u_wavelength_err2[i]) / 
 	(u_wavelength2 * u_wavelength2 * u_wavelength2);
     }
@@ -117,53 +116,32 @@ int main()
     }
   else
     {
-      for (int i=0; i<n;++i)
+      
+      while(1)
 	{
-	  if (fabs(f_energy[i] - f_true_energy[i])>0.000001)
-	    {
-	      error=error+10;
-	      break;
-	    }
-	  if (fabs(f_energy_err2[i] - f_true_energy_err2[i])>0.000001)
-	    {
-	      error=error+20;
-	      break;
-	    }
-	  //	  if (fabs(d_energy[i] - d_true_energy[i]) > 0.000001)
-	  if (fabs(d_energy[i] - d_true_energy[i]) > 0.0001)
-	    {
-	      error=error+110;
-	      break;
-	    }
-	  if (fabs(d_energy_err2[i] - d_true_energy_err2[i])> 0.0001)
-	    {
-	      error=error+120;
-	      break;
-	    }
-	  if (i_energy[i] != i_true_energy[i])
-	    {
-	      error=error+210;
-	      break;
-	    }
-	  if (i_energy_err2[i] != i_true_energy_err2[i])
-	    {
-	      error=error+220;
-	      break;
-	    }
-	  if (u_energy[i] != u_true_energy[i])
-	    {
-	      error=error+310;
-	      break;
-	    }
-	  if (u_energy_err2[i] != u_true_energy_err2[i])
-	    {
-	      error=error+320;
-	      break;
-	    }
+	  Utils::fd_comparison(f_energy, f_true_energy, error, 10, n);
+	  if (error != 0) break;
+	  Utils::fd_comparison(f_energy_err2, f_true_energy_err2, error, 20, n);
+	  if (error != 0) break;
+	  
+	  Utils::fd_comparison(d_energy, d_true_energy, error, 110, n);
+	  if (error != 0) break;
+	  Utils::fd_comparison(d_energy_err2, d_true_energy_err2, error, 120, n);
+	  if (error != 0) break;
+
+	  Utils::iu_comparison(i_energy, i_true_energy, error, 210, n);
+	  if (error != 0) break;
+	  Utils::iu_comparison(i_energy_err2, i_true_energy_err2, error, 220, n);
+	  if (error != 0) break;
+
+	  Utils::iu_comparison(u_energy, u_true_energy, error, 310, n);
+	  if (error != 0) break;
+	  Utils::iu_comparison(u_energy_err2, u_true_energy_err2, error, 320, n);
+	  break;
 	}
     }
 
-  cout << "wavelength_to_energy_test.cpp..........";
+  cout << "wavelength_to_energy.cpp..........";
 
   switch (error)
     {
@@ -192,10 +170,10 @@ int main()
       cout << "(int) FAILED....Output error vector different from vector expected"<<endl;
       break;
     case 310:
-      cout << "(unsigned) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(unsigned int) FAILED....Output vector different from vector expected"<<endl;
       break;
     case 320:
-      cout << "(unsigned) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(unsigned int) FAILED....Output error vector different from vector expected"<<endl;
       break;
     default:
       cout << "FAILED"<<endl;
