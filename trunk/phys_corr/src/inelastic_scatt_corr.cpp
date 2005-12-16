@@ -1,28 +1,12 @@
 /**
  * $Id$
  *
- * \file phys_corr/src/inelastic_scatt_cor.cpp
+ * \file phys_corr/src/inelastic_scatt_corr.cpp
  */
-#include "physcorr.hpp"
-#include <string>
-#include <vector>
-#include <stdexcept>
+#include "inelastic_scatt_corr.hpp"
 
 namespace PhysCorr
 {
-  // 3.40
-  template <typename NumT>
-  std::string
-  inelastic_scatt_corr(std::vector<NumT> const & axis_in,
-		       std::vector<NumT> const & input,
-		       std::vector<NumT> const & input_err2,
-		       std::vector<NumT> & output,
-		       std::vector<NumT> & output_err2,
-		       void *temp=NULL)
-  {
-    throw std::runtime_error("Function [incoherent_scatt_corr] not implemented");
-  }
-
   // explicit instantiations
 
   /**
@@ -79,5 +63,4 @@ namespace PhysCorr
                                   std::vector<unsigned int> & output,
                                   std::vector<unsigned int> & output_err2,
                                   void *temp);
-
 } // PhysCorr
