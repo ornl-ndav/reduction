@@ -40,35 +40,4 @@ namespace Utils
 			   double & num_bins,
 			   void *temp);
 
-  /**
-   * This is the integer declaration of the function defined in 3.35.
-   *
-   * \see peak_integration()
-   */
-  template std::string
-  peak_integration<int>(std::vector<int> const & input,
-			std::vector<int> const & input_err2,
-			std::vector<int> const & start_bin,
-			int & output,
-			int & output_err2,
-			unsigned int & tag,
-			int & num_bins,
-			void *temp);
-
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.35.
-   *
-   * \see peak_integration()
-   */
-  template std::string
-  peak_integration<unsigned int>(std::vector<unsigned int> const & input,
-			     std::vector<unsigned int> const & input_err2,
-			     std::vector<unsigned int> const & start_bin,
-			     unsigned int & output,
-			     unsigned int & output_err2,
-			     unsigned int & tag,
-			     unsigned int & num_bins,
-			     void *temp);
- 
 } // Utils
