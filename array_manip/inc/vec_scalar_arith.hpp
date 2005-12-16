@@ -32,6 +32,9 @@ namespace ArrayManip
    * uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
    * \f$i^{th}\f$ component of the uncertainty in the input array.
    *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
+   *
    * \param array_in (INPUT) is the array to be added
    * \param array_in_err2 (INPUT) is the square of the uncertainty in
    * the array to be added
@@ -77,6 +80,9 @@ namespace ArrayManip
    * uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
    * \f$i^{th}\f$ component of the uncertainty in the input array.
    *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
+   *
    * \param array_in (INPUT) is the array to be subtracted from
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
    * array to be subtracted from
@@ -121,6 +127,9 @@ namespace ArrayManip
    * uncertainty of the output array, \f$\sigma_a\f$ is the
    * uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
    * \f$i^{th}\f$ component of the uncertainty in the input array.
+   *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
    *
    * \param array_in (INPUT) is the array to be multipled
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
@@ -168,6 +177,9 @@ namespace ArrayManip
    * uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
    * \f$i^{th}\f$ component of the uncertainty in the input array.
    *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
+   *
    * \param array_in (INPUT) is the array to divide from the scalar
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
    * array to divide the scalar
@@ -213,6 +225,9 @@ namespace ArrayManip
    * uncertainty of the output array, \f$\sigma_a\f$ is the
    * uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
    * \f$i^{th}\f$ component of the uncertainty in the input array.
+   *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
    *
    * \param array_in (INPUT) is the array to be divided by the scalar
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
