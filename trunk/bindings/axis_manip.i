@@ -193,16 +193,7 @@ template <typename NumT> std::string
 %template(tof_to_Q_i) AxisManip::tof_to_Q<int>;
 %template(tof_to_Q_u) AxisManip::tof_to_Q<unsigned>;
 
-template <typename NumT> std::string
-    wavelength_to_tof_focused_det(std::vector<NumT> const & d_spacing,
-                                  std::vector<NumT> const & d_spacing_err2,
-                                  NumT pathlength_focused,
-                                  NumT polar_focused,
-                                  std::vector<NumT> & tof,
-                                  std::vector<NumT> & tof_err2,
-                                  void *temp=NULL);
-
-//%template(wavelength_to_tof_focused_det_f) AxisManip::wavelength_to_tof_focused_det<float>;
-//%template(wavelength_to_tof_focused_det_d) AxisManip::wavelength_to_tof_focused_det<double>;
-//%template(wavelength_to_tof_focused_det_i) AxisManip::wavelength_to_tof_focused_det<int>;
-//%template(wavelength_to_tof_focused_det_u) AxisManip::wavelength_to_tof_focused_det<unsigned>;
+%template(d_spacing_to_tof_focused_det_f) AxisManip::d_spacing_to_tof_focused_det<float>;
+%template(d_spacing_to_tof_focused_det_d) AxisManip::d_spacing_to_tof_focused_det<double>;
+%template(d_spacing_to_tof_focused_det_i) AxisManip::d_spacing_to_tof_focused_det<int>;
+%template(d_spacing_to_tof_focused_det_u) AxisManip::d_spacing_to_tof_focused_det<unsigned>;
