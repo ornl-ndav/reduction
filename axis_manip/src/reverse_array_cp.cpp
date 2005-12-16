@@ -3,7 +3,7 @@
  *
  * \file axis_manip/src/reverse_array_cp.cpp
  */
-#include "reverse_array_cpp.hpp"
+#include "reverse_array_cp.hpp"
 
 namespace AxisManip
 {
