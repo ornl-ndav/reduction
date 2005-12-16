@@ -33,8 +33,8 @@ wavelength_to_energy_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -
 wavelength_to_energy_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_energy.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp
-wavelength_to_scalar_k_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
-wavelength_to_scalar_k_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_scalar_k.o
+wavelength_to_scalar_k_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc/
+wavelength_to_scalar_k_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_scalar_k.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\
