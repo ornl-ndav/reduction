@@ -10,7 +10,7 @@ libArrayManip_la_LDFLAGS = -version-info 1:0:0
 libArrayManip_la_SOURCES = \
         add_scalar_vec_ncerr.cpp \
         add_vec_vec_ncerr.cpp \
-	check_inputs.cpp \
+	check_sizes_2in1out.cpp \
         div_scalar_vec_ncerr.cpp \
         div_vec_scalar_ncerr.cpp \
         div_vec_vec_ncerr.cpp \
