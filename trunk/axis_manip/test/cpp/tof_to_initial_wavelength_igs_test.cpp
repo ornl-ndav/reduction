@@ -28,9 +28,11 @@ int main()
   float f_dist_source_sample_err2;
   float f_dist_sample_detector;
   float f_dist_sample_detector_err2;
-  float f_a;
-  float f_a2;
+  float f_a, f_a2;
   float f_b;
+  float f_c, f_c2;
+  float f_d, f_d2;
+  float f_ls2;
 
   //double
   vector<double> d_tof;                
@@ -47,9 +49,11 @@ int main()
   double d_dist_source_sample_err2;
   double d_dist_sample_detector;
   double d_dist_sample_detector_err2;
-  double d_a;
-  double d_a2;
+  double d_a, d_a2;
   double d_b;
+  double d_c, d_c2;
+  double d_d, d_d2;
+  double d_ls2;
 
   int error=0;                      //==0,Pass  !=0,Fail
 
@@ -103,27 +107,56 @@ int main()
 					   d_dist_source_sample, d_dist_source_sample_err2, 
                                            d_dist_sample_detector, d_dist_sample_detector_err2,
 					   d_initial_wavelength, d_initial_wavelength_err2);
+
   
-  f_a = (float)(1. / (PhysConst::H_OVER_MNEUT * f_dist_sample_detector));
+
+  f_a = (float)((PhysConst::H_OVER_MNEUT / f_dist_source_sample));
   f_a2 = f_a * f_a;
+
   f_b = (f_dist_sample_detector * f_final_wavelength);
   f_b = f_b / f_dist_source_sample;
   f_b += (f_a * f_time_offset);
+
+  f_c = f_final_wavelength / f_dist_source_sample;
+  f_c2 = f_c * f_c;
+    
+  f_d = f_dist_sample_detector / f_dist_source_sample;
+  f_d2 = f_d * f_d;
+
+  f_ls2 = f_dist_source_sample * f_dist_source_sample;
   
-  d_a = (double)(1. /(PhysConst::H_OVER_MNEUT * d_dist_sample_detector));
+
+  d_a = (double)((PhysConst::H_OVER_MNEUT / d_dist_source_sample));
   d_a2 = d_a * d_a;
   d_b = (d_dist_sample_detector * d_final_wavelength);
   d_b =  d_b / d_dist_source_sample;
   d_b += (d_a * d_time_offset);
 
+  d_c = d_final_wavelength / d_dist_source_sample;
+  d_c2 = d_c * d_c;
+    
+  d_d = d_dist_sample_detector / d_dist_source_sample;
+  d_d2 = d_d * d_d;
+
+  d_ls2 = d_dist_source_sample * d_dist_source_sample;
+
   for (int i=0; i<n; i++)
     {
       //float
-      f_true_initial_wavelength[i] = (f_a * f_tof[i]) - f_b;
-      f_true_initial_wavelength_err2[i] = (f_a2 * f_tof_err2[i]);
+      f_true_initial_wavelength[i] = f_a * f_tof[i] - f_b;
+      f_true_initial_wavelength_err2[i] = f_a2 * (f_tof_err2[i] + f_time_offset_err2);
+      f_true_initial_wavelength_err2[i] += f_c2 * f_dist_sample_detector_err2;
+      f_true_initial_wavelength_err2[i] += f_d2 * f_final_wavelength_err2;
+      f_true_initial_wavelength_err2[i] += f_initial_wavelength[i] *
+	f_initial_wavelength[i] * f_dist_source_sample_err2 / f_ls2;
 
+      //double
       d_true_initial_wavelength[i] = (d_a * d_tof[i]) - d_b;
-      d_true_initial_wavelength_err2[i] = (d_a2 * d_tof_err2[i]);
+      d_true_initial_wavelength_err2[i] = d_a2 * (d_tof_err2[i] + d_time_offset_err2);
+      d_true_initial_wavelength_err2[i] += d_c2 * d_dist_sample_detector_err2;
+      d_true_initial_wavelength_err2[i] += d_d2 * d_final_wavelength_err2;
+      d_true_initial_wavelength_err2[i] += d_initial_wavelength[i] *
+	d_initial_wavelength[i] * d_dist_source_sample_err2 / d_ls2;
     }
   
   //check first if the size are in good agreement
