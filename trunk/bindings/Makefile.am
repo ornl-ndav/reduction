@@ -91,10 +91,10 @@ utils_wrap.cpp: utils.i
 endif
 
 python_HEADERS = \
-	array_manip.py \
-	axis_manip.py \
-	phys_corr.py \
-	utils.py
+	array_manip_bind.py \
+	axis_manip_bind.py \
+	phys_corr_bind.py \
+	utils_bind.py
 
 EXTRA_DIST = *.i
 nodist_EXTRA_DIST = *_wrap.cpp

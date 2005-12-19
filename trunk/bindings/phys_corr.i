@@ -2,7 +2,7 @@
 //
 // $Id$
 //
-%module phys_corr
+%module phys_corr_bind
 %{
 #include "physcorr.hpp"
 %}
