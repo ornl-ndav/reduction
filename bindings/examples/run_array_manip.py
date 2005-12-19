@@ -5,8 +5,8 @@
 # $Id$
 #
 ##############################################################################
-import array_manip 
-from array_manip import *
+import array_manip_bind 
+from array_manip_bind import *
 
 import sys
 
@@ -18,28 +18,28 @@ def print_vect(object):
 
 print "Checking Array Manipulation Package"
 
-a = FloatVector(3)
-a[0] = 1.5
-a[1] = 3.5
-a[2] = 5.5
+a = FloatVector()
+a.append(1.5)
+a.append(3.5)
+a.append(5.5)
 
-ae2 = FloatVector(3)
-ae2[0] = 0.15
-ae2[1] = 0.35
-ae2[2] = 0.55
+ae2 = FloatVector()
+ae2.append(0.15)
+ae2.append(0.35)
+ae2.append(0.55)
 
-b = FloatVector(3)
-b[0] = 2.5
-b[1] = 4.5
-b[2] = 6.5
+b = FloatVector()
+b.append(2.5)
+b.append(4.5)
+b.append(6.5)
 
-be2 = FloatVector(3)
-be2[0] = 0.25
-be2[1] = 0.45
-be2[2] = 0.65
+be2 = FloatVector()
+be2.append(0.25)
+be2.append(0.45)
+be2.append(0.65)
 
-c = FloatVector(3)
-ce2 = FloatVector(3)
+c = FloatVector(len(a))
+ce2 = FloatVector(len(ae2))
 
 print "Array A: ",
 print_vect(a)
@@ -50,9 +50,18 @@ print_vect(b)
 print "Array B error2: ",
 print_vect(be2)
 
-array_manip.add_vec_vec_ncerr_f(a, ae2, b, be2, c, ce2)
+add_vec_vec_ncerr_f(a, ae2, b, be2, c, ce2)
 
 print "Added Vector: ",
 print_vect(c)
 print "Added Vector error2: ",
 print_vect(ce2)
+
+d = FloatVector(2)
+de2 = FloatVector(2)
+
+print "Checking Add Vector to Vector Function with Invalid Output Vector"
+
+add_vec_vec_ncerr_f(a, ae2, b, be2, d, de2)
+
+print "Done."
