@@ -2,7 +2,7 @@
 //
 // $Id$
 //
-%module axis_manip
+%module axis_manip_bind
 %{
 #include "check_histo.hpp"
 #include "conversions.hpp"

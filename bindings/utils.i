@@ -2,7 +2,7 @@
 //
 // $Id$
 //
-%module utils
+%module utils_bind
 %{
 #include "utils.hpp"
 %}
