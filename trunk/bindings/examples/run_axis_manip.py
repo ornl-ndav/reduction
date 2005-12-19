@@ -5,10 +5,8 @@
 # $Id$
 #
 ###############################################################################
-import axis_manip 
-from axis_manip import *
-
-import sys
+import axis_manip_bind 
+from axis_manip_bind import *
 
 def print_vect(object):
     for i in range(len(object)):
@@ -19,30 +17,30 @@ def print_vect(object):
 print "Checking Axis Manipulation Package"
 
 print "Checking Reverse Array Function"
-a = IntVector(3)
-a[0] = 0
-a[1] = 1
-a[2] = 2
+a = FloatVector()
+a.append(0)
+a.append(1)
+a.append(2)
 
 print "Original Array: ",
 print_vect(a)
 
-b = IntVector(3)
+b = FloatVector(len(a))
 
-axis_manip.reverse_array_i(a, b)
+reverse_array_cp_f(a, b)
 
 print "Reversed Array: ",
 print_vect(b)
 
 print "Checking Velocity to Energy Function"
 
-ae2 = IntVector(3)
-ae2[0] = 0
-ae2[1] = 1
-ae2[1] = 2
+ae2 = FloatVector()
+ae2.append(0)
+ae2.append(1)
+ae2.append(2)
 
-be2 = IntVector(3)
+be2 = FloatVector(len(ae2))
 
-axis_manip.velocity_to_energy_i(a, ae2, b, be2)
+velocity_to_energy_f(a, ae2, b, be2)
 
 print "Done Checking Axis Manipulation"
