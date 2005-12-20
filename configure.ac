@@ -1,4 +1,4 @@
-dnl $Id: configure.ac 40 2005-12-13 02:12:38Z 2zr $
+dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
@@ -51,6 +51,7 @@ AC_CONFIG_FILES([array_manip/test/Makefile
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 AC_CONFIG_FILES([Makefile
+		nessi/Makefile
 		array_manip/Makefile
 		array_manip/inc/Makefile
 		array_manip/src/Makefile
