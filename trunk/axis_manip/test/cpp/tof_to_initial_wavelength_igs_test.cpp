@@ -57,14 +57,14 @@ int main()
 
   int error=0;                      //==0,Pass  !=0,Fail
 
-  float final_wavelength = 345.34;
-  float final_wavelength_err2 = 35.;
-  float time_offset = 0.0245;
-  float time_offset_err2 = 0.002;
-  float dist_source_sample = 34.45;
-  float dist_source_sample_err2 = 9.2;
-  float dist_sample_detector = 13.35;
-  float dist_sample_detector_err2 = 8.5;
+  double final_wavelength = 345.34;
+  double final_wavelength_err2 = 35.;
+  double time_offset = 0.0245;
+  double time_offset_err2 = 0.002;
+  double dist_source_sample = 34.45;
+  double dist_source_sample_err2 = 9.2;
+  double dist_sample_detector = 13.35;
+  double dist_sample_detector_err2 = 8.5;
   
   f_final_wavelength = (float)(final_wavelength);
   f_final_wavelength_err2 = (float)(final_wavelength_err2);
