@@ -5,26 +5,37 @@ test: check
 AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc
 
 AXIS_MANIP_TARGETS = \
+	energy_transfer_test \
+	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
-	wavelength_to_scalar_k_test
+	wavelength_to_scalar_k_test 
+
 
 TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(AXIS_MANIP_TARGETS)
 
+energy_transfer_test_SOURCES = energy_transfer_test.cpp
+energy_transfer_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc/ 
+energy_transfer_test_LDADD = $(top_srcdir)/axis_manip/src/energy_transfer.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
+
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp
-tof_to_wavelength_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
-tof_to_wavelength_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_wavelength.o
+tof_to_wavelength_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc/ 
+tof_to_wavelength_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_wavelength.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
+
+tof_to_initial_wavelength_igs_test_SOURCES = tof_to_initial_wavelength_igs_test.cpp
+tof_to_initial_wavelength_igs_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc
+tof_to_initial_wavelength_igs_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_initial_wavelength_igs.o $(top_srcdir)/utils/src/fd_comparison.o
 
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp
-wavelength_to_energy_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
-wavelength_to_energy_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_energy.o
+wavelength_to_energy_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc
+wavelength_to_energy_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_energy.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp
-wavelength_to_scalar_k_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc
-wavelength_to_scalar_k_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_scalar_k.o
+wavelength_to_scalar_k_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc/
+wavelength_to_scalar_k_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_scalar_k.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\

@@ -37,7 +37,7 @@ case $autoconfversion in
 esac
 
 case $automakeversion in
-    *1.[4-9]*)
+    *1.9.[4-5])
 	;;
     *)
 	echo "This automake version is not supported by NeXus."
@@ -48,7 +48,7 @@ case $automakeversion in
 esac
 
 case $libtoolversion in
-    *1.[45]*)
+    *1.5.[10-16]*)
 	;;
     *)
 	echo "This libtool version is not supported by NeXus."

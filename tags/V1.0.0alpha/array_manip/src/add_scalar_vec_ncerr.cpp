@@ -3,35 +3,11 @@
  *
  * \file array_manip/src/add_scalar_vec_ncerr.cpp
  */
-#include "vec_scalar_arith.hpp"
-#include <string>
-#include <vector>
+#include "add_scalar_vec_ncerr.hpp"
 
 namespace ArrayManip
 {
-  // 3.1
-  template <typename NumT>
-  std::string 
-  add_scalar_vec_ncerr(std::vector<NumT> const & array_in, 
-		       std::vector<NumT> const & array_in_err2, 
-		       std::vector<NumT> & array_out,
-		       std::vector<NumT> & array_out_err2,
-		       NumT scalar, NumT scalar_err2,
-		       void *temp=NULL)
-  {
-    std::string errstr("");
-
-    size_t size = array_in.size();
-    for (size_t i = 0; i < size; ++i)
-      {
-	array_out[i] = array_in[i] + scalar;
-	array_out_err2[i] = array_in_err2[i] + scalar_err2;
-      }
-    return errstr;
-  }
-
   // explicit instantiations
-
 
   /**
    * This is the float declaration of the function defined in 3.1.

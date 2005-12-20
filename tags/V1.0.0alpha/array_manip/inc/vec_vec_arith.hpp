@@ -40,6 +40,9 @@ namespace ArrayManip
    * uncertainty in the first array, and \f$\sigma_2[i]\f$ is the
    * \f$i^{th}\f$ component of the uncertainty in the second array.
    *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
+   *
    * \param input1 (INPUT) is the first array to be added
    * \param input1_err2 (INPUT) is the square of the uncertainty in
    * the first array to be added
@@ -86,6 +89,9 @@ namespace ArrayManip
    * uncertainty in the array begin subtracted from and
    * \f$\sigma_2[i]\f$ is the \f$i^{th}\f$ component of the
    * uncertainty in the array subtracting.
+   *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
    *
    * \param input1 (INPUT) is the array to be subtracted from
    * \param input1_err2 (INPUT) is the square of the uncertainty in
@@ -134,6 +140,9 @@ namespace ArrayManip
    * \f$\sigma_2[i]\f$ is the \f$i^{th}\f$ component of the
    * uncertainty in the second array.
    *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
+   *
    * \param input1 (INPUT) is the first array to be multiplied
    * \param input1_err2 (INPUT) is the square of the uncertainty in
    * the first array to be multiplied
@@ -181,6 +190,9 @@ namespace ArrayManip
    * uncertainty in the array being divided, and \f$\sigma_i[i]\f$ is
    * the \f$i^{th}\f$ component of the uncertainty in the dividing
    * array.
+   *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
    *
    * \param input1 (INPUT) is the array to be divided from
    * \param input1_err2 (INPUT) is the square of the uncertainty in

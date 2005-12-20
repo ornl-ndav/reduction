@@ -3,29 +3,10 @@
  *
  * \file axis_manip/src/rebin_axis_2D.cpp
  */
-#include "rebinning.hpp"
-#include <string>
-#include <vector>
-#include <stdexcept>
+#include "rebin_axis_2D.hpp"
 
 namespace AxisManip
 {
-  // 3.13 
-  template <typename NumT>
-  std::string 
-  rebin_axis_2D(std::vector<NumT> const & axis_in_1,
-		std::vector<NumT> const & axis_in_2,
-		std::vector<NumT> const & input,
-		std::vector<NumT> const & input_err2,
-		std::vector<NumT> const & axis_out_1,
-		std::vector<NumT> const & axis_out_2,
-		std::vector<NumT> & output,
-		std::vector<NumT> & output_err2,
-		void *temp=NULL)
-  {
-    throw std::runtime_error("Function [rebin_axis_2D] not implemented");
-  }
-
   // explicit instantiations
 
   /**
@@ -60,39 +41,4 @@ namespace AxisManip
 			std::vector<double> & output,
 			std::vector<double> & output_err2,
 			void *temp);
-
-  /**
-   * This is the integer declaraion of the function defined in 3.13.
-   *
-   * \see rebin_axis_2D()
-   */
-  template std::string 
-  rebin_axis_2D<int>(std::vector<int> const & axis_in_1,
-		     std::vector<int> const & axis_in_2,
-		     std::vector<int> const & input,
-		     std::vector<int> const & input_err2,
-		     std::vector<int> const & axis_out_1,
-		     std::vector<int> const & axis_out_2,
-		     std::vector<int> & output,
-		     std::vector<int> & output_err2,
-		     void *temp);
-
-  /**
-   * This is the unsigned integer declaraion of the function defined
-   * in 3.13.
-   *
-   * \see rebin_axis_2D()
-   */
-  template std::string 
-  rebin_axis_2D<unsigned int>(std::vector<unsigned int> const & axis_in_1,
-                              std::vector<unsigned int> const & axis_in_2,
-                              std::vector<unsigned int> const & input,
-                              std::vector<unsigned int> const & input_err2,
-                              std::vector<unsigned int> const & axis_out_1,
-                              std::vector<unsigned int> const & axis_out_2,
-                              std::vector<unsigned int> & output,
-                              std::vector<unsigned int> & output_err2,
-                              void *temp);
-  
-
 } // AxisManip

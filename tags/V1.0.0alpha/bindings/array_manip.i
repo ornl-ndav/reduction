@@ -2,7 +2,7 @@
 //
 // $Id$
 //
-%module array_manip
+%module array_manip_bind
 %{
 #include "vec_scalar_arith.hpp"
 #include "vec_vec_arith.hpp"

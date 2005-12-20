@@ -2,7 +2,7 @@
 //
 // $Id$
 //
-%module phys_corr
+%module phys_corr_bind
 %{
 #include "physcorr.hpp"
 %}
@@ -16,8 +16,6 @@
 
 %template(absorption_mult_scatt_f) PhysCorr::absorption_mult_scatt<float>;
 %template(absorption_mult_scatt_d) PhysCorr::absorption_mult_scatt<double>;
-%template(absorption_mult_scatt_i) PhysCorr::absorption_mult_scatt<int>;
-%template(absorption_mult_scatt_u) PhysCorr::absorption_mult_scatt<unsigned>;
 
 %template(dead_time_corr_f) PhysCorr::dead_time_corr<float>;
 %template(dead_time_corr_d) PhysCorr::dead_time_corr<double>;
@@ -26,11 +24,7 @@
 
 %template(inelastic_scatt_corr_f) PhysCorr::inelastic_scatt_corr<float>;
 %template(inelastic_scatt_corr_d) PhysCorr::inelastic_scatt_corr<double>;
-%template(inelastic_scatt_corr_i) PhysCorr::inelastic_scatt_corr<int>;
-%template(inelastic_scatt_corr_u) PhysCorr::inelastic_scatt_corr<unsigned>;
 
 %template(incoherent_scatt_corr_f) PhysCorr::incoherent_scatt_corr<float>;
 %template(incoherent_scatt_corr_d) PhysCorr::incoherent_scatt_corr<double>;
-%template(incoherent_scatt_corr_i) PhysCorr::incoherent_scatt_corr<int>;
-%template(incoherent_scatt_corr_u) PhysCorr::incoherent_scatt_corr<unsigned>;
 

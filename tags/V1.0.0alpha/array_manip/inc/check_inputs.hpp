@@ -18,6 +18,9 @@ namespace ArrayManip
    * for consistant sizes. If the vectors do not have consistent sizes, an 
    * exception is thrown. 
    *
+   * This function is an adaptation from the ARCS reduction software written
+   * by Tim Kelley (CalTech).
+   *
    * \param errstr (INPUT/OUTPUT) is a string containing the calling function. 
    * errstr is also used as a thrown exception if the vectors are not of 
    * consistent sizes.

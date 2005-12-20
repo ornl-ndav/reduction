@@ -1,47 +1,13 @@
 /**
  * $Id$
  *
- * \file array_manip/src/check_inputs.cpp
+ * \file array_manip/src/check_sizes_2in1out.cpp
  */
-#include "check_inputs.hpp"
-#include <stdexcept>
-#include <string>
-#include <vector>
+#include "check_sizes_2in1out.hpp"
 
 namespace ArrayManip
 {
-  template <typename NumT>
-  void check_sizes_2in1out(std::string & errstr, 
-			   std::vector<NumT> const & input1, 
-			   std::vector<NumT> const & input2, 
-			   std::vector<NumT> const & output)
-  {
-    size_t szi1 = input1.size();
-    size_t szi2 = input2.size();
-    size_t szo = output.size();
-
-    if (szi1 != szi2)
-      {
-	errstr += "input1 and input2 are not the same size";
-	throw std::invalid_argument(errstr);
-      }
-
-    if (szi1 != szo)
-      {
-	errstr += "output not the same size as input1";
-	throw std::invalid_argument(errstr);
-      }
-
-    if (szi2 != szo)
-      {
-	errstr += "output not the same size as input2";
-	throw std::invalid_argument(errstr);
-      }
-
-    return;
-  }
- 
-  // explicit instantiations
+ // explicit instantiations
 
   /**
    * This is the float declaration of the check_sizes_2in1out function

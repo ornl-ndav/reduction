@@ -3,27 +3,11 @@
  *
  * \file axis_manip/src/rebin_axis_1D.cpp
  */
-#include "rebinning.hpp"
-#include <string>
-#include <vector>
+#include "rebin_axis_1D.hpp"
 #include <stdexcept>
 
 namespace AxisManip
 {
-  // 3.12 
-  template <typename NumT>
-  std::string 
-  rebin_axis_1D(std::vector<NumT> const & axis_in,
-		std::vector<NumT> const & input,
-		std::vector<NumT> const & input_err2,
-		std::vector<NumT> const & axis_out,
-		std::vector<NumT> & output,
-		std::vector<NumT> & output_err2,
-		void *temp=NULL)
-  {
-    throw std::runtime_error("Function [rebin_axis_1D] not implemented");
-  }
-
   // explicit instantiations
 
   /**
@@ -54,35 +38,4 @@ namespace AxisManip
 			std::vector<double> & output,
 			std::vector<double> & output_err2,
 			void *temp);
-
-  /**
-   * This is the integer declaration of the function defined in 3.12.
-   *
-   * \see rebin_axis_1D()
-   */
-  template std::string 
-  rebin_axis_1D<int>(std::vector<int> const & axis_in,
-		     std::vector<int> const & input,
-		     std::vector<int> const & input_err2,
-		     std::vector<int> const & axis_out,
-		     std::vector<int> & output,
-		     std::vector<int> & output_err2,
-		     void *temp);
-
-  /**
-   * This is the unsigned integer declaration of the function defined
-   * in 3.12.
-   *
-   * \see rebin_axis_1D()
-   */
-  template std::string 
-  rebin_axis_1D<unsigned int>(std::vector<unsigned int> const & axis_in,
-                              std::vector<unsigned int> const & input,
-                              std::vector<unsigned int> const & input_err2,
-                              std::vector<unsigned int> const & axis_out,
-                              std::vector<unsigned int> & output,
-                              std::vector<unsigned int> & output_err2,
-                              void *temp);
-  
-
 } // AxisManip

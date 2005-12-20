@@ -26,7 +26,7 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    reverse_array(std::vector<NumT> const & input,
+    reverse_array_cp(std::vector<NumT> const & input,
 		  std::vector<NumT> & output,
 		  void *temp=NULL);
 
