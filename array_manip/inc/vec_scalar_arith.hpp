@@ -6,8 +6,8 @@
 #ifndef _VEC_SCALAR_ARITH_H
 #define _VEC_SCALAR_ARITH_H 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 namespace ArrayManip
 {
@@ -52,10 +52,10 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    add_scalar_vec_ncerr(std::vector<NumT> const & array_in, 
-			 std::vector<NumT> const & array_in_err2, 
-			 std::vector<NumT> & array_out,
-			 std::vector<NumT> & array_out_err2,
+    add_scalar_vec_ncerr(Nessi::Vector<NumT> const & array_in, 
+			 Nessi::Vector<NumT> const & array_in_err2, 
+			 Nessi::Vector<NumT> & array_out,
+			 Nessi::Vector<NumT> & array_out_err2,
 			 NumT scalar, NumT scalar_err2,
 			 void *temp=NULL);
   
@@ -100,10 +100,10 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    sub_scalar_vec_ncerr(std::vector<NumT> const & array_in, 
-			 std::vector<NumT> const & array_in_err2, 
-			 std::vector<NumT> & array_out,
-			 std::vector<NumT> & array_out_err2,
+    sub_scalar_vec_ncerr(Nessi::Vector<NumT> const & array_in, 
+			 Nessi::Vector<NumT> const & array_in_err2, 
+			 Nessi::Vector<NumT> & array_out,
+			 Nessi::Vector<NumT> & array_out_err2,
 			 NumT scalar, NumT scalar_err2,
 			 void *temp=NULL);
   
@@ -148,10 +148,10 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    mult_scalar_vec_ncerr(std::vector<NumT> const & array_in, 
-			  std::vector<NumT> const & array_in_err2, 
-			  std::vector<NumT> & array_out,
-			  std::vector<NumT> & array_out_err2,
+    mult_scalar_vec_ncerr(Nessi::Vector<NumT> const & array_in, 
+			  Nessi::Vector<NumT> const & array_in_err2, 
+			  Nessi::Vector<NumT> & array_out,
+			  Nessi::Vector<NumT> & array_out_err2,
 			  NumT scalar, NumT scalar_err2,
 			  void *temp=NULL);
 
@@ -197,10 +197,10 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    div_scalar_vec_ncerr(std::vector<NumT> const & array_in, 
-			 std::vector<NumT> const & array_in_err2, 
-			 std::vector<NumT> & array_out,
-			 std::vector<NumT> & array_out_err2,
+    div_scalar_vec_ncerr(Nessi::Vector<NumT> const & array_in, 
+			 Nessi::Vector<NumT> const & array_in_err2, 
+			 Nessi::Vector<NumT> & array_out,
+			 Nessi::Vector<NumT> & array_out_err2,
 			 NumT scalar, NumT scalar_err2,
 			 void *temp=NULL);
 
@@ -246,10 +246,10 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    div_vec_scalar_ncerr(std::vector<NumT> const & array_in, 
-			 std::vector<NumT> const & array_in_err2, 
-			 std::vector<NumT> & array_out,
-			 std::vector<NumT> & array_out_err2,
+    div_vec_scalar_ncerr(Nessi::Vector<NumT> const & array_in, 
+			 Nessi::Vector<NumT> const & array_in_err2, 
+			 Nessi::Vector<NumT> & array_out,
+			 Nessi::Vector<NumT> & array_out_err2,
 			 NumT scalar, NumT scalar_err2,
 			 void *temp=NULL);
   

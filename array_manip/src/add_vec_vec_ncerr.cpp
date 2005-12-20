@@ -15,12 +15,12 @@ namespace ArrayManip
    * \see add_vec_vec_ncerr()
    */
   template std::string 
-  add_vec_vec_ncerr<float>(std::vector<float> const & input1, 
-			   std::vector<float> const & input1_err2, 
-			   std::vector<float> const & input2, 
-			   std::vector<float> const & input2_err2, 
-			   std::vector<float> & output,
-			   std::vector<float> & output_err2,
+  add_vec_vec_ncerr<float>(Nessi::Vector<float> const & input1, 
+			   Nessi::Vector<float> const & input1_err2, 
+			   Nessi::Vector<float> const & input2, 
+			   Nessi::Vector<float> const & input2_err2, 
+			   Nessi::Vector<float> & output,
+			   Nessi::Vector<float> & output_err2,
 			   void *temp);
 
   /**
@@ -30,12 +30,12 @@ namespace ArrayManip
    * \see add_vec_vec_ncerr()
    */
   template std::string 
-  add_vec_vec_ncerr<double>(std::vector<double> const & input1, 
-			    std::vector<double> const & input1_err2, 
-			    std::vector<double> const & input2, 
-			    std::vector<double> const & input2_err2, 
-			    std::vector<double> & output,
-			    std::vector<double> & output_err2,
+  add_vec_vec_ncerr<double>(Nessi::Vector<double> const & input1, 
+			    Nessi::Vector<double> const & input1_err2, 
+			    Nessi::Vector<double> const & input2, 
+			    Nessi::Vector<double> const & input2_err2, 
+			    Nessi::Vector<double> & output,
+			    Nessi::Vector<double> & output_err2,
 			    void *temp);
 
   /**
@@ -44,12 +44,12 @@ namespace ArrayManip
    * \see add_vec_vec_ncerr()
    */
   template std::string 
-  add_vec_vec_ncerr<int>(std::vector<int> const & input1, 
-			 std::vector<int> const & input1_err2, 
-			 std::vector<int> const & input2, 
-			 std::vector<int> const & input2_err2, 
-			 std::vector<int> & output,
-			 std::vector<int> & output_err2,
+  add_vec_vec_ncerr<int>(Nessi::Vector<int> const & input1, 
+			 Nessi::Vector<int> const & input1_err2, 
+			 Nessi::Vector<int> const & input2, 
+			 Nessi::Vector<int> const & input2_err2, 
+			 Nessi::Vector<int> & output,
+			 Nessi::Vector<int> & output_err2,
 			 void *temp);
 
   /**
@@ -58,12 +58,12 @@ namespace ArrayManip
    * \see add_vec_vec_ncerr()
    */
   template std::string 
-  add_vec_vec_ncerr<unsigned int>(std::vector<unsigned int> const & input1, 
-			      std::vector<unsigned int> const & input1_err2, 
-			      std::vector<unsigned int> const & input2, 
-			      std::vector<unsigned int> const & input2_err2, 
-			      std::vector<unsigned int> & output,
-			      std::vector<unsigned int> & output_err2,
+  add_vec_vec_ncerr<unsigned int>(Nessi::Vector<unsigned int> const & input1, 
+			      Nessi::Vector<unsigned int> const & input1_err2, 
+			      Nessi::Vector<unsigned int> const & input2, 
+			      Nessi::Vector<unsigned int> const & input2_err2, 
+			      Nessi::Vector<unsigned int> & output,
+			      Nessi::Vector<unsigned int> & output_err2,
 			      void *temp);
 
 } // ArrayManip
