@@ -9,15 +9,15 @@
 #include "check_inputs.hpp"
 #include <stdexcept>
 #include <string>
-#include <vector>
+//#include <vector>
 
 namespace ArrayManip
 {
   template <typename NumT>
   void check_sizes_2in1out(std::string & errstr, 
-			   std::vector<NumT> const & input1, 
-			   std::vector<NumT> const & input2, 
-			   std::vector<NumT> const & output)
+			   Nessi::Vector<NumT> const & input1, 
+			   Nessi::Vector<NumT> const & input2, 
+			   Nessi::Vector<NumT> const & output)
   {
     size_t szi1 = input1.size();
     size_t szi2 = input2.size();

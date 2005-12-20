@@ -11,19 +11,18 @@
 #include <algorithm>
 #include <stdexcept>
 #include <string>
-#include <vector>
 
 namespace ArrayManip
 {
   // 3.7
   template <typename NumT>
   std::string 
-  sub_vec_vec_ncerr(std::vector<NumT> const & input1, 
-		    std::vector<NumT> const & input1_err2, 
-		    std::vector<NumT> const & input2, 
-		    std::vector<NumT> const & input2_err2, 
-		    std::vector<NumT> & output,
-		    std::vector<NumT> & output_err2,
+  sub_vec_vec_ncerr(Nessi::Vector<NumT> const & input1, 
+		    Nessi::Vector<NumT> const & input1_err2, 
+		    Nessi::Vector<NumT> const & input2, 
+		    Nessi::Vector<NumT> const & input2_err2, 
+		    Nessi::Vector<NumT> & output,
+		    Nessi::Vector<NumT> & output_err2,
 		    void *temp=NULL)
   {
     std::string retstr("");

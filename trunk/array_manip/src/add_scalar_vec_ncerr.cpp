@@ -15,10 +15,10 @@ namespace ArrayManip
    * \see add_scalar_vec_ncerr()
    */
   template std::string 
-  add_scalar_vec_ncerr<float>(std::vector<float> const & array_in, 
-			      std::vector<float> const & array_in_err2, 
-			      std::vector<float> & array_out,
-			      std::vector<float> & array_out_err2,
+  add_scalar_vec_ncerr<float>(Nessi::Vector<float> const & array_in, 
+			      Nessi::Vector<float> const & array_in_err2, 
+			      Nessi::Vector<float> & array_out,
+			      Nessi::Vector<float> & array_out_err2,
 			      float scalar, float scalar_err2,
 			      void *temp);
   
@@ -29,10 +29,10 @@ namespace ArrayManip
    * \see add_scalar_vec_ncerr()
    */
   template std::string 
-  add_scalar_vec_ncerr<double>(std::vector<double> const & array_in, 
-			       std::vector<double> const & array_in_err2, 
-			       std::vector<double> & array_out,
-			       std::vector<double> & array_out_err2,
+  add_scalar_vec_ncerr<double>(Nessi::Vector<double> const & array_in, 
+			       Nessi::Vector<double> const & array_in_err2, 
+			       Nessi::Vector<double> & array_out,
+			       Nessi::Vector<double> & array_out_err2,
 			       double scalar, double scalar_err2,
 			       void *temp);
   
@@ -42,10 +42,10 @@ namespace ArrayManip
    * \see add_scalar_vec_ncerr()
    */
   template std::string 
-  add_scalar_vec_ncerr<int>(std::vector<int> const & array_in, 
-			    std::vector<int> const & array_in_err2, 
-			    std::vector<int> & array_out,
-			    std::vector<int> & array_out_err2,
+  add_scalar_vec_ncerr<int>(Nessi::Vector<int> const & array_in, 
+			    Nessi::Vector<int> const & array_in_err2, 
+			    Nessi::Vector<int> & array_out,
+			    Nessi::Vector<int> & array_out_err2,
 			    int scalar, int scalar_err2,
 			    void *temp);
 
@@ -56,10 +56,10 @@ namespace ArrayManip
    * \see add_scalar_vec_ncerr()
    */
   template std::string 
-  add_scalar_vec_ncerr<unsigned int>(std::vector<unsigned int> const & array_in, 
-				 std::vector<unsigned int> const & array_in_err2, 
-				 std::vector<unsigned int> & array_out,
-				 std::vector<unsigned int> & array_out_err2,
+  add_scalar_vec_ncerr<unsigned int>(Nessi::Vector<unsigned int> const & array_in, 
+				 Nessi::Vector<unsigned int> const & array_in_err2, 
+				 Nessi::Vector<unsigned int> & array_out,
+				 Nessi::Vector<unsigned int> & array_out_err2,
 				 unsigned int scalar, 
 				 unsigned int scalar_err2,
 				 void *temp);

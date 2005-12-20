@@ -8,17 +8,16 @@
 
 #include "vec_scalar_arith.hpp"
 #include <string>
-#include <vector>
 
 namespace ArrayManip
 {
   // 3.1
   template <typename NumT>
   std::string 
-  add_scalar_vec_ncerr(std::vector<NumT> const & array_in, 
-		       std::vector<NumT> const & array_in_err2, 
-		       std::vector<NumT> & array_out,
-		       std::vector<NumT> & array_out_err2,
+  add_scalar_vec_ncerr(Nessi::Vector<NumT> const & array_in, 
+		       Nessi::Vector<NumT> const & array_in_err2, 
+		       Nessi::Vector<NumT> & array_out,
+		       Nessi::Vector<NumT> & array_out_err2,
 		       NumT scalar, NumT scalar_err2,
 		       void *temp=NULL)
   {

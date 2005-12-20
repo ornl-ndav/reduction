@@ -6,8 +6,8 @@
 #ifndef _VEC_VEC_ARITH_H
 #define _VEC_VEC_ARITH_H 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 /**
  * This sub-library contains the various array manipulations.
@@ -59,12 +59,12 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    add_vec_vec_ncerr(std::vector<NumT> const & input1, 
-		      std::vector<NumT> const & input1_err2, 
-		      std::vector<NumT> const & input2, 
-		      std::vector<NumT> const & input2_err2, 
-		      std::vector<NumT> & output,
-		      std::vector<NumT> & output_err2,
+    add_vec_vec_ncerr(Nessi::Vector<NumT> const & input1, 
+		      Nessi::Vector<NumT> const & input1_err2, 
+		      Nessi::Vector<NumT> const & input2, 
+		      Nessi::Vector<NumT> const & input2_err2, 
+		      Nessi::Vector<NumT> & output,
+		      Nessi::Vector<NumT> & output_err2,
 		      void *temp=NULL);
   
   /**
@@ -109,12 +109,12 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    sub_vec_vec_ncerr(std::vector<NumT> const & input1, 
-		      std::vector<NumT> const & input1_err2, 
-		      std::vector<NumT> const & input2, 
-		      std::vector<NumT> const & input2_err2, 
-		      std::vector<NumT> & output,
-		      std::vector<NumT> & output_err2,
+    sub_vec_vec_ncerr(Nessi::Vector<NumT> const & input1, 
+		      Nessi::Vector<NumT> const & input1_err2, 
+		      Nessi::Vector<NumT> const & input2, 
+		      Nessi::Vector<NumT> const & input2_err2, 
+		      Nessi::Vector<NumT> & output,
+		      Nessi::Vector<NumT> & output_err2,
 		      void *temp=NULL);
   
   /**
@@ -159,12 +159,12 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    mult_vec_vec_ncerr(std::vector<NumT> const & input1, 
-		       std::vector<NumT> const & input1_err2, 
-		       std::vector<NumT> const & input2, 
-		       std::vector<NumT> const & input2_err2, 
-		       std::vector<NumT> & output,
-		       std::vector<NumT> & output_err2,
+    mult_vec_vec_ncerr(Nessi::Vector<NumT> const & input1, 
+		       Nessi::Vector<NumT> const & input1_err2, 
+		       Nessi::Vector<NumT> const & input2, 
+		       Nessi::Vector<NumT> const & input2_err2, 
+		       Nessi::Vector<NumT> & output,
+		       Nessi::Vector<NumT> & output_err2,
 		       void *temp=NULL);
   
   /**
@@ -210,12 +210,12 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    div_vec_vec_ncerr(std::vector<NumT> const & input1, 
-		      std::vector<NumT> const & input1_err2, 
-		      std::vector<NumT> const & input2, 
-		      std::vector<NumT> const & input2_err2, 
-		      std::vector<NumT> & output,
-		      std::vector<NumT> & output_err2,
+    div_vec_vec_ncerr(Nessi::Vector<NumT> const & input1, 
+		      Nessi::Vector<NumT> const & input1_err2, 
+		      Nessi::Vector<NumT> const & input2, 
+		      Nessi::Vector<NumT> const & input2_err2, 
+		      Nessi::Vector<NumT> & output,
+		      Nessi::Vector<NumT> & output_err2,
 		      void *temp=NULL);
   
   /**
@@ -260,12 +260,12 @@ namespace ArrayManip
    */
   template <typename NumT>
     std::string 
-    sumw_vec_vec_ncerr(std::vector<NumT> const & input1, 
-		       std::vector<NumT> const & input1_err2, 
-		       std::vector<NumT> const & input2, 
-		       std::vector<NumT> const & input2_err2, 
-		       std::vector<NumT> & output,
-		       std::vector<NumT> & output_err2,
+    sumw_vec_vec_ncerr(Nessi::Vector<NumT> const & input1, 
+		       Nessi::Vector<NumT> const & input1_err2, 
+		       Nessi::Vector<NumT> const & input2, 
+		       Nessi::Vector<NumT> const & input2_err2, 
+		       Nessi::Vector<NumT> & output,
+		       Nessi::Vector<NumT> & output_err2,
 		       void *temp=NULL);
   
 }

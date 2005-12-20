@@ -1,7 +1,7 @@
 # _*_ make _*_
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc
+AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi
 
 lib_LTLIBRARIES = libArrayManip.la
 

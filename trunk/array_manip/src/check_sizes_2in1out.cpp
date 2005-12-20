@@ -16,9 +16,9 @@ namespace ArrayManip
    */
   template void 
   check_sizes_2in1out<float>(std::string & errstr, 
-			     std::vector<float> const & input1, 
-			     std::vector<float> const & input2, 
-			     std::vector<float> const & output);
+			     Nessi::Vector<float> const & input1, 
+			     Nessi::Vector<float> const & input2, 
+			     Nessi::Vector<float> const & output);
   
   /**
    * This is the double declaration of the check_sizes_2in1out function
@@ -27,9 +27,9 @@ namespace ArrayManip
    */
   template void 
   check_sizes_2in1out<double>(std::string & errstr, 
-			      std::vector<double> const & input1, 
-			      std::vector<double> const & input2, 
-			      std::vector<double> const & output);
+			      Nessi::Vector<double> const & input1, 
+			      Nessi::Vector<double> const & input2, 
+			      Nessi::Vector<double> const & output);
 
   /**
    * This is the int declaration of the check_sizes_2in1out function
@@ -38,9 +38,9 @@ namespace ArrayManip
    */
   template void 
   check_sizes_2in1out<int>(std::string & errstr, 
-			   std::vector<int> const & input1, 
-			   std::vector<int> const & input2, 
-			   std::vector<int> const & output);
+			   Nessi::Vector<int> const & input1, 
+			   Nessi::Vector<int> const & input2, 
+			   Nessi::Vector<int> const & output);
 
   /**
    * This is the unsigned declaration of the check_sizes_2in1out function
@@ -49,8 +49,8 @@ namespace ArrayManip
    */
   template void 
   check_sizes_2in1out<unsigned>(std::string & errstr, 
-				std::vector<unsigned> const & input1, 
-				std::vector<unsigned> const & input2, 
-				std::vector<unsigned> const & output);
+				Nessi::Vector<unsigned> const & input1, 
+				Nessi::Vector<unsigned> const & input2, 
+				Nessi::Vector<unsigned> const & output);
 
 } // ArrayManip
