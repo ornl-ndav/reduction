@@ -20,8 +20,9 @@ int main()
   vector<float> f_wavelength_err2(n);     
   vector<float> f_true_wavelength(n);          
   vector<float> f_true_wavelength_err2(n);     
-  const float f_a = (float)(PhysConst::H_OVER_MNEUT / f_pathlength);
-  float f_a2 = f_a * f_a;
+  const float f_a = static_cast<float>(PhysConst::H_OVER_MNEUT)/f_pathlength;
+  float f_a_err2 = static_cast<float>(PhysConst::H_OVER_MNEUT)/f_pathlength;
+  f_a_err2=f_a_err2*f_a_err2*f_pathlength_err2;
 
   //double
   vector<double> d_tof;                
@@ -32,8 +33,9 @@ int main()
   vector<double> d_wavelength_err2(n);     
   vector<double> d_true_wavelength(n);          
   vector<double> d_true_wavelength_err2(n);     
-  const double d_a = (double)(PhysConst::H_OVER_MNEUT / d_pathlength);
-  double d_a2 = d_a * d_a;
+  const double d_a = static_cast<double>(PhysConst::H_OVER_MNEUT)/d_pathlength;
+  double d_a_err2 = static_cast<double>(PhysConst::H_OVER_MNEUT)/d_pathlength;
+  d_a_err2=d_a_err2*d_a_err2*d_pathlength_err2;
   
   int error=0;                      //==0,Pass  !=0,Fail
 
@@ -58,10 +60,12 @@ int main()
   for (int i=0; i<n; i++)
     {
       f_true_wavelength[i] = f_a * f_tof[i];
-      f_true_wavelength_err2[i] = f_a2 * f_tof_err2[i];
+      f_true_wavelength_err2[i] = (f_a*f_a) * f_tof_err2[i]
+        + ((f_tof[i]*f_tof[i])*f_a_err2);
       
       d_true_wavelength[i] = d_a * d_tof[i];
-      d_true_wavelength_err2[i] = d_a2 * d_tof_err2[i];
+      d_true_wavelength_err2[i] = (d_a*d_a) * d_tof_err2[i]
+        + ((d_tof[i]*d_tof[i])*d_a_err2);
     }
   
   //check first if the size are in good agreement
