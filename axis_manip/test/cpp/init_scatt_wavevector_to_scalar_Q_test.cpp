@@ -68,27 +68,27 @@ int main()
   
   //initialization of parameters
 
-  f_polar_angle = 34.45;
-  d_polar_angle = 34.45;
+  f_polar_angle = (float)34.45;
+  d_polar_angle = (double)34.45;
 
-  f_polar_angle_err2 = 34.45;
-  d_polar_angle_err2 = 34.45;
+  f_polar_angle_err2 = (float)34.45;
+  d_polar_angle_err2 = (double)34.45;
 
   //case 1
 
-      f_initial_wavevector.push_back(2*3.5);
-      f_initial_wavevector_err2.push_back(4.4);
+      f_initial_wavevector.push_back((float)(2*3.5));
+      f_initial_wavevector_err2.push_back((float)(4.4));
 
-      d_initial_wavevector.push_back(2*3.5);
-      d_initial_wavevector_err2.push_back(4.4);
+      d_initial_wavevector.push_back((double)(2*3.5));
+      d_initial_wavevector_err2.push_back((double)(4.4));
 
   for(int i=0; i<n; i++)            
     {
-      f_final_wavevector.push_back(2*i+1);
-      f_final_wavevector_err2.push_back(2*i);
+      f_final_wavevector.push_back((float)(2*i+1));
+      f_final_wavevector_err2.push_back((float)(2*i));
       
-      d_final_wavevector.push_back(2*i+1);
-      d_final_wavevector_err2.push_back(2*i);
+      d_final_wavevector.push_back((double)(2*i+1));
+      d_final_wavevector_err2.push_back((double)(2*i));
     }
 
   AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, f_initial_wavevector_err2,
