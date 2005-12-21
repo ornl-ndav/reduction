@@ -5,7 +5,6 @@
  */
 #include "conversions.hpp"
 #include <cmath>
-#include <string>
 
 namespace AxisManip
 {

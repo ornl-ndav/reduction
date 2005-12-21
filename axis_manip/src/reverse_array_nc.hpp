@@ -5,7 +5,6 @@
  */
 #include "reverse_array.hpp"
 #include <algorithm>
-#include <string>
 
 namespace AxisManip
 {

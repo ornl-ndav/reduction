@@ -7,7 +7,6 @@
 #define _SUB_SCALAR_VEC_NCERR_H 1
 
 #include "vec_scalar_arith.hpp"
-#include <string>
 
 namespace ArrayManip
 {

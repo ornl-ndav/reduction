@@ -8,8 +8,6 @@
 
 #include "check_inputs.hpp"
 #include <stdexcept>
-#include <string>
-//#include <vector>
 
 namespace ArrayManip
 {

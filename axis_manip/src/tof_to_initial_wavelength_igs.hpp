@@ -5,7 +5,6 @@
  */
 #include "constants.hpp"
 #include "conversions.hpp"
-#include <string>
 
 namespace AxisManip
 {

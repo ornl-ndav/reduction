@@ -9,7 +9,6 @@
 #include "vec_vec_arith.hpp"
 #include "check_inputs.hpp"
 #include <stdexcept>
-#include <string>
 
 namespace ArrayManip
 {

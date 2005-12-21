@@ -10,7 +10,6 @@
 #include "check_inputs.hpp"
 #include <algorithm>
 #include <stdexcept>
-#include <string>
 
 namespace ArrayManip
 {

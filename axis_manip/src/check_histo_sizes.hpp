@@ -5,7 +5,6 @@
  */
 #include "check_histo.hpp"
 #include <stdexcept>
-#include <string>
 
 namespace AxisManip
 {
