@@ -1,7 +1,7 @@
 /**
  * $Id$
  *
- * \file axis_manip/src/tof_to_initial_wavelength_igs.cpp
+ * \file axis_manip/src/tof_to_initial_wavelength_igs.hpp
  */
 #include "constants.hpp"
 #include "conversions.hpp"

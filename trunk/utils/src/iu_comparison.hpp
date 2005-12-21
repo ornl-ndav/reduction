@@ -1,7 +1,7 @@
 /**
- * $Id: $
+ * $Id$
  *
- * \file util/src/iu_comparison.hpp
+ * \file utils/src/iu_comparison.hpp
  */
 
 #include "num_comparison.hpp"
