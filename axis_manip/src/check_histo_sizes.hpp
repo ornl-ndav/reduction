@@ -1,7 +1,7 @@
 /**
  * $Id$
  *
- * \file axis_manip/src/check_histo.hpp
+ * \file axis_manip/src/check_histo_sizes.hpp
  */
 #include "check_histo.hpp"
 #include <stdexcept>
