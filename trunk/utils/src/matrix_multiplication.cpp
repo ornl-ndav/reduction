@@ -15,10 +15,10 @@ namespace Utils
    * \see matrix_multiplication()
    */
   template std::string
-  matrix_multiplication<float>(std::vector<float> const & input,
-			       std::vector<float> const & input_err2,
-			       std::vector<float> & output,
-			       std::vector<float> & output_err2,
+  matrix_multiplication<float>(Nessi::Vector<float> const & input,
+			       Nessi::Vector<float> const & input_err2,
+			       Nessi::Vector<float> & output,
+			       Nessi::Vector<float> & output_err2,
 			       void *temp);
   
   /**
@@ -28,10 +28,10 @@ namespace Utils
    * \see matrix_multiplication()
    */
   template std::string
-  matrix_multiplication<double>(std::vector<double> const & input,
-				std::vector<double> const & input_err2,
-				std::vector<double> & output,
-				std::vector<double> & output_err2,
+  matrix_multiplication<double>(Nessi::Vector<double> const & input,
+				Nessi::Vector<double> const & input_err2,
+				Nessi::Vector<double> & output,
+				Nessi::Vector<double> & output_err2,
 				void *temp);
   
   /**
@@ -40,10 +40,10 @@ namespace Utils
    * \see matrix_multiplication()
    */
   template std::string
-  matrix_multiplication<int>(std::vector<int> const & input,
-			     std::vector<int> const & input_err2,
-			     std::vector<int> & output,
-			     std::vector<int> & output_err2,
+  matrix_multiplication<int>(Nessi::Vector<int> const & input,
+			     Nessi::Vector<int> const & input_err2,
+			     Nessi::Vector<int> & output,
+			     Nessi::Vector<int> & output_err2,
 			     void *temp);
   
   /**
@@ -53,10 +53,11 @@ namespace Utils
    * \see matrix_multiplication()
    */
   template std::string
-  matrix_multiplication<unsigned int>(std::vector<unsigned int> const & input,
-				  std::vector<unsigned int> const & input_err2,
-				  std::vector<unsigned int> & output,
-				  std::vector<unsigned int> & output_err2,
-				  void *temp);
+  matrix_multiplication<unsigned int>(
+                                Nessi::Vector<unsigned int> const & input,
+				Nessi::Vector<unsigned int> const & input_err2,
+                                Nessi::Vector<unsigned int> & output,
+                                Nessi::Vector<unsigned int> & output_err2,
+                                void *temp);
   
 } // AxisManip

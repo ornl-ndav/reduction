@@ -1,13 +1,10 @@
 /**
- * $Id:$
+ * $Id$
  *
  * \file utils/src/fd_comparison.hpp
  */
 #include "num_comparison.hpp"
-#include <cmath>
-#include <iostream>
 #include <limits>
-#include <vector>
 
 #define Precision_range 1e-6
 
@@ -17,8 +14,8 @@ namespace Utils
 {
   template <typename NumT>
   void
-  fd_comparison (std::vector<NumT> const & value,
-		 std::vector<NumT> const & true_value,
+  fd_comparison (Nessi::Vector<NumT> const & value,
+		 Nessi::Vector<NumT> const & true_value,
 		 int & error,
 		 const int add_error,
 		 const int n_max)
