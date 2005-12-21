@@ -59,12 +59,13 @@ namespace ArrayManip
    * \see mult_vec_vec_ncerr()
    */
   template std::string 
-  mult_vec_vec_ncerr<unsigned int>(Nessi::Vector<unsigned int> const & input1, 
-			       Nessi::Vector<unsigned int> const & input1_err2, 
-			       Nessi::Vector<unsigned int> const & input2, 
-			       Nessi::Vector<unsigned int> const & input2_err2, 
-			       Nessi::Vector<unsigned int> & output,
-			       Nessi::Vector<unsigned int> & output_err2,
-			       void *temp);
+  mult_vec_vec_ncerr<unsigned int>(
+                              Nessi::Vector<unsigned int> const & input1, 
+                              Nessi::Vector<unsigned int> const & input1_err2, 
+                              Nessi::Vector<unsigned int> const & input2, 
+                              Nessi::Vector<unsigned int> const & input2_err2, 
+                              Nessi::Vector<unsigned int> & output,
+                              Nessi::Vector<unsigned int> & output_err2,
+                              void *temp);
 
 } // ArrayManip

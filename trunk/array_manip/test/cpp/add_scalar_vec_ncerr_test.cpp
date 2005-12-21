@@ -10,13 +10,13 @@ using namespace std;
 
 int main() 
 {
-  int n = 20;
+  int num_val = 20;
   float f_scalar = 5.0;
   float f_scalar_err2 = 1.0;
   Nessi::Vector<float> f_input;                 //Original vector
   Nessi::Vector<float> f_input_err2;            //Original vector err
-  Nessi::Vector<float> f_output(n);             //Output vector
-  Nessi::Vector<float> f_output_err2(n);        //Output vector err
+  Nessi::Vector<float> f_output(num_val);       //Output vector
+  Nessi::Vector<float> f_output_err2(num_val);  //Output vector err
   Nessi::Vector<float> f_true_vector;           //True vector
   Nessi::Vector<float> f_true_vector_err2;      //True vector err
 
@@ -24,8 +24,8 @@ int main()
   double d_scalar_err2 = 1;
   Nessi::Vector<double> d_input;
   Nessi::Vector<double> d_input_err2;
-  Nessi::Vector<double> d_output(n);
-  Nessi::Vector<double> d_output_err2(n);
+  Nessi::Vector<double> d_output(num_val);
+  Nessi::Vector<double> d_output_err2(num_val);
   Nessi::Vector<double> d_true_vector;
   Nessi::Vector<double> d_true_vector_err2;
 
@@ -33,8 +33,8 @@ int main()
   int i_scalar_err2 = 1;
   Nessi::Vector<int> i_input;
   Nessi::Vector<int> i_input_err2;
-  Nessi::Vector<int> i_output(n);
-  Nessi::Vector<int> i_output_err2(n);
+  Nessi::Vector<int> i_output(num_val);
+  Nessi::Vector<int> i_output_err2(num_val);
   Nessi::Vector<int> i_true_vector;
   Nessi::Vector<int> i_true_vector_err2;
   
@@ -42,24 +42,24 @@ int main()
   unsigned u_scalar_err2 = 1;
   Nessi::Vector<unsigned> u_input;
   Nessi::Vector<unsigned> u_input_err2;
-  Nessi::Vector<unsigned> u_output(n);
-  Nessi::Vector<unsigned> u_output_err2(n);
+  Nessi::Vector<unsigned> u_output(num_val);
+  Nessi::Vector<unsigned> u_output_err2(num_val);
   Nessi::Vector<unsigned> u_true_vector;
   Nessi::Vector<unsigned> u_true_vector_err2;
   
   int error=0;                      //==0,Pass  !=0,Fail
 
-  for(int i=0; i<n; i++)
+  for(int i = 0 ; i < num_val ; ++i)
     {
-      f_input.push_back(2.*(float)i);
-      d_input.push_back(2*(double)i); 
-      i_input.push_back(2*(int)i);
-      u_input.push_back(2*(unsigned)i);
+      f_input.push_back(2.*static_cast<float>(i));
+      d_input.push_back(2*static_cast<double>(i)); 
+      i_input.push_back(2*static_cast<int>(i));
+      u_input.push_back(2*static_cast<unsigned int>(i));
 
-      f_input_err2.push_back((float)i);
-      d_input_err2.push_back((double)i);      
-      i_input_err2.push_back((int)i);
-      u_input_err2.push_back((unsigned)i);
+      f_input_err2.push_back(static_cast<float>(i));
+      d_input_err2.push_back(static_cast<double>(i));      
+      i_input_err2.push_back(static_cast<int>(i));
+      u_input_err2.push_back(static_cast<unsigned int>(i));
     }
  
   ArrayManip::add_scalar_vec_ncerr(f_input, f_input_err2, 
@@ -78,7 +78,7 @@ int main()
 				   u_output, u_output_err2, 
 				   u_scalar, u_scalar_err2);
   
-  for (int i=0; i<n; i++)
+  for (int i = 0 ; i < num_val ; ++i)
     {
       f_true_vector.push_back(f_input[i]+f_scalar);
       d_true_vector.push_back(d_input[i]+d_scalar);
@@ -92,16 +92,17 @@ int main()
     }
 
   //check first the size
-  if ((f_input.size() != f_output.size())||(d_input.size() != d_output.size())
-      || (i_input.size() != i_output.size()) || (u_input.size() != 
-						 u_output.size()))
+  if ( (f_input.size() != f_output.size())
+       ||(d_input.size() != d_output.size())
+       ||(i_input.size() != i_output.size())
+       ||(u_input.size() != u_output.size()) )
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;
     }
   else
     {
-      for (int i=0; i<n;++i)
+      for (int i = 0 ; i < num_val ; ++i)
 	{
 	  if (fabs(f_output[i] - f_true_vector[i])>0.0000001)
 	    {
