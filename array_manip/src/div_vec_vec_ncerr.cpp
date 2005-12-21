@@ -59,7 +59,8 @@ namespace ArrayManip
    * \see div_vec_vec_ncerr()
    */
   template std::string 
-  div_vec_vec_ncerr<unsigned int>(Nessi::Vector<unsigned int> const & input1, 
+  div_vec_vec_ncerr<unsigned int>(
+                              Nessi::Vector<unsigned int> const & input1, 
 			      Nessi::Vector<unsigned int> const & input1_err2, 
 			      Nessi::Vector<unsigned int> const & input2, 
 			      Nessi::Vector<unsigned int> const & input2_err2, 

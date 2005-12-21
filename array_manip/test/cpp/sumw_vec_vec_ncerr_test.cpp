@@ -9,85 +9,85 @@ using namespace std;
 
 int main() 
 {
-  int n = 20;
+  int num_val = 20;
 
   //float
-  Nessi::Vector<float> f_input1;                //Original vector 1
-  Nessi::Vector<float> f_input1_err2;           //Original vector 1 err
-  Nessi::Vector<float> f_input2;                //Original vector 2
-  Nessi::Vector<float> f_input2_err2;           //Original vector 2 err
-  Nessi::Vector<float> f_output(n);             //Output vector
-  Nessi::Vector<float> f_output_err2(n);        //Output vector err
-  Nessi::Vector<float> f_true_vector(n);        //True output vector
-  Nessi::Vector<float> f_true_vector_err2(n);   //True output vector err
+  Nessi::Vector<float> f_input1;                      //Original vector 1
+  Nessi::Vector<float> f_input1_err2;                 //Original vector 1 err
+  Nessi::Vector<float> f_input2;                      //Original vector 2
+  Nessi::Vector<float> f_input2_err2;                 //Original vector 2 err
+  Nessi::Vector<float> f_output(num_val);             //Output vector
+  Nessi::Vector<float> f_output_err2(num_val);        //Output vector err
+  Nessi::Vector<float> f_true_vector(num_val);        //True output vector
+  Nessi::Vector<float> f_true_vector_err2(num_val);   //True output vector err
   float f_input1_err;
   float f_input2_err;
   float f_sum_err;
 
   //double 
-  Nessi::Vector<double> d_input1;                //Original vector 1
-  Nessi::Vector<double> d_input1_err2;           //Original vector 1 err
-  Nessi::Vector<double> d_input2;                //Original vector 2
-  Nessi::Vector<double> d_input2_err2;           //Original vector 2 err
-  Nessi::Vector<double> d_output(n);             //Output vector
-  Nessi::Vector<double> d_output_err2(n);        //Output vector err
-  Nessi::Vector<double> d_true_vector(n);        //True output vector
-  Nessi::Vector<double> d_true_vector_err2(n);   //True output vector err
+  Nessi::Vector<double> d_input1;                      //Original vector 1
+  Nessi::Vector<double> d_input1_err2;                 //Original vector 1 err
+  Nessi::Vector<double> d_input2;                      //Original vector 2
+  Nessi::Vector<double> d_input2_err2;                 //Original vector 2 err
+  Nessi::Vector<double> d_output(num_val);             //Output vector
+  Nessi::Vector<double> d_output_err2(num_val);        //Output vector err
+  Nessi::Vector<double> d_true_vector(num_val);        //True output vector
+  Nessi::Vector<double> d_true_vector_err2(num_val);   //True output vector err
   float d_input1_err;
   float d_input2_err;
   float d_sum_err;
 
   //int 
-  Nessi::Vector<int> i_input1;                   //Original vector 1
-  Nessi::Vector<int> i_input1_err2;              //Original vector 1 err
-  Nessi::Vector<int> i_input2;                   //Original vector 2
-  Nessi::Vector<int> i_input2_err2;              //Original vector 2 err
-  Nessi::Vector<int> i_output(n);                //Output vector
-  Nessi::Vector<int> i_output_err2(n);           //Output vector err
-  Nessi::Vector<int> i_true_vector(n);           //True output vector
-  Nessi::Vector<int> i_true_vector_err2(n);      //True output vector err
+  Nessi::Vector<int> i_input1;                         //Original vector 1
+  Nessi::Vector<int> i_input1_err2;                    //Original vector 1 err
+  Nessi::Vector<int> i_input2;                         //Original vector 2
+  Nessi::Vector<int> i_input2_err2;                    //Original vector 2 err
+  Nessi::Vector<int> i_output(num_val);                //Output vector
+  Nessi::Vector<int> i_output_err2(num_val);           //Output vector err
+  Nessi::Vector<int> i_true_vector(num_val);           //True output vector
+  Nessi::Vector<int> i_true_vector_err2(num_val);      //True output vector err
   float i_input1_err;
   float i_input2_err;
   float i_sum_err;
 
   //unsigned 
-  Nessi::Vector<unsigned> u_input1;              //Original vector 1
-  Nessi::Vector<unsigned> u_input1_err2;         //Original vector 1 err
-  Nessi::Vector<unsigned> u_input2;              //Original vector 2
-  Nessi::Vector<unsigned> u_input2_err2;         //Original vector 2 err
-  Nessi::Vector<unsigned> u_output(n);           //Output vector
-  Nessi::Vector<unsigned> u_output_err2(n);      //Output vector err
-  Nessi::Vector<unsigned> u_true_vector(n);      //True output vector
-  Nessi::Vector<unsigned> u_true_vector_err2(n); //True output vector err
+  Nessi::Vector<unsigned> u_input1;                    //Original vector 1
+  Nessi::Vector<unsigned> u_input1_err2;               //Original vector 1 err
+  Nessi::Vector<unsigned> u_input2;                    //Original vector 2
+  Nessi::Vector<unsigned> u_input2_err2;               //Original vector 2 err
+  Nessi::Vector<unsigned> u_output(num_val);           //Output vector
+  Nessi::Vector<unsigned> u_output_err2(num_val);      //Output vector err
+  Nessi::Vector<unsigned> u_true_vector(num_val);      //True output vector
+  Nessi::Vector<unsigned> u_true_vector_err2(num_val); //True output vector err
   float u_input1_err;
   float u_input2_err;
   float u_sum_err;
 
   int error=0;                      //==0,Pass  !=0,Fail
 
-  for(int i=0; i<n; i++)            //create the arrays
+  for (int i = 0 ; i < num_val ; ++i)            //create the arrays
     {
       //_input1 array
-      f_input1.push_back(2.*(float)i);
-      d_input1.push_back(2.*(double)i); 
-      i_input1.push_back(2*(int)i);
-      u_input1.push_back(2*(unsigned)i);
+      f_input1.push_back(2.*static_cast<float>(i));
+      d_input1.push_back(2.*static_cast<double>(i)); 
+      i_input1.push_back(2*static_cast<int>(i));
+      u_input1.push_back(2*static_cast<unsigned int>(i));
 
-      f_input1_err2.push_back((float)i);
-      d_input1_err2.push_back((double)i);      
-      i_input1_err2.push_back((int)i+1);
-      u_input1_err2.push_back((unsigned)i+1);
+      f_input1_err2.push_back(static_cast<float>(i));
+      d_input1_err2.push_back(static_cast<double>(i));      
+      i_input1_err2.push_back(static_cast<int>(i+1));
+      u_input1_err2.push_back(static_cast<unsigned int>(i+1));
       
       //_input2 array
-      f_input2.push_back(4.*(float)i);
-      d_input2.push_back(4.*(double)i); 
-      i_input2.push_back(4*(int)i);
-      u_input2.push_back(4*(unsigned)i);
+      f_input2.push_back(4.*static_cast<float>(i));
+      d_input2.push_back(4.*static_cast<double>(i)); 
+      i_input2.push_back(4*static_cast<int>(i));
+      u_input2.push_back(4*static_cast<unsigned int>(i));
 
-      f_input2_err2.push_back((float)i+5.);
-      d_input2_err2.push_back((double)i+5.);      
-      i_input2_err2.push_back((int)i+5);
-      u_input2_err2.push_back((unsigned)i+5);
+      f_input2_err2.push_back(static_cast<float>(i+5));
+      d_input2_err2.push_back(static_cast<double>(i+5));      
+      i_input2_err2.push_back(static_cast<int>(i+5));
+      u_input2_err2.push_back(static_cast<unsigned int>(i+5));
 
     }
   
@@ -103,7 +103,7 @@ int main()
   ArrayManip::sumw_vec_vec_ncerr(u_input1, u_input1_err2, u_input2, 
 				 u_input2_err2, u_output, u_output_err2);
   
-  for (int i=0; i<n; i++)
+  for (int i = 0 ; i < num_val ; ++i)
     {
       //float
       f_input1_err = static_cast<float>(std::sqrt(static_cast<double>
@@ -161,7 +161,7 @@ int main()
     }
   else
     {
-      for (int i=0; i<n;++i)
+      for (int i = 0 ; i < num_val ; ++i)
 	{
 	  if (fabs(f_output[i] - f_true_vector[i])>0.000001)
 	    {

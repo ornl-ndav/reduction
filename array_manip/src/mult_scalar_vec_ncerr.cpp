@@ -57,13 +57,13 @@ namespace ArrayManip
    */
   template std::string 
   mult_scalar_vec_ncerr<unsigned int>(
-                                 Nessi::Vector<unsigned int> const & array_in, 
-                                 Nessi::Vector<unsigned int> const & array_in_err2, 
-                                 Nessi::Vector<unsigned int> & array_out,
-                                 Nessi::Vector<unsigned int> & array_out_err2,
-                                 unsigned int scalar, 
-                                 unsigned int scalar_err2,
-                                 void *temp);
+                            Nessi::Vector<unsigned int> const & array_in, 
+                            Nessi::Vector<unsigned int> const & array_in_err2, 
+                            Nessi::Vector<unsigned int> & array_out,
+                            Nessi::Vector<unsigned int> & array_out_err2,
+                            unsigned int scalar, 
+                            unsigned int scalar_err2,
+                            void *temp);
   
 } // ArrayManip 
 

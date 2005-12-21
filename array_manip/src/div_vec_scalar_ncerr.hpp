@@ -27,7 +27,8 @@ namespace ArrayManip
       {
     	array_out[i] = array_in[i] / scalar;
 	NumT scalar2 = scalar * scalar;
-        array_out_err2[i] = (array_in_err2[i] / scalar2) + (((array_in[i] * array_in[i]) / (scalar2 * scalar2)) * scalar_err2);
+        array_out_err2[i] = (array_in_err2[i] / scalar2)
+          + (((array_in[i] * array_in[i])/ (scalar2 * scalar2)) * scalar_err2);
       }
     return errstr;
   }  

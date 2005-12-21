@@ -24,7 +24,8 @@ namespace ArrayManip
 			   void *temp);
   
   /**
-   * This is the double precision float declaration of the function defined in 3.7.
+   * This is the double precision float declaration of the function
+   * defined in 3.7.
    *
    * \see sub_vec_vec_ncerr()
    */
@@ -58,7 +59,8 @@ namespace ArrayManip
    * \see sub_vec_vec_ncerr()
    */
   template std::string 
-  sub_vec_vec_ncerr<unsigned int>(Nessi::Vector<unsigned int> const & input1, 
+  sub_vec_vec_ncerr<unsigned int>(
+                              Nessi::Vector<unsigned int> const & input1, 
 			      Nessi::Vector<unsigned int> const & input1_err2, 
 			      Nessi::Vector<unsigned int> const & input2, 
 			      Nessi::Vector<unsigned int> const & input2_err2, 

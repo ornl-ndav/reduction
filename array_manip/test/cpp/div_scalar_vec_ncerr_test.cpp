@@ -10,60 +10,60 @@ using namespace std;
 
 int main() 
 {
-  int n = 20;
+  int num_val = 20;
   float f_a = 5.0;
   float f_a_err2 = 3.0;
   float f_a_2;
-  Nessi::Vector<float> f_x;                   //Original vector
-  Nessi::Vector<float> f_x_err2;              //Original vector err
-  Nessi::Vector<float> f_y(n);                //Output vector
-  Nessi::Vector<float> f_y_err2(n);           //Output vector err
-  Nessi::Vector<float> f_true_vector;         //True vector
-  Nessi::Vector<float> f_true_vector_err2(n); //True vector err
+  Nessi::Vector<float> f_x;                         //Original vector
+  Nessi::Vector<float> f_x_err2;                    //Original vector err
+  Nessi::Vector<float> f_y(num_val);                //Output vector
+  Nessi::Vector<float> f_y_err2(num_val);           //Output vector err
+  Nessi::Vector<float> f_true_vector;               //True vector
+  Nessi::Vector<float> f_true_vector_err2(num_val); //True vector err
 
   double d_a = 5;
   double d_a_err2 = 3;
   double d_a_2;
   Nessi::Vector<double> d_x;
   Nessi::Vector<double> d_x_err2;
-  Nessi::Vector<double> d_y(n);
-  Nessi::Vector<double> d_y_err2(n);
+  Nessi::Vector<double> d_y(num_val);
+  Nessi::Vector<double> d_y_err2(num_val);
   Nessi::Vector<double> d_true_vector;
-  Nessi::Vector<double> d_true_vector_err2(n);
+  Nessi::Vector<double> d_true_vector_err2(num_val);
 
   int i_a = 5;
   int i_a_err2 = 3;
   int i_a_2;
   Nessi::Vector<int> i_x;
   Nessi::Vector<int> i_x_err2;
-  Nessi::Vector<int> i_y(n);
-  Nessi::Vector<int> i_y_err2(n);
+  Nessi::Vector<int> i_y(num_val);
+  Nessi::Vector<int> i_y_err2(num_val);
   Nessi::Vector<int> i_true_vector;
-  Nessi::Vector<int> i_true_vector_err2(n);
+  Nessi::Vector<int> i_true_vector_err2(num_val);
   
   unsigned u_a = 5;
   unsigned u_a_err2 = 3;
   unsigned u_a_2;
   Nessi::Vector<unsigned> u_x;
   Nessi::Vector<unsigned> u_x_err2;
-  Nessi::Vector<unsigned> u_y(n);
-  Nessi::Vector<unsigned> u_y_err2(n);
+  Nessi::Vector<unsigned> u_y(num_val);
+  Nessi::Vector<unsigned> u_y_err2(num_val);
   Nessi::Vector<unsigned> u_true_vector;
-  Nessi::Vector<unsigned> u_true_vector_err2(n);
+  Nessi::Vector<unsigned> u_true_vector_err2(num_val);
   
   int error=0;                      //==0,Pass  !=0,Fail
 
-  for(int i=0; i<n; i++)
+  for (int i = 0 ; i < num_val ; ++i)
     {
-      f_x.push_back(2.*(float)i+1);
-      d_x.push_back(2*(double)i+1); 
-      i_x.push_back(2*(int)i+1);
-      u_x.push_back(2*(unsigned)i+1);
+      f_x.push_back(2.*static_cast<float>(i+1));
+      d_x.push_back(2.*static_cast<double>(i+1)); 
+      i_x.push_back(2*static_cast<int>(i+1));
+      u_x.push_back(2*static_cast<unsigned int>(i+1));
 
-      f_x_err2.push_back((float)i+1);
-      d_x_err2.push_back((double)i+1);      
-      i_x_err2.push_back((int)i+1);
-      u_x_err2.push_back((unsigned)i+1);
+      f_x_err2.push_back(static_cast<float>(i+1));
+      d_x_err2.push_back(static_cast<double>(i+1));      
+      i_x_err2.push_back(static_cast<int>(i+1));
+      u_x_err2.push_back(static_cast<unsigned int>(i+1));
     }
  
   ArrayManip::div_scalar_vec_ncerr(f_x, f_x_err2, 
@@ -82,7 +82,7 @@ int main()
 				   u_y, u_y_err2, 
 				   u_a, u_a_err2);
 
-  for (int i=0; i<n; i++)
+  for (int i = 0 ; i < num_val ; ++i)
     {
       f_true_vector.push_back(f_a / f_x[i]);
       d_true_vector.push_back(d_a/d_x[i]);
@@ -115,7 +115,7 @@ int main()
     }
   else
     {
-      for ( int i=0 ; i<n ; ++i )
+      for (int i = 0 ; i < num_val ; ++i)
 	{
 	  if (fabs(f_y[i] - f_true_vector[i])>0.0000001)
 	    {
