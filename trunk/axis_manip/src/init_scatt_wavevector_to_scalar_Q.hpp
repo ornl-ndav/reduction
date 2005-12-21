@@ -33,6 +33,7 @@ namespace AxisManip
     
     NumT a = static_cast<NumT>(2 * std::cos(static_cast<double>(polar_angle)));
     NumT pang = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
+    NumT sang = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
 
     if (sz1 == 1 && sz2 != 1)
       {
@@ -52,10 +53,16 @@ namespace AxisManip
 	    NumT termf = final_wavevector[i] - (initial_wavevector[0] * pang);
 	    NumT termf2 = termf * termf;
 	      
-	    NumT front = 4 / (Q[i] * Q[i]);
+	    NumT polar = final_wavevector[i] * initial_wavevector[0];
+	    polar = polar * sang;
+	    NumT polar2 = polar * polar;
 
-	    Q_err2[i] = front * ((initial_wavevector_err2[0] * termi2) + 
-				      (final_wavevector_err2[i] * termf2));
+	    NumT front = 1 / (Q[i] * Q[i]);
+
+	    Q_err2[i] = final_wavevector_err2[i] * termf2;
+	    Q_err2[i] += initial_wavevector_err2[0] * termi2;
+	    Q_err2[i] += (polar_angle_err2 * polar2);
+	    Q_err2[i] *= front;
 	  }
       }
     else if (sz1 != 1 && sz2 == 1)
@@ -76,10 +83,16 @@ namespace AxisManip
 	    NumT termf = final_wavevector[0] - (initial_wavevector[i] * pang);
 	    NumT termf2 = termf * termf;
 	      
-	    NumT front = 4 / (Q[i] * Q[i]);
+	    NumT polar = final_wavevector[0] * initial_wavevector[i];
+	    polar = polar * sang;
+	    NumT polar2 = polar * polar;
 
-	    Q_err2[i] = front * ((initial_wavevector_err2[i] * termi2) + 
-				      (final_wavevector_err2[0] * termf2));
+	    NumT front = 1 / (Q[i] * Q[i]);
+
+	    Q_err2[i] = final_wavevector_err2[0] * termf2;
+	    Q_err2[i] += initial_wavevector_err2[i] * termi2;
+	    Q_err2[i] += (polar_angle_err2 * polar2);
+	    Q_err2[i] *= front;
 	  }
       }
     else if (sz1 == 1 && sz2 == 1)
@@ -98,10 +111,16 @@ namespace AxisManip
 	NumT termf = final_wavevector[0] - (initial_wavevector[0] * pang);
 	NumT termf2 = termf * termf;
 	
-	NumT front = 4 / (Q[0] * Q[0]);
+	NumT polar = final_wavevector[0] * initial_wavevector[0];
+	polar = polar * sang;
+	NumT polar2 = polar * polar;
 	
-	Q_err2[0] = front * ((initial_wavevector_err2[0] * termi2) + 
-				  (final_wavevector_err2[0] * termf2));
+	NumT front = 1 / (Q[0] * Q[0]);
+	
+	Q_err2[0] = final_wavevector_err2[0] * termf2;
+	Q_err2[0] += initial_wavevector_err2[0] * termi2;
+	Q_err2[0] += (polar_angle_err2 * polar2);
+	Q_err2[0] *= front;
       }
     else
       {
@@ -120,10 +139,17 @@ namespace AxisManip
 	    NumT termf = final_wavevector[i] - (initial_wavevector[i] * pang);
 	    NumT termf2 = termf * termf;
 	      
-	    NumT front = 4 / (Q[i] * Q[i]);
+	    NumT polar = final_wavevector[i] * initial_wavevector[i];
+	    polar = polar * sang;
+	    NumT polar2 = polar * polar;
+	    
+	    NumT front = 1 / (Q[i] * Q[i]);
+	    
+	    Q_err2[i] = final_wavevector_err2[i] * termf2;
+	    Q_err2[i] += initial_wavevector_err2[i] * termi2;
+	    Q_err2[i] += (polar_angle_err2 * polar2);
+	    Q_err2[i] *= front;
 
-	    Q_err2[i] = front * ((initial_wavevector_err2[i] * termi2) + 
-				      (final_wavevector_err2[i] * termf2));
 	  }
       }
 
