@@ -3,6 +3,9 @@
 test: check
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc
+AM_LDFLAGS  = -L$(top_srcdir)/axis_manip/src/.libs -lAxisManip \
+              -L$(top_srcdir)/utils/src/.libs -lUtils
+
 
 AXIS_MANIP_TARGETS = \
 	energy_transfer_test \
@@ -19,22 +22,16 @@ AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(AXIS_MANIP_TARGETS)
 
 energy_transfer_test_SOURCES = energy_transfer_test.cpp
-energy_transfer_test_LDADD = $(top_srcdir)/axis_manip/src/energy_transfer.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 init_scatt_wavevector_to_scalar_Q_test_SOURCES = init_scatt_wavevector_to_scalar_Q_test.cpp
-init_scatt_wavevector_to_scalar_Q_test_LDADD = $(top_srcdir)/axis_manip/src/init_scatt_wavevector_to_scalar_Q.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp
-tof_to_wavelength_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_wavelength.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 tof_to_initial_wavelength_igs_test_SOURCES = tof_to_initial_wavelength_igs_test.cpp
-tof_to_initial_wavelength_igs_test_LDADD = $(top_srcdir)/axis_manip/src/tof_to_initial_wavelength_igs.o $(top_srcdir)/utils/src/fd_comparison.o
 
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp
-wavelength_to_energy_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_energy.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp
-wavelength_to_scalar_k_test_LDADD = $(top_srcdir)/axis_manip/src/wavelength_to_scalar_k.o $(top_srcdir)/utils/src/fd_comparison.o $(top_srcdir)/utils/src/iu_comparison.o
 
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\
