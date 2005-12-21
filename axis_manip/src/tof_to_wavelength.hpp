@@ -6,19 +6,18 @@
 #include "conversions.hpp"
 #include "constants.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.15
   template <typename NumT>
   std::string
-  tof_to_wavelength(std::vector<NumT> const & tof,
-		    std::vector<NumT> const & tof_err2,
+  tof_to_wavelength(Nessi::Vector<NumT> const & tof,
+		    Nessi::Vector<NumT> const & tof_err2,
 		    const NumT pathlength,
 		    const NumT pathlength_err2,
-		    std::vector<NumT> & wavelength,
-		    std::vector<NumT> & wavelength_err2,
+		    Nessi::Vector<NumT> & wavelength,
+		    Nessi::Vector<NumT> & wavelength_err2,
 		    void *temp=NULL)
   {
     std::string retstr("");

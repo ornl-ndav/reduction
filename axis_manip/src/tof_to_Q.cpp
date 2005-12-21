@@ -15,20 +15,20 @@ namespace AxisManip
    * \see tof_to_Q()
    */
   template std::string
-  tof_to_Q<float>(std::vector<float> const & tof,
-		  std::vector<float> const & tof_err2,
+  tof_to_Q<float>(Nessi::Vector<float> const & tof,
+		  Nessi::Vector<float> const & tof_err2,
 		  const float total_pathlength,
 		  const float total_pathlength_err2,
 		  const float azimuthal_angle,
 		  const float azimuthal_angle_err2,
 		  const float polar_angle,
 		  const float polar_angle_err2,
-		  std::vector<float> & Qx,
-		  std::vector<float> & Qx_err2,
-		  std::vector<float> & Qy,
-		  std::vector<float> & Qy_err2,
-		  std::vector<float> & Qz,
-		  std::vector<float> & Qz_err2,
+		  Nessi::Vector<float> & Qx,
+		  Nessi::Vector<float> & Qx_err2,
+		  Nessi::Vector<float> & Qy,
+		  Nessi::Vector<float> & Qy_err2,
+		  Nessi::Vector<float> & Qz,
+		  Nessi::Vector<float> & Qz_err2,
 		  void *temp);
   
   /**
@@ -38,19 +38,19 @@ namespace AxisManip
    * \see tof_to_Q()
    */
   template std::string
-  tof_to_Q<double>(std::vector<double> const & tof,
-		   std::vector<double> const & tof_err2,
+  tof_to_Q<double>(Nessi::Vector<double> const & tof,
+		   Nessi::Vector<double> const & tof_err2,
 		   const double total_pathlength,
 		   const double total_pathlength_err2,
 		   const double azimuthal_angle,
 		   const double azimuthal_angle_err2,
 		   const double polar_angle,
 		   const double polar_angle_err2,
-		   std::vector<double> & Qx,
-		   std::vector<double> & Qx_err2,
-		   std::vector<double> & Qy,
-		   std::vector<double> & Qy_err2,
-		   std::vector<double> & Qz,
-		   std::vector<double> & Qz_err2,
+		   Nessi::Vector<double> & Qx,
+		   Nessi::Vector<double> & Qx_err2,
+		   Nessi::Vector<double> & Qy,
+		   Nessi::Vector<double> & Qy_err2,
+		   Nessi::Vector<double> & Qz,
+		   Nessi::Vector<double> & Qz_err2,
 		   void *temp);
 } // AxisManip

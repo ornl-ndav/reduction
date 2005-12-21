@@ -15,10 +15,10 @@ namespace AxisManip
    * \see wavelength_to_scalar_k()
    */
   template std::string
-  wavelength_to_scalar_k<float>(std::vector<float> const & wavelength,
-				std::vector<float> const & wavelength_err2,
-				std::vector<float> & wavevector,
-				std::vector<float> & wavevector_err2,
+  wavelength_to_scalar_k<float>(Nessi::Vector<float> const & wavelength,
+				Nessi::Vector<float> const & wavelength_err2,
+				Nessi::Vector<float> & wavevector,
+				Nessi::Vector<float> & wavevector_err2,
 				void *temp);
   
   /**
@@ -28,9 +28,9 @@ namespace AxisManip
    * \see wavelength_to_scalar_k()
    */
   template std::string
-  wavelength_to_scalar_k<double>(std::vector<double> const & wavelength,
-				 std::vector<double> const & wavelength_err2,
-				 std::vector<double> & wavevector,
-				 std::vector<double> & wavevector_err2,
+  wavelength_to_scalar_k<double>(Nessi::Vector<double> const & wavelength,
+				 Nessi::Vector<double> const & wavelength_err2,
+				 Nessi::Vector<double> & wavevector,
+				 Nessi::Vector<double> & wavevector_err2,
 				 void *temp);
 } // AxisManip

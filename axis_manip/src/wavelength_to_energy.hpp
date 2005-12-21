@@ -6,17 +6,16 @@
 #include "conversions.hpp"
 #include "constants.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.22
   template <typename NumT>
   std::string
-  wavelength_to_energy(std::vector<NumT> const & wavelength,
-		       std::vector<NumT> const & wavelength_err2,
-		       std::vector<NumT> & energy,
-		       std::vector<NumT> & energy_err2,
+  wavelength_to_energy(Nessi::Vector<NumT> const & wavelength,
+		       Nessi::Vector<NumT> const & wavelength_err2,
+		       Nessi::Vector<NumT> & energy,
+		       Nessi::Vector<NumT> & energy_err2,
 		       void *temp=NULL)
   {
     std::string retstr("");

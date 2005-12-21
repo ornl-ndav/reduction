@@ -15,7 +15,7 @@ namespace AxisManip
    * \see reverse_array_nc()
    */
   template std::string 
-  reverse_array_nc<float>(std::vector<float> & inout,
+  reverse_array_nc<float>(Nessi::Vector<float> & inout,
 			  void *temp);
   
   /**
@@ -25,7 +25,7 @@ namespace AxisManip
    * \see reverse_array_nc()
    */
   template std::string 
-  reverse_array_nc<double>(std::vector<double> & inout,
+  reverse_array_nc<double>(Nessi::Vector<double> & inout,
 			   void *temp);
   
   /**
@@ -34,7 +34,7 @@ namespace AxisManip
    * \see reverse_array_nc()
    */
   template std::string 
-  reverse_array_nc<int>(std::vector<int> & inout,
+  reverse_array_nc<int>(Nessi::Vector<int> & inout,
 			void *temp);
   
   /**
@@ -44,7 +44,7 @@ namespace AxisManip
    * \see reverse_array_nc()
    */
   template std::string 
-  reverse_array_nc<unsigned int>(std::vector<unsigned int> & inout,
+  reverse_array_nc<unsigned int>(Nessi::Vector<unsigned int> & inout,
 				 void *temp);
   
 } // AxisManip

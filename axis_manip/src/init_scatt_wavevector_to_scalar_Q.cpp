@@ -16,15 +16,15 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<float>(
-					   std::vector<float> const & initial_wavevector,
-					   std::vector<float> const & initial_wavevector_err2,
-					   std::vector<float> const & final_wavevector,
-					   std::vector<float> const & final_wavevector_err2,
-					   const float polar_angle,
-					   const float polar_angle_err2,
-					   std::vector<float> & Q,
-					   std::vector<float> & Q_err2,
-					   void *temp);
+			  Nessi::Vector<float> const & initial_wavevector,
+                          Nessi::Vector<float> const & initial_wavevector_err2,
+                          Nessi::Vector<float> const & final_wavevector,
+                          Nessi::Vector<float> const & final_wavevector_err2,
+                          const float polar_angle,
+                          const float polar_angle_err2,
+                          Nessi::Vector<float> & Q,
+                          Nessi::Vector<float> & Q_err2,
+                          void *temp);
   
   /**
    * This is the double precision float declaraion of the function
@@ -34,13 +34,13 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<double>(
-					    std::vector<double> const & initial_wavevector,
-					    std::vector<double> const & initial_wavevector_err2,
-					    std::vector<double> const & final_wavevector,
-					    std::vector<double> const & final_wavevector_err2,
-					    const double polar_angle,
-					    const double polar_angle_err2,
-					    std::vector<double> & Q,
-					    std::vector<double> & Q_err2,
-					    void *temp);
+                         Nessi::Vector<double> const & initial_wavevector,
+			 Nessi::Vector<double> const & initial_wavevector_err2,
+                         Nessi::Vector<double> const & final_wavevector,
+                         Nessi::Vector<double> const & final_wavevector_err2,
+                         const double polar_angle,
+                         const double polar_angle_err2,
+                         Nessi::Vector<double> & Q,
+                         Nessi::Vector<double> & Q_err2,
+                         void *temp);
 } // AxisManip

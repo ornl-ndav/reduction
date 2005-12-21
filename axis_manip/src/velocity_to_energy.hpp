@@ -5,7 +5,6 @@
  */
 #include "conversions.hpp"
 #include <string>
-#include <vector>
 #include <stdexcept>
 
 namespace AxisManip
@@ -13,10 +12,10 @@ namespace AxisManip
   // 3.21
   template <typename NumT>
   std::string
-  velocity_to_energy(std::vector<NumT> const & velocity,
-		     std::vector<NumT> const & velocity_err2,
-		     std::vector<NumT> & energy,
-		     std::vector<NumT> & energy_err2,
+  velocity_to_energy(Nessi::Vector<NumT> const & velocity,
+		     Nessi::Vector<NumT> const & velocity_err2,
+		     Nessi::Vector<NumT> & energy,
+		     Nessi::Vector<NumT> & energy_err2,
 		     void *temp=NULL)
   {
     throw std::runtime_error("Function [velocity_to_energy] not implemented");

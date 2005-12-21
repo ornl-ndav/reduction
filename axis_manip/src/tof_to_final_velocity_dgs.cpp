@@ -15,8 +15,8 @@ namespace AxisManip
    * \see tof_to_final_velocity_dgs()
    */
   template std::string
-  tof_to_final_velocity_dgs<float>(std::vector<float> const & tof,
-				   std::vector<float> const & tof_err2,
+  tof_to_final_velocity_dgs<float>(Nessi::Vector<float> const & tof,
+				   Nessi::Vector<float> const & tof_err2,
 				   const float initial_velocity,
 				   const float initial_velocity_err2,
 				   const float time_offset,
@@ -25,8 +25,8 @@ namespace AxisManip
 				   const float dist_source_sample_err2,
 				   const float dist_sample_detector,
 				   const float dist_sample_detector_err2,
-				   std::vector<float> & final_velocity,
-				   std::vector<float> & final_velocity_err2,
+				   Nessi::Vector<float> & final_velocity,
+				   Nessi::Vector<float> & final_velocity_err2,
 				   void *temp=NULL);
   
   /**
@@ -36,8 +36,8 @@ namespace AxisManip
    * \see tof_to_final_velocity_dgs()
    */
   template std::string
-  tof_to_final_velocity_dgs<double>(std::vector<double> const & tof,
-				    std::vector<double> const & tof_err2,
+  tof_to_final_velocity_dgs<double>(Nessi::Vector<double> const & tof,
+				    Nessi::Vector<double> const & tof_err2,
 				    const double initial_velocity,
 				    const double initial_velocity_err2,
 				    const double time_offset,
@@ -46,7 +46,7 @@ namespace AxisManip
 				    const double dist_source_sample_err2,
 				    const double dist_sample_detector,
 				    const double dist_sample_detector_err2,
-				    std::vector<double> & final_velocity,
-				    std::vector<double> & final_velocity_err2,
+				    Nessi::Vector<double> & final_velocity,
+				    Nessi::Vector<double> & final_velocity_err2,
 				    void *temp=NULL);
 } // AxisManip

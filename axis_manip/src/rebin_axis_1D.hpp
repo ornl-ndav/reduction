@@ -7,19 +7,18 @@
 #include "check_histo.hpp"
 #include <stdexcept>
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.12 
   template <typename NumT>
   std::string 
-  rebin_axis_1D(std::vector<NumT> const & axis_in,
-		std::vector<NumT> const & input,
-		std::vector<NumT> const & input_err2,
-		std::vector<NumT> const & axis_out,
-		std::vector<NumT> & output,
-		std::vector<NumT> & output_err2,
+  rebin_axis_1D(Nessi::Vector<NumT> const & axis_in,
+		Nessi::Vector<NumT> const & input,
+		Nessi::Vector<NumT> const & input_err2,
+		Nessi::Vector<NumT> const & axis_out,
+		Nessi::Vector<NumT> & output,
+		Nessi::Vector<NumT> & output_err2,
 		void *temp=NULL)
   {
     std::string retstr("");

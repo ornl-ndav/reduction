@@ -15,12 +15,12 @@ namespace AxisManip
    * \see wavelength_to_tof()
    */
   template std::string
-  wavelength_to_tof<float>(std::vector<float> const & wavelength,
-			   std::vector<float> const & wavelength_err2,
+  wavelength_to_tof<float>(Nessi::Vector<float> const & wavelength,
+			   Nessi::Vector<float> const & wavelength_err2,
 			   const float pathlength,
 			   const float pathlength_err2,
-			   std::vector<float> & tof,
-			   std::vector<float> & tof_err2,
+			   Nessi::Vector<float> & tof,
+			   Nessi::Vector<float> & tof_err2,
 			   void *temp);
   
   /**
@@ -30,11 +30,11 @@ namespace AxisManip
    * \see wavelength_to_tof()
    */
   template std::string
-  wavelength_to_tof<double>(std::vector<double> const & wavelength,
-			    std::vector<double> const & wavelength_err2,
+  wavelength_to_tof<double>(Nessi::Vector<double> const & wavelength,
+			    Nessi::Vector<double> const & wavelength_err2,
 			    const double pathlength,
 			    const double pathlength_err2,
-			    std::vector<double> & tof,
-			    std::vector<double> & tof_err2,
+			    Nessi::Vector<double> & tof,
+			    Nessi::Vector<double> & tof_err2,
 			    void *temp);
 } // AxisManip

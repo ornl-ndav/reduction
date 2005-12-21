@@ -6,16 +6,15 @@
 #include "check_histo.hpp"
 #include <stdexcept>
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
   template <typename NumT>
   void 
   check_histo_sizes(std::string & errstr,
-		    std::vector<NumT> const & input,
-		    std::vector<NumT> const & input_err2,
-		    std::vector<NumT> const & axis)
+		    Nessi::Vector<NumT> const & input,
+		    Nessi::Vector<NumT> const & input_err2,
+		    Nessi::Vector<NumT> const & axis)
   {
     size_t szi1 = input.size();
     size_t szie1 = input_err2.size();

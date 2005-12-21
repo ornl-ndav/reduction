@@ -15,12 +15,12 @@ namespace AxisManip
    * \see wavelength_to_d_spacing()
    */
   template std::string
-  wavelength_to_d_spacing<float>(std::vector<float> const & wavelength,
-				 std::vector<float> const & wavelength_err2,
+  wavelength_to_d_spacing<float>(Nessi::Vector<float> const & wavelength,
+				 Nessi::Vector<float> const & wavelength_err2,
 				 const float scatt_angle,
 				 const float scatt_angle_err2,
-				 std::vector<float> & d_spacing,
-				 std::vector<float> & d_spacing_err2,
+				 Nessi::Vector<float> & d_spacing,
+				 Nessi::Vector<float> & d_spacing_err2,
 				 void *temp);
   
   /**
@@ -30,11 +30,11 @@ namespace AxisManip
    * \see wavelength_to_d_spacing()
    */
   template std::string
-  wavelength_to_d_spacing<double>(std::vector<double> const & wavelength,
-				  std::vector<double> const & wavelength_err2,
+  wavelength_to_d_spacing<double>(Nessi::Vector<double> const & wavelength,
+				  Nessi::Vector<double> const & wavelength_err2,
 				  const double scatt_angle,
 				  const double scatt_angle_err2,
-				  std::vector<double> & d_spacing,
-				  std::vector<double> & d_spacing_err2,
+				  Nessi::Vector<double> & d_spacing,
+				  Nessi::Vector<double> & d_spacing_err2,
 				  void *temp);
 } // AxisManip
