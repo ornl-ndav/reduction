@@ -1,9 +1,9 @@
 #include "conversions.hpp"
 #include "constants.hpp"
+#include "nessi.hpp"
 #include "num_comparison.hpp"
 #include <cmath>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -12,23 +12,23 @@ int main()
   int n = 20;
 
   //float
-  vector<float> f_wavelength;                
+  Nessi::Vector<float> f_wavelength;                
   float f_wavelength2;
-  vector<float> f_wavelength_err2;           
-  vector<float> f_wavevector(n);          
-  vector<float> f_wavevector_err2(n);     
-  vector<float> f_true_wavevector(n);          
-  vector<float> f_true_wavevector_err2(n);     
+  Nessi::Vector<float> f_wavelength_err2;           
+  Nessi::Vector<float> f_wavevector(n);          
+  Nessi::Vector<float> f_wavevector_err2(n);     
+  Nessi::Vector<float> f_true_wavevector(n);          
+  Nessi::Vector<float> f_true_wavevector_err2(n);     
   float f_a, f_a2;
 
   //double
-  vector<double> d_wavelength;                
+  Nessi::Vector<double> d_wavelength;                
   double d_wavelength2;
-  vector<double> d_wavelength_err2;           
-  vector<double> d_wavevector(n);          
-  vector<double> d_wavevector_err2(n);     
-  vector<double> d_true_wavevector(n);          
-  vector<double> d_true_wavevector_err2(n);     
+  Nessi::Vector<double> d_wavelength_err2;           
+  Nessi::Vector<double> d_wavevector(n);          
+  Nessi::Vector<double> d_wavevector_err2(n);     
+  Nessi::Vector<double> d_true_wavevector(n);          
+  Nessi::Vector<double> d_true_wavevector_err2(n);     
   double d_a, d_a2;
 
   int error=0;                      //==0,Pass  !=0,Fail
@@ -83,12 +83,14 @@ int main()
 	{
 	  Utils::fd_comparison(f_wavevector, f_true_wavevector, error, 10, n);
 	  if (error != 0) break;
-	  Utils::fd_comparison(f_wavevector_err2, f_true_wavevector_err2, error, 20, n);
+	  Utils::fd_comparison(f_wavevector_err2, f_true_wavevector_err2, error, 
+			       20, n);
 	  if (error != 0) break;
 	  
 	  Utils::fd_comparison(d_wavevector, d_true_wavevector, error, 110, n);
 	  if (error != 0) break;
-	  Utils::fd_comparison(d_wavevector_err2, d_true_wavevector_err2, error, 120, n);
+	  Utils::fd_comparison(d_wavevector_err2, d_true_wavevector_err2, error, 
+			       120, n);
 	  if (error != 0) break;
 
 	  break;
@@ -107,16 +109,20 @@ int main()
       cout << "FAILED....Outut and input vectors have different sizes"<<endl;
       break;
     case 10:
-      cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output vector different from vector expected"
+	   <<endl;
       break;
     case 20:
-      cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     case 110:
-      cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output vector different from vector expected"
+	   <<endl;
       break;
     case 120:
-      cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     default:
       cout << "FAILED"<<endl;

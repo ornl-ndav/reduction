@@ -1,9 +1,9 @@
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi.hpp"
 #include "num_comparison.hpp"
 #include <cmath>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -12,22 +12,22 @@ int main()
   int n = 20;
 
   //float
-  vector<float> f_wavelength;                
-  vector<float> f_wavelength_err2;           
-  vector<float> f_energy(n);          
-  vector<float> f_energy_err2(n);     
-  vector<float> f_true_energy(n);          
-  vector<float> f_true_energy_err2(n);     
+  Nessi::Vector<float> f_wavelength;                
+  Nessi::Vector<float> f_wavelength_err2;           
+  Nessi::Vector<float> f_energy(n);          
+  Nessi::Vector<float> f_energy_err2(n);     
+  Nessi::Vector<float> f_true_energy(n);          
+  Nessi::Vector<float> f_true_energy_err2(n);     
   float f_wavelength2;
   float f_a2;
 
   //double
-  vector<double> d_wavelength;                
-  vector<double> d_wavelength_err2;           
-  vector<double> d_energy(n);          
-  vector<double> d_energy_err2(n);     
-  vector<double> d_true_energy(n);          
-  vector<double> d_true_energy_err2(n);     
+  Nessi::Vector<double> d_wavelength;                
+  Nessi::Vector<double> d_wavelength_err2;           
+  Nessi::Vector<double> d_energy(n);          
+  Nessi::Vector<double> d_energy_err2(n);     
+  Nessi::Vector<double> d_true_energy(n);          
+  Nessi::Vector<double> d_true_energy_err2(n);     
   double d_wavelength2;
   double d_a2;
 
@@ -66,7 +66,8 @@ int main()
     }
   
   //check first if the size are in good agreement
-  if ((f_wavelength.size() != f_energy.size())||(d_wavelength.size() != d_energy.size()))
+  if ((f_wavelength.size() != f_energy.size())||(d_wavelength.size() 
+						 != d_energy.size()))
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;
@@ -101,16 +102,20 @@ int main()
       cout << "FAILED....Outut and input vectors have different sizes"<<endl;
       break;
     case 10:
-      cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output vector different from vector expected"
+	   <<endl;
       break;
     case 20:
-      cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output error vector different from vector"
+	" expected"<<endl;
       break;
     case 110:
-      cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output vector different from vector "
+	"expected"<<endl;
       break;
     case 120:
-      cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     default:
       cout << "FAILED"<<endl;

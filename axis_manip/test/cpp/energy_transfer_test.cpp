@@ -1,9 +1,9 @@
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi.hpp"
 #include "num_comparison.hpp"
 #include <cmath>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -12,25 +12,25 @@ int main()
   int n = 20;
 
   //float
-  vector<float> f_initial_energy;                
-  vector<float> f_initial_energy_err2;           
-  vector<float> f_final_energy;          
-  vector<float> f_final_energy_err2;     
-  vector<float> f_energy_transfer(n);
-  vector<float> f_energy_transfer_err2(n);
-  vector<float> f_true_energy_transfer(n);          
-  vector<float> f_true_energy_transfer_err2(n);     
+  Nessi::Vector<float> f_initial_energy;                
+  Nessi::Vector<float> f_initial_energy_err2;           
+  Nessi::Vector<float> f_final_energy;          
+  Nessi::Vector<float> f_final_energy_err2;     
+  Nessi::Vector<float> f_energy_transfer(n);
+  Nessi::Vector<float> f_energy_transfer_err2(n);
+  Nessi::Vector<float> f_true_energy_transfer(n);          
+  Nessi::Vector<float> f_true_energy_transfer_err2(n);     
   float f_h2;
 
   //double
-  vector<double> d_initial_energy;                
-  vector<double> d_initial_energy_err2;           
-  vector<double> d_final_energy;          
-  vector<double> d_final_energy_err2;     
-  vector<double> d_energy_transfer(n);
-  vector<double> d_energy_transfer_err2(n);
-  vector<double> d_true_energy_transfer(n);          
-  vector<double> d_true_energy_transfer_err2(n);     
+  Nessi::Vector<double> d_initial_energy;                
+  Nessi::Vector<double> d_initial_energy_err2;           
+  Nessi::Vector<double> d_final_energy;          
+  Nessi::Vector<double> d_final_energy_err2;     
+  Nessi::Vector<double> d_energy_transfer(n);
+  Nessi::Vector<double> d_energy_transfer_err2(n);
+  Nessi::Vector<double> d_true_energy_transfer(n);          
+  Nessi::Vector<double> d_true_energy_transfer_err2(n);     
   double d_h2;
   
 
@@ -85,13 +85,15 @@ int main()
   
   while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_1, 10, n);
+      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, 
+			   error_case_1, 10, n);
       if (error_case_1 != 0) break;
       Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
 			   error_case_1, 20, n);
       if (error_case_1 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_1, 110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_1,
+			   110, n);
       if (error_case_1 != 0) break;
       Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
 			   error_case_1, 120, n);
@@ -152,13 +154,15 @@ int main()
   //compare results for case 2
     while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_2, 10, n);
+      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_2, 
+			   10, n);
       if (error_case_2 != 0) break;
       Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
 			   error_case_2, 20, n);
       if (error_case_2 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_2, 110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_2, 
+			   110, n);
       if (error_case_2 != 0) break;
       Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
 			   error_case_2, 120, n);
@@ -211,13 +215,15 @@ int main()
   //compare results for case 3
     while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_3, 10, n);
+      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_3, 
+			   10, n);
       if (error_case_3 != 0) break;
       Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
 			   error_case_3, 20, n);
       if (error_case_3 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_3, 110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_3, 
+			   110, n);
       if (error_case_3 != 0) break;
       Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
 			   error_case_3, 120, n);
@@ -275,13 +281,15 @@ int main()
 
     while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_4, 10, n);
+      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_4, 
+			   10, n);
       if (error_case_4 != 0) break;
       Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
 			   error_case_4, 20, n);
       if (error_case_4 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_4, 110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_4, 
+			   110, n);
       if (error_case_4 != 0) break;
       Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
 			   error_case_4, 120, n);
@@ -307,16 +315,20 @@ int main()
 	      switch (error_case_1)
 		{
 		case 10:
-		  cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+		  cout << "(float) FAILED....Output vector different from vector"
+		    " expected"<<endl;
 		  break;
 		case 20:
-		  cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+		  cout << "(float) FAILED....Output error vector different from "
+		    "vector expected"<<endl;
 		  break;
 		case 110:
-		  cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+		  cout << "(double) FAILED....Output vector different from vector "
+		    "expected"<<endl;
 		  break;
 		case 120:
-		  cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+		  cout << "(double) FAILED....Output error vector different from "
+		    "vector expected"<<endl;
 		  break;
 		}
 	  }
@@ -326,16 +338,20 @@ int main()
 	      switch (error_case_2)
 		{
 		case 10:
-		  cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+		  cout << "(float) FAILED....Output vector different from vector "
+		    "expected"<<endl;
 		  break;
 		case 20:
-		  cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+		  cout << "(float) FAILED....Output error vector different from "
+		    "vector expected"<<endl;
 		  break;
 		case 110:
-		  cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+		  cout << "(double) FAILED....Output vector different from vector "
+		    "expected"<<endl;
 		  break;
 		case 120:
-		  cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+		  cout << "(double) FAILED....Output error vector different from "
+		    "vector expected"<<endl;
 		  break;
 		}
 	  }
@@ -345,16 +361,20 @@ int main()
 	    switch (error_case_3)
 	      {
 	      case 10:
-		cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+		cout << "(float) FAILED....Output vector different from vector"
+		  " expected"<<endl;
 		break;
 	      case 20:
-		cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+		cout << "(float) FAILED....Output error vector different from "
+		  "vector expected"<<endl;
 		break;
 	      case 110:
-		cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+		cout << "(double) FAILED....Output vector different from vector"
+		  " expected"<<endl;
 		break;
 	      case 120:
-		cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+		cout << "(double) FAILED....Output error vector different from "
+		  "vector expected"<<endl;
 		break;
 	      }
 	  }
@@ -364,16 +384,20 @@ int main()
 	    switch (error_case_4)
 	      {
 	      case 10:
-		cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+		cout << "(float) FAILED....Output vector different from vector "
+		  "expected"<<endl;
 		break;
 	      case 20:
-		cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+		cout << "(float) FAILED....Output error vector different from "
+		  "vector expected"<<endl;
 		break;
 	      case 110:
-		cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+		cout << "(double) FAILED....Output vector different from vector"
+		  " expected"<<endl;
 		break;
 	      case 120:
-		cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+		cout << "(double) FAILED....Output error vector different from "
+		  "vector expected"<<endl;
 		break;
 	      }
 	  }

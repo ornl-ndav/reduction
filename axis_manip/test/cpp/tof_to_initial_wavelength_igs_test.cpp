@@ -1,9 +1,9 @@
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi.hpp"
 #include "num_comparison.hpp"
 #include <cmath>
 #include <iostream>
-#include <vector>
 
 //int and unsigned cases are not consider because they lead to a infinite result
 
@@ -14,12 +14,12 @@ int main()
   int n = 20;
 
   //float
-  vector<float> f_tof;                
-  vector<float> f_tof_err2;           
-  vector<float> f_initial_wavelength(n);          
-  vector<float> f_initial_wavelength_err2(n);     
-  vector<float> f_true_initial_wavelength(n);          
-  vector<float> f_true_initial_wavelength_err2(n);     
+  Nessi::Vector<float> f_tof;                
+  Nessi::Vector<float> f_tof_err2;           
+  Nessi::Vector<float> f_initial_wavelength(n);          
+  Nessi::Vector<float> f_initial_wavelength_err2(n);     
+  Nessi::Vector<float> f_true_initial_wavelength(n);          
+  Nessi::Vector<float> f_true_initial_wavelength_err2(n);     
   float f_final_wavelength;
   float f_final_wavelength_err2;
   float f_time_offset;
@@ -35,12 +35,12 @@ int main()
   float f_ls2;
 
   //double
-  vector<double> d_tof;                
-  vector<double> d_tof_err2;           
-  vector<double> d_initial_wavelength(n);          
-  vector<double> d_initial_wavelength_err2(n);     
-  vector<double> d_true_initial_wavelength(n);          
-  vector<double> d_true_initial_wavelength_err2(n);     
+  Nessi::Vector<double> d_tof;                
+  Nessi::Vector<double> d_tof_err2;           
+  Nessi::Vector<double> d_initial_wavelength(n);          
+  Nessi::Vector<double> d_initial_wavelength_err2(n);     
+  Nessi::Vector<double> d_true_initial_wavelength(n);          
+  Nessi::Vector<double> d_true_initial_wavelength_err2(n);     
   double d_final_wavelength;
   double d_final_wavelength_err2;
   double d_time_offset;
@@ -95,21 +95,27 @@ int main()
     }
   
   AxisManip::tof_to_initial_wavelength_igs(f_tof, f_tof_err2, 
-					   f_final_wavelength, f_final_wavelength_err2,
+					   f_final_wavelength, 
+					   f_final_wavelength_err2,
                                            f_time_offset, f_time_offset_err2, 
-					   f_dist_source_sample, f_dist_source_sample_err2,
-                                           f_dist_sample_detector, f_dist_sample_detector_err2,
-					   f_initial_wavelength, f_initial_wavelength_err2);
+					   f_dist_source_sample, 
+					   f_dist_source_sample_err2,
+                                           f_dist_sample_detector, 
+					   f_dist_sample_detector_err2,
+					   f_initial_wavelength, 
+					   f_initial_wavelength_err2);
 
   AxisManip::tof_to_initial_wavelength_igs(d_tof, d_tof_err2,  
-					   d_final_wavelength, d_final_wavelength_err2, 
+					   d_final_wavelength, 
+					   d_final_wavelength_err2, 
                                            d_time_offset, d_time_offset_err2,
-					   d_dist_source_sample, d_dist_source_sample_err2, 
-                                           d_dist_sample_detector, d_dist_sample_detector_err2,
-					   d_initial_wavelength, d_initial_wavelength_err2);
-
+					   d_dist_source_sample, 
+					   d_dist_source_sample_err2, 
+                                           d_dist_sample_detector, 
+					   d_dist_sample_detector_err2,
+					   d_initial_wavelength, 
+					   d_initial_wavelength_err2);
   
-
   f_a = (float)((PhysConst::H_OVER_MNEUT / f_dist_source_sample));
   f_a2 = f_a * f_a;
 
@@ -144,7 +150,8 @@ int main()
     {
       //float
       f_true_initial_wavelength[i] = f_a * f_tof[i] - f_b;
-      f_true_initial_wavelength_err2[i] = f_a2 * (f_tof_err2[i] + f_time_offset_err2);
+      f_true_initial_wavelength_err2[i] = f_a2 * (f_tof_err2[i] + 
+						  f_time_offset_err2);
       f_true_initial_wavelength_err2[i] += f_c2 * f_dist_sample_detector_err2;
       f_true_initial_wavelength_err2[i] += f_d2 * f_final_wavelength_err2;
       f_true_initial_wavelength_err2[i] += f_initial_wavelength[i] *
@@ -152,7 +159,8 @@ int main()
 
       //double
       d_true_initial_wavelength[i] = (d_a * d_tof[i]) - d_b;
-      d_true_initial_wavelength_err2[i] = d_a2 * (d_tof_err2[i] + d_time_offset_err2);
+      d_true_initial_wavelength_err2[i] = d_a2 * (d_tof_err2[i] + 
+						  d_time_offset_err2);
       d_true_initial_wavelength_err2[i] += d_c2 * d_dist_sample_detector_err2;
       d_true_initial_wavelength_err2[i] += d_d2 * d_final_wavelength_err2;
       d_true_initial_wavelength_err2[i] += d_initial_wavelength[i] *
@@ -160,7 +168,8 @@ int main()
     }
   
   //check first if the size are in good agreement
-  if ((f_tof.size() != f_initial_wavelength.size())||(d_tof.size() != d_initial_wavelength.size()) )
+  if ((f_tof.size() != f_initial_wavelength.size())||(d_tof.size() != 
+						      d_initial_wavelength.size()) )
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;
@@ -172,14 +181,16 @@ int main()
 	  Utils::fd_comparison(f_initial_wavelength, f_true_initial_wavelength,
 			       error, 10, n);
 	  if (error != 0) break;
-	  Utils::fd_comparison(f_initial_wavelength_err2, f_true_initial_wavelength_err2, 
+	  Utils::fd_comparison(f_initial_wavelength_err2,
+			       f_true_initial_wavelength_err2, 
 			       error, 20, n);
 	  if (error != 0) break;
 	  
 	  Utils::fd_comparison(d_initial_wavelength, d_true_initial_wavelength, 
 			       error, 110, n);
 	  if (error != 0) break;
-	  Utils::fd_comparison(d_initial_wavelength_err2, d_true_initial_wavelength_err2, 
+	  Utils::fd_comparison(d_initial_wavelength_err2, 
+			       d_true_initial_wavelength_err2, 
 			       error, 120, n);
 	  break;
 	}
@@ -196,16 +207,20 @@ int main()
       cout << "FAILED....Outut and input vectors have different sizes"<<endl;
       break;
     case 10:
-      cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output vector different from vector expected"
+	   <<endl;
       break;
     case 20:
-      cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     case 110:
-      cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output vector different from vector expected"
+	   <<endl;
       break;
     case 120:
-      cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     default:
       cout << "FAILED"<<endl;
