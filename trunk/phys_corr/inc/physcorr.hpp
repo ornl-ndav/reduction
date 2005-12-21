@@ -6,8 +6,8 @@
 #ifndef _PHYS_CORR_H
 #define _PHYS_CORR_H 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 /**
  * This sub-library contains the various corrections that require a
@@ -26,13 +26,13 @@ namespace PhysCorr
    */
   template <typename NumT>
     std::string
-    absorption_mult_scatt(std::vector<NumT> const & axis_in,
-			  std::vector<NumT> const & input,
-			  std::vector<NumT> const & input_err2,
+    absorption_mult_scatt(Nessi::Vector<NumT> const & axis_in,
+			  Nessi::Vector<NumT> const & input,
+			  Nessi::Vector<NumT> const & input_err2,
 			  NumT pathlength,
 			  NumT polar_angle,
-			  std::vector<NumT> & output,
-			  std::vector<NumT> & output_err2,
+			  Nessi::Vector<NumT> & output,
+			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
 
   /**
@@ -42,12 +42,12 @@ namespace PhysCorr
    */
   template <typename NumT>
     std::string
-    dead_time_corr(std::vector<NumT> const & axis_in,
-		   std::vector<NumT> const & input,
-		   std::vector<NumT> const & input_err2,
+    dead_time_corr(Nessi::Vector<NumT> const & axis_in,
+		   Nessi::Vector<NumT> const & input,
+		   Nessi::Vector<NumT> const & input_err2,
 		   NumT corr_factor,
-		   std::vector<NumT> & output,
-		   std::vector<NumT> & output_err2,
+		   Nessi::Vector<NumT> & output,
+		   Nessi::Vector<NumT> & output_err2,
 		   void *temp=NULL);
 
   /**
@@ -57,11 +57,11 @@ namespace PhysCorr
    */
   template <typename NumT>
     std::string
-    inelastic_scatt_corr(std::vector<NumT> const & axis_in,
-			 std::vector<NumT> const & input,
-			 std::vector<NumT> const & input_err2,
-			 std::vector<NumT> & output,
-			 std::vector<NumT> & output_err2,
+    inelastic_scatt_corr(Nessi::Vector<NumT> const & axis_in,
+			 Nessi::Vector<NumT> const & input,
+			 Nessi::Vector<NumT> const & input_err2,
+			 Nessi::Vector<NumT> & output,
+			 Nessi::Vector<NumT> & output_err2,
 			 void *temp=NULL);
 
   /**
@@ -71,11 +71,11 @@ namespace PhysCorr
    */
   template <typename NumT>
     std::string
-    incoherent_scatt_corr(std::vector<NumT> const & axis_in,
-			  std::vector<NumT> const & input,
-			  std::vector<NumT> const & input_err2,
-			  std::vector<NumT> & output,
-			  std::vector<NumT> & output_err2,
+    incoherent_scatt_corr(Nessi::Vector<NumT> const & axis_in,
+			  Nessi::Vector<NumT> const & input,
+			  Nessi::Vector<NumT> const & input_err2,
+			  Nessi::Vector<NumT> & output,
+			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
 
 } // PhysCorr

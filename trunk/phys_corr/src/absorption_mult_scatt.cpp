@@ -15,13 +15,13 @@ namespace PhysCorr
    * \see absorption_mult_scatt()
    */
   template std::string
-  absorption_mult_scatt<float>(std::vector<float> const & axis_in,
-			       std::vector<float> const & input,
-			       std::vector<float> const & input_err2,
+  absorption_mult_scatt<float>(Nessi::Vector<float> const & axis_in,
+			       Nessi::Vector<float> const & input,
+			       Nessi::Vector<float> const & input_err2,
 			       float pathlength,
 			       float polar_angle,
-			       std::vector<float> & output,
-			       std::vector<float> & output_err2,
+			       Nessi::Vector<float> & output,
+			       Nessi::Vector<float> & output_err2,
 			       void *temp);
   
   /**
@@ -31,13 +31,13 @@ namespace PhysCorr
    * \see absorption_mult_scatt()
    */
   template std::string
-  absorption_mult_scatt<double>(std::vector<double> const & axis_in,
-				std::vector<double> const & input,
-				std::vector<double> const & input_err2,
+  absorption_mult_scatt<double>(Nessi::Vector<double> const & axis_in,
+				Nessi::Vector<double> const & input,
+				Nessi::Vector<double> const & input_err2,
 				double pathlength,
 				double polar_angle,
-				std::vector<double> & output,
-				std::vector<double> & output_err2,
+				Nessi::Vector<double> & output,
+				Nessi::Vector<double> & output_err2,
 				void *temp);
 
 } // PhysCorr
