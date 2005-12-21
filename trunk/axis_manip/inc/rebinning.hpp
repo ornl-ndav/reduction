@@ -6,8 +6,8 @@
 #ifndef _REBINNING_H
 #define _REBINNING_H 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
@@ -37,12 +37,12 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    rebin_axis_1D(std::vector<NumT> const & axis_in,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err2,
-		  std::vector<NumT> const & axis_out,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err2,
+    rebin_axis_1D(Nessi::Vector<NumT> const & axis_in,
+		  Nessi::Vector<NumT> const & input,
+		  Nessi::Vector<NumT> const & input_err2,
+		  Nessi::Vector<NumT> const & axis_out,
+		  Nessi::Vector<NumT> & output,
+		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
   
   /**
@@ -50,14 +50,14 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    rebin_axis_2D(std::vector<NumT> const & axis_in_1,
-		  std::vector<NumT> const & axis_in_2,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err2,
-		  std::vector<NumT> const & axis_out_1,
-		  std::vector<NumT> const & axis_out_2,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err2,
+    rebin_axis_2D(Nessi::Vector<NumT> const & axis_in_1,
+		  Nessi::Vector<NumT> const & axis_in_2,
+		  Nessi::Vector<NumT> const & input,
+		  Nessi::Vector<NumT> const & input_err2,
+		  Nessi::Vector<NumT> const & axis_out_1,
+		  Nessi::Vector<NumT> const & axis_out_2,
+		  Nessi::Vector<NumT> & output,
+		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
 
   /**
@@ -65,18 +65,18 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    rebin_axis_4D(std::vector<NumT> const & axis_in_1,
-		  std::vector<NumT> const & axis_in_2,
-		  std::vector<NumT> const & axis_in_3,
-		  std::vector<NumT> const & axis_in_4,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err2,
-		  std::vector<NumT> const & axis_out_1,
-		  std::vector<NumT> const & axis_out_2,
-		  std::vector<NumT> const & axis_out_3,
-		  std::vector<NumT> const & axis_out_4,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err2,
+    rebin_axis_4D(Nessi::Vector<NumT> const & axis_in_1,
+		  Nessi::Vector<NumT> const & axis_in_2,
+		  Nessi::Vector<NumT> const & axis_in_3,
+		  Nessi::Vector<NumT> const & axis_in_4,
+		  Nessi::Vector<NumT> const & input,
+		  Nessi::Vector<NumT> const & input_err2,
+		  Nessi::Vector<NumT> const & axis_out_1,
+		  Nessi::Vector<NumT> const & axis_out_2,
+		  Nessi::Vector<NumT> const & axis_out_3,
+		  Nessi::Vector<NumT> const & axis_out_4,
+		  Nessi::Vector<NumT> & output,
+		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
   
 } // AxisManip

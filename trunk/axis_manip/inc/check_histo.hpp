@@ -6,8 +6,8 @@
 #ifndef _CHECK_HISTO_H
 #define _CHECK_HISTO_H 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
@@ -29,9 +29,9 @@ namespace AxisManip
    */
   template <typename NumT>
   void check_histo_sizes(std::string & errstr,
-			 std::vector<NumT> const & input,
-			 std::vector<NumT> const & input_err2,
-			 std::vector<NumT> const & axis);
+			 Nessi::Vector<NumT> const & input,
+			 Nessi::Vector<NumT> const & input_err2,
+			 Nessi::Vector<NumT> const & axis);
   
 } // AxisManip
 

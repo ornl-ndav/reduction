@@ -16,11 +16,11 @@ namespace AxisManip
    */
   template std::string
   frequency_to_angular_frequency<float>(
-                                   std::vector<float> const & frequency,
-                                   std::vector<float> const & frequency_err2,
-                                   std::vector<float> & angular_frequency,
-                                   std::vector<float> & angular_frequency_err2,
-                                   void *temp);
+                                 Nessi::Vector<float> const & frequency,
+                                 Nessi::Vector<float> const & frequency_err2,
+                                 Nessi::Vector<float> & angular_frequency,
+                                 Nessi::Vector<float> & angular_frequency_err2,
+                                 void *temp);
   
   /**
    * This is the double precision float declaration of the function
@@ -30,9 +30,9 @@ namespace AxisManip
    */
   template std::string
   frequency_to_angular_frequency<double>(
-                                  std::vector<double> const & frequency,
-                                  std::vector<double> const & frequency_err2,
-                                  std::vector<double> & angular_frequency,
-			          std::vector<double> & angular_frequency_err2,
-                                  void *temp);
+                                Nessi::Vector<double> const & frequency,
+                                Nessi::Vector<double> const & frequency_err2,
+                                Nessi::Vector<double> & angular_frequency,
+                                Nessi::Vector<double> & angular_frequency_err2,
+                                void *temp);
 } // AxisManip

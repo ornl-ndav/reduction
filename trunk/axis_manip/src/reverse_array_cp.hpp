@@ -6,15 +6,14 @@
 #include "reverse_array.hpp"
 #include <algorithm>
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.11
   template <typename NumT>
   std::string 
-  reverse_array_cp(std::vector<NumT> const & input,
-		std::vector<NumT> & output,
+  reverse_array_cp(Nessi::Vector<NumT> const & input,
+		Nessi::Vector<NumT> & output,
 		void *temp=NULL)
   {
     std::string retstr("");

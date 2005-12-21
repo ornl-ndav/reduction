@@ -6,15 +6,14 @@
 #include "constants.hpp"
 #include "conversions.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.29
   template <typename NumT>
   std::string
-  tof_to_initial_wavelength_igs(std::vector<NumT> const & tof,
-				std::vector<NumT> const & tof_err2,
+  tof_to_initial_wavelength_igs(Nessi::Vector<NumT> const & tof,
+				Nessi::Vector<NumT> const & tof_err2,
 				const NumT final_wavelength,
 				const NumT final_wavelength_err2,
 				const NumT time_offset,
@@ -23,8 +22,8 @@ namespace AxisManip
 				const NumT dist_source_sample_err2,
 				const NumT dist_sample_detector,
 				const NumT dist_sample_detector_err2,
-				std::vector<NumT> & initial_wavelength,
-				std::vector<NumT> & initial_wavelength_err2,
+				Nessi::Vector<NumT> & initial_wavelength,
+				Nessi::Vector<NumT> & initial_wavelength_err2,
 				void *temp=NULL)
   {
     std::string retstr("");

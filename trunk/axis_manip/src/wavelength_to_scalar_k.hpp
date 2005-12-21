@@ -6,17 +6,16 @@
 #include "conversions.hpp"
 #include "constants.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.24
   template <typename NumT>
   std::string
-  wavelength_to_scalar_k(std::vector<NumT> const & wavelength,
-			 std::vector<NumT> const & wavelength_err2,
-			 std::vector<NumT> & wavevector,
-			 std::vector<NumT> & wavevector_err2,
+  wavelength_to_scalar_k(Nessi::Vector<NumT> const & wavelength,
+			 Nessi::Vector<NumT> const & wavelength_err2,
+			 Nessi::Vector<NumT> & wavevector,
+			 Nessi::Vector<NumT> & wavevector_err2,
 			 void *temp=NULL)
   {
     std::string retstr("");

@@ -6,8 +6,8 @@
 #ifndef _REVERSE_ARRAY_H
 #define _REVERSE_ARRAY_H 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
@@ -26,8 +26,8 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    reverse_array_cp(std::vector<NumT> const & input,
-		  std::vector<NumT> & output,
+    reverse_array_cp(Nessi::Vector<NumT> const & input,
+		  Nessi::Vector<NumT> & output,
 		  void *temp=NULL);
 
   /**
@@ -46,7 +46,7 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    reverse_array_nc(std::vector<NumT> & inout,
+    reverse_array_nc(Nessi::Vector<NumT> & inout,
 		     void *temp=NULL);
   
 } // AxisManip

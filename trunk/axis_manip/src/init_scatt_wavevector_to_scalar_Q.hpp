@@ -6,7 +6,6 @@
 #include "conversions.hpp"
 #include <cmath>
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
@@ -14,15 +13,15 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-				    std::vector<NumT> const & initial_wavevector,
-				    std::vector<NumT> const & initial_wavevector_err2,
-				    std::vector<NumT> const & final_wavevector,
-				    std::vector<NumT> const & final_wavevector_err2,
-				    const NumT polar_angle,
-				    const NumT polar_angle_err2,
-				    std::vector<NumT> & Q,
-				    std::vector<NumT> & Q_err2,
-				    void *temp=NULL)
+                           Nessi::Vector<NumT> const & initial_wavevector,
+			   Nessi::Vector<NumT> const & initial_wavevector_err2,
+                           Nessi::Vector<NumT> const & final_wavevector,
+                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const NumT polar_angle,
+                           const NumT polar_angle_err2,
+                           Nessi::Vector<NumT> & Q,
+                           Nessi::Vector<NumT> & Q_err2,
+                           void *temp=NULL)
   {
     std::string retstr("");
     
