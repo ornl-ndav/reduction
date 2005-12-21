@@ -6,8 +6,8 @@
 #ifndef _UTILS_H
 #define _UTILS_H
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 /**
  * This sub-library contains various functions that do not
@@ -53,9 +53,9 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    peak_integration(std::vector<NumT> const & input,
-		     std::vector<NumT> const & input_err2,
-		     std::vector<NumT> const & start_bin,
+    peak_integration(Nessi::Vector<NumT> const & input,
+		     Nessi::Vector<NumT> const & input_err2,
+		     Nessi::Vector<NumT> const & start_bin,
 		     NumT & output,
 		     NumT & output_err2,
 		     unsigned int & tag,
@@ -73,10 +73,10 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    matrix_multiplication(std::vector<NumT> const & input,
-			  std::vector<NumT> const & input_err2,
-			  std::vector<NumT> & output,
-			  std::vector<NumT> & output_err2,
+    matrix_multiplication(Nessi::Vector<NumT> const & input,
+			  Nessi::Vector<NumT> const & input_err2,
+			  Nessi::Vector<NumT> & output,
+			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
   
   /**
@@ -90,14 +90,14 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    fit_reflectometer_background(std::vector<NumT> const & axis_in,
-				 std::vector<NumT> const & input,
-				 std::vector<NumT> const & input_err2,
-				 std::vector<NumT> const & params_in,
-				 std::vector<NumT> & output,
-				 std::vector<NumT> & output_err2,
-				 std::vector<NumT> & params_out,
-				 std::vector<NumT> & params_out_err2,
+    fit_reflectometer_background(Nessi::Vector<NumT> const & axis_in,
+				 Nessi::Vector<NumT> const & input,
+				 Nessi::Vector<NumT> const & input_err2,
+				 Nessi::Vector<NumT> const & params_in,
+				 Nessi::Vector<NumT> & output,
+				 Nessi::Vector<NumT> & output_err2,
+				 Nessi::Vector<NumT> & params_out,
+				 Nessi::Vector<NumT> & params_out_err2,
 				 void *temp=NULL);
 
   /**
@@ -111,9 +111,9 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    fit_linear_background(std::vector<NumT> const & axis_in,
-			  std::vector<NumT> const & input,
-			  std::vector<NumT> const & input_err2,
+    fit_linear_background(Nessi::Vector<NumT> const & axis_in,
+			  Nessi::Vector<NumT> const & input,
+			  Nessi::Vector<NumT> const & input_err2,
 			  NumT min_val, NumT max_val,
 			  NumT slope_start, 
 			  NumT intercept_start,

@@ -1,11 +1,9 @@
 /**
- * $Id: $
+ * $Id$
  *
  * \file utils/src/fit_linear_background.hpp
  */
 #include "utils.hpp"
-#include <string>
-#include <vector>
 #include <stdexcept>
 
 namespace Utils
@@ -13,9 +11,9 @@ namespace Utils
   // 3.43
   template <typename NumT>
   std::string
-  fit_linear_background(std::vector<NumT> const & axis_in,
-			std::vector<NumT> const & input,
-			std::vector<NumT> const & input_err2,
+  fit_linear_background(Nessi::Vector<NumT> const & axis_in,
+			Nessi::Vector<NumT> const & input,
+			Nessi::Vector<NumT> const & input_err2,
 			NumT min_val, NumT max_val,
 			NumT slope_start, 
 			NumT intercept_start,

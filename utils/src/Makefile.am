@@ -1,6 +1,6 @@
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/utils/inc
+AM_CPPFLAGS = -I. -I$(top_srcdir)/utils/inc -I$(top_srcdir)/nessi
 
 lib_LTLIBRARIES = libUtils.la
 

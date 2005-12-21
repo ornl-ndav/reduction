@@ -15,14 +15,14 @@ namespace Utils
    * \see fit_reflectometer_background()
    */
   template std::string
-  fit_reflectometer_background<float>(std::vector<float> const & axis_in,
-				      std::vector<float> const & input,
-				      std::vector<float> const & input_err2,
-				      std::vector<float> const & params_in,
-				      std::vector<float> & output,
-				      std::vector<float> & output_err2,
-				      std::vector<float> & params_out,
-				      std::vector<float> & params_out_err2,
+  fit_reflectometer_background<float>(Nessi::Vector<float> const & axis_in,
+				      Nessi::Vector<float> const & input,
+				      Nessi::Vector<float> const & input_err2,
+				      Nessi::Vector<float> const & params_in,
+				      Nessi::Vector<float> & output,
+				      Nessi::Vector<float> & output_err2,
+				      Nessi::Vector<float> & params_out,
+				      Nessi::Vector<float> & params_out_err2,
 				      void *temp);
 
   /**
@@ -32,13 +32,13 @@ namespace Utils
    * \see fit_reflectometer_background()
    */
   template std::string
-  fit_reflectometer_background<double>(std::vector<double> const & axis_in,
-				       std::vector<double> const & input,
-				       std::vector<double> const & input_err2,
-				       std::vector<double> const & params_in,
-				       std::vector<double> & output,
-				       std::vector<double> & output_err2,
-				       std::vector<double> & params_out,
-				       std::vector<double> & params_out_err2,
+  fit_reflectometer_background<double>(Nessi::Vector<double> const & axis_in,
+				       Nessi::Vector<double> const & input,
+				       Nessi::Vector<double> const & input_err2,
+				       Nessi::Vector<double> const & params_in,
+				       Nessi::Vector<double> & output,
+				       Nessi::Vector<double> & output_err2,
+				       Nessi::Vector<double> & params_out,
+				       Nessi::Vector<double> & params_out_err2,
 				       void *temp);
 } // Utils
