@@ -4,7 +4,6 @@
  * \file axis_manip/src/velocity_to_scalar_k.hpp
  */
 #include "conversions.hpp"
-#include <string>
 #include <stdexcept>
 
 namespace AxisManip

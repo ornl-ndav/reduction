@@ -4,7 +4,6 @@
  * \file axis_manip/src/rebin_axis_2D.hpp
  */
 #include "rebinning.hpp"
-#include <string>
 #include <stdexcept>
 
 namespace AxisManip

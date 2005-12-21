@@ -4,7 +4,6 @@
  * \file axis_manip/src/frequency_to_angular_frequency.hpp
  */
 #include "conversions.hpp"
-#include <string>
 #include <stdexcept>
 
 namespace AxisManip
