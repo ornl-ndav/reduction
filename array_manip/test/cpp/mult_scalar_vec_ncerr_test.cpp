@@ -1,9 +1,10 @@
 // $Id$
 
+#include "nessi.hpp"
+#include "vec_scalar_arith.hpp"
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
-#include "vec_scalar_arith.hpp"
 
 using namespace std;
 
@@ -12,39 +13,39 @@ int main()
   int n = 20;
   float f_scalar = 5.0;
   float f_scalar_err2 = 3.0;
-  vector<float> f_input;                //Original vector
-  vector<float> f_input_err2;            //Original vector err
-  vector<float> f_y(n);             //Output vector
-  vector<float> f_y_err2(n);         //Output vector err
-  vector<float> f_true_vector;      //True vector
-  vector<float> f_true_vector_err2;  //True vector err
+  Nessi::Vector<float> f_input;                 //Original vector
+  Nessi::Vector<float> f_input_err2;            //Original vector err
+  Nessi::Vector<float> f_y(n);                  //Output vector
+  Nessi::Vector<float> f_y_err2(n);             //Output vector err
+  Nessi::Vector<float> f_true_vector;           //True vector
+  Nessi::Vector<float> f_true_vector_err2;      //True vector err
 
   double d_scalar = 5;
   double d_scalar_err2 = 3;
-  vector<double> d_input;
-  vector<double> d_input_err2;
-  vector<double> d_y(n);
-  vector<double> d_y_err2(n);
-  vector<double> d_true_vector;
-  vector<double> d_true_vector_err2;
+  Nessi::Vector<double> d_input;
+  Nessi::Vector<double> d_input_err2;
+  Nessi::Vector<double> d_y(n);
+  Nessi::Vector<double> d_y_err2(n);
+  Nessi::Vector<double> d_true_vector;
+  Nessi::Vector<double> d_true_vector_err2;
 
   int i_scalar = 5;
   int i_scalar_err2 = 3;
-  vector<int> i_input;
-  vector<int> i_input_err2;
-  vector<int> i_y(n);
-  vector<int> i_y_err2(n);
-  vector<int> i_true_vector;
-  vector<int> i_true_vector_err2;
+  Nessi::Vector<int> i_input;
+  Nessi::Vector<int> i_input_err2;
+  Nessi::Vector<int> i_y(n);
+  Nessi::Vector<int> i_y_err2(n);
+  Nessi::Vector<int> i_true_vector;
+  Nessi::Vector<int> i_true_vector_err2;
   
   unsigned u_scalar = 5;
   unsigned u_scalar_err2 = 3;
-  vector<unsigned> u_input;
-  vector<unsigned> u_input_err2;
-  vector<unsigned> u_y(n);
-  vector<unsigned> u_y_err2(n);
-  vector<unsigned> u_true_vector;
-  vector<unsigned> u_true_vector_err2;
+  Nessi::Vector<unsigned> u_input;
+  Nessi::Vector<unsigned> u_input_err2;
+  Nessi::Vector<unsigned> u_y(n);
+  Nessi::Vector<unsigned> u_y_err2(n);
+  Nessi::Vector<unsigned> u_true_vector;
+  Nessi::Vector<unsigned> u_true_vector_err2;
   
   int error=0;                      //==0,Pass  !=0,Fail
 
@@ -63,10 +64,13 @@ int main()
  
   ArrayManip::mult_scalar_vec_ncerr(f_input, f_input_err2, f_y, 
 				    f_y_err2, f_scalar, f_scalar_err2);
+
   ArrayManip::mult_scalar_vec_ncerr(d_input, d_input_err2, d_y,
 				    d_y_err2, d_scalar, d_scalar_err2);
+
   ArrayManip::mult_scalar_vec_ncerr(i_input, i_input_err2, i_y, 
 				    i_y_err2, i_scalar, i_scalar_err2);
+
   ArrayManip::mult_scalar_vec_ncerr(u_input, u_input_err2, u_y, 
 				    u_y_err2, u_scalar, u_scalar_err2);
   
@@ -88,7 +92,8 @@ int main()
     }
 
   //check first the size
-  if ((f_input.size() != f_y.size())||(d_input.size() != d_y.size()) || (i_input.size() != i_y.size()) || (u_input.size() != u_y.size()))
+  if ((f_input.size() != f_y.size())||(d_input.size() != d_y.size()) || 
+      (i_input.size() != i_y.size()) || (u_input.size() != u_y.size()))
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;
@@ -140,7 +145,7 @@ int main()
 	}
     }
 
-  cout << "mult_scalar_vec_ncerr_test.cpp..........";
+  cout << "mult_scalar_vec_ncerr.cpp..........";
 
   switch (error)
     {
@@ -151,28 +156,36 @@ int main()
       cout << "FAILED....Outut and input vectors have different sizes"<<endl;
       break;
     case 10:
-      cout << "(float) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output vector different from vector expected"
+	   <<endl;
       break;
     case 20:
-      cout << "(float) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(float) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     case 110:
-      cout << "(double) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output vector different from vector "
+	"expected"<<endl;
       break;
     case 120:
-      cout << "(double) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(double) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     case 210:
-      cout << "(int) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(int) FAILED....Output vector different from vector expected"
+	   <<endl;
       break;
     case 220:
-      cout << "(int) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(int) FAILED....Output error vector different from vector"
+	"expected"<<endl;
       break;
     case 310:
-      cout << "(unsigned) FAILED....Output vector different from vector expected"<<endl;
+      cout << "(unsigned) FAILED....Output vector different from vector"
+	" expected"<<endl;
       break;
     case 320:
-      cout << "(unsigned) FAILED....Output error vector different from vector expected"<<endl;
+      cout << "(unsigned) FAILED....Output error vector different from"
+	" vector expected"<<endl;
       break;
     default:
       cout << "FAILED"<<endl;
