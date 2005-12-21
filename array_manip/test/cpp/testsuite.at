@@ -9,60 +9,60 @@ AT_BANNER([[Checking Functionality of the Array Manipulation Functions]])
 
 AT_SETUP([Checking the Add Scalar to Vector Function.  ])
 AT_CHECK([add_scalar_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[add_scalar_vec_ncerr_test.cpp..........Functionality OK
+[[add_scalar_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Subtract Scalar from Vector Function.  ])
 AT_CHECK([sub_scalar_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[sub_scalar_vec_ncerr_test.cpp..........Functionality OK
+[[sub_scalar_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Multiply Scalar to Vector Function.  ])
 AT_CHECK([mult_scalar_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[mult_scalar_vec_ncerr_test.cpp..........Functionality OK
+[[mult_scalar_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Divide Scalar by Vector Function.  ])
 AT_CHECK([div_scalar_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[div_scalar_vec_ncerr_test.cpp..........Functionality OK
+[[div_scalar_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Divide Vector by Scalar Function.  ])
 AT_CHECK([div_vec_scalar_ncerr_test | sed -e 's/\r$//' ],[],
-[[div_vec_scalar_ncerr_test.cpp..........Functionality OK
+[[div_vec_scalar_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Add Two Vectors Function.  ])
 AT_CHECK([add_vec_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[add_vec_vec_ncerr_test.cpp..........Functionality OK
+[[add_vec_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Subtract Two Vectors Function.  ])
 AT_CHECK([sub_vec_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[sub_vec_vec_ncerr_test.cpp..........Functionality OK
+[[sub_vec_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Multiply Two Vectors Function.  ])
 AT_CHECK([mult_vec_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[mult_vec_vec_ncerr_test.cpp..........Functionality OK
+[[mult_vec_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Divide Two Vectors Function.  ])
 AT_CHECK([div_vec_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[div_vec_vec_ncerr_test.cpp..........Functionality OK
+[[div_vec_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Sum Vectors Weighted by Uncertainties Function.  ])
 AT_CHECK([sumw_vec_vec_ncerr_test | sed -e 's/\r$//' ],[],
-[[sumw_vec_vec_ncerr_test.cpp..........Functionality OK
+[[sumw_vec_vec_ncerr.cpp..........Functionality OK
 ]])
 AT_CLEANUP
