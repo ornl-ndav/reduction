@@ -111,8 +111,10 @@ int main()
     }
 
   //check first the size
-  if ((f_input.size() != f_output.size())||(d_input.size() != d_output.size())
-      || (i_input.size() != i_output.size()) || (u_input.size() != u_output.size()))
+  if ( (f_input.size() != f_output.size())
+       ||(d_input.size() != d_output.size())
+       || (i_input.size() != i_output.size())
+       || (u_input.size() != u_output.size()) )
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;

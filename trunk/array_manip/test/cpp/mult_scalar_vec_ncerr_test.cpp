@@ -92,8 +92,10 @@ int main()
     }
 
   //check first the size
-  if ((f_input.size() != f_y.size())||(d_input.size() != d_y.size()) || 
-      (i_input.size() != i_y.size()) || (u_input.size() != u_y.size()))
+  if ( (f_input.size() != f_y.size())
+       || (d_input.size() != d_y.size())
+       || (i_input.size() != i_y.size())
+       || (u_input.size() != u_y.size()) )
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;

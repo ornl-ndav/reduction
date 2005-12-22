@@ -151,10 +151,10 @@ int main()
     }
   
   //check first if the size are in good agreement
-  if ((f_input1.size() != f_output.size())||(d_input1.size() != 
-					     d_output.size()) || 
-      (i_input1.size() != i_output.size()) || (u_input1.size() != 
-					       u_output.size()))
+  if ( (f_input1.size() != f_output.size())
+       || (d_input1.size() != d_output.size())
+       || (i_input1.size() != i_output.size())
+       || (u_input1.size() != u_output.size()) )
     {
       cout << "Input and output vectors do not have the same size" <<endl;
       ++error;
