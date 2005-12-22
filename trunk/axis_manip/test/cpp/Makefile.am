@@ -30,9 +30,13 @@ tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp
 
 tof_to_initial_wavelength_igs_test_SOURCES = tof_to_initial_wavelength_igs_test.cpp
 
+tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp
+
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp
+
+wavelength_to_tof_test_SOURCES = wavelength_to_tof_test.cpp
 
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\
