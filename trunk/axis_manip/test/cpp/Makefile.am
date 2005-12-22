@@ -8,6 +8,8 @@ AM_LDFLAGS  = -static \
               -L$(top_srcdir)/axis_manip/src/.libs -lAxisManip \
               -L$(top_srcdir)/utils/src/.libs -lUtils
 
+EXTRA_DIST=testsuite.at
+
 AXIS_MANIP_TARGETS = \
 	energy_transfer_test \
 	init_scatt_wavevector_to_scalar_Q_test \

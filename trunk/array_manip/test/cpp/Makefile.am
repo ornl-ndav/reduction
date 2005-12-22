@@ -6,6 +6,8 @@ AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi
 AM_LDFLAGS  = -static \
               -L$(top_srcdir)/array_manip/src/.libs -lArrayManip
 
+EXTRA_DIST=testsuite.at
+
 ARRAY_MANIP_TARGETS = \
 	add_scalar_vec_ncerr_test \
 	sub_scalar_vec_ncerr_test \
