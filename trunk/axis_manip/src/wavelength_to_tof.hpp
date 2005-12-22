@@ -3,6 +3,7 @@
  *
  * \file axis_manip/src/wavelength_to_tof.hpp
  */
+#include "constants.hpp"
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -19,6 +20,25 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & tof_err2,
 		    void *temp=NULL)
   {
-    throw std::runtime_error("Function [wavelength_to_tof] not implemented");
+    std::string retstr("");
+    
+    NumT a = static_cast<NumT>(1 / (PhysConst::H_OVER_MNEUT));
+    NumT a2 = a * a;
+    a = a * pathlength;
+    
+    NumT b = pathlength * pathlength;
+    
+    NumT c = pathlength_err2 * pathlength_err2;
+    
+    size_t sz = wavelength.size();
+    for (size_t i = 0; i < sz ; ++i)
+      {
+	tof[i] = a * wavelength[i];
+	tof_err2[i] = wavelength[i] * wavelength[i] * c;
+	tof_err2[i] += b * (wavelength_err2[i] * wavelength_err2[i]);
+	tof_err2[i] *= a2;
+      }
+    
+    return retstr;
   }
 } // AxisManip
