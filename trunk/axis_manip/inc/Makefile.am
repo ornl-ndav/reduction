@@ -3,7 +3,7 @@
 INCLUDES = -I. -I$(includedir) -I$(top_srcdir)/nessi
 
 include_HEADERS = \
-	check_hist.hpp \
+	check_histo.hpp \
 	constants.hpp \
 	conversions.hpp \
 	rebinning.hpp \
