@@ -20,7 +20,7 @@ namespace Utils
 		 const int add_error,
 		 const int n_max)
   {
-      for (int i=0; i< n_max; i++)
+      for (int i = 0 ; i < n_max ; i++)
 	{
 //	  if (fabs(value[i] - true_value[i]) > fabs(value[i]) 
 //    * numeric_limits<NumT>::epsilon())
