@@ -23,10 +23,11 @@ namespace AxisManip
 		  Nessi::Vector<NumT> & Q_err2,
 		  void *temp=NULL)
   {
-    std::string retstr("");
-    
-    NumT a = 1/(static_cast<NumT>(PhysConst::H_OVER_MNEUT));
-    a *= 4*static_cast<NumT>(PhysConst::PI);
+    // VARIABLES WITH BAD NAMES: a, a2, cang, cang2, sang, sang2,
+    //                           term1, term2, term3
+
+    NumT a = static_cast<NumT>(1)/(static_cast<NumT>(PhysConst::H_OVER_MNEUT));
+    a *= static_cast<NumT>(4)*static_cast<NumT>(PhysConst::PI);
     NumT a2 = a*a;
 
     NumT cang = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
@@ -40,8 +41,8 @@ namespace AxisManip
 
     NumT term3 = sang2 * pathlength * pathlength;
 
-    size_t sz = tof.size();
-    for (size_t i = 0; i < sz; ++i)
+    size_t size_tof = tof.size();
+    for (size_t i = 0; i < size_tof; ++i)
       {
 	Q[i] = sang / tof[i];
 	Q[i] *= (a * pathlength);
@@ -52,6 +53,8 @@ namespace AxisManip
 	Q_err2[i] += term1 + term2;
 	Q_err2[i] *= a2 / (tof[i] * tof[i]);
       }
+
+    std::string retstr("");
     return retstr;
   }
 } // AxisManip

@@ -22,10 +22,8 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
-    std::string retstr("");
-    
-    size_t sz1 = initial_wavevector.size();
-    size_t sz2 = final_wavevector.size();
+    size_t size_init_wavevector = initial_wavevector.size();
+    size_t size_final_wavevector = final_wavevector.size();
     
     // FIXME
     // Need a zero length check for all vectors
@@ -34,11 +32,11 @@ namespace AxisManip
     NumT pang = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
     NumT sang = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
 
-    if (sz1 == 1 && sz2 != 1)
+    if (size_init_wavevector == 1 && size_final_wavevector != 1)
       {
 	NumT ki2 = initial_wavevector[0] * initial_wavevector[0];
 
-	for (size_t i = 0; i < sz2; ++i)
+	for (size_t i = 0 ; i < size_final_wavevector ; ++i)
 	  {
 	    NumT kf2 = final_wavevector[i] * final_wavevector[i];
 	    NumT akikf = a * initial_wavevector[0] * final_wavevector[i];
@@ -56,7 +54,7 @@ namespace AxisManip
 	    polar = polar * sang;
 	    NumT polar2 = polar * polar;
 
-	    NumT front = 1 / (Q[i] * Q[i]);
+	    NumT front = static_cast<NumT>(1) / (Q[i] * Q[i]);
 
 	    Q_err2[i] = final_wavevector_err2[i] * termf2;
 	    Q_err2[i] += initial_wavevector_err2[0] * termi2;
@@ -64,11 +62,11 @@ namespace AxisManip
 	    Q_err2[i] *= front;
 	  }
       }
-    else if (sz1 != 1 && sz2 == 1)
+    else if (size_init_wavevector != 1 && size_final_wavevector == 1)
       {
 	NumT kf2 = final_wavevector[0] * final_wavevector[0];
 
-	for (size_t i = 0; i < sz1; ++i)
+	for (size_t i = 0 ; i < size_init_wavevector ; ++i)
 	  {
 	    NumT ki2 = initial_wavevector[i] * initial_wavevector[i];
 	    NumT akikf = a * initial_wavevector[i] * final_wavevector[0];
@@ -86,7 +84,7 @@ namespace AxisManip
 	    polar = polar * sang;
 	    NumT polar2 = polar * polar;
 
-	    NumT front = 1 / (Q[i] * Q[i]);
+	    NumT front = static_cast<NumT>(1) / (Q[i] * Q[i]);
 
 	    Q_err2[i] = final_wavevector_err2[0] * termf2;
 	    Q_err2[i] += initial_wavevector_err2[i] * termi2;
@@ -94,7 +92,7 @@ namespace AxisManip
 	    Q_err2[i] *= front;
 	  }
       }
-    else if (sz1 == 1 && sz2 == 1)
+    else if (size_init_wavevector == 1 && size_final_wavevector == 1)
       {
 	NumT ki2 = initial_wavevector[0] * initial_wavevector[0];
 	NumT kf2 = final_wavevector[0] * final_wavevector[0];
@@ -114,7 +112,7 @@ namespace AxisManip
 	polar = polar * sang;
 	NumT polar2 = polar * polar;
 	
-	NumT front = 1 / (Q[0] * Q[0]);
+	NumT front = static_cast<NumT>(1) / (Q[0] * Q[0]);
 	
 	Q_err2[0] = final_wavevector_err2[0] * termf2;
 	Q_err2[0] += initial_wavevector_err2[0] * termi2;
@@ -123,7 +121,7 @@ namespace AxisManip
       }
     else
       {
-	for (size_t i = 0; i < sz1; ++i)
+	for (size_t i = 0 ; i < size_init_wavevector ; ++i)
 	  {
 	    NumT ki2 = initial_wavevector[i] * initial_wavevector[i];
 	    NumT kf2 = final_wavevector[i] * final_wavevector[i];
@@ -142,7 +140,7 @@ namespace AxisManip
 	    polar = polar * sang;
 	    NumT polar2 = polar * polar;
 	    
-	    NumT front = 1 / (Q[i] * Q[i]);
+	    NumT front = static_cast<NumT>(1) / (Q[i] * Q[i]);
 	    
 	    Q_err2[i] = final_wavevector_err2[i] * termf2;
 	    Q_err2[i] += initial_wavevector_err2[i] * termi2;
@@ -152,6 +150,7 @@ namespace AxisManip
 	  }
       }
 
+    std::string retstr("");
     return retstr;
   }
 } // AxisManip
