@@ -20,8 +20,8 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & tof_err2,
 		    void *temp=NULL)
   {
-    std::string retstr("");
-    
+    // VARIABLES WITH BAD NAMES: a, a2, b, c
+
     NumT a = static_cast<NumT>(1 / (PhysConst::H_OVER_MNEUT));
     NumT a2 = a * a;
     a = a * pathlength;
@@ -30,15 +30,16 @@ namespace AxisManip
     
     NumT c = pathlength_err2 * pathlength_err2;
     
-    size_t sz = wavelength.size();
-    for (size_t i = 0; i < sz ; ++i)
+    size_t size_wavelength = wavelength.size();
+    for (size_t i = 0; i < size_wavelength ; ++i)
       {
 	tof[i] = a * wavelength[i];
 	tof_err2[i] = wavelength[i] * wavelength[i] * c;
 	tof_err2[i] += b * (wavelength_err2[i] * wavelength_err2[i]);
-	tof_err2[i] *= a2;
+        tof_err2[i] *= a2;
       }
     
+    std::string retstr("");
     return retstr;
   }
 } // AxisManip

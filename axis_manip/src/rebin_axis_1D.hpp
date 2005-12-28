@@ -20,7 +20,6 @@ namespace AxisManip
 		Nessi::Vector<NumT> & output_err2,
 		void *temp=NULL)
   {
-    std::string retstr("");
     try
       {
 	std::string errstr("AxisManip::rebin_axis_1D: original histogram ");
@@ -78,6 +77,7 @@ namespace AxisManip
 	  }
       }
 
+    std::string retstr("");
     return retstr;
   }
 } // AxisManip

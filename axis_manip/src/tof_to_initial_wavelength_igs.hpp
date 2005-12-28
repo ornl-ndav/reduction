@@ -25,8 +25,7 @@ namespace AxisManip
 				Nessi::Vector<NumT> & initial_wavelength_err2,
 				void *temp=NULL)
   {
-    std::string retstr("");
-
+    // VARIABLES NEED BETTER NAMES: a, a2, b, c, c2, d, d2, ls2
     NumT a = static_cast<NumT>(PhysConst::H_OVER_MNEUT / dist_source_sample);
     NumT a2 = a * a;
 
@@ -41,8 +40,8 @@ namespace AxisManip
 
     NumT ls2 = dist_source_sample * dist_source_sample;
 
-    size_t sz = tof.size();
-    for (size_t i = 0; i < sz; ++i)
+    size_t size_tof = tof.size();
+    for (size_t i = 0 ; i < size_tof ; ++i)
       {
 	initial_wavelength[i] = a * tof[i] - b;
 	initial_wavelength_err2[i] = a2 * (tof_err2[i] + time_offset_err2);
@@ -52,6 +51,7 @@ namespace AxisManip
 	  initial_wavelength[i] * dist_source_sample_err2 / ls2;
       }
 
+    std::string retstr("");
     return retstr;
   }
 } // AxisManip

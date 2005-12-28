@@ -9,17 +9,17 @@ using namespace std;
 
 int main() 
 {
-  int n = 20;
+  int num_val = 20;
 
   //float
   Nessi::Vector<float> f_initial_energy;                
   Nessi::Vector<float> f_initial_energy_err2;           
   Nessi::Vector<float> f_final_energy;          
   Nessi::Vector<float> f_final_energy_err2;     
-  Nessi::Vector<float> f_energy_transfer(n);
-  Nessi::Vector<float> f_energy_transfer_err2(n);
-  Nessi::Vector<float> f_true_energy_transfer(n);          
-  Nessi::Vector<float> f_true_energy_transfer_err2(n);     
+  Nessi::Vector<float> f_energy_transfer(num_val);
+  Nessi::Vector<float> f_energy_transfer_err2(num_val);
+  Nessi::Vector<float> f_true_energy_transfer(num_val);          
+  Nessi::Vector<float> f_true_energy_transfer_err2(num_val);     
   float f_h2;
 
   //double
@@ -27,22 +27,22 @@ int main()
   Nessi::Vector<double> d_initial_energy_err2;           
   Nessi::Vector<double> d_final_energy;          
   Nessi::Vector<double> d_final_energy_err2;     
-  Nessi::Vector<double> d_energy_transfer(n);
-  Nessi::Vector<double> d_energy_transfer_err2(n);
-  Nessi::Vector<double> d_true_energy_transfer(n);          
-  Nessi::Vector<double> d_true_energy_transfer_err2(n);     
+  Nessi::Vector<double> d_energy_transfer(num_val);
+  Nessi::Vector<double> d_energy_transfer_err2(num_val);
+  Nessi::Vector<double> d_true_energy_transfer(num_val);          
+  Nessi::Vector<double> d_true_energy_transfer_err2(num_val);     
   double d_h2;
   
 
-  int error_case_1 = 0;   //size of initial_energy = 1 , size of final_energy > 1
-  int error_case_2 = 0;   //size of initial_energy > 1 , size of final_energy = 1
-  int error_case_3 = 0;   //size of initial_energy = 1 , size of final_energy = 1
-  int error_case_4 = 0;   //size of initial_energy > 1 , size of final_energy > 1
+  int error_case_1 = 0;
+  int error_case_2 = 0;
+  int error_case_3 = 0;
+  int error_case_4 = 0;
   
   int error = 0;
   
-  f_h2 = (float)(PhysConst::H * PhysConst::H);
-  d_h2 = (double)(PhysConst::H * PhysConst::H);
+  f_h2 = static_cast<float>(PhysConst::H * PhysConst::H);
+  d_h2 = static_cast<double>(PhysConst::H * PhysConst::H);
   
   // ****case 1****
   
@@ -51,13 +51,13 @@ int main()
   d_initial_energy.push_back(static_cast<double>(26.3454));
   d_initial_energy_err2.push_back(static_cast<double>(24.34395));
 
-  for(int i=0; i<n; i++)            
+  for(int i = 0 ; i < num_val ; i++)            
     {
-      f_final_energy.push_back((float)i+1);
-      f_final_energy_err2.push_back((float)i+2);
+      f_final_energy.push_back(static_cast<float>(i+1));
+      f_final_energy_err2.push_back(static_cast<float>(i+2));
       
-      d_final_energy.push_back((double)i+1);
-      d_final_energy_err2.push_back((double)i+2);
+      d_final_energy.push_back(static_cast<double>(i+1));
+      d_final_energy_err2.push_back(static_cast<double>(i+2));
     }
   
   AxisManip::energy_transfer(f_initial_energy, f_initial_energy_err2,
@@ -68,15 +68,15 @@ int main()
 			     d_final_energy, d_final_energy_err2,
 			     d_energy_transfer, d_energy_transfer_err2);
   
-  for(int i=0; i<n; i++)
+  for(int i = 0 ; i < num_val ; i++)
     {
       f_true_energy_transfer[i] = (f_initial_energy[0] - f_final_energy[i]) /
-	(float)(PhysConst::H);
+	static_cast<float>(PhysConst::H);
       f_true_energy_transfer_err2[i] = (f_initial_energy_err2[0] + 
 					f_final_energy_err2[i]) / f_h2;
       
       d_true_energy_transfer[i] = (d_initial_energy[0] - d_final_energy[i]) /
-	(double)(PhysConst::H);
+	static_cast<double>(PhysConst::H);
       d_true_energy_transfer_err2[i] = (d_initial_energy_err2[0] + 
 					d_final_energy_err2[i]) / d_h2;
     }
@@ -86,17 +86,17 @@ int main()
   while(1)
     {
       Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, 
-			   error_case_1, 10, n);
+			   error_case_1, 10, num_val);
       if (error_case_1 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
-			   error_case_1, 20, n);
+      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+			   error_case_1, 20, num_val);
       if (error_case_1 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_1,
-			   110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+                           error_case_1, 110, num_val);
       if (error_case_1 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
-			   error_case_1, 120, n);
+      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+			   error_case_1, 120, num_val);
       if (error_case_1 != 0) break;
 
       break;
@@ -121,13 +121,13 @@ int main()
   d_final_energy.push_back(static_cast<double>(1.34566));
   d_final_energy_err2.push_back(static_cast<double>(2.445456));
   
-   for(int i=0; i<n; i++)            
+   for(int i = 0 ; i < num_val ; i++)            
     {
-      f_initial_energy.push_back(3.*(float)i+2);
-      f_initial_energy_err2.push_back((float)i+3);
+      f_initial_energy.push_back(3.*static_cast<float>(i+2));
+      f_initial_energy_err2.push_back(static_cast<float>(i+3));
       
-      d_initial_energy.push_back(3.*(double)i+2);
-      d_initial_energy_err2.push_back((double)i+3);
+      d_initial_energy.push_back(3.*static_cast<double>(i+2));
+      d_initial_energy_err2.push_back(static_cast<double>(i+3));
     }
   
   AxisManip::energy_transfer(f_initial_energy, f_initial_energy_err2,
@@ -138,34 +138,34 @@ int main()
 			     d_final_energy, d_final_energy_err2,
 			     d_energy_transfer, d_energy_transfer_err2);
   
-  for(int i=0; i<n; i++)
+  for(int i = 0 ; i < num_val ; i++)
     {
       f_true_energy_transfer[i] = (f_initial_energy[i] - f_final_energy[0]) /
-	(float)(PhysConst::H);
+	static_cast<float>(PhysConst::H);
       f_true_energy_transfer_err2[i] = (f_initial_energy_err2[i] + 
 					f_final_energy_err2[0]) / f_h2;
       
       d_true_energy_transfer[i] = (d_initial_energy[i] - d_final_energy[0]) /
-	(double)(PhysConst::H);
+	static_cast<double>(PhysConst::H);
       d_true_energy_transfer_err2[i] = (d_initial_energy_err2[i] +
 					d_final_energy_err2[0]) / d_h2;
     }
   
   //compare results for case 2
-    while(1)
+  while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_2, 
-			   10, n);
+      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer,
+                           error_case_2, 10, num_val);
       if (error_case_2 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
-			   error_case_2, 20, n);
+      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+			   error_case_2, 20, num_val);
       if (error_case_2 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_2, 
-			   110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+                           error_case_2, 110, num_val);
       if (error_case_2 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
-			   error_case_2, 120, n);
+      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+			   error_case_2, 120, num_val);
       if (error_case_2 != 0) break;
 
       break;
@@ -203,30 +203,30 @@ int main()
 			     d_energy_transfer, d_energy_transfer_err2);
   
   f_true_energy_transfer[0] = (f_initial_energy[0] - f_final_energy[0]) /
-	(float)(PhysConst::H);
+    static_cast<float>(PhysConst::H);
   f_true_energy_transfer_err2[0] = (f_initial_energy_err2[0] + 
 				    f_final_energy_err2[0]) / f_h2;
   
   d_true_energy_transfer[0] = (d_initial_energy[0] - d_final_energy[0]) /
-	(double)(PhysConst::H);
+	static_cast<double>(PhysConst::H);
   d_true_energy_transfer_err2[0] = (d_initial_energy_err2[0] + 
 				    d_final_energy_err2[0]) / d_h2;
 
   //compare results for case 3
     while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_3, 
-			   10, n);
+      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer,
+                           error_case_3, 10, num_val);
       if (error_case_3 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
-			   error_case_3, 20, n);
+      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+			   error_case_3, 20, num_val);
       if (error_case_3 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_3, 
-			   110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+                           error_case_3, 110, num_val);
       if (error_case_3 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
-			   error_case_3, 120, n);
+      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+			   error_case_3, 120, num_val);
       if (error_case_3 != 0) break;
 
       break;
@@ -245,17 +245,17 @@ int main()
   d_initial_energy_err2.clear();
   d_initial_energy.clear();
   
-  for(int i=0; i<n; i++)            
+  for(int i = 0 ; i < num_val ; i++)            
     {
-      f_initial_energy.push_back(3.*(float)i+3);
-      f_initial_energy_err2.push_back((float)i+5);
-      f_final_energy.push_back(3.*(float)i+2);
-      f_final_energy.push_back((float)i+2);
+      f_initial_energy.push_back(3.*static_cast<float>(i+3));
+      f_initial_energy_err2.push_back(static_cast<float>(i+5));
+      f_final_energy.push_back(3.*static_cast<float>(i+2));
+      f_final_energy.push_back(static_cast<float>(i+2));
 
-      d_initial_energy.push_back(3.*(double)i+3);
-      d_initial_energy_err2.push_back((double)i+5);
-      d_final_energy.push_back(3.*(double)i+2);
-      d_final_energy.push_back((double)i+2);
+      d_initial_energy.push_back(3.*static_cast<double>(i+3));
+      d_initial_energy_err2.push_back(static_cast<double>(i+5));
+      d_final_energy.push_back(3.*static_cast<double>(i+2));
+      d_final_energy.push_back(static_cast<double>(i+2));
     }
   
   AxisManip::energy_transfer(f_initial_energy, f_initial_energy_err2,
@@ -266,33 +266,33 @@ int main()
 			     d_final_energy, d_final_energy_err2,
 			     d_energy_transfer, d_energy_transfer_err2);
 
-  for(int i=0; i<n; i++)
+  for(int i = 0 ; i < num_val ; i++)
     {
       f_true_energy_transfer[i] = (f_initial_energy[i] - f_final_energy[i]) /
-	(float)(PhysConst::H);
+	static_cast<float>(PhysConst::H);
       f_true_energy_transfer_err2[i] = (f_initial_energy_err2[i] + 
 					f_final_energy_err2[i]) / f_h2;
 
       d_true_energy_transfer[i] = (d_initial_energy[i] - d_final_energy[i]) /
-	(double)(PhysConst::H);
+	static_cast<double>(PhysConst::H);
       d_true_energy_transfer_err2[i] = (d_initial_energy_err2[i] + 
 					d_final_energy_err2[i]) / d_h2;
     }
 
     while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, error_case_4, 
-			   10, n);
+      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer,
+                           error_case_4, 10, num_val);
       if (error_case_4 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2, 
-			   error_case_4, 20, n);
+      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+			   error_case_4, 20, num_val);
       if (error_case_4 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer, error_case_4, 
-			   110, n);
+      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+                           error_case_4, 110, num_val);
       if (error_case_4 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2, 
-			   error_case_4, 120, n);
+      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+			   error_case_4, 120, num_val);
       if (error_case_4 != 0) break;
 
       break;
@@ -305,99 +305,99 @@ int main()
   switch (error)
     {
     case 0:
-      cout << "Functionality OK"<<endl;
+      cout << "Functionality OK" << endl;
       break;
     default:
       {
 	if (error_case_1 != 0)
 	  {
-	      cout << "(sz1 == 1 && sz2 != 1):"<<endl;
+	      cout << "(sz1 == 1 && sz2 != 1):" << endl;
 	      switch (error_case_1)
 		{
 		case 10:
-		  cout << "(float) FAILED....Output vector different from vector"
-		    " expected"<<endl;
+		  cout << "(float) FAILED....Output vector different from "
+                       << "vector expected" << endl;
 		  break;
 		case 20:
-		  cout << "(float) FAILED....Output error vector different from "
-		    "vector expected"<<endl;
+		  cout << "(float) FAILED....Output error vector different "
+                       <<"from vector expected" << endl;
 		  break;
 		case 110:
-		  cout << "(double) FAILED....Output vector different from vector "
-		    "expected"<<endl;
+		  cout << "(double) FAILED....Output vector different from "
+                       << "vector expected" << endl;
 		  break;
 		case 120:
-		  cout << "(double) FAILED....Output error vector different from "
-		    "vector expected"<<endl;
+		  cout << "(double) FAILED....Output error vector different "
+                       << "from vector expected" << endl;
 		  break;
 		}
 	  }
 	else if (error_case_2 != 0)
 	  {
-	      cout << "(sz1 != 1 && sz2 == 1):"<<endl;
+	      cout << "(sz1 != 1 && sz2 == 1):" << endl;
 	      switch (error_case_2)
 		{
 		case 10:
-		  cout << "(float) FAILED....Output vector different from vector "
-		    "expected"<<endl;
+		  cout << "(float) FAILED....Output vector different from "
+                       << "vector expected" << endl;
 		  break;
 		case 20:
-		  cout << "(float) FAILED....Output error vector different from "
-		    "vector expected"<<endl;
+		  cout << "(float) FAILED....Output error vector different "
+                       << "from vector expected" << endl;
 		  break;
 		case 110:
-		  cout << "(double) FAILED....Output vector different from vector "
-		    "expected"<<endl;
+		  cout << "(double) FAILED....Output vector different from "
+                       << "vector expected" << endl;
 		  break;
 		case 120:
-		  cout << "(double) FAILED....Output error vector different from "
-		    "vector expected"<<endl;
+		  cout << "(double) FAILED....Output error vector different "
+                       << "from vector expected" << endl;
 		  break;
 		}
 	  }
 	else if (error_case_3 != 0)
 	  {
-	    cout << "(sz1 == 1 && sz2 == 1):"<<endl;
+	    cout << "(sz1 == 1 && sz2 == 1):" << endl;
 	    switch (error_case_3)
 	      {
 	      case 10:
 		cout << "(float) FAILED....Output vector different from vector"
-		  " expected"<<endl;
+                     << " expected" << endl;
 		break;
 	      case 20:
 		cout << "(float) FAILED....Output error vector different from "
-		  "vector expected"<<endl;
+                     << "vector expected" << endl;
 		break;
 	      case 110:
-		cout << "(double) FAILED....Output vector different from vector"
-		  " expected"<<endl;
+		cout << "(double) FAILED....Output vector different from "
+                     << "vector expected" << endl;
 		break;
 	      case 120:
-		cout << "(double) FAILED....Output error vector different from "
-		  "vector expected"<<endl;
+		cout << "(double) FAILED....Output error vector different from"
+                     << " vector expected" << endl;
 		break;
 	      }
 	  }
 	else if (error_case_4 != 0)
 	  {
-	    cout << "(sz1 != 1 && sz2 != 1):"<<endl;
+	    cout << "(sz1 != 1 && sz2 != 1):" << endl;
 	    switch (error_case_4)
 	      {
 	      case 10:
-		cout << "(float) FAILED....Output vector different from vector "
-		  "expected"<<endl;
+		cout << "(float) FAILED....Output vector different from vector"
+                     << " expected" << endl;
 		break;
 	      case 20:
 		cout << "(float) FAILED....Output error vector different from "
-		  "vector expected"<<endl;
+                     << "vector expected" << endl;
 		break;
 	      case 110:
-		cout << "(double) FAILED....Output vector different from vector"
-		  " expected"<<endl;
+		cout << "(double) FAILED....Output vector different from "
+                     << "vector expected" << endl;
 		break;
 	      case 120:
-		cout << "(double) FAILED....Output error vector different from "
-		  "vector expected"<<endl;
+		cout << "(double) FAILED....Output error vector different from"
+                     << " vector expected" << endl;
 		break;
 	      }
 	  }

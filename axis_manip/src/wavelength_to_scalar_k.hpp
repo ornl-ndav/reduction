@@ -17,19 +17,20 @@ namespace AxisManip
 			 Nessi::Vector<NumT> & wavevector_err2,
 			 void *temp=NULL)
   {
-    std::string retstr("");
+    // VARIABLES WITH BAD NAMES: a, a2
 
     NumT a = 2 * static_cast<NumT>(PhysConst::PI);
     NumT a2 = a * a;
     
-    size_t sz = wavelength.size();
-    for (size_t i = 0; i < sz; ++i)
+    size_t size_wavelength = wavelength.size();
+    for (size_t i = 0 ; i < size_wavelength ; ++i)
       {
         wavevector[i] = a / wavelength[i];
         wavevector_err2[i] = (a2 * wavelength_err2[i]) / 
 	  (wavelength[i] * wavelength[i] * wavelength[i] * wavelength[i]);
       }
 
+    std::string retstr("");
     return retstr;
   }
 } // AxisManip
