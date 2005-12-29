@@ -1,12 +1,12 @@
 /**
  * $Id$
  *
- * \file array_manip/src/sumw_vec_vec_ncerr.hpp
+ * \file array_manip/src/sumw_ncerr.hpp
  */
-#ifndef _SUMW_VEC_VEC_NCERR_H
-#define _SUMW_VEC_VEC_NCERR_H 1
+#ifndef _SUMW_NCERR_H
+#define _SUMW_NCERR_H 1
 
-#include "vec_vec_arith.hpp"
+#include "arith.hpp"
 #include "check_inputs.hpp"
 #include <cmath>
 #include <stdexcept>
@@ -16,13 +16,13 @@ namespace ArrayManip
   // 3.10
   template <typename NumT>
   std::string 
-  sumw_vec_vec_ncerr(Nessi::Vector<NumT> const & input1, 
-		     Nessi::Vector<NumT> const & input1_err2, 
-		     Nessi::Vector<NumT> const & input2, 
-		     Nessi::Vector<NumT> const & input2_err2, 
-		     Nessi::Vector<NumT> & output,
-		     Nessi::Vector<NumT> & output_err2,
-		     void *temp=NULL)
+  sumw_ncerr(Nessi::Vector<NumT> const & input1, 
+             Nessi::Vector<NumT> const & input1_err2, 
+             Nessi::Vector<NumT> const & input2, 
+             Nessi::Vector<NumT> const & input2_err2, 
+             Nessi::Vector<NumT> & output,
+             Nessi::Vector<NumT> & output_err2,
+             void *temp=NULL)
   {
     std::string retstr("");
 
@@ -63,4 +63,4 @@ namespace ArrayManip
   }
 } // ArrayManip
 
-#endif // _SUMW_VEC_VEC_NCERR_H
+#endif // _SUMW_NCERR_H

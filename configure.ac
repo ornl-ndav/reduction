@@ -9,7 +9,7 @@ see file COPYING for further information])
 
 AC_CONFIG_AUX_DIR(config)
 AM_CONFIG_HEADER(config/snsdrlibconfig.h:config/snsdrlibconfig_h.in)
-AC_CONFIG_SRCDIR(array_manip/src/add_vec_vec_ncerr.cpp)
+AC_CONFIG_SRCDIR(array_manip/src/add_ncerr.cpp)
 AC_CANONICAL_TARGET
 
 if test ! -z "$srcdir"; then
