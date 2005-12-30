@@ -7,15 +7,12 @@ lib_LTLIBRARIES = libUtils.la
 libUtils_la_LDFLAGS = -version-info 1:0:0
 
 libUtils_la_SOURCES = \
-	fd_comparison.hpp \
-	fd_comparison.cpp \
 	fit_linear_background.hpp \
 	fit_linear_background.cpp \
 	fit_reflectometer_background.hpp \
 	fit_reflectometer_background.cpp \
-	iu_comparison.hpp \
-	iu_comparison.cpp \
 	matrix_multiplication.hpp \
 	matrix_multiplication.cpp \
 	peak_integration.hpp \
-	peak_integration.cpp
+	peak_integration.cpp \
+	vector_comparison.cpp

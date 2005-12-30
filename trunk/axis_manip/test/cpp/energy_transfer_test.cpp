@@ -85,17 +85,17 @@ int main()
   
   while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer, 
+      Utils::vector_comparison(f_energy_transfer, f_true_energy_transfer, 
 			   error_case_1, 10, num_val);
       if (error_case_1 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+      Utils::vector_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
 			   error_case_1, 20, num_val);
       if (error_case_1 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+      Utils::vector_comparison(d_energy_transfer, d_true_energy_transfer,
                            error_case_1, 110, num_val);
       if (error_case_1 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+      Utils::vector_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
 			   error_case_1, 120, num_val);
       if (error_case_1 != 0) break;
 
@@ -154,17 +154,17 @@ int main()
   //compare results for case 2
   while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer,
+      Utils::vector_comparison(f_energy_transfer, f_true_energy_transfer,
                            error_case_2, 10, num_val);
       if (error_case_2 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+      Utils::vector_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
 			   error_case_2, 20, num_val);
       if (error_case_2 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+      Utils::vector_comparison(d_energy_transfer, d_true_energy_transfer,
                            error_case_2, 110, num_val);
       if (error_case_2 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+      Utils::vector_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
 			   error_case_2, 120, num_val);
       if (error_case_2 != 0) break;
 
@@ -215,17 +215,17 @@ int main()
   //compare results for case 3
     while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer,
+      Utils::vector_comparison(f_energy_transfer, f_true_energy_transfer,
                            error_case_3, 10, num_val);
       if (error_case_3 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+      Utils::vector_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
 			   error_case_3, 20, num_val);
       if (error_case_3 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+      Utils::vector_comparison(d_energy_transfer, d_true_energy_transfer,
                            error_case_3, 110, num_val);
       if (error_case_3 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+      Utils::vector_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
 			   error_case_3, 120, num_val);
       if (error_case_3 != 0) break;
 
@@ -281,17 +281,17 @@ int main()
 
     while(1)
     {
-      Utils::fd_comparison(f_energy_transfer, f_true_energy_transfer,
+      Utils::vector_comparison(f_energy_transfer, f_true_energy_transfer,
                            error_case_4, 10, num_val);
       if (error_case_4 != 0) break;
-      Utils::fd_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
+      Utils::vector_comparison(f_energy_transfer_err2, f_true_energy_transfer_err2,
 			   error_case_4, 20, num_val);
       if (error_case_4 != 0) break;
 
-      Utils::fd_comparison(d_energy_transfer, d_true_energy_transfer,
+      Utils::vector_comparison(d_energy_transfer, d_true_energy_transfer,
                            error_case_4, 110, num_val);
       if (error_case_4 != 0) break;
-      Utils::fd_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
+      Utils::vector_comparison(d_energy_transfer_err2, d_true_energy_transfer_err2,
 			   error_case_4, 120, num_val);
       if (error_case_4 != 0) break;
 

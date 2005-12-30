@@ -79,17 +79,17 @@ int main()
     {
       while(1)
 	{
-      Utils::fd_comparison(f_wavelength, f_true_wavelength, error, 10,
+      Utils::vector_comparison(f_wavelength, f_true_wavelength, error, 10,
                            num_val);
       if (error != 0) break;
-      Utils::fd_comparison(f_wavelength_err2, f_true_wavelength_err2, 
+      Utils::vector_comparison(f_wavelength_err2, f_true_wavelength_err2, 
 			   error, 20, num_val);
       if (error != 0) break;
 
-      Utils::fd_comparison(d_wavelength, d_true_wavelength, error, 110,
+      Utils::vector_comparison(d_wavelength, d_true_wavelength, error, 110,
                            num_val);
       if (error != 0) break;
-      Utils::fd_comparison(d_wavelength_err2, d_true_wavelength_err2, 
+      Utils::vector_comparison(d_wavelength_err2, d_true_wavelength_err2, 
 			   error, 120, num_val);
       if (error != 0) break;
 
