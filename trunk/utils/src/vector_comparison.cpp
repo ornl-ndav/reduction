@@ -4,46 +4,13 @@
  * \file utils/src/vector_comparison.cpp
  */
 
-#include "num_comparison.hpp"
+#include "vector_comparison.hpp"
 #include <limits>
 #define Precision_range 1e-6
 
 namespace Utils
 {
-  void vector_comparison (Nessi::Vector<int> const & value,
-                          Nessi::Vector<int> const & true_value,
-                          int & error,
-                          const int add_error,
-                          const int n_max)
-  {
-    for (int i = 0 ; i < n_max ; i++)
-      {
-	if (value[i] != true_value[i])
-	  {
-	    error += add_error;
-	    break;
-	  }
-      }
-    return;
-  }
-
-  void vector_comparison (Nessi::Vector<unsigned int> const & value,
-                          Nessi::Vector<unsigned int> const & true_value,
-                          int & error,
-                          const int add_error,
-                          const int n_max)
-  {
-    for (int i = 0 ; i < n_max ; i++)
-      {
-	if (value[i] != true_value[i])
-	  {
-	    error += add_error;
-	    break;
-	  }
-      }
-    return;
-  }
-
+  // specialized function for float
   void vector_comparison (Nessi::Vector<float> const & value,
                           Nessi::Vector<float> const & true_value,
                           int & error,
@@ -64,6 +31,7 @@ namespace Utils
       return;
   }
 
+  // specialized function for double
   void vector_comparison (Nessi::Vector<double> const & value,
                           Nessi::Vector<double> const & true_value,
                           int & error,
@@ -83,4 +51,21 @@ namespace Utils
       
       return;
   }
+
+  // explicit instantiations
+
+  template void
+  vector_comparison<int>(Nessi::Vector<int> const & value,
+                         Nessi::Vector<int> const & true_value,
+                         int & error,
+                         const int add_error,
+                         const int n_max);
+
+  template void
+  vector_comparison<unsigned int>(
+                               Nessi::Vector<unsigned int> const & value,
+                               Nessi::Vector<unsigned int> const & true_value,
+                               int & error,
+                               const int add_error,
+                               const int n_max);
 }

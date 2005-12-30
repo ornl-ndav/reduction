@@ -7,6 +7,15 @@
 
 namespace Utils
 {
+  template <typename NumT> 
+    void 
+    vector_comparison (Nessi::Vector<NumT> const & value,
+                       Nessi::Vector<NumT> const & true_value,
+                       int & error,
+                       const int add_error,
+                       const int n_max);
+
+  /*
   void vector_comparison (Nessi::Vector<int> const & value,
                           Nessi::Vector<int> const & true_value,
                           int & error,
@@ -18,6 +27,7 @@ namespace Utils
                           int & error,
                           const int add_error,
                           const int n_max);
+  */
 
   void vector_comparison (Nessi::Vector<float> const & value,
                           Nessi::Vector<float> const & true_value,

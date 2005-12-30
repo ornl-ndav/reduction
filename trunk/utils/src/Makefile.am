@@ -15,4 +15,5 @@ libUtils_la_SOURCES = \
 	matrix_multiplication.cpp \
 	peak_integration.hpp \
 	peak_integration.cpp \
+	vector_comparison.hpp \
 	vector_comparison.cpp
