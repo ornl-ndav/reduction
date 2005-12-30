@@ -5,6 +5,7 @@
  */
 #include "conversions.hpp"
 #include <cmath>
+#include <stdexcept>
 
 namespace AxisManip
 {
@@ -152,5 +153,56 @@ namespace AxisManip
 
     std::string retstr("");
     return retstr;
+  }
+
+  // 3.33
+  template <typename NumT>
+  std::string
+  init_scatt_wavevector_to_scalar_Q(
+                           const NumT initial_wavevector,
+			   const NumT initial_wavevector_err2,
+                           Nessi::Vector<NumT> const & final_wavevector,
+                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const NumT polar_angle,
+                           const NumT polar_angle_err2,
+                           Nessi::Vector<NumT> & Q,
+                           Nessi::Vector<NumT> & Q_err2,
+                           void *temp=NULL)
+  {
+    throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
+  }
+
+  // 3.33
+  template <typename NumT>
+  std::string
+  init_scatt_wavevector_to_scalar_Q(
+                           Nessi::Vector<NumT> const & initial_wavevector,
+			   Nessi::Vector<NumT> const & initial_wavevector_err2,
+                           const NumT final_wavevector,
+                           const NumT final_wavevector_err2,
+                           const NumT polar_angle,
+                           const NumT polar_angle_err2,
+                           Nessi::Vector<NumT> & Q,
+                           Nessi::Vector<NumT> & Q_err2,
+                           void *temp=NULL)
+  {
+    throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
+  }
+
+  // 3.33
+  template <typename NumT>
+  std::string
+  init_scatt_wavevector_to_scalar_Q(
+                           const NumT initial_wavevector,
+			   const NumT initial_wavevector_err2,
+                           const NumT final_wavevector,
+                           const NumT final_wavevector_err2,
+                           const NumT polar_angle,
+                           const NumT polar_angle_err2,
+                           NumT & Q,
+                           NumT & Q_err2,
+                           void *temp=NULL)
+  {
+    throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
   }
 } // AxisManip

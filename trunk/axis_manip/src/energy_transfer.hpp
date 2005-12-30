@@ -5,6 +5,7 @@
  */
 #include "conversions.hpp"
 #include "constants.hpp"
+#include <stdexcept>
 
 namespace AxisManip
 {
@@ -68,5 +69,44 @@ namespace AxisManip
 
     std::string retstr("");
     return retstr;
+  }
+
+  template <typename NumT>
+    std::string
+    energy_transfer(Nessi::Vector<NumT> const & initial_energy,
+		    Nessi::Vector<NumT> const & initial_energy_err2,
+		    const NumT final_energy,
+		    const NumT final_energy_err2,
+		    Nessi::Vector<NumT> & energy_transfer,
+		    Nessi::Vector<NumT> & energy_transfer_err2,
+		    void *temp=NULL)
+  {
+    throw std::runtime_error("Function [energy_transfer] not implemented");
+  }
+
+  template <typename NumT>
+    std::string
+    energy_transfer(const NumT initial_energy,
+		    const NumT initial_energy_err2,
+		    Nessi::Vector<NumT> const & final_energy,
+		    Nessi::Vector<NumT> const & final_energy_err2,
+		    Nessi::Vector<NumT> & energy_transfer,
+		    Nessi::Vector<NumT> & energy_transfer_err2,
+		    void *temp=NULL)
+  {
+    throw std::runtime_error("Function [energy_transfer] not implemented");
+  }
+
+  template <typename NumT>
+    std::string
+    energy_transfer(const NumT initial_energy,
+		    const NumT initial_energy_err2,
+		    const NumT final_energy,
+		    const NumT final_energy_err2,
+		    NumT & energy_transfer,
+		    NumT & energy_transfer_err2,
+		    void *temp=NULL)
+  {
+    throw std::runtime_error("Function [energy_transfer] not implemented");
   }
 } // AxisManip
