@@ -80,15 +80,15 @@ int main()
       
       while(1)
 	{
-	  Utils::fd_comparison(f_energy, f_true_energy, error, 10, num_val);
+	  Utils::vector_comparison(f_energy, f_true_energy, error, 10, num_val);
 	  if (error != 0) break;
-	  Utils::fd_comparison(f_energy_err2, f_true_energy_err2, error, 20,
+	  Utils::vector_comparison(f_energy_err2, f_true_energy_err2, error, 20,
                                num_val);
 	  if (error != 0) break;
 	  
-	  Utils::fd_comparison(d_energy, d_true_energy, error, 110, num_val);
+	  Utils::vector_comparison(d_energy, d_true_energy, error, 110, num_val);
 	  if (error != 0) break;
-	  Utils::fd_comparison(d_energy_err2, d_true_energy_err2, error, 120,
+	  Utils::vector_comparison(d_energy_err2, d_true_energy_err2, error, 120,
                                num_val);
 	  if (error != 0) break;
 
