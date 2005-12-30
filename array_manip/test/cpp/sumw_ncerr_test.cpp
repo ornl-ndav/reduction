@@ -1,5 +1,4 @@
-#include "nessi.hpp"
-#include "vec_vec_arith.hpp"
+#include "arith.hpp"
 #include <algorithm>
 #include <cmath>
 #include <iostream>
@@ -20,6 +19,9 @@ int main()
   Nessi::Vector<float> f_output_err2(num_val);        //Output vector err
   Nessi::Vector<float> f_true_vector(num_val);        //True output vector
   Nessi::Vector<float> f_true_vector_err2(num_val);   //True output vector err
+  float f_input1_err;
+  float f_input2_err;
+  float f_sum_err;
 
   //double 
   Nessi::Vector<double> d_input1;                      //Original vector 1
@@ -30,6 +32,9 @@ int main()
   Nessi::Vector<double> d_output_err2(num_val);        //Output vector err
   Nessi::Vector<double> d_true_vector(num_val);        //True output vector
   Nessi::Vector<double> d_true_vector_err2(num_val);   //True output vector err
+  float d_input1_err;
+  float d_input2_err;
+  float d_sum_err;
 
   //int 
   Nessi::Vector<int> i_input1;                         //Original vector 1
@@ -40,6 +45,9 @@ int main()
   Nessi::Vector<int> i_output_err2(num_val);           //Output vector err
   Nessi::Vector<int> i_true_vector(num_val);           //True output vector
   Nessi::Vector<int> i_true_vector_err2(num_val);      //True output vector err
+  float i_input1_err;
+  float i_input2_err;
+  float i_sum_err;
 
   //unsigned 
   Nessi::Vector<unsigned> u_input1;                    //Original vector 1
@@ -50,6 +58,9 @@ int main()
   Nessi::Vector<unsigned> u_output_err2(num_val);      //Output vector err
   Nessi::Vector<unsigned> u_true_vector(num_val);      //True output vector
   Nessi::Vector<unsigned> u_true_vector_err2(num_val); //True output vector err
+  float u_input1_err;
+  float u_input2_err;
+  float u_sum_err;
 
   int error=0;                      //==0,Pass  !=0,Fail
 
@@ -63,8 +74,8 @@ int main()
 
       f_input1_err2.push_back(static_cast<float>(i));
       d_input1_err2.push_back(static_cast<double>(i));      
-      i_input1_err2.push_back(static_cast<int>(i));
-      u_input1_err2.push_back(static_cast<unsigned int>(i));
+      i_input1_err2.push_back(static_cast<int>(i+1));
+      u_input1_err2.push_back(static_cast<unsigned int>(i+1));
       
       //_input2 array
       f_input2.push_back(4.*static_cast<float>(i));
@@ -72,57 +83,72 @@ int main()
       i_input2.push_back(4*static_cast<int>(i));
       u_input2.push_back(4*static_cast<unsigned int>(i));
 
-      f_input2_err2.push_back(static_cast<float>(i)+5.);
-      d_input2_err2.push_back(static_cast<double>(i)+5.);      
+      f_input2_err2.push_back(static_cast<float>(i+5));
+      d_input2_err2.push_back(static_cast<double>(i+5));      
       i_input2_err2.push_back(static_cast<int>(i+5));
       u_input2_err2.push_back(static_cast<unsigned int>(i+5));
 
     }
   
-  ArrayManip::add_vec_vec_ncerr(f_input1, f_input1_err2, f_input2,
-				f_input2_err2, f_output, f_output_err2);
+  ArrayManip::sumw_ncerr(f_input1, f_input1_err2, f_input2, 
+                         f_input2_err2, f_output, f_output_err2);
 
-  ArrayManip::add_vec_vec_ncerr(d_input1, d_input1_err2, d_input2, 
-				d_input2_err2, d_output, d_output_err2);
+  ArrayManip::sumw_ncerr(d_input1, d_input1_err2, d_input2, 
+                         d_input2_err2, d_output, d_output_err2);
 
-  ArrayManip::add_vec_vec_ncerr(i_input1, i_input1_err2, i_input2, 
-				i_input2_err2, i_output, i_output_err2);
+  ArrayManip::sumw_ncerr(i_input1, i_input1_err2, i_input2, 
+                         i_input2_err2, i_output, i_output_err2);
 
-  ArrayManip::add_vec_vec_ncerr(u_input1, u_input1_err2, u_input2, 
-				u_input2_err2, u_output, u_output_err2);
+  ArrayManip::sumw_ncerr(u_input1, u_input1_err2, u_input2, 
+                         u_input2_err2, u_output, u_output_err2);
   
-  for (int i = 0 ; i < num_val ; i++)
+  for (int i = 0 ; i < num_val ; ++i)
     {
-      transform(f_input1.begin(), f_input1.end(), f_input2.begin(), 
-		     f_true_vector.begin(),plus<float>());
+      //float
+      f_input1_err = static_cast<float>(std::sqrt(static_cast<double>
+						  (f_input1_err2[i])));
+      f_input2_err = static_cast<float>(std::sqrt(static_cast<double>
+						  (f_input2_err2[i])));
+      f_sum_err = f_input1_err + f_input2_err;
+      f_true_vector[i] = (f_input1[i] / f_input1_err) + 
+	(f_input2[i] / f_input2_err);
+      f_true_vector[i] *= f_sum_err;
+      f_true_vector_err2[i] = f_input1_err2[i] + f_input2_err2[i];
+      
+      //double
+      d_input1_err = static_cast<double>(std::sqrt(static_cast<double>
+						   (d_input1_err2[i])));
+      d_input2_err = static_cast<double>(std::sqrt(static_cast<double>
+						   (d_input2_err2[i])));
+      d_sum_err = d_input1_err + d_input2_err;
+      d_true_vector[i] = (d_input1[i] / d_input1_err) +
+	(d_input2[i] / d_input2_err);
+      d_true_vector[i] *= d_sum_err;
+      d_true_vector_err2[i] = d_input1_err2[i] + d_input2_err2[i];
+      
+      //int
+      i_input1_err = static_cast<int>(std::sqrt(static_cast<double>
+						(i_input1_err2[i])));
+      i_input2_err = static_cast<int>(std::sqrt(static_cast<double>
+						(i_input2_err2[i])));
+      i_sum_err = static_cast<int>(i_input1_err + i_input2_err);
+      i_true_vector[i] = static_cast<int>(i_input1[i] / i_input1_err) + 
+	static_cast<int>(i_input2[i] / i_input2_err);
+      i_true_vector[i] *= static_cast<int>(i_sum_err);
+      i_true_vector_err2[i] = i_input1_err2[i] + i_input2_err2[i];
 
-      transform(d_input1.begin(), d_input1.end(), d_input2.begin(), 
-		     d_true_vector.begin(),plus<double>());
-
-      transform(i_input1.begin(), i_input1.end(), i_input2.begin(), 
-		     i_true_vector.begin(),plus<int>());
-
-      transform(u_input1.begin(), u_input1.end(), u_input2.begin(), 
-		     u_true_vector.begin(),plus<unsigned>());
-
-
-      transform(f_input1_err2.begin(), f_input1_err2.end(), 
-		     f_input2_err2.begin(), f_true_vector_err2.begin(),
-		     plus<float>());
-
-      transform(d_input1_err2.begin(), d_input1_err2.end(), 
-		     d_input2_err2.begin(), d_true_vector_err2.begin(),
-		     plus<double>());
-
-      transform(i_input1_err2.begin(), i_input1_err2.end(), 
-		     i_input2_err2.begin(), i_true_vector_err2.begin(),
-		     plus<int>());
-
-      transform(u_input1_err2.begin(), u_input1_err2.end(),
-		     u_input2_err2.begin(), u_true_vector_err2.begin(),
-		     plus<unsigned>());
+      //unsigned
+      u_input1_err = static_cast<unsigned>(std::sqrt(static_cast<double>
+						     (u_input1_err2[i])));
+      u_input2_err = static_cast<unsigned>(std::sqrt(static_cast<double>
+						     (u_input2_err2[i])));
+      u_sum_err = static_cast<unsigned>(u_input1_err + u_input2_err);
+      u_true_vector[i] = static_cast<unsigned>(u_input1[i] / u_input1_err) + 
+	static_cast<unsigned>(u_input2[i] / u_input2_err);
+      u_true_vector[i] *= static_cast<unsigned>(u_sum_err);
+      u_true_vector_err2[i] = u_input1_err2[i] + u_input2_err2[i];
     }
-
+  
   //check first if the size are in good agreement
   if ( (f_input1.size() != f_output.size())
        || (d_input1.size() != d_output.size())
@@ -146,12 +172,12 @@ int main()
 	      error=error+20;
 	      break;
 	    }
-	  if (fabs(d_output[i] - d_true_vector[i]) > 0.000001)
+	  if (fabs(d_output[i] - d_true_vector[i]) > 0.0001)
 	    {
 	      error=error+110;
 	      break;
 	    }
-	  if (fabs(d_output_err2[i] - d_true_vector_err2[i])> 0.000001)
+	  if (fabs(d_output_err2[i] - d_true_vector_err2[i])> 0.0001)
 	    {
 	      error=error+120;
 	      break;
@@ -179,7 +205,7 @@ int main()
 	}
     }
 
-  cout << "add_vec_vec_ncerr.cpp..........";
+  cout << "sumw_ncerr.cpp..........";
 
   switch (error)
     {
@@ -190,27 +216,27 @@ int main()
       cout << "FAILED....Outut and input vectors have different sizes"<<endl;
       break;
     case 10:
-      cout << "(float) FAILED....Output vector different from vector expected"
-	   <<endl;
+      cout << "(float) FAILED....Output vector different from vector"
+	" expected"<<endl;
       break;
     case 20:
-      cout << "(float) FAILED....Output error vector different from vector "
-	"expected"<<endl;
+      cout << "(float) FAILED....Output error vector different from vector"
+	" expected"<<endl;
       break;
     case 110:
-      cout << "(double) FAILED....Output vector different from vector expected"
-	   <<endl;
+      cout << "(double) FAILED....Output vector different from vector"
+	" expected"<<endl;
       break;
     case 120:
-      cout << "(double) FAILED....Output error vector different from vector"
-	" expected"<<endl;
+      cout << "(double) FAILED....Output error vector different from vector "
+	"expected"<<endl;
       break;
     case 210:
       cout << "(int) FAILED....Output vector different from vector expected"
 	   <<endl;
       break;
     case 220:
-      cout << "(int) FAILED....Output error vector different from vector"
+      cout << "(int) FAILED....Output error vector different from vector "
 	"expected"<<endl;
       break;
     case 310:
@@ -218,8 +244,8 @@ int main()
 	"expected"<<endl;
       break;
     case 320:
-      cout << "(unsigned) FAILED....Output error vector different from vector "
-	"expected"<<endl;
+      cout << "(unsigned) FAILED....Output error vector different from "
+	"vector expected"<<endl;
       break;
     default:
       cout << "FAILED"<<endl;
@@ -228,4 +254,3 @@ int main()
 
   return 0;
 }
-
