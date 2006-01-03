@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/tof_to_Q.hpp
  */
+#ifndef _TOF_TO_Q_HPP
+#define _TOF_TO_Q_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -30,3 +33,4 @@ namespace AxisManip
     throw std::runtime_error("Function [tof_to_Q] not implemented");    
   }
 } // AxisManip
+#endif

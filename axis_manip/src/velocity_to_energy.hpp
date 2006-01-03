@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/velocity_to_energy.hpp
  */
+#ifndef _VELOCITY_TO_ENERGY
+#define _VELOCITY_TO_ENERGY 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -20,3 +23,4 @@ namespace AxisManip
     throw std::runtime_error("Function [velocity_to_energy] not implemented");
   }
 } // AxisManip
+#endif

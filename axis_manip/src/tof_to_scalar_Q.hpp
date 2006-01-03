@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/tof_to_scalar_Q.hpp
  */
+#ifndef _TOF_TO_SCALAR_Q_HPP
+#define _TOF_TO_SCALAR_Q_HPP 1
+
 #include "constants.hpp"
 #include "conversions.hpp"
 #include <cmath>
@@ -58,3 +61,4 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+#endif

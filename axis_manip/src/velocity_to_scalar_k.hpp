@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/velocity_to_scalar_k.hpp
  */
+#ifndef _VELOCITY_TO_SCALAR_K_HPP
+#define _VELOCITY_TO_SCALAR_K_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -20,3 +23,4 @@ namespace AxisManip
     throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
   }
 } // AxisManip
+#endif

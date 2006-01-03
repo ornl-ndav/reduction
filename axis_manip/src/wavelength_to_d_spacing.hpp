@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/wavelength_to_d_spacing.hpp
  */
+#ifndef _WAVELENGTH_TO_D_SPACING_HPP
+#define _WAVELENGTH_TO_D_SPACING_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -22,3 +25,4 @@ namespace AxisManip
     throw std::runtime_error("Function [wavelength_to_d_spacing] not implemented");
   }
 } // AxisManip
+#endif

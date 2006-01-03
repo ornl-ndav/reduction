@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/wavelength_to_energy.hpp
  */
+#ifndef _WAVELENGTH_TO_ENERGY_HPP
+#define _WAVELENGTH_TO_ENERGY_HPP 1
+
 #include "conversions.hpp"
 #include "constants.hpp"
 
@@ -33,3 +36,4 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+#endif

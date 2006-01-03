@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/final_velocity_igs.hpp
  */
+#ifndef _FINAL_VELOCITY_IGS_HPP
+#define _FINAL_VELOCITY_IGS_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -20,3 +23,4 @@ namespace AxisManip
     throw std::runtime_error("Function [final_velocity_igs] not implemented");
   }
 } // AxisManip
+#endif

@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/wavelength_to_scalar_k.hpp
  */
+#ifndef _WAVELENGTH_TO_SCALAR_K_HPP
+#define _WAVELENGTH_TO_SCALAR_K_HPP 1
+
 #include "conversions.hpp"
 #include "constants.hpp"
 
@@ -34,3 +37,4 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+#endif

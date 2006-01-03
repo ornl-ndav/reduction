@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/initial_velocity_dgs.hpp
  */
+#ifndef _INITIAL_VELOCITY_DGS_HPP
+#define _INITIAL_VELOCITY_DGS_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -26,3 +29,4 @@ namespace AxisManip
     throw std::runtime_error("Function [initial_velocity_dgs] not implemented");
   }
 } // AxisManip
+#endif

@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/tof_to_wavelength.hpp
  */
+#ifndef _TOF_TO_WAVELENGTH_HPP
+#define _TOF_TO_WAVELENGTH_HPP 1
+
 #include "conversions.hpp"
 #include "constants.hpp"
 
@@ -40,3 +43,4 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+#endif

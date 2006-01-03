@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/tof_to_initial_wavelength_igs.hpp
  */
+#ifndef _TOF_TO_INITIAL_WAVELENGTH_IGS_HPP
+#define _TOF_TO_INITIAL_WAVELENGTH_IGS_HPP 1
+
 #include "constants.hpp"
 #include "conversions.hpp"
 
@@ -55,3 +58,4 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+#endif

@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/tof_to_final_velocity_dgs.hpp
  */
+#ifndef _TOF_TO_FINAL_VELOCITY_DGS_HPP
+#define _TOF_TO_FINAL_VELOCITY_DGS_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -28,3 +31,4 @@ namespace AxisManip
     throw std::runtime_error("Function [time_to_final_velocity_dgs] not implemented");
   }
 } // AxisManip
+#endif
