@@ -3,6 +3,9 @@
  *
  * \file utils/src/matrix_multiplication.hpp
  */
+#ifndef _MATRIX_MULTIPLICATION_HPP
+#define _MATRIX_MULTIPLICATION_HPP 1
+
 #include "utils.hpp"
 #include <stdexcept>
 
@@ -20,3 +23,5 @@ namespace Utils
     throw std::runtime_error("Function [matrix_multiplication] not implemented");
   }
 } // AxisManip
+
+#endif // _MATRIX_MULTIPLICATION_HPP

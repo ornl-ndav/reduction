@@ -3,6 +3,9 @@
  *
  * \file utils/src/peak_integration.hpp
  */
+#ifndef _PEAK_INTEGRATION_HPP
+#define _PEAK_INTEGRATION_HPP 1
+
 #include "utils.hpp"
 #include <stdexcept>
 
@@ -23,3 +26,5 @@ namespace Utils
     throw std::runtime_error("Function [peak_integration] not implemented");
   }
 } // Utils
+
+#endif // _PEAK_INTEGRATION_HPP

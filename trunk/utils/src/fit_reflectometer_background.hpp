@@ -3,6 +3,9 @@
  *
  * \file utils/src/fit_reflectometer_background.hpp
  */
+#ifndef _FIT_REFLECTOMETER_BACKGROUND_HPP
+#define _FIT_REFLECTOMETER_BACKGROUND_HPP 1
+
 #include "utils.hpp"
 #include <stdexcept>
 
@@ -24,3 +27,5 @@ namespace Utils
     throw std::runtime_error("Function [fit_reflectometer_background] not implemented");
   }
 } // Utils
+
+#endif // _FIT_REFLECTOMETER_BACKGROUND_HPP

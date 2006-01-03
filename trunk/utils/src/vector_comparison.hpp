@@ -1,11 +1,10 @@
 /**
- * $Id: $
+ * $Id$
  *
  * \file utils/src/vector_comparison.hpp
  */
-
 #ifndef _VECTOR_COMPARISON_HPP
-#define _VECTOR_COMPARISON_HPP
+#define _VECTOR_COMPARISON_HPP 1
 
 #include "num_comparison.hpp"
 
@@ -30,4 +29,5 @@ namespace Utils
     return;
   }
 }
-#endif
+
+#endif // _VECTOR_COMPARISON_HPP
