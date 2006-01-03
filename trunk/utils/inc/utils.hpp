@@ -3,8 +3,8 @@
  *
  * \file utils/inc/utils.hpp
  */
-#ifndef _UTILS_H
-#define _UTILS_H
+#ifndef _UTILS_HPP
+#define _UTILS_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -126,4 +126,4 @@ namespace Utils
 
 } // Utils
 
-#endif // _UTILS_H
+#endif // _UTILS_HPP
