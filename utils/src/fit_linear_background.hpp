@@ -14,9 +14,9 @@ namespace Utils
   // 3.43
   template <typename NumT>
   std::string
-  fit_linear_background(Nessi::Vector<NumT> const & axis_in,
-			Nessi::Vector<NumT> const & input,
-			Nessi::Vector<NumT> const & input_err2,
+  fit_linear_background(const Nessi::Vector<NumT> & axis_in,
+			const Nessi::Vector<NumT> & input,
+			const Nessi::Vector<NumT> & input_err2,
 			NumT min_val,
                         NumT max_val,
 			NumT slope_start, 

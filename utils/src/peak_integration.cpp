@@ -15,9 +15,9 @@ namespace Utils
    * \see peak_integration()
    */
   template std::string
-  peak_integration<float>(Nessi::Vector<float> const & input,
-			  Nessi::Vector<float> const & input_err2,
-			  Nessi::Vector<float> const & start_bin,
+  peak_integration<float>(const Nessi::Vector<float> & input,
+			  const Nessi::Vector<float> & input_err2,
+			  const Nessi::Vector<float> & start_bin,
 			  float & output,
 			  float & output_err2,
                           unsigned int & tag,
@@ -31,9 +31,9 @@ namespace Utils
    * \see peak_integration()
    */
   template std::string
-  peak_integration<double>(Nessi::Vector<double> const & input,
-			   Nessi::Vector<double> const & input_err2,
-			   Nessi::Vector<double> const & start_bin,
+  peak_integration<double>(const Nessi::Vector<double> & input,
+			   const Nessi::Vector<double> & input_err2,
+			   const Nessi::Vector<double> & start_bin,
 			   double & output,
 			   double & output_err2,
                            unsigned int & tag,

@@ -53,9 +53,9 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    peak_integration(Nessi::Vector<NumT> const & input,
-		     Nessi::Vector<NumT> const & input_err2,
-		     Nessi::Vector<NumT> const & start_bin,
+    peak_integration(const Nessi::Vector<NumT> & input,
+		     const Nessi::Vector<NumT> & input_err2,
+		     const Nessi::Vector<NumT> & start_bin,
 		     NumT & output,
 		     NumT & output_err2,
 		     unsigned int & tag,
@@ -73,8 +73,8 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    matrix_multiplication(Nessi::Vector<NumT> const & input,
-			  Nessi::Vector<NumT> const & input_err2,
+    matrix_multiplication(const Nessi::Vector<NumT> & input,
+			  const Nessi::Vector<NumT> & input_err2,
 			  Nessi::Vector<NumT> & output,
 			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
@@ -90,10 +90,10 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    fit_reflectometer_background(Nessi::Vector<NumT> const & axis_in,
-				 Nessi::Vector<NumT> const & input,
-				 Nessi::Vector<NumT> const & input_err2,
-				 Nessi::Vector<NumT> const & params_in,
+    fit_reflectometer_background(const Nessi::Vector<NumT> & axis_in,
+				 const Nessi::Vector<NumT> & input,
+				 const Nessi::Vector<NumT> & input_err2,
+				 const Nessi::Vector<NumT> & params_in,
 				 Nessi::Vector<NumT> & output,
 				 Nessi::Vector<NumT> & output_err2,
 				 Nessi::Vector<NumT> & params_out,
@@ -111,9 +111,9 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    fit_linear_background(Nessi::Vector<NumT> const & axis_in,
-			  Nessi::Vector<NumT> const & input,
-			  Nessi::Vector<NumT> const & input_err2,
+    fit_linear_background(const Nessi::Vector<NumT> & axis_in,
+			  const Nessi::Vector<NumT> & input,
+			  const Nessi::Vector<NumT> & input_err2,
 			  NumT min_val,
                           NumT max_val,
 			  NumT slope_start, 

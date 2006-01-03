@@ -14,34 +14,34 @@ namespace Utils
 {
   template <typename NumT> 
     void 
-    vector_comparison (Nessi::Vector<NumT> const & value,
-                       Nessi::Vector<NumT> const & true_value,
+    vector_comparison (const Nessi::Vector<NumT> & value,
+                       const Nessi::Vector<NumT> & true_value,
                        int & error,
                        const int add_error,
                        const int n_max);
 
   /*
-  void vector_comparison (Nessi::Vector<int> const & value,
-                          Nessi::Vector<int> const & true_value,
+  void vector_comparison (const Nessi::Vector<int> & value,
+                          const Nessi::Vector<int> & true_value,
                           int & error,
                           const int add_error,
                           const int n_max);
 
-  void vector_comparison (Nessi::Vector<unsigned int> const & value,
-                          Nessi::Vector<unsigned int> const & true_value,
+  void vector_comparison (const Nessi::Vector<unsigned int> & value,
+                          const Nessi::Vector<unsigned int> & true_value,
                           int & error,
                           const int add_error,
                           const int n_max);
   */
 
-  void vector_comparison (Nessi::Vector<float> const & value,
-                          Nessi::Vector<float> const & true_value,
+  void vector_comparison (const Nessi::Vector<float> & value,
+                          const Nessi::Vector<float> & true_value,
                           int & error,
                           const int add_error,
                           const int n_max);
 
-  void vector_comparison (Nessi::Vector<double> const & value,
-                          Nessi::Vector<double> const & true_value,
+  void vector_comparison (const Nessi::Vector<double> & value,
+                          const Nessi::Vector<double> & true_value,
                           int & error,
                           const int add_error,
                           const int n_max);

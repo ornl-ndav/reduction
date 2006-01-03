@@ -1,5 +1,5 @@
 /**
- * $Id: $
+ * $Id$
  *
  * \file utils/src/vector_comparison.cpp
  */
@@ -11,8 +11,8 @@
 namespace Utils
 {
   // specialized function for float
-  void vector_comparison (Nessi::Vector<float> const & value,
-                          Nessi::Vector<float> const & true_value,
+  void vector_comparison (const Nessi::Vector<float> & value,
+                          const Nessi::Vector<float> & true_value,
                           int & error,
                           const int add_error,
                           const int n_max)
@@ -32,8 +32,8 @@ namespace Utils
   }
 
   // specialized function for double
-  void vector_comparison (Nessi::Vector<double> const & value,
-                          Nessi::Vector<double> const & true_value,
+  void vector_comparison (const Nessi::Vector<double> & value,
+                          const Nessi::Vector<double> & true_value,
                           int & error,
                           const int add_error,
                           const int n_max)
@@ -55,16 +55,16 @@ namespace Utils
   // explicit instantiations
 
   template void
-  vector_comparison<int>(Nessi::Vector<int> const & value,
-                         Nessi::Vector<int> const & true_value,
+  vector_comparison<int>(const Nessi::Vector<int> & value,
+                         const Nessi::Vector<int> & true_value,
                          int & error,
                          const int add_error,
                          const int n_max);
 
   template void
   vector_comparison<unsigned int>(
-                               Nessi::Vector<unsigned int> const & value,
-                               Nessi::Vector<unsigned int> const & true_value,
+                               const Nessi::Vector<unsigned int> & value,
+                               const Nessi::Vector<unsigned int> & true_value,
                                int & error,
                                const int add_error,
                                const int n_max);
