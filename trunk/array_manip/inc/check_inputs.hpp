@@ -30,9 +30,9 @@ namespace ArrayManip
    */
   template <typename NumT>
     void check_sizes_2in1out(std::string & errstr, 
-			     Nessi::Vector<NumT> const & input1, 
-			     Nessi::Vector<NumT> const & input2, 
-			     Nessi::Vector<NumT> const & output);
+			     const Nessi::Vector<NumT> & input1, 
+			     const Nessi::Vector<NumT> & input2, 
+			     const Nessi::Vector<NumT> & output);
 } // ArrayManip
 
 #endif // _CHECK_INPUTS_HPP

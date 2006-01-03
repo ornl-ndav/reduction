@@ -15,10 +15,10 @@ namespace ArrayManip
    * \see sumw_vec_vec_ncerr()
    */
   template std::string 
-  sumw_ncerr<float>(Nessi::Vector<float> const & input1, 
-                    Nessi::Vector<float> const & input1_err2, 
-                    Nessi::Vector<float> const & input2, 
-                    Nessi::Vector<float> const & input2_err2, 
+  sumw_ncerr<float>(const Nessi::Vector<float> & input1, 
+                    const Nessi::Vector<float> & input1_err2, 
+                    const Nessi::Vector<float> & input2, 
+                    const Nessi::Vector<float> & input2_err2, 
                     Nessi::Vector<float> & output,
                     Nessi::Vector<float> & output_err2,
                     void *temp);
@@ -30,10 +30,10 @@ namespace ArrayManip
    * \see sumw_vec_vec_ncerr()
    */
   template std::string 
-  sumw_ncerr<double>(Nessi::Vector<double> const & input1, 
-                     Nessi::Vector<double> const & input1_err2, 
-                     Nessi::Vector<double> const & input2, 
-                     Nessi::Vector<double> const & input2_err2, 
+  sumw_ncerr<double>(const Nessi::Vector<double> & input1, 
+                     const Nessi::Vector<double> & input1_err2, 
+                     const Nessi::Vector<double> & input2, 
+                     const Nessi::Vector<double> & input2_err2, 
                      Nessi::Vector<double> & output,
                      Nessi::Vector<double> & output_err2,
                      void *temp);
@@ -44,10 +44,10 @@ namespace ArrayManip
    * \see sumw_vec_vec_ncerr()
    */
   template std::string 
-  sumw_ncerr<int>(Nessi::Vector<int> const & input1, 
-                  Nessi::Vector<int> const & input1_err2, 
-                  Nessi::Vector<int> const & input2, 
-                  Nessi::Vector<int> const & input2_err2, 
+  sumw_ncerr<int>(const Nessi::Vector<int> & input1, 
+                  const Nessi::Vector<int> & input1_err2, 
+                  const Nessi::Vector<int> & input2, 
+                  const Nessi::Vector<int> & input2_err2, 
                   Nessi::Vector<int> & output,
                   Nessi::Vector<int> & output_err2,
                   void *temp);
@@ -59,10 +59,10 @@ namespace ArrayManip
    * \see sumw_vec_vec_ncerr()
    */
   template std::string 
-  sumw_ncerr<unsigned int>(Nessi::Vector<unsigned int> const & input1, 
-                           Nessi::Vector<unsigned int> const & input1_err2,
-                           Nessi::Vector<unsigned int> const & input2, 
-                           Nessi::Vector<unsigned int> const & input2_err2,
+  sumw_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & input1, 
+                           const Nessi::Vector<unsigned int> & input1_err2,
+                           const Nessi::Vector<unsigned int> & input2, 
+                           const Nessi::Vector<unsigned int> & input2_err2,
                            Nessi::Vector<unsigned int> & output,
                            Nessi::Vector<unsigned int> & output_err2,
                            void *temp);
