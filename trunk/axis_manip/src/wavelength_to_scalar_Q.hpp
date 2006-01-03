@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/wavelength_to_scalar_Q.hpp
  */
+#ifndef _WAVELENGTH_TO_SCALAR_Q_HPP
+#define _WAVELENGTH_TO_SCALAR_Q_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -22,3 +25,4 @@ namespace AxisManip
     throw std::runtime_error("Function [wavelength_to_scalar_Q] not implemented");
   }
 } // AxisManip
+#endif

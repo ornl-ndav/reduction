@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/energy_transfer.hpp
  */
+#ifndef _ENERGY_TRANSFER_HPP
+#define _ENERGY_TRANSFER_HPP 1
+
 #include "conversions.hpp"
 #include "constants.hpp"
 #include <stdexcept>
@@ -110,3 +113,4 @@ namespace AxisManip
     throw std::runtime_error("Function [energy_transfer] not implemented");
   }
 } // AxisManip
+#endif

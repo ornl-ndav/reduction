@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/check_histo_sizes.hpp
  */
+#ifndef _CHECK_HISTO_SIZES_HPP
+#define _CHECK_HISTO_SIZES_HPP 1
+
 #include "check_histo.hpp"
 #include <stdexcept>
 
@@ -40,3 +43,4 @@ namespace AxisManip
     return;
   }
 } // AxisManip
+#endif

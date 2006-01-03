@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/rebin_axis_1D.hpp
  */
+#ifndef _REBIN_AXIS_1D_HPP
+#define _REBIN_AXIS_1D_HPP 1
+
 #include "rebinning.hpp"
 #include "check_histo.hpp"
 #include <stdexcept>
@@ -81,3 +84,4 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+#endif

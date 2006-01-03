@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/rebin_axis_4D.hpp
  */
+#ifndef _REBIN_AXIS_4D_HPP
+#define _REBIN_AXIS_4D_HPP 1
+
 #include "rebinning.hpp"
 #include <stdexcept>
 
@@ -28,3 +31,4 @@ namespace AxisManip
     throw std::runtime_error("Function [rebin_axis_4D] not implemented");
   }
 } // AxisManip
+#endif

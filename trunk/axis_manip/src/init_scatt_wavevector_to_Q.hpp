@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/init_scatt_wavevector_to_Q.hpp
  */
+#ifndef _INIT_SCATT_WAVEVECTOR_TO_Q_HPP
+#define _INIT_SCATT_WAVEVECTOR_TO_Q_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -96,3 +99,4 @@ namespace AxisManip
     throw std::runtime_error("Function [init_scatt_wavevector_to_Q] not implemented");
  }
 } // AxisManip
+#endif

@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/frequency_to_angular_frequency.hpp
  */
+#ifndef _FREQUENCY_TO_ANGULAR_FREQUENCY_HPP
+#define _FREQUENCY_TO_ANGULAR_FREQUENCY_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -32,3 +35,4 @@ namespace AxisManip
     throw std::runtime_error("Function [frequency_to_angular_frequency] not implemented");
   }
 } // AxisManip
+#define

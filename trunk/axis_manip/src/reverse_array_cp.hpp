@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/reverse_array_cp.hpp
  */
+#ifndef _REVERSE_ARRAY_CP_HPP
+#define _REVERSE_ARRAY_CP_HPP 1
+
 #include "reverse_array.hpp"
 #include <algorithm>
 
@@ -22,3 +25,4 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+#endif

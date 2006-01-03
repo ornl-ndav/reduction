@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/tof_to_initial_velocity_igs.hpp
  */
+#ifndef _TOF_TO_INITIAL_VELOCITY_IGS_HPP
+#define _TOF_TO_INITIAL_VELOCITY_IGS_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -28,3 +31,4 @@ namespace AxisManip
     throw std::runtime_error("Function [tof_to_initial_velocity_igs] not implemented");
   }
 } // AxisManip
+#endif

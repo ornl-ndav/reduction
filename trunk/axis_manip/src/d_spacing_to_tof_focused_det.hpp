@@ -3,6 +3,9 @@
  *
  * \file axis_manip/src/d_spacing_to_tof_focused_det.hpp
  */
+#ifndef _D_SPACING_TO_TOF_FOCUSED_DET_HPP
+#define _D_SPACING_TO_TOF_FOCUSED_DET_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
 
@@ -39,3 +42,4 @@ namespace AxisManip
     throw std::runtime_error("Function [d_spacing_to_tof_focused_det] not implemented");
   }
 } // AxisManip
+#endif
