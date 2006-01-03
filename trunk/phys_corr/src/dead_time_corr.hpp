@@ -14,9 +14,9 @@ namespace PhysCorr
   // 3.36
   template <typename NumT>
   std::string
-  dead_time_corr(Nessi::Vector<NumT> const & axis_in,
-		 Nessi::Vector<NumT> const & input,
-		 Nessi::Vector<NumT> const & input_err2,
+  dead_time_corr(const Nessi::Vector<NumT> & axis_in,
+		 const Nessi::Vector<NumT> & input,
+		 const Nessi::Vector<NumT> & input_err2,
 		 NumT corr_factor,
 		 Nessi::Vector<NumT> & output,
 		 Nessi::Vector<NumT> & output_err2,

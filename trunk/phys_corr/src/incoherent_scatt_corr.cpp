@@ -15,9 +15,9 @@ namespace PhysCorr
    * \see incoherent_scatt_corr()
    */
   template std::string
-  incoherent_scatt_corr<float>(Nessi::Vector<float> const & axis_in,
-			       Nessi::Vector<float> const & input,
-			       Nessi::Vector<float> const & input_err2,
+  incoherent_scatt_corr<float>(const Nessi::Vector<float> & axis_in,
+			       const Nessi::Vector<float> & input,
+			       const Nessi::Vector<float> & input_err2,
 			       Nessi::Vector<float> & output,
 			       Nessi::Vector<float> & output_err2,
 			       void *temp);
@@ -29,9 +29,9 @@ namespace PhysCorr
    * \see incoherent_scatt_corr()
    */
   template std::string
-  incoherent_scatt_corr<double>(Nessi::Vector<double> const & axis_in,
-				Nessi::Vector<double> const & input,
-				Nessi::Vector<double> const & input_err2,
+  incoherent_scatt_corr<double>(const Nessi::Vector<double> & axis_in,
+				const Nessi::Vector<double> & input,
+				const Nessi::Vector<double> & input_err2,
 				Nessi::Vector<double> & output,
 				Nessi::Vector<double> & output_err2,
 				void *temp);

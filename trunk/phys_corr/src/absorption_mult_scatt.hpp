@@ -14,9 +14,9 @@ namespace PhysCorr
   // 3.36
   template <typename NumT>
   std::string
-  absorption_mult_scatt(Nessi::Vector<NumT> const & axis_in,
-			Nessi::Vector<NumT> const & input,
-			Nessi::Vector<NumT> const & input_err2,
+  absorption_mult_scatt(const Nessi::Vector<NumT> & axis_in,
+			const Nessi::Vector<NumT> & input,
+			const Nessi::Vector<NumT> & input_err2,
 			NumT pathlength,
 			NumT polar_angle,
 			Nessi::Vector<NumT> & output,

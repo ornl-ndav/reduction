@@ -14,9 +14,9 @@ namespace PhysCorr
   // 3.41
   template <typename NumT>
   std::string
-  incoherent_scatt_corr(Nessi::Vector<NumT> const & axis_in,
-			Nessi::Vector<NumT> const & input,
-			Nessi::Vector<NumT> const & input_err2,
+  incoherent_scatt_corr(const Nessi::Vector<NumT> & axis_in,
+			const Nessi::Vector<NumT> & input,
+			const Nessi::Vector<NumT> & input_err2,
 			Nessi::Vector<NumT> & output,
 			Nessi::Vector<NumT> & output_err2,
 			void *temp=NULL)
