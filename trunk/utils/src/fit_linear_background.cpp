@@ -15,9 +15,9 @@ namespace Utils
    * \see fit_linear_background()
    */
   template std::string
-  fit_linear_background<float>(Nessi::Vector<float> const & axis_in,
-			       Nessi::Vector<float> const & input,
-			       Nessi::Vector<float> const & input_err2,
+  fit_linear_background<float>(const Nessi::Vector<float> & axis_in,
+			       const Nessi::Vector<float> & input,
+			       const Nessi::Vector<float> & input_err2,
 			       float min_val,
                                float max_val,
 			       float slope_start, 
@@ -34,9 +34,9 @@ namespace Utils
    * \see fit_linear_background()
    */
   template std::string
-  fit_linear_background<double>(Nessi::Vector<double> const & axis_in,
-				Nessi::Vector<double> const & input,
-				Nessi::Vector<double> const & input_err2,
+  fit_linear_background<double>(const Nessi::Vector<double> & axis_in,
+				const Nessi::Vector<double> & input,
+				const Nessi::Vector<double> & input_err2,
 				double min_val,
                                 double max_val,
 				double slope_start, 

@@ -14,9 +14,9 @@ namespace Utils
   // 3.35
   template <typename NumT>
   std::string
-  peak_integration(Nessi::Vector<NumT> const & input,
-		   Nessi::Vector<NumT> const & input_err2,
-		   Nessi::Vector<NumT> const & start_bin,
+  peak_integration(const Nessi::Vector<NumT> & input,
+		   const Nessi::Vector<NumT> & input_err2,
+		   const Nessi::Vector<NumT> & start_bin,
 		   NumT & output,
 		   NumT & output_err2,
                    unsigned int & tag,

@@ -14,10 +14,10 @@ namespace Utils
   // 3.42
   template <typename NumT>
   std::string
-  fit_reflectometer_background(Nessi::Vector<NumT> const & axis_in,
-			       Nessi::Vector<NumT> const & input,
-			       Nessi::Vector<NumT> const & input_err2,
-			       Nessi::Vector<NumT> const & params_in,
+  fit_reflectometer_background(const Nessi::Vector<NumT> & axis_in,
+			       const Nessi::Vector<NumT> & input,
+			       const Nessi::Vector<NumT> & input_err2,
+			       const Nessi::Vector<NumT> & params_in,
 			       Nessi::Vector<NumT> & output,
 			       Nessi::Vector<NumT> & output_err2,
 			       Nessi::Vector<NumT> & params_out,

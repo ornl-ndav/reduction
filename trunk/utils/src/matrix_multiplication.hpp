@@ -14,8 +14,8 @@ namespace Utils
   // 3.37
   template <typename NumT>
   std::string
-  matrix_multiplication(Nessi::Vector<NumT> const & input,
-			Nessi::Vector<NumT> const & input_err2,
+  matrix_multiplication(const Nessi::Vector<NumT> & input,
+			const Nessi::Vector<NumT> & input_err2,
 			Nessi::Vector<NumT> & output,
 			Nessi::Vector<NumT> & output_err2,
 			void *temp=NULL)
