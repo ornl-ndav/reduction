@@ -2,9 +2,9 @@
 
 test: check
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi
+AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi -I$(top_srcdir)/Utils/inc 
 AM_LDFLAGS  = -static \
-              -L$(top_srcdir)/array_manip/src/.libs -lArrayManip
+              -L$(top_srcdir)/array_manip/src/.libs -lArrayManip -L$(top_srcdir)/utils/src/
 
 EXTRA_DIST=testsuite.at
 
