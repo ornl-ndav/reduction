@@ -3,8 +3,8 @@
  *
  * \file phys_corr/src/absorption_mult_scatt.hpp
  */
-#ifndef _ABSORPTION_MULT_SCATT_H
-#define _ABSORPTION_MULT_SCATT_H 1
+#ifndef _ABSORPTION_MULT_SCATT_HPP
+#define _ABSORPTION_MULT_SCATT_HPP 1
 
 #include "physcorr.hpp"
 #include <stdexcept>
@@ -28,4 +28,4 @@ namespace PhysCorr
 
 } // PhysCorr
 
-#endif // _ABSORPTION_MULT_SCATT_H
+#endif // _ABSORPTION_MULT_SCATT_HPP

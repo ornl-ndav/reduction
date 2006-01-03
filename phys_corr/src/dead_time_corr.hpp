@@ -3,8 +3,8 @@
  *
  * \file phys_corr/src/dead_time_corr.hpp
  */
-#ifndef _DEAD_TIME_CORR_H
-#define _DEAD_TIME_CORR_H 1
+#ifndef _DEAD_TIME_CORR_HPP
+#define _DEAD_TIME_CORR_HPP 1
 
 #include "physcorr.hpp"
 #include <stdexcept>
@@ -26,4 +26,4 @@ namespace PhysCorr
   }
 } // PhysCorr
 
-#endif // _DEAD_TIME_CORR_H
+#endif // _DEAD_TIME_CORR_HPP
