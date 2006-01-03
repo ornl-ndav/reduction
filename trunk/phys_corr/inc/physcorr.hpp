@@ -3,8 +3,8 @@
  *
  * \file phys_corr/inc/physcorr.hpp
  */
-#ifndef _PHYS_CORR_H
-#define _PHYS_CORR_H 1
+#ifndef _PHYS_CORR_HPP
+#define _PHYS_CORR_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -80,4 +80,4 @@ namespace PhysCorr
 
 } // PhysCorr
 
-#endif // _PHYS_CORR_H
+#endif // _PHYS_CORR_HPP

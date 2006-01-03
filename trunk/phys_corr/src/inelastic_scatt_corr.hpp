@@ -3,8 +3,8 @@
  *
  * \file phys_corr/src/inelastic_scatt_corr.hpp
  */
-#ifndef _INELASTIC_SCATT_CORR_H
-#define _INELASTIC_SCATT_CORR_H 1
+#ifndef _INELASTIC_SCATT_CORR_HPP
+#define _INELASTIC_SCATT_CORR_HPP 1
 
 #include "physcorr.hpp"
 #include <stdexcept>
@@ -25,4 +25,4 @@ namespace PhysCorr
   }
 } // PhysCorr
 
-#endif // _INELASTIC_SCATT_CORR_H
+#endif // _INELASTIC_SCATT_CORR_HPP
