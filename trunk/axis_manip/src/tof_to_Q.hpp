@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.34
   template <typename NumT>
   std::string
-  tof_to_Q(Nessi::Vector<NumT> const & tof,
-	   Nessi::Vector<NumT> const & tof_err2,
+  tof_to_Q(const Nessi::Vector<NumT> & tof,
+	   const Nessi::Vector<NumT> & tof_err2,
 	   const NumT total_pathlength,
 	   const NumT total_pathlength_err2,
 	   const NumT azimuthal_angle,

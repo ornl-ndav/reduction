@@ -15,10 +15,10 @@ namespace AxisManip
    * \see energy_transfer()
    */
   template std::string
-  energy_transfer<float>(Nessi::Vector<float> const & initial_energy,
-			 Nessi::Vector<float> const & initial_energy_err2,
-			 Nessi::Vector<float> const & final_energy,
-			 Nessi::Vector<float> const & final_energy_err2,
+  energy_transfer<float>(const Nessi::Vector<float> & initial_energy,
+			 const Nessi::Vector<float> & initial_energy_err2,
+			 const Nessi::Vector<float> & final_energy,
+			 const Nessi::Vector<float> & final_energy_err2,
 			 Nessi::Vector<float> & energy_transfer,
 			 Nessi::Vector<float> & energy_transfer_err2,
 			 void *temp);
@@ -29,8 +29,8 @@ namespace AxisManip
    * \see energy_transfer()
    */
   template std::string
-  energy_transfer<float>(Nessi::Vector<float> const & initial_energy,
-			 Nessi::Vector<float> const & initial_energy_err2,
+  energy_transfer<float>(const Nessi::Vector<float> & initial_energy,
+			 const Nessi::Vector<float> & initial_energy_err2,
 			 const float final_energy,
 			 const float final_energy_err2,
 			 Nessi::Vector<float> & energy_transfer,
@@ -45,8 +45,8 @@ namespace AxisManip
   template std::string
   energy_transfer<float>(const float initial_energy,
 			 const float initial_energy_err2,
-			 Nessi::Vector<float> const & final_energy,
-			 Nessi::Vector<float> const & final_energy_err2,
+			 const Nessi::Vector<float> & final_energy,
+			 const Nessi::Vector<float> & final_energy_err2,
 			 Nessi::Vector<float> & energy_transfer,
 			 Nessi::Vector<float> & energy_transfer_err2,
 			 void *temp);
@@ -72,10 +72,10 @@ namespace AxisManip
    * \see energy_transfer()
    */
   template std::string
-  energy_transfer<double>(Nessi::Vector<double> const & initial_energy,
-			  Nessi::Vector<double> const & initial_energy_err2,
-			  Nessi::Vector<double> const & final_energy,
-			  Nessi::Vector<double> const & final_energy_err2,
+  energy_transfer<double>(const Nessi::Vector<double> & initial_energy,
+			  const Nessi::Vector<double> & initial_energy_err2,
+			  const Nessi::Vector<double> & final_energy,
+			  const Nessi::Vector<double> & final_energy_err2,
 			  Nessi::Vector<double> & energy_transfer,
 			  Nessi::Vector<double> & energy_transfer_err2,
 			  void *temp);
@@ -87,8 +87,8 @@ namespace AxisManip
    * \see energy_transfer()
    */
   template std::string
-  energy_transfer<double>(Nessi::Vector<double> const & initial_energy,
-			  Nessi::Vector<double> const & initial_energy_err2,
+  energy_transfer<double>(const Nessi::Vector<double> & initial_energy,
+			  const Nessi::Vector<double> & initial_energy_err2,
 			  const double final_energy,
 			  const double final_energy_err2,
 			  Nessi::Vector<double> & energy_transfer,
@@ -104,8 +104,8 @@ namespace AxisManip
   template std::string
   energy_transfer<double>(const double initial_energy,
 			  const double initial_energy_err2,
-			  Nessi::Vector<double> const & final_energy,
-			  Nessi::Vector<double> const & final_energy_err2,
+			  const Nessi::Vector<double> & final_energy,
+			  const Nessi::Vector<double> & final_energy_err2,
 			  Nessi::Vector<double> & energy_transfer,
 			  Nessi::Vector<double> & energy_transfer_err2,
 			  void *temp);

@@ -15,8 +15,8 @@ namespace AxisManip
    * \see wavelength_to_energy()
    */
   template std::string
-  wavelength_to_energy<float>(Nessi::Vector<float> const & wavelength,
-			      Nessi::Vector<float> const & wavelength_err2,
+  wavelength_to_energy<float>(const Nessi::Vector<float> & wavelength,
+			      const Nessi::Vector<float> & wavelength_err2,
 			      Nessi::Vector<float> & energy,
 			      Nessi::Vector<float> & energy_err2,
 			      void *temp);
@@ -40,8 +40,8 @@ namespace AxisManip
    * \see wavelength_to_energy()
    */
   template std::string
-  wavelength_to_energy<double>(Nessi::Vector<double> const & wavelength,
-			       Nessi::Vector<double> const & wavelength_err2,
+  wavelength_to_energy<double>(const Nessi::Vector<double> & wavelength,
+			       const Nessi::Vector<double> & wavelength_err2,
 			       Nessi::Vector<double> & energy,
 			       Nessi::Vector<double> & energy_err2,
 			       void *temp);

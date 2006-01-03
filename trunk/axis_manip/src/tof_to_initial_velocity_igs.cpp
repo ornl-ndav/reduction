@@ -16,8 +16,8 @@ namespace AxisManip
    */
   template std::string
   tof_to_initial_velocity_igs<float>(
-                                  Nessi::Vector<float> const & tof,
-                                  Nessi::Vector<float> const & tof_err2,
+                                  const Nessi::Vector<float> & tof,
+                                  const Nessi::Vector<float> & tof_err2,
                                   const float final_velocity,
                                   const float final_velocity_err2,
                                   const float time_offset,
@@ -59,8 +59,8 @@ namespace AxisManip
    */
   template std::string
   tof_to_initial_velocity_igs<double>(
-                                 Nessi::Vector<double> const & tof,
-                                 Nessi::Vector<double> const & tof_err2,
+                                 const Nessi::Vector<double> & tof,
+                                 const Nessi::Vector<double> & tof_err2,
                                  const double final_velocity,
                                  const double final_velocity_err2,
                                  const double time_offset,

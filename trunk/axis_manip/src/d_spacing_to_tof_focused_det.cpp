@@ -16,8 +16,8 @@ namespace AxisManip
    */
   template std::string
   d_spacing_to_tof_focused_det<float>(
-                                   Nessi::Vector<float> const & d_spacing,
-                                   Nessi::Vector<float> const & d_spacing_err2,
+                                   const Nessi::Vector<float> & d_spacing,
+                                   const Nessi::Vector<float> & d_spacing_err2,
                                    const float pathlength_focused,
                                    const float pathlength_focused_err2,
                                    const float polar_angle_focused,
@@ -51,8 +51,8 @@ namespace AxisManip
    */
   template std::string
   d_spacing_to_tof_focused_det<double>(
-                                  Nessi::Vector<double> const & d_spacing,
-				  Nessi::Vector<double> const & d_spacing_err2,
+                                  const Nessi::Vector<double> & d_spacing,
+				  const Nessi::Vector<double> & d_spacing_err2,
                                   const double pathlength_focused,
                                   const double pathlength_focused_err2,
                                   const double polar_angle_focused,

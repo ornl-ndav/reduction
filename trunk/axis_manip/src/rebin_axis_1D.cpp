@@ -15,10 +15,10 @@ namespace AxisManip
    * \see rebin_axis_1D()
    */
   template std::string 
-  rebin_axis_1D<float>(Nessi::Vector<float> const & axis_in,
-		       Nessi::Vector<float> const & input,
-		       Nessi::Vector<float> const & input_err2,
-		       Nessi::Vector<float> const & axis_out,
+  rebin_axis_1D<float>(const Nessi::Vector<float> & axis_in,
+		       const Nessi::Vector<float> & input,
+		       const Nessi::Vector<float> & input_err2,
+		       const Nessi::Vector<float> & axis_out,
 		       Nessi::Vector<float> & output,
 		       Nessi::Vector<float> & output_err2,
 		       void *temp);
@@ -30,10 +30,10 @@ namespace AxisManip
    * \see rebin_axis_1D()
    */
   template std::string 
-  rebin_axis_1D<double>(Nessi::Vector<double> const & axis_in,
-			Nessi::Vector<double> const & input,
-			Nessi::Vector<double> const & input_err2,
-			Nessi::Vector<double> const & axis_out,
+  rebin_axis_1D<double>(const Nessi::Vector<double> & axis_in,
+			const Nessi::Vector<double> & input,
+			const Nessi::Vector<double> & input_err2,
+			const Nessi::Vector<double> & axis_out,
 			Nessi::Vector<double> & output,
 			Nessi::Vector<double> & output_err2,
 			void *temp);

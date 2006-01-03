@@ -15,8 +15,8 @@ namespace AxisManip
    * \see tof_to_wavelength()
    */
   template std::string
-  tof_to_wavelength<float>(Nessi::Vector<float> const & tof,
-			   Nessi::Vector<float> const & tof_err2,
+  tof_to_wavelength<float>(const Nessi::Vector<float> & tof,
+			   const Nessi::Vector<float> & tof_err2,
 			   const float pathlength,
 			   const float pathlength_err2,
 			   Nessi::Vector<float> & wavelength,
@@ -44,8 +44,8 @@ namespace AxisManip
    * \see tof_to_wavelength()
    */
   template std::string
-  tof_to_wavelength<double>(Nessi::Vector<double> const & tof,
-			    Nessi::Vector<double> const & tof_err2,
+  tof_to_wavelength<double>(const Nessi::Vector<double> & tof,
+			    const Nessi::Vector<double> & tof_err2,
 			    const double pathlength,
 			    const double pathlength_err2,
 			    Nessi::Vector<double> & wavelength,

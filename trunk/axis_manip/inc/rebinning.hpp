@@ -37,10 +37,10 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    rebin_axis_1D(Nessi::Vector<NumT> const & axis_in,
-		  Nessi::Vector<NumT> const & input,
-		  Nessi::Vector<NumT> const & input_err2,
-		  Nessi::Vector<NumT> const & axis_out,
+    rebin_axis_1D(const Nessi::Vector<NumT> & axis_in,
+		  const Nessi::Vector<NumT> & input,
+		  const Nessi::Vector<NumT> & input_err2,
+		  const Nessi::Vector<NumT> & axis_out,
 		  Nessi::Vector<NumT> & output,
 		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
@@ -50,12 +50,12 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    rebin_axis_2D(Nessi::Vector<NumT> const & axis_in_1,
-		  Nessi::Vector<NumT> const & axis_in_2,
-		  Nessi::Vector<NumT> const & input,
-		  Nessi::Vector<NumT> const & input_err2,
-		  Nessi::Vector<NumT> const & axis_out_1,
-		  Nessi::Vector<NumT> const & axis_out_2,
+    rebin_axis_2D(const Nessi::Vector<NumT> & axis_in_1,
+		  const Nessi::Vector<NumT> & axis_in_2,
+		  const Nessi::Vector<NumT> & input,
+		  const Nessi::Vector<NumT> & input_err2,
+		  const Nessi::Vector<NumT> & axis_out_1,
+		  const Nessi::Vector<NumT> & axis_out_2,
 		  Nessi::Vector<NumT> & output,
 		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
@@ -65,16 +65,16 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    rebin_axis_4D(Nessi::Vector<NumT> const & axis_in_1,
-		  Nessi::Vector<NumT> const & axis_in_2,
-		  Nessi::Vector<NumT> const & axis_in_3,
-		  Nessi::Vector<NumT> const & axis_in_4,
-		  Nessi::Vector<NumT> const & input,
-		  Nessi::Vector<NumT> const & input_err2,
-		  Nessi::Vector<NumT> const & axis_out_1,
-		  Nessi::Vector<NumT> const & axis_out_2,
-		  Nessi::Vector<NumT> const & axis_out_3,
-		  Nessi::Vector<NumT> const & axis_out_4,
+    rebin_axis_4D(const Nessi::Vector<NumT> & axis_in_1,
+		  const Nessi::Vector<NumT> & axis_in_2,
+		  const Nessi::Vector<NumT> & axis_in_3,
+		  const Nessi::Vector<NumT> & axis_in_4,
+		  const Nessi::Vector<NumT> & input,
+		  const Nessi::Vector<NumT> & input_err2,
+		  const Nessi::Vector<NumT> & axis_out_1,
+		  const Nessi::Vector<NumT> & axis_out_2,
+		  const Nessi::Vector<NumT> & axis_out_3,
+		  const Nessi::Vector<NumT> & axis_out_4,
 		  Nessi::Vector<NumT> & output,
 		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);

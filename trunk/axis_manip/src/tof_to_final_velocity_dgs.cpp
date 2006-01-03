@@ -15,8 +15,8 @@ namespace AxisManip
    * \see tof_to_final_velocity_dgs()
    */
   template std::string
-  tof_to_final_velocity_dgs<float>(Nessi::Vector<float> const & tof,
-				   Nessi::Vector<float> const & tof_err2,
+  tof_to_final_velocity_dgs<float>(const Nessi::Vector<float> & tof,
+				   const Nessi::Vector<float> & tof_err2,
 				   const float initial_velocity,
 				   const float initial_velocity_err2,
 				   const float time_offset,
@@ -56,8 +56,8 @@ namespace AxisManip
    */
   template std::string
   tof_to_final_velocity_dgs<double>(
-                                   Nessi::Vector<double> const & tof,
-                                   Nessi::Vector<double> const & tof_err2,
+                                   const Nessi::Vector<double> & tof,
+                                   const Nessi::Vector<double> & tof_err2,
                                    const double initial_velocity,
                                    const double initial_velocity_err2,
                                    const double time_offset,

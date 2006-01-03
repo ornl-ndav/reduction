@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.22
   template <typename NumT>
   std::string
-  wavelength_to_energy(Nessi::Vector<NumT> const & wavelength,
-		       Nessi::Vector<NumT> const & wavelength_err2,
+  wavelength_to_energy(const Nessi::Vector<NumT> & wavelength,
+		       const Nessi::Vector<NumT> & wavelength_err2,
 		       Nessi::Vector<NumT> & energy,
 		       Nessi::Vector<NumT> & energy_err2,
 		       void *temp=NULL)

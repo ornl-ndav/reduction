@@ -16,10 +16,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-			   Nessi::Vector<NumT> const & initial_wavevector_err2,
-                           Nessi::Vector<NumT> const & final_wavevector,
-                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+			   const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT polar_angle,
                            const NumT polar_angle_err2,
                            Nessi::Vector<NumT> & Q,
@@ -164,8 +164,8 @@ namespace AxisManip
   init_scatt_wavevector_to_scalar_Q(
                            const NumT initial_wavevector,
 			   const NumT initial_wavevector_err2,
-                           Nessi::Vector<NumT> const & final_wavevector,
-                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT polar_angle,
                            const NumT polar_angle_err2,
                            Nessi::Vector<NumT> & Q,
@@ -179,8 +179,8 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-			   Nessi::Vector<NumT> const & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+			   const Nessi::Vector<NumT> & initial_wavevector_err2,
                            const NumT final_wavevector,
                            const NumT final_wavevector_err2,
                            const NumT polar_angle,

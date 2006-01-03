@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.25
   template <typename NumT>
   std::string
-  wavelength_to_d_spacing(Nessi::Vector<NumT> const & wavelength,
-			  Nessi::Vector<NumT> const & wavelength_err2,
+  wavelength_to_d_spacing(const Nessi::Vector<NumT> & wavelength,
+			  const Nessi::Vector<NumT> & wavelength_err2,
 			  const NumT scatt_angle,
 			  const NumT scatt_angle_err2,
 			  Nessi::Vector<NumT> & d_spacing,

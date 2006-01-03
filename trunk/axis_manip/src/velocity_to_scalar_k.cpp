@@ -15,8 +15,8 @@ namespace AxisManip
    * \see velocity_to_scalar_k()
    */
   template std::string
-  velocity_to_scalar_k<float>(Nessi::Vector<float> const & velocity,
-			      Nessi::Vector<float> const & velocity_err2,
+  velocity_to_scalar_k<float>(const Nessi::Vector<float> & velocity,
+			      const Nessi::Vector<float> & velocity_err2,
 			      Nessi::Vector<float> & wavevector,
 			      Nessi::Vector<float> & wavevector_err2,
 			      void *temp);
@@ -40,8 +40,8 @@ namespace AxisManip
    * \see velocity_to_scalar_k()
    */
   template std::string
-  velocity_to_scalar_k<double>(Nessi::Vector<double> const & velocity,
-			       Nessi::Vector<double> const & velocity_err2,
+  velocity_to_scalar_k<double>(const Nessi::Vector<double> & velocity,
+			       const Nessi::Vector<double> & velocity_err2,
 			       Nessi::Vector<double> & wavevector,
 			       Nessi::Vector<double> & wavevector_err2,
 			       void *temp);

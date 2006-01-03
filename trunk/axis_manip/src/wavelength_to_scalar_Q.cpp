@@ -15,8 +15,8 @@ namespace AxisManip
    * \see wavelength_to_scalar_Q()
    */
   template std::string
-  wavelength_to_scalar_Q<float>(Nessi::Vector<float> const & wavelength,
-				Nessi::Vector<float> const & wavelength_err2,
+  wavelength_to_scalar_Q<float>(const Nessi::Vector<float> & wavelength,
+				const Nessi::Vector<float> & wavelength_err2,
 				const float scatt_angle,
 				const float scatt_angle_err2,
 				Nessi::Vector<float> & Q,
@@ -44,8 +44,8 @@ namespace AxisManip
    * \see wavelength_to_scalar_Q()
    */
   template std::string
-  wavelength_to_scalar_Q<double>(Nessi::Vector<double> const & wavelength,
-				 Nessi::Vector<double> const & wavelength_err2,
+  wavelength_to_scalar_Q<double>(const Nessi::Vector<double> & wavelength,
+				 const Nessi::Vector<double> & wavelength_err2,
 				 const double scatt_angle,
 				 const double scatt_angle_err2,
 				 Nessi::Vector<double> & Q,

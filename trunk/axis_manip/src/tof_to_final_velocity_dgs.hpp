@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.27
   template <typename NumT>
   std::string
-  tof_to_final_velocity_dgs(Nessi::Vector<NumT> const & tof,
-			    Nessi::Vector<NumT> const & tof_err2,
+  tof_to_final_velocity_dgs(const Nessi::Vector<NumT> & tof,
+			    const Nessi::Vector<NumT> & tof_err2,
 			    const NumT initial_velocity,
 			    const NumT initial_velocity_err2,
 			    const NumT time_offset,

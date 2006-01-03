@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.21
   template <typename NumT>
   std::string
-  velocity_to_energy(Nessi::Vector<NumT> const & velocity,
-		     Nessi::Vector<NumT> const & velocity_err2,
+  velocity_to_energy(const Nessi::Vector<NumT> & velocity,
+		     const Nessi::Vector<NumT> & velocity_err2,
 		     Nessi::Vector<NumT> & energy,
 		     Nessi::Vector<NumT> & energy_err2,
 		     void *temp=NULL)

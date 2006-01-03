@@ -15,10 +15,10 @@ namespace AxisManip
   // 3.12 
   template <typename NumT>
   std::string 
-  rebin_axis_1D(Nessi::Vector<NumT> const & axis_in,
-		Nessi::Vector<NumT> const & input,
-		Nessi::Vector<NumT> const & input_err2,
-		Nessi::Vector<NumT> const & axis_out,
+  rebin_axis_1D(const Nessi::Vector<NumT> & axis_in,
+		const Nessi::Vector<NumT> & input,
+		const Nessi::Vector<NumT> & input_err2,
+		const Nessi::Vector<NumT> & axis_out,
 		Nessi::Vector<NumT> & output,
 		Nessi::Vector<NumT> & output_err2,
 		void *temp=NULL)
