@@ -24,5 +24,19 @@ namespace AxisManip
   {
     throw std::runtime_error("Function [wavelength_to_scalar_Q] not implemented");
   }
+
+  // 3.18
+  template <typename NumT>
+  std::string
+  wavelength_to_scalar_Q(const NumT wavelength,
+			 const NumT wavelength_err2,
+			 const NumT scatt_angle,
+			 const NumT scatt_angle_err2,
+			 NumT & Q,
+			 NumT & Q_err2,
+			 void *temp=NULL)
+  {
+    throw std::runtime_error("Function [wavelength_to_scalar_Q] not implemented");
+  }
 } // AxisManip
 #endif

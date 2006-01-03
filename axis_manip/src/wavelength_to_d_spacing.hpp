@@ -24,5 +24,19 @@ namespace AxisManip
   {
     throw std::runtime_error("Function [wavelength_to_d_spacing] not implemented");
   }
+
+  // 3.25
+  template <typename NumT>
+  std::string
+  wavelength_to_d_spacing(const NumT wavelength,
+			  const NumT wavelength_err2,
+			  const NumT scatt_angle,
+			  const NumT scatt_angle_err2,
+			  NumT & d_spacing,
+			  NumT & d_spacing_err2,
+			  void *temp=NULL)
+  {
+    throw std::runtime_error("Function [wavelength_to_d_spacing] not implemented");
+  }
 } // AxisManip
 #endif
