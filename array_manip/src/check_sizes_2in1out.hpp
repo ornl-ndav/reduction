@@ -3,8 +3,8 @@
  *
  * \file array_manip/src/check_sizes_2in1out.hpp
  */
-#ifndef _CHECK_SIZES_2IN1OUT_H
-#define _CHECK_SIZES_2IN1OUT_H 1
+#ifndef _CHECK_SIZES_2IN1OUT_HPP
+#define _CHECK_SIZES_2IN1OUT_HPP 1
 
 #include "check_inputs.hpp"
 #include <stdexcept>
@@ -43,4 +43,4 @@ namespace ArrayManip
   }
 } // ArrayManip
 
-#endif // _CHECK_SIZES_2IN1OUT_H
+#endif // _CHECK_SIZES_2IN1OUT_HPP

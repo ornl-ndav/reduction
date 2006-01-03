@@ -1,10 +1,10 @@
 /**
- * $Id: $
+ * $Id$
  *
  * \file array_manip/inc/arith.hpp
  */
-#ifndef _ARITH_H
-#define _ARITH_H 1
+#ifndef _ARITH_HPP
+#define _ARITH_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -520,4 +520,4 @@ namespace ArrayManip
   
 } // ArrayManip
 
-#endif // _ARITH_H
+#endif // _ARITH_HPP

@@ -3,8 +3,8 @@
  *
  * \file array_manip/src/sumw_ncerr.hpp
  */
-#ifndef _SUMW_NCERR_H
-#define _SUMW_NCERR_H 1
+#ifndef _SUMW_NCERR_HPP
+#define _SUMW_NCERR_HPP 1
 
 #include "arith.hpp"
 #include "check_inputs.hpp"
@@ -63,4 +63,4 @@ namespace ArrayManip
   }
 } // ArrayManip
 
-#endif // _SUMW_NCERR_H
+#endif // _SUMW_NCERR_HPP

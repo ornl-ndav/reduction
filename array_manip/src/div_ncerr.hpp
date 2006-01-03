@@ -1,10 +1,10 @@
 /**
- * $Id: div_scalar_vec_ncerr.hpp 131 2005-12-21 22:51:06Z pf9 $
+ * $Id$
  *
  * \file array_manip/src/div_scalar_vec_ncerr.hpp
  */
-#ifndef _DIV_NCERR_H
-#define _DIV_NCERR_H 1
+#ifndef _DIV_NCERR_HPP
+#define _DIV_NCERR_HPP 1
 
 #include "arith.hpp"
 #include "check_inputs.hpp"
@@ -109,4 +109,4 @@ namespace ArrayManip
   }
 } // ArrayManip
 
-#endif // _DIV_VEC_VEC_NCERR_H
+#endif // _DIV_VEC_VEC_NCERR_HPP

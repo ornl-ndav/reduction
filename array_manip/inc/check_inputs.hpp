@@ -3,8 +3,8 @@
  *
  * \file array_manip/inc/check_inputs.hpp
  */
-#ifndef _CHECK_INPUTS_H
-#define _CHECK_INPUTS_H 1
+#ifndef _CHECK_INPUTS_HPP
+#define _CHECK_INPUTS_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -35,4 +35,4 @@ namespace ArrayManip
 			     Nessi::Vector<NumT> const & output);
 } // ArrayManip
 
-#endif // _CHECK_INPUTS_H
+#endif // _CHECK_INPUTS_HPP
