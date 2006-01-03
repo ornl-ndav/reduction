@@ -4,6 +4,7 @@
  * \file utils/src/vector_comparison.cpp
  */
 #include "vector_comparison.hpp"
+#include <cmath>
 #include <iomanip>
 #include <limits>
 
