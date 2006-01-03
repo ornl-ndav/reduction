@@ -82,18 +82,16 @@ int main()
     {
       while(1)
 	{
-	  Utils::vector_comparison(f_wavevector, f_true_wavevector, error, 10,
-                               num_val);
+	  Utils::vector_comparison(f_wavevector, f_true_wavevector, error, 10);
 	  if (error != 0) break;
 	  Utils::vector_comparison(f_wavevector_err2, f_true_wavevector_err2,
-                               error, 20, num_val);
+                               error, 20);
 	  if (error != 0) break;
 	  
-	  Utils::vector_comparison(d_wavevector, d_true_wavevector, error, 110,
-                               num_val);
+	  Utils::vector_comparison(d_wavevector, d_true_wavevector, error, 110);
 	  if (error != 0) break;
 	  Utils::vector_comparison(d_wavevector_err2, d_true_wavevector_err2,
-                               error, 120, num_val);
+                               error, 120);
 	  if (error != 0) break;
 
 	  break;

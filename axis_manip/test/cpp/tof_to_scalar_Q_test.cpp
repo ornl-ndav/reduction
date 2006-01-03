@@ -157,16 +157,16 @@ int main()
     {
       while(1)
 	{
-	  Utils::vector_comparison(f_Q, f_true_Q, error, 10, num_val);
+	  Utils::vector_comparison(f_Q, f_true_Q, error, 10);
 	  if (error != 0) break;
 
-	  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error, 20, num_val);
+	  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error, 20);
 	  if (error != 0) break;
 
-	  Utils::vector_comparison(d_Q, d_true_Q, error, 110, num_val);
+	  Utils::vector_comparison(d_Q, d_true_Q, error, 110);
 	  if (error != 0) break;
 	  
-	  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error, 120, num_val);
+	  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error, 120);
 	  break;
 	}
     }

@@ -142,13 +142,13 @@ int main()
 
   while (1)
   {
-    Utils::vector_comparison(f_Q, f_true_Q, error_case_1, 10, num_val);
+    Utils::vector_comparison(f_Q, f_true_Q, error_case_1, 10);
     if (error_case_1 != 0) break;
-    Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_1, 20, num_val);
+    Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_1, 20);
     if (error_case_1 != 0) break;
-    Utils::vector_comparison(d_Q, d_true_Q, error_case_1, 110, num_val);
+    Utils::vector_comparison(d_Q, d_true_Q, error_case_1, 110);
     if (error_case_1 != 0) break;
-    Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_1, 120, num_val);
+    Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_1, 120);
     break;
    }
   
@@ -230,13 +230,13 @@ int main()
 
   while (1)
     {
-  Utils::vector_comparison(f_Q, f_true_Q, error_case_2, 10, num_val);
+  Utils::vector_comparison(f_Q, f_true_Q, error_case_2, 10);
     if (error_case_2 != 0) break;
-  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_2, 20, num_val);
+  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_2, 20);
     if (error_case_2 != 0) break;
-  Utils::vector_comparison(d_Q, d_true_Q, error_case_2, 110, num_val);
+  Utils::vector_comparison(d_Q, d_true_Q, error_case_2, 110);
     if (error_case_2 != 0) break;
-  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_2, 120, num_val);
+  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_2, 120);
     if (error_case_2 != 0) break;
   break;   
     }  
@@ -313,13 +313,13 @@ int main()
   
   while (1)
     {
-  Utils::vector_comparison(f_Q, f_true_Q, error_case_3, 10, 0);
+  Utils::vector_comparison(f_Q, f_true_Q, error_case_3, 10);
     if (error_case_2 != 0) break;
-  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_3, 20, 0);
+  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_3, 20);
     if (error_case_2 != 0) break;
-  Utils::vector_comparison(d_Q, d_true_Q, error_case_3, 110, 0);
+  Utils::vector_comparison(d_Q, d_true_Q, error_case_3, 110);
     if (error_case_3 != 0) break;
-  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_3, 120, 0);
+  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_3, 120);
     if (error_case_3 != 0) break;
   break;   
     }  
@@ -401,13 +401,13 @@ int main()
   
   while (1)
     {
-      Utils::vector_comparison(f_Q, f_true_Q, error_case_4, 10, num_val);
+      Utils::vector_comparison(f_Q, f_true_Q, error_case_4, 10);
       if (error_case_4 != 0) break;
-      Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_4, 20, num_val);
+      Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_4, 20);
       if (error_case_4 != 0) break;
-      Utils::vector_comparison(d_Q, d_true_Q, error_case_4, 110, num_val);
+      Utils::vector_comparison(d_Q, d_true_Q, error_case_4, 110);
       if (error_case_4 != 0) break;
-      Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_4, 120,num_val);
+      Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_4, 120);
       if (error_case_4 != 0) break;
       break;   
     }  
