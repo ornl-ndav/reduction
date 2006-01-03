@@ -35,4 +35,4 @@ namespace AxisManip
     throw std::runtime_error("Function [frequency_to_angular_frequency] not implemented");
   }
 } // AxisManip
-#define
+#endif
