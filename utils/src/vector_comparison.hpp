@@ -7,6 +7,7 @@
 #define _VECTOR_COMPARISON_HPP 1
 
 #include "num_comparison.hpp"
+#include <iostream>
 
 namespace Utils
 {
@@ -15,19 +16,20 @@ namespace Utils
   vector_comparison (const Nessi::Vector<NumT> & value,
                      const Nessi::Vector<NumT> & true_value,
                      int & error,
-                     const int add_error,
-                     const int n_max)
+                     const int add_error)
   {
+    int n_max = true_value.size();
     for (int i = 0 ; i < n_max ; i++)
       {
-		if (value[i] != true_value[i])
-		  {
-			std::cout << "At iteration #" << i << " :\n";
-			printf("\tValue expected was:\t%2.10f",true_value[i]);
-			printf("\n\tValue returned:\t\t%2.10f\n",value[i]);
-			error += add_error;
-			break;
-		  }
+	if (value[i] != true_value[i])
+	  {	    
+	    std::cout << "At index #" << i << ": ";
+	    std::cout << "Value expected was ";
+	    std::cout << true_value[i];
+	    std::cout << ", Value returned was " << value[i] << std::endl;
+	    error += add_error;
+	    break;
+	  }
       }
     return;
   }
