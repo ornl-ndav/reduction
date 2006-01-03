@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.24
   template <typename NumT>
   std::string
-  wavelength_to_scalar_k(Nessi::Vector<NumT> const & wavelength,
-			 Nessi::Vector<NumT> const & wavelength_err2,
+  wavelength_to_scalar_k(const Nessi::Vector<NumT> & wavelength,
+			 const Nessi::Vector<NumT> & wavelength_err2,
 			 Nessi::Vector<NumT> & wavevector,
 			 Nessi::Vector<NumT> & wavevector_err2,
 			 void *temp=NULL)

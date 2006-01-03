@@ -15,8 +15,8 @@ namespace AxisManip
    * \see velocity_to_energy()
    */
   template std::string
-  velocity_to_energy<float>(Nessi::Vector<float> const & velocity,
-			    Nessi::Vector<float> const & velocity_err2,
+  velocity_to_energy<float>(const Nessi::Vector<float> & velocity,
+			    const Nessi::Vector<float> & velocity_err2,
 			    Nessi::Vector<float> & energy,
 			    Nessi::Vector<float> & energy_err2,
 			    void *temp);
@@ -40,8 +40,8 @@ namespace AxisManip
    * \see velocity_to_energy()
    */
   template std::string
-  velocity_to_energy<double>(Nessi::Vector<double> const & velocity,
-			     Nessi::Vector<double> const & velocity_err2,
+  velocity_to_energy<double>(const Nessi::Vector<double> & velocity,
+			     const Nessi::Vector<double> & velocity_err2,
 			     Nessi::Vector<double> & energy,
 			     Nessi::Vector<double> & energy_err2,
 			     void *temp);

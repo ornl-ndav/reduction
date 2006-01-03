@@ -15,8 +15,8 @@ namespace AxisManip
   // 3.29
   template <typename NumT>
   std::string
-  tof_to_initial_wavelength_igs(Nessi::Vector<NumT> const & tof,
-				Nessi::Vector<NumT> const & tof_err2,
+  tof_to_initial_wavelength_igs(const Nessi::Vector<NumT> & tof,
+				const Nessi::Vector<NumT> & tof_err2,
 				const NumT final_wavelength,
 				const NumT final_wavelength_err2,
 				const NumT time_offset,

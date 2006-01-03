@@ -14,9 +14,9 @@ namespace AxisManip
   // 3.11
   template <typename NumT>
   std::string 
-  reverse_array_cp(Nessi::Vector<NumT> const & input,
-		Nessi::Vector<NumT> & output,
-		void *temp=NULL)
+  reverse_array_cp(const Nessi::Vector<NumT> & input,
+                   Nessi::Vector<NumT> & output,
+                   void *temp=NULL)
   {
     std::string retstr("");
 

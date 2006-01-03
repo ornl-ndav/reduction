@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.31
   template <typename NumT>
   std::string
-  frequency_to_angular_frequency(Nessi::Vector<NumT> const & frequency,
-				 Nessi::Vector<NumT> const & frequency_err2,
+  frequency_to_angular_frequency(const Nessi::Vector<NumT> & frequency,
+				 const Nessi::Vector<NumT> & frequency_err2,
 				 Nessi::Vector<NumT> & angular_frequency,
 				 Nessi::Vector<NumT> & angular_frequency_err2,
 				 void *temp=NULL)

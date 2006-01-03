@@ -16,10 +16,10 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_Q<float>(
-                          Nessi::Vector<float> const & initial_wavevector,
-                          Nessi::Vector<float> const & initial_wavevector_err2,
-                          Nessi::Vector<float> const & final_wavevector,
-                          Nessi::Vector<float> const & final_wavevector_err2,
+                          const Nessi::Vector<float> & initial_wavevector,
+                          const Nessi::Vector<float> & initial_wavevector_err2,
+                          const Nessi::Vector<float> & final_wavevector,
+                          const Nessi::Vector<float> & final_wavevector_err2,
                           const float azimuthal_angle,
                           const float azimuthal_angle_err2,
                           const float polar_angle,
@@ -41,8 +41,8 @@ namespace AxisManip
   init_scatt_wavevector_to_Q<float>(
                           const float initial_wavevector,
                           const float initial_wavevector_err2,
-                          Nessi::Vector<float> const & final_wavevector,
-                          Nessi::Vector<float> const & final_wavevector_err2,
+                          const Nessi::Vector<float> & final_wavevector,
+                          const Nessi::Vector<float> & final_wavevector_err2,
                           const float azimuthal_angle,
                           const float azimuthal_angle_err2,
                           const float polar_angle,
@@ -62,8 +62,8 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_Q<float>(
-                          Nessi::Vector<float> const & initial_wavevector,
-                          Nessi::Vector<float> const & initial_wavevector_err2,
+                          const Nessi::Vector<float> & initial_wavevector,
+                          const Nessi::Vector<float> & initial_wavevector_err2,
                           const float final_wavevector,
                           const float final_wavevector_err2,
                           const float azimuthal_angle,
@@ -109,10 +109,10 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_Q<double>(
-                         Nessi::Vector<double> const & initial_wavevector,
-                         Nessi::Vector<double> const & initial_wavevector_err2,
-                         Nessi::Vector<double> const & final_wavevector,
-                         Nessi::Vector<double> const & final_wavevector_err2,
+                         const Nessi::Vector<double> & initial_wavevector,
+                         const Nessi::Vector<double> & initial_wavevector_err2,
+                         const Nessi::Vector<double> & final_wavevector,
+                         const Nessi::Vector<double> & final_wavevector_err2,
                          const double azimuthal_angle,
                          const double azimuthal_angle_err2,
                          const double polar_angle,
@@ -135,8 +135,8 @@ namespace AxisManip
   init_scatt_wavevector_to_Q<double>(
                          const double initial_wavevector,
                          const double initial_wavevector_err2,
-                         Nessi::Vector<double> const & final_wavevector,
-                         Nessi::Vector<double> const & final_wavevector_err2,
+                         const Nessi::Vector<double> & final_wavevector,
+                         const Nessi::Vector<double> & final_wavevector_err2,
                          const double azimuthal_angle,
                          const double azimuthal_angle_err2,
                          const double polar_angle,
@@ -157,8 +157,8 @@ namespace AxisManip
    */
   template std::string
   init_scatt_wavevector_to_Q<double>(
-                         Nessi::Vector<double> const & initial_wavevector,
-                         Nessi::Vector<double> const & initial_wavevector_err2,
+                         const Nessi::Vector<double> & initial_wavevector,
+                         const Nessi::Vector<double> & initial_wavevector_err2,
                          const double final_wavevector,
                          const double final_wavevector_err2,
                          const double azimuthal_angle,

@@ -718,8 +718,8 @@ namespace AxisManip
    */
  template <typename NumT>
    std::string
-   tof_to_initial_velocity_igs(Nessi::Vector<NumT> const & tof,
-			       Nessi::Vector<NumT> const & tof_err2,
+   tof_to_initial_velocity_igs(const Nessi::Vector<NumT> & tof,
+			       const Nessi::Vector<NumT> & tof_err2,
 			       const NumT final_velocity,
 			       const NumT final_velocity_err2,
 			       const NumT time_offset,
@@ -797,8 +797,8 @@ namespace AxisManip
    */
  template <typename NumT>
    std::string
-   tof_to_initial_wavelength_igs(Nessi::Vector<NumT> const & tof,
-				 Nessi::Vector<NumT> const & tof_err2,
+   tof_to_initial_wavelength_igs(const Nessi::Vector<NumT> & tof,
+				 const Nessi::Vector<NumT> & tof_err2,
 				 const NumT final_wavelength,
 				 const NumT final_wavelength_err2,
 				 const NumT time_offset,
@@ -858,18 +858,18 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    energy_transfer(Nessi::Vector<NumT> const & initial_energy,
-		    Nessi::Vector<NumT> const & initial_energy_err2,
-		    Nessi::Vector<NumT> const & final_energy,
-		    Nessi::Vector<NumT> const & final_energy_err2,
+    energy_transfer(const Nessi::Vector<NumT> & initial_energy,
+		    const Nessi::Vector<NumT> & initial_energy_err2,
+		    const Nessi::Vector<NumT> & final_energy,
+		    const Nessi::Vector<NumT> & final_energy_err2,
 		    Nessi::Vector<NumT> & energy_transfer,
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL);
 
   template <typename NumT>
     std::string
-    energy_transfer(Nessi::Vector<NumT> const & initial_energy,
-		    Nessi::Vector<NumT> const & initial_energy_err2,
+    energy_transfer(const Nessi::Vector<NumT> & initial_energy,
+		    const Nessi::Vector<NumT> & initial_energy_err2,
 		    const NumT final_energy,
 		    const NumT final_energy_err2,
 		    Nessi::Vector<NumT> & energy_transfer,
@@ -880,8 +880,8 @@ namespace AxisManip
     std::string
     energy_transfer(const NumT initial_energy,
 		    const NumT initial_energy_err2,
-		    Nessi::Vector<NumT> const & final_energy,
-		    Nessi::Vector<NumT> const & final_energy_err2,
+		    const Nessi::Vector<NumT> & final_energy,
+		    const Nessi::Vector<NumT> & final_energy_err2,
 		    Nessi::Vector<NumT> & energy_transfer,
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL);
@@ -923,8 +923,8 @@ namespace AxisManip
   template <typename NumT>
     std::string
     frequency_to_angular_frequency(
-                                  Nessi::Vector<NumT> const & frequency,
-                                  Nessi::Vector<NumT> const & frequency_err2,
+                                  const Nessi::Vector<NumT> & frequency,
+                                  const Nessi::Vector<NumT> & frequency_err2,
                                   Nessi::Vector<NumT> & angular_frequency,
                                   Nessi::Vector<NumT> & angular_frequency_err2,
                                   void *temp=NULL);
@@ -996,10 +996,10 @@ namespace AxisManip
   template <typename NumT>
    std::string
    init_scatt_wavevector_to_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-                           Nessi::Vector<NumT> const & initial_wavevector_err2,
-                           Nessi::Vector<NumT> const & final_wavevector,
-                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT azimuthal,
                            const NumT azimuthal_err2,
                            const NumT polar,
@@ -1017,8 +1017,8 @@ namespace AxisManip
    init_scatt_wavevector_to_Q(
                            const NumT initial_wavevector,
                            const NumT initial_wavevector_err2,
-                           Nessi::Vector<NumT> const & final_wavevector,
-                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT azimuthal,
                            const NumT azimuthal_err2,
                            const NumT polar,
@@ -1034,8 +1034,8 @@ namespace AxisManip
   template <typename NumT>
    std::string
    init_scatt_wavevector_to_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-                           Nessi::Vector<NumT> const & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
                            const NumT final_wavevector,
                            const NumT final_wavevector_err2,
                            const NumT azimuthal,
@@ -1106,10 +1106,10 @@ namespace AxisManip
   template <typename NumT>
     std::string
     init_scatt_wavevector_to_scalar_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-                           Nessi::Vector<NumT> const & initial_wavevector_err2,
-                           Nessi::Vector<NumT> const & final_wavevector,
-                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT polar,
                            const NumT polar_err2,
                            Nessi::Vector<NumT> & Q,
@@ -1121,8 +1121,8 @@ namespace AxisManip
     init_scatt_wavevector_to_scalar_Q(
                              const NumT initial_wavevector,
                              const NumT initial_wavevector_err2,
-                             Nessi::Vector<NumT> const & final_wavevector,
-		             Nessi::Vector<NumT> const & final_wavevector_err2,
+                             const Nessi::Vector<NumT> & final_wavevector,
+		             const Nessi::Vector<NumT> & final_wavevector_err2,
                              const NumT polar,
                              const NumT polar_err2,
                              Nessi::Vector<NumT> & Q,
@@ -1132,8 +1132,8 @@ namespace AxisManip
   template <typename NumT>
     std::string
     init_scatt_wavevector_to_scalar_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-                           Nessi::Vector<NumT> const & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
                            const NumT final_wavevector,
                            const NumT final_wavevector_err2,
                            const NumT polar,
@@ -1224,8 +1224,8 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    tof_to_Q(Nessi::Vector<NumT> const & tof,
-	     Nessi::Vector<NumT> const & tof_err2,
+    tof_to_Q(const Nessi::Vector<NumT> & tof,
+	     const Nessi::Vector<NumT> & tof_err2,
 	     const NumT pathlength,
 	     const NumT pathlength_err2,
 	     const NumT azimuthal,
@@ -1296,8 +1296,8 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    d_spacing_to_tof_focused_det(Nessi::Vector<NumT> const & d_spacing,
-				 Nessi::Vector<NumT> const & d_spacing_err2,
+    d_spacing_to_tof_focused_det(const Nessi::Vector<NumT> & d_spacing,
+				 const Nessi::Vector<NumT> & d_spacing_err2,
 				 const NumT pathlength_focused,
 				 const NumT pathlength_focused_err2,
 				 const NumT polar_focused,

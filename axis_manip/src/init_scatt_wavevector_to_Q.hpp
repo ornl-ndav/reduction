@@ -15,10 +15,10 @@ namespace AxisManip
  template <typename NumT>
  std::string
  init_scatt_wavevector_to_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-			   Nessi::Vector<NumT> const & initial_wavevector_err2,
-                           Nessi::Vector<NumT> const & final_wavevector,
-                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+			   const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT azimuthal_angle,
                            const NumT azimuthal_angle_err2,
                            const NumT polar_angle,
@@ -39,8 +39,8 @@ namespace AxisManip
    init_scatt_wavevector_to_Q(
                            const NumT initial_wavevector,
                            const NumT initial_wavevector_err2,
-                           Nessi::Vector<NumT> const & final_wavevector,
-                           Nessi::Vector<NumT> const & final_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT azimuthal,
                            const NumT azimuthal_err2,
                            const NumT polar,
@@ -59,8 +59,8 @@ namespace AxisManip
   template <typename NumT>
    std::string
    init_scatt_wavevector_to_Q(
-                           Nessi::Vector<NumT> const & initial_wavevector,
-                           Nessi::Vector<NumT> const & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
                            const NumT final_wavevector,
                            const NumT final_wavevector_err2,
                            const NumT azimuthal,

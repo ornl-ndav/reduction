@@ -15,8 +15,8 @@ namespace AxisManip
   // 3.15
   template <typename NumT>
   std::string
-  tof_to_wavelength(Nessi::Vector<NumT> const & tof,
-		    Nessi::Vector<NumT> const & tof_err2,
+  tof_to_wavelength(const Nessi::Vector<NumT> & tof,
+		    const Nessi::Vector<NumT> & tof_err2,
 		    const NumT pathlength,
 		    const NumT pathlength_err2,
 		    Nessi::Vector<NumT> & wavelength,

@@ -15,8 +15,8 @@ namespace AxisManip
    * \see tof_to_scalar_Q()
    */
   template std::string
-  tof_to_scalar_Q<float>(Nessi::Vector<float> const & tof,
-			 Nessi::Vector<float> const & tof_err2,
+  tof_to_scalar_Q<float>(const Nessi::Vector<float> & tof,
+			 const Nessi::Vector<float> & tof_err2,
 			 const float pathlength,
 			 const float pathlength_err2,
                          const float scatt_angle,
@@ -48,8 +48,8 @@ namespace AxisManip
    * \see tof_to_scalar_Q()
    */
   template std::string
-  tof_to_scalar_Q<double>(Nessi::Vector<double> const & tof,
-			  Nessi::Vector<double> const & tof_err2,
+  tof_to_scalar_Q<double>(const Nessi::Vector<double> & tof,
+			  const Nessi::Vector<double> & tof_err2,
 			  const double pathlength,
 			  const double pathlength_err2,
                           const double scatt_angle,

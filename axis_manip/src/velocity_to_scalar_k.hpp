@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.23
   template <typename NumT>
   std::string
-  velocity_to_scalar_k(Nessi::Vector<NumT> const & velocity,
-		       Nessi::Vector<NumT> const & velocity_err2,
+  velocity_to_scalar_k(const Nessi::Vector<NumT> & velocity,
+		       const Nessi::Vector<NumT> & velocity_err2,
 		       Nessi::Vector<NumT> & wavevector,
 		       Nessi::Vector<NumT> & wavevector_err2,
 		       void *temp=NULL)

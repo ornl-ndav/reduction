@@ -16,8 +16,8 @@ namespace AxisManip
    */
   template std::string
   frequency_to_angular_frequency<float>(
-                                 Nessi::Vector<float> const & frequency,
-                                 Nessi::Vector<float> const & frequency_err2,
+                                 const Nessi::Vector<float> & frequency,
+                                 const Nessi::Vector<float> & frequency_err2,
                                  Nessi::Vector<float> & angular_frequency,
                                  Nessi::Vector<float> & angular_frequency_err2,
                                  void *temp);
@@ -42,8 +42,8 @@ namespace AxisManip
    */
   template std::string
   frequency_to_angular_frequency<double>(
-                                Nessi::Vector<double> const & frequency,
-                                Nessi::Vector<double> const & frequency_err2,
+                                const Nessi::Vector<double> & frequency,
+                                const Nessi::Vector<double> & frequency_err2,
                                 Nessi::Vector<double> & angular_frequency,
                                 Nessi::Vector<double> & angular_frequency_err2,
                                 void *temp);

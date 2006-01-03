@@ -14,9 +14,9 @@ namespace AxisManip
   template <typename NumT>
   void 
   check_histo_sizes(std::string & errstr,
-		    Nessi::Vector<NumT> const & input,
-		    Nessi::Vector<NumT> const & input_err2,
-		    Nessi::Vector<NumT> const & axis)
+		    const Nessi::Vector<NumT> & input,
+		    const Nessi::Vector<NumT> & input_err2,
+		    const Nessi::Vector<NumT> & axis)
   {
     size_t size = input.size();
     size_t size_err2 = input_err2.size();

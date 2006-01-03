@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.18
   template <typename NumT>
   std::string
-  wavelength_to_scalar_Q(Nessi::Vector<NumT> const & wavelength,
-			 Nessi::Vector<NumT> const & wavelength_err2,
+  wavelength_to_scalar_Q(const Nessi::Vector<NumT> & wavelength,
+			 const Nessi::Vector<NumT> & wavelength_err2,
 			 const NumT scatt_angle,
 			 const NumT scatt_angle_err2,
 			 Nessi::Vector<NumT> & Q,

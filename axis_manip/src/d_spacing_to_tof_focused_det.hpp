@@ -14,8 +14,8 @@ namespace AxisManip
   // 3.39
   template <typename NumT>
   std::string
-  d_spacing_to_tof_focused_det(Nessi::Vector<NumT> const & d_spacing,
-			       Nessi::Vector<NumT> const & d_spacing_err2,
+  d_spacing_to_tof_focused_det(const Nessi::Vector<NumT> & d_spacing,
+			       const Nessi::Vector<NumT> & d_spacing_err2,
 			       const NumT pathlength_focused,
 			       const NumT pathlength_focused_err2,
 			       const NumT polar_angle_focused,
