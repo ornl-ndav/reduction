@@ -6,6 +6,7 @@
 
 #include "vector_comparison.hpp"
 #include <limits>
+
 #define Precision_range 1e-6
 
 namespace Utils
@@ -19,14 +20,17 @@ namespace Utils
   {
       for (int i = 0 ; i < n_max ; i++)
 	{
-          if (fabs(value[i] - true_value[i]) 
-              > fabs(value[i])*Precision_range)
-              //              > std::numeric_limits<float>::epsilon())
-            {
-              error += add_error;
-            }
-          return;
-        }
+	  if (fabs(value[i] - true_value[i]) 
+		  > fabs(value[i])*Precision_range)
+		{
+		  std::cout << "At iteration #" << i << " :\n";
+		  printf("\tValue expected was:\t%2.10f",true_value[i]);
+		  printf("\n\tValue returned:\t\t%2.10f\n",value[i]);
+		  error += add_error;
+		  return;
+		}
+	  //	  return;
+	}
       
       return;
   }
@@ -44,9 +48,13 @@ namespace Utils
               > fabs(value[i])*Precision_range)
             //              > std::numeric_limits<double>::epsilon())
             {
+			  std::cout << "At iteration #" << i << " :\n";
+			  printf("\tValue expected was:\t%2.10f",true_value[i]);
+			  printf("\n\tValue returned:\t\t%2.10f\n",value[i]);
               error += add_error;
+			  return;
             }
-          return;
+		  //          return;
         }
       
       return;
