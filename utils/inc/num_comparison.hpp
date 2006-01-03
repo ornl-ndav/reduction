@@ -1,5 +1,10 @@
-#ifndef _NUM_COMPARISON_H
-#define _NUM_COMPARISON_H
+/**
+ * $Id$
+ *
+ * \file utils/inc/num_comparison.hpp
+ */
+#ifndef _NUM_COMPARISON_HPP
+#define _NUM_COMPARISON_HPP 1
 
 #include "nessi.hpp"
 #include <iostream>
@@ -42,4 +47,4 @@ namespace Utils
                           const int n_max);
 }
 
-#endif    //_NUM_COMPARISON_H
+#endif // _NUM_COMPARISON_HPP
