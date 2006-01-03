@@ -1,10 +1,10 @@
 /**
- * $Id: $
+ * $Id$
  *
  * \file array_manip/src/add_ncerr.hpp
  */
-#ifndef _ADD_NCERR_H
-#define _ADD_NCERR_H 1
+#ifndef _ADD_NCERR_HPP
+#define _ADD_NCERR_HPP 1
 
 #include "arith.hpp"
 #include "check_inputs.hpp"
@@ -78,4 +78,4 @@ namespace ArrayManip
   }
 } // ArrayManip 
 
-#endif // _ADD_NCERR_H
+#endif // _ADD_NCERR_HPP

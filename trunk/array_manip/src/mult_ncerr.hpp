@@ -1,10 +1,10 @@
 /**
- * $Id: mult_scalar_vec_ncerr.hpp 130 2005-12-21 21:39:05Z pf9 $
+ * $Id$
  *
  * \file array_manip/src/mult_scalar_vec_ncerr.hpp
  */
-#ifndef _MULT_NCERR_H
-#define _MULT_NCERR_H 1
+#ifndef _MULT_NCERR_HPP
+#define _MULT_NCERR_HPP 1
 
 #include "arith.hpp"
 #include "check_inputs.hpp"
@@ -82,4 +82,4 @@ namespace ArrayManip
   }
 } // ArrayManip
 
-#endif // _MULT_NCERR_H
+#endif // _MULT_NCERR_HPP
