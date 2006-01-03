@@ -8,6 +8,7 @@
 
 #include "conversions.hpp"
 #include "constants.hpp"
+#include <stdexcept>
 
 namespace AxisManip
 {
@@ -41,6 +42,20 @@ namespace AxisManip
 
     std::string retstr("");
     return retstr;
+  }
+
+  // 3.15
+  template <typename NumT>
+  std::string
+  tof_to_wavelength(const NumT tof,
+		    const NumT tof_err2,
+		    const NumT pathlength,
+		    const NumT pathlength_err2,
+		    NumT & wavelength,
+		    NumT & wavelength_err2,
+		    void *temp=NULL)
+  {
+    throw std::runtime_error("Function [tof_to_wavelength] not implemented");
   }
 } // AxisManip
 #endif

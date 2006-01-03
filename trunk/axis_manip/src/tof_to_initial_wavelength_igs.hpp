@@ -8,6 +8,7 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include <stdexcept>
 
 namespace AxisManip
 {
@@ -56,6 +57,26 @@ namespace AxisManip
 
     std::string retstr("");
     return retstr;
+  }
+
+  // 3.29
+  template <typename NumT>
+  std::string
+  tof_to_initial_wavelength_igs(const NumT tof,
+				const NumT tof_err2,
+				const NumT final_wavelength,
+				const NumT final_wavelength_err2,
+				const NumT time_offset,
+				const NumT time_offset_err2,
+				const NumT dist_source_sample,
+				const NumT dist_source_sample_err2,
+				const NumT dist_sample_detector,
+				const NumT dist_sample_detector_err2,
+				NumT & initial_wavelength,
+				NumT & initial_wavelength_err2,
+				void *temp=NULL)
+  {
+    throw std::runtime_error("Function [tof_to_initial_wavelength_igs] not implemented");
   }
 } // AxisManip
 #endif

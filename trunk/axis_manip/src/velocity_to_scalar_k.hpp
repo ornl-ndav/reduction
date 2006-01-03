@@ -22,5 +22,17 @@ namespace AxisManip
   {
     throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
   }
+
+  // 3.23
+  template <typename NumT>
+  std::string
+  velocity_to_scalar_k(const NumT velocity,
+		       const NumT velocity_err2,
+		       NumT & wavevector,
+		       NumT & wavevector_err2,
+		       void *temp=NULL)
+  {
+    throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
+  }
 } // AxisManip
 #endif

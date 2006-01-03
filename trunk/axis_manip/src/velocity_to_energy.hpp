@@ -22,5 +22,17 @@ namespace AxisManip
   {
     throw std::runtime_error("Function [velocity_to_energy] not implemented");
   }
+
+  // 3.21
+  template <typename NumT>
+  std::string
+  velocity_to_energy(const NumT velocity,
+		     const NumT velocity_err2,
+		     NumT & energy,
+		     NumT & energy_err2,
+		     void *temp=NULL)
+  {
+    throw std::runtime_error("Function [velocity_to_energy] not implemented");
+  }
 } // AxisManip
 #endif

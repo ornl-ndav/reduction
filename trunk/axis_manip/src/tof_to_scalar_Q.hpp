@@ -60,5 +60,21 @@ namespace AxisManip
     std::string retstr("");
     return retstr;
   }
+
+  // 3.17
+  template <typename NumT>
+  std::string
+  tof_to_scalar_Q(const NumT tof,
+		  const NumT tof_err2,
+		  const NumT pathlength,
+		  const NumT pathlength_err2,
+                  const NumT scatt_angle,
+		  const NumT scatt_angle_err2,
+		  NumT & Q,
+		  NumT & Q_err2,
+		  void *temp=NULL)
+  {
+    throw std::runtime_error("Function [tof_to_scalar_Q] not implemented");
+  }
 } // AxisManip
 #endif
