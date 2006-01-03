@@ -3,6 +3,9 @@
  *
  * \file utils/src/fit_linear_background.hpp
  */
+#ifndef _FIT_LINEAR_BACKGROUND_HPP 
+#define _FIT_LINEAR_BACKGROUND_HPP 1
+
 #include "utils.hpp"
 #include <stdexcept>
 
@@ -28,3 +31,5 @@ namespace Utils
   }
 
 } // Utils
+
+#endif // _FIT_LINEAR_BACKGROUND_HPP
