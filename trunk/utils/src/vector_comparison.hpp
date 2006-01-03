@@ -20,11 +20,14 @@ namespace Utils
   {
     for (int i = 0 ; i < n_max ; i++)
       {
-	if (value[i] != true_value[i])
-	  {
-	    error += add_error;
-	    break;
-	  }
+		if (value[i] != true_value[i])
+		  {
+			std::cout << "At iteration #" << i << " :\n";
+			printf("\tValue expected was:\t%2.10f",true_value[i]);
+			printf("\n\tValue returned:\t\t%2.10f\n",value[i]);
+			error += add_error;
+			break;
+		  }
       }
     return;
   }
