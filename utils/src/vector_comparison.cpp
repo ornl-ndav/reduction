@@ -24,9 +24,14 @@ namespace Utils
 	  {
 	    std::cout << "At index #" << i << ": ";
 	    std::cout << "Value expected was ";
-	    std::cout << std::setprecision(std::numeric_limits<float>::digits10);
+
+	    std::cout.setf(std::ios::fixed);
+	    std::cout << std::setprecision(std::numeric_limits<float>::digits10+1);
 	    std::cout << true_value[i];
 	    std::cout << ", Value returned was " << value[i] << std::endl;
+	    std::cout << "Difference (Expected - Truth): ";
+	    std::cout.setf(std::ios::scientific);
+	    std::cout << value[i] - true_value[i] << std::endl;
 	    error += add_error;
 	  }
 	return;
@@ -49,9 +54,13 @@ namespace Utils
 	  {
 	    std::cout << "At index #" << i << ": ";
 	    std::cout << "Value expected was ";
-	    std::cout << std::setprecision(std::numeric_limits<double>::digits10);
+	    std::cout.setf(std::ios::fixed);
+	    std::cout << std::setprecision(std::numeric_limits<double>::digits10+1);
 	    std::cout << true_value[i];
 	    std::cout << ", Value returned was " << value[i] << std::endl;
+	    std::cout << "Difference (Expected - Truth): ";
+	    std::cout.setf(std::ios::scientific);
+	    std::cout << value[i] - true_value[i] << std::endl;
 	    error += add_error;
 	  }
 	return;
