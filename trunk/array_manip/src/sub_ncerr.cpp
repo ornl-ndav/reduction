@@ -1,7 +1,7 @@
 /**
  * $Id$
  *
- * \file array_manip/src/sub_scalar_vec_ncerr.cpp
+ * \file array_manip/src/sub_ncerr.cpp
  */
 #include "sub_ncerr.hpp"
 
