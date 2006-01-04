@@ -194,7 +194,7 @@ int main()
 	}
     }
   
-  cout << "tof_to_initial_wavelength_igs.cpp..........";
+  cout << "tof_to_initial_wavelength_igs_test.cpp..........";
 
   switch (error)
     {

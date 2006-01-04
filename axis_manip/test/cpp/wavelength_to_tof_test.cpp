@@ -118,7 +118,7 @@ int main()
 	}
     }
   
-  cout << "wavelength_to_tof.cpp..........";
+  cout << "wavelength_to_tof_test.cpp..........";
 
   switch (error)
     {

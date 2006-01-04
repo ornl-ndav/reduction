@@ -94,7 +94,7 @@ int main()
 	}
     }
 
-  cout << "wavelength_to_energy.cpp..........";
+  cout << "wavelength_to_energy_test.cpp..........";
 
   switch (error)
     {

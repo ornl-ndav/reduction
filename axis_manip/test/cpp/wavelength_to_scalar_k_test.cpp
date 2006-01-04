@@ -99,7 +99,7 @@ int main()
 	}
     }
 
-  cout << "wavelength_to_scalar_k.cpp..........";
+  cout << "wavelength_to_scalar_k_test.cpp..........";
 
   switch (error)
     {

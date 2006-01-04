@@ -171,7 +171,7 @@ int main()
 	}
     }
   
-  cout << "tof_to_scalar_Q.cpp..........";
+  cout << "tof_to_scalar_Q_test.cpp..........";
 
   switch (error)
     {

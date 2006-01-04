@@ -300,7 +300,7 @@ int main()
 
   error = error_case_1 + error_case_2 + error_case_3 + error_case_4;
   
-  cout << "energy_transfer.cpp..........";
+  cout << "energy_transfer_test.cpp..........";
   
   switch (error)
     {
