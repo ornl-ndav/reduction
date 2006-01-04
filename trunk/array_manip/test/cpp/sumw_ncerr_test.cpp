@@ -1,10 +1,10 @@
 // $Id$
 
 #include "arith.hpp"
+#include "num_comparison.hpp"
 #include <algorithm>
 #include <cmath>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -108,45 +108,45 @@ int main()
     {
       //float
       f_input1_err = static_cast<float>(std::sqrt(static_cast<double>
-						  (f_input1_err2[i])));
+												  (f_input1_err2[i])));
       f_input2_err = static_cast<float>(std::sqrt(static_cast<double>
-						  (f_input2_err2[i])));
+												  (f_input2_err2[i])));
       f_sum_err = f_input1_err + f_input2_err;
       f_true_vector[i] = (f_input1[i] / f_input1_err) + 
-	(f_input2[i] / f_input2_err);
+		(f_input2[i] / f_input2_err);
       f_true_vector[i] *= f_sum_err;
       f_true_vector_err2[i] = f_input1_err2[i] + f_input2_err2[i];
       
       //double
       d_input1_err = static_cast<double>(std::sqrt(static_cast<double>
-						   (d_input1_err2[i])));
+												   (d_input1_err2[i])));
       d_input2_err = static_cast<double>(std::sqrt(static_cast<double>
-						   (d_input2_err2[i])));
+												   (d_input2_err2[i])));
       d_sum_err = d_input1_err + d_input2_err;
       d_true_vector[i] = (d_input1[i] / d_input1_err) +
-	(d_input2[i] / d_input2_err);
+		(d_input2[i] / d_input2_err);
       d_true_vector[i] *= d_sum_err;
       d_true_vector_err2[i] = d_input1_err2[i] + d_input2_err2[i];
       
       //int
       i_input1_err = static_cast<int>(std::sqrt(static_cast<double>
-						(i_input1_err2[i])));
+												(i_input1_err2[i])));
       i_input2_err = static_cast<int>(std::sqrt(static_cast<double>
-						(i_input2_err2[i])));
+												(i_input2_err2[i])));
       i_sum_err = static_cast<int>(i_input1_err + i_input2_err);
       i_true_vector[i] = static_cast<int>(i_input1[i] / i_input1_err) + 
-	static_cast<int>(i_input2[i] / i_input2_err);
+		static_cast<int>(i_input2[i] / i_input2_err);
       i_true_vector[i] *= static_cast<int>(i_sum_err);
       i_true_vector_err2[i] = i_input1_err2[i] + i_input2_err2[i];
-
+	  
       //unsigned
       u_input1_err = static_cast<unsigned>(std::sqrt(static_cast<double>
-						     (u_input1_err2[i])));
+													 (u_input1_err2[i])));
       u_input2_err = static_cast<unsigned>(std::sqrt(static_cast<double>
-						     (u_input2_err2[i])));
+													 (u_input2_err2[i])));
       u_sum_err = static_cast<unsigned>(u_input1_err + u_input2_err);
       u_true_vector[i] = static_cast<unsigned>(u_input1[i] / u_input1_err) + 
-	static_cast<unsigned>(u_input2[i] / u_input2_err);
+		static_cast<unsigned>(u_input2[i] / u_input2_err);
       u_true_vector[i] *= static_cast<unsigned>(u_sum_err);
       u_true_vector_err2[i] = u_input1_err2[i] + u_input2_err2[i];
     }
@@ -162,50 +162,33 @@ int main()
     }
   else
     {
-      for (int i = 0 ; i < num_val ; ++i)
-	{
-	  if (fabs(f_output[i] - f_true_vector[i])>0.000001)
-	    {
-	      error=error+10;
-	      break;
-	    }
-	  if (fabs(f_output_err2[i] - f_true_vector_err2[i])>0.000001)
-	    {
-	      error=error+20;
-	      break;
-	    }
-	  if (fabs(d_output[i] - d_true_vector[i]) > 0.0001)
-	    {
-	      error=error+110;
-	      break;
-	    }
-	  if (fabs(d_output_err2[i] - d_true_vector_err2[i])> 0.0001)
-	    {
-	      error=error+120;
-	      break;
-	    }
-	  if (i_output[i] != i_true_vector[i])
-	    {
-	      error=error+210;
-	      break;
-	    }
-	  if (i_output_err2[i] != i_true_vector_err2[i])
-	    {
-	      error=error+220;
-	      break;
-	    }
-	  if (u_output[i] != u_true_vector[i])
-	    {
-	      error=error+310;
-	      break;
-	    }
-	  if (u_output_err2[i] != u_true_vector_err2[i])
-	    {
-	      error=error+320;
-	      break;
-	    }
+	  while(1)
+		{
+		  Utils::vector_comparison(f_output, f_true_vector, error, 10);
+		  if (error != 0) break;
+		  Utils::vector_comparison(f_output_err2, f_true_vector_err2, 
+								   error, 20);
+		  if (error != 0) break;
+
+		  Utils::vector_comparison(d_output, d_true_vector, error, 110);
+		  if (error != 0) break;
+		  Utils::vector_comparison(d_output_err2, d_true_vector_err2, 
+								   error, 120);
+		  if (error != 0) break;
+
+		  Utils::vector_comparison(i_output, i_true_vector, error, 210);
+		  if (error != 0) break;
+		  Utils::vector_comparison(i_output_err2, i_true_vector_err2, 
+								   error, 220);
+		  if (error != 0) break;
+
+		  Utils::vector_comparison(u_output, u_true_vector, error, 310);
+		  if (error != 0) break;
+		  Utils::vector_comparison(u_output_err2, u_true_vector_err2, 
+								   error, 320);
+		  break;
+		}
 	}
-    }
 
   cout << "sumw_ncerr_test.cpp..........";
 
