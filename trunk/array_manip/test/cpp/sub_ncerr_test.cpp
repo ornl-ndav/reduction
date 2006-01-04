@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 #include "arith.hpp"
 #include <algorithm>
@@ -296,7 +296,7 @@ int main()
 	}
     }
 
-  cout << "sub_ncerr.cpp..........";
+  cout << "sub_ncerr_test.cpp..........";
   
   switch (error1)
     {

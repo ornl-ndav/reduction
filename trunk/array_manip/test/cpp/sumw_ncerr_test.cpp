@@ -207,7 +207,7 @@ int main()
 	}
     }
 
-  cout << "sumw_ncerr.cpp..........";
+  cout << "sumw_ncerr_test.cpp..........";
 
   switch (error)
     {

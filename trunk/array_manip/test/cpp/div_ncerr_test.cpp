@@ -368,7 +368,7 @@ int main()
 		}
     }
   
-  cout << "div_ncerr.cpp..........";
+  cout << "div_ncerr_test.cpp..........";
 
   switch (error1)
     {

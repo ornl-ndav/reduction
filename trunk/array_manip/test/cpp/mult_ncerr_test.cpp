@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 #include "arith.hpp"
 #include <algorithm>
@@ -299,7 +299,7 @@ int main()
 	}
     }
 
-  cout << "mult_ncerr.cpp..........";
+  cout << "mult_ncerr_test.cpp..........";
 
   switch (error1)
     {
