@@ -3,8 +3,8 @@
  *
  * \file axis_manip/inc/check_histo.hpp
  */
-#ifndef _CHECK_HISTO_H
-#define _CHECK_HISTO_H 1
+#ifndef _CHECK_HISTO_HPP
+#define _CHECK_HISTO_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -35,4 +35,4 @@ namespace AxisManip
   
 } // AxisManip
 
-#endif // _CHECK_HISTO_H
+#endif // _CHECK_HISTO_HPP
