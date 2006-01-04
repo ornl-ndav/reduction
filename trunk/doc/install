@@ -23,6 +23,4 @@ if [[ -d html && -d latex ]]; then
   cp latex/*.eps $1/latex
   echo "cp latex/*.tex $1/latex"
   cp latex/*.tex $1/latex
-  echo "cp latex/$2-$3.pdf $1"
-  cp latex/$2-$3.pdf $1
 fi
