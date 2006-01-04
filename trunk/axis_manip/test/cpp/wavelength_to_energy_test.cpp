@@ -102,7 +102,7 @@ int main()
       cout << "Functionality OK" << endl;
       break;
     case 1:
-      cout << "FAILED....Outut and input vectors have different sizes" << endl;
+      cout << "FAILED....Output and input vectors have different sizes" << endl;
       break;
     case 10:
       cout << "(float) FAILED....Output vector different from vector expected"
