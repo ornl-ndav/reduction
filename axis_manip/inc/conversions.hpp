@@ -3,8 +3,8 @@
  *
  * \file axis_manip/inc/conversions.hpp
  */
-#ifndef _CONVERSIONS_H
-#define _CONVERSIONS_H 1
+#ifndef _CONVERSIONS_HPP
+#define _CONVERSIONS_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -1319,4 +1319,4 @@ namespace AxisManip
 				 void *temp=NULL);
 } // AxisManip
 
-#endif // _CONVERSIONS_H
+#endif // _CONVERSIONS_HPP

@@ -3,8 +3,8 @@
  *
  * \file axis_manip/inc/reverse_array.hpp
  */
-#ifndef _REVERSE_ARRAY_H
-#define _REVERSE_ARRAY_H 1
+#ifndef _REVERSE_ARRAY_HPP
+#define _REVERSE_ARRAY_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -51,4 +51,4 @@ namespace AxisManip
   
 } // AxisManip
 
-#endif // _REVERSE_ARRAY_H
+#endif // _REVERSE_ARRAY_HPP

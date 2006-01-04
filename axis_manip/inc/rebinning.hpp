@@ -3,8 +3,8 @@
  *
  * \file axis_manip/inc/rebinning.hpp
  */
-#ifndef _REBINNING_H
-#define _REBINNING_H 1
+#ifndef _REBINNING_HPP
+#define _REBINNING_HPP 1
 
 #include "nessi.hpp"
 #include <string>
@@ -81,4 +81,4 @@ namespace AxisManip
   
 } // AxisManip
 
-#endif // _REBINNING_H
+#endif // _REBINNING_HPP
