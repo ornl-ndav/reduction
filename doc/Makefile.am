@@ -5,12 +5,7 @@ docs:
 	./makepdf $(PACKAGE_TARNAME) $(VERSION)
 
 install:
-	mkdir -p $(DRLIBDOCDIR)	  
-	cp -r html $(DRLIBDOCDIR)
-	mkdir -p $(DRLIBDOCDIR)/latex
-	cp latex/*.eps $(DRLIBDOCDIR)/latex
-	cp latex/*.tex $(DRLIBDOCDIR)/latex
-	cp latex/$(PACKAGE_TARNAME)-$(VERSION).pdf $(DRLIBDOCDIR)
+	./install $(DRLIBDOCDIR) $(PACKAGE_TARNAME) $(VERSION)
 
 uninstall:
 	rm -rf $(DRLIBDOCDIR)/html
