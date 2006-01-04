@@ -1,7 +1,7 @@
 /**
  * $Id$
  *
- * \file array_manip/src/mult_scalar_vec_ncerr.hpp
+ * \file array_manip/src/mult_ncerr.hpp
  */
 #ifndef _MULT_NCERR_HPP
 #define _MULT_NCERR_HPP 1

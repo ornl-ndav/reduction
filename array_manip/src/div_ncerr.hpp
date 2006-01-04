@@ -1,7 +1,7 @@
 /**
  * $Id$
  *
- * \file array_manip/src/div_scalar_vec_ncerr.hpp
+ * \file array_manip/src/div_ncerr.hpp
  */
 #ifndef _DIV_NCERR_HPP
 #define _DIV_NCERR_HPP 1
