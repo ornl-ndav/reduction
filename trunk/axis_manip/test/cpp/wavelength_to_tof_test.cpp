@@ -3,6 +3,7 @@
 #include "nessi.hpp"
 #include "num_comparison.hpp"
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 
 using namespace std;
@@ -65,18 +66,18 @@ int main()
 			       d_tof, d_tof_err2);
 
   
-    f_a = 1. / static_cast<float>(PhysConst::H_OVER_MNEUT);
+    f_a = static_cast<float>(1. / PhysConst::H_OVER_MNEUT);
     f_a2 = f_a * f_a;
     f_a = f_a * f_pathlength;
     f_b = f_pathlength * f_pathlength;
     f_c = f_pathlength_err2 * f_pathlength_err2;
     
-    d_a = static_cast<double>(1) / PhysConst::H_OVER_MNEUT;
+    d_a = static_cast<double>(1. / PhysConst::H_OVER_MNEUT);
     d_a2 = d_a * d_a;
     d_a = d_a * d_pathlength;
     d_b = d_pathlength * d_pathlength;
     d_c = d_pathlength_err2 * d_pathlength_err2;
-    
+
     for (int i = 0 ; i < num_val ; ++i)
       {
 	f_true_tof[i] = f_a * f_wavelength[i];
@@ -125,7 +126,7 @@ int main()
       cout << "Functionality OK" << endl;
       break;
     case 1:
-      cout << "FAILED....Outut and input vectors have different sizes" << endl;
+      cout << "FAILED....Output and input vectors have different sizes" << endl;
       break;
     case 10:
       cout << "(float) FAILED....Output vector different from vector expected"
