@@ -1,4 +1,4 @@
-// $Id: $
+// $Id$
 
 #include "nessi.hpp"
 #include <algorithm>
@@ -300,7 +300,7 @@ int main()
 	}
     }
 
-  cout << "add_ncerr.cpp..........";
+  cout << "add_ncerr_test.cpp..........";
   
   switch (error1)
     {
