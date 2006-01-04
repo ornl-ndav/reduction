@@ -41,8 +41,8 @@ int main()
   
   int error = 0;
   
-  f_h2 = static_cast<float>(PhysConst::H * PhysConst::H);
-  d_h2 = static_cast<double>(PhysConst::H * PhysConst::H);
+  f_h2 = static_cast<float>(PhysConst::H) * static_cast<float>(PhysConst::H);
+  d_h2 = static_cast<double>(PhysConst::H) * static_cast<double>(PhysConst::H);
   
   // ****case 1****
   
