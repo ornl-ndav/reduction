@@ -414,7 +414,7 @@ int main()
   
   error = error_case_1 + error_case_2 + error_case_3 + error_case_4;
   
-  cout << "init_scatt_wavevector_to_scalar_Q.cpp..........";
+  cout << "init_scatt_wavevector_to_scalar_Q_test.cpp..........";
   
   switch (error)
     {

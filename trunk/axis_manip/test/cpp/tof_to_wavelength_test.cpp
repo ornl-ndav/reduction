@@ -95,7 +95,7 @@ int main()
 	}
     }
   
-  cout << "tof_to_wavelength.cpp..........";
+  cout << "tof_to_wavelength_test.cpp..........";
 
   switch (error)
     {

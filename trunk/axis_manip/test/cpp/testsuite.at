@@ -8,48 +8,48 @@ AT_BANNER([[Checking Functionality of the Axis Manipulation Functions]])
 
 AT_SETUP([Checking the Energy Transfer.  ])
 AT_CHECK([energy_transfer_test | sed -e 's/\r$//' ],[],
-[[energy_transfer.cpp..........Functionality OK
+[[energy_transfer_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Initial and Scattering Wavevector to Scalar Q.  ])
 AT_CHECK([init_scatt_wavevector_to_scalar_Q_test | sed -e 's/\r$//' ],[],
-[[init_scatt_wavevector_to_scalar_Q.cpp..........Functionality OK
+[[init_scatt_wavevector_to_scalar_Q_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the TOF to Initial Wavelength for Inverse Geometry Spectrometer Function .  ])
 AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
-[[tof_to_initial_wavelength_igs.cpp..........Functionality OK
+[[tof_to_initial_wavelength_igs_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the TOF to Scalar Q Function.  ])
 AT_CHECK([tof_to_scalar_Q_test | sed -e 's/\r$//' ],[],
-[[tof_to_scalar_Q.cpp..........Functionality OK
+[[tof_to_scalar_Q_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the TOF to Wavelength Function.  ])
 AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
-[[tof_to_wavelength.cpp..........Functionality OK
+[[tof_to_wavelength_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Wavelength to Energy Function.  ])
 AT_CHECK([wavelength_to_energy_test | sed -e 's/\r$//' ],[],
-[[wavelength_to_energy.cpp..........Functionality OK
+[[wavelength_to_energy_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Wavelength to Scalar Wavevector Function.  ])
 AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
-[[wavelength_to_scalar_k.cpp..........Functionality OK
+[[wavelength_to_scalar_k_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
 AT_SETUP([Checking the Wavelength to TOF Function.  ])
 AT_CHECK([wavelength_to_tof_test | sed -e 's/\r$//' ],[],
-[[wavelength_to_tof.cpp..........Functionality OK
+[[wavelength_to_tof_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
