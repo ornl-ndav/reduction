@@ -7,6 +7,8 @@ lib_LTLIBRARIES = libUtils.la
 libUtils_la_LDFLAGS = -version-info 1:0:0
 
 libUtils_la_SOURCES = \
+	check_sizes_square.hpp \
+	check_sizes_square.cpp \
 	fit_linear_background.hpp \
 	fit_linear_background.cpp \
 	fit_reflectometer_background.hpp \
