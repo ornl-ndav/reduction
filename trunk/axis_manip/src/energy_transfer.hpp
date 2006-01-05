@@ -24,8 +24,6 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    // SNS-FIXME: move to using helper function
-
     // check that the values are of proper size
     try
       {
@@ -51,16 +49,31 @@ namespace AxisManip
         throw e;
       }
 
-    std::string retstr(""); // the warning strings
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
+
+    // allocate local variables
+    NumT h;
+    NumT h2;
+
+    // fill the local variables
+    warn=__energy_transfer_static(h,h2);
+    if(warn.size()>0)
+      retstr+=warn;
 
     // do the calculation
     size_t size_energy = initial_energy.size();
     for (size_t i = 0; i < size_energy ; ++i )
       {
-        energy_transfer[i] = (initial_energy[i] - final_energy[i])
-          / static_cast<NumT>(PhysConst::H);
-        energy_transfer_err2[i]
-          = (initial_energy_err2[i] + final_energy_err2[i]) / h2;
+        warn=__energy_transfer_dynamic(initial_energy[i],
+                                       initial_energy_err2[i],
+                                       final_energy[i],
+                                       final_energy_err2[i],
+                                       h, h2,
+                                       energy_transfer[i],
+                                       energy_transfer_err2[i]);
+        if(warn.size()>0)
+          retstr+=warn;
       }
 
     return retstr;
@@ -77,18 +90,38 @@ namespace AxisManip
 		    void *temp=NULL)
   {
     // SNS-FIXME: check for vector sizes
-    // SNS-FIXME: move to using helper function
 
-    std::string retstr(""); // the warning strings
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
+
+    // allocate local variables
+    NumT h;
+    NumT h2;
+
+    // fill the local variables
+    warn=__energy_transfer_static(h,h2);
+    if(warn.size()>0)
+      retstr+=warn;
 
     // do the calculation
     size_t size_energy = initial_energy.size();
     for (size_t i = 0; i < size_energy ; ++i )
       {
+        warn=__energy_transfer_dynamic(initial_energy[i],
+                                       initial_energy_err2[i],
+                                       final_energy,
+                                       final_energy_err2,
+                                       h, h2,
+                                       energy_transfer[i],
+                                       energy_transfer_err2[i]);
+        if(warn.size()>0)
+          retstr+=warn;
+        // START REMOVE
         energy_transfer[i] = (initial_energy[i] - final_energy)
           / static_cast<NumT>(PhysConst::H);
         energy_transfer_err2[i]
           = (initial_energy_err2[i] + final_energy_err2) / h2;
+        // END REMOVE
       }
 
     return retstr;
@@ -105,18 +138,38 @@ namespace AxisManip
 		    void *temp=NULL)
   {
     // SNS-FIXME: check for vector sizes
-    // SNS-FIXME: move to using helper function
 
-    std::string retstr(""); // the warning strings
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
+
+    // allocate local variables
+    NumT h;
+    NumT h2;
+
+    // fill the local variables
+    warn=__energy_transfer_static(h,h2);
+    if(warn.size()>0)
+      retstr+=warn;
 
     // do the calculation
     size_t size_energy = final_energy.size();
     for (size_t i = 0; i < size_energy ; ++i )
       {
+        warn=__energy_transfer_dynamic(initial_energy,
+                                       initial_energy_err2,
+                                       final_energy[i],
+                                       final_energy_err2[i],
+                                       h, h2,
+                                       energy_transfer[i],
+                                       energy_transfer_err2[i]);
+        if(warn.size()>0)
+          retstr+=warn;
+        // START REMOVE
         energy_transfer[i] = (initial_energy - final_energy[i])
           / static_cast<NumT>(PhysConst::H);
         energy_transfer_err2[i]
           = (initial_energy_err2 + final_energy_err2[i]) / h2;
+        // END REMOVE
       }
 
     return retstr;
@@ -132,22 +185,58 @@ namespace AxisManip
 		    NumT & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    // SNS-FIXME: check for vector sizes
-    // SNS-FIXME: move to using helper function
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
 
-    std::string retstr(""); // the warning strings
+    // allocate local variables
+    NumT h;
+    NumT h2;
+
+    // fill the local variables
+    warn=__energy_transfer_static(h,h2);
+    if(warn.size()>0)
+      retstr+=warn;
 
     // do the calculation
-    size_t size_energy = final_energy.size();
-    for (size_t i = 0; i < size_energy ; ++i )
-      {
-        energy_transfer[i] = (initial_energy - final_energy[i])
-          / static_cast<NumT>(PhysConst::H);
-        energy_transfer_err2[i]
-          = (initial_energy_err2 + final_energy_err2[i]) / h2;
-      }
+    warn=__energy_transfer_dynamic(initial_energy, initial_energy_err2,
+                                   final_energy, final_energy_err2,
+                                   h, h2,
+                                   energy_transfer, energy_transfer_err2);
+    if(warn.size()>0)
+      retstr+=warn;
 
     return retstr;
+  }
+
+  template <typename NumT>
+    std::string
+    __energy_transfer_static(NumT & h,
+                             NumT & h2)
+  {
+    h=static_cast<NumT>(PhysConst::H);
+    h2=h*h;
+
+    return std::string("");
+  }
+
+  template <typename NumT>
+    std::string
+    __energy_transfer_dynamic(const NumT initial_energy,
+                              const NumT initial_energy_err2,
+                              const NumT final_energy,
+                              const NumT final_energy_err2,
+                              const NumT h,
+                              const NumT h2,
+                              NumT & energy_transfer,
+                              NumT & energy_transfer_err2)
+  {
+    // the result
+    energy_transfer = (initial_energy - final_energy) / h;
+
+    // the uncertainty in the result
+    energy_transfer_err2 = (initial_energy_err2 + final_energy_err2) / h2;
+
+    return std::string("");
   }
 } // AxisManip
 #endif
