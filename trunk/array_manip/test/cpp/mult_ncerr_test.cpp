@@ -10,6 +10,8 @@ using namespace std;
 
 int main() 
 {
+  // SNS-FIXME
+
   int num_val = 20;
 
   //float
