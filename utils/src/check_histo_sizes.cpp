@@ -1,7 +1,7 @@
 /**
  * $Id$
  *
- * \file axis_manip/src/check_histo_sizes.cpp
+ * \file utils/src/check_histo_sizes.cpp
  */
 #include "check_histo_sizes.hpp"
 
