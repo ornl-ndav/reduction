@@ -36,6 +36,8 @@ void d_function_init_scatt_wavevector_to_scalar_Q(
 
 int main() 
 {
+  // SNS-FIXME
+
   int num_val = 20;
 
   //float
