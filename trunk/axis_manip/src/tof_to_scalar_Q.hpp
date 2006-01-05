@@ -39,8 +39,8 @@ namespace AxisManip
     warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, scatt_angle, 
 				    scatt_angle_err2, a, a2, sang, 
 				    term1, term2, term3);
-    if(warn.size() > 0)
-      retstr+=warn;
+    if (warn.size() > 0)
+      retstr += warn;
 
     size_t size_tof = tof.size();
     for (size_t i = 0; i < size_tof; ++i)
@@ -48,10 +48,12 @@ namespace AxisManip
 	warn = __tof_to_scalar_Q_dynamic(tof[i], tof_err2[i], pathlength, 
 					 Q[i], Q_err2[i], a, a2, sang, 
 					 term1, term2, term3);
+
+	if (warn.size() > 0)
+	  retstr += warn;
       }
 
-    if(warn.size() > 0)
-      retstr+=warn;
+
 
     return retstr;
   }
@@ -82,14 +84,14 @@ namespace AxisManip
     warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, scatt_angle, 
 				    scatt_angle_err2, a, a2, sang, 
 				    term1, term2, term3);
-    if(warn.size() > 0)
-      retstr+=warn;
+    if (warn.size() > 0)
+      retstr += warn;
     
     warn = __tof_to_scalar_Q_dynamic(tof, tof_err2, pathlength, Q, Q_err2, 
 				     a, a2, sang, term1, term2, term3);
 
-    if(warn.size() > 0)
-      retstr+=warn;
+    if (warn.size() > 0)
+      retstr += warn;
 
     return retstr;
   }
