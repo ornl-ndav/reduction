@@ -172,6 +172,7 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
+    // SNS-FIXME
     throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
   }
 
@@ -189,6 +190,7 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
+    // SNS-FIXME
     throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
   }
 
@@ -206,6 +208,7 @@ namespace AxisManip
                            NumT & Q_err2,
                            void *temp=NULL)
   {
+    // SNS-FIXME
     throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
   }
 } // AxisManip

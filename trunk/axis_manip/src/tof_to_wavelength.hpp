@@ -55,6 +55,7 @@ namespace AxisManip
 		    NumT & wavelength_err2,
 		    void *temp=NULL)
   {
+    // SNS-FIXME
     throw std::runtime_error("Function [tof_to_wavelength] not implemented");
   }
 } // AxisManip
