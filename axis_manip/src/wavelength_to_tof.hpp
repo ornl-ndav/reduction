@@ -33,7 +33,7 @@ namespace AxisManip
 
     warn = __wavelength_to_tof_static(pathlength, pathlength_err2,
 				      a, a2, b, c);
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
     
     size_t size_wavelength = wavelength.size();
@@ -43,7 +43,7 @@ namespace AxisManip
 					   pathlength, pathlength_err2,
 					   tof[i], tof_err2[i], a, a2, b, c);
 	
-	if (warn.size() > 0)
+	if (!warn.empty())
 	  retstr += warn;
       }
     
@@ -71,14 +71,14 @@ namespace AxisManip
 
     warn = __wavelength_to_tof_static(pathlength, pathlength_err2,
 				      a, a2, b, c);
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
     
     warn = __wavelength_to_tof_dynamic(wavelength, wavelength_err2,
 				       pathlength, pathlength_err2,
 				       tof, tof_err2, a, a2, b, c);
 
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
 
     return retstr;

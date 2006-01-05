@@ -27,7 +27,7 @@ namespace AxisManip
 
     warn = __wavelength_to_energy_static(a2);
 
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
 
     size_t sz = wavelength.size();
@@ -39,7 +39,7 @@ namespace AxisManip
 					      energy_err2[i], 
 					      a2);
 
-	if (warn.size() > 0)
+	if (!warn.empty())
 	  retstr += warn;
       }
 
@@ -62,13 +62,13 @@ namespace AxisManip
 
     warn = __wavelength_to_energy_static(a2);
 
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
 
     warn = __wavelength_to_energy_dynamic(wavelength,wavelength_err2,
 					  energy, energy_err2, a2);
 
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
 
     return retstr;

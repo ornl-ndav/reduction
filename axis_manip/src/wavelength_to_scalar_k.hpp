@@ -28,7 +28,7 @@ namespace AxisManip
 
     warn = __wavelength_to_scalar_k_static(a, a2);
     
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
  
     size_t size_wavelength = wavelength.size();
@@ -40,7 +40,7 @@ namespace AxisManip
 						wavevector_err2[i], 
 						a, a2);
 
-	if (warn.size() > 0)
+	if (!warn.empty())
 	  retstr += warn;
       }
 
@@ -64,14 +64,14 @@ namespace AxisManip
 
     warn = __wavelength_to_scalar_k_static(a, a2);
 
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
     
     warn = __wavelength_to_scalar_k_dynamic(wavelength, wavelength_err2, 
 					    wavevector, wavevector_err2, 
 					    a, a2);
 
-    if (warn.size() > 0)
+    if (!warn.empty())
       retstr += warn;
  
     return retstr;
