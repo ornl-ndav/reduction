@@ -29,6 +29,9 @@ namespace AxisManip
 				Nessi::Vector<NumT> & initial_wavelength_err2,
 				void *temp=NULL)
   {
+    // SNS-FIXME: need to check that input and output vectors are of
+    // the same length
+
     // define some parameters that are static across the array calculation
     NumT a;
     NumT a2;
