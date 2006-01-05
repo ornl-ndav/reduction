@@ -196,4 +196,5 @@ namespace AxisManip
     return std::string("");
   }
 } // AxisManip
-#endif
+
+#endif // _TOF_TO_INITIAL_WAVELENGTH_IGS_HPP

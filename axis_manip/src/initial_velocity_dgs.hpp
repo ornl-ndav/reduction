@@ -29,4 +29,5 @@ namespace AxisManip
     throw std::runtime_error("Function [initial_velocity_dgs] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _INITIAL_VELOCITY_DGS_HPP

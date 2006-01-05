@@ -25,4 +25,5 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
-#endif
+
+#endif // _REVERSE_ARRAY_CP_HPP

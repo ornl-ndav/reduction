@@ -35,4 +35,5 @@ namespace AxisManip
     throw std::runtime_error("Function [frequency_to_angular_frequency] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _FREQUENCY_TO_ANGULAR_FREQUENCY_HPP

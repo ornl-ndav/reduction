@@ -27,4 +27,5 @@ namespace AxisManip
     throw std::runtime_error("Function [time_offset_dgs] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _TIME_OFFSET_DGS_HPP

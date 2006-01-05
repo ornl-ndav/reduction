@@ -27,4 +27,5 @@ namespace AxisManip
     throw std::runtime_error("Function [rebin_axis_2D] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _REBIN_AXIS_2D_HPP

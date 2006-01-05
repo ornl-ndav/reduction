@@ -35,4 +35,5 @@ namespace AxisManip
     throw std::runtime_error("Function [velocity_to_energy] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _VELOCITY_TO_ENERGY

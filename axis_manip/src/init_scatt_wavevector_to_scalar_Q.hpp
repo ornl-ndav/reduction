@@ -325,4 +325,5 @@ namespace AxisManip
     return std::string("");
   }
 } // AxisManip
-#endif
+
+#endif // _INIT_SCATT_WAVEVECTOR_TO_SCALAR_Q_HPP

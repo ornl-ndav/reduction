@@ -35,4 +35,5 @@ namespace AxisManip
     throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _VELOCITY_TO_SCALAR_K_HPP
