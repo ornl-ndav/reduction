@@ -7,7 +7,7 @@
 #define _REBIN_AXIS_1D_HPP 1
 
 #include "rebinning.hpp"
-#include "check_histo.hpp"
+#include "size_checks.hpp"
 #include <stdexcept>
 
 namespace AxisManip
@@ -26,7 +26,7 @@ namespace AxisManip
     try
       {
 	std::string errstr("AxisManip::rebin_axis_1D: original histogram ");
-	check_histo_sizes(errstr, input, input_err2, axis_in);
+	Utils::check_histo_sizes(errstr, input, input_err2, axis_in);
       }
     catch(std::invalid_argument e)
       {
@@ -35,7 +35,7 @@ namespace AxisManip
     try
       {
 	std::string errstr("AxisManip::rebin_axis_1D: rebinned histogram ");
-	check_histo_sizes(errstr, output, output_err2, axis_out);
+	Utils::check_histo_sizes(errstr, output, output_err2, axis_out);
       }
     catch(std::invalid_argument e)
       {
