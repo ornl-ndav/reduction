@@ -21,17 +21,27 @@ namespace AxisManip
 			 void *temp=NULL)
   {
     std::string retstr("");
-    // VARIABLES WITH BAD NAMES: a, a2
+    std::string warn;
 
-    NumT a = 2 * static_cast<NumT>(PhysConst::PI);
-    NumT a2 = a * a;
+    NumT a;
+    NumT a2;
+
+    warn = __wavelength_to_scalar_k_static(a, a2);
     
+    if (warn.size() > 0)
+      retstr += warn;
+ 
     size_t size_wavelength = wavelength.size();
     for (size_t i = 0 ; i < size_wavelength ; ++i)
       {
-        wavevector[i] = a / wavelength[i];
-        wavevector_err2[i] = (a2 * wavelength_err2[i]) / 
-	  (wavelength[i] * wavelength[i] * wavelength[i] * wavelength[i]);
+	warn = __wavelength_to_scalar_k_dynamic(wavelength[i], 
+						wavelength_err2[i], 
+						wavevector[i], 
+						wavevector_err2[i], 
+						a, a2);
+
+	if (warn.size() > 0)
+	  retstr += warn;
       }
 
     return retstr;
@@ -47,16 +57,61 @@ namespace AxisManip
 			 void *temp=NULL)
   {
     std::string retstr("");
-    // VARIABLES WITH BAD NAMES: a, a2
+   std::string warn;
 
-    NumT a = 2 * static_cast<NumT>(PhysConst::PI);
-    NumT a2 = a * a;
+    NumT a;
+    NumT a2;
+
+    warn = __wavelength_to_scalar_k_static(a, a2);
+
+    if (warn.size() > 0)
+      retstr += warn;
     
+    warn = __wavelength_to_scalar_k_dynamic(wavelength, wavelength_err2, 
+					    wavevector, wavevector_err2, 
+					    a, a2);
+
+    if (warn.size() > 0)
+      retstr += warn;
+ 
+    return retstr;
+  }
+  
+  /**
+   * This is a PRIVATE helper function for wavelength_to_scalar_k that 
+   * calculates the parameters invariant across the array calculation.
+   */
+  template <typename NumT>
+  std::string
+  __wavelength_to_scalar_k_static(NumT & a,
+				  NumT & a2)
+  {
+    a = static_cast<NumT>(2. * PhysConst::PI);
+    a2 = a * a;
+
+    return std::string("");
+  }
+
+  /**
+   * This is a PRIVATE helper function for wavelength_to_scalar_k that 
+   * calculates the scalar_k and its uncertainty.
+   */
+  template <typename NumT>
+  std::string
+  __wavelength_to_scalar_k_dynamic(const NumT wavelength,
+				   const NumT wavelength_err2,
+				   NumT & wavevector,
+				   NumT & wavevector_err2,
+				   const NumT a,
+				   const NumT a2)
+  {
     wavevector = a / wavelength;
     wavevector_err2 = (a2 * wavelength_err2)
       / (wavelength * wavelength * wavelength * wavelength);
-
-    return retstr;
+    
+    return std::string("");
   }
+
 } // AxisManip
-#endif
+
+#endif // _WAVELENGTH_TO_SCALAR_K_HPP
