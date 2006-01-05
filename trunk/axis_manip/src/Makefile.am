@@ -9,8 +9,6 @@ libAxisManip_la_LDFLAGS = -version-info 1:0:0 \
               -L$(top_srcdir)/utils/src/.libs -lUtils
 
 libAxisManip_la_SOURCES = \
-	check_histo_sizes.hpp \
-	check_histo_sizes.cpp \
 	d_spacing_to_tof_focused_det.hpp \
 	d_spacing_to_tof_focused_det.cpp \
 	energy_transfer.hpp \
