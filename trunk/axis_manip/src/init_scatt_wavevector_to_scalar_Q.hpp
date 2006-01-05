@@ -7,6 +7,7 @@
 #define _INIT_SCATT_WAVEVECTOR_TO_SCALAR_Q_HPP 1
 
 #include "conversions.hpp"
+#include "size_checks.hpp"
 #include <cmath>
 #include <stdexcept>
 
@@ -26,7 +27,29 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
-    // SNS-FIXME: needs checks for vector sizes
+    // check that the values are of proper size
+    try
+      {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
+        Utils::check_sizes_square(errstr, initial_wavevector, final_wavevector,
+                                  Q);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
+        Utils::check_sizes_square(errstr, initial_wavevector_err2,
+                                  final_wavevector_err2, Q_err2);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
 
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
@@ -39,7 +62,7 @@ namespace AxisManip
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
                                                     sang);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -53,7 +76,7 @@ namespace AxisManip
                                                     final_wavevector_err2[i],
                                                     polar_angle_err2, a, pang,
                                                     sang, Q[i], Q_err2[i]);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
       }
 
@@ -74,7 +97,27 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
-    // SNS-FIXME: needs checks for vector sizes
+    // check that the values are of proper size
+    try
+      {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
+        Utils::check_sizes_square(errstr, final_wavevector, Q);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
+        Utils::check_sizes_square(errstr, final_wavevector_err2, Q_err2);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
 
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
@@ -87,7 +130,7 @@ namespace AxisManip
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
                                                     sang);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -101,7 +144,7 @@ namespace AxisManip
                                                     final_wavevector_err2[i],
                                                     polar_angle_err2, a, pang,
                                                     sang, Q[i], Q_err2[i]);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
       }
 
@@ -122,7 +165,27 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
-    // SNS-FIXME: needs checks for vector sizes
+    // check that the values are of proper size
+    try
+      {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
+        Utils::check_sizes_square(errstr, initial_wavevector, Q);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
+        Utils::check_sizes_square(errstr, initial_wavevector_err2, Q_err2);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
 
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
@@ -135,7 +198,7 @@ namespace AxisManip
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
                                                     sang);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -149,7 +212,7 @@ namespace AxisManip
                                                     final_wavevector_err2,
                                                     polar_angle_err2, a, pang,
                                                     sang, Q[i], Q_err2[i]);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
       }
 
@@ -170,8 +233,6 @@ namespace AxisManip
                            NumT & Q_err2,
                            void *temp=NULL)
   {
-    // SNS-FIXME: needs checks for vector sizes
-
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
 
@@ -183,7 +244,7 @@ namespace AxisManip
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
                                                     sang);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -193,7 +254,7 @@ namespace AxisManip
                                                      final_wavevector_err2,
                                                      polar_angle_err2, a, pang,
                                                      sang, Q, Q_err2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     return retstr;
