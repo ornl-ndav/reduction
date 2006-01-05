@@ -29,33 +29,44 @@ namespace AxisManip
 				Nessi::Vector<NumT> & initial_wavelength_err2,
 				void *temp=NULL)
   {
-    // VARIABLES NEED BETTER NAMES: a, a2, b, c, c2, d, d2, ls2
-    NumT a = static_cast<NumT>(PhysConst::H_OVER_MNEUT / dist_source_sample);
-    NumT a2 = a * a;
+    // define some parameters that are static across the array calculation
+    NumT a;
+    NumT a2;
+    NumT b;
+    NumT c2;
+    NumT d2;
+    NumT ls2;
 
-    NumT b = (dist_sample_detector * final_wavelength) / dist_source_sample;
-    b += (a * time_offset);
+    // some string parameters for dealing with warnings
+    std::string retstr("");
+    std::string warn;
 
-    NumT c = final_wavelength / dist_source_sample;
-    NumT c2 = c * c;
-    
-    NumT d = dist_sample_detector / dist_source_sample;
-    NumT d2 = d * d;
+    // calculate static paramters
+    warn=__tof_to_initial_wavelength_igs_static(final_wavelength, time_offset,
+                                                dist_source_sample,
+                                                dist_sample_detector, a, a2,
+                                                b, c2, d2, ls2);
+    if(warn.size()>0)
+      retstr+=warn;
 
-    NumT ls2 = dist_source_sample * dist_source_sample;
-
+    // fill the results array
     size_t size_tof = tof.size();
     for (size_t i = 0 ; i < size_tof ; ++i)
       {
-	initial_wavelength[i] = a * tof[i] - b;
-	initial_wavelength_err2[i] = a2 * (tof_err2[i] + time_offset_err2);
-	initial_wavelength_err2[i] += c2 * dist_sample_detector_err2;
-	initial_wavelength_err2[i] += d2 * final_wavelength_err2;
-	initial_wavelength_err2[i] += initial_wavelength[i] * 
-	  initial_wavelength[i] * dist_source_sample_err2 / ls2;
+        warn=__tof_to_initial_wavelength_igs_dynamic(
+                                                    tof[i], tof_err2[i],
+                                                    final_wavelength_err2,
+                                                    time_offset_err2,
+                                                    dist_source_sample_err2,
+                                                    dist_sample_detector_err2,
+                                                    initial_wavelength[i],
+                                                    initial_wavelength_err2[i],
+                                                    a, a2, b, c2, d2, ls2);
+        if(warn.size()>0)
+          retstr+=warn;
       }
 
-    std::string retstr("");
+    // send back all warnings
     return retstr;
   }
 
@@ -76,20 +87,110 @@ namespace AxisManip
 				NumT & initial_wavelength_err2,
 				void *temp=NULL)
   {
-    // FIXME: This needs to be done
-    throw std::runtime_error("Function [tof_to_initial_wavelength_igs] not implemented");
+    // define some parameters that are static across the array calculation
+    NumT a;
+    NumT a2;
+    NumT b;
+    NumT c2;
+    NumT d2;
+    NumT ls2;
+
+    // some string parameters for dealing with warnings
+    std::string retstr("");
+    std::string warn;
+
+    // calculate static paramters
+    warn=__tof_to_initial_wavelength_igs_static(final_wavelength, time_offset,
+                                                dist_source_sample,
+                                                dist_sample_detector, a, a2,
+                                                b, c2, d2, ls2);
+    if(warn.size()>0)
+      retstr+=warn;
+
+    // fill the results
+    warn=__tof_to_initial_wavelength_igs_dynamic(tof, tof_err2,
+                                                 final_wavelength_err2,
+                                                 time_offset_err2,
+                                                 dist_source_sample_err2,
+                                                 dist_sample_detector_err2,
+                                                 initial_wavelength,
+                                                 initial_wavelength_err2,
+                                                 a, a2, b, c2, d2, ls2);
+
+    if(warn.size()>0)
+      retstr+=warn;
+
+    // send back all warnings
+    return retstr;
   }
 
   /**
-   * This is a private helper function for tof_to_initial_wavelength_igs.
+   * This is a PRIVATE helper function for
+   * tof_to_initial_wavelength_igs that calculates parameters
+   * invariant across the array calculation.
    */
   template <typename NumT>
-  std::string __tof_to_initial_wavelength_igs(
-
-)
+  std::string __tof_to_initial_wavelength_igs_static(
+				const NumT final_wavelength,
+				const NumT time_offset,
+				const NumT dist_source_sample,
+				const NumT dist_sample_detector,
+                                NumT & a,
+                                NumT & a2,
+                                NumT & b,
+                                NumT & c2,
+                                NumT & d2,
+                                NumT & ls2)
   {
-    // FIXME: This helper function needs to be implemented
-    throw std::runtime_error("Function [__tof_to_initial_wavelength_igs] not implemented");
+    a = static_cast<NumT>(PhysConst::H_OVER_MNEUT) / dist_source_sample;
+    a2 = a * a;
+
+    b = (dist_sample_detector * final_wavelength) / dist_source_sample;
+    b += (a * time_offset);
+    c2 = final_wavelength / dist_source_sample;
+    c2 = c2 * c2;
+    
+    d2 = dist_sample_detector / dist_source_sample;
+    d2 = d2 * d2;
+
+    ls2 = dist_source_sample * dist_source_sample;
+
+    return std::string("");
+  }
+
+  /**
+   * This is a PRIVATE helper function for
+   * tof_to_initial_wavelength_igs that calculates the
+   * initial_wavelength and its uncertainty.
+   */
+  template <typename NumT>
+  std::string __tof_to_initial_wavelength_igs_dynamic(
+                                          const NumT tof,
+                                          const NumT tof_err2,
+                                          const NumT final_wavelength_err2,
+                                          const NumT time_offset_err2,
+                                          const NumT dist_source_sample_err2,
+                                          const NumT dist_sample_detector_err2,
+                                          NumT & initial_wavelength,
+                                          NumT & initial_wavelength_err2,
+                                          const NumT a,
+                                          const NumT a2,
+                                          const NumT b,
+                                          const NumT c2,
+                                          const NumT d2,
+                                          const NumT ls2)
+  {
+    // the result
+    initial_wavelength = a * tof - b;
+
+    // the uncertainty in the result
+    initial_wavelength_err2 = a2 * (tof_err2 + time_offset_err2);
+    initial_wavelength_err2 += c2 * dist_sample_detector_err2;
+    initial_wavelength_err2 += d2 * final_wavelength_err2;
+    initial_wavelength_err2 += initial_wavelength * 
+      initial_wavelength * dist_source_sample_err2 / ls2;
+
+    return std::string("");
   }
 } // AxisManip
 #endif
