@@ -97,6 +97,7 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL)
   {
+    // SNS-FIXME
     throw std::runtime_error("Function [energy_transfer] not implemented");
   }
 
@@ -110,6 +111,7 @@ namespace AxisManip
 		    NumT & energy_transfer_err2,
 		    void *temp=NULL)
   {
+    // SNS-FIXME
     throw std::runtime_error("Function [energy_transfer] not implemented");
   }
 } // AxisManip
