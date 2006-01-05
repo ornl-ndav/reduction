@@ -13,29 +13,29 @@ namespace Utils
 {
   template <typename NumT>
   void check_sizes_square(std::string & errstr, 
-			  const Nessi::Vector<NumT> & input1, 
-			  const Nessi::Vector<NumT> & input2, 
-			  const Nessi::Vector<NumT> & output)
+			  const Nessi::Vector<NumT> & array1, 
+			  const Nessi::Vector<NumT> & array2, 
+			  const Nessi::Vector<NumT> & array3)
   {
-    size_t szi1 = input1.size();
-    size_t szi2 = input2.size();
-    size_t szo = output.size();
+    size_t sz1 = array1.size();
+    size_t sz2 = array2.size();
+    size_t sz3 = array3.size();
 
-    if (szi1 != szi2)
+    if (sz1 != sz2)
       {
-        errstr += "input1 and input2 are not the same size";
+        errstr += "array1 not the same size as array2";
         throw std::invalid_argument(errstr);
       }
 
-    if (szi1 != szo)
+    if (sz1 != sz3)
       {
-        errstr += "output not the same size as input1";
+        errstr += "array1 not the same size as array3";
         throw std::invalid_argument(errstr);
       }
 
-    if (szi2 != szo)
+    if (sz2 != sz3)
       {
-        errstr += "output not the same size as input2";
+        errstr += "array2 not the same size as array3";
         throw std::invalid_argument(errstr);
       }
 
@@ -44,15 +44,15 @@ namespace Utils
 
   template <typename NumT>
   void check_sizes_square(std::string & errstr, 
-			  const Nessi::Vector<NumT> & input,
-			  const Nessi::Vector<NumT> & output)
+			  const Nessi::Vector<NumT> & array1,
+			  const Nessi::Vector<NumT> & array2)
   {
-    size_t szi = input.size();
-    size_t szo = output.size();
+    size_t sz1 = array1.size();
+    size_t sz2 = array2.size();
 
-    if (szi != szo)
+    if (sz1 != sz2)
       {
-        errstr += "output not the same size as input";
+        errstr += "array1 not the same size as array2";
         throw std::invalid_argument(errstr);
       }
 
