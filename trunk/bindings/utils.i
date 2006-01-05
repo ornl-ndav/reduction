@@ -21,6 +21,11 @@
 %template(check_sizes_square_i) Utils::check_sizes_square<int>;
 %template(check_sizes_square_u) Utils::check_sizes_square<unsigned>;
 
+%template(check_histo_sizes_f) Utils::check_histo_sizes<float>;
+%template(check_histo_sizes_d) Utils::check_histo_sizes<double>;
+%template(check_histo_sizes_i) Utils::check_histo_sizes<int>;
+%template(check_histo_sizes_u) Utils::check_histo_sizes<unsigned>;
+
 // Instantiate templates
 
 %template(peak_integration_f) Utils::peak_integration<float>;
