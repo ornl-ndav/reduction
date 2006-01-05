@@ -51,4 +51,5 @@ namespace AxisManip
     throw std::runtime_error("Function [tof_to_initial_velocity_igs] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _TOF_TO_INITIAL_VELOCITY_IGS_HPP

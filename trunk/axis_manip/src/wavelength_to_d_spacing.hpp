@@ -39,4 +39,5 @@ namespace AxisManip
     throw std::runtime_error("Function [wavelength_to_d_spacing] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _WAVELENGTH_TO_D_SPACING_HPP

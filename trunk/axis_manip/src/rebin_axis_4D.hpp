@@ -31,4 +31,5 @@ namespace AxisManip
     throw std::runtime_error("Function [rebin_axis_4D] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _REBIN_AXIS_4D_HPP

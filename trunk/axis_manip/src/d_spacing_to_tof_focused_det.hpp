@@ -42,4 +42,5 @@ namespace AxisManip
     throw std::runtime_error("Function [d_spacing_to_tof_focused_det] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _D_SPACING_TO_TOF_FOCUSED_DET_HPP

@@ -288,4 +288,5 @@ namespace AxisManip
     return std::string("");
   }
 } // AxisManip
-#endif
+
+#endif // _ENERGY_TRANSFER_HPP

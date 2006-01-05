@@ -23,4 +23,5 @@ namespace AxisManip
     throw std::runtime_error("Function [final_velocity_igs] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _FINAL_VELOCITY_IGS_HPP

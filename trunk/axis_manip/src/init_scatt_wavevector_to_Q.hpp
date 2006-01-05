@@ -99,4 +99,5 @@ namespace AxisManip
     throw std::runtime_error("Function [init_scatt_wavevector_to_Q] not implemented");
  }
 } // AxisManip
-#endif
+
+#endif // _INIT_SCATT_WAVEVECTOR_TO_Q_HPP

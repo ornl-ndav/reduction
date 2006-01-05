@@ -51,4 +51,5 @@ namespace AxisManip
     throw std::runtime_error("Function [time_to_final_velocity_dgs] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _TOF_TO_FINAL_VELOCITY_DGS_HPP

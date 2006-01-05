@@ -84,4 +84,5 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
-#endif
+
+#endif // _REBIN_AXIS_1D_HPP

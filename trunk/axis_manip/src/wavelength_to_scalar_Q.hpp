@@ -39,4 +39,5 @@ namespace AxisManip
     throw std::runtime_error("Function [wavelength_to_scalar_Q] not implemented");
   }
 } // AxisManip
-#endif
+
+#endif // _WAVELENGTH_TO_SCALAR_Q_HPP

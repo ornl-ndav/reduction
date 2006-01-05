@@ -152,4 +152,5 @@ namespace AxisManip
     return std::string("");
   }
 } // AxisManip
-#endif
+
+#endif // _TOF_TO_WAVELENGTH_HPP
