@@ -366,7 +366,7 @@ namespace ArrayManip
               Nessi::Vector<NumT> & array_out_err2,
               void *temp=NULL);
   
-  // FIXME: need something that does scalar-vector
+  // SNS-FIXME: need something that does scalar-vector
 
   /**
    * \brief This function is described in section 3.3.
