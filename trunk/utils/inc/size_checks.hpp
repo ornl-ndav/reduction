@@ -49,6 +49,29 @@ namespace Utils
     void check_sizes_square(std::string & errstr, 
 			    const Nessi::Vector<NumT> & array1, 
 			    const Nessi::Vector<NumT> & array2);
+
+  /**
+   * \brief This function checks data, error2 and axis vectors for 
+   * consistent sizes.
+   *
+   * This function checks the sizes of data, error2 and an axis vector for 
+   * the correct sizes in terms of a histogram model. The data and error2 
+   * vectors should be one element shorter than the axis vector. If the 
+   * vectors have inconsistent sizes, an exception is thrown.
+   *
+   * \param errstr (INPUT/OUTPUT) is a string containing the calling function. 
+   * errstr is also used as a thrown exception if the vectors are not of 
+   * consistent sizes.
+   * \param input (INPUT) is the histogram data
+   * \param input_err2 (INPUT) is the histogram uncertainty squared
+   * \param axis (INPUT) is the histogram axis
+   *
+   */
+  template <typename NumT>
+  void check_histo_sizes(std::string & errstr,
+                         const Nessi::Vector<NumT> & input,
+                         const Nessi::Vector<NumT> & input_err2,
+                         const Nessi::Vector<NumT> & axis);
 } // Utils
 
 #endif // _SIZE_CHECKS_HPP
