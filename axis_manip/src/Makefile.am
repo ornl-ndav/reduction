@@ -1,10 +1,12 @@
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi
+AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi \
+              -I$(top_srcdir)/array_manip/inc
 
 lib_LTLIBRARIES = libAxisManip.la
 
-libAxisManip_la_LDFLAGS = -version-info 1:0:0
+libAxisManip_la_LDFLAGS = -version-info 1:0:0 \
+              -L$(top_srcdir)/array_manip/src/.libs -lArrayManip
 
 libAxisManip_la_SOURCES = \
 	check_histo_sizes.hpp \
