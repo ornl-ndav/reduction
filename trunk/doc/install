@@ -10,7 +10,7 @@
 #
 ###############################################################################
 
-# FIXME: Put in error check on argument number
+# SNS-FIXME: Put in error check on argument number
 
 if [[ -d html && -d latex ]]; then
   echo "mkdir -p $1"
