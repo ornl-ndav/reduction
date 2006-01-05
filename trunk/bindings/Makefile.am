@@ -40,8 +40,9 @@ if HAVE_PYTHON
 LIBPYARRAYMANIP=libPyArrayManip.la
 libPyArrayManip_la_SOURCES=$(ARRAYMANIPPYTHONWRAP) 
 libPyArrayManip_la_CPPFLAGS= $(PYTHON_INC) $(ARRAY_MANIP_INC) $(NESSI_INC) $(CFLAGS) 
-libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(ARRAY_MANIP_VERSION) $(ARRAY_MANIP_SRC)
-libPyArrayManip_la_LIBS=$(ARRAY_MANIP_LIB)
+libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(ARRAY_MANIP_VERSION) \
+			$(ARRAY_MANIP_SRC) $(UTILS_SRC)
+libPyArrayManip_la_LIBS=$(ARRAY_MANIP_LIB) $(UTILS_LIBS)
 ARRAYMANIPPYTHONWRAP=array_manip_wrap.cpp
 endif
 array_manip_wrap.cpp: array_manip.i 
@@ -54,8 +55,9 @@ if HAVE_PYTHON
 LIBPYAXISMANIP=libPyAxisManip.la
 libPyAxisManip_la_SOURCES=$(AXISMANIPPYTHONWRAP) 
 libPyAxisManip_la_CPPFLAGS= $(PYTHON_INC) $(AXIS_MANIP_INC) $(NESSI_INC) $(CFLAGS) 
-libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(AXIS_MANIP_VERSION) $(AXIS_MANIP_SRC)
-libPyAxisManip_la_LIBS=$(AXIS_MANIP_LIB)
+libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(AXIS_MANIP_VERSION) \
+			$(AXIS_MANIP_SRC) $(UTILS_SRC)
+libPyAxisManip_la_LIBS=$(AXIS_MANIP_LIB) $(UTILS_LIB)
 AXISMANIPPYTHONWRAP=axis_manip_wrap.cpp
 endif
 axis_manip_wrap.cpp: axis_manip.i 
