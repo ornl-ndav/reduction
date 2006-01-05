@@ -7,6 +7,7 @@
 #define _ENERGY_TRANSFER_HPP 1
 
 #include "conversions.hpp"
+#include "check_inputs.hpp"
 #include "constants.hpp"
 #include <stdexcept>
 
@@ -23,54 +24,45 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    size_t size_initial_energy = initial_energy.size();
-    size_t size_final_energy = final_energy.size();
+    // SNS-FIXME: move to using helper function
 
-    // SNS-FIXME
-    // Need a zero length check for all vectors
-
-    NumT h2 = static_cast<NumT>(PhysConst::H) * 
-      static_cast<NumT>(PhysConst::H);
-
-    if (size_initial_energy == 1 && size_final_energy != 1)
+    // check that the values are of proper size
+    try
       {
-	for (size_t i = 0; i < size_final_energy ; ++i )
-	  {
-	    energy_transfer[i] = (initial_energy[0] - final_energy[i])
-              / static_cast<NumT>(PhysConst::H);
-	    energy_transfer_err2[i]
-              = (initial_energy_err2[0] + final_energy_err2[i]) / h2;
-	  }
+        std::string errstr("AxisManip::energy_transfer: data ");
+        ArrayManip::check_sizes_2in1out(errstr, initial_energy,
+                                        final_energy, energy_transfer);
       }
-    else if (size_initial_energy != 1 && size_final_energy == 1)
+    catch(std::invalid_argument e)
       {
-	for (size_t i = 0 ; i < size_initial_energy ; ++i)
-	  {
-	    energy_transfer[i] = (initial_energy[i] - final_energy[0])
-	      / static_cast<NumT>(PhysConst::H);
-	    energy_transfer_err2[i]
-              = (initial_energy_err2[i] + final_energy_err2[0]) / h2;
-	  }
-      }
-    else if (size_initial_energy == 1 && size_final_energy == 1)
-      {
-	energy_transfer[0] = (initial_energy[0] - final_energy[0]) / 
-	  static_cast<NumT>(PhysConst::H);
-	energy_transfer_err2[0]
-          = (initial_energy_err2[0] + final_energy_err2[0]) / h2;
-      }
-    else
-      {
-	for (size_t i = 0; i < size_initial_energy; ++i)
-	  {
-	    energy_transfer[i] = (initial_energy[i] - final_energy[i])
-	      / static_cast<NumT>(PhysConst::H);
-	    energy_transfer_err2[i]
-              = (initial_energy_err2[i] + final_energy_err2[i]) / h2;
-	  }
+        throw e;
       }
 
-    std::string retstr("");
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("AxisManip::energy_transfer: error ");
+        ArrayManip::check_sizes_2in1out(errstr, initial_energy_err2,
+                                        final_energy_err2,
+                                        energy_transfer_err2);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
+
+    std::string retstr(""); // the warning strings
+
+    // do the calculation
+    size_t size_energy = initial_energy.size();
+    for (size_t i = 0; i < size_energy ; ++i )
+      {
+        energy_transfer[i] = (initial_energy[i] - final_energy[i])
+          / static_cast<NumT>(PhysConst::H);
+        energy_transfer_err2[i]
+          = (initial_energy_err2[i] + final_energy_err2[i]) / h2;
+      }
+
     return retstr;
   }
 
@@ -84,7 +76,22 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    throw std::runtime_error("Function [energy_transfer] not implemented");
+    // SNS-FIXME: check for vector sizes
+    // SNS-FIXME: move to using helper function
+
+    std::string retstr(""); // the warning strings
+
+    // do the calculation
+    size_t size_energy = initial_energy.size();
+    for (size_t i = 0; i < size_energy ; ++i )
+      {
+        energy_transfer[i] = (initial_energy[i] - final_energy)
+          / static_cast<NumT>(PhysConst::H);
+        energy_transfer_err2[i]
+          = (initial_energy_err2[i] + final_energy_err2) / h2;
+      }
+
+    return retstr;
   }
 
   template <typename NumT>
@@ -97,8 +104,22 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    // SNS-FIXME
-    throw std::runtime_error("Function [energy_transfer] not implemented");
+    // SNS-FIXME: check for vector sizes
+    // SNS-FIXME: move to using helper function
+
+    std::string retstr(""); // the warning strings
+
+    // do the calculation
+    size_t size_energy = final_energy.size();
+    for (size_t i = 0; i < size_energy ; ++i )
+      {
+        energy_transfer[i] = (initial_energy - final_energy[i])
+          / static_cast<NumT>(PhysConst::H);
+        energy_transfer_err2[i]
+          = (initial_energy_err2 + final_energy_err2[i]) / h2;
+      }
+
+    return retstr;
   }
 
   template <typename NumT>
@@ -111,8 +132,22 @@ namespace AxisManip
 		    NumT & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    // SNS-FIXME
-    throw std::runtime_error("Function [energy_transfer] not implemented");
+    // SNS-FIXME: check for vector sizes
+    // SNS-FIXME: move to using helper function
+
+    std::string retstr(""); // the warning strings
+
+    // do the calculation
+    size_t size_energy = final_energy.size();
+    for (size_t i = 0; i < size_energy ; ++i )
+      {
+        energy_transfer[i] = (initial_energy - final_energy[i])
+          / static_cast<NumT>(PhysConst::H);
+        energy_transfer_err2[i]
+          = (initial_energy_err2 + final_energy_err2[i]) / h2;
+      }
+
+    return retstr;
   }
 } // AxisManip
 #endif
