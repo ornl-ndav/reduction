@@ -57,8 +57,8 @@ namespace AxisManip
 	const NumT axis_out_lo = axis_out[inew];
 	const NumT axis_out_hi = axis_out[inew + 1];
 
-	// FIXME These comparison statements don't make any sense for floating
-	// point numbers
+	// SNS-FIXME These comparison statements don't make any sense for 
+	// floating point numbers
 	if (axis_out_hi <= axis_in_lo)
 	  inew++;
 	else if (axis_in_hi <= axis_out_lo)
