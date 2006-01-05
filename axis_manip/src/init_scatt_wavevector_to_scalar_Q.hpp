@@ -26,135 +26,37 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
-    size_t size_init_wavevector = initial_wavevector.size();
-    size_t size_final_wavevector = final_wavevector.size();
+    // SNS-FIXME: needs checks for vector sizes
+
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
+
+    // allocate local variables
+    NumT a;
+    NumT pang;
+    NumT sang;
     
-    // SNS-FIXME
-    // Need a zero length check for all vectors
-    
-    NumT a = static_cast<NumT>(2 * std::cos(static_cast<double>(polar_angle)));
-    NumT pang = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
-    NumT sang = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
+    // fill the local variables
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
+                                                    sang);
+    if(warn.size()>0)
+      retstr+=warn;
 
-    if (size_init_wavevector == 1 && size_final_wavevector != 1)
+    // do the calculation
+    size_t size_wavevector=initial_wavevector.size();
+    for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
-	NumT ki2 = initial_wavevector[0] * initial_wavevector[0];
-
-	for (size_t i = 0 ; i < size_final_wavevector ; ++i)
-	  {
-	    NumT kf2 = final_wavevector[i] * final_wavevector[i];
-	    NumT akikf = a * initial_wavevector[0] * final_wavevector[i];
-	    
-	    Q[i] = static_cast<NumT>
-	      (std::sqrt(static_cast<double>(ki2 + kf2 - akikf)));
-
-	    NumT termi = initial_wavevector[0] - (final_wavevector[i] * pang);
-	    NumT termi2 = termi * termi;
-
-	    NumT termf = final_wavevector[i] - (initial_wavevector[0] * pang);
-	    NumT termf2 = termf * termf;
-	      
-	    NumT polar = final_wavevector[i] * initial_wavevector[0];
-	    polar = polar * sang;
-	    NumT polar2 = polar * polar;
-
-	    NumT front = static_cast<NumT>(1) / (Q[i] * Q[i]);
-
-	    Q_err2[i] = final_wavevector_err2[i] * termf2;
-	    Q_err2[i] += initial_wavevector_err2[0] * termi2;
-	    Q_err2[i] += (polar_angle_err2 * polar2);
-	    Q_err2[i] *= front;
-	  }
-      }
-    else if (size_init_wavevector != 1 && size_final_wavevector == 1)
-      {
-	NumT kf2 = final_wavevector[0] * final_wavevector[0];
-
-	for (size_t i = 0 ; i < size_init_wavevector ; ++i)
-	  {
-	    NumT ki2 = initial_wavevector[i] * initial_wavevector[i];
-	    NumT akikf = a * initial_wavevector[i] * final_wavevector[0];
-	    
-	    Q[i] = static_cast<NumT>
-	      (std::sqrt(static_cast<double>(ki2 + kf2 - akikf)));
-
-	    NumT termi = initial_wavevector[i] - (final_wavevector[0] * pang);
-	    NumT termi2 = termi * termi;
-
-	    NumT termf = final_wavevector[0] - (initial_wavevector[i] * pang);
-	    NumT termf2 = termf * termf;
-	      
-	    NumT polar = final_wavevector[0] * initial_wavevector[i];
-	    polar = polar * sang;
-	    NumT polar2 = polar * polar;
-
-	    NumT front = static_cast<NumT>(1) / (Q[i] * Q[i]);
-
-	    Q_err2[i] = final_wavevector_err2[0] * termf2;
-	    Q_err2[i] += initial_wavevector_err2[i] * termi2;
-	    Q_err2[i] += (polar_angle_err2 * polar2);
-	    Q_err2[i] *= front;
-	  }
-      }
-    else if (size_init_wavevector == 1 && size_final_wavevector == 1)
-      {
-	NumT ki2 = initial_wavevector[0] * initial_wavevector[0];
-	NumT kf2 = final_wavevector[0] * final_wavevector[0];
-	NumT akikf = a * initial_wavevector[0] * final_wavevector[0];
-	
-	Q[0] = static_cast<NumT>(std::sqrt(static_cast<double>(ki2 + 
-								    kf2 - 
-								    akikf)));
-	
-	NumT termi = initial_wavevector[0] - (final_wavevector[0] * pang);
-	NumT termi2 = termi * termi;
-	
-	NumT termf = final_wavevector[0] - (initial_wavevector[0] * pang);
-	NumT termf2 = termf * termf;
-	
-	NumT polar = final_wavevector[0] * initial_wavevector[0];
-	polar = polar * sang;
-	NumT polar2 = polar * polar;
-	
-	NumT front = static_cast<NumT>(1) / (Q[0] * Q[0]);
-	
-	Q_err2[0] = final_wavevector_err2[0] * termf2;
-	Q_err2[0] += initial_wavevector_err2[0] * termi2;
-	Q_err2[0] += (polar_angle_err2 * polar2);
-	Q_err2[0] *= front;
-      }
-    else
-      {
-	for (size_t i = 0 ; i < size_init_wavevector ; ++i)
-	  {
-	    NumT ki2 = initial_wavevector[i] * initial_wavevector[i];
-	    NumT kf2 = final_wavevector[i] * final_wavevector[i];
-	    NumT akikf = a * initial_wavevector[i] * final_wavevector[i];
-	
-	    Q[i] = static_cast<NumT>
-	      (std::sqrt(static_cast<double>(ki2 + kf2 - akikf)));
-
-	    NumT termi = initial_wavevector[i] - (final_wavevector[i] * pang);
-	    NumT termi2 = termi * termi;
-
-	    NumT termf = final_wavevector[i] - (initial_wavevector[i] * pang);
-	    NumT termf2 = termf * termf;
-	      
-	    NumT polar = final_wavevector[i] * initial_wavevector[i];
-	    polar = polar * sang;
-	    NumT polar2 = polar * polar;
-	    
-	    NumT front = static_cast<NumT>(1) / (Q[i] * Q[i]);
-	    
-	    Q_err2[i] = final_wavevector_err2[i] * termf2;
-	    Q_err2[i] += initial_wavevector_err2[i] * termi2;
-	    Q_err2[i] += (polar_angle_err2 * polar2);
-	    Q_err2[i] *= front;
-
-	  }
+        warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
+                                                    initial_wavevector[i],
+                                                    initial_wavevector_err2[i],
+                                                    final_wavevector[i],
+                                                    final_wavevector_err2[i],
+                                                    polar_angle_err2, a, pang,
+                                                    sang, Q[i], Q_err2[i]);
+        if(warn.size()>0)
+          retstr+=warn;
       }
 
-    std::string retstr("");
     return retstr;
   }
 
@@ -172,8 +74,38 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
-    // SNS-FIXME
-    throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
+    // SNS-FIXME: needs checks for vector sizes
+
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
+
+    // allocate local variables
+    NumT a;
+    NumT pang;
+    NumT sang;
+    
+    // fill the local variables
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
+                                                    sang);
+    if(warn.size()>0)
+      retstr+=warn;
+
+    // do the calculation
+    size_t size_wavevector=final_wavevector.size();
+    for (size_t i = 0 ; i < size_wavevector ; ++i)
+      {
+        warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
+                                                    initial_wavevector,
+                                                    initial_wavevector_err2,
+                                                    final_wavevector[i],
+                                                    final_wavevector_err2[i],
+                                                    polar_angle_err2, a, pang,
+                                                    sang, Q[i], Q_err2[i]);
+        if(warn.size()>0)
+          retstr+=warn;
+      }
+
+    return retstr;
   }
 
   // 3.33
@@ -190,8 +122,38 @@ namespace AxisManip
                            Nessi::Vector<NumT> & Q_err2,
                            void *temp=NULL)
   {
-    // SNS-FIXME
-    throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
+    // SNS-FIXME: needs checks for vector sizes
+
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
+
+    // allocate local variables
+    NumT a;
+    NumT pang;
+    NumT sang;
+    
+    // fill the local variables
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
+                                                    sang);
+    if(warn.size()>0)
+      retstr+=warn;
+
+    // do the calculation
+    size_t size_wavevector=initial_wavevector.size();
+    for (size_t i = 0 ; i < size_wavevector ; ++i)
+      {
+        warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
+                                                    initial_wavevector[i],
+                                                    initial_wavevector_err2[i],
+                                                    final_wavevector,
+                                                    final_wavevector_err2,
+                                                    polar_angle_err2, a, pang,
+                                                    sang, Q[i], Q_err2[i]);
+        if(warn.size()>0)
+          retstr+=warn;
+      }
+
+    return retstr;
   }
 
   // 3.33
@@ -208,8 +170,98 @@ namespace AxisManip
                            NumT & Q_err2,
                            void *temp=NULL)
   {
-    // SNS-FIXME
-    throw std::runtime_error("Function [init_scatt_wavevector_to_scalar_Q] not implemented");
+    // SNS-FIXME: needs checks for vector sizes
+
+    std::string retstr(""); // the warning string
+    std::string warn;       // the temporary warning string
+
+    // allocate local variables
+    NumT a;
+    NumT pang;
+    NumT sang;
+    
+    // fill the local variables
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
+                                                    sang);
+    if(warn.size()>0)
+      retstr+=warn;
+
+    // do the calculation
+    warn=__init_scatt_wavevector_to_scalar_Q_dynamic(initial_wavevector,
+                                                     initial_wavevector_err2,
+                                                     final_wavevector,
+                                                     final_wavevector_err2,
+                                                     polar_angle_err2, a, pang,
+                                                     sang, Q, Q_err2);
+    if(warn.size()>0)
+      retstr+=warn;
+
+    return retstr;
+  }
+
+  /**
+   * This is a PRIVATE helper function for
+   * init_scatt_wavevector_to_scalar_Q that calculates parameters
+   * invariant across array calculation.
+   */
+  template <typename NumT>
+  std::string
+  __init_scatt_wavevector_to_scalar_Q_static(const NumT polar_angle,
+                                             NumT & a,
+                                             NumT & pang,
+                                             NumT & sang)
+  {
+    a = static_cast<NumT>(2 * std::cos(static_cast<double>(polar_angle)));
+    pang = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
+    sang = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
+    
+    return std::string("");
+  }
+
+  /**
+   * This is a PRIVATE helper function for
+   * init_scatt_wavevector_to_scalar_Q that calculates the scalar
+   * momentum transfer and its uncertainty
+   */
+  template <typename NumT>
+  std::string
+  __init_scatt_wavevector_to_scalar_Q_dynamic(
+                                            const NumT initial_wavevector,
+                                            const NumT initial_wavevector_err2,
+                                            const NumT final_wavevector,
+                                            const NumT final_wavevector_err2,
+                                            const NumT polar_angle_err2,
+                                            const NumT a,
+                                            const NumT pang,
+                                            const NumT sang,
+                                            NumT & Q,
+                                            NumT & Q_err2)
+  {
+    NumT ki2 = initial_wavevector * initial_wavevector;
+    NumT kf2 = final_wavevector * final_wavevector;
+    NumT akikf = a * initial_wavevector * final_wavevector;
+
+    Q = static_cast<NumT>
+      (std::sqrt(static_cast<double>(ki2 + kf2 - akikf)));
+
+    NumT termi = initial_wavevector - (final_wavevector * pang);
+    NumT termi2 = termi * termi;
+
+    NumT termf = final_wavevector - (initial_wavevector * pang);
+    NumT termf2 = termf * termf;
+
+    NumT polar = final_wavevector * initial_wavevector;
+    polar = polar * sang;
+    NumT polar2 = polar * polar;
+
+    NumT front = static_cast<NumT>(1) / (Q * Q);
+
+    Q_err2 = final_wavevector_err2 * termf2;
+    Q_err2 += initial_wavevector_err2 * termi2;
+    Q_err2 += (polar_angle_err2 * polar2);
+    Q_err2 *= front;
+
+    return std::string("");
   }
 } // AxisManip
 #endif
