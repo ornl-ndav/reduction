@@ -5,12 +5,21 @@
 %module utils_bind
 %{
 #include "utils.hpp"
+#include "size_checks.hpp"
 %}
 
 %include "libexcept.i"
 
 // Parse the original header file
 %include "utils.hpp"
+%include "size_checks.hpp"
+
+// Instantiate templates for size checks
+
+%template(check_sizes_square_f) Utils::check_sizes_square<float>;
+%template(check_sizes_square_d) Utils::check_sizes_square<double>;
+%template(check_sizes_square_i) Utils::check_sizes_square<int>;
+%template(check_sizes_square_u) Utils::check_sizes_square<unsigned>;
 
 // Instantiate templates
 
