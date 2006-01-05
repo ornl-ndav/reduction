@@ -24,24 +24,27 @@ namespace AxisManip
 		    void *temp=NULL)
   {
     std::string retstr("");
+    std::string warn;
 
-    // VARIABLES WITH BAD NAMES: a, a2, b, c
+    NumT a;
+    NumT a2;
+    NumT b;
+    NumT c;
 
-    NumT a = static_cast<NumT>(1. / (PhysConst::H_OVER_MNEUT));
-    NumT a2 = a * a;
-    a = a * pathlength;
-    
-    NumT b = pathlength * pathlength;
-    
-    NumT c = pathlength_err2 * pathlength_err2;
+    warn = __wavelength_to_tof_static(pathlength, pathlength_err2,
+				      a, a2, b, c);
+    if (warn.size() > 0)
+      retstr += warn;
     
     size_t size_wavelength = wavelength.size();
     for (size_t i = 0; i < size_wavelength ; ++i)
       {
-	tof[i] = a * wavelength[i];
-	tof_err2[i] = wavelength[i] * wavelength[i] * c;
-	tof_err2[i] += b * (wavelength_err2[i] * wavelength_err2[i]);
-        tof_err2[i] *= a2;
+	warn = __wavelength_to_tof_dynamic(wavelength[i], wavelength_err2[i],
+					   pathlength, pathlength_err2,
+					   tof[i], tof_err2[i], a, a2, b, c);
+	
+	if (warn.size() > 0)
+	  retstr += warn;
       }
     
     return retstr;
@@ -59,23 +62,78 @@ namespace AxisManip
 		    void *temp=NULL)
   {
     std::string retstr("");
+    std::string warn;
 
-    // VARIABLES WITH BAD NAMES: a, a2, b, c
+    NumT a;
+    NumT a2;
+    NumT b;
+    NumT c;
 
-    NumT a = static_cast<NumT>(1. / (PhysConst::H_OVER_MNEUT));
-    NumT a2 = a * a;
-    a = a * pathlength;
+    warn = __wavelength_to_tof_static(pathlength, pathlength_err2,
+				      a, a2, b, c);
+    if (warn.size() > 0)
+      retstr += warn;
     
-    NumT b = pathlength * pathlength;
+    warn = __wavelength_to_tof_dynamic(wavelength, wavelength_err2,
+				       pathlength, pathlength_err2,
+				       tof, tof_err2, a, a2, b, c);
+
+    if (warn.size() > 0)
+      retstr += warn;
+
+    return retstr;
+  }
+
+  /**
+   * This is a PRIVATE helper function for wavelength_to_tof that calculates 
+   * the parameters invariant across the array calculation.
+   */
+  template <typename NumT>
+  std::string
+  __wavelength_to_tof_static(const NumT pathlength,
+			     const NumT pathlength_err2,
+			     NumT & a,
+			     NumT & a2,
+			     NumT & b,
+			     NumT & c)
+  {
+    a = static_cast<NumT>(1. / (PhysConst::H_OVER_MNEUT));
+    a *= pathlength;
+
+    a2 = a * a;
+
+    b = pathlength * pathlength;
     
-    NumT c = pathlength_err2 * pathlength_err2;
-    
+    c = pathlength_err2 * pathlength_err2;
+
+    return std::string("");
+  }
+
+ /**
+   * This is a PRIVATE helper function for wavelength_to_tof that calculates 
+   * tof and its uncertainty.
+   */
+  template <typename NumT>
+  std::string
+  __wavelength_to_tof_dynamic(const NumT wavelength,
+			      const NumT wavelength_err2,
+			      const NumT pathlength,
+			      const NumT pathlength_err2,
+			      NumT tof,
+			      NumT tof_err2,
+			      const NumT a,
+			      const NumT a2,
+			      const NumT b,
+			      const NumT c)
+  {
     tof = a * wavelength;
     tof_err2 = wavelength * wavelength * c;
     tof_err2 += b * (wavelength_err2 * wavelength_err2);
     tof_err2 *= a2;
     
-    return retstr;
+    return std::string("");
   }
+
 } // AxisManip
-#endif
+
+#endif // _WAVELENGTH_TO_TOF_HPP
