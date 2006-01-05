@@ -76,7 +76,20 @@ namespace AxisManip
 				NumT & initial_wavelength_err2,
 				void *temp=NULL)
   {
+    // FIXME: This needs to be done
     throw std::runtime_error("Function [tof_to_initial_wavelength_igs] not implemented");
+  }
+
+  /**
+   * This is a private helper function for tof_to_initial_wavelength_igs.
+   */
+  template <typename NumT>
+  std::string __tof_to_initial_wavelength_igs(
+
+)
+  {
+    // FIXME: This helper function needs to be implemented
+    throw std::runtime_error("Function [__tof_to_initial_wavelength_igs] not implemented");
   }
 } // AxisManip
 #endif
