@@ -249,6 +249,10 @@ namespace AxisManip
     return retstr;
   }
 
+  /**
+   * This is a PRIVATE helper function for energy_transfer that
+   * calculates parameters invariant across array calculation.
+   */
   template <typename NumT>
     std::string
     __energy_transfer_static(NumT & h,
@@ -260,6 +264,10 @@ namespace AxisManip
     return std::string("");
   }
 
+  /**
+   * This is a PRIVATE helper function for energy_transfer that
+   * calculates the energy_transfer and its uncertainty
+   */
   template <typename NumT>
     std::string
     __energy_transfer_dynamic(const NumT initial_energy,
