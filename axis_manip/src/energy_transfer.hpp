@@ -26,7 +26,7 @@ namespace AxisManip
     size_t size_initial_energy = initial_energy.size();
     size_t size_final_energy = final_energy.size();
 
-    // FIXME
+    // SNS-FIXME
     // Need a zero length check for all vectors
 
     NumT h2 = static_cast<NumT>(PhysConst::H) * 

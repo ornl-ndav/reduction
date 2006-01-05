@@ -29,7 +29,7 @@ namespace AxisManip
     size_t size_init_wavevector = initial_wavevector.size();
     size_t size_final_wavevector = final_wavevector.size();
     
-    // FIXME
+    // SNS-FIXME
     // Need a zero length check for all vectors
     
     NumT a = static_cast<NumT>(2 * std::cos(static_cast<double>(polar_angle)));
