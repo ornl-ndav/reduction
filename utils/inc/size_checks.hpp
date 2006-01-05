@@ -12,11 +12,10 @@
 namespace Utils
 {
   /**
-   * \brief This function checks input and output vectors for correct sizes.
+   * \brief This function checks three vectors for consistent sizes.
    *
-   * This function checks the sizes of two input vector and one output vector 
-   * for consistant sizes. If the vectors do not have consistent sizes, an 
-   * exception is thrown. 
+   * This function checks the sizes of three vector for consistent sizes. 
+   * If the vectors do not have consistent sizes, an exception is thrown. 
    *
    * This function is an adaptation from the ARCS reduction software written
    * by Tim Kelley (CalTech).
@@ -24,33 +23,32 @@ namespace Utils
    * \param errstr (INPUT/OUTPUT) is a string containing the calling function. 
    * errstr is also used as a thrown exception if the vectors are not of 
    * consistent sizes.
-   * \param input1 (INPUT) is an incoming vector that needs size checking
-   * \param input2 (INPUT) is an incoming vector that needs size checking
-   * \param output (INPUT) is an output vector that needs size checking
+   * \param array1 (INPUT) is a vector that needs size checking
+   * \param array2 (INPUT) is a vector that needs size checking
+   * \param array3 (INPUT) is a vector that needs size checking
    */
   template <typename NumT>
     void check_sizes_square(std::string & errstr, 
-			    const Nessi::Vector<NumT> & input1, 
-			    const Nessi::Vector<NumT> & input2, 
-			    const Nessi::Vector<NumT> & output);
+			    const Nessi::Vector<NumT> & array1, 
+			    const Nessi::Vector<NumT> & array2, 
+			    const Nessi::Vector<NumT> & array3);
 
   /**
-   * \brief This function checks input and output vectors for correct sizes.
+   * \brief This function checks two vectors for consistent sizes.
    *
-   * This function checks the sizes of one input vector and one output vector 
-   * for consistant sizes. If the vectors do not have consistent sizes, an 
-   * exception is thrown. 
+   * This function checks the sizes of two vectors for consistent sizes. 
+   * If the vectors do not have consistent sizes, an exception is thrown. 
    *
    * \param errstr (INPUT/OUTPUT) is a string containing the calling function. 
    * errstr is also used as a thrown exception if the vectors are not of 
    * consistent sizes.
-   * \param input (INPUT) is an incoming vector that needs size checking
-   * \param output (INPUT) is an output vector that needs size checking
+   * \param array1 (INPUT) is a vector that needs size checking
+   * \param array2 (INPUT) is a vector that needs size checking
    */
   template <typename NumT>
     void check_sizes_square(std::string & errstr, 
-			    const Nessi::Vector<NumT> & input, 
-			    const Nessi::Vector<NumT> & output);
+			    const Nessi::Vector<NumT> & array1, 
+			    const Nessi::Vector<NumT> & array2);
 } // Utils
 
 #endif // _SIZE_CHECKS_HPP
