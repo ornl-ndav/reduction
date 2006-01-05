@@ -57,7 +57,7 @@ namespace AxisManip
 
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -71,7 +71,7 @@ namespace AxisManip
                                        h, h2,
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
       }
 
@@ -120,7 +120,7 @@ namespace AxisManip
 
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -134,7 +134,7 @@ namespace AxisManip
                                        h, h2,
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
         // START REMOVE
         energy_transfer[i] = (initial_energy[i] - final_energy)
@@ -189,7 +189,7 @@ namespace AxisManip
 
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -203,7 +203,7 @@ namespace AxisManip
                                        h, h2,
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
         // START REMOVE
         energy_transfer[i] = (initial_energy - final_energy[i])
@@ -235,7 +235,7 @@ namespace AxisManip
 
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -243,7 +243,7 @@ namespace AxisManip
                                    final_energy, final_energy_err2,
                                    h, h2,
                                    energy_transfer, energy_transfer_err2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     return retstr;

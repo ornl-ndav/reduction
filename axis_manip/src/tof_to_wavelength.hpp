@@ -56,7 +56,7 @@ namespace AxisManip
 
     // fill the local variables
     __tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
@@ -65,7 +65,7 @@ namespace AxisManip
       {
         warn=__tof_to_wavelength_dynamic(tof[i], tof_err2[i], a, a2, a_err2,
                                          wavelength[i], wavelength_err2[i]);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
       }
 
@@ -93,13 +93,13 @@ namespace AxisManip
 
     // fill the local variables
     __tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // do the calculation
     warn=__tof_to_wavelength_dynamic(tof, tof_err2, a, a2, a_err2,
                                      wavelength, wavelength_err2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     return retstr;

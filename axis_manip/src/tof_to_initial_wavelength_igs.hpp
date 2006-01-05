@@ -49,7 +49,7 @@ namespace AxisManip
                                                 dist_source_sample,
                                                 dist_sample_detector, a, a2,
                                                 b, c2, d2, ls2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // fill the results array
@@ -65,7 +65,7 @@ namespace AxisManip
                                                     initial_wavelength[i],
                                                     initial_wavelength_err2[i],
                                                     a, a2, b, c2, d2, ls2);
-        if(warn.size()>0)
+        if(!(warn.empty()))
           retstr+=warn;
       }
 
@@ -107,7 +107,7 @@ namespace AxisManip
                                                 dist_source_sample,
                                                 dist_sample_detector, a, a2,
                                                 b, c2, d2, ls2);
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // fill the results
@@ -120,7 +120,7 @@ namespace AxisManip
                                                  initial_wavelength_err2,
                                                  a, a2, b, c2, d2, ls2);
 
-    if(warn.size()>0)
+    if(!(warn.empty()))
       retstr+=warn;
 
     // send back all warnings
