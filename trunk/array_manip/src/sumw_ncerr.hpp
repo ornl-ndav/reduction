@@ -7,7 +7,7 @@
 #define _SUMW_NCERR_HPP 1
 
 #include "arith.hpp"
-#include "check_inputs.hpp"
+#include "size_checks.hpp"
 #include <cmath>
 #include <stdexcept>
 
@@ -29,7 +29,7 @@ namespace ArrayManip
     try 
       {
 	std::string errstr("ArrayManip::sumw_vec_vec_ncerr: data ");
-	check_sizes_2in1out(errstr, input1, input2, output);
+	Utils::check_sizes_square(errstr, input1, input2, output);
       }
     catch (std::invalid_argument e)
       {
@@ -39,7 +39,8 @@ namespace ArrayManip
     try 
       {
 	std::string errstr("ArrayManip::sumw_vec_vec_ncerr: error ");
-	check_sizes_2in1out(errstr, input1_err2, input2_err2, output_err2);
+	Utils::check_sizes_square(errstr, input1_err2, input2_err2, 
+				  output_err2);
       }
     catch (std::invalid_argument e)
       {
