@@ -114,7 +114,7 @@ int main()
 					   d_initial_wavelength, 
 					   d_initial_wavelength_err2);
   
-  f_a = static_cast<float>(PhysConst::H_OVER_MNEUT) / f_dist_source_sample;
+  f_a = static_cast<float>(PhysConst::H_OVER_MNEUT / f_dist_source_sample);
   f_a2 = f_a * f_a;
 
   f_b = (f_dist_sample_detector * f_final_wavelength);
@@ -130,7 +130,7 @@ int main()
   f_ls2 = f_dist_source_sample * f_dist_source_sample;
   
 
-  d_a = PhysConst::H_OVER_MNEUT / static_cast<double>(d_dist_source_sample);
+  d_a = static_cast<double>(PhysConst::H_OVER_MNEUT / d_dist_source_sample);
   d_a2 = d_a * d_a;
   d_b = (d_dist_sample_detector * d_final_wavelength);
   d_b =  d_b / d_dist_source_sample;
