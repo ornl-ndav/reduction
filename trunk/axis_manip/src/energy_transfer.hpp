@@ -7,7 +7,7 @@
 #define _ENERGY_TRANSFER_HPP 1
 
 #include "conversions.hpp"
-#include "check_inputs.hpp"
+#include "size_checks.hpp"
 #include "constants.hpp"
 #include <stdexcept>
 
@@ -20,16 +20,16 @@ namespace AxisManip
                   const Nessi::Vector<NumT> & initial_energy_err2,
                   const Nessi::Vector<NumT> & final_energy,
                   const Nessi::Vector<NumT> & final_energy_err2,
-		    Nessi::Vector<NumT> & energy_transfer,
-		    Nessi::Vector<NumT> & energy_transfer_err2,
-		    void *temp=NULL)
+                  Nessi::Vector<NumT> & energy_transfer,
+                  Nessi::Vector<NumT> & energy_transfer_err2,
+                  void *temp=NULL)
   {
     // check that the values are of proper size
     try
       {
         std::string errstr("AxisManip::energy_transfer: data ");
-        ArrayManip::check_sizes_2in1out(errstr, initial_energy,
-                                        final_energy, energy_transfer);
+        Utils::check_sizes_square(errstr, initial_energy, final_energy,
+                                  energy_transfer);
       }
     catch(std::invalid_argument e)
       {
@@ -40,9 +40,8 @@ namespace AxisManip
     try
       {
         std::string errstr("AxisManip::energy_transfer: error ");
-        ArrayManip::check_sizes_2in1out(errstr, initial_energy_err2,
-                                        final_energy_err2,
-                                        energy_transfer_err2);
+        Utils::check_sizes_square(errstr, initial_energy_err2,
+                                  final_energy_err2, energy_transfer_err2);
       }
     catch(std::invalid_argument e)
       {
@@ -89,7 +88,28 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    // SNS-FIXME: check for vector sizes
+    // check that the values are of proper size
+    try
+      {
+        std::string errstr("AxisManip::energy_transfer: data ");
+        Utils::check_sizes_square(errstr, initial_energy, energy_transfer);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("AxisManip::energy_transfer: error ");
+        Utils::check_sizes_square(errstr, initial_energy_err2,
+                                  energy_transfer_err2);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
 
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
@@ -137,7 +157,28 @@ namespace AxisManip
 		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL)
   {
-    // SNS-FIXME: check for vector sizes
+    // check that the values are of proper size
+    try
+      {
+        std::string errstr("AxisManip::energy_transfer: data ");
+        Utils::check_sizes_square(errstr, final_energy, energy_transfer);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("AxisManip::energy_transfer: error ");
+        Utils::check_sizes_square(errstr, final_energy_err2,
+                                  energy_transfer_err2);
+      }
+    catch(std::invalid_argument e)
+      {
+        throw e;
+      }
 
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
