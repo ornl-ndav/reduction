@@ -10,11 +10,14 @@
 #include <string>
 
 /**
- * This sub-library contains the various physical axis conversions
- * that are useful for time-of-flight neutron scattering. Some
- * conversions are identical to those used in monochromatic neutron
- * scattering. None of the functions in this name space will reorder
- * the resulting axes so they are monotonically increasing.
+ * \namespace AxisManip
+ *
+ * \brief This sub-library contains the various physical axis
+ * conversions that are useful for time-of-flight neutron scattering.
+ *
+ * Some conversions are identical to those used in monochromatic
+ * neutron scattering. None of the functions in this name space will
+ * reorder the resulting axes so they are monotonically increasing.
  *
  * All of these functions are written in reference to SNS
  * 107030214-TD0001-R00, "Data Reduction Library Software Requirements

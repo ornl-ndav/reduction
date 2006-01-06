@@ -10,8 +10,10 @@
 #include <string>
 
 /**
- * This sub-library contains the various corrections that require a
- * model of the data.
+ * \namespace PhysCorr
+ *
+ * \brief This sub-library contains the various corrections that
+ * require a model of the data.
  *
  * All of these functions are written in reference to SNS
  * 107030214-TD0001-R00, "Data Reduction Library Software Requirements
