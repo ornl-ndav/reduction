@@ -18,12 +18,15 @@ namespace Utils
    * \{
    */
 
+  /**
+   * \brief 
+   */
   template <typename NumT> 
     void 
     vector_comparison (const Nessi::Vector<NumT> & value,
-		     const Nessi::Vector<NumT> & true_value,
-		     int & error,
-		     const int add_error);
+		       const Nessi::Vector<NumT> & true_value,
+		       int & error,
+		       const int add_error);
   
   void vector_comparison (const Nessi::Vector<float> & value,
                           const Nessi::Vector<float> & true_value,
@@ -58,6 +61,17 @@ namespace Utils
   /**
    * \}
    */ // end of is_equals group
+
+  template <typename NumT>
+    int
+  compare(const NumT & value1,
+	  const NumT & value2);
+
+  int compare (const float & value1,
+	       const float & value2);
+
+  int compare (const double & value1,
+	       const double & value2);
 }
 
 #endif // _NUM_COMPARISON_HPP

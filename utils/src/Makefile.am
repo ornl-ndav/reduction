@@ -11,6 +11,8 @@ libUtils_la_SOURCES = \
 	check_histo_sizes.cpp \
 	check_sizes_square.hpp \
 	check_sizes_square.cpp \
+	compare.hpp \
+	compare.cpp \
 	fit_linear_background.hpp \
 	fit_linear_background.cpp \
 	fit_reflectometer_background.hpp \
