@@ -10,6 +10,7 @@
 
 namespace Utils
 {
+  // compare function
   template <typename NumT>
   int 
   compare(const NumT & value1,

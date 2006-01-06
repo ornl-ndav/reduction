@@ -10,6 +10,12 @@
 namespace Utils
 {
   // specialized function for float
+
+  /**
+   * This is the float declaration of the vector_comparison function.
+   *
+   * \ingroup vector_comparison
+   */
   void vector_comparison (const Nessi::Vector<float> & value,
                           const Nessi::Vector<float> & true_value,
                           int & error,
@@ -39,6 +45,12 @@ namespace Utils
   }
   
   // specialized function for double
+
+  /**
+   * This is the double declaration of the vector_comparison function.
+   *
+   * \ingroup vector_comparison
+   */
   void vector_comparison (const Nessi::Vector<double> & value,
                           const Nessi::Vector<double> & true_value,
                           int & error,
@@ -67,8 +79,10 @@ namespace Utils
   }
   
   // explicit instantiations
-  
+
   /**
+   * This is the float declaration of the vector_comparison function.
+   *
    * \ingroup vector_comparison
    */
   template void
@@ -78,6 +92,8 @@ namespace Utils
                          const int add_error);
 
   /**
+   * This is the float declaration of the vector_comparison function.
+   *
    * \ingroup vector_comparison
    */
   template void

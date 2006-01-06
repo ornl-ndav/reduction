@@ -10,6 +10,12 @@
 namespace Utils
 {
   // specialized function for float
+
+  /**
+   * This is the float declaration of the compare function.
+   *
+   * \ingroup compare
+   */
   int compare(const float & value1,
 	      const float & value2)
   {
@@ -25,6 +31,12 @@ namespace Utils
   }
 
   // specialized function for double
+
+  /**
+   * This is the double declaration of the compare function.
+   *
+   * \ingroup compare
+   */
   int compare(const double & value1,
 	      const double & value2)
   {
@@ -41,10 +53,20 @@ namespace Utils
 
   // explicit instantiations
 
+  /**
+   * This is the integer declaration of the compare function.
+   *
+   * \ingroup compare
+   */
   template int
   compare<int>(const int & value1,
 	       const int & value2);
 
+  /**
+   * This is the unsigned integer declaration of the compare function.
+   *
+   * \ingroup compare
+   */
   template int
   compare<unsigned int>(const unsigned int & value1,
 			const unsigned int & value2);
