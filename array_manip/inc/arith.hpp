@@ -564,6 +564,8 @@ namespace ArrayManip
               Nessi::Vector<NumT> & array_out_err2,
               void *temp=NULL);
   
+  // SNS-FIXME: Should there be scalar scalar versions of these functions?
+
   
 } // ArrayManip
 
