@@ -12,7 +12,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.10.
    *
-   * \see sumw_vec_vec_ncerr()
+   * \ingroup sumw_ncerr
    */
   template std::string 
   sumw_ncerr<float>(const Nessi::Vector<float> & input1, 
@@ -27,7 +27,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.10.
    *
-   * \see sumw_vec_vec_ncerr()
+   * \ingroup sumw_ncerr
    */
   template std::string 
   sumw_ncerr<double>(const Nessi::Vector<double> & input1, 
@@ -41,7 +41,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.10.
    *
-   * \see sumw_vec_vec_ncerr()
+   * \ingroup sumw_ncerr
    */
   template std::string 
   sumw_ncerr<int>(const Nessi::Vector<int> & input1, 
@@ -56,7 +56,7 @@ namespace ArrayManip
    * This is the unsigned integer declaration of the function defined
    * in 3.10.
    *
-   * \see sumw_vec_vec_ncerr()
+   * \ingroup sumw_ncerr
    */
   template std::string 
   sumw_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & input1, 

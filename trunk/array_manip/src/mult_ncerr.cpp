@@ -12,7 +12,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.3.
    *
-   * \see mult_scalar_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<float>(const Nessi::Vector<float> & array_in, 
@@ -27,7 +27,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.3.
    *
-   * \see mult_scalar_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<double>(const Nessi::Vector<double> & array_in, 
@@ -41,7 +41,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.3.
    *
-   * \see mult_scalar_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<int>(const Nessi::Vector<int> & array_in, 
@@ -56,7 +56,7 @@ namespace ArrayManip
    * This is the unsigned integer declaration of the function defined
    * in 3.3.
    *
-   * \see mult_scalar_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & array_in, 
@@ -70,7 +70,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.8.
    *
-   * \see mult_vec_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<float>(const Nessi::Vector<float> & input1, 
@@ -85,7 +85,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.8.
    *
-   * \see mult_vec_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<double>(const Nessi::Vector<double> & input1, 
@@ -99,7 +99,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.8.
    *
-   * \see mult_vec_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<int>(const Nessi::Vector<int> & input1, 
@@ -114,7 +114,7 @@ namespace ArrayManip
    * This is the unsigned integer declaration of the function defined
    * in 3.8.
    *
-   * \see mult_vec_vec_ncerr()
+   * \ingroup mult_ncerr
    */
   template std::string 
   mult_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & input1, 

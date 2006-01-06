@@ -12,7 +12,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.4.
    *
-   * \see div_scalar_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<float>(const float scalar,
@@ -27,7 +27,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.4.
    *
-   * \see div_scalar_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<double>(const double scalar,
@@ -41,7 +41,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.4.
    *
-   * \see div_scalar_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<int>(const int scalar,
@@ -55,7 +55,7 @@ namespace ArrayManip
   /**
    * This is the unsigned integer declaration of the function defined in 3.4.
    *
-   * \see div_scalar_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<unsigned int>(const unsigned int scalar, 
@@ -69,7 +69,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.5.
    *
-   * \see div_vec_scalar_ncerr()
+   * \ingroup div_ncerr()
    */
   template std::string 
   div_ncerr<float>(const Nessi::Vector<float> & array_in, 
@@ -84,7 +84,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.5.
    *
-   * \see div_vec_scalar_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<double>(const Nessi::Vector<double> & array_in, 
@@ -98,7 +98,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.5.
    *
-   * \see div_vec_scalar_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<int>(const Nessi::Vector<int> & array_in, 
@@ -113,7 +113,7 @@ namespace ArrayManip
    * This is the unsigned integer declaration of the function defined
    * in 3.5.
    *
-   * \see div_vec_scalar_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & array_in, 
@@ -127,7 +127,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.9.
    *
-   * \see div_vec_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<float>(const Nessi::Vector<float> & input1, 
@@ -142,7 +142,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.9.
    *
-   * \see div_vec_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<double>(const Nessi::Vector<double> & input1, 
@@ -156,7 +156,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.9.
    *
-   * \see div_vec_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<int>(const Nessi::Vector<int> & input1, 
@@ -171,7 +171,7 @@ namespace ArrayManip
    * This is the unsigned integer declaration of the function defined
    * in 3.9.
    *
-   * \see div_vec_vec_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string 
   div_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & input1, 
