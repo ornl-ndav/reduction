@@ -21,7 +21,7 @@ namespace Utils
     int n_max = true_value.size();
     for (int i = 0 ; i < n_max ; i++)
       {
-	if (value[i] != true_value[i])
+	if (!is_equals(value[i], true_value[i]))
 	  {	    
 	    std::cout << "At index #" << i << ": ";
 	    std::cout << "Value expected was ";
