@@ -1,15 +1,13 @@
 // $Id: mult_ncerr_test.cpp 248 2006-01-06 14:55:59Z pf9 $
 
-#include "arith.hpp"
 #include "num_comparison.hpp"
-#include <algorithm>
-#include <cmath>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 const string EMPTY("");
-const string ERROR("error");
+const string ERROR("error ");
 const string SV("s,v");
 const string VS("v,s");
 const string VV("v,v");
