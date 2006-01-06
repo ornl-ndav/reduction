@@ -38,4 +38,9 @@
  *
  * \section naming_convention Function Naming Conventions
  *
+ * To make the library easier to navigate without documentation there
+ * are some naming conventions that were created.
+ *
+ * \arg _ncerr This extension denotes that the function calculations
+ * the uncertainties assuming non-correlated errors
  */
