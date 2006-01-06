@@ -10,7 +10,10 @@
 #include <string>
 
 /**
- * This sub-library contains the various array manipulations.
+ * \namespace ArrayManip
+ *
+ * \brief This sub-library contains the various simple arithematic
+ * operations on arrays.
  *
  * All of these functions are written in reference to SNS
  * 107030214-TD0001-R00, "Data Reduction Library Software Requirements
