@@ -18,9 +18,6 @@ namespace Utils
    * \{
    */
 
-  /**
-   * \brief 
-   */
   template <typename NumT> 
     void 
     vector_comparison (const Nessi::Vector<NumT> & value,
@@ -41,26 +38,6 @@ namespace Utils
   /**
    * \}
    */ // end of vector_comparison group
-
-  /**
-   * \defgroup is_equals Utils::is_equals
-   * \{
-   */
-
-  template <typename NumT>
-    bool
-    is_equals(const NumT & value1,
-	      const NumT & value2);
-
-  bool is_equals (const float & value1,
-		  const float & value2);
-
-  bool is_equals (const double & value1,
-		  const double & value2);
-
-  /**
-   * \}
-   */ // end of is_equals group
 
   template <typename NumT>
     int
