@@ -12,7 +12,7 @@ namespace Utils
   /**
    * This is the float declaration of the function defined in 3.43.
    *
-   * \see fit_linear_background()
+   * \ingroup fit_linear_background
    */
   template std::string
   fit_linear_background<float>(const Nessi::Vector<float> & axis_in,
@@ -31,7 +31,7 @@ namespace Utils
    * This is the double precision float declaration of the function
    * defined in 3.43.
    *
-   * \see fit_linear_background()
+   * \ingroup fit_linear_background
    */
   template std::string
   fit_linear_background<double>(const Nessi::Vector<double> & axis_in,

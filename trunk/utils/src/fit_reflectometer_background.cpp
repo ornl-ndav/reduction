@@ -12,7 +12,7 @@ namespace Utils
   /**
    * This is the float declaration of the function defined in 3.42.
    *
-   * \see fit_reflectometer_background()
+   * \ingroup fit_reflectometer_background
    */
   template std::string
   fit_reflectometer_background<float>(const Nessi::Vector<float> & axis_in,
@@ -29,7 +29,7 @@ namespace Utils
    * This is the double precision float declaration of the function
    * defined in 3.42.
    *
-   * \see fit_reflectometer_background()
+   * \ingroup fit_reflectometer_background
    */
   template std::string
   fit_reflectometer_background<double>(const Nessi::Vector<double> & axis_in,
