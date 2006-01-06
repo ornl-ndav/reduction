@@ -10,7 +10,9 @@
 #include <string>
 
 /**
- * This sub-library contains various functions that do not
+ * \namespace Utils
+ *
+ * \brief This sub-library contains various functions that do not
  * specifically reside in any of the other sub-libraries.
  *
  * All of these functions are written in reference to SNS
