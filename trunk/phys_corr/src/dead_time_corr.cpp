@@ -12,7 +12,7 @@ namespace PhysCorr
   /**
    * This is the float declaration of the function defined in 3.36.
    *
-   * \see dead_time_corr()
+   * \ingroup dead_time_corr
    */
   template std::string
   dead_time_corr<float>(const Nessi::Vector<float> & axis_in,
@@ -27,7 +27,7 @@ namespace PhysCorr
    * This is the double precision float declaration of the function
    * defined in 3.36.
    *
-   * \see dead_time_corr()
+   * \ingroup dead_time_corr
    */
   template std::string
   dead_time_corr<double>(const Nessi::Vector<double> & axis_in,
@@ -41,7 +41,7 @@ namespace PhysCorr
   /**
    * This is the integer declaration of the function defined in 3.36.
    *
-   * \see dead_time_corr()
+   * \ingroup dead_time_corr
    */
   template std::string
   dead_time_corr<int>(const Nessi::Vector<int> & axis_in,
@@ -56,7 +56,7 @@ namespace PhysCorr
    * This is the unsigned integer declaration of the function defined
    * in 3.36.
    *
-   * \see dead_time_corr()
+   * \ingroup dead_time_corr
    */
   template std::string
   dead_time_corr<unsigned int>(const Nessi::Vector<unsigned int> & axis_in,

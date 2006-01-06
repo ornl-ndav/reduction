@@ -22,6 +22,11 @@
 namespace PhysCorr
 {
   /**
+   * \defgroup absorption_mult_scatt PhysCorr::absorption_mult_scatt
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.36.
    *
    * THIS FUNCTION IS NOT DEFINED.
@@ -36,6 +41,15 @@ namespace PhysCorr
 			  Nessi::Vector<NumT> & output,
 			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of absorption_mult_scatt group
+
+  /**
+   * \defgroup dead_time_corr PhysCorr::dead_time_corr
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.38.
@@ -53,6 +67,15 @@ namespace PhysCorr
 		   void *temp=NULL);
 
   /**
+   * \}
+   */ // end of dead_time_corr group
+
+  /**
+   * \defgroup inelastic_scatt_corr PhysCorr::inelastic_scatt_corr
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.40.
    *
    * THIS FUNCTION IS NOT DEFINED.
@@ -67,6 +90,15 @@ namespace PhysCorr
 			 void *temp=NULL);
 
   /**
+   * \}
+   */ // end of inelastic_scatt_corr group
+
+  /**
+   * \defgroup incoherent_scatt_corr PhysCorr::incoherent_scatt_corr
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.41.
    *
    * THIS FUNCTION IS NOT DEFINED.
@@ -79,6 +111,10 @@ namespace PhysCorr
 			  Nessi::Vector<NumT> & output,
 			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of incoherent_scatt_corr group
 
 } // PhysCorr
 
