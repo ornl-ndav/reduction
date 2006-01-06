@@ -12,7 +12,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.1.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<float>(const Nessi::Vector<float> & array_in, 
@@ -27,7 +27,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.1.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<double>(const Nessi::Vector<double> & array_in, 
@@ -41,7 +41,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.1.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<int>(const Nessi::Vector<int> & array_in, 
@@ -56,7 +56,7 @@ namespace ArrayManip
    * This is the unsigned integer declaration of the function defined
    * in 3.1.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & array_in, 
@@ -70,7 +70,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.6.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<float>(const Nessi::Vector<float> & input1, 
@@ -85,7 +85,7 @@ namespace ArrayManip
    * This is the double precision float declaration of the function
    * defined in 3.6.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<double>(const Nessi::Vector<double> & input1, 
@@ -99,7 +99,7 @@ namespace ArrayManip
   /**
    * This is the integer declaration of the function defined in 3.6.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<int>(const Nessi::Vector<int> & input1, 
@@ -113,7 +113,7 @@ namespace ArrayManip
   /**
    * This is the unsigned integer declaration of the function defined in 3.6.
    *
-   * \see add_ncerr()
+   * \ingroup add_ncerr
    */
   template std::string 
   add_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & input1, 
