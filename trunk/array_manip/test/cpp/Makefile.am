@@ -22,15 +22,15 @@ TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(ARRAY_MANIP_TARGETS)
 
-add_ncerr_test_SOURCES = add_ncerr_test.cpp
+add_ncerr_test_SOURCES = add_ncerr_test.cpp test_common.hpp
 
-div_ncerr_test_SOURCES = div_ncerr_test.cpp
+div_ncerr_test_SOURCES = div_ncerr_test.cpp test_common.hpp
 
-mult_ncerr_test_SOURCES = mult_ncerr_test.cpp
+mult_ncerr_test_SOURCES = mult_ncerr_test.cpp test_common.hpp
 
-sub_ncerr_test_SOURCES = sub_ncerr_test.cpp
+sub_ncerr_test_SOURCES = sub_ncerr_test.cpp test_common.hpp
 
-sumw_ncerr_test_SOURCES = sumw_ncerr_test.cpp
+sumw_ncerr_test_SOURCES = sumw_ncerr_test.cpp test_common.hpp
 
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\
