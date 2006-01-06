@@ -15,8 +15,8 @@ namespace ArrayManip
   // 3.3
   template <typename NumT>
   std::string 
-  mult_ncerr(Nessi::Vector<NumT> const & array_in, 
-             Nessi::Vector<NumT> const & array_in_err2, 
+  mult_ncerr(const Nessi::Vector<NumT> & array_in, 
+             const Nessi::Vector<NumT> & array_in_err2, 
              const NumT scalar,
              const NumT scalar_err2,
              Nessi::Vector<NumT> & array_out,
@@ -38,10 +38,10 @@ namespace ArrayManip
   // 3.8
   template <typename NumT>
   std::string 
-  mult_ncerr(Nessi::Vector<NumT> const & input1, 
-             Nessi::Vector<NumT> const & input1_err2, 
-             Nessi::Vector<NumT> const & input2, 
-             Nessi::Vector<NumT> const & input2_err2, 
+  mult_ncerr(const Nessi::Vector<NumT> & input1, 
+             const Nessi::Vector<NumT> & input1_err2, 
+             const Nessi::Vector<NumT> & input2, 
+             const Nessi::Vector<NumT> & input2_err2, 
              Nessi::Vector<NumT> & output,
              Nessi::Vector<NumT> & output_err2,
              void *temp=NULL)
