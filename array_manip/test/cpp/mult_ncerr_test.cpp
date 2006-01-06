@@ -9,6 +9,10 @@
 using namespace std;
 
 const int NUM_VAL=5;
+const string EMPTY("");
+const string ERROR("error");
+const string VS("v,s");
+const string VV("v,v");
 
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & input1,
@@ -32,37 +36,35 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
                              Nessi::Vector<NumT> & output_vv,
                              Nessi::Vector<NumT> & output_vv_err2)
 {
-  // SNS-FIXME: Need true values for uncertainties
-
   // initialize the correct outputs for vector vector case
   output_vv.push_back(static_cast<NumT>(0)); // =0*6
-  output_vv_err2.push_back(static_cast<NumT>(0));
+  output_vv_err2.push_back(static_cast<NumT>(36));
   output_vv.push_back(static_cast<NumT>(5)); // =1*5
-  output_vv_err2.push_back(static_cast<NumT>(0));
+  output_vv_err2.push_back(static_cast<NumT>(26));
   output_vv.push_back(static_cast<NumT>(8)); // =2*4
-  output_vv_err2.push_back(static_cast<NumT>(0));
+  output_vv_err2.push_back(static_cast<NumT>(20));
   output_vv.push_back(static_cast<NumT>(9)); // =3*3
-  output_vv_err2.push_back(static_cast<NumT>(0));
+  output_vv_err2.push_back(static_cast<NumT>(18));
   output_vv.push_back(static_cast<NumT>(8)); // =4*2
-  output_vv_err2.push_back(static_cast<NumT>(0));
+  output_vv_err2.push_back(static_cast<NumT>(20));
 
   // initialize the correct outputs for vector scalar case
   output_vs.push_back(static_cast<NumT>(24)); // =4*6
-  output_vs_err2.push_back(static_cast<NumT>(0));
+  output_vs_err2.push_back(static_cast<NumT>(52));
   output_vs.push_back(static_cast<NumT>(20)); // =4*5
-  output_vs_err2.push_back(static_cast<NumT>(0));
+  output_vs_err2.push_back(static_cast<NumT>(41));
   output_vs.push_back(static_cast<NumT>(16)); // =4*4
-  output_vs_err2.push_back(static_cast<NumT>(0));
+  output_vs_err2.push_back(static_cast<NumT>(32));
   output_vs.push_back(static_cast<NumT>(12)); // =4*3
-  output_vs_err2.push_back(static_cast<NumT>(0));
+  output_vs_err2.push_back(static_cast<NumT>(25));
   output_vs.push_back(static_cast<NumT>(8));  // =4*2
-  output_vs_err2.push_back(static_cast<NumT>(0));
+  output_vs_err2.push_back(static_cast<NumT>(20));
 }
 
 template <typename NumT>
 string type_string(Nessi::Vector<NumT> & vec)
 {
-  return string("");
+  return string(EMPTY);
 }
 
 string type_string(Nessi::Vector<double> & vec)
@@ -87,6 +89,26 @@ string type_string(Nessi::Vector<unsigned> & vec)
 
 // returns true if nothing is wrong
 template <typename NumT>
+bool test_okay(Nessi::Vector<NumT> & output,
+               Nessi::Vector<NumT> & true_output,
+               string array_type,
+               string data_type=EMPTY){
+
+  int error=0; // dummy variable for usin in testing code
+
+  Utils::vector_comparison(output,true_output,error,10);
+  if(error>0)
+    {
+      cout << "(" << type_string(output) << " " << array_type
+           << ") FAILED....Output " << data_type
+           << "different from vector expected" << endl;
+      return false;
+    }
+  return true;
+}
+
+// returns true if nothing is wrong
+template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output_vs,
                Nessi::Vector<NumT> & output_vs_err2,
                Nessi::Vector<NumT> & true_output_vs,
@@ -96,35 +118,19 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
                Nessi::Vector<NumT> & true_output_vv,
                Nessi::Vector<NumT> & true_output_vv_err2)
 {
-  int error=0; // dummy variable for use in testing code
-
   // vector scalar
-  Utils::vector_comparison(output_vs, true_output_vs, error, 10);
-  if(error>0){
-    cout << "(" << type_string(output_vs) << " v,s) FAILED....Output vector different from vector expected" << endl;
+  if(!test_okay(output_vs,true_output_vs,VS))
     return false;
-  }
-  /* SNS-FIXME: uncomment this code
-  Utils::vector_comparison(output_vs_err2, true_output_vs_err2, error, 10);
-  if(error>0){
-    cout << "(" << type_string(output_vs_err2) << " v,s) FAILED....Output error vector different from vector expected" << endl;
+  if(!test_okay(output_vs_err2,true_output_vs_err2,VS,ERROR))
     return false;
-  }
-  */
 
   // vector vector
-  Utils::vector_comparison(output_vv, true_output_vv, error, 10);
-  if(error>0){
-    cout << "(" << type_string(output_vv) << " v,v) FAILED....Output vector different from vector expected" << endl;
+  if(!test_okay(output_vv,true_output_vv,VV))
     return false;
-  }
-  /* SNS-FIXME: uncomment this code
-  Utils::vector_comparison(output_vv_err2, true_output_vv_err2, error, 10);
-  if(error>0){
-    cout << "(" << type_string(output_vv_err2) << " v,v) FAILED....Output error vector different from vector expected" << endl;
+  if(!test_okay(output_vv_err2,true_output_vv_err2,VV,ERROR))
     return false;
-  }
-  */
+
+  // everything okay
   return true;
 }
 
