@@ -7,7 +7,9 @@
 #define _VECTOR_COMPARISON_HPP 1
 
 #include "num_comparison.hpp"
+#include <iomanip>
 #include <iostream>
+#include <limits>
 
 namespace Utils
 {
@@ -23,17 +25,43 @@ namespace Utils
     for (int i = 0 ; i < n_max ; i++)
       {
 	if (compare(value[i], true_value[i]) != 0)
-	  {	    
-	    std::cout << "At index #" << i << ": ";
-	    std::cout << "Value expected was ";
-	    std::cout << true_value[i];
-	    std::cout << ", Value returned was " << value[i] << std::endl;
-	    error += add_error;
+	  {
+	    __vector_comparison_static(i, value[i], true_value[i], 
+				       error, add_error);
 	    break;
 	  }
       }
     return;
   }
+
+  /**
+   * This is a PRIVATE helper function for printing debugging information if 
+   * the equality check fails.
+   */
+  template <typename NumT>
+  void
+  __vector_comparison_static(const int index,
+			     const NumT value,
+			     const NumT true_value,
+			     int & error,
+			     const int add_error)
+  {
+    std::cout << "At index #" << index << ": ";
+    std::cout << "Value expected was ";
+    std::cout.setf(std::ios::fixed);
+    std::cout << std::setprecision(std::numeric_limits<NumT>::digits10+1);
+    std::cout << true_value;
+    std::cout << ", Value returned was " << value << std::endl;
+    std::cout << "Difference (Returned - Expected): ";
+    std::cout.setf(std::ios::scientific);
+    std::cout << value - true_value << std::endl;
+    error += add_error;
+
+    return;
+  }
+
+
+
 } // Utils
 
 #endif // _VECTOR_COMPARISON_HPP

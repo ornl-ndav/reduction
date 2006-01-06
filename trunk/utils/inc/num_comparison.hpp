@@ -39,16 +39,6 @@ namespace Utils
 		      const Nessi::Vector<NumT> & true_value,
 		      int & error,
 		      const int add_error);
-  
-  void vector_comparison(const Nessi::Vector<float> & value,
-                         const Nessi::Vector<float> & true_value,
-			 int & error,
-			 const int add_error);
-  
-  void vector_comparison(const Nessi::Vector<double> & value,
-			 const Nessi::Vector<double> & true_value,
-			 int & error,
-			 const int add_error);
   /**
    * \}
    */ // end of vector_comparison group
@@ -74,8 +64,8 @@ namespace Utils
    */
   template <typename NumT>
     int
-  compare(const NumT & value1,
-	  const NumT & value2);
+    compare(const NumT & value1,
+	    const NumT & value2);
 
   int compare(const float & value1,
 	      const float & value2);
