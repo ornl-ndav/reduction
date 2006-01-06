@@ -29,7 +29,7 @@ namespace Utils
 	    std::cout << std::setprecision(std::numeric_limits<float>::digits10+1);
 	    std::cout << true_value[i];
 	    std::cout << ", Value returned was " << value[i] << std::endl;
-	    std::cout << "Difference (Expected - Truth): ";
+	    std::cout << "Difference (Returned - Expected): ";
 	    std::cout.setf(std::ios::scientific);
 	    std::cout << value[i] - true_value[i] << std::endl;
 	    error += add_error;
@@ -58,7 +58,7 @@ namespace Utils
 	    std::cout << std::setprecision(std::numeric_limits<double>::digits10+1);
 	    std::cout << true_value[i];
 	    std::cout << ", Value returned was " << value[i] << std::endl;
-	    std::cout << "Difference (Expected - Truth): ";
+	    std::cout << "Difference (Returned - Expected): ";
 	    std::cout.setf(std::ios::scientific);
 	    std::cout << value[i] - true_value[i] << std::endl;
 	    error += add_error;
