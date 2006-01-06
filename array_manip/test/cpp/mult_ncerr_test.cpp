@@ -1,5 +1,6 @@
 // $Id$
 
+#include "test_common.hpp"
 #include "arith.hpp"
 #include "num_comparison.hpp"
 #include <algorithm>
@@ -9,10 +10,6 @@
 using namespace std;
 
 const int NUM_VAL=5;
-const string EMPTY("");
-const string ERROR("error");
-const string VS("v,s");
-const string VV("v,v");
 
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & input1,
@@ -59,52 +56,6 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
   output_vs_err2.push_back(static_cast<NumT>(25));
   output_vs.push_back(static_cast<NumT>(8));  // =4*2
   output_vs_err2.push_back(static_cast<NumT>(20));
-}
-
-template <typename NumT>
-string type_string(Nessi::Vector<NumT> & vec)
-{
-  return string(EMPTY);
-}
-
-string type_string(Nessi::Vector<double> & vec)
-{
-  return string("double");
-}
-
-string type_string(Nessi::Vector<float> & vec)
-{
-  return string("float");
-}
-
-string type_string(Nessi::Vector<int> & vec)
-{
-  return string("int");
-}
-
-string type_string(Nessi::Vector<unsigned> & vec)
-{
-  return string("unsigned");
-}
-
-// returns true if nothing is wrong
-template <typename NumT>
-bool test_okay(Nessi::Vector<NumT> & output,
-               Nessi::Vector<NumT> & true_output,
-               string array_type,
-               string data_type=EMPTY){
-
-  int error=0; // dummy variable for usin in testing code
-
-  Utils::vector_comparison(output,true_output,error,10);
-  if(error>0)
-    {
-      cout << "(" << type_string(output) << " " << array_type
-           << ") FAILED....Output " << data_type
-           << "different from vector expected" << endl;
-      return false;
-    }
-  return true;
 }
 
 // returns true if nothing is wrong
