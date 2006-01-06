@@ -4,7 +4,6 @@
  * \file utils/src/vector_comparison.cpp
  */
 #include "vector_comparison.hpp"
-#include <cmath>
 #include <iomanip>
 #include <limits>
 
@@ -19,8 +18,7 @@ namespace Utils
     int n_max = true_value.size();
     for (int i = 0 ; i < n_max ; i++)
       {
-	if (fabs(value[i] - true_value[i]) > 
-	    std::numeric_limits<float>::epsilon())
+	if (!is_equals(value[i], true_value[i]))
 	  {
 	    std::cout << "At index #" << i << ": ";
 	    std::cout << "Value expected was ";
@@ -49,8 +47,7 @@ namespace Utils
     int n_max = true_value.size();
     for (int i = 0 ; i < n_max ; i++)
       {
-	if (fabs(value[i] - true_value[i]) > 
-	    std::numeric_limits<double>::epsilon())
+	if (!is_equals(value[i], true_value[i]))
 	  {
 	    std::cout << "At index #" << i << ": ";
 	    std::cout << "Value expected was ";
