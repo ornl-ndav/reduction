@@ -59,13 +59,13 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
   output_sv.push_back(static_cast<NumT>(5)); // =10/2
   output_sv_err2.push_back(static_cast<NumT>(6.5));
   output_sv.push_back(static_cast<NumT>(3.33333333333333333333333333)); //=10/3
-  output_sv_err2.push_back(static_cast<NumT>(1.345679012));
+  output_sv_err2.push_back(static_cast<NumT>(1.34567901234567899));
   output_sv.push_back(static_cast<NumT>(2.5)); // =10/4
   output_sv_err2.push_back(static_cast<NumT>(0.453125));
   output_sv.push_back(static_cast<NumT>(2)); // =10/5
   output_sv_err2.push_back(static_cast<NumT>(0.2));
   output_sv.push_back(static_cast<NumT>(1.66666666666666666666666667)); //=10/6
-  output_sv_err2.push_back(static_cast<NumT>(0.104938272));
+  output_sv_err2.push_back(static_cast<NumT>(0.104938271604938266));
 }
 
 // returns true if nothing is wrong
