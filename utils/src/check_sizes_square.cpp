@@ -12,7 +12,7 @@ namespace Utils
   /**
    * This is the float declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<float>(std::string & errstr, 
@@ -23,7 +23,7 @@ namespace Utils
   /**
    * This is the double declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<double>(std::string & errstr, 
@@ -34,7 +34,7 @@ namespace Utils
   /**
    * This is the int declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<int>(std::string & errstr, 
@@ -45,7 +45,7 @@ namespace Utils
   /**
    * This is the unsigned declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<unsigned>(std::string & errstr, 
@@ -56,7 +56,7 @@ namespace Utils
   /**
    * This is the float declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<float>(std::string & errstr, 
@@ -66,7 +66,7 @@ namespace Utils
   /**
    * This is the double declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<double>(std::string & errstr, 
@@ -76,7 +76,7 @@ namespace Utils
   /**
    * This is the int declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<int>(std::string & errstr, 
@@ -86,7 +86,7 @@ namespace Utils
   /**
    * This is the unsigned declaration of the check_sizes_square function
    *
-   * \see check_sizes_square()
+   * \ingroup check_sizes_square
    */
   template void 
   check_sizes_square<unsigned>(std::string & errstr, 
