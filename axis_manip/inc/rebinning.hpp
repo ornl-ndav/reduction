@@ -12,6 +12,11 @@
 namespace AxisManip
 {
   /**
+   * \defgroup rebin_axis_1D AxisManip::rebin_axis_1D
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.12.
    *
    * This function rebins data and its associated errors from one axis to 
@@ -44,7 +49,16 @@ namespace AxisManip
 		  Nessi::Vector<NumT> & output,
 		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of rebin_axis_1D group
   
+  /**
+   * \defgroup rebin_axis_2D AxisManip::rebin_axis_2D
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.13.
    */
@@ -59,6 +73,15 @@ namespace AxisManip
 		  Nessi::Vector<NumT> & output,
 		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of rebin_axis_2D group
+
+  /**
+   * \defgroup rebin_axis_4D AxisManip::rebin_axis_4D
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.14.
@@ -78,7 +101,11 @@ namespace AxisManip
 		  Nessi::Vector<NumT> & output,
 		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
-  
+
+  /**
+   * \}
+   */ // end of rebin_axis_4D group
+
 } // AxisManip
 
 #endif // _REBINNING_HPP

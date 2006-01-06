@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.17.
    *
-   * \see tof_to_scalar_Q()
+   * \ingroup tof_to_scalar_Q
    */
   template std::string
   tof_to_scalar_Q<float>(const Nessi::Vector<float> & tof,
@@ -28,7 +28,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.17.
    *
-   * \see tof_to_scalar_Q()
+   * \ingroup tof_to_scalar_Q
    */
   template std::string
   tof_to_scalar_Q<float>(const float tof,
@@ -45,7 +45,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.17.
    *
-   * \see tof_to_scalar_Q()
+   * \ingroup tof_to_scalar_Q
    */
   template std::string
   tof_to_scalar_Q<double>(const Nessi::Vector<double> & tof,
@@ -62,7 +62,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.17.
    *
-   * \see tof_to_scalar_Q()
+   * \ingroup tof_to_scalar_Q
    */
   template std::string
   tof_to_scalar_Q<double>(const double tof,

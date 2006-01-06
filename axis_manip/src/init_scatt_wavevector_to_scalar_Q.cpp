@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaraion of the function defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<float>(
@@ -29,7 +29,7 @@ namespace AxisManip
   /**
    * This is the float declaraion of the function defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<float>(
@@ -46,7 +46,7 @@ namespace AxisManip
   /**
    * This is the float declaraion of the function defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<float>(
@@ -63,7 +63,7 @@ namespace AxisManip
   /**
    * This is the float declaraion of the function defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<float>(
@@ -81,7 +81,7 @@ namespace AxisManip
    * This is the double precision float declaraion of the function
    * defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<double>(
@@ -99,7 +99,7 @@ namespace AxisManip
    * This is the double precision float declaraion of the function
    * defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<double>(
@@ -117,7 +117,7 @@ namespace AxisManip
    * This is the double precision float declaraion of the function
    * defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<double>(
@@ -135,7 +135,7 @@ namespace AxisManip
    * This is the double precision float declaraion of the function
    * defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<double>(

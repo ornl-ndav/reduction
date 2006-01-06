@@ -128,6 +128,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup tof_to_initial_wavelength_igs
+   *
    * This is a PRIVATE helper function for
    * tof_to_initial_wavelength_igs that calculates parameters
    * invariant across the array calculation.
@@ -162,6 +164,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup tof_to_initial_wavelength_igs
+   *
    * This is a PRIVATE helper function for
    * tof_to_initial_wavelength_igs that calculates the
    * initial_wavelength and its uncertainty.

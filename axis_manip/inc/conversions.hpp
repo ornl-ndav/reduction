@@ -26,6 +26,11 @@
 namespace AxisManip
 {
   /**
+   * \defgroup tof_to_wavelength AxisManip::tof_to_wavelength
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.15.
    *
    * This function converts the time-of-flight to wavelength according
@@ -77,6 +82,15 @@ namespace AxisManip
 		      void *temp=NULL);
 
   /**
+   * \}
+   */ // end of tof_to_wavelength group
+
+  /**
+   * \defgroup wavelength_to_tof AxisManip::wavelength_to_tof
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.16.
    *
    * This function converts the wavelength to time-of-flight according
@@ -126,6 +140,15 @@ namespace AxisManip
 		      NumT & tof,
 		      NumT & tof_err2,
 		      void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of wavelength_to_tof group
+
+  /**
+   * \defgroup tof_to_scalar_Q AxisManip::tof_to_scalar_Q
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.17.
@@ -188,6 +211,15 @@ namespace AxisManip
 		    void *temp=NULL);
 
   /**
+   * \}
+   */ // end of tof_to_scalar_Q group
+
+  /**
+   * \defgroup wavelength_to_scalar_Q AxisManip::wavelength_to_scalar_Q
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.18.
    *
    * This function converts the wavelength to scalar momentum transfer
@@ -238,6 +270,15 @@ namespace AxisManip
 			   NumT & Q_err2,
 			   void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of wavelength_to_scalar_Q group
+
+  /**
+   * \defgroup initial_velocity_dgs AxisManip::initial_velocity_dgs
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.19.
    *
@@ -293,6 +334,15 @@ namespace AxisManip
 			 void *temp=NULL);
 
   /**
+   * \}
+   */ // end of initial_velocity_dgs group
+
+  /**
+   * \defgroup final_velocity_igs AxisManip::final_velocity_igs
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.20.
    *
    * This function calculates the final velocity of the neutron for an
@@ -327,6 +377,14 @@ namespace AxisManip
 		       NumT & final_velocity_err2,
 		       void *temp=NULL);
  
+  /**
+   * \}
+   */ // end of final_velocity_igs group
+
+  /**
+   * \defgroup velocity_to_energy AxisManip::velocity_to_energy
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.21.
@@ -372,6 +430,15 @@ namespace AxisManip
 		       void *temp=NULL);
 
   /**
+   * \}
+   */ // end of velocity_to_energy group
+
+  /**
+   * \defgroup wavelength_to_energy AxisManip::wavelength_to_energy
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.22.
    *
    * This function calculates the energy of a neutron given its
@@ -413,6 +480,15 @@ namespace AxisManip
 			 NumT & energy,
 			 NumT & energy_err2,
 			 void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of wavelength_to_energy group
+
+  /**
+   * \defgroup velocity_to_scalar_k AxisManip::velocity_to_scalar_k
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.23.
@@ -457,6 +533,15 @@ namespace AxisManip
 			 void *temp=NULL);
 
   /**
+   * \}
+   */ // end of velocity_to_scalar_k group
+
+  /**
+   * \defgroup wavelength_to_scalar_k AxisManip::wavelength_to_scalar_k
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.24.
    *
    * This function calculates the scalar wavevector given the
@@ -496,6 +581,15 @@ namespace AxisManip
 			   NumT & wavevector,
 			   NumT & wavevector_err2,
 			   void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of wavelength_to_scalar_k group
+
+  /**
+   * \defgroup wavelength_to_d_spacing AxisManip::wavelength_to_d_spacing
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.25.
@@ -548,6 +642,15 @@ namespace AxisManip
 			    void *temp=NULL);
 
   /**
+   * \}
+   */ // end of wavelength_to_d_spacing group
+
+  /**
+   * \defgroup time_offset_dgs AxisManip::time_offset_dgs
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.26.
    *
    * This function calculates the time offset for a direct geometry
@@ -594,6 +697,15 @@ namespace AxisManip
 		    NumT & time_offset,
 		    NumT & time_offset_err2,
 		    void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of time_offset_dgs group
+
+  /**
+   * \defgroup tof_to_final_velocity_dgs AxisManip::tof_to_final_velocity_dgs
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.27.
@@ -674,6 +786,15 @@ namespace AxisManip
 			     void *temp=NULL);
 
   /**
+   * \}
+   */ // end of tof_to_final_velocity_dgs group
+
+  /**
+   * \defgroup tof_to_initial_velocity_igs AxisManip::tof_to_initial_velocity_igs
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.28.
    *
    * This function calculates the initial velocity of an indirect
@@ -750,6 +871,15 @@ namespace AxisManip
 			       NumT & initial_velocity,
 			       NumT & initial_velocity_err2,
 			       void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of tof_to_initial_velocity_igs group
+
+  /**
+   * \defgroup tof_to_initial_wavelength_igs AxisManip::tof_to_initial_wavelength_igs
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.29.
@@ -831,6 +961,15 @@ namespace AxisManip
 				 void *temp=NULL);
 
   /**
+   * \}
+   */ // end of tof_to_initial_wavelength_igs group
+
+  /**
+   * \defgroup energy_transfer AxisManip::energy_transfer
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.30.
    *
    * This function calculates the energy transfer according to the
@@ -900,6 +1039,15 @@ namespace AxisManip
 		    void *temp=NULL);
 
   /**
+   * \}
+   */ // end of energy_transfer group
+
+  /**
+   * \defgroup frequency_to_angular_frequency AxisManip::frequency_to_angular_frequency
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.31.
    *
    * This function calculates the angular frequency according to the
@@ -939,6 +1087,15 @@ namespace AxisManip
                                    NumT & angular_frequency,
                                    NumT & angular_frequency_err2,
                                    void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of frequency_to_angular_frequency group
+
+  /**
+   * \defgroup init_scatt_wavevector_to_Q AxisManip::init_scatt_wavevector_to_Q
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.32.
@@ -1072,6 +1229,15 @@ namespace AxisManip
 			      void *temp=NULL);
 
   /**
+   * \}
+   */ // end of init_scatt_wavevector_to_Q group
+
+  /**
+   * \defgroup init_scatt_wavevector_to_scalar_Q AxisManip::init_scatt_wavevector_to_scalar_Q
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.33.
    *
    * This function calculates the scalar momentum transfer from the
@@ -1157,6 +1323,15 @@ namespace AxisManip
 				      NumT & Q_err2,
 				      void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of init_scatt_wavevector_to_scalar_Q group
+
+  /**
+   * \defgroup tof_to_Q AxisManip::tof_to_Q
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.34.
    *
@@ -1262,6 +1437,15 @@ namespace AxisManip
 	     void *temp=NULL);
 
   /**
+   * \}
+   */ // end of tof_to_Q group
+
+  /**
+   * \defgroup d_spacing_to_tof_focused_det AxisManip::d_spacing_to_tof_focused_det
+   * \{
+   */
+
+  /**
    * \brief This function is described in section  3.39.
    *
    * This function converts the d-spacing to time-of-flight at a
@@ -1320,6 +1504,10 @@ namespace AxisManip
 				 NumT & tof,
 				 NumT & tof_err2,
 				 void *temp=NULL);
+  /**
+   * \}
+   */ // end of d_spacing_to_tof_focused_det group
+
 } // AxisManip
 
 #endif // _CONVERSIONS_HPP

@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.18.
    *
-   * \see wavelength_to_scalar_Q()
+   * \ingroup wavelength_to_scalar_Q
    */
   template std::string
   wavelength_to_scalar_Q<float>(const Nessi::Vector<float> & wavelength,
@@ -26,7 +26,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.18.
    *
-   * \see wavelength_to_scalar_Q()
+   * \ingroup wavelength_to_scalar_Q
    */
   template std::string
   wavelength_to_scalar_Q<float>(const float wavelength,
@@ -41,7 +41,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.18.
    *
-   * \see wavelength_to_scalar_Q()
+   * \ingroup wavelength_to_scalar_Q
    */
   template std::string
   wavelength_to_scalar_Q<double>(const Nessi::Vector<double> & wavelength,
@@ -56,7 +56,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.18.
    *
-   * \see wavelength_to_scalar_Q()
+   * \ingroup wavelength_to_scalar_Q
    */
   template std::string
   wavelength_to_scalar_Q<double>(const double wavelength,

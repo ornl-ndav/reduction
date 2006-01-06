@@ -261,6 +261,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   *
    * This is a PRIVATE helper function for
    * init_scatt_wavevector_to_scalar_Q that calculates parameters
    * invariant across array calculation.
@@ -280,6 +282,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   *
    * This is a PRIVATE helper function for
    * init_scatt_wavevector_to_scalar_Q that calculates the scalar
    * momentum transfer and its uncertainty

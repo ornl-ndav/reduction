@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.31.
    *
-   * \see frequency_to_angular_frequency()
+   * \ingroup frequency_to_angular_frequency
    */
   template std::string
   frequency_to_angular_frequency<float>(
@@ -25,7 +25,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.31.
    *
-   * \see frequency_to_angular_frequency()
+   * \ingroup frequency_to_angular_frequency
    */
   template std::string
   frequency_to_angular_frequency<float>(const float frequency,
@@ -38,7 +38,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.31.
    *
-   * \see frequency_to_angular_frequency()
+   * \ingroup frequency_to_angular_frequency
    */
   template std::string
   frequency_to_angular_frequency<double>(
@@ -52,7 +52,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.31.
    *
-   * \see frequency_to_angular_frequency()
+   * \ingroup frequency_to_angular_frequency
    */
   template std::string
   frequency_to_angular_frequency<double>(const double frequency,

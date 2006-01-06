@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.23.
    *
-   * \see velocity_to_scalar_k()
+   * \ingroup velocity_to_scalar_k
    */
   template std::string
   velocity_to_scalar_k<float>(const Nessi::Vector<float> & velocity,
@@ -24,7 +24,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.23.
    *
-   * \see velocity_to_scalar_k()
+   * \ingroup velocity_to_scalar_k
    */
   template std::string
   velocity_to_scalar_k<float>(const float velocity,
@@ -37,7 +37,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.23.
    *
-   * \see velocity_to_scalar_k()
+   * \ingroup velocity_to_scalar_k
    */
   template std::string
   velocity_to_scalar_k<double>(const Nessi::Vector<double> & velocity,
@@ -51,7 +51,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.23.
    *
-   * \see velocity_to_scalar_k()
+   * \ingroup velocity_to_scalar_k
    */
   template std::string
   velocity_to_scalar_k<double>(const double velocity,

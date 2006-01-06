@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<float>(
@@ -35,7 +35,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<float>(
@@ -58,7 +58,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<float>(
@@ -81,7 +81,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<float>(
@@ -105,7 +105,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<double>(
@@ -129,7 +129,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<double>(
@@ -153,7 +153,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<double>(
@@ -177,7 +177,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.32.
    *
-   * \see init_scatt_wavevector_to_Q()
+   * \ingroup init_scatt_wavevector_to_Q
    */
   template std::string
   init_scatt_wavevector_to_Q<double>(

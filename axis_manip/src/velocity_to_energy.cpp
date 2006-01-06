@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.21.
    *
-   * \see velocity_to_energy()
+   * \ingroup velocity_to_energy
    */
   template std::string
   velocity_to_energy<float>(const Nessi::Vector<float> & velocity,
@@ -24,7 +24,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.21.
    *
-   * \see velocity_to_energy()
+   * \ingroup velocity_to_energy
    */
   template std::string
   velocity_to_energy<float>(const float velocity,
@@ -37,7 +37,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.21.
    *
-   * \see velocity_to_energy()
+   * \ingroup velocity_to_energy
    */
   template std::string
   velocity_to_energy<double>(const Nessi::Vector<double> & velocity,
@@ -50,7 +50,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.21.
    *
-   * \see velocity_to_energy()
+   * \ingroup velocity_to_energy
    */
   template std::string
   velocity_to_energy<double>(const double velocity,

@@ -106,6 +106,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup tof_to_wavelength
+   *
    * This is a PRIVATE helper function for tof_to_wavelength that
    * calculates parameters invariant across array calculation.
    */
@@ -130,6 +132,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup tof_to_wavelength
+   *
    * This is a PRIVATE helper function for tof_to_wavelength that
    * calculates the wavelength and its uncertainty
    */

@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.39.
    *
-   * \see d_spacing_to_tof_focused_det()
+   * \ingroup d_spacing_to_tof_focused_det
    */
   template std::string
   d_spacing_to_tof_focused_det<float>(
@@ -29,7 +29,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.39.
    *
-   * \see d_spacing_to_tof_focused_det()
+   * \ingroup d_spacing_to_tof_focused_det
    */
   template std::string
   d_spacing_to_tof_focused_det<float>(
@@ -47,7 +47,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.39.
    *
-   * \see d_spacing_to_tof_focused_det()
+   * \ingroup d_spacing_to_tof_focused_det
    */
   template std::string
   d_spacing_to_tof_focused_det<double>(
@@ -65,7 +65,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.39.
    *
-   * \see d_spacing_to_tof_focused_det()
+   * \ingroup d_spacing_to_tof_focused_det
    */
   template std::string
   d_spacing_to_tof_focused_det<double>(

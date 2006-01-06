@@ -78,6 +78,8 @@ namespace AxisManip
   }
   
   /**
+   * \ingroup wavelength_to_scalar_k
+   *
    * This is a PRIVATE helper function for wavelength_to_scalar_k that 
    * calculates the parameters invariant across the array calculation.
    */
@@ -93,6 +95,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup wavelength_to_scalar_k
+   *
    * This is a PRIVATE helper function for wavelength_to_scalar_k that 
    * calculates the scalar_k and its uncertainty.
    */

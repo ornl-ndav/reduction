@@ -75,6 +75,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup wavelength_to_energy
+   *
    * This is a PRIVATE helper function for wavelength_to_energy that 
    * calculates the parameters invariant across the array calculation.
    */
@@ -88,6 +90,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup wavelength_to_energy
+   *
    * This is a PRIVATE helper function for wavelength_to_energy that 
    * calculates the energy and its uncertainty.
    */

@@ -97,6 +97,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup tof_to_scalar_Q
+   *
    * This is a PRIVATE helper function for tof_to_scalar_Q that calculates the 
    * parameters invariant across the array calculation.
    */
@@ -132,6 +134,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup tof_to_scalar_Q
+   *
    * This is a PRIVATE helper function for tof_to_scalar_Q that calculates the 
    * scalar_Q and its uncertainty.
    */
