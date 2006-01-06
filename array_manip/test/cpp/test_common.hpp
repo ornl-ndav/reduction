@@ -10,6 +10,7 @@ using namespace std;
 
 const string EMPTY("");
 const string ERROR("error");
+const string SV("s,v");
 const string VS("v,s");
 const string VV("v,v");
 
