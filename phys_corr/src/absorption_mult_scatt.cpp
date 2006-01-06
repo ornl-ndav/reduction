@@ -12,7 +12,7 @@ namespace PhysCorr
   /**
    * This is the float declaration of the function defined in 3.36.
    *
-   * \see absorption_mult_scatt()
+   * \ingroup absorption_mult_scatt
    */
   template std::string
   absorption_mult_scatt<float>(const Nessi::Vector<float> & axis_in,
@@ -28,7 +28,7 @@ namespace PhysCorr
    * This is the double precision float declaration of the function
    * defined in 3.36.
    *
-   * \see absorption_mult_scatt()
+   * \ingroup absorption_mult_scatt
    */
   template std::string
   absorption_mult_scatt<double>(const Nessi::Vector<double> & axis_in,

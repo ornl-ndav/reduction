@@ -12,7 +12,7 @@ namespace PhysCorr
   /**
    * This is the float declaration of the function defined in 3.40.
    *
-   * \see inelastic_scatt_corr()
+   * \ingroup inelastic_scatt_corr
    */
   template std::string
   inelastic_scatt_corr<float>(const Nessi::Vector<float> & axis_in,
@@ -26,7 +26,7 @@ namespace PhysCorr
    * This is the double precision float declaration of the function
    * defined in 3.40.
    *
-   * \see inelastic_scatt_corr()
+   * \ingroup inelastic_scatt_corr
    */
   template std::string
   inelastic_scatt_corr<double>(const Nessi::Vector<double> & axis_in,
