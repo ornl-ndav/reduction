@@ -24,6 +24,27 @@ namespace ArrayManip
             Nessi::Vector<NumT> & array_out_err2,
             void *temp=NULL)
   {
+    // check that the values are of proper size
+    try
+      {
+        std::string errstr("ArrayManip::sub_ncerr: data ");
+        Utils::check_sizes_square(errstr,array_in,array_out);
+      }
+    catch (std::invalid_argument e)
+      {
+        throw e;
+      }
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("ArrayManip::sub_ncerr: error ");
+        Utils::check_sizes_square(errstr,array_in_err2,array_out_err2);
+      }
+    catch (std::invalid_argument e)
+      {
+        throw e;
+      }
+
     std::string errstr("");
 
     size_t size = array_in.size();
@@ -46,6 +67,27 @@ namespace ArrayManip
             Nessi::Vector<NumT> & array_out_err2,
             void *temp=NULL)
   {
+    // check that the values are of proper size
+    try
+      {
+        std::string errstr("ArrayManip::sub_ncerr: data ");
+        Utils::check_sizes_square(errstr,array_in,array_out);
+      }
+    catch (std::invalid_argument e)
+      {
+        throw e;
+      }
+    // check that the uncertainties are of proper size
+    try
+      {
+        std::string errstr("ArrayManip::sub_ncerr: error ");
+        Utils::check_sizes_square(errstr,array_in_err2,array_out_err2);
+      }
+    catch (std::invalid_argument e)
+      {
+        throw e;
+      }
+
     std::string errstr("");
 
     size_t size = array_in.size();
