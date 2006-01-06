@@ -11,6 +11,7 @@
 
 namespace Utils
 {
+  // vector comparison function
   template <typename NumT>
   void
   vector_comparison (const Nessi::Vector<NumT> & value,
