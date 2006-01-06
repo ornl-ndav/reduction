@@ -33,6 +33,6 @@ namespace Utils
       }
     return;
   }
-}
+} // Utils
 
 #endif // _VECTOR_COMPARISON_HPP

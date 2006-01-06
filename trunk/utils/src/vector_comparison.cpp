@@ -83,4 +83,4 @@ namespace Utils
                                const Nessi::Vector<unsigned int> & true_value,
                                int & error,
                                const int add_error);
-}
+} // Utils
