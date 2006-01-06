@@ -35,6 +35,28 @@ namespace ArrayManip
     return errstr;
   }
 
+  // 3.44
+  template <typename NumT>
+  std::string 
+  sub_ncerr(const NumT scalar,
+            const NumT scalar_err2,
+	    const Nessi::Vector<NumT> & array_in, 
+            const Nessi::Vector<NumT> & array_in_err2, 
+            Nessi::Vector<NumT> & array_out,
+            Nessi::Vector<NumT> & array_out_err2,
+            void *temp=NULL)
+  {
+    std::string errstr("");
+
+    size_t size = array_in.size();
+    for (size_t i = 0; i < size; ++i)
+      {
+	array_out[i] = scalar - array_in[i];
+        array_out_err2[i] = array_in_err2[i] + scalar_err2;
+      }
+    return errstr;
+  }
+
   // 3.7
   template <typename NumT>
   std::string 
