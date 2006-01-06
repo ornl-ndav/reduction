@@ -12,6 +12,11 @@
 namespace Utils
 {
   /**
+   * \defgroup check_sizes_square Utils::check_sizes_square
+   * \{
+   */
+
+  /**
    * \brief This function checks three vectors for consistent sizes.
    *
    * This function checks the sizes of three vector for consistent sizes. 
@@ -51,6 +56,15 @@ namespace Utils
 			    const Nessi::Vector<NumT> & array2);
 
   /**
+   * \}
+   */ // end of check_sizes_square group
+
+  /**
+   * \defgroup check_histo_sizes Utils::check_histo_sizes
+   * \{
+   */
+
+  /**
    * \brief This function checks data, error2 and axis vectors for 
    * consistent sizes.
    *
@@ -72,6 +86,11 @@ namespace Utils
                          const Nessi::Vector<NumT> & input,
                          const Nessi::Vector<NumT> & input_err2,
                          const Nessi::Vector<NumT> & axis);
+
+  /**
+   * \}
+   */ // end of check_histo_sizes group
+
 } // Utils
 
 #endif // _SIZE_CHECKS_HPP

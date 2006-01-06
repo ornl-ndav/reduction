@@ -12,7 +12,7 @@ namespace Utils
   /**
    * This is the float declaration of the check_histo_sizes function
    *
-   * \see check_histo_sizes()
+   * \ingroup check_histo_sizes
    */
   template void 
   check_histo_sizes<float>(std::string & errstr,
@@ -23,7 +23,7 @@ namespace Utils
   /**
    * This is the double declaration of the check_histo_sizes function
    *
-   * \see check_histo_sizes()
+   * \ingroup check_histo_sizes
    */
   template void 
   check_histo_sizes<double>(std::string & errstr,
@@ -34,7 +34,7 @@ namespace Utils
   /**
    * This is the int declaration of the check_histo_sizes function
    *
-   * \see check_histo_sizes()
+   * \ingroup check_histo_sizes
    */
   template void 
   check_histo_sizes<int>(std::string & errstr,
@@ -45,7 +45,7 @@ namespace Utils
   /**
    * This is the unsigned declaration of the check_histo_sizes function
    *
-   * \see check_histo_sizes()
+   * \ingroup check_histo_sizes
    */
   template void 
   check_histo_sizes<unsigned>(std::string & errstr,
