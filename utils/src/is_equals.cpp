@@ -31,10 +31,16 @@ namespace Utils
 
   // explicit instantiations
 
+  /**
+   * \ingroup is_equals
+   */
   template bool
   is_equals<int>(const int & value1,
 		 const int & value2);
 
+  /**
+   * \ingroup is_equals
+   */
   template bool
   is_equals<unsigned int>(const unsigned int & value1,
 			  const unsigned int & value2);

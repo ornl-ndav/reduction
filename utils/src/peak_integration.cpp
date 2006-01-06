@@ -12,7 +12,7 @@ namespace Utils
   /**
    * This is the float declaration of the function defined in 3.35.
    *
-   * \see peak_integration()
+   * \ingroup peak_integration
    */
   template std::string
   peak_integration<float>(const Nessi::Vector<float> & input,
@@ -28,7 +28,7 @@ namespace Utils
    * This is the double precision float declaration of the function
    * defined in 3.35.
    *
-   * \see peak_integration()
+   * \ingroup peak_integration
    */
   template std::string
   peak_integration<double>(const Nessi::Vector<double> & input,

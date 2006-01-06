@@ -20,6 +20,11 @@
 namespace Utils
 {
   /**
+   * \defgroup peak_integration Utils::peak_integration
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.35.
    *
    * Starting with the \f$x_0\f$ bin, sum the values of the function and
@@ -63,6 +68,15 @@ namespace Utils
 		     void *temp=NULL);
  
   /**
+   * \}
+   */ // end of peak_integration group
+
+  /**
+   * \defgroup matrix_multiplication Utils::matrix_multiplication
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.37.
    *
    * THIS FUNCTION NEEDS TO BE DOCUMENTED
@@ -79,6 +93,15 @@ namespace Utils
 			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of matrix_multiplication group
+
+  /** 
+   * \defgroup fit_reflectometer_background Utils::fit_reflectometer_background
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.42.
    *
@@ -99,6 +122,15 @@ namespace Utils
 				 Nessi::Vector<NumT> & params_out,
 				 Nessi::Vector<NumT> & params_out_err2,
 				 void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of fit_reflectometer_background group
+
+  /**
+   * \defgroup fit_linear_background Utils::fit_linear_background
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.43.
@@ -123,6 +155,10 @@ namespace Utils
 			  NumT & intercept_out,
 			  NumT & intercept_out_err2,
 			  void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of fit_linear_background group
 
 } // Utils
 

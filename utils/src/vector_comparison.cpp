@@ -68,12 +68,18 @@ namespace Utils
   
   // explicit instantiations
   
+  /**
+   * \ingroup vector_comparison
+   */
   template void
   vector_comparison<int>(const Nessi::Vector<int> & value,
                          const Nessi::Vector<int> & true_value,
                          int & error,
                          const int add_error);
 
+  /**
+   * \ingroup vector_comparison
+   */
   template void
   vector_comparison<unsigned int>(
                                const Nessi::Vector<unsigned int> & value,
