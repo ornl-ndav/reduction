@@ -22,7 +22,7 @@
 namespace ArrayManip
 {
   /**
-   * \defgroup add_ncerr add_ncerr
+   * \defgroup add_ncerr ArrayManip::add_ncerr
    * \{
    */
 

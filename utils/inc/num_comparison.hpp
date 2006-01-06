@@ -8,8 +8,16 @@
 
 #include "nessi.hpp"
 
+/**
+ * \namespace Utils
+ */
 namespace Utils
 {
+  /**
+   * \defgroup vector_comparison Utils::vector_comparison
+   * \{
+   */
+
   template <typename NumT> 
     void 
     vector_comparison (const Nessi::Vector<NumT> & value,
@@ -27,6 +35,15 @@ namespace Utils
                           int & error,
                           const int add_error);
   
+  /**
+   * \}
+   */ // end of vector_comparison group
+
+  /**
+   * \defgroup is_equals Utils::is_equals
+   * \{
+   */
+
   template <typename NumT>
     bool
     is_equals(const NumT & value1,
@@ -37,6 +54,10 @@ namespace Utils
 
   bool is_equals (const double & value1,
 		  const double & value2);
+
+  /**
+   * \}
+   */ // end of is_equals group
 }
 
 #endif // _NUM_COMPARISON_HPP
