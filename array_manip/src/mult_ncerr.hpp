@@ -17,8 +17,8 @@ namespace ArrayManip
   std::string 
   mult_ncerr(Nessi::Vector<NumT> const & array_in, 
              Nessi::Vector<NumT> const & array_in_err2, 
-             NumT scalar,
-             NumT scalar_err2,
+             const NumT scalar,
+             const NumT scalar_err2,
              Nessi::Vector<NumT> & array_out,
              Nessi::Vector<NumT> & array_out_err2,
              void *temp=NULL)

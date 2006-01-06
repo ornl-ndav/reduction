@@ -1,5 +1,5 @@
 /**
- * $Id: $
+ * $Id$
  *
  * \file array_manip/src/mult_ncerr.cpp
  */
@@ -17,8 +17,8 @@ namespace ArrayManip
   template std::string 
   mult_ncerr<float>(Nessi::Vector<float> const & array_in, 
                     Nessi::Vector<float> const & array_in_err2, 
-                    float scalar,
-                    float scalar_err2,
+                    const float scalar,
+                    const float scalar_err2,
                     Nessi::Vector<float> & array_out,
                     Nessi::Vector<float> & array_out_err2,
                     void *temp);
@@ -32,8 +32,8 @@ namespace ArrayManip
   template std::string 
   mult_ncerr<double>(Nessi::Vector<double> const & array_in, 
                      Nessi::Vector<double> const & array_in_err2, 
-                     double scalar,
-                     double scalar_err2,
+                     const double scalar,
+                     const double scalar_err2,
                      Nessi::Vector<double> & array_out,
                      Nessi::Vector<double> & array_out_err2,
                      void *temp);
@@ -46,8 +46,8 @@ namespace ArrayManip
   template std::string 
   mult_ncerr<int>(Nessi::Vector<int> const & array_in, 
                   Nessi::Vector<int> const & array_in_err2, 
-                  int scalar,
-                  int scalar_err2,
+                  const int scalar,
+                  const int scalar_err2,
                   Nessi::Vector<int> & array_out,
                   Nessi::Vector<int> & array_out_err2,
                   void *temp);
@@ -61,8 +61,8 @@ namespace ArrayManip
   template std::string 
   mult_ncerr<unsigned int>(Nessi::Vector<unsigned int> const & array_in, 
                            Nessi::Vector<unsigned int> const & array_in_err2, 
-                           unsigned int scalar, 
-                           unsigned int scalar_err2,
+                           const unsigned int scalar, 
+                           const unsigned int scalar_err2,
                            Nessi::Vector<unsigned int> & array_out,
                            Nessi::Vector<unsigned int> & array_out_err2,
                            void *temp);

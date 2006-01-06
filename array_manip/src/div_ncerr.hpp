@@ -15,8 +15,8 @@ namespace ArrayManip
   // 3.4
   template <typename NumT>
   std::string 
-  div_ncerr(NumT scalar,
-            NumT scalar_err2,
+  div_ncerr(const NumT scalar,
+            const NumT scalar_err2,
             const Nessi::Vector<NumT> & array_in, 
             const Nessi::Vector<NumT> & array_in_err2, 
             Nessi::Vector<NumT> & array_out,
@@ -42,8 +42,8 @@ namespace ArrayManip
   std::string 
   div_ncerr(const Nessi::Vector<NumT> & array_in, 
             const Nessi::Vector<NumT> & array_in_err2, 
-            NumT scalar,
-            NumT scalar_err2,
+            const NumT scalar,
+            const NumT scalar_err2,
             Nessi::Vector<NumT> & array_out,
             Nessi::Vector<NumT> & array_out_err2,
             void *temp=NULL)
