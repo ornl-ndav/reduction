@@ -6,6 +6,12 @@
 #ifndef _CONSTANTS_HPP
 #define _CONSTANTS_HPP 1
 
+/**
+ * \namespace PhysConst
+ *
+ * \brief A collection of double precision constants useful in
+ * time-of-flight neutron scattering
+ */
 namespace PhysConst
 {
   /**
