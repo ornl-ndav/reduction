@@ -17,8 +17,6 @@ libUtils_la_SOURCES = \
 	fit_linear_background.cpp \
 	fit_reflectometer_background.hpp \
 	fit_reflectometer_background.cpp \
-	is_equals.hpp \
-	is_equals.cpp \
 	matrix_multiplication.hpp \
 	matrix_multiplication.cpp \
 	peak_integration.hpp \
