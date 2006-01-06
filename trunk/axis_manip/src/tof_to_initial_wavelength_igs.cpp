@@ -15,7 +15,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.29.
    *
-   * \see tof_to_initial_wavelength_igs()
+   * \ingroup tof_to_initial_wavelength_igs
    */
   template std::string
   tof_to_initial_wavelength_igs<float>(
@@ -36,7 +36,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.29.
    *
-   * \see tof_to_initial_wavelength_igs()
+   * \ingroup tof_to_initial_wavelength_igs
    */
   template std::string
   tof_to_initial_wavelength_igs<float>(
@@ -58,7 +58,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.29.
    *
-   * \see tof_to_initial_wavelength_igs()
+   * \ingroup tof_to_initial_wavelength_igs
    */
   template std::string
   tof_to_initial_wavelength_igs<double>(
@@ -80,7 +80,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.29.
    *
-   * \see tof_to_initial_wavelength_igs()
+   * \ingroup tof_to_initial_wavelength_igs
    */
   template std::string
   tof_to_initial_wavelength_igs<double>(

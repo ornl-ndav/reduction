@@ -250,6 +250,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup energy_transfer
+   *
    * This is a PRIVATE helper function for energy_transfer that
    * calculates parameters invariant across array calculation.
    */
@@ -265,6 +267,8 @@ namespace AxisManip
   }
 
   /**
+   * \ingroup energy_transfer
+   *
    * This is a PRIVATE helper function for energy_transfer that
    * calculates the energy_transfer and its uncertainty
    */

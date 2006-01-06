@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.28.
    *
-   * \see tof_to_initial_velocity_igs()
+   * \ingroup tof_to_initial_velocity_igs
    */
   template std::string
   tof_to_initial_velocity_igs<float>(
@@ -33,7 +33,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.28.
    *
-   * \see tof_to_initial_velocity_igs()
+   * \ingroup tof_to_initial_velocity_igs
    */
   template std::string
   tof_to_initial_velocity_igs<float>(
@@ -55,7 +55,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.28.
    *
-   * \see tof_to_initial_velocity_igs()
+   * \ingroup tof_to_initial_velocity_igs
    */
   template std::string
   tof_to_initial_velocity_igs<double>(
@@ -77,7 +77,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.28.
    *
-   * \see tof_to_initial_velocity_igs()
+   * \ingroup tof_to_initial_velocity_igs
    */
   template std::string
   tof_to_initial_velocity_igs<double>(

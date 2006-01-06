@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration for the function defined in 3.11.
    *
-   * \see reverse_array_cp()
+   * \ingroup reverse_array_cp
    */
   template std::string 
   reverse_array_cp<float>(const Nessi::Vector<float> & input,
@@ -23,7 +23,7 @@ namespace AxisManip
    * This is the double precision float declaration for the function
    * defined in 3.11.
    *
-   * \see reverse_array_cp()
+   * \ingroup reverse_array_cp
    */
   template std::string 
   reverse_array_cp<double>(const Nessi::Vector<double> & input,
@@ -33,7 +33,7 @@ namespace AxisManip
   /**
    * This is the integer declaration for the function defined in 3.11.
    *
-   * \see reverse_array_cp()
+   * \ingroup reverse_array_cp
    */
   template std::string 
   reverse_array_cp<int>(const Nessi::Vector<int> & input,
@@ -44,7 +44,7 @@ namespace AxisManip
    * This is the unsigned integer declaration for the function defined
    * in 3.11.
    *
-   * \see reverse_array_cp()
+   * \ingroup reverse_array_cp
    */
   template std::string 
   reverse_array_cp<unsigned int>(const Nessi::Vector<unsigned int> & input,

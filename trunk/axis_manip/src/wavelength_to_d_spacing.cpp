@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.25.
    *
-   * \see wavelength_to_d_spacing()
+   * \ingroup wavelength_to_d_spacing
    */
   template std::string
   wavelength_to_d_spacing<float>(const Nessi::Vector<float> & wavelength,
@@ -26,7 +26,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.25.
    *
-   * \see wavelength_to_d_spacing()
+   * \ingroup wavelength_to_d_spacing
    */
   template std::string
   wavelength_to_d_spacing<float>(const float wavelength,
@@ -41,7 +41,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.25.
    *
-   * \see wavelength_to_d_spacing()
+   * \ingroup wavelength_to_d_spacing
    */
   template std::string
   wavelength_to_d_spacing<double>(
@@ -57,7 +57,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.25.
    *
-   * \see wavelength_to_d_spacing()
+   * \ingroup wavelength_to_d_spacing
    */
   template std::string
   wavelength_to_d_spacing<double>(const double wavelength,

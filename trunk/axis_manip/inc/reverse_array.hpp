@@ -12,6 +12,11 @@
 namespace AxisManip
 {
   /**
+   * \defgroup reverse_array_cp AxisManip::reverse_array_cp
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.11.
    *
    * This function will reorder an array so the last element of the
@@ -29,6 +34,15 @@ namespace AxisManip
     reverse_array_cp(const Nessi::Vector<NumT> & input,
                      Nessi::Vector<NumT> & output,
                      void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of reverse_array_cp group
+
+  /**
+   * \defgroup reverse_array_nc AxisManip::reverse_array_nc
+   * \{
+   */
 
   /**
    * \brief This function is not described but is based on section 3.11.
@@ -49,6 +63,10 @@ namespace AxisManip
     reverse_array_nc(Nessi::Vector<NumT> & inout,
 		     void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of reverse_array_nc group
+
 } // AxisManip
 
 #endif // _REVERSE_ARRAY_HPP

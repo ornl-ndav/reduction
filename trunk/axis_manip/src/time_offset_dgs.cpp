@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.26.
    *
-   * \see time_offset_dgs()
+   * \ingroup time_offset_dgs
    */
   template std::string
   time_offset_dgs<float>(const float dist_downstream_monitor,
@@ -29,7 +29,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.26.
    *
-   * \see time_offset_dgs()
+   * \ingroup time_offset_dgs
    */
   template std::string
   time_offset_dgs<double>(const double dist_downstream_monitor,

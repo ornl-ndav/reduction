@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.12.
    *
-   * \see rebin_axis_1D()
+   * \ingroup rebin_axis_1D
    */
   template std::string 
   rebin_axis_1D<float>(const Nessi::Vector<float> & axis_in,
@@ -27,7 +27,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.12.
    *
-   * \see rebin_axis_1D()
+   * \ingroup rebin_axis_1D
    */
   template std::string 
   rebin_axis_1D<double>(const Nessi::Vector<double> & axis_in,

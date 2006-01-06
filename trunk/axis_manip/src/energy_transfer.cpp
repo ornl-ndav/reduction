@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<float>(const Nessi::Vector<float> & initial_energy,
@@ -26,7 +26,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<float>(const Nessi::Vector<float> & initial_energy,
@@ -40,7 +40,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<float>(const float initial_energy,
@@ -54,7 +54,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<float>(const float initial_energy,
@@ -69,7 +69,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<double>(const Nessi::Vector<double> & initial_energy,
@@ -84,7 +84,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<double>(const Nessi::Vector<double> & initial_energy,
@@ -99,7 +99,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<double>(const double initial_energy,
@@ -114,7 +114,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.30.
    *
-   * \see energy_transfer()
+   * \ingroup energy_transfer
    */
   template std::string
   energy_transfer<double>(const double initial_energy,

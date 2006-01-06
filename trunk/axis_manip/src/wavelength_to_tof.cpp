@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.16.
    *
-   * \see wavelength_to_tof()
+   * \ingroup wavelength_to_tof
    */
   template std::string
   wavelength_to_tof<float>(const Nessi::Vector<float> & wavelength,
@@ -26,7 +26,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.16.
    *
-   * \see wavelength_to_tof()
+   * \ingroup wavelength_to_tof
    */
   template std::string
   wavelength_to_tof<float>(const float wavelength,
@@ -41,7 +41,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.16.
    *
-   * \see wavelength_to_tof()
+   * \ingroup wavelength_to_tof
    */
   template std::string
   wavelength_to_tof<double>(const Nessi::Vector<double> & wavelength,
@@ -56,7 +56,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.16.
    *
-   * \see wavelength_to_tof()
+   * \ingroup wavelength_to_tof
    */
   template std::string
   wavelength_to_tof<double>(const double wavelength,

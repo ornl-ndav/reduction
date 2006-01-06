@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.27.
    *
-   * \see tof_to_final_velocity_dgs()
+   * \ingroup tof_to_final_velocity_dgs
    */
   template std::string
   tof_to_final_velocity_dgs<float>(const Nessi::Vector<float> & tof,
@@ -31,7 +31,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.27.
    *
-   * \see tof_to_final_velocity_dgs()
+   * \ingroup tof_to_final_velocity_dgs
    */
   template std::string
   tof_to_final_velocity_dgs<float>(const float tof,
@@ -52,7 +52,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.27.
    *
-   * \see tof_to_final_velocity_dgs()
+   * \ingroup tof_to_final_velocity_dgs
    */
   template std::string
   tof_to_final_velocity_dgs<double>(
@@ -74,7 +74,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.27.
    *
-   * \see tof_to_final_velocity_dgs()
+   * \ingroup tof_to_final_velocity_dgs
    */
   template std::string
   tof_to_final_velocity_dgs<double>(const double tof,
