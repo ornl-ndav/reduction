@@ -12,4 +12,4 @@
 
 cd latex
 make pdf
-mv refman.pdf $1-$2.pdf
+mv refman.pdf $1

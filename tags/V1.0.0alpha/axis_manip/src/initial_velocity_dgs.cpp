@@ -12,7 +12,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.19.
    *
-   * \see initial_velocity_dgs()
+   * \ingroup initial_velocity_dgs
    */
   template std::string
   initial_velocity_dgs<float>(const float dist_upsteam_mon,
@@ -31,7 +31,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.19.
    *
-   * \see initial_velocity_dgs()
+   * \ingroup initial_velocity_dgs
    */
   template std::string
   initial_velocity_dgs<double>(const double dist_upsteam_mon,

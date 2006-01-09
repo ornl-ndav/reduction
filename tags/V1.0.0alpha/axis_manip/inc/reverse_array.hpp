@@ -3,14 +3,19 @@
  *
  * \file axis_manip/inc/reverse_array.hpp
  */
-#ifndef _REVERSE_ARRAY_H
-#define _REVERSE_ARRAY_H 1
+#ifndef _REVERSE_ARRAY_HPP
+#define _REVERSE_ARRAY_HPP 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
+  /**
+   * \defgroup reverse_array_cp AxisManip::reverse_array_cp
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.11.
    *
@@ -26,9 +31,18 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    reverse_array_cp(std::vector<NumT> const & input,
-		  std::vector<NumT> & output,
-		  void *temp=NULL);
+    reverse_array_cp(const Nessi::Vector<NumT> & input,
+                     Nessi::Vector<NumT> & output,
+                     void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of reverse_array_cp group
+
+  /**
+   * \defgroup reverse_array_nc AxisManip::reverse_array_nc
+   * \{
+   */
 
   /**
    * \brief This function is not described but is based on section 3.11.
@@ -46,9 +60,13 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    reverse_array_nc(std::vector<NumT> & inout,
+    reverse_array_nc(Nessi::Vector<NumT> & inout,
 		     void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of reverse_array_nc group
+
 } // AxisManip
 
-#endif // _REVERSE_ARRAY_H
+#endif // _REVERSE_ARRAY_HPP

@@ -11,7 +11,7 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.20.
    *
-   * \see final_velocity_igs()
+   * \ingroup final_velocity_igs
    */
   template std::string
   final_velocity_igs<float>(const float analyzer_wavelength,
@@ -24,7 +24,7 @@ namespace AxisManip
    * This is the double precision float declaration of the function
    * defined in 3.20.
    *
-   * \see final_velocity_igs()
+   * \ingroup final_velocity_igs
    */
   template std::string
   final_velocity_igs<double>(const double analyzer_wavelength,

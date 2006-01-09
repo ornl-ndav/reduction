@@ -12,29 +12,58 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.18.
    *
-   * \see wavelength_to_scalar_Q()
+   * \ingroup wavelength_to_scalar_Q
    */
   template std::string
-  wavelength_to_scalar_Q<float>(std::vector<float> const & wavelength,
-				std::vector<float> const & wavelength_err2,
+  wavelength_to_scalar_Q<float>(const Nessi::Vector<float> & wavelength,
+				const Nessi::Vector<float> & wavelength_err2,
 				const float scatt_angle,
 				const float scatt_angle_err2,
-				std::vector<float> & Q,
-				std::vector<float> & Q_err2,
+				Nessi::Vector<float> & Q,
+				Nessi::Vector<float> & Q_err2,
+				void *temp);
+  
+  /**
+   * This is the float declaration of the function defined in 3.18.
+   *
+   * \ingroup wavelength_to_scalar_Q
+   */
+  template std::string
+  wavelength_to_scalar_Q<float>(const float wavelength,
+				const float wavelength_err2,
+				const float scatt_angle,
+				const float scatt_angle_err2,
+				float & Q,
+				float & Q_err2,
 				void *temp);
   
   /**
    * This is the double precision float declaration of the function
    * defined in 3.18.
    *
-   * \see wavelength_to_scalar_Q()
+   * \ingroup wavelength_to_scalar_Q
    */
   template std::string
-  wavelength_to_scalar_Q<double>(std::vector<double> const & wavelength,
-				 std::vector<double> const & wavelength_err2,
+  wavelength_to_scalar_Q<double>(const Nessi::Vector<double> & wavelength,
+				 const Nessi::Vector<double> & wavelength_err2,
 				 const double scatt_angle,
 				 const double scatt_angle_err2,
-				 std::vector<double> & Q,
-				 std::vector<double> & Q_err2,
+				 Nessi::Vector<double> & Q,
+				 Nessi::Vector<double> & Q_err2,
+				 void *temp);
+
+  /**
+   * This is the double precision float declaration of the function
+   * defined in 3.18.
+   *
+   * \ingroup wavelength_to_scalar_Q
+   */
+  template std::string
+  wavelength_to_scalar_Q<double>(const double wavelength,
+				 const double wavelength_err2,
+				 const double scatt_angle,
+				 const double scatt_angle_err2,
+				 double & Q,
+				 double & Q_err2,
 				 void *temp);
 } // AxisManip

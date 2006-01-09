@@ -12,41 +12,41 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.14.
    *
-   * \see rebin_axis_4D()
+   * \ingroup rebin_axis_4D
    */
   template std::string 
-  rebin_axis_4D<float>(std::vector<float> const & axis_in_1,
-		       std::vector<float> const & axis_in_2,
-		       std::vector<float> const & axis_in_3,
-		       std::vector<float> const & axis_in_4,
-		       std::vector<float> const & input,
-		       std::vector<float> const & input_err2,
-		       std::vector<float> const & axis_out_1,
-		       std::vector<float> const & axis_out_2,
-		       std::vector<float> const & axis_out_3,
-		       std::vector<float> const & axis_out_4,
-		       std::vector<float> & output,
-		       std::vector<float> & output_err2,
+  rebin_axis_4D<float>(const Nessi::Vector<float> & axis_in_1,
+		       const Nessi::Vector<float> & axis_in_2,
+		       const Nessi::Vector<float> & axis_in_3,
+		       const Nessi::Vector<float> & axis_in_4,
+		       const Nessi::Vector<float> & input,
+		       const Nessi::Vector<float> & input_err2,
+		       const Nessi::Vector<float> & axis_out_1,
+		       const Nessi::Vector<float> & axis_out_2,
+		       const Nessi::Vector<float> & axis_out_3,
+		       const Nessi::Vector<float> & axis_out_4,
+		       Nessi::Vector<float> & output,
+		       Nessi::Vector<float> & output_err2,
 		       void *temp);
   
   /**
    * This is the double precision float declaration of the function
    * defined in 3.14.
    *
-   * \see rebin_axis_4D()
+   * \ingroup rebin_axis_4D
    */
   template std::string 
-  rebin_axis_4D<double>(std::vector<double> const & axis_in_1,
-			std::vector<double> const & axis_in_2,
-			std::vector<double> const & axis_in_3,
-			std::vector<double> const & axis_in_4,
-			std::vector<double> const & input,
-			std::vector<double> const & input_err2,
-			std::vector<double> const & axis_out_1,
-			std::vector<double> const & axis_out_2,
-			std::vector<double> const & axis_out_3,
-			std::vector<double> const & axis_out_4,
-			std::vector<double> & output,
-			std::vector<double> & output_err2,
+  rebin_axis_4D<double>(const Nessi::Vector<double> & axis_in_1,
+			const Nessi::Vector<double> & axis_in_2,
+			const Nessi::Vector<double> & axis_in_3,
+			const Nessi::Vector<double> & axis_in_4,
+			const Nessi::Vector<double> & input,
+			const Nessi::Vector<double> & input_err2,
+			const Nessi::Vector<double> & axis_out_1,
+			const Nessi::Vector<double> & axis_out_2,
+			const Nessi::Vector<double> & axis_out_3,
+			const Nessi::Vector<double> & axis_out_4,
+			Nessi::Vector<double> & output,
+			Nessi::Vector<double> & output_err2,
 			void *temp);
 } // AxisManip

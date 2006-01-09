@@ -3,14 +3,19 @@
  *
  * \file axis_manip/inc/rebinning.hpp
  */
-#ifndef _REBINNING_H
-#define _REBINNING_H 1
+#ifndef _REBINNING_HPP
+#define _REBINNING_HPP 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 namespace AxisManip
 {
+  /**
+   * \defgroup rebin_axis_1D AxisManip::rebin_axis_1D
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.12.
    *
@@ -34,48 +39,70 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string 
-    rebin_axis_1D(std::vector<NumT> const & axis_in,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err2,
-		  std::vector<NumT> const & axis_out,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err2,
+    rebin_axis_1D(const Nessi::Vector<NumT> & axis_in,
+		  const Nessi::Vector<NumT> & input,
+		  const Nessi::Vector<NumT> & input_err2,
+		  const Nessi::Vector<NumT> & axis_out,
+		  Nessi::Vector<NumT> & output,
+		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of rebin_axis_1D group
   
+  /**
+   * \defgroup rebin_axis_2D AxisManip::rebin_axis_2D
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.13.
    */
   template <typename NumT>
     std::string 
-    rebin_axis_2D(std::vector<NumT> const & axis_in_1,
-		  std::vector<NumT> const & axis_in_2,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err2,
-		  std::vector<NumT> const & axis_out_1,
-		  std::vector<NumT> const & axis_out_2,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err2,
+    rebin_axis_2D(const Nessi::Vector<NumT> & axis_in_1,
+		  const Nessi::Vector<NumT> & axis_in_2,
+		  const Nessi::Vector<NumT> & input,
+		  const Nessi::Vector<NumT> & input_err2,
+		  const Nessi::Vector<NumT> & axis_out_1,
+		  const Nessi::Vector<NumT> & axis_out_2,
+		  Nessi::Vector<NumT> & output,
+		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of rebin_axis_2D group
+
+  /**
+   * \defgroup rebin_axis_4D AxisManip::rebin_axis_4D
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.14.
    */
   template <typename NumT>
     std::string 
-    rebin_axis_4D(std::vector<NumT> const & axis_in_1,
-		  std::vector<NumT> const & axis_in_2,
-		  std::vector<NumT> const & axis_in_3,
-		  std::vector<NumT> const & axis_in_4,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err2,
-		  std::vector<NumT> const & axis_out_1,
-		  std::vector<NumT> const & axis_out_2,
-		  std::vector<NumT> const & axis_out_3,
-		  std::vector<NumT> const & axis_out_4,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err2,
+    rebin_axis_4D(const Nessi::Vector<NumT> & axis_in_1,
+		  const Nessi::Vector<NumT> & axis_in_2,
+		  const Nessi::Vector<NumT> & axis_in_3,
+		  const Nessi::Vector<NumT> & axis_in_4,
+		  const Nessi::Vector<NumT> & input,
+		  const Nessi::Vector<NumT> & input_err2,
+		  const Nessi::Vector<NumT> & axis_out_1,
+		  const Nessi::Vector<NumT> & axis_out_2,
+		  const Nessi::Vector<NumT> & axis_out_3,
+		  const Nessi::Vector<NumT> & axis_out_4,
+		  Nessi::Vector<NumT> & output,
+		  Nessi::Vector<NumT> & output_err2,
 		  void *temp=NULL);
-  
+
+  /**
+   * \}
+   */ // end of rebin_axis_4D group
+
 } // AxisManip
 
-#endif // _REBINNING_H
+#endif // _REBINNING_HPP

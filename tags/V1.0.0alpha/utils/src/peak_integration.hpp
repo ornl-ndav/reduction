@@ -1,11 +1,12 @@
 /**
- * $Id: $
+ * $Id$
  *
  * \file utils/src/peak_integration.hpp
  */
+#ifndef _PEAK_INTEGRATION_HPP
+#define _PEAK_INTEGRATION_HPP 1
+
 #include "utils.hpp"
-#include <string>
-#include <vector>
 #include <stdexcept>
 
 namespace Utils
@@ -13,9 +14,9 @@ namespace Utils
   // 3.35
   template <typename NumT>
   std::string
-  peak_integration(std::vector<NumT> const & input,
-		   std::vector<NumT> const & input_err2,
-		   std::vector<NumT> const & start_bin,
+  peak_integration(const Nessi::Vector<NumT> & input,
+		   const Nessi::Vector<NumT> & input_err2,
+		   const Nessi::Vector<NumT> & start_bin,
 		   NumT & output,
 		   NumT & output_err2,
                    unsigned int & tag,
@@ -25,3 +26,5 @@ namespace Utils
     throw std::runtime_error("Function [peak_integration] not implemented");
   }
 } // Utils
+
+#endif // _PEAK_INTEGRATION_HPP

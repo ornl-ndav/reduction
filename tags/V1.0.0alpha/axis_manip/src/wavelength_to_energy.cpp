@@ -12,25 +12,50 @@ namespace AxisManip
   /**
    * This is the float declaration of the function defined in 3.22.
    *
-   * \see wavelength_to_energy()
+   * \ingroup wavelength_to_energy
    */
   template std::string
-  wavelength_to_energy<float>(std::vector<float> const & wavelength,
-			      std::vector<float> const & wavelength_err2,
-			      std::vector<float> & energy,
-			      std::vector<float> & energy_err2,
+  wavelength_to_energy<float>(const Nessi::Vector<float> & wavelength,
+			      const Nessi::Vector<float> & wavelength_err2,
+			      Nessi::Vector<float> & energy,
+			      Nessi::Vector<float> & energy_err2,
+			      void *temp);
+  
+  /**
+   * This is the float declaration of the function defined in 3.22.
+   *
+   * \ingroup wavelength_to_energy
+   */
+  template std::string
+  wavelength_to_energy<float>(const float wavelength,
+			      const float wavelength_err2,
+			      float & energy,
+			      float & energy_err2,
 			      void *temp);
   
   /**
    * This is the double precision float declaration of the function
    * defined in 3.22.
    *
-   * \see wavelength_to_energy()
+   * \ingroup wavelength_to_energy
    */
   template std::string
-  wavelength_to_energy<double>(std::vector<double> const & wavelength,
-			       std::vector<double> const & wavelength_err2,
-			       std::vector<double> & energy,
-			       std::vector<double> & energy_err2,
+  wavelength_to_energy<double>(const Nessi::Vector<double> & wavelength,
+			       const Nessi::Vector<double> & wavelength_err2,
+			       Nessi::Vector<double> & energy,
+			       Nessi::Vector<double> & energy_err2,
+			       void *temp);
+
+  /**
+   * This is the double precision float declaration of the function
+   * defined in 3.22.
+   *
+   * \ingroup wavelength_to_energy
+   */
+  template std::string
+  wavelength_to_energy<double>(const double wavelength,
+			       const double wavelength_err2,
+			       double & energy,
+			       double & energy_err2,
 			       void *temp);
 } // AxisManip

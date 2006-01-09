@@ -3,18 +3,21 @@
  *
  * \file axis_manip/inc/conversions.hpp
  */
-#ifndef _CONVERSIONS_H
-#define _CONVERSIONS_H 1
+#ifndef _CONVERSIONS_HPP
+#define _CONVERSIONS_HPP 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 /**
- * This sub-library contains the various physical axis conversions
- * that are useful for time-of-flight neutron scattering. Some
- * conversions are identical to those used in monochromatic neutron
- * scattering. None of the functions in this name space will reorder
- * the resulting axes so they are monotonically increasing.
+ * \namespace AxisManip
+ *
+ * \brief This sub-library contains the various physical axis
+ * conversions that are useful for time-of-flight neutron scattering.
+ *
+ * Some conversions are identical to those used in monochromatic
+ * neutron scattering. None of the functions in this name space will
+ * reorder the resulting axes so they are monotonically increasing.
  *
  * All of these functions are written in reference to SNS
  * 107030214-TD0001-R00, "Data Reduction Library Software Requirements
@@ -22,6 +25,11 @@
  */
 namespace AxisManip
 {
+  /**
+   * \defgroup tof_to_wavelength AxisManip::tof_to_wavelength
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.15.
    *
@@ -33,15 +41,17 @@ namespace AxisManip
    * Where \f$\lambda[i]\f$ is the wavelength, \f$h\f$ is Planck's
    * constant, \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the
    * mass of the neutron, and \f$L\f$ is the total flight path of the
-   * neutron.
+   * neutron. The uncertainty is calculated using the assumption of
+   * uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
    * time-of-flight axis
    * \param pathlength (INPUT) is the total flight path of the neutron
-   * in units of meter THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
+   * in units of meter
+   * \param pathlength_err2 (INPUT) is the square of the uncertainty
+   * in pathlength
    * \param wavelength (OUTPUT) is the wavelength axis in units of
    * angstrom
    * \param wavelength_err2 (OUTPUT) is the square of the uncertainty
@@ -53,13 +63,32 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    tof_to_wavelength(std::vector<NumT> const & tof,
-		      std::vector<NumT> const & tof_err2,
+    tof_to_wavelength(Nessi::Vector<NumT> const & tof,
+		      Nessi::Vector<NumT> const & tof_err2,
 		      const NumT pathlength,
 		      const NumT pathlength_err2,
-		      std::vector<NumT> & wavelength,
-		      std::vector<NumT> & wavelength_err2,
+		      Nessi::Vector<NumT> & wavelength,
+		      Nessi::Vector<NumT> & wavelength_err2,
 		      void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    tof_to_wavelength(const NumT tof,
+		      const NumT tof_err2,
+		      const NumT pathlength,
+		      const NumT pathlength_err2,
+		      NumT & wavelength,
+		      NumT & wavelength_err2,
+		      void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of tof_to_wavelength group
+
+  /**
+   * \defgroup wavelength_to_tof AxisManip::wavelength_to_tof
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.16.
@@ -72,15 +101,17 @@ namespace AxisManip
    * Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
    * of the neutron, \f$L\f$ is the total flight path of the neutron,
    * \f$\lambda\f$ is the wavelength, and \f$h\f$ is Planck's
-   * constant.
+   * constant. The uncertainty is calculated using the assumption of
+   * uncorrelated uncertainties.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty
    * in the wavelength axis
    * \param pathlength (INPUT) is the total flight path of the neutron
-   * in units of meter THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
+   * in units of meter
+   * \param pathlength_err2 (INPUT) is the square of the uncertainty
+   * in pathlength
    * \param tof (OUTPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (OUTPUT) is the square of the uncertainty in the
@@ -92,13 +123,32 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    wavelength_to_tof(std::vector<NumT> const & wavelength,
-		      std::vector<NumT> const & wavelength_err2,
+    wavelength_to_tof(Nessi::Vector<NumT> const & wavelength,
+		      Nessi::Vector<NumT> const & wavelength_err2,
 		      const NumT pathlength,
 		      const NumT pathlength_err2,
-		      std::vector<NumT> & tof,
-		      std::vector<NumT> & tof_err2,
+		      Nessi::Vector<NumT> & tof,
+		      Nessi::Vector<NumT> & tof_err2,
 		      void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    wavelength_to_tof(const NumT wavelength,
+		      const NumT wavelength_err2,
+		      const NumT pathlength,
+		      const NumT pathlength_err2,
+		      NumT & tof,
+		      NumT & tof_err2,
+		      void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of wavelength_to_tof group
+
+  /**
+   * \defgroup tof_to_scalar_Q AxisManip::tof_to_scalar_Q
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.17.
@@ -112,18 +162,21 @@ namespace AxisManip
    * the mass of the neutron, \f$L\f$ is the total flight path of the
    * neutron, \f$polar\f$ is the angle between the positive z-axis and
    * the direction of the scattered neutron, \f$h\f$ is Planck's
-   * constant, and \f$TOF[i]\f$ is the time-of-flight.
+   * constant, and \f$TOF[i]\f$ is the time-of-flight. The uncertainty
+   * is calculated using the assumption of uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
    * time-of-flight axis
    * \param pathlength (INPUT) is the total flight path of the neutron
-   * in units of meter THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
+   * in units of meter
+   * \param pathlength_err2 (INPUT) is the square of the uncertainty
+   * in pathlength
    * \param polar (INPUT) is the polar angle in the equation above in
-   * units of radians THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
+   * units of radians
+   * \param polar_err2 (INPUT) is the square of the uncertainty in
+   * polar
    * \param Q (OUTPUT) is the scalar momentum transfer, Q, axis in
    * units of reciprocal angstroms
    * \param Q_err2 (OUTPUT) is the square of the uncertainty in the
@@ -135,15 +188,36 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    tof_to_scalar_Q(std::vector<NumT> const & tof,
-		    std::vector<NumT> const & tof_err2,
+    tof_to_scalar_Q(Nessi::Vector<NumT> const & tof,
+		    Nessi::Vector<NumT> const & tof_err2,
 		    const NumT pathlength,
 		    const NumT pathlength_err2,
                     const NumT polar,
 		    const NumT polar_err2,
-		    std::vector<NumT> & Q,
-		    std::vector<NumT> & Q_err2,
+		    Nessi::Vector<NumT> & Q,
+		    Nessi::Vector<NumT> & Q_err2,
 		    void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    tof_to_scalar_Q(const NumT tof,
+		    const NumT tof_err2,
+		    const NumT pathlength,
+		    const NumT pathlength_err2,
+                    const NumT polar,
+		    const NumT polar_err2,
+		    NumT & Q,
+		    NumT & Q_err2,
+		    void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of tof_to_scalar_Q group
+
+  /**
+   * \defgroup wavelength_to_scalar_Q AxisManip::wavelength_to_scalar_Q
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.18.
@@ -155,15 +229,18 @@ namespace AxisManip
    * \f]
    * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$\lambda\f$
    * is the wavelength, and \f$polar\f$ is the angle between the
-   * positive z-axis and the direction of the scattered neutron.
+   * positive z-axis and the direction of the scattered neutron. The
+   * uncertainty is calculated using the assumption of uncorrelated
+   * uncertainties.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty in the
    * wavelength axis
    * \param polar (INPUT) is the polar angle in the equation above in
-   * units of radians THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
+   * units of radians
+   * \param polar_err2 (INPUT) is the square of the uncertainty in
+   * polar
    * \param Q (OUTPUT) is the scalar momentum transfer, Q, axis in
    * units of reciprocal angstroms
    * \param Q_err2 (OUTPUT) is the square of the uncertainty in the
@@ -175,14 +252,33 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    wavelength_to_scalar_Q(std::vector<NumT> const & wavelength,
-			   std::vector<NumT> const & wavelength_err2,
+    wavelength_to_scalar_Q(Nessi::Vector<NumT> const & wavelength,
+			   Nessi::Vector<NumT> const & wavelength_err2,
 			   const NumT polar,
 			   const NumT polar_err2,
-			   std::vector<NumT> & Q,
-			   std::vector<NumT> & Q_err2,
+			   Nessi::Vector<NumT> & Q,
+			   Nessi::Vector<NumT> & Q_err2,
+			   void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    wavelength_to_scalar_Q(const NumT wavelength,
+			   const NumT wavelength_err2,
+			   const NumT polar,
+			   const NumT polar_err2,
+			   NumT & Q,
+			   NumT & Q_err2,
 			   void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of wavelength_to_scalar_Q group
+
+  /**
+   * \defgroup initial_velocity_dgs AxisManip::initial_velocity_dgs
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.19.
    *
@@ -195,23 +291,29 @@ namespace AxisManip
    * to the downstream monitor, \f$L_u\f$ is the distance to the
    * upstream monitor, \f$t_d\f$ is the time-of-flight to reach the
    * downstream monitor, and \f$t_u\f$ is the time-of-flight to reach
-   * the upstream monitor.
+   * the upstream monitor. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * \param dist_upstream_mon (INPUT) is the distance to the upstream
-   * monitor in units of meters THERE SHOULD BE AN UNCERTAINTY WITH
-   * THIS AS WELL
+   * monitor in units of meters
+   * \param dist_upstream_mon_err2 (INPUT) is the square of the
+   * uncertainty in dist_upstream_mon
    * \param time_upstream_mon (INPUT) is the time-of-flight to reach
-   * the upstream monitor in units of micro-seconds THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * the upstream monitor in units of micro-seconds
+   * \param time_upstream_mon_err2 (INPUT) is the square of the
+   * uncertainty in time_upstream_mon
    * \param dist_downstream_mon (INPUT) is the distance to the
-   * downstream monitor in units of meters THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * downstream monitor in units of meters
+   * \param dist_downstream_mon_err2 (INPUT) is the square of the
+   * uncertainty in dist_downstream_mon
    * \param time_downstream_mon (INPUT) is the time-of-flight to reach
-   * the downstream monitor in units of micro-seconds THERE SHOULD BE
-   * AN UNCERTAINTY WITH THIS AS WELL
+   * the downstream monitor in units of micro-seconds
+   * \param time_downstream_mon_err2 (INPUT) is the square of the
+   * uncertainty in time_downstream_mon
    * \param initial_velocity (OUTPUT) is the initial velocity of the
-   * neutron in units of meter/mirco-seconds THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * neutron in units of meter/mirco-seconds
+   * \param initial_velocity_err2 (OUTPUT) is the square of the
+   * uncertainty in initial_velocity
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -232,6 +334,15 @@ namespace AxisManip
 			 void *temp=NULL);
 
   /**
+   * \}
+   */ // end of initial_velocity_dgs group
+
+  /**
+   * \defgroup final_velocity_igs AxisManip::final_velocity_igs
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.20.
    *
    * This function calculates the final velocity of the neutron for an
@@ -242,14 +353,17 @@ namespace AxisManip
    * Where \f$v\f$ is the final velocity of the neutron, \f$h\f$ is
    * Planck's constant, \f$m_n\f$ is the mass of the neutron, and
    * \f$\lambda_f\f$ is the wavelength reflected by the analyzer
-   * crystal.
+   * crystal. The uncertainty is calculated using the assumption of
+   * uncorrelated uncertainties.
    *
    * \param analyzer_wavelength (INPUT) is the wavelength reflected by
-   * the analyzer crystal in units of Angstroms THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * the analyzer crystal in units of Angstroms
+   * \param analyzer_wavelength_err2 (INPUT) is the square of the
+   * uncertainty in analyzer_wavelength
    * \param final_velocity (OUTPUT) is the final velocity of the
-   * neutron in units of meter/micro-seconds THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * neutron in units of meter/micro-seconds
+   * \param final_velocity_err2 (OUTPUT) is the square of the
+   * uncertainty in final_velocity
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -263,6 +377,14 @@ namespace AxisManip
 		       NumT & final_velocity_err2,
 		       void *temp=NULL);
  
+  /**
+   * \}
+   */ // end of final_velocity_igs group
+
+  /**
+   * \defgroup velocity_to_energy AxisManip::velocity_to_energy
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.21.
@@ -275,7 +397,8 @@ namespace AxisManip
    * \f]
    * Where \f$E[i]\f$ is the energy of the neutron, \f$m_n\f$ is the
    * mass of the neutron, and \f$v[i]\f$ is the velocity of the
-   * netron.
+   * netron. The uncertainty is calculated using the assumption of
+   * uncorrelated uncertainties.
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
@@ -292,11 +415,28 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    velocity_to_energy(std::vector<NumT> const & velocity,
-		       std::vector<NumT> const & velocity_err2,
-		       std::vector<NumT> & energy,
-		       std::vector<NumT> & energy_err2,
+    velocity_to_energy(Nessi::Vector<NumT> const & velocity,
+		       Nessi::Vector<NumT> const & velocity_err2,
+		       Nessi::Vector<NumT> & energy,
+		       Nessi::Vector<NumT> & energy_err2,
 		       void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    velocity_to_energy(const NumT velocity,
+		       const NumT velocity_err2,
+		       NumT & energy,
+		       NumT & energy_err2,
+		       void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of velocity_to_energy group
+
+  /**
+   * \defgroup wavelength_to_energy AxisManip::wavelength_to_energy
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.22.
@@ -309,7 +449,8 @@ namespace AxisManip
    * \f]
    * Where \f$E\f$ is energy of the neutron, \f$h\f$ is Planck's
    * constant, \f$m_n\f$ is the mass of the neutron, and \f$lambda\f$
-   * is the wavelength of the neutron.
+   * is the wavelength of the neutron. The uncertainty is calculated
+   * using the assumption of uncorrelated uncertainties.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
@@ -326,11 +467,28 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    wavelength_to_energy(std::vector<NumT> const & wavelength,
-			 std::vector<NumT> const & wavelength_err2,
-			 std::vector<NumT> & energy,
-			 std::vector<NumT> & energy_err2,
+    wavelength_to_energy(Nessi::Vector<NumT> const & wavelength,
+			 Nessi::Vector<NumT> const & wavelength_err2,
+			 Nessi::Vector<NumT> & energy,
+			 Nessi::Vector<NumT> & energy_err2,
 			 void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    wavelength_to_energy(const NumT wavelength,
+			 const NumT wavelength_err2,
+			 NumT & energy,
+			 NumT & energy_err2,
+			 void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of wavelength_to_energy group
+
+  /**
+   * \defgroup velocity_to_scalar_k AxisManip::velocity_to_scalar_k
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.23.
@@ -342,7 +500,8 @@ namespace AxisManip
    * \f]
    * Where \f$k[i]\f$ is the scalar wavevector, \f$m_n\f$ is the mass
    * of the neutron, \f$h\f$ is Planck's constant, and \f$v[i]\f$ is
-   * the velocity of the neutron.
+   * the velocity of the neutron. The uncertainty is calculated using
+   * the assumption of uncorrelated uncertainties.
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
@@ -359,11 +518,28 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    velocity_to_scalar_k(std::vector<NumT> const & velocity,
-			 std::vector<NumT> const & velocity_err2,
-			 std::vector<NumT> & wavevector,
-			 std::vector<NumT> & wavevector_err2,
+    velocity_to_scalar_k(Nessi::Vector<NumT> const & velocity,
+			 Nessi::Vector<NumT> const & velocity_err2,
+			 Nessi::Vector<NumT> & wavevector,
+			 Nessi::Vector<NumT> & wavevector_err2,
 			 void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    velocity_to_scalar_k(const NumT velocity,
+			 const NumT velocity_err2,
+			 NumT & wavevector,
+			 NumT & wavevector_err2,
+			 void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of velocity_to_scalar_k group
+
+  /**
+   * \defgroup wavelength_to_scalar_k AxisManip::wavelength_to_scalar_k
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.24.
@@ -374,7 +550,8 @@ namespace AxisManip
    * k[i]=\frac{2\pi}{\lambda[i]}
    * \f]
    * Where \f$k[i]\f$ is the scalar wavevector, and \f$\lambda\f$ is
-   * the wavelength.
+   * the wavelength. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
@@ -391,11 +568,28 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    wavelength_to_scalar_k(std::vector<NumT> const & wavelength,
-			   std::vector<NumT> const & wavelength_err2,
-			   std::vector<NumT> & wavevector,
-			   std::vector<NumT> & wavevector_err2,
+    wavelength_to_scalar_k(Nessi::Vector<NumT> const & wavelength,
+			   Nessi::Vector<NumT> const & wavelength_err2,
+			   Nessi::Vector<NumT> & wavevector,
+			   Nessi::Vector<NumT> & wavevector_err2,
 			   void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    wavelength_to_scalar_k(const NumT wavelength,
+			   const NumT wavelength_err2,
+			   NumT & wavevector,
+			   NumT & wavevector_err2,
+			   void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of wavelength_to_scalar_k group
+
+  /**
+   * \defgroup wavelength_to_d_spacing AxisManip::wavelength_to_d_spacing
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.25.
@@ -407,14 +601,17 @@ namespace AxisManip
    * \f]
    * Where \f$d\f$ is the d-spacing, \f$\lambda[i]\f$ is the
    * wavelength, and \f$polar\f$ is the angle between the z-axis and
-   * the scattered neutron.
+   * the scattered neutron. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty
    * in the wavelength axis
    * \param polar (INPUT) is the polar angle in the equation above in
-   * units of radians THERE SHOULD BE AN UNCERTAINTY WITH THIS AS WELL
+   * units of radians
+   * \param polar_err2 (INPUT) is the square of the uncertainty in
+   * polar
    * \param d_spacing (OUTPUT) is the d-spacing axis in units of
    * Angstrom
    * \param d_spacing_err2 (OUTPUT) is the square of the uncertainty
@@ -426,13 +623,32 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    wavelength_to_d_spacing(std::vector<NumT> const & wavelength,
-			    std::vector<NumT> const & wavelength_err2,
+    wavelength_to_d_spacing(Nessi::Vector<NumT> const & wavelength,
+			    Nessi::Vector<NumT> const & wavelength_err2,
 			    const NumT polar,
 			    const NumT polar_err2,
-			    std::vector<NumT> & d_spacing,
-			    std::vector<NumT> & d_spacing_err2,
+			    Nessi::Vector<NumT> & d_spacing,
+			    Nessi::Vector<NumT> & d_spacing_err2,
 			    void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    wavelength_to_d_spacing(const NumT wavelength,
+			    const NumT wavelength_err2,
+			    const NumT polar,
+			    const NumT polar_err2,
+			    NumT & d_spacing,
+			    NumT & d_spacing_err2,
+			    void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of wavelength_to_d_spacing group
+
+  /**
+   * \defgroup time_offset_dgs AxisManip::time_offset_dgs
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.26.
@@ -445,20 +661,26 @@ namespace AxisManip
    * Where \f$t_0\f$ is the time offset, \f$t\f$ is the time observed
    * at the downstream monitor, \f$L\f$ is the total flight path for
    * the downstream monitor, and \f$v\f$ is the velocity of the
-   * incident neutrons.
+   * incident neutrons. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * \param dist_downstream_monitor (INPUT) is the total flight path
-   * for the downstream monitor in units of meter/second THERE SHOULD
-   * BE AN UNCERTAINTY WITH THIS AS WELL
+   * for the downstream monitor in units of meter/second
+   * \param dist_downstream_monitor_err2 (INPUT) is the square of the
+   * uncertainty in dist_downstream_monitor
    * \param time_downstream_monitor (INPUT) is the time observed at
-   * the downstream monitor in units of micro-seconds THERE SHOULD BE
-   * AN UNCERTAINTY WITH THIS AS WELL
+   * the downstream monitor in units of micro-seconds
+   * \param time_downstream_monitor_err2 (INPUT) is the square of the
+   * uncertainty in time_downstream_monitor
    * \param initial_velocity (INPUT) is the velocity of the incident
-   * neutrons in unites of meter/seconds THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * neutrons in unites of meter/seconds
+   * \param initial_velocity_err2 (INPUT) is the square of the
+   * uncertainty in initial_velocity
    * \param time_offset (OUTPUT) is the time offset of the neutron
    * emitting from the source assuming the velocity supplied in units
-   * of micro-seconds THERE SHOULD BE AN UNCERTAINTY WITH THIS AS WELL
+   * of micro-seconds
+   * \param time_offset_err2 (OUTPUT) is the square of the uncertainty
+   * in time_offset
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -477,6 +699,15 @@ namespace AxisManip
 		    void *temp=NULL);
 
   /**
+   * \}
+   */ // end of time_offset_dgs group
+
+  /**
+   * \defgroup tof_to_final_velocity_dgs AxisManip::tof_to_final_velocity_dgs
+   * \{
+   */
+
+  /**
    * \brief This function is described in section 3.27.
    *
    * This function calculates the final velocity of the neutron for a
@@ -488,24 +719,31 @@ namespace AxisManip
    * \f$L_D\f$ is the distance from the sample to the detector,
    * \f$t[i]\f$ is the total time-of-flight, \f$L_S\f$ is the distance
    * from source to sample, \f$v_i\f$ is the initial velocity of the
-   * neutron, and \f$t_0\f$ is the time-offset of the neutron.
+   * neutron, and \f$t_0\f$ is the time-offset of the neutron. The
+   * uncertainty is calculated using the assumption of uncorrelated
+   * uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
    * time-of-flight axis
    * \param initial_velocity (INPUT) is the initial velocity of the
-   * neutron in units of meter/mirco-seconds THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * neutron in units of meter/mirco-seconds
+   * \param initial_velocity_err2 (INPUT) is the square of the
+   * uncertainty in initial_velocity
    * \param time_offset (INPUT) is the time offset of the neutron
    * emitting from the source assuming the velocity supplied in units
-   * of micro-seconds THERE SHOULD BE AN UNCERTAINTY WITH THIS AS WELL
+   * of micro-seconds
+   * \param time_offset_err2 (INPUT) is the square of the uncertainty
+   * in time_offset
    * \param dist_source_sample (INPUT) is the distance from source to
-   * sample in units of meter THERE SHOULD BE AN UNCERTAINTY WITH THIS
-   * AS WELL
+   * sample in units of meter
+   * \param dist_source_sample_err2 (INPUT) is the square of the
+   * uncertainty in dist_source_sample
    * \param dist_sample_detector (INPUT) is the distance from sample
-   * to detector in units of meter THERE SHOULD BE AN UNCERTAINTY WITH
-   * THIS AS WELL
+   * to detector in units of meter
+   * \param dist_sample_detector_err2 (INPUT) is the square of the
+   * uncertainty in dist_sample_detector
    * \param final_velocity (OUTPUT) is the final velocity axis of the
    * neutron in units of meter/second
    * \param final_velocity_err2 (OUTPUT) is the square of the
@@ -517,8 +755,8 @@ namespace AxisManip
    */
  template <typename NumT>
    std::string
-   tof_to_final_velocity_dgs(std::vector<NumT> const & tof,
-			     std::vector<NumT> const & tof_err2,
+   tof_to_final_velocity_dgs(Nessi::Vector<NumT> const & tof,
+			     Nessi::Vector<NumT> const & tof_err2,
 			     const NumT initial_velocity,
 			     const NumT initial_velocity_err2,
 			     const NumT time_offset,
@@ -527,9 +765,34 @@ namespace AxisManip
 			     const NumT dist_source_sample_err2,
 			     const NumT dist_sample_detector,
 			     const NumT dist_sample_detector_err2,
-			     std::vector<NumT> & final_velocity,
-			     std::vector<NumT> & final_velocity_err2,
+			     Nessi::Vector<NumT> & final_velocity,
+			     Nessi::Vector<NumT> & final_velocity_err2,
 			     void *temp=NULL);
+
+ template <typename NumT>
+   std::string
+   tof_to_final_velocity_dgs(const NumT tof,
+			     const NumT tof_err2,
+			     const NumT initial_velocity,
+			     const NumT initial_velocity_err2,
+			     const NumT time_offset,
+			     const NumT time_offset_err2,
+			     const NumT dist_source_sample,
+			     const NumT dist_source_sample_err2,
+			     const NumT dist_sample_detector,
+			     const NumT dist_sample_detector_err2,
+			     NumT & final_velocity,
+			     NumT & final_velocity_err2,
+			     void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of tof_to_final_velocity_dgs group
+
+  /**
+   * \defgroup tof_to_initial_velocity_igs AxisManip::tof_to_initial_velocity_igs
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.28.
@@ -543,24 +806,31 @@ namespace AxisManip
    * \f$L_S\f$ is the distance from the source to the sample,
    * \f$t[i]\f$ is the total time-of-flight, \f$L_D\f$ is the distance
    * from the sample to the detector, \f$v_f\f$ is the final velocity
-   * of the neutron, and \f$t_0\f$ is the time-offset of the neutron.
+   * of the neutron, and \f$t_0\f$ is the time-offset of the
+   * neutron. The uncertainty is calculated using the assumption of
+   * uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
    * time-of-flight axis
    * \param final_velocity (INPUT) is the final velocity of the
-   * neutron in units of meter/mirco-seconds THERE SHOULD BE AN
-   * UNCERTAINTY WITH THIS AS WELL
+   * neutron in units of meter/mirco-seconds
+   * \param final_velocity_err2 (INPUT) is the square of the
+   * uncertainty in final_velocity
    * \param time_offset (INPUT) is the time offset of the neutron
    * emitting from the source assuming the velocity supplied in units
-   * of micro-seconds THERE SHOULD BE AN UNCERTAINTY WITH THIS AS WELL
+   * of micro-seconds
+   * \param time_offset_err2 (INPUT) is the square of the uncertainty
+   * in time_offset
    * \param dist_source_sample (INPUT) is the distance from source to
-   * sample in units of meter THERE SHOULD BE AN UNCERTAINTY WITH THIS
-   * AS WELL
+   * sample in units of meter
+   * \param dist_source_sample_err2 (INPUT) is the square of the
+   * uncertainty in dist_source_sample
    * \param dist_sample_detector (INPUT) is the distance from sample
-   * to detector in units of meter THERE SHOULD BE AN UNCERTAINTY WITH
-   * THIS AS WELL
+   * to detector in units of meter
+   * \param dist_sample_detector_err2 (INPUT) is the square of the
+   * uncertainty in dist_sample_detector
    * \param initial_velocity (OUTPUT) is the initial velocity axis of
    * the neutron in units of meter/second
    * \param initial_velocity_err2 (OUTPUT) is the square of the
@@ -572,8 +842,8 @@ namespace AxisManip
    */
  template <typename NumT>
    std::string
-   tof_to_initial_velocity_igs(std::vector<NumT> const & tof,
-			       std::vector<NumT> const & tof_err2,
+   tof_to_initial_velocity_igs(const Nessi::Vector<NumT> & tof,
+			       const Nessi::Vector<NumT> & tof_err2,
 			       const NumT final_velocity,
 			       const NumT final_velocity_err2,
 			       const NumT time_offset,
@@ -582,9 +852,34 @@ namespace AxisManip
 			       const NumT dist_source_sample_err2,
 			       const NumT dist_sample_detector,
 			       const NumT dist_sample_detector_err2,
-			       std::vector<NumT> & initial_velocity,
-			       std::vector<NumT> & initial_velocity_err2,
+			       Nessi::Vector<NumT> & initial_velocity,
+			       Nessi::Vector<NumT> & initial_velocity_err2,
 			       void *temp=NULL);
+
+ template <typename NumT>
+   std::string
+   tof_to_initial_velocity_igs(const NumT tof,
+			       const NumT tof_err2,
+			       const NumT final_velocity,
+			       const NumT final_velocity_err2,
+			       const NumT time_offset,
+			       const NumT time_offset_err2,
+			       const NumT dist_source_sample,
+			       const NumT dist_source_sample_err2,
+			       const NumT dist_sample_detector,
+			       const NumT dist_sample_detector_err2,
+			       NumT & initial_velocity,
+			       NumT & initial_velocity_err2,
+			       void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of tof_to_initial_velocity_igs group
+
+  /**
+   * \defgroup tof_to_initial_wavelength_igs AxisManip::tof_to_initial_wavelength_igs
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.29.
@@ -600,24 +895,30 @@ namespace AxisManip
    * \f$L_S\f$ is the distance from the source to the sample,
    * \f$t[i]\f$ is the total time-of-flight, \f$\lambda_f\f$ is the
    * final wavelength, \f$L_D\f$ is the distance from the sample to
-   * the detector, and \f$t_0\f$ is the time offset.
+   * the detector, and \f$t_0\f$ is the time offset. The uncertainty
+   * is calculated using the assumption of uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
    * time-of-flight axis
    * \param final_wavelength (INPUT) is the final wavelength of the
-   * neutron in units of Angstroms THERE SHOULD BE AN UNCERTAINTY WITH
-   * THIS AS WELL
+   * neutron in units of Angstroms
+   * \param final_wavelength_err2 (INPUT) is the square of the
+   * uncertainty in final_wavelength
    * \param time_offset (INPUT) is the time offset of the neutron
    * emitting from the source assuming the velocity supplied in units
-   * of micro-seconds THERE SHOULD BE AN UNCERTAINTY WITH THIS AS WELL
+   * of micro-seconds
+   * \param time_offset_err2 (INPUT) is the square of the uncertainty
+   * in time_offset
    * \param dist_source_sample (INPUT) is the distance from source to
-   * sample in units of meter THERE SHOULD BE AN UNCERTAINTY WITH THIS
-   * AS WELL
+   * sample in units of meter
+   * \param dist_source_sample_err2 (INPUT) is the square of the
+   * uncertainty in dist_source_sample
    * \param dist_sample_detector (INPUT) is the distance from sample
-   * to detector in units of meter THERE SHOULD BE AN UNCERTAINTY WITH
-   * THIS AS WELL
+   * to detector in units of meter
+   * \param dist_sample_detector_err2 (INPUT) is the square of the
+   * uncertainty in dist_sample_detector
    * \param initial_wavelength (OUTPUT) is the initial wavelength axis
    * in units of Anstrom
    * \param initial_wavelength_err2 (OUTPUT) is the square of the
@@ -629,8 +930,8 @@ namespace AxisManip
    */
  template <typename NumT>
    std::string
-   tof_to_initial_wavelength_igs(std::vector<NumT> const & tof,
-				 std::vector<NumT> const & tof_err2,
+   tof_to_initial_wavelength_igs(const Nessi::Vector<NumT> & tof,
+				 const Nessi::Vector<NumT> & tof_err2,
 				 const NumT final_wavelength,
 				 const NumT final_wavelength_err2,
 				 const NumT time_offset,
@@ -639,9 +940,34 @@ namespace AxisManip
 				 const NumT dist_source_sample_err2,
 				 const NumT dist_sample_detector,
 				 const NumT dist_sample_detector_err2,
-				 std::vector<NumT> & initial_wavelength,
-				 std::vector<NumT> & initial_wavelength_err2,
+				 Nessi::Vector<NumT> & initial_wavelength,
+				 Nessi::Vector<NumT> & initial_wavelength_err2,
 				 void *temp=NULL);
+
+ template <typename NumT>
+   std::string
+   tof_to_initial_wavelength_igs(const NumT tof,
+				 const NumT tof_err2,
+				 const NumT final_wavelength,
+				 const NumT final_wavelength_err2,
+				 const NumT time_offset,
+				 const NumT time_offset_err2,
+				 const NumT dist_source_sample,
+				 const NumT dist_source_sample_err2,
+				 const NumT dist_sample_detector,
+				 const NumT dist_sample_detector_err2,
+				 NumT & initial_wavelength,
+				 NumT & initial_wavelength_err2,
+				 void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of tof_to_initial_wavelength_igs group
+
+  /**
+   * \defgroup energy_transfer AxisManip::energy_transfer
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.30.
@@ -652,7 +978,8 @@ namespace AxisManip
    * \nu=\frac{E_i-E_f}{h}=\frac{E_i-E_f}{4.1357}\frac{THz}{meV}
    * \f]
    * Where \f$\nu\f$ is the energy transfer, \f$E_i\f$ is the incident
-   * energy, and \f$E_f\f$ is the final energy.
+   * energy, and \f$E_f\f$ is the final energy. The uncertainty is
+   * calculated using the assumption of uncorrelated uncertainties.
    *
    * \param initial_energy (INPUT) is the incident energy axis in
    * units of meV
@@ -673,13 +1000,52 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    energy_transfer(std::vector<NumT> const & initial_energy,
-		    std::vector<NumT> const & initial_energy_err2,
-		    std::vector<NumT> const & final_energy,
-		    std::vector<NumT> const & final_energy_err2,
-		    std::vector<NumT> & energy_transfer,
-		    std::vector<NumT> & energy_transfer_err2,
+    energy_transfer(const Nessi::Vector<NumT> & initial_energy,
+		    const Nessi::Vector<NumT> & initial_energy_err2,
+		    const Nessi::Vector<NumT> & final_energy,
+		    const Nessi::Vector<NumT> & final_energy_err2,
+		    Nessi::Vector<NumT> & energy_transfer,
+		    Nessi::Vector<NumT> & energy_transfer_err2,
 		    void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    energy_transfer(const Nessi::Vector<NumT> & initial_energy,
+		    const Nessi::Vector<NumT> & initial_energy_err2,
+		    const NumT final_energy,
+		    const NumT final_energy_err2,
+		    Nessi::Vector<NumT> & energy_transfer,
+		    Nessi::Vector<NumT> & energy_transfer_err2,
+		    void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    energy_transfer(const NumT initial_energy,
+		    const NumT initial_energy_err2,
+		    const Nessi::Vector<NumT> & final_energy,
+		    const Nessi::Vector<NumT> & final_energy_err2,
+		    Nessi::Vector<NumT> & energy_transfer,
+		    Nessi::Vector<NumT> & energy_transfer_err2,
+		    void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    energy_transfer(const NumT initial_energy,
+		    const NumT initial_energy_err2,
+		    const NumT final_energy,
+		    const NumT final_energy_err2,
+		    NumT & energy_transfer,
+		    NumT & energy_transfer_err2,
+		    void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of energy_transfer group
+
+  /**
+   * \defgroup frequency_to_angular_frequency AxisManip::frequency_to_angular_frequency
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.31.
@@ -690,7 +1056,8 @@ namespace AxisManip
    * \omega[i]=2\pi\nu[i] \times 10^{12}
    * \f]
    * Where \f$\omega[i]\f$ is the angular frequency, and \f$\nu[i]\f$
-   * is the frequency.
+   * is the frequency. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * \param frequency (INPUT) is the frequency axis in units of THz
    * \param frequency_err2 (INPUT) is the square of the uncertainty in
@@ -706,11 +1073,29 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    frequency_to_angular_frequency(std::vector<NumT> const & frequency,
-				   std::vector<NumT> const & frequency_err2,
-				   std::vector<NumT> & angular_frequency,
-				   std::vector<NumT> & angular_frequency_err2,
-				   void *temp=NULL);
+    frequency_to_angular_frequency(
+                                  const Nessi::Vector<NumT> & frequency,
+                                  const Nessi::Vector<NumT> & frequency_err2,
+                                  Nessi::Vector<NumT> & angular_frequency,
+                                  Nessi::Vector<NumT> & angular_frequency_err2,
+                                  void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    frequency_to_angular_frequency(const NumT frequency,
+                                   const NumT frequency_err2,
+                                   NumT & angular_frequency,
+                                   NumT & angular_frequency_err2,
+                                   void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of frequency_to_angular_frequency group
+
+  /**
+   * \defgroup init_scatt_wavevector_to_Q AxisManip::init_scatt_wavevector_to_Q
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.32.
@@ -732,7 +1117,8 @@ namespace AxisManip
    * transfer, \f$Q_z\f$ is the z-component of the momentum transfer,
    * \f$azimuthal\f$ is the angle between the x-axis and the scattered
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
-   * scattered neutron.
+   * scattered neutron. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -743,11 +1129,13 @@ namespace AxisManip
    * \param final_wavevector_err2 (INPUT) is the square of the
    * uncertainty of the final wavevector axis
    * \param azimuthal (INPUT) is the azimuthal angle in the equation
-   * above in units of radians THERE SHOULD BE AN UNCERTAINTY WITH
-   * THIS AS WELL.
+   * above in units of radians
+   * \param azimuthal_err2 (INPUT) is the square of the uncertainty in
+   * azumuthal
    * \param polar (INPUT) is the polar angle in the equation above in
-   * units of radians THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
+   * units of radians
+   * \param polar_err2 (INPUT) is the square of the uncertainty in
+   * polar
    * \param Qx (OUTPUT) is the x-component of the momentum transfer,
    * \f$Q_x\f$, axis in units of reciprocal angstroms
    * \param Qx_err2 (OUTPUT) is the square of the uncertainty in the
@@ -767,21 +1155,87 @@ namespace AxisManip
    */
   template <typename NumT>
    std::string
-   init_scatt_wavevector_to_Q(std::vector<NumT> const & initial_wavevector,
-			      std::vector<NumT> const & initial_wavevector_err2,
-			      std::vector<NumT> const & final_wavevector,
-			      std::vector<NumT> const & final_wavevector_err2,
+   init_scatt_wavevector_to_Q(
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
+                           const NumT azimuthal,
+                           const NumT azimuthal_err2,
+                           const NumT polar,
+                           const NumT polar_err2,
+                           Nessi::Vector<NumT> & Qx,
+                           Nessi::Vector<NumT> & Qx_err2,
+                           Nessi::Vector<NumT> & Qy,
+                           Nessi::Vector<NumT> & Qy_err2,
+                           Nessi::Vector<NumT> & Qz,
+                           Nessi::Vector<NumT> & Qz_err2,
+                           void *temp=NULL);
+
+  template <typename NumT>
+   std::string
+   init_scatt_wavevector_to_Q(
+                           const NumT initial_wavevector,
+                           const NumT initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
+                           const NumT azimuthal,
+                           const NumT azimuthal_err2,
+                           const NumT polar,
+                           const NumT polar_err2,
+                           Nessi::Vector<NumT> & Qx,
+                           Nessi::Vector<NumT> & Qx_err2,
+                           Nessi::Vector<NumT> & Qy,
+                           Nessi::Vector<NumT> & Qy_err2,
+                           Nessi::Vector<NumT> & Qz,
+                           Nessi::Vector<NumT> & Qz_err2,
+                           void *temp=NULL);
+
+  template <typename NumT>
+   std::string
+   init_scatt_wavevector_to_Q(
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const NumT final_wavevector,
+                           const NumT final_wavevector_err2,
+                           const NumT azimuthal,
+                           const NumT azimuthal_err2,
+                           const NumT polar,
+                           const NumT polar_err2,
+                           Nessi::Vector<NumT> & Qx,
+                           Nessi::Vector<NumT> & Qx_err2,
+                           Nessi::Vector<NumT> & Qy,
+                           Nessi::Vector<NumT> & Qy_err2,
+                           Nessi::Vector<NumT> & Qz,
+                           Nessi::Vector<NumT> & Qz_err2,
+                           void *temp=NULL);
+
+  template <typename NumT>
+   std::string
+   init_scatt_wavevector_to_Q(const NumT initial_wavevector,
+			      const NumT initial_wavevector_err2,
+			      const NumT final_wavevector,
+			      const NumT final_wavevector_err2,
 			      const NumT azimuthal,
 			      const NumT azimuthal_err2,
 			      const NumT polar,
 			      const NumT polar_err2,
-			      std::vector<NumT> & Qx,
-			      std::vector<NumT> & Qx_err2,
-			      std::vector<NumT> & Qy,
-			      std::vector<NumT> & Qy_err2,
-			      std::vector<NumT> & Qz,
-			      std::vector<NumT> & Qz_err2,
+			      NumT & Qx,
+			      NumT & Qx_err2,
+			      NumT & Qy,
+			      NumT & Qy_err2,
+			      NumT & Qz,
+			      NumT & Qz_err2,
 			      void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of init_scatt_wavevector_to_Q group
+
+  /**
+   * \defgroup init_scatt_wavevector_to_scalar_Q AxisManip::init_scatt_wavevector_to_scalar_Q
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.33.
@@ -794,27 +1248,23 @@ namespace AxisManip
    * Where \f$Q\f$ is the scalar momentum transfer, \f$k_i\f$ is the
    * incident wavevector, \f$k_f\f$ is the final wavevector, and
    * \f$polar\f$ is the angle between the z-axis and the scattered
-   * neutron.
+   * neutron. The uncertainty is calculated using the assumption of
+   * uncorrelated uncertainties.
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
-
    * \param initial_wavevector_err2 (INPUT) is the square of the
    * uncertainty of the incident wavevector axis
-
    * \param final_wavevector (INPUT) is the final wavevector axis in
    * units of reciprocal Angstroms
-
    * \param final_wavevector_err2 (INPUT) is the square of the
    * uncertainty of the final wavevector axis
-
    * \param polar (INPUT) is the polar angle in the equation above in
-   * units of radians THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
-
+   * units of radians
+   * \param polar_err2 (INPUT) is the square of the uncertainty in
+   * polar
    * \param Q (OUTPUT) is the scalar momentum transfer, Q, axis in
    * units of reciprocal angstroms
-
    * \param Q_err2 (OUTPUT) is the square of the uncertainty in the
    * scalar momentum transfer axis
    *
@@ -824,16 +1274,64 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    init_scatt_wavevector_to_scalar_Q(std::vector<NumT> const & initial_wavevector,
-				      std::vector<NumT> const & initial_wavevector_err2,
-				      std::vector<NumT> const & final_wavevector,
-				      std::vector<NumT> const & final_wavevector_err2,
+    init_scatt_wavevector_to_scalar_Q(
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & final_wavevector,
+                           const Nessi::Vector<NumT> & final_wavevector_err2,
+                           const NumT polar,
+                           const NumT polar_err2,
+                           Nessi::Vector<NumT> & Q,
+                           Nessi::Vector<NumT> & Q_err2,
+                           void *temp=NULL);
+  
+  template <typename NumT>
+    std::string
+    init_scatt_wavevector_to_scalar_Q(
+                             const NumT initial_wavevector,
+                             const NumT initial_wavevector_err2,
+                             const Nessi::Vector<NumT> & final_wavevector,
+		             const Nessi::Vector<NumT> & final_wavevector_err2,
+                             const NumT polar,
+                             const NumT polar_err2,
+                             Nessi::Vector<NumT> & Q,
+                             Nessi::Vector<NumT> & Q_err2,
+                             void *temp=NULL);
+  
+  template <typename NumT>
+    std::string
+    init_scatt_wavevector_to_scalar_Q(
+                           const Nessi::Vector<NumT> & initial_wavevector,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const NumT final_wavevector,
+                           const NumT final_wavevector_err2,
+                           const NumT polar,
+                           const NumT polar_err2,
+                           Nessi::Vector<NumT> & Q,
+                           Nessi::Vector<NumT> & Q_err2,
+                           void *temp=NULL);
+  
+  template <typename NumT>
+    std::string
+    init_scatt_wavevector_to_scalar_Q(const NumT initial_wavevector,
+				      const NumT initial_wavevector_err2,
+				      const NumT final_wavevector,
+				      const NumT final_wavevector_err2,
 				      const NumT polar,
 				      const NumT polar_err2,
-				      std::vector<NumT> & Q,
-				      std::vector<NumT> & Q_err2,
+				      NumT & Q,
+				      NumT & Q_err2,
 				      void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of init_scatt_wavevector_to_scalar_Q group
+
+  /**
+   * \defgroup tof_to_Q AxisManip::tof_to_Q
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.34.
    *
@@ -847,7 +1345,8 @@ namespace AxisManip
    * the mass of the neutron, \f$L\f$ is the total flight path,
    * \f$polar\f$ is the angle between the z-axis and the scattered
    * neutron, \f$h\f$ is Planck's constant, and \f$TOF[i]\f$ is the
-   * time-of-flight.
+   * time-of-flight. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * The three components of the momentum transfer are described by
    * the equations
@@ -865,20 +1364,25 @@ namespace AxisManip
    * is the z-component of the momentum transfer, \f$azimuthal\f$ is
    * the angle between the x-axis and the scattered neutron, and
    * \f$polar\f$ is the angle between the z-axis and the scattered
-   * neutron.
+   * neutron. The uncertainty is calculated using the assumption of
+   * uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
    * time-of-flight axis
    * \param pathlength (INPUT) is the total flight path of the neutron
-   * in units of meter THERE SHOULD BE AN UNCERTAINTY WITH THIS AS
-   * WELL.
+   * in units of meter
+   * \param pathlength_err2 (INPUT) is the square of the uncertainty
+   * in pathlength
    * \param azimuthal (INPUT) is the azimuthal angle in the equation
-   * above in units of radians THERE SHOULD BE AN UNCERTAINTY WITH
-   * THIS AS WELL.
+   * above in units of radians
+   * \param azimuthal_err2 (INPUT) is the square of the uncertainty in
+   * azimuthal
    * \param polar (INPUT) is the polar angle in the equation above in units of
-   * radians THERE SHOULD BE AN UNCERTAINTY WITH THIS AS WELL.
+   * radians
+   * \param polar_err2 (INPUT) is the square of the uncertainty in
+   * polar
    * \param Qx (OUTPUT) is the x-component of the momentum transfer,
    * \f$Q_x\f$, axis in units of reciprocal angstroms
    * \param Qx_err2 (OUTPUT) is the square of the uncertainty in the
@@ -898,21 +1402,48 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    tof_to_Q(std::vector<NumT> const & tof,
-	     std::vector<NumT> const & tof_err2,
+    tof_to_Q(const Nessi::Vector<NumT> & tof,
+	     const Nessi::Vector<NumT> & tof_err2,
 	     const NumT pathlength,
 	     const NumT pathlength_err2,
 	     const NumT azimuthal,
 	     const NumT azimuthal_err2,
 	     const NumT polar,
 	     const NumT polar_err2,
-	     std::vector<NumT> & Qx,
-	     std::vector<NumT> & Qx_err2,
-	     std::vector<NumT> & Qy,
-	     std::vector<NumT> & Qy_err2,
-	     std::vector<NumT> & Qz,
-	     std::vector<NumT> & Qz_err2,
+	     Nessi::Vector<NumT> & Qx,
+	     Nessi::Vector<NumT> & Qx_err2,
+	     Nessi::Vector<NumT> & Qy,
+	     Nessi::Vector<NumT> & Qy_err2,
+	     Nessi::Vector<NumT> & Qz,
+	     Nessi::Vector<NumT> & Qz_err2,
 	     void *temp=NULL);
+
+  template <typename NumT>
+    std::string
+    tof_to_Q(const NumT tof,
+	     const NumT tof_err2,
+	     const NumT pathlength,
+	     const NumT pathlength_err2,
+	     const NumT azimuthal,
+	     const NumT azimuthal_err2,
+	     const NumT polar,
+	     const NumT polar_err2,
+	     NumT & Qx,
+	     NumT & Qx_err2,
+	     NumT & Qy,
+	     NumT & Qy_err2,
+	     NumT & Qz,
+	     NumT & Qz_err2,
+	     void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of tof_to_Q group
+
+  /**
+   * \defgroup d_spacing_to_tof_focused_det AxisManip::d_spacing_to_tof_focused_det
+   * \{
+   */
 
   /**
    * \brief This function is described in section  3.39.
@@ -926,18 +1457,21 @@ namespace AxisManip
    * of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
    * is the focused total flight path, \f$d[i]\f$ is the d-spacing,
    * and \f$polar_{focused}\f$ is the angle between the z-axis and the
-   * focused scattered neutron.
+   * focused scattered neutron. The uncertainty is calculated using
+   * the assumption of uncorrelated uncertainties.
    *
    * \param d_spacing (INPUT) is the d-spacing axis in units of
    * Angstrom
    * \param d_spacing_err2 (INPUT) is the square of the uncertainty in
    * the d-spacing axis
    * \param pathlength_focused (INPUT) is the total flight path of the
-   * focused neutron in units of meter THERE SHOULD BE AN UNCERTAINTY
-   * WITH THIS AS WELL.
+   * focused neutron in units of meter
+   * \param pathlength_focused_err2 (INPUT) is the square of the
+   * uncertainty in pathlength_focused
    * \param polar_focused (INPUT) is the polar angle of the focused
-   * neutron in the equation above in units of radians THERE SHOULD BE
-   * AN UNCERTAINTY WITH THIS AS WELL.
+   * neutron in the equation above in units of radians
+   * \param polar_focused_err2 (INPUT) is the square of the
+   * uncertainty in polar_focused
    * \param tof (OUTPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (OUTPUT) is the square of the uncertainty in the
@@ -949,17 +1483,31 @@ namespace AxisManip
    */
   template <typename NumT>
     std::string
-    d_spacing_to_tof_focused_det(std::vector<NumT> const & d_spacing,
-				 std::vector<NumT> const & d_spacing_err2,
+    d_spacing_to_tof_focused_det(const Nessi::Vector<NumT> & d_spacing,
+				 const Nessi::Vector<NumT> & d_spacing_err2,
 				 const NumT pathlength_focused,
 				 const NumT pathlength_focused_err2,
 				 const NumT polar_focused,
 				 const NumT polar_focused_err2,
-				 std::vector<NumT> & tof,
-				 std::vector<NumT> & tof_err2,
+				 Nessi::Vector<NumT> & tof,
+				 Nessi::Vector<NumT> & tof_err2,
 				 void *temp=NULL);
   
+  template <typename NumT>
+    std::string
+    d_spacing_to_tof_focused_det(const NumT d_spacing,
+				 const NumT d_spacing_err2,
+				 const NumT pathlength_focused,
+				 const NumT pathlength_focused_err2,
+				 const NumT polar_focused,
+				 const NumT polar_focused_err2,
+				 NumT & tof,
+				 NumT & tof_err2,
+				 void *temp=NULL);
+  /**
+   * \}
+   */ // end of d_spacing_to_tof_focused_det group
 
 } // AxisManip
 
-#endif // _CONVERSIONS_H
+#endif // _CONVERSIONS_HPP

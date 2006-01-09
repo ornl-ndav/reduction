@@ -2,64 +2,35 @@
 
 test: check
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc
+AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/utils/inc \
+              -I$(top_srcdir)/nessi
+AM_LDFLAGS  = -static \
+              -L$(top_srcdir)/array_manip/src/.libs -lArrayManip \
+              -L$(top_srcdir)/utils/src/ -lUtils
+
+EXTRA_DIST=testsuite.at
 
 ARRAY_MANIP_TARGETS = \
-	add_scalar_vec_ncerr_test \
-	sub_scalar_vec_ncerr_test \
-	mult_scalar_vec_ncerr_test \
-	div_scalar_vec_ncerr_test \
-	div_vec_scalar_ncerr_test \
-	add_vec_vec_ncerr_test \
-	sub_vec_vec_ncerr_test \
-	mult_vec_vec_ncerr_test \
-	div_vec_vec_ncerr_test \
-	sumw_vec_vec_ncerr_test
+	add_ncerr_test \
+	div_ncerr_test \
+	mult_ncerr_test \
+	sub_ncerr_test \
+	sumw_ncerr_test
 
 TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(ARRAY_MANIP_TARGETS)
 
-add_scalar_vec_ncerr_test_SOURCES = add_scalar_vec_ncerr_test.cpp
-add_scalar_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-add_scalar_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/add_scalar_vec_ncerr.o
+add_ncerr_test_SOURCES = add_ncerr_test.cpp test_common.hpp
 
-sub_scalar_vec_ncerr_test_SOURCES = sub_scalar_vec_ncerr_test.cpp
-sub_scalar_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-sub_scalar_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/sub_scalar_vec_ncerr.o
+div_ncerr_test_SOURCES = div_ncerr_test.cpp test_common.hpp
 
-mult_scalar_vec_ncerr_test_SOURCES = mult_scalar_vec_ncerr_test.cpp
-mult_scalar_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-mult_scalar_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/mult_scalar_vec_ncerr.o
+mult_ncerr_test_SOURCES = mult_ncerr_test.cpp test_common.hpp
 
-div_scalar_vec_ncerr_test_SOURCES = div_scalar_vec_ncerr_test.cpp
-div_scalar_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-div_scalar_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/div_scalar_vec_ncerr.o
+sub_ncerr_test_SOURCES = sub_ncerr_test.cpp test_common.hpp
 
-div_vec_scalar_ncerr_test_SOURCES = div_vec_scalar_ncerr_test.cpp
-div_vec_scalar_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-div_vec_scalar_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/div_vec_scalar_ncerr.o
-
-add_vec_vec_ncerr_test_SOURCES = add_vec_vec_ncerr_test.cpp
-add_vec_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-add_vec_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/add_vec_vec_ncerr.o $(top_srcdir)/array_manip/src/check_sizes_2in1out.o
-
-sub_vec_vec_ncerr_test_SOURCES = sub_vec_vec_ncerr_test.cpp
-sub_vec_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-sub_vec_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/sub_vec_vec_ncerr.o $(top_srcdir)/array_manip/src/check_sizes_2in1out.o
-
-mult_vec_vec_ncerr_test_SOURCES = mult_vec_vec_ncerr_test.cpp
-mult_vec_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-mult_vec_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/mult_vec_vec_ncerr.o $(top_srcdir)/array_manip/src/check_sizes_2in1out.o
-
-div_vec_vec_ncerr_test_SOURCES = div_vec_vec_ncerr_test.cpp
-div_vec_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-div_vec_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/div_vec_vec_ncerr.o $(top_srcdir)/array_manip/src/check_sizes_2in1out.o
-
-sumw_vec_vec_ncerr_test_SOURCES = sumw_vec_vec_ncerr_test.cpp
-sumw_vec_vec_ncerr_test_CPPFLAGS = @CPPFLAGS@ -I$(top_srcdir)/array_manip/inc
-sumw_vec_vec_ncerr_test_LDADD = $(top_srcdir)/array_manip/src/sumw_vec_vec_ncerr.o $(top_srcdir)/array_manip/src/check_sizes_2in1out.o
+sumw_ncerr_test_SOURCES = sumw_ncerr_test.cpp test_common.hpp
 
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\

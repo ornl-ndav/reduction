@@ -3,19 +3,20 @@
  *
  * \file axis_manip/src/reverse_array_cp.hpp
  */
+#ifndef _REVERSE_ARRAY_CP_HPP
+#define _REVERSE_ARRAY_CP_HPP 1
+
 #include "reverse_array.hpp"
 #include <algorithm>
-#include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.11
   template <typename NumT>
   std::string 
-  reverse_array_cp(std::vector<NumT> const & input,
-		std::vector<NumT> & output,
-		void *temp=NULL)
+  reverse_array_cp(const Nessi::Vector<NumT> & input,
+                   Nessi::Vector<NumT> & output,
+                   void *temp=NULL)
   {
     std::string retstr("");
 
@@ -24,3 +25,5 @@ namespace AxisManip
     return retstr;
   }
 } // AxisManip
+
+#endif // _REVERSE_ARRAY_CP_HPP

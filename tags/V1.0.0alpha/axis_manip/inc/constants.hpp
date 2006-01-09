@@ -3,9 +3,15 @@
  *
  * \file axis_manip/inc/constants.hpp
  */
-#ifndef _CONSTANTS_H
-#define _CONSTANTS_H 1
+#ifndef _CONSTANTS_HPP
+#define _CONSTANTS_HPP 1
 
+/**
+ * \namespace PhysConst
+ *
+ * \brief A collection of double precision constants useful in
+ * time-of-flight neutron scattering
+ */
 namespace PhysConst
 {
   /**
@@ -34,4 +40,4 @@ namespace PhysConst
   static const double H = 4.1357;
 }
 
-#endif // _CONSTANTS_H
+#endif // _CONSTANTS_HPP

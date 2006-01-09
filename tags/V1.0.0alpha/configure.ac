@@ -6,8 +6,7 @@ This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
 AC_CONFIG_AUX_DIR(config)
-AM_CONFIG_HEADER(config/snsdrlibconfig.h:config/snsdrlibconfig_h.in)
-AC_CONFIG_SRCDIR(array_manip/src/add_vec_vec_ncerr.cpp)
+AC_CONFIG_SRCDIR(array_manip/src/add_ncerr.cpp)
 AC_CANONICAL_TARGET
 
 if test ! -z "$srcdir"; then
@@ -17,6 +16,17 @@ else
 fi
 
 AM_INIT_AUTOMAKE([1.9])
+
+AM_CONFIG_HEADER(config/snsdrlibconfig.h:config/snsdrlibconfig_h.in)
+
+AC_ARG_ENABLE(pdfdoc,
+[  --enable-pdfdoc    Create a PDF version of the documentation],
+[case "${enableval}" in
+  yes) pdfdoc=true ;;
+  no)  pdfdoc=false ;;
+  *) AC_MSG_ERROR(bad value ${enableval} for --enable-pdfdoc) ;;
+esac],[pdfdoc=false])
+AM_CONDITIONAL(PDFDOC, test x$pdfdoc = xtrue)
 
 AM_PATH_PYTHON(,, :)
 AC_CHECK_ROOT([python],[PYTHONROOT],[/usr /usr/local],[include/python$PYTHON_VE\RSION/Python.h])
@@ -49,6 +59,7 @@ AC_CONFIG_FILES([array_manip/test/Makefile
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 AC_CONFIG_FILES([Makefile
+		nessi/Makefile
 		array_manip/Makefile
 		array_manip/inc/Makefile
 		array_manip/src/Makefile
@@ -73,6 +84,13 @@ if test -n "$SWIG" ; then
 else
     SWIGBINDING=no
 fi
+
+if test $pdfdoc == "true" ; then
+   MAKEPDF="yes"
+else
+   MAKEPDF="no"
+fi
+
 AC_MSG_RESULT([
 
 Configuration (SNS Data Reduction Library):
@@ -80,7 +98,10 @@ Configuration (SNS Data Reduction Library):
         Source code location:  ${srcdir}
         Version:               ${VERSION}
         Compiler:              ${CXX}
-	Documentation:	       ${DOXYGEN}
+
+documentation:
+	Generator:	       ${DOXYGEN}
+	PDF Version:	       ${MAKEPDF}
 
 build:
         bindings:

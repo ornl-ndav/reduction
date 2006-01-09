@@ -1,21 +1,29 @@
 # $Id$
 
+PDFFILE = $(PACKAGE_TARNAME)-$(VERSION).pdf 
+
+if PDFDOC
+MAKEPDF = ./makepdf $(PDFFILE)
+CPPDF = cp latex/$(PDFFILE) $(DRLIBDOCDIR)
+RMPDF = rm $(DRLIBDOCDIR)/$(PDFFILE)
+else
+MAKEPDF = 
+CPPDF = 
+RMPDF = 
+endif
+
 docs:
 	doxygen sns_dr_lib.cfg
-	./makepdf $(PACKAGE_TARNAME) $(VERSION)
+	$(MAKEPDF)
 
 install:
-	mkdir -p $(DRLIBDOCDIR)	  
-	cp -r html $(DRLIBDOCDIR)
-	mkdir -p $(DRLIBDOCDIR)/latex
-	cp latex/*.eps $(DRLIBDOCDIR)/latex
-	cp latex/*.tex $(DRLIBDOCDIR)/latex
-	cp latex/$(PACKAGE_TARNAME)-$(VERSION).pdf $(DRLIBDOCDIR)
+	./install $(DRLIBDOCDIR) $(PACKAGE_TARNAME) $(VERSION)
+	$(CPPDF)
 
 uninstall:
 	rm -rf $(DRLIBDOCDIR)/html
 	rm -rf $(DRLIBDOCDIR)/latex
-	rm $(DRLIBDOCDIR)/$(PACKAGE_TARNAME)-$(VERSION).pdf
+	$(RMPDF)
 
 clean:
 	rm -rf html

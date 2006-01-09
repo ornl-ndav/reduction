@@ -3,14 +3,16 @@
  *
  * \file utils/inc/utils.hpp
  */
-#ifndef _UTILS_H
-#define _UTILS_H
+#ifndef _UTILS_HPP
+#define _UTILS_HPP 1
 
+#include "nessi.hpp"
 #include <string>
-#include <vector>
 
 /**
- * This sub-library contains various functions that do not
+ * \namespace Utils
+ *
+ * \brief This sub-library contains various functions that do not
  * specifically reside in any of the other sub-libraries.
  *
  * All of these functions are written in reference to SNS
@@ -19,6 +21,11 @@
  */
 namespace Utils
 {
+  /**
+   * \defgroup peak_integration Utils::peak_integration
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.35.
    *
@@ -53,15 +60,24 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    peak_integration(std::vector<NumT> const & input,
-		     std::vector<NumT> const & input_err2,
-		     std::vector<NumT> const & start_bin,
+    peak_integration(const Nessi::Vector<NumT> & input,
+		     const Nessi::Vector<NumT> & input_err2,
+		     const Nessi::Vector<NumT> & start_bin,
 		     NumT & output,
 		     NumT & output_err2,
 		     unsigned int & tag,
 		     NumT & num_bins,
 		     void *temp=NULL);
  
+  /**
+   * \}
+   */ // end of peak_integration group
+
+  /**
+   * \defgroup matrix_multiplication Utils::matrix_multiplication
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.37.
    *
@@ -73,12 +89,21 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    matrix_multiplication(std::vector<NumT> const & input,
-			  std::vector<NumT> const & input_err2,
-			  std::vector<NumT> & output,
-			  std::vector<NumT> & output_err2,
+    matrix_multiplication(const Nessi::Vector<NumT> & input,
+			  const Nessi::Vector<NumT> & input_err2,
+			  Nessi::Vector<NumT> & output,
+			  Nessi::Vector<NumT> & output_err2,
 			  void *temp=NULL);
   
+  /**
+   * \}
+   */ // end of matrix_multiplication group
+
+  /** 
+   * \defgroup fit_reflectometer_background Utils::fit_reflectometer_background
+   * \{
+   */
+
   /**
    * \brief This function is described in section 3.42.
    *
@@ -90,15 +115,24 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    fit_reflectometer_background(std::vector<NumT> const & axis_in,
-				 std::vector<NumT> const & input,
-				 std::vector<NumT> const & input_err2,
-				 std::vector<NumT> const & params_in,
-				 std::vector<NumT> & output,
-				 std::vector<NumT> & output_err2,
-				 std::vector<NumT> & params_out,
-				 std::vector<NumT> & params_out_err2,
+    fit_reflectometer_background(const Nessi::Vector<NumT> & axis_in,
+				 const Nessi::Vector<NumT> & input,
+				 const Nessi::Vector<NumT> & input_err2,
+				 const Nessi::Vector<NumT> & params_in,
+				 Nessi::Vector<NumT> & output,
+				 Nessi::Vector<NumT> & output_err2,
+				 Nessi::Vector<NumT> & params_out,
+				 Nessi::Vector<NumT> & params_out_err2,
 				 void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of fit_reflectometer_background group
+
+  /**
+   * \defgroup fit_linear_background Utils::fit_linear_background
+   * \{
+   */
 
   /**
    * \brief This function is described in section 3.43.
@@ -111,17 +145,23 @@ namespace Utils
    */
   template <typename NumT>
     std::string
-    fit_linear_background(std::vector<NumT> const & axis_in,
-			  std::vector<NumT> const & input,
-			  std::vector<NumT> const & input_err2,
-			  NumT min_val, NumT max_val,
+    fit_linear_background(const Nessi::Vector<NumT> & axis_in,
+			  const Nessi::Vector<NumT> & input,
+			  const Nessi::Vector<NumT> & input_err2,
+			  NumT min_val,
+                          NumT max_val,
 			  NumT slope_start, 
 			  NumT intercept_start,
-			  NumT & slope_out, NumT & slope_out_err2,
+			  NumT & slope_out,
+                          NumT & slope_out_err2,
 			  NumT & intercept_out,
 			  NumT & intercept_out_err2,
 			  void *temp=NULL);
 
+  /**
+   * \}
+   */ // end of fit_linear_background group
+
 } // Utils
 
-#endif // _UTILS_H
+#endif // _UTILS_HPP

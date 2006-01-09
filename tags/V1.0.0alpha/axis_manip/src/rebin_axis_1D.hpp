@@ -3,30 +3,30 @@
  *
  * \file axis_manip/src/rebin_axis_1D.hpp
  */
+#ifndef _REBIN_AXIS_1D_HPP
+#define _REBIN_AXIS_1D_HPP 1
+
 #include "rebinning.hpp"
-#include "check_histo.hpp"
+#include "size_checks.hpp"
 #include <stdexcept>
-#include <string>
-#include <vector>
 
 namespace AxisManip
 {
   // 3.12 
   template <typename NumT>
   std::string 
-  rebin_axis_1D(std::vector<NumT> const & axis_in,
-		std::vector<NumT> const & input,
-		std::vector<NumT> const & input_err2,
-		std::vector<NumT> const & axis_out,
-		std::vector<NumT> & output,
-		std::vector<NumT> & output_err2,
+  rebin_axis_1D(const Nessi::Vector<NumT> & axis_in,
+		const Nessi::Vector<NumT> & input,
+		const Nessi::Vector<NumT> & input_err2,
+		const Nessi::Vector<NumT> & axis_out,
+		Nessi::Vector<NumT> & output,
+		Nessi::Vector<NumT> & output_err2,
 		void *temp=NULL)
   {
-    std::string retstr("");
     try
       {
 	std::string errstr("AxisManip::rebin_axis_1D: original histogram ");
-	check_histo_sizes(errstr, input, input_err2, axis_in);
+	Utils::check_histo_sizes(errstr, input, input_err2, axis_in);
       }
     catch(std::invalid_argument e)
       {
@@ -35,7 +35,7 @@ namespace AxisManip
     try
       {
 	std::string errstr("AxisManip::rebin_axis_1D: rebinned histogram ");
-	check_histo_sizes(errstr, output, output_err2, axis_out);
+	Utils::check_histo_sizes(errstr, output, output_err2, axis_out);
       }
     catch(std::invalid_argument e)
       {
@@ -57,8 +57,8 @@ namespace AxisManip
 	const NumT axis_out_lo = axis_out[inew];
 	const NumT axis_out_hi = axis_out[inew + 1];
 
-	// FIXME These comparison statements don't make any sense for floating
-	// point numbers
+	// SNS-FIXME These comparison statements don't make any sense for 
+	// floating point numbers
 	if (axis_out_hi <= axis_in_lo)
 	  inew++;
 	else if (axis_in_hi <= axis_out_lo)
@@ -80,6 +80,9 @@ namespace AxisManip
 	  }
       }
 
+    std::string retstr("");
     return retstr;
   }
 } // AxisManip
+
+#endif // _REBIN_AXIS_1D_HPP

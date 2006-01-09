@@ -3,9 +3,11 @@
  *
  * \file axis_manip/src/time_offset_dgs.hpp
  */
+#ifndef _TIME_OFFSET_DGS_HPP
+#define _TIME_OFFSET_DGS_HPP 1
+
 #include "conversions.hpp"
 #include <stdexcept>
-#include <string>
 
 namespace AxisManip
 {
@@ -25,3 +27,5 @@ namespace AxisManip
     throw std::runtime_error("Function [time_offset_dgs] not implemented");
   }
 } // AxisManip
+
+#endif // _TIME_OFFSET_DGS_HPP

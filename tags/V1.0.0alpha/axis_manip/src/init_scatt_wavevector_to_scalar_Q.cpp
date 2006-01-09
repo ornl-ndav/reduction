@@ -12,35 +12,140 @@ namespace AxisManip
   /**
    * This is the float declaraion of the function defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<float>(
-					   std::vector<float> const & initial_wavevector,
-					   std::vector<float> const & initial_wavevector_err2,
-					   std::vector<float> const & final_wavevector,
-					   std::vector<float> const & final_wavevector_err2,
-					   const float polar_angle,
-					   const float polar_angle_err2,
-					   std::vector<float> & Q,
-					   std::vector<float> & Q_err2,
-					   void *temp);
+			  const Nessi::Vector<float> & initial_wavevector,
+                          const Nessi::Vector<float> & initial_wavevector_err2,
+                          const Nessi::Vector<float> & final_wavevector,
+                          const Nessi::Vector<float> & final_wavevector_err2,
+                          const float polar_angle,
+                          const float polar_angle_err2,
+                          Nessi::Vector<float> & Q,
+                          Nessi::Vector<float> & Q_err2,
+                          void *temp);
+  
+  /**
+   * This is the float declaraion of the function defined in 3.33.
+   *
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   */
+  template std::string
+  init_scatt_wavevector_to_scalar_Q<float>(
+			  const float initial_wavevector,
+                          const float initial_wavevector_err2,
+                          const Nessi::Vector<float> & final_wavevector,
+                          const Nessi::Vector<float> & final_wavevector_err2,
+                          const float polar_angle,
+                          const float polar_angle_err2,
+                          Nessi::Vector<float> & Q,
+                          Nessi::Vector<float> & Q_err2,
+                          void *temp);
+  
+  /**
+   * This is the float declaraion of the function defined in 3.33.
+   *
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   */
+  template std::string
+  init_scatt_wavevector_to_scalar_Q<float>(
+			  const Nessi::Vector<float> & initial_wavevector,
+                          const Nessi::Vector<float> & initial_wavevector_err2,
+                          const float final_wavevector,
+                          const float final_wavevector_err2,
+                          const float polar_angle,
+                          const float polar_angle_err2,
+                          Nessi::Vector<float> & Q,
+                          Nessi::Vector<float> & Q_err2,
+                          void *temp);
+  
+  /**
+   * This is the float declaraion of the function defined in 3.33.
+   *
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   */
+  template std::string
+  init_scatt_wavevector_to_scalar_Q<float>(
+			  const float initial_wavevector,
+                          const float initial_wavevector_err2,
+                          const float final_wavevector,
+                          const float final_wavevector_err2,
+                          const float polar_angle,
+                          const float polar_angle_err2,
+                          float & Q,
+                          float & Q_err2,
+                          void *temp);
   
   /**
    * This is the double precision float declaraion of the function
    * defined in 3.33.
    *
-   * \see init_scatt_wavevector_to_scalarQ()
+   * \ingroup init_scatt_wavevector_to_scalar_Q
    */
   template std::string
   init_scatt_wavevector_to_scalar_Q<double>(
-					    std::vector<double> const & initial_wavevector,
-					    std::vector<double> const & initial_wavevector_err2,
-					    std::vector<double> const & final_wavevector,
-					    std::vector<double> const & final_wavevector_err2,
-					    const double polar_angle,
-					    const double polar_angle_err2,
-					    std::vector<double> & Q,
-					    std::vector<double> & Q_err2,
-					    void *temp);
+                         const Nessi::Vector<double> & initial_wavevector,
+			 const Nessi::Vector<double> & initial_wavevector_err2,
+                         const Nessi::Vector<double> & final_wavevector,
+                         const Nessi::Vector<double> & final_wavevector_err2,
+                         const double polar_angle,
+                         const double polar_angle_err2,
+                         Nessi::Vector<double> & Q,
+                         Nessi::Vector<double> & Q_err2,
+                         void *temp);
+
+  /**
+   * This is the double precision float declaraion of the function
+   * defined in 3.33.
+   *
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   */
+  template std::string
+  init_scatt_wavevector_to_scalar_Q<double>(
+                         const double initial_wavevector,
+			 const double initial_wavevector_err2,
+                         const Nessi::Vector<double> & final_wavevector,
+                         const Nessi::Vector<double> & final_wavevector_err2,
+                         const double polar_angle,
+                         const double polar_angle_err2,
+                         Nessi::Vector<double> & Q,
+                         Nessi::Vector<double> & Q_err2,
+                         void *temp);
+
+  /**
+   * This is the double precision float declaraion of the function
+   * defined in 3.33.
+   *
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   */
+  template std::string
+  init_scatt_wavevector_to_scalar_Q<double>(
+                         const Nessi::Vector<double> & initial_wavevector,
+			 const Nessi::Vector<double> & initial_wavevector_err2,
+                         const double final_wavevector,
+                         const double final_wavevector_err2,
+                         const double polar_angle,
+                         const double polar_angle_err2,
+                         Nessi::Vector<double> & Q,
+                         Nessi::Vector<double> & Q_err2,
+                         void *temp);
+
+  /**
+   * This is the double precision float declaraion of the function
+   * defined in 3.33.
+   *
+   * \ingroup init_scatt_wavevector_to_scalar_Q
+   */
+  template std::string
+  init_scatt_wavevector_to_scalar_Q<double>(
+                         const double initial_wavevector,
+			 const double initial_wavevector_err2,
+                         const double final_wavevector,
+                         const double final_wavevector_err2,
+                         const double polar_angle,
+                         const double polar_angle_err2,
+                         double & Q,
+                         double & Q_err2,
+                         void *temp);
 } // AxisManip
