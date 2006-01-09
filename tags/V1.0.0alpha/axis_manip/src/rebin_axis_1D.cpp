@@ -4,7 +4,6 @@
  * \file axis_manip/src/rebin_axis_1D.cpp
  */
 #include "rebin_axis_1D.hpp"
-#include <stdexcept>
 
 namespace AxisManip
 {

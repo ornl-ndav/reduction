@@ -23,7 +23,10 @@ namespace AxisManip
    * another given axis. This function uses fractional overlap of bins to 
    * perform the rebinning process. The function also assumes that the data 
    * is represented by a histogram model.
-   *
+   *   
+   * This function was provided by Paul Kienzle (NIST) and is based on an 
+   * OpenGenie routine.
+   *   
    * \param axis_in (INPUT) is the initial data axis
    * \param input (INPUT) is the data associated with the initial axis
    * \param input_err2 (INPUT) is the square of the uncertainty associated 
