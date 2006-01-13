@@ -102,13 +102,13 @@ namespace ArrayManip
    * \param array_in (INPUT) is the array to be added
    * \param array_in_err2 (INPUT) is the square of the uncertainty in
    * the array to be added
-   * \param array_out (OUTPUT) is the result array
-   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
-   * the result array
    * \param scalar (INPUT) is the scalar to add to each element of
    * array_in
    * \param scalar_err2 (INPUT) is the square of the uncertainty in the
    * scalar
+   * \param array_out (OUTPUT) is the result array
+   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
+   * the result array
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -209,14 +209,14 @@ namespace ArrayManip
    *
    * \param array_in (INPUT) is the array to be subtracted from
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
-   * array to be subtracted from
-   * \param array_out (OUTPUT) is the result array
-   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
-   * the result array
+   * array to be subtracted fro
    * \param scalar (INPUT) is the scalar to subtract from each element of
    * array_in
    * \param scalar_err2 (INPUT) is the square of the uncertainty in the
    * scalar
+   * \param array_out (OUTPUT) is the result array
+   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
+   * the result array
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -233,7 +233,7 @@ namespace ArrayManip
               void *temp=NULL);
   
  /**
-   * \brief This function is described in section 3.2.
+   * \brief This function is described in section 3.44.
    *
    * This function subtracts each element from a scalar, \f$i\f$, of
    * an array according to the equation
@@ -256,16 +256,16 @@ namespace ArrayManip
    * This function is an adaptation from the ARCS reduction software written
    * by Tim Kelley (CalTech).
    *
-   * \param array_out (OUTPUT) is the result array
-   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
-   * the result array
-   * \param array_in (INPUT) is the array to be subtracted from
-   * \param array_in_err2 (INPUT) is the square of the uncertainty in the
-   * array to be subtracted from
    * \param scalar (INPUT) is the scalar to subtract from each element of
    * array_in
    * \param scalar_err2 (INPUT) is the square of the uncertainty in the
    * scalar
+   * \param array_in (INPUT) is the array to be subtracted from
+   * \param array_in_err2 (INPUT) is the square of the uncertainty in the
+   * array to be subtracted from
+   * \param array_out (OUTPUT) is the result array
+   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
+   * the result array
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -367,13 +367,13 @@ namespace ArrayManip
    * \param array_in (INPUT) is the array to be multipled
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
    * array to be multiplied
-   * \param array_out (OUTPUT) is the result array
-   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
-   * the result array
    * \param scalar (INPUT) is the scalar to multiply to each element
    * of array_in
    * \param scalar_err2 (INPUT) is the square of the uncertainty in the
    * scalar
+   * \param array_out (OUTPUT) is the result array
+   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
+   * the result array
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -474,16 +474,16 @@ namespace ArrayManip
    * This function is an adaptation from the ARCS reduction software written
    * by Tim Kelley (CalTech).
    *
+   * \param scalar (INPUT) is the scalar to be divided by each element
+   * of array_in
+   * \param scalar_err2 (INPUT) is the square of the uncertainty in the
+   * scalar
    * \param array_in (INPUT) is the array to divide from the scalar
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
    * array to divide the scalar
    * \param array_out (OUTPUT) is the result array
    * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
    * the result array
-   * \param scalar (INPUT) is the scalar to be divided by each element
-   * of array_in
-   * \param scalar_err2 (INPUT) is the square of the uncertainty in the
-   * scalar
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -527,13 +527,13 @@ namespace ArrayManip
    * \param array_in (INPUT) is the array to be divided by the scalar
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
    * array to be divided by the scalar
-   * \param array_out (OUTPUT) is the result array
-   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
-   * the result array
    * \param scalar (INPUT) is the scalar to divide each element of
    * array_in by
    * \param scalar_err2 (INPUT) is the square of the uncertainty in the
    * scalar
+   * \param array_out (OUTPUT) is the result array
+   * \param array_out_err2 (OUTPUT) is the square of the uncertainty in
+   * the result array
    *
    * \param temp holds temporary memory to be passed to the function
    *
