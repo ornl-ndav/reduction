@@ -1,6 +1,6 @@
 #!/bin/sh
 
-for automake in automake-1.9 automake-1.8 automake-1.7 automake-1.6 automake-1.5 automake-1.4 automake ; do
+for automake in automake-1.9 automake ; do
 	AUTOMAKE=`which $automake 2>/dev/null |  grep -v '^no'`
 	if test "$AUTOMAKE" ; then
 		break;
@@ -15,7 +15,7 @@ case $automake in
 		ACLOCAL="aclocal";
 esac
 	
-for autoconf in autoconf-2.59 autoconf-2.57 autoconf-2.53 autoconf-2.52 autoconf ; do 
+for autoconf in autoconf-2.59 autoconf ; do 
 	AUTOCONF=`which $autoconf 2>/dev/null | grep -v '^no'`
 	if test "$AUTOCONF" ; then
 		break;
