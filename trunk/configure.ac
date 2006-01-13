@@ -49,10 +49,6 @@ AM_CONDITIONAL(HAVE_PYTHON, [test ! -z "$PYTHONROOT"])
 AM_CONDITIONAL(HAVE_SWIG, [test ! -z "$SWIG"])
 AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
 
-dnl AC_CONFIG_TESTDIR([array_manip/test
-dnl	axis_manip/test
-dnl	])
-
 AC_CONFIG_FILES([array_manip/test/Makefile 
 		array_manip/test/cpp/Makefile
 		axis_manip/test/Makefile
