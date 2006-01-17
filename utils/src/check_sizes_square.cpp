@@ -30,7 +30,7 @@ namespace Utils
 			     const Nessi::Vector<double> & array3);
   
   /**
-   * This is the int declaration of the check_sizes_square function
+   * This is the integer declaration of the check_sizes_square function
    *
    * \ingroup check_sizes_square
    */
@@ -40,14 +40,15 @@ namespace Utils
 			  const Nessi::Vector<int> & array3);
   
   /**
-   * This is the unsigned declaration of the check_sizes_square function
+   * This is the unsigned integer declaration of the check_sizes_square 
+   * function
    *
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<unsigned>(const Nessi::Vector<unsigned> & array1, 
-			       const Nessi::Vector<unsigned> & array2, 
-			       const Nessi::Vector<unsigned> & array3);
+  check_sizes_square<unsigned int>(const Nessi::Vector<unsigned int> & array1, 
+				   const Nessi::Vector<unsigned int> & array2, 
+				   const Nessi::Vector<unsigned int> & array3);
   
   /**
    * This is the float declaration of the check_sizes_square function
@@ -68,7 +69,7 @@ namespace Utils
 			     const Nessi::Vector<double> & array2);
   
   /**
-   * This is the int declaration of the check_sizes_square function
+   * This is the integer declaration of the check_sizes_square function
    *
    * \ingroup check_sizes_square
    */
@@ -77,12 +78,13 @@ namespace Utils
 			  const Nessi::Vector<int> & array2);
   
   /**
-   * This is the unsigned declaration of the check_sizes_square function
+   * This is the unsigned integer declaration of the check_sizes_square 
+   * function
    *
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<unsigned>(const Nessi::Vector<unsigned> & array1, 
-			       const Nessi::Vector<unsigned> & array2);
+  check_sizes_square<unsigned int>(const Nessi::Vector<unsigned int> & array1, 
+				   const Nessi::Vector<unsigned int> & array2);
   
 } // Utils

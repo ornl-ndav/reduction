@@ -30,7 +30,7 @@ namespace Utils
 			    const Nessi::Vector<double> & axis);
 
   /**
-   * This is the int declaration of the check_histo_sizes function
+   * This is the integer declaration of the check_histo_sizes function
    *
    * \ingroup check_histo_sizes
    */
@@ -40,13 +40,13 @@ namespace Utils
 			 const Nessi::Vector<int> & axis);
   
   /**
-   * This is the unsigned declaration of the check_histo_sizes function
+   * This is the unsigned integer declaration of the check_histo_sizes function
    *
    * \ingroup check_histo_sizes
    */
   template void 
-  check_histo_sizes<unsigned>(const Nessi::Vector<unsigned> & input,
-			      const Nessi::Vector<unsigned> & input_err2,
-			      const Nessi::Vector<unsigned> & axis); 
+  check_histo_sizes<unsigned int>(const Nessi::Vector<unsigned int> & input,
+				  const Nessi::Vector<unsigned int> & input_err2,
+				  const Nessi::Vector<unsigned int> & axis); 
 
 } // Utils
