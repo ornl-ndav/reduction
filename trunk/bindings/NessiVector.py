@@ -104,9 +104,5 @@ class NessiVector (list):
 		return self.__array.pop()
 
 
-def add(a,b):
-#	if a.__type == NessiVector.__class__.INT:
-		print "ok to add a and b at that stage"
-#		return "end here"
 
 	
