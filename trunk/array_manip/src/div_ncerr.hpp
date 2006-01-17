@@ -12,6 +12,9 @@
 
 namespace ArrayManip
 {
+  /// String for holding the divide function name
+  const std::string div_func_str = "ArrayManip::div_ncerr";
+
   // 3.4
   template <typename NumT>
   std::string 
@@ -30,8 +33,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::div_ncerr: data ");
-        throw e;
+        throw std::invalid_argument(div_func_str+" (s,v): data "+e.what());
       }
     // check that the uncertainties are of proper size
     try
@@ -40,8 +42,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::div_ncerr: error ");
-        throw e;
+        throw std::invalid_argument(div_func_str+" (s,v): data "+e.what());
       }
 
     std::string errstr("");
@@ -76,8 +77,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::div_ncerr: data ");
-        throw e;
+        throw std::invalid_argument(div_func_str+" (v,s): data "+e.what());
       }
     // check that the uncertainties are of proper size
     try
@@ -86,8 +86,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::div_ncerr: error ");
-        throw e;
+        throw std::invalid_argument(div_func_str+" (v,s): err2 "+e.what());
       }
 
     std::string errstr("");
@@ -120,8 +119,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-	std::string errstr("ArrayManip::div_vec_vec_ncerr: data ");
-	throw e;
+        throw std::invalid_argument(div_func_str+" (v,v): data "+e.what());
       }
 
     try 
@@ -130,8 +128,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-	std::string errstr("ArrayManip::div_vec_vec_ncerr: error ");
-	throw e;
+        throw std::invalid_argument(div_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr("");
