@@ -44,6 +44,33 @@ namespace Utils
    */ // end of vector_comparison group
 
   /**
+   * \defgroup vector_is_equals Utils::vector_is_equals
+   * \{
+   */
+
+  /**
+   * \brief This function compares to vectors for equality.
+   *
+   * This function takes two vectors and checks equality on an 
+   * element-by-element basis. One of the vectors contains the truth values 
+   * from a given calculation. 
+   *
+   * \param value (INPUT) is a calculated vector
+   * \param true_value (INPUT) is a truth vector corresponding to the 
+   * calculated vector
+   *
+   * \return A boolean that is true if the vector is equal element-by-element
+   */
+  template <typename NumT> 
+    bool
+    vector_is_equals(const Nessi::Vector<NumT> & value,
+		     const Nessi::Vector<NumT> & true_value);
+
+  /**
+   * \}
+   */ // end of vector_is_equals group
+
+  /**
    * \defgroup compare Utils::compare
    * \{
    */

@@ -22,4 +22,6 @@ libUtils_la_SOURCES = \
 	peak_integration.hpp \
 	peak_integration.cpp \
 	vector_comparison.hpp \
-	vector_comparison.cpp
+	vector_comparison.cpp \
+	vector_is_equals.hpp \
+	vector_is_equals.cpp
