@@ -32,12 +32,6 @@ namespace Utils
         throw std::invalid_argument(errstr);
       }
 
-    if (sz2 != sz3)
-      {
-        std::string errstr = "array2 not the same size as array3";
-        throw std::invalid_argument(errstr);
-      }
-
     return;
   }
 

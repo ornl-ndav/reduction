@@ -33,12 +33,6 @@ namespace Utils
 	throw std::invalid_argument(errstr);
       }
 
-    if(size_axis != size_err2+1)
-      {
-	std::string errstr = "axis size is not input_err2 size + 1";
-	throw std::invalid_argument(errstr);
-      }
-
     return;
   }
 } // Utils
