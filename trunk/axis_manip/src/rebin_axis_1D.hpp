@@ -25,20 +25,20 @@ namespace AxisManip
   {
     try
       {
-	std::string errstr("AxisManip::rebin_axis_1D: original histogram ");
-	Utils::check_histo_sizes(errstr, input, input_err2, axis_in);
+	Utils::check_histo_sizes(input, input_err2, axis_in);
       }
     catch(std::invalid_argument e)
       {
+	std::string errstr("AxisManip::rebin_axis_1D: original histogram ");
 	throw e;
       }
     try
       {
-	std::string errstr("AxisManip::rebin_axis_1D: rebinned histogram ");
-	Utils::check_histo_sizes(errstr, output, output_err2, axis_out);
+	Utils::check_histo_sizes(output, output_err2, axis_out);
       }
     catch(std::invalid_argument e)
       {
+	std::string errstr("AxisManip::rebin_axis_1D: rebinned histogram ");
 	throw e;
       }
 

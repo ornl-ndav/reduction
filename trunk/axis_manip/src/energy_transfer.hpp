@@ -27,24 +27,24 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("AxisManip::energy_transfer: data ");
-        Utils::check_sizes_square(errstr, initial_energy, final_energy,
-                                  energy_transfer);
+        Utils::check_sizes_square(initial_energy, final_energy, 
+				  energy_transfer);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::energy_transfer: data ");
         throw e;
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("AxisManip::energy_transfer: error ");
-        Utils::check_sizes_square(errstr, initial_energy_err2,
-                                  final_energy_err2, energy_transfer_err2);
+        Utils::check_sizes_square(initial_energy_err2, final_energy_err2, 
+				  energy_transfer_err2);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::energy_transfer: error ");
         throw e;
       }
 
@@ -91,23 +91,22 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("AxisManip::energy_transfer: data ");
-        Utils::check_sizes_square(errstr, initial_energy, energy_transfer);
+        Utils::check_sizes_square(initial_energy, energy_transfer);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::energy_transfer: data ");
         throw e;
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("AxisManip::energy_transfer: error ");
-        Utils::check_sizes_square(errstr, initial_energy_err2,
-                                  energy_transfer_err2);
+        Utils::check_sizes_square(initial_energy_err2, energy_transfer_err2);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::energy_transfer: error ");
         throw e;
       }
 
@@ -160,23 +159,22 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("AxisManip::energy_transfer: data ");
-        Utils::check_sizes_square(errstr, final_energy, energy_transfer);
+        Utils::check_sizes_square(final_energy, energy_transfer);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::energy_transfer: data ");
         throw e;
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("AxisManip::energy_transfer: error ");
-        Utils::check_sizes_square(errstr, final_energy_err2,
-                                  energy_transfer_err2);
+        Utils::check_sizes_square(final_energy_err2, energy_transfer_err2);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::energy_transfer: error ");
         throw e;
       }
 

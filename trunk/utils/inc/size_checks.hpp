@@ -25,16 +25,12 @@ namespace Utils
    * This function is an adaptation from the ARCS reduction software written
    * by Tim Kelley (CalTech).
    *
-   * \param errstr (INPUT/OUTPUT) is a string containing the calling function. 
-   * errstr is also used as a thrown exception if the vectors are not of 
-   * consistent sizes.
    * \param array1 (INPUT) is a vector that needs size checking
    * \param array2 (INPUT) is a vector that needs size checking
    * \param array3 (INPUT) is a vector that needs size checking
    */
   template <typename NumT>
-    void check_sizes_square(std::string & errstr, 
-			    const Nessi::Vector<NumT> & array1, 
+    void check_sizes_square(const Nessi::Vector<NumT> & array1, 
 			    const Nessi::Vector<NumT> & array2, 
 			    const Nessi::Vector<NumT> & array3);
 
@@ -44,15 +40,11 @@ namespace Utils
    * This function checks the sizes of two vectors for consistent sizes. 
    * If the vectors do not have consistent sizes, an exception is thrown. 
    *
-   * \param errstr (INPUT/OUTPUT) is a string containing the calling function. 
-   * errstr is also used as a thrown exception if the vectors are not of 
-   * consistent sizes.
    * \param array1 (INPUT) is a vector that needs size checking
    * \param array2 (INPUT) is a vector that needs size checking
    */
   template <typename NumT>
-    void check_sizes_square(std::string & errstr, 
-			    const Nessi::Vector<NumT> & array1, 
+    void check_sizes_square(const Nessi::Vector<NumT> & array1, 
 			    const Nessi::Vector<NumT> & array2);
 
   /**
@@ -73,17 +65,13 @@ namespace Utils
    * vectors should be one element shorter than the axis vector. If the 
    * vectors have inconsistent sizes, an exception is thrown.
    *
-   * \param errstr (INPUT/OUTPUT) is a string containing the calling function. 
-   * errstr is also used as a thrown exception if the vectors are not of 
-   * consistent sizes.
    * \param input (INPUT) is the histogram data
    * \param input_err2 (INPUT) is the histogram uncertainty squared
    * \param axis (INPUT) is the histogram axis
    *
    */
   template <typename NumT>
-  void check_histo_sizes(std::string & errstr,
-                         const Nessi::Vector<NumT> & input,
+  void check_histo_sizes(const Nessi::Vector<NumT> & input,
                          const Nessi::Vector<NumT> & input_err2,
                          const Nessi::Vector<NumT> & axis);
 

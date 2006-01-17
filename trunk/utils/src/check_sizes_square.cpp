@@ -15,8 +15,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<float>(std::string & errstr, 
-			    const Nessi::Vector<float> & array1, 
+  check_sizes_square<float>(const Nessi::Vector<float> & array1, 
 			    const Nessi::Vector<float> & array2, 
 			    const Nessi::Vector<float> & array3);
   
@@ -26,8 +25,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<double>(std::string & errstr, 
-			     const Nessi::Vector<double> & array1, 
+  check_sizes_square<double>(const Nessi::Vector<double> & array1, 
 			     const Nessi::Vector<double> & array2, 
 			     const Nessi::Vector<double> & array3);
   
@@ -37,8 +35,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<int>(std::string & errstr, 
-			  const Nessi::Vector<int> & array1, 
+  check_sizes_square<int>(const Nessi::Vector<int> & array1, 
 			  const Nessi::Vector<int> & array2, 
 			  const Nessi::Vector<int> & array3);
   
@@ -48,8 +45,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<unsigned>(std::string & errstr, 
-			       const Nessi::Vector<unsigned> & array1, 
+  check_sizes_square<unsigned>(const Nessi::Vector<unsigned> & array1, 
 			       const Nessi::Vector<unsigned> & array2, 
 			       const Nessi::Vector<unsigned> & array3);
   
@@ -59,8 +55,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<float>(std::string & errstr, 
-			    const Nessi::Vector<float> & array1, 
+  check_sizes_square<float>(const Nessi::Vector<float> & array1, 
 			    const Nessi::Vector<float> & array2);
   
   /**
@@ -69,8 +64,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<double>(std::string & errstr, 
-			     const Nessi::Vector<double> & array1, 
+  check_sizes_square<double>(const Nessi::Vector<double> & array1, 
 			     const Nessi::Vector<double> & array2);
   
   /**
@@ -79,8 +73,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<int>(std::string & errstr, 
-			  const Nessi::Vector<int> & array1, 
+  check_sizes_square<int>(const Nessi::Vector<int> & array1, 
 			  const Nessi::Vector<int> & array2);
   
   /**
@@ -89,8 +82,7 @@ namespace Utils
    * \ingroup check_sizes_square
    */
   template void 
-  check_sizes_square<unsigned>(std::string & errstr, 
-			       const Nessi::Vector<unsigned> & array1, 
+  check_sizes_square<unsigned>(const Nessi::Vector<unsigned> & array1, 
 			       const Nessi::Vector<unsigned> & array2);
   
 } // Utils

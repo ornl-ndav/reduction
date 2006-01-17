@@ -27,21 +27,21 @@ namespace ArrayManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("ArrayManip::add_ncerr: data ");
-        Utils::check_sizes_square(errstr,array_in,array_out);
+        Utils::check_sizes_square(array_in,array_out);
       }
     catch (std::invalid_argument e)
       {
+        std::string errstr("ArrayManip::add_ncerr: data ");
         throw e;
       }
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("ArrayManip::add_ncerr: error ");
-        Utils::check_sizes_square(errstr,array_in_err2,array_out_err2);
+        Utils::check_sizes_square(array_in_err2,array_out_err2);
       }
     catch (std::invalid_argument e)
       {
+        std::string errstr("ArrayManip::add_ncerr: error ");
         throw e;
       }
 
@@ -70,21 +70,21 @@ namespace ArrayManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("ArrayManip::add_ncerr: data ");
-        Utils::check_sizes_square(errstr,input1,input2,output);
+        Utils::check_sizes_square(input1,input2,output);
       }
     catch (std::invalid_argument e)
       {
+        std::string errstr("ArrayManip::add_ncerr: data ");
         throw e;
       }
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("ArrayManip::add_ncerr: error ");
-        Utils::check_sizes_square(errstr,input1_err2,input2_err2,output_err2);
+        Utils::check_sizes_square(input1_err2,input2_err2,output_err2);
       }
     catch (std::invalid_argument e)
       {
+        std::string errstr("ArrayManip::add_ncerr: error ");
         throw e;
       }
 
@@ -93,7 +93,7 @@ namespace ArrayManip
     try 
       {
 	std::string errstr("ArrayManip::add_vec_vec_ncerr: data ");
-	Utils::check_sizes_square(errstr, input1, input2, output);
+	Utils::check_sizes_square(input1, input2, output);
       }
     catch (std::invalid_argument e)
       {
@@ -103,7 +103,7 @@ namespace ArrayManip
     try 
       {
 	std::string errstr("ArrayManip::add_vec_vec_ncerr: error ");
-	Utils::check_sizes_square(errstr, input1_err2, input2_err2, 
+	Utils::check_sizes_square(input1_err2, input2_err2, 
 				  output_err2);
       }
     catch (std::invalid_argument e)
