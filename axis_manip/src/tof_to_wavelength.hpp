@@ -13,6 +13,9 @@
 
 namespace AxisManip
 {
+  /// String for holding the tof_to_wavelength function name
+  const std::string ttw_func_str = "AxisManip::tof_to_wavelength";
+
   // 3.15
   template <typename NumT>
   std::string
@@ -31,8 +34,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::tof_to_wavelength: data ");
-        throw e;
+	throw std::invalid_argument(ttw_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -42,8 +44,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::tof_to_wavelength: error ");
-        throw e;
+	throw std::invalid_argument(ttw_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string

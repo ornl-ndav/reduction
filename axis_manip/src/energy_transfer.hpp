@@ -13,6 +13,9 @@
 
 namespace AxisManip
 {
+  /// String for holding the energy_transfer function name
+  const std::string et_func_str = "AxisManip::energy_transfer";
+
   // 3.30
   template <typename NumT>
   std::string
@@ -32,8 +35,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::energy_transfer: data ");
-        throw e;
+	throw std::invalid_argument(et_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -44,8 +46,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::energy_transfer: error ");
-        throw e;
+	throw std::invalid_argument(et_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -95,8 +96,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::energy_transfer: data ");
-        throw e;
+	throw std::invalid_argument(et_func_str+" (v,s): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -106,8 +106,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::energy_transfer: error ");
-        throw e;
+	throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -163,8 +162,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::energy_transfer: data ");
-        throw e;
+	throw std::invalid_argument(et_func_str+" (s,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -174,8 +172,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::energy_transfer: error ");
-        throw e;
+	throw std::invalid_argument(et_func_str+" (s,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string

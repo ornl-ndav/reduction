@@ -12,6 +12,9 @@
 
 namespace ArrayManip
 {
+  /// String for holding the multiplication function name
+  const std::string mult_func_str = "ArrayManip::mult_ncerr";
+
   // 3.3
   template <typename NumT>
   std::string 
@@ -30,8 +33,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {        
-	std::string errstr("ArrayManip::mult_ncerr: data ");
-        throw e;
+	throw std::invalid_argument(mult_func_str+" (v,s): data "+e.what());
       }
     // check that the uncertainties are of proper size
     try
@@ -40,8 +42,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::mult_ncerr: error ");
-        throw e;
+	throw std::invalid_argument(mult_func_str+" (v,s): err2 "+e.what());
       }
 
     std::string errstr("");
@@ -75,8 +76,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-	std::string errstr("ArrayManip::mult_vec_vec_ncerr: data ");
-	throw e;
+	throw std::invalid_argument(mult_func_str+" (v,v): data "+e.what());
       }
 
     try 
@@ -85,8 +85,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-	std::string errstr("ArrayManip::mult_vec_vec_ncerr: error ");
-	throw e;
+	throw std::invalid_argument(mult_func_str+" (v,v): err2 "+e.what());
       }
 
     std::transform(input1.begin(), input1.end(), input2.begin(), 

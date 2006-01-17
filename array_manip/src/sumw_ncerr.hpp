@@ -13,6 +13,9 @@
 
 namespace ArrayManip
 {
+  /// String for holding the sum with weighted uncertainties function name
+  const std::string sumw_func_str = "ArrayManip::sumw_ncerr";
+
   // 3.10
   template <typename NumT>
   std::string 
@@ -31,8 +34,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::sumw_ncerr: data ");
-        throw e;
+        throw std::invalid_argument(sumw_func_str+" (v,v): data "+e.what());
       }
     // check that the uncertainties are of proper size
     try
@@ -41,8 +43,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::sumw_ncerr: error ");
-        throw e;
+        throw std::invalid_argument(sumw_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr("");

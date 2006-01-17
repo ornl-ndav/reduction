@@ -13,6 +13,10 @@
 
 namespace AxisManip
 {
+  /// String for holding the init_scatt_wavevector_to_scalar_Q function name
+  const std::string 
+  iswtsq_func_str = "AxisManip::init_scatt_wavevector_to_scalar_Q";
+  
   // 3.33
   template <typename NumT>
   std::string
@@ -34,8 +38,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
-        throw e;
+	throw std::invalid_argument(iswtsq_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -46,8 +49,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
-        throw e;
+	throw std::invalid_argument(iswtsq_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -103,8 +105,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
-        throw e;
+	throw std::invalid_argument(iswtsq_func_str+" (s,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -114,8 +115,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
-        throw e;
+	throw std::invalid_argument(iswtsq_func_str+" (s,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -171,8 +171,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
-        throw e;
+	throw std::invalid_argument(iswtsq_func_str+" (v,s): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -182,8 +181,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
-        throw e;
+	throw std::invalid_argument(iswtsq_func_str+" (v,s): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string

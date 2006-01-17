@@ -13,6 +13,9 @@
 
 namespace ArrayManip
 {
+  /// String for holding the subtraction function name
+  const std::string sub_func_str = "ArrayManip::sub_ncerr";
+
   // 3.2
   template <typename NumT>
   std::string 
@@ -31,8 +34,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::sub_ncerr: data ");
-        throw e;
+        throw std::invalid_argument(sub_func_str+" (v,s): data "+e.what());
       }
     // check that the uncertainties are of proper size
     try
@@ -41,8 +43,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::sub_ncerr: error ");
-        throw e;
+        throw std::invalid_argument(sub_func_str+" (v,s): err2 "+e.what());
       }
 
     std::string errstr("");
@@ -74,8 +75,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::sub_ncerr: data ");
-        throw e;
+        throw std::invalid_argument(sub_func_str+" (s,v): data "+e.what());
       }
     // check that the uncertainties are of proper size
     try
@@ -84,8 +84,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-        std::string errstr("ArrayManip::sub_ncerr: error ");
-        throw e;
+        throw std::invalid_argument(sub_func_str+" (s,v): err2 "+e.what());
       }
 
     std::string errstr("");
@@ -118,8 +117,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-	std::string errstr("ArrayManip::sub_vec_vec_ncerr: data ");
-	throw e;
+        throw std::invalid_argument(sub_func_str+" (v,v): data "+e.what());
       }
 
     try 
@@ -128,8 +126,7 @@ namespace ArrayManip
       }
     catch (std::invalid_argument e)
       {
-	std::string errstr("ArrayManip::sub_vec_vec_ncerr: error ");
-	throw e;
+        throw std::invalid_argument(sub_func_str+" (v,v): err2 "+e.what());
       }
 
     std::transform(input1.begin(), input1.end(), input2.begin(), 

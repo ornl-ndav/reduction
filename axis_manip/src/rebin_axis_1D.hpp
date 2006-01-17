@@ -12,6 +12,9 @@
 
 namespace AxisManip
 {
+  /// String for holding the rebin_axis_1D function name
+  const std::string ra1_func_str = "AxisManip::rebin_axis_1D";
+
   // 3.12 
   template <typename NumT>
   std::string 
@@ -29,8 +32,8 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	std::string errstr("AxisManip::rebin_axis_1D: original histogram ");
-	throw e;
+	throw std::invalid_argument(ra1_func_str+": original histogram "
+				    +e.what());
       }
     try
       {
@@ -38,8 +41,8 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	std::string errstr("AxisManip::rebin_axis_1D: rebinned histogram ");
-	throw e;
+	throw std::invalid_argument(ra1_func_str+": rebinned histogram "
+				    +e.what());
       }
 
     size_t iold = 0;
