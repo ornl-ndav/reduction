@@ -30,24 +30,23 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
-        Utils::check_sizes_square(errstr, initial_wavevector, final_wavevector,
-                                  Q);
+        Utils::check_sizes_square(initial_wavevector, final_wavevector, Q);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
         throw e;
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
-        Utils::check_sizes_square(errstr, initial_wavevector_err2,
-                                  final_wavevector_err2, Q_err2);
+        Utils::check_sizes_square(initial_wavevector_err2,
+				  final_wavevector_err2, Q_err2);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
         throw e;
       }
 
@@ -100,22 +99,22 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
-        Utils::check_sizes_square(errstr, final_wavevector, Q);
+        Utils::check_sizes_square(final_wavevector, Q);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
         throw e;
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
-        Utils::check_sizes_square(errstr, final_wavevector_err2, Q_err2);
+        Utils::check_sizes_square(final_wavevector_err2, Q_err2);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
         throw e;
       }
 
@@ -168,22 +167,22 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
-        Utils::check_sizes_square(errstr, initial_wavevector, Q);
+        Utils::check_sizes_square(initial_wavevector, Q);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: data ");
         throw e;
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
-        Utils::check_sizes_square(errstr, initial_wavevector_err2, Q_err2);
+        Utils::check_sizes_square(initial_wavevector_err2, Q_err2);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::init_scatt_wavevector_to_scalar_Q: error ");
         throw e;
       }
 

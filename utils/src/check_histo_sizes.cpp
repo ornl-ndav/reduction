@@ -15,8 +15,7 @@ namespace Utils
    * \ingroup check_histo_sizes
    */
   template void 
-  check_histo_sizes<float>(std::string & errstr,
-			   const Nessi::Vector<float> & input,
+  check_histo_sizes<float>(const Nessi::Vector<float> & input,
 			   const Nessi::Vector<float> & input_err2,
 			   const Nessi::Vector<float> & axis);
 
@@ -26,8 +25,7 @@ namespace Utils
    * \ingroup check_histo_sizes
    */
   template void 
-  check_histo_sizes<double>(std::string & errstr,
-			    const Nessi::Vector<double> & input,
+  check_histo_sizes<double>(const Nessi::Vector<double> & input,
 			    const Nessi::Vector<double> & input_err2,
 			    const Nessi::Vector<double> & axis);
 
@@ -37,8 +35,7 @@ namespace Utils
    * \ingroup check_histo_sizes
    */
   template void 
-  check_histo_sizes<int>(std::string & errstr,
-			 const Nessi::Vector<int> & input,
+  check_histo_sizes<int>(const Nessi::Vector<int> & input,
 			 const Nessi::Vector<int> & input_err2,
 			 const Nessi::Vector<int> & axis);
   
@@ -48,8 +45,7 @@ namespace Utils
    * \ingroup check_histo_sizes
    */
   template void 
-  check_histo_sizes<unsigned>(std::string & errstr,
-			      const Nessi::Vector<unsigned> & input,
+  check_histo_sizes<unsigned>(const Nessi::Vector<unsigned> & input,
 			      const Nessi::Vector<unsigned> & input_err2,
 			      const Nessi::Vector<unsigned> & axis); 
 

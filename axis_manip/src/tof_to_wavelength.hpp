@@ -27,22 +27,22 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        std::string errstr("AxisManip::tof_to_wavelength: data ");
-        Utils::check_sizes_square(errstr, tof, wavelength);
+        Utils::check_sizes_square(tof, wavelength);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::tof_to_wavelength: data ");
         throw e;
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        std::string errstr("AxisManip::tof_to_wavelength: error ");
-        Utils::check_sizes_square(errstr, tof_err2, wavelength_err2);
+        Utils::check_sizes_square(tof_err2, wavelength_err2);
       }
     catch(std::invalid_argument e)
       {
+        std::string errstr("AxisManip::tof_to_wavelength: error ");
         throw e;
       }
 
