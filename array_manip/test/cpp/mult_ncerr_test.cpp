@@ -1,10 +1,7 @@
 // $Id$
 
-#include "test_common.hpp"
 #include "arith.hpp"
-#include "num_comparison.hpp"
-#include <algorithm>
-#include <cmath>
+#include "test_common.hpp"
 #include <iostream>
 
 using namespace std;
@@ -19,10 +16,10 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 {
   for( int i=0 ; i<NUM_VAL ; i++ )
     {
-      input1.push_back(static_cast<NumT>(NUM_VAL+1-i)); // 6,5,4,3,2
+      input1.push_back(static_cast<NumT>(NUM_VAL+1.-i)); // 6,5,4,3,2
       input2.push_back(static_cast<NumT>(i));           // 0,1,2,3,4
-      input1_err2.push_back(static_cast<NumT>(1));
-      input2_err2.push_back(static_cast<NumT>(1));
+      input1_err2.push_back(static_cast<NumT>(1.));
+      input2_err2.push_back(static_cast<NumT>(1.));
     }
 }
 
@@ -34,28 +31,28 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
                              Nessi::Vector<NumT> & output_vv_err2)
 {
   // initialize the correct outputs for vector vector case
-  output_vv.push_back(static_cast<NumT>(0)); // =0*6
-  output_vv_err2.push_back(static_cast<NumT>(36));
-  output_vv.push_back(static_cast<NumT>(5)); // =1*5
-  output_vv_err2.push_back(static_cast<NumT>(26));
-  output_vv.push_back(static_cast<NumT>(8)); // =2*4
-  output_vv_err2.push_back(static_cast<NumT>(20));
-  output_vv.push_back(static_cast<NumT>(9)); // =3*3
-  output_vv_err2.push_back(static_cast<NumT>(18));
-  output_vv.push_back(static_cast<NumT>(8)); // =4*2
-  output_vv_err2.push_back(static_cast<NumT>(20));
+  output_vv.push_back(static_cast<NumT>(0.)); // =0*6
+  output_vv_err2.push_back(static_cast<NumT>(36.));
+  output_vv.push_back(static_cast<NumT>(5.)); // =1*5
+  output_vv_err2.push_back(static_cast<NumT>(26.));
+  output_vv.push_back(static_cast<NumT>(8.)); // =2*4
+  output_vv_err2.push_back(static_cast<NumT>(20.));
+  output_vv.push_back(static_cast<NumT>(9.)); // =3*3
+  output_vv_err2.push_back(static_cast<NumT>(18.));
+  output_vv.push_back(static_cast<NumT>(8.)); // =4*2
+  output_vv_err2.push_back(static_cast<NumT>(20.));
 
   // initialize the correct outputs for vector scalar case
-  output_vs.push_back(static_cast<NumT>(24)); // =4*6
-  output_vs_err2.push_back(static_cast<NumT>(52));
-  output_vs.push_back(static_cast<NumT>(20)); // =4*5
-  output_vs_err2.push_back(static_cast<NumT>(41));
-  output_vs.push_back(static_cast<NumT>(16)); // =4*4
-  output_vs_err2.push_back(static_cast<NumT>(32));
-  output_vs.push_back(static_cast<NumT>(12)); // =4*3
-  output_vs_err2.push_back(static_cast<NumT>(25));
-  output_vs.push_back(static_cast<NumT>(8));  // =4*2
-  output_vs_err2.push_back(static_cast<NumT>(20));
+  output_vs.push_back(static_cast<NumT>(24.)); // =4*6
+  output_vs_err2.push_back(static_cast<NumT>(52.));
+  output_vs.push_back(static_cast<NumT>(20.)); // =4*5
+  output_vs_err2.push_back(static_cast<NumT>(41.));
+  output_vs.push_back(static_cast<NumT>(16.)); // =4*4
+  output_vs_err2.push_back(static_cast<NumT>(32.));
+  output_vs.push_back(static_cast<NumT>(12.)); // =4*3
+  output_vs_err2.push_back(static_cast<NumT>(25.));
+  output_vs.push_back(static_cast<NumT>(8.));  // =4*2
+  output_vs_err2.push_back(static_cast<NumT>(20.));
 }
 
 // returns true if nothing is wrong

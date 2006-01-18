@@ -1,8 +1,7 @@
 // $Id$
 
-#include "test_common.hpp"
 #include "arith.hpp"
-#include "num_comparison.hpp"
+#include "test_common.hpp"
 #include <iostream>
 
 using namespace std;
@@ -17,10 +16,10 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 {
   for( int i=0 ; i<NUM_VAL ; i++ )
     {
-      input1.push_back(static_cast<NumT>(NUM_VAL+1-i)); // 6,5,4,3,2
+      input1.push_back(static_cast<NumT>(NUM_VAL+1.-i)); // 6,5,4,3,2
       input2.push_back(static_cast<NumT>(i));           // 0,1,2,3,4
-      input1_err2.push_back(static_cast<NumT>(1));
-      input2_err2.push_back(static_cast<NumT>(1));
+      input1_err2.push_back(static_cast<NumT>(1.));
+      input2_err2.push_back(static_cast<NumT>(1.));
     }
 }
 
@@ -29,16 +28,16 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vv,
                              Nessi::Vector<NumT> & output_vv_err2)
 {
   // initialize the correct outputs for vector vector case
-  output_vv.push_back(static_cast<NumT>(6)); // =(0/1+6/1) * (1+1)/2
-  output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(6)); // =(1/1+5/1) * (1+1)/2
-  output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(6)); // =(2/1+4/1) * (1+1)/2
-  output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(6)); // =(3/1+3/1) * (1+1)/2
-  output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(6)); // =(4/1+2/1) * (1+1)/2
-  output_vv_err2.push_back(static_cast<NumT>(2));
+  output_vv.push_back(static_cast<NumT>(6.)); // =(0/1+6/1) * (1+1)/2
+  output_vv_err2.push_back(static_cast<NumT>(2.));
+  output_vv.push_back(static_cast<NumT>(6.)); // =(1/1+5/1) * (1+1)/2
+  output_vv_err2.push_back(static_cast<NumT>(2.));
+  output_vv.push_back(static_cast<NumT>(6.)); // =(2/1+4/1) * (1+1)/2
+  output_vv_err2.push_back(static_cast<NumT>(2.));
+  output_vv.push_back(static_cast<NumT>(6.)); // =(3/1+3/1) * (1+1)/2
+  output_vv_err2.push_back(static_cast<NumT>(2.));
+  output_vv.push_back(static_cast<NumT>(6.)); // =(4/1+2/1) * (1+1)/2
+  output_vv_err2.push_back(static_cast<NumT>(2.));
 }
 
 // returns true if nothing is wrong
