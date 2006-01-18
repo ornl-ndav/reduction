@@ -32,7 +32,7 @@ namespace ArrayManip
       {
         Utils::check_sizes_square(input1,input2,output);
       }
-    catch (std::invalid_argument e)
+    catch (std::invalid_argument &e)
       {
         throw std::invalid_argument(sumw_func_str+" (v,v): data "+e.what());
       }
@@ -41,7 +41,7 @@ namespace ArrayManip
       {
         Utils::check_sizes_square(input1_err2,input2_err2,output_err2);
       }
-    catch (std::invalid_argument e)
+    catch (std::invalid_argument &e)
       {
         throw std::invalid_argument(sumw_func_str+" (v,v): err2 "+e.what());
       }

@@ -36,7 +36,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(initial_wavevector, final_wavevector, Q);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(iswtsq_func_str+" (v,v): data "+e.what());
       }
@@ -47,7 +47,7 @@ namespace AxisManip
         Utils::check_sizes_square(initial_wavevector_err2,
   			  final_wavevector_err2, Q_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(iswtsq_func_str+" (v,v): err2 "+e.what());
       }
@@ -103,7 +103,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(final_wavevector, Q);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(iswtsq_func_str+" (s,v): data "+e.what());
       }
@@ -113,7 +113,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(final_wavevector_err2, Q_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(iswtsq_func_str+" (s,v): err2 "+e.what());
       }
@@ -169,7 +169,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(initial_wavevector, Q);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(iswtsq_func_str+" (v,s): data "+e.what());
       }
@@ -179,7 +179,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(initial_wavevector_err2, Q_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(iswtsq_func_str+" (v,s): err2 "+e.what());
       }

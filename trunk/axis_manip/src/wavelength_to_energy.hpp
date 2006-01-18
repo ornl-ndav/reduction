@@ -30,7 +30,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(wavelength, energy);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(wte_func_str+" (v,v): data "+e.what());
       }
@@ -40,7 +40,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(wavelength_err2, energy_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(wte_func_str+" (v,v): err2 "+e.what());
       }

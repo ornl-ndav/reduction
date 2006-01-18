@@ -30,7 +30,7 @@ namespace AxisManip
       {
         Utils::check_histo_sizes(input, input_err2, axis_in);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(ra1_func_str+": original histogram "
                                     +e.what());
@@ -39,7 +39,7 @@ namespace AxisManip
       {
         Utils::check_histo_sizes(output, output_err2, axis_out);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(ra1_func_str+": rebinned histogram "
                                     +e.what());
