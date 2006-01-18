@@ -23,7 +23,7 @@ namespace Utils
       {
         return 0;
       }
-    
+
     if(value1 > value2)
       {
         return 1;
@@ -58,7 +58,7 @@ namespace Utils
         return -1;
       }
   }
-  
+
   // explicit instantiations
 
   /**
