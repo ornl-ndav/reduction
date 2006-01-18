@@ -46,6 +46,8 @@ namespace ArrayManip
       }
 
     std::string errstr("");
+
+    NumT scalar2 = scalar * scalar;
     
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
@@ -53,7 +55,7 @@ namespace ArrayManip
     	array_out[i] = scalar / array_in[i];
 	NumT array_in2 = array_in[i] * array_in[i];
         array_out_err2[i] = 
-          (((scalar * scalar) / (array_in2 * array_in2)) * array_in_err2[i])
+          ((scalar2 / (array_in2 * array_in2)) * array_in_err2[i])
           + (scalar_err2 / array_in2);
       }
     return errstr;
@@ -91,13 +93,15 @@ namespace ArrayManip
 
     std::string errstr("");
 
+    NumT scalar2 = scalar * scalar;    
+    NumT scalar4 = scalar2 * scalar2;    
+
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
       {
     	array_out[i] = array_in[i] / scalar;
-	NumT scalar2 = scalar * scalar;
         array_out_err2[i] = (array_in_err2[i] / scalar2)
-          + (((array_in[i] * array_in[i])/ (scalar2 * scalar2)) * scalar_err2);
+          + (((array_in[i] * array_in[i])/ scalar4) * scalar_err2);
       }
     return errstr;
   }  
@@ -148,4 +152,4 @@ namespace ArrayManip
   }
 } // ArrayManip
 
-#endif // _DIV_VEC_VEC_NCERR_HPP
+#endif // _DIV_NCERR_HPP
