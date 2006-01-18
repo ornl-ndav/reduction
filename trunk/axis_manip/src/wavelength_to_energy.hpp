@@ -8,11 +8,13 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "size_checks.hpp"
+#include <stdexcept>
 
 namespace AxisManip
 {
   /// String for holding the wavelength_to_energy function name
-  const std::string wte_funct_str = "AxisManip::wavelength_to_energy";
+  const std::string wte_func_str = "AxisManip::wavelength_to_energy";
   
   // 3.22
   template <typename NumT>
