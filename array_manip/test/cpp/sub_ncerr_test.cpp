@@ -1,8 +1,7 @@
 // $Id$
 
-#include "test_common.hpp"
 #include "arith.hpp"
-#include "num_comparison.hpp"
+#include "test_common.hpp"
 #include <iostream>
 
 using namespace std;
@@ -27,7 +26,7 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 template <typename NumT>
 void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
                              Nessi::Vector<NumT> & output_vs_err2,
-  		     Nessi::Vector<NumT> & output_sv,
+							 Nessi::Vector<NumT> & output_sv,
                              Nessi::Vector<NumT> & output_sv_err2,
                              Nessi::Vector<NumT> & output_vv,
                              Nessi::Vector<NumT> & output_vv_err2)
@@ -154,16 +153,16 @@ int main()
 {
   cout << "sub_ncerr_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
+  if(!test_func(static_cast<float>(1.)))
     return -1;
 
-  if(!test_func(static_cast<double>(1)))
+  if(!test_func(static_cast<double>(1.)))
     return -1;
 
-  if(!test_func(static_cast<int>(1)))
+  if(!test_func(static_cast<int>(1.)))
     return -1;
 
-  if(!test_func(static_cast<unsigned int>(1)))
+  if(!test_func(static_cast<unsigned int>(1.)))
     return -1;
 
   cout << "Functionality OK" << endl;
