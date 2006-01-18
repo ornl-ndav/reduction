@@ -151,7 +151,7 @@ int main()
       //float
       f_true_initial_wavelength[i] = f_a * f_tof[i] - f_b;
       f_true_initial_wavelength_err2[i] = f_a2 * (f_tof_err2[i] +
-  					  f_time_offset_err2);
+                                                  f_time_offset_err2);
       f_true_initial_wavelength_err2[i] += f_c2 * f_dist_sample_detector_err2;
       f_true_initial_wavelength_err2[i] += f_d2 * f_final_wavelength_err2;
       f_true_initial_wavelength_err2[i] += f_initial_wavelength[i] *
@@ -160,7 +160,7 @@ int main()
       //double
       d_true_initial_wavelength[i] = (d_a * d_tof[i]) - d_b;
       d_true_initial_wavelength_err2[i] = d_a2 * (d_tof_err2[i] +
-  					  d_time_offset_err2);
+                                                  d_time_offset_err2);
       d_true_initial_wavelength_err2[i] += d_c2 * d_dist_sample_detector_err2;
       d_true_initial_wavelength_err2[i] += d_d2 * d_final_wavelength_err2;
       d_true_initial_wavelength_err2[i] += d_initial_wavelength[i] *
