@@ -8,11 +8,13 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "size_checks.hpp"
+#include <stdexcept>
 
 namespace AxisManip
 {
   /// String for holding the wavelength_to_scalar_k function name
-  const std::string wtsk_funct_str = "AxisManip::wavelength_to_scalar_k";
+  const std::string wtsk_func_str = "AxisManip::wavelength_to_scalar_k";
 
   // 3.24
   template <typename NumT>
