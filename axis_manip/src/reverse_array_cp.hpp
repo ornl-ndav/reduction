@@ -20,7 +20,7 @@ namespace AxisManip
   {
     std::string retstr("");
 
-    reverse_copy(input.begin(), input.end(), output.begin());
+    std::reverse_copy(input.begin(), input.end(), output.begin());
     
     return retstr;
   }
