@@ -6,9 +6,9 @@
 #ifndef _ENERGY_TRANSFER_HPP
 #define _ENERGY_TRANSFER_HPP 1
 
+#include "constants.hpp"
 #include "conversions.hpp"
 #include "size_checks.hpp"
-#include "constants.hpp"
 #include <stdexcept>
 
 namespace AxisManip
@@ -134,12 +134,6 @@ namespace AxisManip
                                        energy_transfer_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
-        // START REMOVE
-        energy_transfer[i] = (initial_energy[i] - final_energy)
-          / static_cast<NumT>(PhysConst::H);
-        energy_transfer_err2[i]
-          = (initial_energy_err2[i] + final_energy_err2) / h2;
-        // END REMOVE
       }
 
     return retstr;
@@ -200,12 +194,6 @@ namespace AxisManip
                                        energy_transfer_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
-        // START REMOVE
-        energy_transfer[i] = (initial_energy - final_energy[i])
-          / static_cast<NumT>(PhysConst::H);
-        energy_transfer_err2[i]
-          = (initial_energy_err2 + final_energy_err2[i]) / h2;
-        // END REMOVE
       }
 
     return retstr;
