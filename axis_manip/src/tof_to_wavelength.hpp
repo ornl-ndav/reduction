@@ -6,8 +6,8 @@
 #ifndef _TOF_TO_WAVELENGTH_HPP
 #define _TOF_TO_WAVELENGTH_HPP 1
 
-#include "conversions.hpp"
 #include "constants.hpp"
+#include "conversions.hpp"
 #include "size_checks.hpp"
 #include <stdexcept>
 
