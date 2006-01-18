@@ -3,8 +3,8 @@
  *
  * \file nessi/libinfo.hpp
  */
-/** 
- * The purpose of this file is to add information to the main index page for 
+/**
+ * The purpose of this file is to add information to the main index page for
  * the SNS Data Reduction Library documentation.
  *
  * \mainpage SNS Common Libraries 1.0.0alpha

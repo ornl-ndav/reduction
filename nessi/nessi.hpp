@@ -15,16 +15,16 @@
  * \brief A generic data object that is fundamental to all functions
  * in the library.
  *
- * This file contains the abstraction of std::vector to Nessi::Vector which 
- * eliminates explicit calls to std::vector. This allows easy swapping of 
- * std::vector for another container. 
+ * This file contains the abstraction of std::vector to Nessi::Vector which
+ * eliminates explicit calls to std::vector. This allows easy swapping of
+ * std::vector for another container.
  */
-namespace Nessi 
+namespace Nessi
 {
   /**
    * \brief Provides wrapper for std::vector
    *
-   * 
+   *
    */
 template <typename T>
 class Vector : public std::vector<T>
