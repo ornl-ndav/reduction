@@ -5,7 +5,8 @@ m4_version_prereq([2.57])
 
 AT_INIT
 
-AT_BANNER([[Checking Functionality of the Array Manipulation Functions]])
+AT_BANNER([[Checking Functionality of the Array Manipulation Functions
+                  array_manip/test/cpp]])
 
 AT_SETUP([Checking the Add Function.  ])
 AT_CHECK([add_ncerr_test | sed -e 's/\r$//' ],[],

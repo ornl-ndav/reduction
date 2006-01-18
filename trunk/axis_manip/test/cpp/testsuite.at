@@ -4,7 +4,8 @@ m4_version_prereq([2.57])
 
 AT_INIT
 
-AT_BANNER([[Checking Functionality of the Axis Manipulation Functions]])
+AT_BANNER([[Checking Functionality of the Axis Manipulation Functions
+                  axis_manip/test/cpp]])
 
 AT_SETUP([Checking the Energy Transfer.  ])
 AT_CHECK([energy_transfer_test | sed -e 's/\r$//' ],[],
