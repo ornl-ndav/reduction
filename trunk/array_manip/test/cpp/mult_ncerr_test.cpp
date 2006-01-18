@@ -119,7 +119,7 @@ bool test_func(NumT key){ // key forces correct test to happen
                    true_output_vv, true_output_vv_err2);
 }
 
-int main() 
+int main()
 {
   cout << "mult_ncerr_test.cpp..........";
 
@@ -134,7 +134,7 @@ int main()
 
   if(!test_func(static_cast<unsigned int>(1)))
     return -1;
-  
+
   cout << "Functionality OK" << endl;
 
   return 0;

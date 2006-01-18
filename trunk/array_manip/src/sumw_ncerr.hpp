@@ -18,11 +18,11 @@ namespace ArrayManip
 
   // 3.10
   template <typename NumT>
-  std::string 
-  sumw_ncerr(const Nessi::Vector<NumT> & input1, 
-             const Nessi::Vector<NumT> & input1_err2, 
-             const Nessi::Vector<NumT> & input2, 
-             const Nessi::Vector<NumT> & input2_err2, 
+  std::string
+  sumw_ncerr(const Nessi::Vector<NumT> & input1,
+             const Nessi::Vector<NumT> & input1_err2,
+             const Nessi::Vector<NumT> & input2,
+             const Nessi::Vector<NumT> & input2_err2,
              Nessi::Vector<NumT> & output,
              Nessi::Vector<NumT> & output_err2,
              void *temp=NULL)
@@ -51,14 +51,14 @@ namespace ArrayManip
     size_t sz = input1.size();
     for (size_t i = 0; i < sz; ++i)
       {
-	NumT input1_err =
+        NumT input1_err =
           static_cast<NumT>(std::sqrt(static_cast<double>(input1_err2[i])));
-	NumT input2_err =
+        NumT input2_err =
           static_cast<NumT>(std::sqrt(static_cast<double>(input2_err2[i])));
-	NumT sum_err = input1_err + input2_err;
-	output[i] = (input1[i] / input1_err) + (input2[i] / input2_err);
-	output[i] *= sum_err / static_cast<NumT>(2.);
-	output_err2[i] = input1_err2[i] + input2_err2[i];
+        NumT sum_err = input1_err + input2_err;
+        output[i] = (input1[i] / input1_err) + (input2[i] / input2_err);
+        output[i] *= sum_err / static_cast<NumT>(2.);
+        output_err2[i] = input1_err2[i] + input2_err2[i];
       }
 
     return retstr;

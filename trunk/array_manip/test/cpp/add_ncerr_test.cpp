@@ -105,18 +105,18 @@ bool test_func(NumT key){ // key forces correct test to happen
 
   // run the code being tested
   ArrayManip::add_ncerr(input1, input1_err2, input2, input2_err2,
-			output_vv, output_vv_err2);
+                        output_vv, output_vv_err2);
   ArrayManip::add_ncerr(input1, input1_err2,
-			input2[NUM_VAL-1], input2_err2[NUM_VAL-1],
-			output_vs, output_vs_err2);
-  
+                        input2[NUM_VAL-1], input2_err2[NUM_VAL-1],
+                        output_vs, output_vs_err2);
+
   return test_okay(output_vs, output_vs_err2,
                    true_output_vs, true_output_vs_err2,
                    output_vv, output_vv_err2,
                    true_output_vv, true_output_vv_err2);
 }
 
-int main() 
+int main()
 {
   cout << "add_ncerr_test.cpp..........";
 
@@ -131,7 +131,7 @@ int main()
 
   if(!test_func(static_cast<unsigned int>(1)))
     return -1;
-  
+
   cout << "Functionality OK" << endl;
 
   return 0;

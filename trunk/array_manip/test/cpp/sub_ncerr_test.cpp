@@ -27,7 +27,7 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 template <typename NumT>
 void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
                              Nessi::Vector<NumT> & output_vs_err2,
-			     Nessi::Vector<NumT> & output_sv,
+  		     Nessi::Vector<NumT> & output_sv,
                              Nessi::Vector<NumT> & output_sv_err2,
                              Nessi::Vector<NumT> & output_vv,
                              Nessi::Vector<NumT> & output_vv_err2)
@@ -75,7 +75,7 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
                Nessi::Vector<NumT> & output_vs_err2,
                Nessi::Vector<NumT> & true_output_vs,
                Nessi::Vector<NumT> & true_output_vs_err2,
-	       Nessi::Vector<NumT> & output_sv,
+               Nessi::Vector<NumT> & output_sv,
                Nessi::Vector<NumT> & output_sv_err2,
                Nessi::Vector<NumT> & true_output_sv,
                Nessi::Vector<NumT> & true_output_sv_err2,
@@ -90,7 +90,7 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
   if(!test_okay(output_vs_err2,true_output_vs_err2,VS,ERROR))
     return false;
 
-  // scalar vector 
+  // scalar vector
   if(!test_okay(output_sv,true_output_sv,SV))
     return false;
   if(!test_okay(output_sv_err2,true_output_sv_err2,SV,ERROR))
@@ -129,28 +129,28 @@ bool test_func(NumT key){ // key forces correct test to happen
   // fill in values as appropriate
   initialize_inputs(input1,input1_err2,input2,input2_err2);
   initialize_true_outputs(true_output_vs,true_output_vs_err2,
-			  true_output_sv,true_output_sv_err2,
+                          true_output_sv,true_output_sv_err2,
                           true_output_vv,true_output_vv_err2);
 
   // run the code being tested
   ArrayManip::sub_ncerr(input1, input1_err2, input2, input2_err2,
-			output_vv, output_vv_err2);
+                        output_vv, output_vv_err2);
   ArrayManip::sub_ncerr(input1, input1_err2,
-			input2[NUM_VAL-1], input2_err2[NUM_VAL-1],
-			output_vs, output_vs_err2);
+                        input2[NUM_VAL-1], input2_err2[NUM_VAL-1],
+                        output_vs, output_vs_err2);
   ArrayManip::sub_ncerr(input2[NUM_VAL-1], input2_err2[NUM_VAL-1],
-			input1, input1_err2,
-			output_sv, output_sv_err2);
-  
+                        input1, input1_err2,
+                        output_sv, output_sv_err2);
+
   return test_okay(output_vs, output_vs_err2,
                    true_output_vs, true_output_vs_err2,
-		   output_sv, output_sv_err2,
+                   output_sv, output_sv_err2,
                    true_output_sv, true_output_sv_err2,
                    output_vv, output_vv_err2,
                    true_output_vv, true_output_vv_err2);
 }
 
-int main() 
+int main()
 {
   cout << "sub_ncerr_test.cpp..........";
 
@@ -165,7 +165,7 @@ int main()
 
   if(!test_func(static_cast<unsigned int>(1)))
     return -1;
-  
+
   cout << "Functionality OK" << endl;
 
   return 0;

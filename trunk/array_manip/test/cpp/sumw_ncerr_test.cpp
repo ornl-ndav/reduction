@@ -76,13 +76,13 @@ bool test_func(NumT key){ // key forces correct test to happen
 
   // run the code being tested
   ArrayManip::sumw_ncerr(input1, input1_err2, input2, input2_err2,
-			 output_vv, output_vv_err2);
-  
+                         output_vv, output_vv_err2);
+
   return test_okay(output_vv, output_vv_err2,
                    true_output_vv, true_output_vv_err2);
 }
 
-int main() 
+int main()
 {
   cout << "sumw_ncerr_test.cpp..........";
 
@@ -97,7 +97,7 @@ int main()
 
   if(!test_func(static_cast<unsigned int>(1)))
     return -1;
-  
+
   cout << "Functionality OK" << endl;
 
   return 0;

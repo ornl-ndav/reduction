@@ -18,9 +18,9 @@ namespace ArrayManip
 
   // 3.2
   template <typename NumT>
-  std::string 
-  sub_ncerr(const Nessi::Vector<NumT> & array_in, 
-            const Nessi::Vector<NumT> & array_in_err2, 
+  std::string
+  sub_ncerr(const Nessi::Vector<NumT> & array_in,
+            const Nessi::Vector<NumT> & array_in_err2,
             const NumT scalar,
             const NumT scalar_err2,
             Nessi::Vector<NumT> & array_out,
@@ -51,7 +51,7 @@ namespace ArrayManip
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
       {
-	array_out[i] = array_in[i] - scalar;
+        array_out[i] = array_in[i] - scalar;
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
       }
     return errstr;
@@ -59,11 +59,11 @@ namespace ArrayManip
 
   // 3.44
   template <typename NumT>
-  std::string 
+  std::string
   sub_ncerr(const NumT scalar,
             const NumT scalar_err2,
-	    const Nessi::Vector<NumT> & array_in, 
-            const Nessi::Vector<NumT> & array_in_err2, 
+            const Nessi::Vector<NumT> & array_in,
+            const Nessi::Vector<NumT> & array_in_err2,
             Nessi::Vector<NumT> & array_out,
             Nessi::Vector<NumT> & array_out_err2,
             void *temp=NULL)
@@ -92,7 +92,7 @@ namespace ArrayManip
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
       {
-	array_out[i] = scalar - array_in[i];
+        array_out[i] = scalar - array_in[i];
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
       }
     return errstr;
@@ -100,40 +100,40 @@ namespace ArrayManip
 
   // 3.7
   template <typename NumT>
-  std::string 
-  sub_ncerr(const Nessi::Vector<NumT> & input1, 
-            const Nessi::Vector<NumT> & input1_err2, 
-            const Nessi::Vector<NumT> & input2, 
-            const Nessi::Vector<NumT> & input2_err2, 
+  std::string
+  sub_ncerr(const Nessi::Vector<NumT> & input1,
+            const Nessi::Vector<NumT> & input1_err2,
+            const Nessi::Vector<NumT> & input2,
+            const Nessi::Vector<NumT> & input2_err2,
             Nessi::Vector<NumT> & output,
             Nessi::Vector<NumT> & output_err2,
             void *temp=NULL)
   {
     std::string retstr("");
-    
-    try 
+
+    try
       {
-	Utils::check_sizes_square(input1, input2, output);
+        Utils::check_sizes_square(input1, input2, output);
       }
     catch (std::invalid_argument e)
       {
         throw std::invalid_argument(sub_func_str+" (v,v): data "+e.what());
       }
 
-    try 
+    try
       {
-	Utils::check_sizes_square(input1_err2, input2_err2, output_err2);
+        Utils::check_sizes_square(input1_err2, input2_err2, output_err2);
       }
     catch (std::invalid_argument e)
       {
         throw std::invalid_argument(sub_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::transform(input1.begin(), input1.end(), input2.begin(), 
-		   output.begin(), std::minus<NumT>());
-    std::transform(input1_err2.begin(), input1_err2.end(), 
-		   input2_err2.begin(), output_err2.begin(), 
-		   std::plus<NumT>());
+    std::transform(input1.begin(), input1.end(), input2.begin(),
+                   output.begin(), std::minus<NumT>());
+    std::transform(input1_err2.begin(), input1_err2.end(),
+                   input2_err2.begin(), output_err2.begin(),
+                   std::plus<NumT>());
 
     return retstr;
   }
