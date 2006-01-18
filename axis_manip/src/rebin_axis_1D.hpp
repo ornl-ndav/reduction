@@ -63,9 +63,13 @@ namespace AxisManip
 	// SNS-FIXME These comparison statements don't make any sense for 
 	// floating point numbers
 	if (axis_out_hi <= axis_in_lo)
-	  inew++;
+          {
+            inew++;
+          }
 	else if (axis_in_hi <= axis_out_lo)
-	  iold++;
+          {
+            iold++;
+          }
 	else
 	  {
 	    // delta is the overlap of the bins on the axis
@@ -77,9 +81,13 @@ namespace AxisManip
 	    output[inew] += input[iold] * portion;
 	    output_err2[inew] += input_err2[iold] * portion * portion;
 	    if (axis_out_hi > axis_in_hi)
-	      iold++;
+              {
+                iold++;
+              }
 	    else
-	      inew++;
+              {
+                inew++;
+              }
 	  }
       }
 
