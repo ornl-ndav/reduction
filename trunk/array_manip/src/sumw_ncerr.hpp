@@ -57,7 +57,7 @@ namespace ArrayManip
           static_cast<NumT>(std::sqrt(static_cast<double>(input2_err2[i])));
 	NumT sum_err = input1_err + input2_err;
 	output[i] = (input1[i] / input1_err) + (input2[i] / input2_err);
-	output[i] *= sum_err;
+	output[i] *= sum_err / static_cast<NumT>(2.);
 	output_err2[i] = input1_err2[i] + input2_err2[i];
       }
 
