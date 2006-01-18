@@ -21,16 +21,16 @@ namespace Utils
   {
     if(!(fabs(value1 - value2) > std::numeric_limits<float>::epsilon()))
       {
-	return 0;
+        return 0;
       }
     
     if(value1 > value2)
       {
-	return 1;
+        return 1;
       }
     else
       {
-	return -1;
+        return -1;
       }
   }
 
@@ -51,11 +51,11 @@ namespace Utils
 
     if(value1 > value2)
       {
-	return 1;
+        return 1;
       }
     else
       {
-	return -1;
+        return -1;
       }
   }
   
