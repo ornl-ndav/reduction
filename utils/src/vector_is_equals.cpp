@@ -16,8 +16,8 @@ namespace Utils
    */
   template bool
   vector_is_equals<float>(const Nessi::Vector<float> & value,
-			  const Nessi::Vector<float> & true_value);
-  
+                          const Nessi::Vector<float> & true_value);
+
   /**
    * This is the double declaration of the vector_is_equals function.
    *
@@ -25,8 +25,8 @@ namespace Utils
    */
   template bool
   vector_is_equals<double>(const Nessi::Vector<double> & value,
-			   const Nessi::Vector<double> & true_value);
-  
+                           const Nessi::Vector<double> & true_value);
+
   /**
    * This is the integer declaration of the vector_is_equals function.
    *
@@ -34,10 +34,10 @@ namespace Utils
    */
   template bool
   vector_is_equals<int>(const Nessi::Vector<int> & value,
-			const Nessi::Vector<int> & true_value);
+                        const Nessi::Vector<int> & true_value);
 
   /**
-   * This is the unsigned integer declaration of the vector_is_equals 
+   * This is the unsigned integer declaration of the vector_is_equals
    * function.
    *
    * \ingroup vector_is_equals

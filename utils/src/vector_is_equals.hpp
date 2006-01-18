@@ -17,16 +17,16 @@ namespace Utils
   template <typename NumT>
   bool
   vector_is_equals (const Nessi::Vector<NumT> & value,
-		    const Nessi::Vector<NumT> & true_value)
+  	    const Nessi::Vector<NumT> & true_value)
   {
     size_t n_max = true_value.size();
     for (size_t i = 0 ; i < n_max ; i++)
       {
-	if (compare(value[i], true_value[i]) != 0)
-	  {
-	    __vector_is_equals_static(i, value[i], true_value[i]);
-	    return false;
-	  }
+        if (compare(value[i], true_value[i]) != 0)
+          {
+            __vector_is_equals_static(i, value[i], true_value[i]);
+            return false;
+          }
       }
     return true;
   }
@@ -34,20 +34,20 @@ namespace Utils
   /**
    * \ingroup vector_is_equals
    *
-   * This is a PRIVATE helper function for printing debugging information if 
+   * This is a PRIVATE helper function for printing debugging information if
    * the equality check fails.
    *
    * \param index (INPUT) is the current index of the vector
-   * \param value (INPUT) is the value of the calculated vector at the 
+   * \param value (INPUT) is the value of the calculated vector at the
    * current index
-   * \param true_value (INPUT) is the value of the truth vector at the 
+   * \param true_value (INPUT) is the value of the truth vector at the
    * current index
    */
   template <typename NumT>
   void
   __vector_is_equals_static(const size_t index,
-			    const NumT value,
-			    const NumT true_value)
+                            const NumT value,
+                            const NumT true_value)
   {
     std::cout << "At index #" << index << ": ";
     std::cout << "Value expected was ";

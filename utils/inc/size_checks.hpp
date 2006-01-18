@@ -19,8 +19,8 @@ namespace Utils
   /**
    * \brief This function checks three vectors for consistent sizes.
    *
-   * This function checks the sizes of three vector for consistent sizes. 
-   * If the vectors do not have consistent sizes, an exception is thrown. 
+   * This function checks the sizes of three vector for consistent sizes.
+   * If the vectors do not have consistent sizes, an exception is thrown.
    *
    * This function is an adaptation from the ARCS reduction software written
    * by Tim Kelley (CalTech).
@@ -30,22 +30,22 @@ namespace Utils
    * \param array3 (INPUT) is a vector that needs size checking
    */
   template <typename NumT>
-    void check_sizes_square(const Nessi::Vector<NumT> & array1, 
-			    const Nessi::Vector<NumT> & array2, 
-			    const Nessi::Vector<NumT> & array3);
+  void check_sizes_square(const Nessi::Vector<NumT> & array1,
+                          const Nessi::Vector<NumT> & array2,
+                          const Nessi::Vector<NumT> & array3);
 
   /**
    * \brief This function checks two vectors for consistent sizes.
    *
-   * This function checks the sizes of two vectors for consistent sizes. 
-   * If the vectors do not have consistent sizes, an exception is thrown. 
+   * This function checks the sizes of two vectors for consistent sizes.
+   * If the vectors do not have consistent sizes, an exception is thrown.
    *
    * \param array1 (INPUT) is a vector that needs size checking
    * \param array2 (INPUT) is a vector that needs size checking
    */
   template <typename NumT>
-    void check_sizes_square(const Nessi::Vector<NumT> & array1, 
-			    const Nessi::Vector<NumT> & array2);
+  void check_sizes_square(const Nessi::Vector<NumT> & array1,
+                          const Nessi::Vector<NumT> & array2);
 
   /**
    * \}
@@ -57,12 +57,12 @@ namespace Utils
    */
 
   /**
-   * \brief This function checks data, error2 and axis vectors for 
+   * \brief This function checks data, error2 and axis vectors for
    * consistent sizes.
    *
-   * This function checks the sizes of data, error2 and an axis vector for 
-   * the correct sizes in terms of a histogram model. The data and error2 
-   * vectors should be one element shorter than the axis vector. If the 
+   * This function checks the sizes of data, error2 and an axis vector for
+   * the correct sizes in terms of a histogram model. The data and error2
+   * vectors should be one element shorter than the axis vector. If the
    * vectors have inconsistent sizes, an exception is thrown.
    *
    * \param input (INPUT) is the histogram data

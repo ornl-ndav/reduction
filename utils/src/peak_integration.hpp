@@ -15,13 +15,13 @@ namespace Utils
   template <typename NumT>
   std::string
   peak_integration(const Nessi::Vector<NumT> & input,
-		   const Nessi::Vector<NumT> & input_err2,
-		   const Nessi::Vector<NumT> & start_bin,
-		   NumT & output,
-		   NumT & output_err2,
+                   const Nessi::Vector<NumT> & input_err2,
+                   const Nessi::Vector<NumT> & start_bin,
+                   NumT & output,
+                   NumT & output_err2,
                    unsigned int & tag,
-		   NumT & num_bins,
-		   void *temp=NULL)
+                   NumT & num_bins,
+                   void *temp=NULL)
   {
     throw std::runtime_error("Function [peak_integration] not implemented");
   }
