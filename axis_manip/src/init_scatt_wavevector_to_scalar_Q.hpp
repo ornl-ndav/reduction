@@ -21,15 +21,15 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-                           const Nessi::Vector<NumT> & initial_wavevector,
-                           const Nessi::Vector<NumT> & initial_wavevector_err2,
-                           const Nessi::Vector<NumT> & final_wavevector,
-                           const Nessi::Vector<NumT> & final_wavevector_err2,
-                           const NumT polar_angle,
-                           const NumT polar_angle_err2,
-                           Nessi::Vector<NumT> & Q,
-                           Nessi::Vector<NumT> & Q_err2,
-                           void *temp=NULL)
+                                    const Nessi::Vector<NumT> & initial_wavevector,
+                                    const Nessi::Vector<NumT> & initial_wavevector_err2,
+                                    const Nessi::Vector<NumT> & final_wavevector,
+                                    const Nessi::Vector<NumT> & final_wavevector_err2,
+                                    const NumT polar_angle,
+                                    const NumT polar_angle_err2,
+                                    Nessi::Vector<NumT> & Q,
+                                    Nessi::Vector<NumT> & Q_err2,
+                                    void *temp=NULL)
   {
     // check that the values are of proper size
     try
@@ -45,7 +45,7 @@ namespace AxisManip
     try
       {
         Utils::check_sizes_square(initial_wavevector_err2,
-  			  final_wavevector_err2, Q_err2);
+                                  final_wavevector_err2, Q_err2);
       }
     catch(std::invalid_argument &e)
       {
@@ -71,12 +71,12 @@ namespace AxisManip
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
         warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
-                                                    initial_wavevector[i],
-                                                    initial_wavevector_err2[i],
-                                                    final_wavevector[i],
-                                                    final_wavevector_err2[i],
-                                                    polar_angle_err2, a, b,
-                                                    sang, Q[i], Q_err2[i]);
+                                                         initial_wavevector[i],
+                                                         initial_wavevector_err2[i],
+                                                         final_wavevector[i],
+                                                         final_wavevector_err2[i],
+                                                         polar_angle_err2, a, b,
+                                                         sang, Q[i], Q_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
       }
@@ -88,15 +88,15 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-                           const NumT initial_wavevector,
-                           const NumT initial_wavevector_err2,
-                           const Nessi::Vector<NumT> & final_wavevector,
-                           const Nessi::Vector<NumT> & final_wavevector_err2,
-                           const NumT polar_angle,
-                           const NumT polar_angle_err2,
-                           Nessi::Vector<NumT> & Q,
-                           Nessi::Vector<NumT> & Q_err2,
-                           void *temp=NULL)
+                                    const NumT initial_wavevector,
+                                    const NumT initial_wavevector_err2,
+                                    const Nessi::Vector<NumT> & final_wavevector,
+                                    const Nessi::Vector<NumT> & final_wavevector_err2,
+                                    const NumT polar_angle,
+                                    const NumT polar_angle_err2,
+                                    Nessi::Vector<NumT> & Q,
+                                    Nessi::Vector<NumT> & Q_err2,
+                                    void *temp=NULL)
   {
     // check that the values are of proper size
     try
@@ -137,12 +137,12 @@ namespace AxisManip
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
         warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
-                                                    initial_wavevector,
-                                                    initial_wavevector_err2,
-                                                    final_wavevector[i],
-                                                    final_wavevector_err2[i],
-                                                    polar_angle_err2, a, b,
-                                                    sang, Q[i], Q_err2[i]);
+                                                         initial_wavevector,
+                                                         initial_wavevector_err2,
+                                                         final_wavevector[i],
+                                                         final_wavevector_err2[i],
+                                                         polar_angle_err2, a, b,
+                                                         sang, Q[i], Q_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
       }
@@ -154,15 +154,15 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-                           const Nessi::Vector<NumT> & initial_wavevector,
-  		   const Nessi::Vector<NumT> & initial_wavevector_err2,
-                           const NumT final_wavevector,
-                           const NumT final_wavevector_err2,
-                           const NumT polar_angle,
-                           const NumT polar_angle_err2,
-                           Nessi::Vector<NumT> & Q,
-                           Nessi::Vector<NumT> & Q_err2,
-                           void *temp=NULL)
+                                    const Nessi::Vector<NumT> & initial_wavevector,
+                                    const Nessi::Vector<NumT> & initial_wavevector_err2,
+                                    const NumT final_wavevector,
+                                    const NumT final_wavevector_err2,
+                                    const NumT polar_angle,
+                                    const NumT polar_angle_err2,
+                                    Nessi::Vector<NumT> & Q,
+                                    Nessi::Vector<NumT> & Q_err2,
+                                    void *temp=NULL)
   {
     // check that the values are of proper size
     try
@@ -203,12 +203,12 @@ namespace AxisManip
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
         warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
-                                                    initial_wavevector[i],
-                                                    initial_wavevector_err2[i],
-                                                    final_wavevector,
-                                                    final_wavevector_err2,
-                                                    polar_angle_err2, a, b,
-                                                    c, Q[i], Q_err2[i]);
+                                                         initial_wavevector[i],
+                                                         initial_wavevector_err2[i],
+                                                         final_wavevector,
+                                                         final_wavevector_err2,
+                                                         polar_angle_err2, a, b,
+                                                         c, Q[i], Q_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
       }
@@ -220,15 +220,15 @@ namespace AxisManip
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
-                           const NumT initial_wavevector,
-                           const NumT initial_wavevector_err2,
-                           const NumT final_wavevector,
-                           const NumT final_wavevector_err2,
-                           const NumT polar_angle,
-                           const NumT polar_angle_err2,
-                           NumT & Q,
-                           NumT & Q_err2,
-                           void *temp=NULL)
+                                    const NumT initial_wavevector,
+                                    const NumT initial_wavevector_err2,
+                                    const NumT final_wavevector,
+                                    const NumT final_wavevector_err2,
+                                    const NumT polar_angle,
+                                    const NumT polar_angle_err2,
+                                    NumT & Q,
+                                    NumT & Q_err2,
+                                    void *temp=NULL)
   {
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
@@ -288,16 +288,16 @@ namespace AxisManip
   template <typename NumT>
   std::string
   __init_scatt_wavevector_to_scalar_Q_dynamic(
-                                            const NumT initial_wavevector,
-                                            const NumT initial_wavevector_err2,
-                                            const NumT final_wavevector,
-                                            const NumT final_wavevector_err2,
-                                            const NumT polar_angle_err2,
-                                            const NumT a,
-                                            const NumT b,
-                                            const NumT c,
-                                            NumT & Q,
-                                            NumT & Q_err2)
+                                              const NumT initial_wavevector,
+                                              const NumT initial_wavevector_err2,
+                                              const NumT final_wavevector,
+                                              const NumT final_wavevector_err2,
+                                              const NumT polar_angle_err2,
+                                              const NumT a,
+                                              const NumT b,
+                                              const NumT c,
+                                              NumT & Q,
+                                              NumT & Q_err2)
   {
     NumT ki2 = initial_wavevector * initial_wavevector;
     NumT kf2 = final_wavevector * final_wavevector;
