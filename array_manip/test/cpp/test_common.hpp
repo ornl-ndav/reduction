@@ -1,4 +1,4 @@
-// $Id: mult_ncerr_test.cpp 248 2006-01-06 14:55:59Z pf9 $
+// $Id$
 
 #include "num_comparison.hpp"
 #include <iostream>
@@ -31,9 +31,9 @@ std::string type_string(Nessi::Vector<int> & vec)
   return std::string("int");
 }
 
-std::string type_string(Nessi::Vector<unsigned> & vec)
+std::string type_string(Nessi::Vector<unsigned int> & vec)
 {
-  return std::string("unsigned");
+  return std::string("unsigned int");
 }
 
 // returns true if nothing is wrong
