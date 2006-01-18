@@ -90,19 +90,19 @@ namespace AxisManip
    * This function converts the time-of-flight to wavelength according
    * to the equation
    * \f[
-   * \lambda[i]=\frac{h TOF[i]}{m_n L}
+   * \lambda=\frac{h TOF}{m_n L}
    * \f]
-   * Where \f$\lambda[i]\f$ is the wavelength, \f$h\f$ is Planck's
-   * constant, \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the
-   * mass of the neutron, and \f$L\f$ is the total flight path of the
+   * Where \f$\lambda\f$ is the wavelength, \f$h\f$ is Planck's
+   * constant, \f$TOF\f$ is the time-of-flight, \f$m_n\f$ is the mass
+   * of the neutron, and \f$L\f$ is the total flight path of the
    * neutron.
    *
    * Assuming that the uncertainties are uncorrelated, the square of the
    * uncertainty of the wavelength axis is given by
    *
    * \f[
-   * \sigma^2_{\lambda}[i]=\left(\frac{h}{m_n L}\right)^2\sigma^2_{TOF}[i]+
-   * \left(\frac{h TOF[i]}{m_n L^2}\right)^2\sigma^2_L
+   * \sigma^2_{\lambda}=\left(\frac{h}{m_n L}\right)^2\sigma^2_{TOF}+
+   * \left(\frac{h TOF}{m_n L^2}\right)^2\sigma^2_L
    * \f]
    * where \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis,
    * \f$\sigma_{TOF}\f$ is the uncertainty in the time of flight axis, and
@@ -191,9 +191,9 @@ namespace AxisManip
    * This function converts the wavelength to time-of-flight according
    * to the equation
    * \f[
-   * TOF[i]=\frac{m_n L \lambda[i]}{h}
+   * TOF=\frac{m_n L \lambda}{h}
    * \f]
-   * Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
+   * Where \f$TOF\f$ is the time-of-flight, \f$m_n\f$ is the mass
    * of the neutron, \f$L\f$ is the total flight path of the neutron,
    * \f$\lambda\f$ is the wavelength, and \f$h\f$ is Planck's
    * constant. The uncertainty is calculated using the assumption of
@@ -289,13 +289,13 @@ namespace AxisManip
    * This function converts time-of-flight to scalar momentum transfer
    * according to the equation
    * \f[
-   * Q[i]=\frac{4\pi m_n L \sin(polar)}{h TOF[i]}
+   * Q=\frac{4\pi m_n L \sin(polar)}{h TOF}
    * \f]
-   * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$m_n\f$ is
+   * Where \f$Q\f$ is the scalar momentum transfer, \f$m_n\f$ is
    * the mass of the neutron, \f$L\f$ is the total flight path of the
    * neutron, \f$polar\f$ is the angle between the positive z-axis and
    * the direction of the scattered neutron, \f$h\f$ is Planck's
-   * constant, and \f$TOF[i]\f$ is the time-of-flight. The uncertainty
+   * constant, and \f$TOF\f$ is the time-of-flight. The uncertainty
    * is calculated using the assumption of uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
@@ -387,9 +387,9 @@ namespace AxisManip
    * This function converts the wavelength to scalar momentum transfer
    * according to the equation
    * \f[
-   * Q[i]=\frac{4\pi}{\lambda[i]}\sin(polar)
+   * Q=\frac{4\pi}{\lambda}\sin(polar)
    * \f]
-   * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$\lambda\f$
+   * Where \f$Q\f$ is the scalar momentum transfer, \f$\lambda\f$
    * is the wavelength, and \f$polar\f$ is the angle between the
    * positive z-axis and the direction of the scattered neutron. The
    * uncertainty is calculated using the assumption of uncorrelated
@@ -579,13 +579,13 @@ namespace AxisManip
    * This function calculates the energy of a neutron given its
    * velocity according to the equation
    * \f[
-   * E[i]=\frac{1}{2}m_n v[i]^2
-         = 5.227\times 10^{-6} \left( \frac{v[i]}{m/\mu s} \right)^2 meV
+   * E=\frac{1}{2}m_n v^2
+         = 5.227\times 10^{-6} \left( \frac{v}{m/\mu s} \right)^2 meV
    * \f]
-   * Where \f$E[i]\f$ is the energy of the neutron, \f$m_n\f$ is the
-   * mass of the neutron, and \f$v[i]\f$ is the velocity of the
-   * netron. The uncertainty is calculated using the assumption of
-   * uncorrelated uncertainties.
+   * Where \f$E\f$ is the energy of the neutron, \f$m_n\f$ is the mass
+   * of the neutron, and \f$v\f$ is the velocity of the netron. The
+   * uncertainty is calculated using the assumption of uncorrelated
+   * uncertainties.
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
@@ -666,8 +666,8 @@ namespace AxisManip
    * This function calculates the energy of a neutron given its
    * wavelength according to the equation
    * \f[
-   * E[i]=\frac{h^2}{2 m_n \lambda[i]^2}
-   *     =\frac{81.83 Angstrom^2}{\lambda[i]^2} meV
+   * E=\frac{h^2}{2 m_n \lambda^2}
+   *     =\frac{81.83 Angstrom^2}{\lambda^2} meV
    * \f]
    * Where \f$E\f$ is energy of the neutron, \f$h\f$ is Planck's
    * constant, \f$m_n\f$ is the mass of the neutron, and \f$lambda\f$
@@ -676,8 +676,8 @@ namespace AxisManip
    * Assuming that the uncertainty are uncorrelated, the uncertainty
    * in the energy is defined by
    * \f[
-   * \sigma^2_E[i]=\left(\frac{h^2}{m_n}\right)^2\frac{1}{\lambda^6}
-   * \sigma^2_{\lambda}[i]
+   * \sigma^2_E=\left(\frac{h^2}{m_n}\right)^2\frac{1}{\lambda^6}
+   * \sigma^2_{\lambda}
    * \f]
    * where \f$\sigma_E\f$ is the uncertainty in the energy, and
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
@@ -752,12 +752,12 @@ namespace AxisManip
    * This function calculates the scalar wavevector given the velocity
    * according to the equation
    * \f[
-   * k[i]=\frac{m_n}{h}v[i]
+   * k=\frac{m_n}{h}v
    * \f]
-   * Where \f$k[i]\f$ is the scalar wavevector, \f$m_n\f$ is the mass
-   * of the neutron, \f$h\f$ is Planck's constant, and \f$v[i]\f$ is
-   * the velocity of the neutron. The uncertainty is calculated using
-   * the assumption of uncorrelated uncertainties.
+   * Where \f$k\f$ is the scalar wavevector, \f$m_n\f$ is the mass of
+   * the neutron, \f$h\f$ is Planck's constant, and \f$v\f$ is the
+   * velocity of the neutron. The uncertainty is calculated using the
+   * assumption of uncorrelated uncertainties.
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
@@ -835,15 +835,15 @@ namespace AxisManip
    * This function calculates the scalar wavevector given the
    * wavelength accroding to the equation
    * \f[
-   * k[i]=\frac{2\pi}{\lambda[i]}
+   * k=\frac{2\pi}{\lambda}
    * \f]
-   * Where \f$k[i]\f$ is the scalar wavevector, and \f$\lambda\f$ is
+   * Where \f$k\f$ is the scalar wavevector, and \f$\lambda\f$ is
    * the wavelength.
    *
    * Assuming that the uncertainties are uncorrelated, the uncertainty
    * in the scalar wavevector is given by
    * \f[
-   * \sigma^2_k[i]=\frac{4\pi^2}{\lambda^4}\sigma^2_{\lambda}[i]
+   * \sigma^2_k=\frac{4\pi^2}{\lambda^4}\sigma^2_{\lambda}
    * \f]
    * where \f$\sigma_k\f$ is the uncertainty in the scalar wavevector, and
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
@@ -924,9 +924,9 @@ namespace AxisManip
    * This function calculates the d-spacing given the wavelength
    * according to the equation
    * \f[
-   * d[i]=\frac{\lambda[i]}{2\sin(polar)}
+   * d=\frac{\lambda}{2\sin(polar)}
    * \f]
-   * Where \f$d\f$ is the d-spacing, \f$\lambda[i]\f$ is the
+   * Where \f$d\f$ is the d-spacing, \f$\lambda\f$ is the
    * wavelength, and \f$polar\f$ is the angle between the z-axis and
    * the scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
@@ -1092,15 +1092,14 @@ namespace AxisManip
    * This function calculates the final velocity of the neutron for a
    * direct geometry spectrometer according to the equation
    * \f[
-   * v_f[i]=\frac{L_D}{t[i]-\frac{L_S}{v_i}-t_0}
+   * v_f=\frac{L_D}{t-\frac{L_S}{v_i}-t_0}
    * \f]
-   * Where \f$v_f[i]\f$ is the final velocity of the neutron,
-   * \f$L_D\f$ is the distance from the sample to the detector,
-   * \f$t[i]\f$ is the total time-of-flight, \f$L_S\f$ is the distance
-   * from source to sample, \f$v_i\f$ is the initial velocity of the
-   * neutron, and \f$t_0\f$ is the time-offset of the neutron. The
-   * uncertainty is calculated using the assumption of uncorrelated
-   * uncertainties.
+   * Where \f$v_f\f$ is the final velocity of the neutron, \f$L_D\f$
+   * is the distance from the sample to the detector, \f$t\f$ is the
+   * total time-of-flight, \f$L_S\f$ is the distance from source to
+   * sample, \f$v_i\f$ is the initial velocity of the neutron, and
+   * \f$t_0\f$ is the time-offset of the neutron. The uncertainty is
+   * calculated using the assumption of uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
@@ -1225,15 +1224,14 @@ namespace AxisManip
    * This function calculates the initial velocity of an indirect
    * geometry spectromer according to the equation
    * \f[
-   * v_i[i]=\frac{L_S}{t[i]-\frac{L_D}{v_f}-t_0}
+   * v_i=\frac{L_S}{t-\frac{L_D}{v_f}-t_0}
    * \f]
-   * Where \f$v_i[i]\f$ is the initial velocity of the neutron,
-   * \f$L_S\f$ is the distance from the source to the sample,
-   * \f$t[i]\f$ is the total time-of-flight, \f$L_D\f$ is the distance
-   * from the sample to the detector, \f$v_f\f$ is the final velocity
-   * of the neutron, and \f$t_0\f$ is the time-offset of the
-   * neutron. The uncertainty is calculated using the assumption of
-   * uncorrelated uncertainties.
+   * Where \f$v_i\f$ is the initial velocity of the neutron, \f$L_S\f$
+   * is the distance from the source to the sample, \f$t\f$ is the
+   * total time-of-flight, \f$L_D\f$ is the distance from the sample
+   * to the detector, \f$v_f\f$ is the final velocity of the neutron,
+   * and \f$t_0\f$ is the time-offset of the neutron. The uncertainty
+   * is calculated using the assumption of uncorrelated uncertainties.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
@@ -1378,24 +1376,24 @@ namespace AxisManip
    * This function calculates the initial wavelength for an inverse
    * geometry spectromer according to the equation
    * \f[
-   * \lambda_i[i]=\frac{h}{m_n L_S}
-   *              \left(t[i]-\frac{m_n \lambda_f L_D}{h} -t_0 \right)
+   * \lambda_i=\frac{h}{m_n L_S}
+   *              \left(t-\frac{m_n \lambda_f L_D}{h} -t_0 \right)
    * \f]
-   * Where \f$\lambda_i[i]\f$ is the incident wavelength, \f$h\f$ is
+   * Where \f$\lambda_i\f$ is the incident wavelength, \f$h\f$ is
    * Planck's constant, \f$m_n\f$ is the mass of the neutron,
-   * \f$L_S\f$ is the distance from the source to the sample,
-   * \f$t[i]\f$ is the total time-of-flight, \f$\lambda_f\f$ is the
-   * final wavelength, \f$L_D\f$ is the distance from the sample to
-   * the detector, and \f$t_0\f$ is the time offset.
+   * \f$L_S\f$ is the distance from the source to the sample, \f$t\f$
+   * is the total time-of-flight, \f$\lambda_f\f$ is the final
+   * wavelength, \f$L_D\f$ is the distance from the sample to the
+   * detector, and \f$t_0\f$ is the time offset.
    *
    * Assuming that the uncertainties are uncorrelated, the square of
    * the uncertainty of the initial wavelength for an inverse geometry
    * spectromer is defined by
    *
    * \f[
-   * \sigma^2_{\lambda_i}[i]=
-   * \left(\frac{\lambda_i[i]}{L_S}\right)^2*\sigma^2_{L_S}
-   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t[i]+\sigma^2_{t_0})+
+   * \sigma^2_{\lambda_i}=
+   * \left(\frac{\lambda_i}{L_S}\right)^2*\sigma^2_{L_S}
+   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t+\sigma^2_{t_0})+
    * \left(\frac{\lambda_f}{L_S}\right)^2\sigma^2_{L_D}
    * + \left(\frac{L_D}{L_S}\right)^2\sigma^2_{\lambda_f}
    * \f]
@@ -1517,7 +1515,7 @@ namespace AxisManip
    * This function calculates the energy transfer according to the
    * equation
    * \f[
-   * \nu[i]=\frac{E_i[i]-E_f[i]}{h}=\frac{E_i[i]-E_f[i]}{4.1357}\frac{THz}{meV}
+   * \nu[i]=\frac{E_i[i]-E_f}{h}=\frac{E_i[i]-E_f}{4.1357}\frac{THz}{meV}
    * \f]
    * Where \f$\nu\f$ is the energy transfer, \f$E_i\f$ is the incident
    * energy, and \f$E_f\f$ is the final energy.
@@ -1526,7 +1524,7 @@ namespace AxisManip
    * the uncertainty of the energy transfer is given by
    *
    * \f[
-   * \sigma^2_\nu [i]=\frac{\sigma^2_{E_i}[i] +\sigma^2_{E_f}[i]}{h^2}
+   * \sigma^2_\nu [i]=\frac{\sigma^2_{E_i}[i] +\sigma^2_{E_f}}{h^2}
    * \f]
    * Where \f$\sigma_{E_i} \f$ is the uncertainty of the incident
    * energy axis, and \f$\sigma_{E_f} \f$ is the uncertainty of the
@@ -1565,7 +1563,7 @@ namespace AxisManip
    * This function calculates the energy transfer according to the
    * equation
    * \f[
-   * \nu[i]=\frac{E_i[i]-E_f[i]}{h}=\frac{E_i[i]-E_f[i]}{4.1357}\frac{THz}{meV}
+   * \nu[i]=\frac{E_i-E_f[i]}{h}=\frac{E_i-E_f[i]}{4.1357}\frac{THz}{meV}
    * \f]
    * Where \f$\nu\f$ is the energy transfer, \f$E_i\f$ is the incident
    * energy, and \f$E_f\f$ is the final energy.
@@ -1574,7 +1572,7 @@ namespace AxisManip
    * the uncertainty of the energy transfer is given by
    *
    * \f[
-   * \sigma^2_\nu [i]=\frac{\sigma^2_{E_i}[i] +\sigma^2_{E_f}[i]}{h^2}
+   * \sigma^2_\nu [i]=\frac{\sigma^2_{E_i} +\sigma^2_{E_f}[i]}{h^2}
    * \f]
    * Where \f$\sigma_{E_i} \f$ is the uncertainty of the incident
    * energy axis, and \f$\sigma_{E_f} \f$ is the uncertainty of the
@@ -1613,7 +1611,7 @@ namespace AxisManip
    * This function calculates the energy transfer according to the
    * equation
    * \f[
-   * \nu[i]=\frac{E_i[i]-E_f[i]}{h}=\frac{E_i[i]-E_f[i]}{4.1357}\frac{THz}{meV}
+   * \nu=\frac{E_i-E_f}{h}=\frac{E_i-E_f}{4.1357}\frac{THz}{meV}
    * \f]
    * Where \f$\nu\f$ is the energy transfer, \f$E_i\f$ is the incident
    * energy, and \f$E_f\f$ is the final energy.
@@ -1622,7 +1620,7 @@ namespace AxisManip
    * the uncertainty of the energy transfer is given by
    *
    * \f[
-   * \sigma^2_\nu [i]=\frac{\sigma^2_{E_i}[i] +\sigma^2_{E_f}[i]}{h^2}
+   * \sigma^2_\nu=\frac{\sigma^2_{E_i} +\sigma^2_{E_f}}{h^2}
    * \f]
    * Where \f$\sigma_{E_i} \f$ is the uncertainty of the incident
    * energy axis, and \f$\sigma_{E_f} \f$ is the uncertainty of the
@@ -1702,9 +1700,9 @@ namespace AxisManip
    * This function calculates the angular frequency according to the
    * equation
    * \f[
-   * \omega[i]=2\pi\nu[i] \times 10^{12}
+   * \omega=2\pi\nu \times 10^{12}
    * \f]
-   * Where \f$\omega[i]\f$ is the angular frequency, and \f$\nu[i]\f$
+   * Where \f$\omega\f$ is the angular frequency, and \f$\nu\f$
    * is the frequency. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
@@ -2113,7 +2111,7 @@ namespace AxisManip
    * This function calculates the scalar momentum transfer from the
    * incident and scattered wavevectors according to the equation
    * \f[
-   * Q[i]=\sqrt{k_i^2[i]+k_f^2[i]-2k_i[i]k_f[i]\cos(\theta)}
+   * Q[i]=\sqrt{k_i^2+k_f^2[i]-2k_i k_f[i]\cos(\theta)}
    * \f]
    * Where \f$Q\f$ is the scalar momentum transfer, \f$k_i\f$ is the
    * incident wavevector, \f$k_f\f$ is the final wavevector, and
@@ -2124,10 +2122,10 @@ namespace AxisManip
    * the square of the uncertainty of the scalar momentum transfer
    * is given by
    * \f[
-   * \sigma^2_Q[i]=\frac{1}{Q^2}((k_i[i]-k_f[i]
-   * cos(\theta))^2\sigma^2_{k_i}[i]+(k_f[i]-k_i[i]
+   * \sigma^2_Q[i]=\frac{1}{Q^2}((k_i-k_f[i]
+   * cos(\theta))^2\sigma^2_{k_i}+(k_f[i]-k_i
    * cos(\theta))^2\sigma^2_{k_f}[i]+
-   * (k_i[i]k_f[i]sin(\theta))^2\sigma^2_{\theta})
+   * (k_i k_f[i]sin(\theta))^2\sigma^2_{\theta})
    * \f]
    * where \f$\sigma_Q[i]\f$ is the uncertainty of the scalar momentum
    * transfer, \f$\sigma_{k_i}\f$ is the uncertainty of the incident
@@ -2175,7 +2173,7 @@ namespace AxisManip
    * This function calculates the scalar momentum transfer from the
    * incident and scattered wavevectors according to the equation
    * \f[
-   * Q[i]=\sqrt{k_i^2[i]+k_f^2[i]-2k_i[i]k_f[i]\cos(\theta)}
+   * Q[i]=\sqrt{k_i^2[i]+k_f^2-2k_i[i]k_f\cos(\theta)}
    * \f]
    * Where \f$Q\f$ is the scalar momentum transfer, \f$k_i\f$ is the
    * incident wavevector, \f$k_f\f$ is the final wavevector, and
@@ -2186,10 +2184,10 @@ namespace AxisManip
    * the square of the uncertainty of the scalar momentum transfer
    * is given by
    * \f[
-   * \sigma^2_Q[i]=\frac{1}{Q^2}((k_i[i]-k_f[i]
-   * cos(\theta))^2\sigma^2_{k_i}[i]+(k_f[i]-k_i[i]
-   * cos(\theta))^2\sigma^2_{k_f}[i]+
-   * (k_i[i]k_f[i]sin(\theta))^2\sigma^2_{\theta})
+   * \sigma^2_Q[i]=\frac{1}{Q^2}((k_i[i]-k_f
+   * cos(\theta))^2\sigma^2_{k_i}[i]+(k_f-k_i[i]
+   * cos(\theta))^2\sigma^2_{k_f}+
+   * (k_i[i]k_fsin(\theta))^2\sigma^2_{\theta})
    * \f]
    * where \f$\sigma_Q[i]\f$ is the uncertainty of the scalar momentum
    * transfer, \f$\sigma_{k_i}\f$ is the uncertainty of the incident
@@ -2237,7 +2235,7 @@ namespace AxisManip
    * This function calculates the scalar momentum transfer from the
    * incident and scattered wavevectors according to the equation
    * \f[
-   * Q[i]=\sqrt{k_i^2[i]+k_f^2[i]-2k_i[i]k_f[i]\cos(\theta)}
+   * Q=\sqrt{k_i^2+k_f^2-2k_ik_f\cos(\theta)}
    * \f]
    * Where \f$Q\f$ is the scalar momentum transfer, \f$k_i\f$ is the
    * incident wavevector, \f$k_f\f$ is the final wavevector, and
@@ -2248,12 +2246,12 @@ namespace AxisManip
    * the square of the uncertainty of the scalar momentum transfer
    * is given by
    * \f[
-   * \sigma^2_Q[i]=\frac{1}{Q^2}((k_i[i]-k_f[i]
-   * cos(\theta))^2\sigma^2_{k_i}[i]+(k_f[i]-k_i[i]
-   * cos(\theta))^2\sigma^2_{k_f}[i]+
-   * (k_i[i]k_f[i]sin(\theta))^2\sigma^2_{\theta})
+   * \sigma^2_Q=\frac{1}{Q^2}((k_i-k_f
+   * cos(\theta))^2\sigma^2_{k_i}+(k_f-k_i
+   * cos(\theta))^2\sigma^2_{k_f}+
+   * (k_ik_fsin(\theta))^2\sigma^2_{\theta})
    * \f]
-   * where \f$\sigma_Q[i]\f$ is the uncertainty of the scalar momentum
+   * where \f$\sigma_Q\f$ is the uncertainty of the scalar momentum
    * transfer, \f$\sigma_{k_i}\f$ is the uncertainty of the incident
    * wavevector, \f$\sigma_{k_f}\f$ is the uncertainty of the final
    * wavevector, and \f$\sigma_{\theta}\f$ is the uncertainty of the angle
@@ -2394,12 +2392,12 @@ namespace AxisManip
    * transfer. This is done in two steps. First by calculating the
    * sclar momentum transfer according to the equation
    * \f[
-   * Q[i]=\frac{4\pi m_n L \sin(polar)}{h TOF[i]}
+   * Q=\frac{4\pi m_n L \sin(polar)}{h TOF}
    * \f]
-   * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$m_n\f$ is
-   * the mass of the neutron, \f$L\f$ is the total flight path,
+   * Where \f$Q\f$ is the scalar momentum transfer, \f$m_n\f$ is the
+   * mass of the neutron, \f$L\f$ is the total flight path,
    * \f$polar\f$ is the angle between the z-axis and the scattered
-   * neutron, \f$h\f$ is Planck's constant, and \f$TOF[i]\f$ is the
+   * neutron, \f$h\f$ is Planck's constant, and \f$TOF\f$ is the
    * time-of-flight. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
@@ -2536,12 +2534,12 @@ namespace AxisManip
    * This function converts the d-spacing to time-of-flight at a
    * focused detector position according to the equation
    * \f[
-   * TOF[i]=\frac{4\pi m_n}{h} L_{focused} d[i] \sin(polar_{focused})
+   * TOF=\frac{4\pi m_n}{h} L_{focused} d \sin(polar_{focused})
    * \f]
-   * Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
-   * of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
-   * is the focused total flight path, \f$d[i]\f$ is the d-spacing,
-   * and \f$polar_{focused}\f$ is the angle between the z-axis and the
+   * Where \f$TOF\f$ is the time-of-flight, \f$m_n\f$ is the mass of
+   * the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$ is
+   * the focused total flight path, \f$d\f$ is the d-spacing, and
+   * \f$polar_{focused}\f$ is the angle between the z-axis and the
    * focused scattered neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
    *
