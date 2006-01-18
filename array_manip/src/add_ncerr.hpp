@@ -88,27 +88,6 @@ namespace ArrayManip
       }
 
     std::string retstr("");
-    
-    try 
-      {
-	std::string errstr("ArrayManip::add_vec_vec_ncerr: data ");
-	Utils::check_sizes_square(input1, input2, output);
-      }
-    catch (std::invalid_argument e)
-      {
-	throw e;
-      }
-
-    try 
-      {
-	std::string errstr("ArrayManip::add_vec_vec_ncerr: error ");
-	Utils::check_sizes_square(input1_err2, input2_err2, 
-				  output_err2);
-      }
-    catch (std::invalid_argument e)
-      {
-	throw e;
-      }
 
     std::transform(input1.begin(), input1.end(), input2.begin(), 
 		   output.begin(), std::plus<NumT>());
