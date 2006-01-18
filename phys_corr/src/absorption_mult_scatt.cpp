@@ -16,14 +16,14 @@ namespace PhysCorr
    */
   template std::string
   absorption_mult_scatt<float>(const Nessi::Vector<float> & axis_in,
-			       const Nessi::Vector<float> & input,
-			       const Nessi::Vector<float> & input_err2,
-			       float pathlength,
-			       float polar_angle,
-			       Nessi::Vector<float> & output,
-			       Nessi::Vector<float> & output_err2,
-			       void *temp);
-  
+                               const Nessi::Vector<float> & input,
+                               const Nessi::Vector<float> & input_err2,
+                               float pathlength,
+                               float polar_angle,
+                               Nessi::Vector<float> & output,
+                               Nessi::Vector<float> & output_err2,
+                               void *temp);
+
   /**
    * This is the double precision float declaration of the function
    * defined in 3.36.
@@ -32,12 +32,12 @@ namespace PhysCorr
    */
   template std::string
   absorption_mult_scatt<double>(const Nessi::Vector<double> & axis_in,
-				const Nessi::Vector<double> & input,
-				const Nessi::Vector<double> & input_err2,
-				double pathlength,
-				double polar_angle,
-				Nessi::Vector<double> & output,
-				Nessi::Vector<double> & output_err2,
-				void *temp);
+                                const Nessi::Vector<double> & input,
+                                const Nessi::Vector<double> & input_err2,
+                                double pathlength,
+                                double polar_angle,
+                                Nessi::Vector<double> & output,
+                                Nessi::Vector<double> & output_err2,
+                                void *temp);
 
 } // PhysCorr
