@@ -307,9 +307,9 @@ namespace AxisManip
       (std::sqrt(static_cast<double>(ki2 + kf2 - akikf)));
 
     NumT termi2 = initial_wavevector - (final_wavevector * b);
-    termi2 = termi * termi;
+    termi2 = termi2 * termi2;
     NumT termf2 = final_wavevector - (initial_wavevector * b);
-    termf2 = termf * termf;
+    termf2 = termf2 * termf2;
 
     NumT e2 = final_wavevector * initial_wavevector;
     e2 = e2 * c;
