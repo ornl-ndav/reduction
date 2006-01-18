@@ -31,7 +31,7 @@ namespace AxisManip
     try
       {
         Utils::check_sizes_square(initial_energy, final_energy,
-  			  energy_transfer);
+                                  energy_transfer);
       }
     catch(std::invalid_argument &e)
       {
