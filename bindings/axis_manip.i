@@ -17,10 +17,6 @@
 %include "reverse_array.hpp"
 
 // Instantiate reverse array templates
-//template <typename NumT> std::string 
-//    reverse_array(std::vector<NumT> const & input,
-//                  std::vector<NumT> & output,
-//                  void *temp=NULL);
 
 %template(reverse_array_cp_f) AxisManip::reverse_array_cp<float>;
 %template(reverse_array_cp_d) AxisManip::reverse_array_cp<double>;
@@ -33,46 +29,12 @@
 %template(reverse_array_nc_u) AxisManip::reverse_array_nc<unsigned>;
 
 // Instantiate rebinning templates
-template <typename NumT> std::string 
-    rebin_axis_1D(std::vector<NumT> const & axis_in,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err,
-		  std::vector<NumT> const & axis_out,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err,
-		  void *temp=NULL);
 
 %template(rebin_axis_1D_f) AxisManip::rebin_axis_1D<float>;
 %template(rebin_axis_1D_d) AxisManip::rebin_axis_1D<double>;
 
-template <typename NumT> std::string 
-    rebin_axis_2D(std::vector<NumT> const & axis_in_1,
-		  std::vector<NumT> const & axis_in_2,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err,
-		  std::vector<NumT> const & axis_out_1,
-		  std::vector<NumT> const & axis_out_2,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err,
-		  void *temp=NULL);
-
 %template(rebin_axis_2D_f) AxisManip::rebin_axis_2D<float>;
 %template(rebin_axis_2D_d) AxisManip::rebin_axis_2D<double>;
-
- template <typename NumT> std::string 
-    rebin_axis_4D(std::vector<NumT> const & axis_in_1,
-		  std::vector<NumT> const & axis_in_2,
-		  std::vector<NumT> const & axis_in_3,
-		  std::vector<NumT> const & axis_in_4,
-		  std::vector<NumT> const & input,
-		  std::vector<NumT> const & input_err,
-		  std::vector<NumT> const & axis_out_1,
-		  std::vector<NumT> const & axis_out_2,
-		  std::vector<NumT> const & axis_out_3,
-		  std::vector<NumT> const & axis_out_4,
-		  std::vector<NumT> & output,
-		  std::vector<NumT> & output_err,
-		  void *temp=NULL);
 
 %template(rebin_axis_4D_f) AxisManip::rebin_axis_4D<float>;
 %template(rebin_axis_4D_d) AxisManip::rebin_axis_4D<double>;
