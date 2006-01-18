@@ -41,8 +41,18 @@ namespace AxisManip
    * Where \f$\lambda[i]\f$ is the wavelength, \f$h\f$ is Planck's
    * constant, \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the
    * mass of the neutron, and \f$L\f$ is the total flight path of the
-   * neutron. The uncertainty is calculated using the assumption of
-   * uncorrelated uncertainties.
+   * neutron. 
+   *
+   * Assuming that the uncertainties are uncorrelated, the square of the
+   * uncertainty of the wavelength axis is given by
+   *
+   * \f[
+   * \sigma^2_{\lambda}[i]=\left(\frac{h}{m_n L}\right)^2\sigma^2_{TOF}[i]+
+   * \left(\frac{h TOF[i]}{m_n L^2}\right)^2\sigma^2_L
+   * \f]
+   * where \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis,
+   * \f$\sigma_{TOF}\f$ is the uncertainty in the time of flight axis, and
+   * \f$\sigma_L\f$ is the uncertainty in the pathlength.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
@@ -449,8 +459,16 @@ namespace AxisManip
    * \f]
    * Where \f$E\f$ is energy of the neutron, \f$h\f$ is Planck's
    * constant, \f$m_n\f$ is the mass of the neutron, and \f$lambda\f$
-   * is the wavelength of the neutron. The uncertainty is calculated
-   * using the assumption of uncorrelated uncertainties.
+   * is the wavelength of the neutron. 
+   * 
+   * Assuming that the uncertainty are uncorrelated, the uncertainty
+   * in the energy is defined by
+   * \f[
+   * \sigma^2_E[i]=\left(\frac{h^2}{m_n}\right)^2\frac{1}{\lambda^6}
+   * \sigma^2_{\lambda}[i]
+   * \f]
+   * where \f$\sigma_E\f$ is the uncertainty in the energy, and
+   * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
@@ -550,8 +568,15 @@ namespace AxisManip
    * k[i]=\frac{2\pi}{\lambda[i]}
    * \f]
    * Where \f$k[i]\f$ is the scalar wavevector, and \f$\lambda\f$ is
-   * the wavelength. The uncertainty is calculated using the
-   * assumption of uncorrelated uncertainties.
+   * the wavelength.
+   *
+   * Assuming that the uncertainties are uncorrelated, the uncertainty
+   * in the scalar wavevector is given by
+   * \f[
+   * \sigma^2_k[i]=\frac{4\pi^2}{\lambda^4}\sigma^2_{\lambda}[i]
+   * \f]
+   * where \f$\sigma_k\f$ is the uncertainty in the scalar wavevector, and
+   * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
@@ -895,10 +920,28 @@ namespace AxisManip
    * \f$L_S\f$ is the distance from the source to the sample,
    * \f$t[i]\f$ is the total time-of-flight, \f$\lambda_f\f$ is the
    * final wavelength, \f$L_D\f$ is the distance from the sample to
-   * the detector, and \f$t_0\f$ is the time offset. The uncertainty
-   * is calculated using the assumption of uncorrelated uncertainties.
+   * the detector, and \f$t_0\f$ is the time offset. 
    *
-   * \param tof (INPUT) is the time-of-flight axis in units of
+   * Assuming that the uncertainties are uncorrelated, the square of 
+   * the uncertainty of the initial wavelength for an inverse geometry
+   * spectromer is defined by
+   *
+   * \f[
+   * \sigma ^2_{\lambda}[i]=\left(\frac{\lambda[i]}{L_S}\right)^2*\sigma^2_{Ls}
+   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t[i]+\sigma^2_{to})+
+   * \left(\frac{\lambda_f}{L_S}\right)^2\sigma^2_{Ld}
+   * + \left(\frac{L_D}{L_S}\right)^2\sigma^2_{\lambda f}
+   * \f]
+   *
+   * where \f$\sigma_{\lambda}\f$ is the uncertainty of the initial
+   * wavelength axis, \f$\sigma_{Ls}\f$ is the uncertainty of the
+   * distance from the source to the sample, \f$\sigma_t\f$ is the
+   * uncertainty of the time-of-flight, \f$\sigma_{to}\f$ is the
+   * uncertainty of the time-offset, \f$\sigma_{Ld}\f$ is the
+   * uncertainty of the distance from the sample to the detector, and
+   * \f$\sigma_{\lambda f}\f$ the uncertainty of the final wavelength.
+   *
+   *\param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
    * time-of-flight axis
@@ -975,11 +1018,20 @@ namespace AxisManip
    * This function calculates the energy transfer according to the
    * equation
    * \f[
-   * \nu=\frac{E_i-E_f}{h}=\frac{E_i-E_f}{4.1357}\frac{THz}{meV}
+   * \nu[i]=\frac{E_i[i]-E_f[i]}{h}=\frac{E_i[i]-E_f[i]}{4.1357}\frac{THz}{meV}
    * \f]
    * Where \f$\nu\f$ is the energy transfer, \f$E_i\f$ is the incident
-   * energy, and \f$E_f\f$ is the final energy. The uncertainty is
-   * calculated using the assumption of uncorrelated uncertainties.
+   * energy, and \f$E_f\f$ is the final energy. 
+   *
+   * Using the assumption of uncorrelated uncertainties, the square of
+   * the uncertainty of the energy transfer is given by
+   *
+   * \f[
+   * \sigma^2_\nu [i]=\frac{(\sigma^2_{Ei}[i] )+(\sigma^2_{Ef}[i])}{h^2}
+   * \f]
+   * Where \f$\sigma_{Ei} \f$ is the uncertainty of the incident
+   * energy axis, and \f$\sigma_{Ef} \f$ is the uncertainty of the 
+   * final energy axis.
    *
    * \param initial_energy (INPUT) is the incident energy axis in
    * units of meV
@@ -1243,13 +1295,27 @@ namespace AxisManip
    * This function calculates the scalar momentum transfer from the
    * incident and scattered wavevectors according to the equation
    * \f[
-   * Q=\sqrt{k_i^2+k_f^2-2k_ik_f\cos(polar)}
+   * Q[i]=\sqrt{k_i^2[i]+k_f^2[i]-2k_i[i]k_f[i]\cos(\theta)}
    * \f]
    * Where \f$Q\f$ is the scalar momentum transfer, \f$k_i\f$ is the
    * incident wavevector, \f$k_f\f$ is the final wavevector, and
-   * \f$polar\f$ is the angle between the z-axis and the scattered
-   * neutron. The uncertainty is calculated using the assumption of
-   * uncorrelated uncertainties.
+   * \f$\theta\f$ is the angle between the z-axis and the scattered
+   * neutron. 
+   *
+   * Using the assumption that the uncertainties are uncorrelated, 
+   * the square of the uncertainty of the scalar momentum transfer
+   * is given by
+   * \f[
+   * \sigma^2_Q[i]=\frac{1}{Q^2}((K_i[i]-K_f[i]
+   * cos(\theta))^2\sigma^2_{Ki}[i]+(K_f[i]-K_i[i]
+   * cos(\theta))^2\sigma^2_{Kf}[i]+
+   * (K_i[i]K_f[i]sin(\theta))^2\sigma^2_{\theta})
+   * \f]
+   * where \f$\sigma_Q[i]\f$ is the uncertainty of the scalar momentum
+   * transfer, \f$\sigma_Ki\f$ is the uncertainty of the incident 
+   * wavevector, \f$\sigma_Kf\f$ is the uncertainty of the final 
+   * wavevector, and \f$\sigma_{\theta}\f$ is the uncertainty of the angle
+   * between the z-axis and the scattered neutron.
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
