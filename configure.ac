@@ -63,7 +63,10 @@ AC_CONFIG_FILES([Makefile
 		array_manip/src/Makefile
 		axis_manip/Makefile
 		axis_manip/inc/Makefile
-		axis_manip/src/Makefile		
+		axis_manip/src/Makefile
+		phys_const/Makefile
+		phys_const/inc/Makefile
+		phys_const/src/Makefile		
 		phys_corr/Makefile
 		phys_corr/inc/Makefile
 		phys_corr/src/Makefile
