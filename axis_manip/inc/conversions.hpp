@@ -927,19 +927,20 @@ namespace AxisManip
    * spectromer is defined by
    *
    * \f[
-   * \sigma ^2_{\lambda}[i]=\left(\frac{\lambda[i]}{L_S}\right)^2*\sigma^2_{Ls}
-   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t[i]+\sigma^2_{to})+
-   * \left(\frac{\lambda_f}{L_S}\right)^2\sigma^2_{Ld}
-   * + \left(\frac{L_D}{L_S}\right)^2\sigma^2_{\lambda f}
+   * \sigma^2_{\lambda_i}[i]=
+   * \left(\frac{\lambda_i[i]}{L_S}\right)^2*\sigma^2_{L_S}
+   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t[i]+\sigma^2_{t_o})+
+   * \left(\frac{\lambda_f}{L_S}\right)^2\sigma^2_{L_D}
+   * + \left(\frac{L_D}{L_S}\right)^2\sigma^2_{\lambda_f}
    * \f]
    *
-   * where \f$\sigma_{\lambda}\f$ is the uncertainty of the initial
-   * wavelength axis, \f$\sigma_{Ls}\f$ is the uncertainty of the
+   * where \f$\sigma_{\lambda_i}\f$ is the uncertainty of the initial
+   * wavelength axis, \f$\sigma_{L_S}\f$ is the uncertainty of the
    * distance from the source to the sample, \f$\sigma_t\f$ is the
-   * uncertainty of the time-of-flight, \f$\sigma_{to}\f$ is the
-   * uncertainty of the time-offset, \f$\sigma_{Ld}\f$ is the
+   * uncertainty of the time-of-flight, \f$\sigma_{t_o}\f$ is the
+   * uncertainty of the time-offset, \f$\sigma_{L_D}\f$ is the
    * uncertainty of the distance from the sample to the detector, and
-   * \f$\sigma_{\lambda f}\f$ the uncertainty of the final wavelength.
+   * \f$\sigma_{\lambda_f}\f$ the uncertainty of the final wavelength.
    *
    *\param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
@@ -1027,10 +1028,10 @@ namespace AxisManip
    * the uncertainty of the energy transfer is given by
    *
    * \f[
-   * \sigma^2_\nu [i]=\frac{(\sigma^2_{Ei}[i] )+(\sigma^2_{Ef}[i])}{h^2}
+   * \sigma^2_\nu [i]=\frac{\sigma^2_{E_i}[i] +\sigma^2_{E_f}[i]}{h^2}
    * \f]
-   * Where \f$\sigma_{Ei} \f$ is the uncertainty of the incident
-   * energy axis, and \f$\sigma_{Ef} \f$ is the uncertainty of the 
+   * Where \f$\sigma_{E_i} \f$ is the uncertainty of the incident
+   * energy axis, and \f$\sigma_{E_f} \f$ is the uncertainty of the 
    * final energy axis.
    *
    * \param initial_energy (INPUT) is the incident energy axis in
@@ -1306,14 +1307,14 @@ namespace AxisManip
    * the square of the uncertainty of the scalar momentum transfer
    * is given by
    * \f[
-   * \sigma^2_Q[i]=\frac{1}{Q^2}((K_i[i]-K_f[i]
-   * cos(\theta))^2\sigma^2_{Ki}[i]+(K_f[i]-K_i[i]
-   * cos(\theta))^2\sigma^2_{Kf}[i]+
-   * (K_i[i]K_f[i]sin(\theta))^2\sigma^2_{\theta})
+   * \sigma^2_Q[i]=\frac{1}{Q^2}((k_i[i]-k_f[i]
+   * cos(\theta))^2\sigma^2_{k_i}[i]+(k_f[i]-k_i[i]
+   * cos(\theta))^2\sigma^2_{k_f}[i]+
+   * (k_i[i]k_f[i]sin(\theta))^2\sigma^2_{\theta})
    * \f]
    * where \f$\sigma_Q[i]\f$ is the uncertainty of the scalar momentum
-   * transfer, \f$\sigma_Ki\f$ is the uncertainty of the incident 
-   * wavevector, \f$\sigma_Kf\f$ is the uncertainty of the final 
+   * transfer, \f$\sigma_{k_i}\f$ is the uncertainty of the incident 
+   * wavevector, \f$\sigma_{k_f}\f$ is the uncertainty of the final 
    * wavevector, and \f$\sigma_{\theta}\f$ is the uncertainty of the angle
    * between the z-axis and the scattered neutron.
    *
