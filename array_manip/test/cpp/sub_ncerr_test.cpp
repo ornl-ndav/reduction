@@ -26,7 +26,7 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 template <typename NumT>
 void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
                              Nessi::Vector<NumT> & output_vs_err2,
-							 Nessi::Vector<NumT> & output_sv,
+                             Nessi::Vector<NumT> & output_sv,
                              Nessi::Vector<NumT> & output_sv_err2,
                              Nessi::Vector<NumT> & output_vv,
                              Nessi::Vector<NumT> & output_vv_err2)

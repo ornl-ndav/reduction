@@ -133,12 +133,12 @@ bool test_func(NumT key){ // key forces correct test to happen
 
   // run the code being tested
   ArrayManip::div_ncerr(input1, input1_err2, input2, input2_err2,
-                         output_vv, output_vv_err2);
+                        output_vv, output_vv_err2);
   ArrayManip::div_ncerr(input1[0], input1_err2[0], input2, input2_err2,
-                         output_sv, output_sv_err2);
+                        output_sv, output_sv_err2);
   ArrayManip::div_ncerr(input1, input1_err2,
-                         input2[0], input2_err2[0],
-                         output_vs, output_vs_err2);
+                        input2[0], input2_err2[0],
+                        output_vs, output_vs_err2);
 
   return test_okay(output_vs, output_vs_err2,
                    true_output_vs, true_output_vs_err2,
@@ -252,16 +252,16 @@ int main()
   // case 1 - scalar/vector
 
   ArrayManip::div_ncerr(f_scalar, f_scalar_err2, f_input, f_input_err2,
-  					f_output, f_output_err2);
+      			f_output, f_output_err2);
 
   ArrayManip::div_ncerr(d_scalar, d_scalar_err2, d_input, d_input_err2,
-  					d_output, d_output_err2);
+      			d_output, d_output_err2);
 
   ArrayManip::div_ncerr(i_scalar, i_scalar_err2, i_input, i_input_err2,
-  					i_output, i_output_err2);
+      			i_output, i_output_err2);
 
   ArrayManip::div_ncerr(u_scalar, u_scalar_err2, u_input, u_input_err2,
-  					u_output, u_output_err2);
+      			u_output, u_output_err2);
 
 
   for (int i = 0 ; i < num_val ; ++i)
@@ -273,19 +273,19 @@ int main()
 
       f_scalar_2 = f_input[i]*f_input[i];
       f_true_vector_err2[i] = (((f_scalar*f_scalar)/(f_scalar_2*f_scalar_2)) *
-  						   f_input_err2[i])+(f_scalar_err2/f_scalar_2);
+      				   f_input_err2[i])+(f_scalar_err2/f_scalar_2);
 
       d_scalar_2 = d_input[i]*d_input[i];
       d_true_vector_err2[i] = (((d_scalar*d_scalar)/(d_scalar_2*d_scalar_2)) *
-  						   d_input_err2[i])+(d_scalar_err2/d_scalar_2);
+      				   d_input_err2[i])+(d_scalar_err2/d_scalar_2);
 
       i_scalar_2 = i_input[i]*i_input[i];
       i_true_vector_err2[i] = (((i_scalar*i_scalar)/(i_scalar_2*i_scalar_2)) *
-  						   i_input_err2[i])+(i_scalar_err2/i_scalar_2);
+      				   i_input_err2[i])+(i_scalar_err2/i_scalar_2);
 
       u_scalar_2 = u_input[i]*u_input[i];
       u_true_vector_err2[i] = (((u_scalar*u_scalar)/(u_scalar_2*u_scalar_2)) *
-  						   u_input_err2[i])+(u_scalar_err2/u_scalar_2);
+      				   u_input_err2[i])+(u_scalar_err2/u_scalar_2);
     }
 
   //check first the size
@@ -295,37 +295,37 @@ int main()
        || (u_input.size() != u_output.size()) )
     {
       cout << "(s,v) Input and output vectors do not have the same size"
-  	   << endl;
+       << endl;
       ++error1;
     }
   else
     {
     while(1)
-  	{
-  	  Utils::vector_comparison(f_output, f_true_vector, error1, 10);
-  	  if (error1 != 0) break;
-  	  Utils::vector_comparison(f_output_err2, f_true_vector_err2,
-  							   error1, 20);
-  	  if (error1 != 0) break;
+    {
+      Utils::vector_comparison(f_output, f_true_vector, error1, 10);
+      if (error1 != 0) break;
+      Utils::vector_comparison(f_output_err2, f_true_vector_err2,
+      					   error1, 20);
+      if (error1 != 0) break;
 
-  	  Utils::vector_comparison(d_output, d_true_vector, error1, 110);
-  	  if (error1 != 0) break;
-  	  Utils::vector_comparison(d_output_err2, d_true_vector_err2,
-  							   error1, 120);
-  	  if (error1 != 0) break;
+      Utils::vector_comparison(d_output, d_true_vector, error1, 110);
+      if (error1 != 0) break;
+      Utils::vector_comparison(d_output_err2, d_true_vector_err2,
+      					   error1, 120);
+      if (error1 != 0) break;
 
-  	  Utils::vector_comparison(i_output, i_true_vector, error1, 210);
-  	  if (error1 != 0) break;
-  	  Utils::vector_comparison(i_output_err2, i_true_vector_err2,
-  							   error1, 220);
-  	  if (error1 != 0) break;
+      Utils::vector_comparison(i_output, i_true_vector, error1, 210);
+      if (error1 != 0) break;
+      Utils::vector_comparison(i_output_err2, i_true_vector_err2,
+      					   error1, 220);
+      if (error1 != 0) break;
 
-  	  Utils::vector_comparison(u_output, u_true_vector, error1, 310);
-  	  if (error1 != 0) break;
-  	  Utils::vector_comparison(u_output_err2, u_true_vector_err2,
-  							   error1, 320);
-  	  break;
-  	}
+      Utils::vector_comparison(u_output, u_true_vector, error1, 310);
+      if (error1 != 0) break;
+      Utils::vector_comparison(u_output_err2, u_true_vector_err2,
+      					   error1, 320);
+      break;
+    }
     }
 
   // reset outputs
@@ -404,37 +404,37 @@ int main()
        || (u_input.size() != u_output.size()) )
     {
       cout << "(v,s) Input and output vectors do not have the same size"
-  	   << endl;
+       << endl;
       ++error2;
     }
   else
     {
     while(1)
-  	{
-  	  Utils::vector_comparison(f_output, f_true_vector, error2, 10);
-  	  if (error2 != 0) break;
-  	  Utils::vector_comparison(f_output_err2, f_true_vector_err2,
-  							   error2, 20);
-  	  if (error2 != 0) break;
+    {
+      Utils::vector_comparison(f_output, f_true_vector, error2, 10);
+      if (error2 != 0) break;
+      Utils::vector_comparison(f_output_err2, f_true_vector_err2,
+      					   error2, 20);
+      if (error2 != 0) break;
 
-  	  Utils::vector_comparison(d_output, d_true_vector, error2, 110);
-  	  if (error2 != 0) break;
-  	  Utils::vector_comparison(d_output_err2, d_true_vector_err2,
-  							   error2, 120);
-  	  if (error2 != 0) break;
+      Utils::vector_comparison(d_output, d_true_vector, error2, 110);
+      if (error2 != 0) break;
+      Utils::vector_comparison(d_output_err2, d_true_vector_err2,
+      					   error2, 120);
+      if (error2 != 0) break;
 
-  	  Utils::vector_comparison(i_output, i_true_vector, error2, 210);
-  	  if (error2 != 0) break;
-  	  Utils::vector_comparison(i_output_err2, i_true_vector_err2,
-  							   error2, 220);
-  	  if (error2 != 0) break;
+      Utils::vector_comparison(i_output, i_true_vector, error2, 210);
+      if (error2 != 0) break;
+      Utils::vector_comparison(i_output_err2, i_true_vector_err2,
+      					   error2, 220);
+      if (error2 != 0) break;
 
-  	  Utils::vector_comparison(u_output, u_true_vector, error2, 310);
-  	  if (error2 != 0) break;
-  	  Utils::vector_comparison(u_output_err2, u_true_vector_err2,
-  							   error2, 320);
-  	  break;
-  	}
+      Utils::vector_comparison(u_output, u_true_vector, error2, 310);
+      if (error2 != 0) break;
+      Utils::vector_comparison(u_output_err2, u_true_vector_err2,
+      					   error2, 320);
+      break;
+    }
     }
 
   for (int i = 0 ; i < num_val ; ++i)            //create the arrays
@@ -475,16 +475,16 @@ int main()
   for (int i = 0 ; i < num_val ; ++i)
     {
       std::transform(f_input.begin(), f_input.end(), f_input2.begin(),
-  	     f_true_vector.begin(),std::divides<float>());
+         f_true_vector.begin(),std::divides<float>());
 
       std::transform(d_input.begin(), d_input.end(), d_input2.begin(),
-  	     d_true_vector.begin(),std::divides<double>());
+         d_true_vector.begin(),std::divides<double>());
 
       std::transform(i_input.begin(), i_input.end(), i_input2.begin(),
-  	     i_true_vector.begin(),std::divides<int>());
+         i_true_vector.begin(),std::divides<int>());
 
       std::transform(u_input.begin(), u_input.end(), u_input2.begin(),
-  	     u_true_vector.begin(),std::divides<unsigned>());
+         u_true_vector.begin(),std::divides<unsigned>());
 
       f_input2_2 = f_input2[i] * f_input2[i];
       d_input2_2 = d_input2[i] * d_input2[i];
@@ -515,37 +515,37 @@ int main()
        || (u_input.size() != u_output.size()) )
     {
       cout << "(v,v) Input and output vectors do not have the same size"
-  	   << endl;
+       << endl;
       ++error3;
     }
   else
     {
     while(1)
-  	{
-  	  Utils::vector_comparison(f_output, f_true_vector, error3, 10);
-  	  if (error3 != 0) break;
-  	  Utils::vector_comparison(f_output_err2, f_true_vector_err2,
-  							   error3, 20);
-  	  if (error3 != 0) break;
+    {
+      Utils::vector_comparison(f_output, f_true_vector, error3, 10);
+      if (error3 != 0) break;
+      Utils::vector_comparison(f_output_err2, f_true_vector_err2,
+      					   error3, 20);
+      if (error3 != 0) break;
 
-  	  Utils::vector_comparison(d_output, d_true_vector, error3, 110);
-  	  if (error3 != 0) break;
-  	  Utils::vector_comparison(d_output_err2, d_true_vector_err2,
-  							   error3, 120);
-  	  if (error3 != 0) break;
+      Utils::vector_comparison(d_output, d_true_vector, error3, 110);
+      if (error3 != 0) break;
+      Utils::vector_comparison(d_output_err2, d_true_vector_err2,
+      					   error3, 120);
+      if (error3 != 0) break;
 
-  	  Utils::vector_comparison(i_output, i_true_vector, error3, 210);
-  	  if (error3 != 0) break;
-  	  Utils::vector_comparison(i_output_err2, i_true_vector_err2,
-  							   error3, 220);
-  	  if (error3 != 0) break;
+      Utils::vector_comparison(i_output, i_true_vector, error3, 210);
+      if (error3 != 0) break;
+      Utils::vector_comparison(i_output_err2, i_true_vector_err2,
+      					   error3, 220);
+      if (error3 != 0) break;
 
-  	  Utils::vector_comparison(u_output, u_true_vector, error3, 310);
-  	  if (error3 != 0) break;
-  	  Utils::vector_comparison(u_output_err2, u_true_vector_err2,
-  							   error3, 320);
-  	  break;
-  	}
+      Utils::vector_comparison(u_output, u_true_vector, error3, 310);
+      if (error3 != 0) break;
+      Utils::vector_comparison(u_output_err2, u_true_vector_err2,
+      					   error3, 320);
+      break;
+    }
     }
 
   cout << "div_ncerr_test.cpp..........";
