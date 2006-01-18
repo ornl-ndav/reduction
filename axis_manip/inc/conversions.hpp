@@ -929,7 +929,7 @@ namespace AxisManip
    * \f[
    * \sigma^2_{\lambda_i}[i]=
    * \left(\frac{\lambda_i[i]}{L_S}\right)^2*\sigma^2_{L_S}
-   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t[i]+\sigma^2_{t_o})+
+   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t[i]+\sigma^2_{t_0})+
    * \left(\frac{\lambda_f}{L_S}\right)^2\sigma^2_{L_D}
    * + \left(\frac{L_D}{L_S}\right)^2\sigma^2_{\lambda_f}
    * \f]
@@ -937,7 +937,7 @@ namespace AxisManip
    * where \f$\sigma_{\lambda_i}\f$ is the uncertainty of the initial
    * wavelength axis, \f$\sigma_{L_S}\f$ is the uncertainty of the
    * distance from the source to the sample, \f$\sigma_t\f$ is the
-   * uncertainty of the time-of-flight, \f$\sigma_{t_o}\f$ is the
+   * uncertainty of the time-of-flight, \f$\sigma_{t_0}\f$ is the
    * uncertainty of the time-offset, \f$\sigma_{L_D}\f$ is the
    * uncertainty of the distance from the sample to the detector, and
    * \f$\sigma_{\lambda_f}\f$ the uncertainty of the final wavelength.
