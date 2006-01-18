@@ -57,11 +57,11 @@ namespace AxisManip
 
     // allocate local variables
     NumT a;
-    NumT pang;
+    NumT b;
     NumT sang;
     
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
                                                     sang);
     if(!(warn.empty()))
       retstr+=warn;
@@ -75,7 +75,7 @@ namespace AxisManip
                                                     initial_wavevector_err2[i],
                                                     final_wavevector[i],
                                                     final_wavevector_err2[i],
-                                                    polar_angle_err2, a, pang,
+                                                    polar_angle_err2, a, b,
                                                     sang, Q[i], Q_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
@@ -123,11 +123,11 @@ namespace AxisManip
 
     // allocate local variables
     NumT a;
-    NumT pang;
+    NumT b;
     NumT sang;
     
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
                                                     sang);
     if(!(warn.empty()))
       retstr+=warn;
@@ -141,7 +141,7 @@ namespace AxisManip
                                                     initial_wavevector_err2,
                                                     final_wavevector[i],
                                                     final_wavevector_err2[i],
-                                                    polar_angle_err2, a, pang,
+                                                    polar_angle_err2, a, b,
                                                     sang, Q[i], Q_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
@@ -189,12 +189,12 @@ namespace AxisManip
 
     // allocate local variables
     NumT a;
-    NumT pang;
-    NumT sang;
+    NumT b;
+    NumT c;
     
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
-                                                    sang);
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
+                                                    c);
     if(!(warn.empty()))
       retstr+=warn;
 
@@ -207,8 +207,8 @@ namespace AxisManip
                                                     initial_wavevector_err2[i],
                                                     final_wavevector,
                                                     final_wavevector_err2,
-                                                    polar_angle_err2, a, pang,
-                                                    sang, Q[i], Q_err2[i]);
+                                                    polar_angle_err2, a, b,
+                                                    c, Q[i], Q_err2[i]);
         if(!(warn.empty()))
           retstr+=warn;
       }
@@ -235,12 +235,12 @@ namespace AxisManip
 
     // allocate local variables
     NumT a;
-    NumT pang;
-    NumT sang;
+    NumT b;
+    NumT c;
     
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, pang,
-                                                    sang);
+    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
+                                                    c);
     if(!(warn.empty()))
       retstr+=warn;
 
@@ -249,8 +249,8 @@ namespace AxisManip
                                                      initial_wavevector_err2,
                                                      final_wavevector,
                                                      final_wavevector_err2,
-                                                     polar_angle_err2, a, pang,
-                                                     sang, Q, Q_err2);
+                                                     polar_angle_err2, a, b,
+                                                     c, Q, Q_err2);
     if(!(warn.empty()))
       retstr+=warn;
 
@@ -268,12 +268,12 @@ namespace AxisManip
   std::string
   __init_scatt_wavevector_to_scalar_Q_static(const NumT polar_angle,
                                              NumT & a,
-                                             NumT & pang,
-                                             NumT & sang)
+                                             NumT & b,
+                                             NumT & c)
   {
-    a = static_cast<NumT>(2 * std::cos(static_cast<double>(polar_angle)));
-    pang = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
-    sang = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
+    a = static_cast<NumT>(2. * std::cos(static_cast<double>(polar_angle)));
+    b = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
+    c = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
     
     return std::string("");
   }
@@ -294,8 +294,8 @@ namespace AxisManip
                                             const NumT final_wavevector_err2,
                                             const NumT polar_angle_err2,
                                             const NumT a,
-                                            const NumT pang,
-                                            const NumT sang,
+                                            const NumT b,
+                                            const NumT c,
                                             NumT & Q,
                                             NumT & Q_err2)
   {
@@ -306,21 +306,20 @@ namespace AxisManip
     Q = static_cast<NumT>
       (std::sqrt(static_cast<double>(ki2 + kf2 - akikf)));
 
-    NumT termi = initial_wavevector - (final_wavevector * pang);
-    NumT termi2 = termi * termi;
+    NumT termi2 = initial_wavevector - (final_wavevector * b);
+    termi2 = termi * termi;
+    NumT termf2 = final_wavevector - (initial_wavevector * b);
+    termf2 = termf * termf;
 
-    NumT termf = final_wavevector - (initial_wavevector * pang);
-    NumT termf2 = termf * termf;
+    NumT e2 = final_wavevector * initial_wavevector;
+    e2 = e2 * c;
+    e2 = e2 * e2;
 
-    NumT polar = final_wavevector * initial_wavevector;
-    polar = polar * sang;
-    NumT polar2 = polar * polar;
-
-    NumT front = static_cast<NumT>(1) / (Q * Q);
+    NumT front = static_cast<NumT>(1.) / (Q * Q);
 
     Q_err2 = final_wavevector_err2 * termf2;
     Q_err2 += initial_wavevector_err2 * termi2;
-    Q_err2 += (polar_angle_err2 * polar2);
+    Q_err2 += (polar_angle_err2 * e2);
     Q_err2 *= front;
 
     return std::string("");
