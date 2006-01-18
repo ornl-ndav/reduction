@@ -16,17 +16,17 @@ namespace Utils
    */
   template std::string
   fit_linear_background<float>(const Nessi::Vector<float> & axis_in,
-			       const Nessi::Vector<float> & input,
-			       const Nessi::Vector<float> & input_err2,
-			       float min_val,
+                               const Nessi::Vector<float> & input,
+                               const Nessi::Vector<float> & input_err2,
+                               float min_val,
                                float max_val,
-			       float slope_start, 
-			       float intercept_start,
-			       float & slope_out,
+                               float slope_start,
+                               float intercept_start,
+                               float & slope_out,
                                float & slope_out_err2,
-			       float & intercept_out,
-			       float & intercept_out_err2,
-			       void *temp);
+                               float & intercept_out,
+                               float & intercept_out_err2,
+                               void *temp);
   /**
    * This is the double precision float declaration of the function
    * defined in 3.43.
@@ -35,15 +35,15 @@ namespace Utils
    */
   template std::string
   fit_linear_background<double>(const Nessi::Vector<double> & axis_in,
-				const Nessi::Vector<double> & input,
-				const Nessi::Vector<double> & input_err2,
-				double min_val,
+                                const Nessi::Vector<double> & input,
+                                const Nessi::Vector<double> & input_err2,
+                                double min_val,
                                 double max_val,
-				double slope_start, 
-				double intercept_start,
-				double & slope_out,
+                                double slope_start,
+                                double intercept_start,
+                                double & slope_out,
                                 double & slope_out_err2,
-				double & intercept_out,
-				double & intercept_out_err2,
-				void *temp);
+                                double & intercept_out,
+                                double & intercept_out_err2,
+                                void *temp);
 } // Utils

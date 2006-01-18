@@ -12,9 +12,9 @@
 namespace Utils
 {
   template <typename NumT>
-  void check_sizes_square(const Nessi::Vector<NumT> & array1, 
-			  const Nessi::Vector<NumT> & array2, 
-			  const Nessi::Vector<NumT> & array3)
+  void check_sizes_square(const Nessi::Vector<NumT> & array1,
+                          const Nessi::Vector<NumT> & array2,
+                          const Nessi::Vector<NumT> & array3)
   {
     size_t sz1 = array1.size();
     size_t sz2 = array2.size();
@@ -37,7 +37,7 @@ namespace Utils
 
   template <typename NumT>
   void check_sizes_square(const Nessi::Vector<NumT> & array1,
-			  const Nessi::Vector<NumT> & array2)
+  		  const Nessi::Vector<NumT> & array2)
   {
     size_t sz1 = array1.size();
     size_t sz2 = array2.size();

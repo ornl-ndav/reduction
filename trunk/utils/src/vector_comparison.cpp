@@ -16,10 +16,10 @@ namespace Utils
    */
   template void
   vector_comparison<float>(const Nessi::Vector<float> & value,
-			   const Nessi::Vector<float> & true_value,
-			   int & error,
-			   const int add_error);
-  
+                           const Nessi::Vector<float> & true_value,
+                           int & error,
+                           const int add_error);
+
   /**
    * This is the double declaration of the vector_comparison function.
    *
@@ -27,10 +27,10 @@ namespace Utils
    */
   template void
   vector_comparison<double>(const Nessi::Vector<double> & value,
-			    const Nessi::Vector<double> & true_value,
-			    int & error,
-			    const int add_error);
-  
+                            const Nessi::Vector<double> & true_value,
+                            int & error,
+                            const int add_error);
+
   /**
    * This is the integer declaration of the vector_comparison function.
    *
@@ -43,7 +43,7 @@ namespace Utils
                          const int add_error);
 
   /**
-   * This is the unsigned integer declaration of the vector_comparison 
+   * This is the unsigned integer declaration of the vector_comparison
    * function.
    *
    * \ingroup vector_comparison
