@@ -6,11 +6,14 @@
 #ifndef _WAVELENGTH_TO_ENERGY_HPP
 #define _WAVELENGTH_TO_ENERGY_HPP 1
 
-#include "conversions.hpp"
 #include "constants.hpp"
+#include "conversions.hpp"
 
 namespace AxisManip
 {
+  /// String for holding the wavelength_to_energy function name
+  const std::string wte_funct_str = "AxisManip::wavelength_to_energy";
+  
   // 3.22
   template <typename NumT>
   std::string
@@ -20,6 +23,26 @@ namespace AxisManip
 		       Nessi::Vector<NumT> & energy_err2,
 		       void *temp=NULL)
   {
+    // check that the values are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength, energy);
+      }
+    catch(std::invalid_argument e)
+      {
+	throw std::invalid_argument(wte_func_str+" (v,v): data "+e.what());
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength_err2, energy_err2);
+      }
+    catch(std::invalid_argument e)
+      {
+	throw std::invalid_argument(wte_func_str+" (v,v): err2 "+e.what());
+      }
+
     std::string retstr("");
     std::string warn;
 
