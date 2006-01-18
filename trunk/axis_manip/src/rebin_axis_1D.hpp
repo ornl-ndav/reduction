@@ -26,6 +26,7 @@ namespace AxisManip
                 Nessi::Vector<NumT> & output_err2,
                 void *temp=NULL)
   {
+    // check that the original histogram is of the proper size
     try
       {
         Utils::check_histo_sizes(input, input_err2, axis_in);
@@ -35,6 +36,7 @@ namespace AxisManip
         throw std::invalid_argument(ra1_func_str+": original histogram "
                                     +e.what());
       }
+    // check that the rebinned histogram is of the proper size
     try
       {
         Utils::check_histo_sizes(output, output_err2, axis_out);
