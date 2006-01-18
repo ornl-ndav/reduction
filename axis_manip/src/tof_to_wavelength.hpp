@@ -126,9 +126,8 @@ namespace AxisManip
 
     // the result of these two lines is the uncertainty in the
     // multiplicative factor
-    a_err2 = static_cast<NumT>(PhysConst::H_OVER_MNEUT);
-	a_err2 = a_err2/(pathlength*pathlength);
-    a_err2=a_err2*a_err2*pathlength_err2;
+	a_err2 = a/pathlength;
+    a_err2 = a_err2*a_err2*pathlength_err2;
 
     return std::string("");
   }
