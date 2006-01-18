@@ -564,18 +564,18 @@ namespace ArrayManip
    * This function adds two arrays weighted by their uncertainties
    * according to the equation
    * \f[
-   * data_o[i]=\left( \sum_n \frac{data_n[i]}{\sigma_n[i]}\right)
-   * \times\left( \sum_n \sigma_n[i] \right)
+   * data_o[i]=\left( \sum^N_{n=1} \frac{data_n[i]}{\sigma_n[i]}\right)
+   * \times\left( \frac{1}{N} \sum^N_{n=1} \sigma_n[i] \right)
    * \f]
-   * and the uncorrelated uncertainties will be processed according to
-   * the equation
+   * where \f$N=2\f$ and the uncorrelated uncertainties will be processed 
+   * according to the equation
    * \f[
-   * \sigma_o[i]=\sqrt{\sum_n (\sigma_n[i])^2}
+   * \sigma_o[i]=\sqrt{\sum^N_{n=1} \sigma^2_n[i]}
    * \f]
    * However, if the uncertainty in any of the data is not specified,
    * or is zero, the value of the \f$data_o[i]\f$ will be given by
    * \f[
-   * data_o[i]=\sum_n data_n[i]
+   * data_o[i]=\sum^N_{n=1} data_n[i]
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$data_n[i]\f$ is the \f$i^{th}\f$ component of the
