@@ -100,7 +100,7 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
   // initialize the correct outputs for vector vector case
   output_vv.push_back(static_cast<NumT>(6.)); // =0+6
   output_vv_err2.push_back(static_cast<NumT>(2.));
-  output_vv.push_back(static_cast<NumT>(6..)); // =1+5
+  output_vv.push_back(static_cast<NumT>(6.)); // =1+5
   output_vv_err2.push_back(static_cast<NumT>(2.));
   output_vv.push_back(static_cast<NumT>(6.)); // =2+4
   output_vv_err2.push_back(static_cast<NumT>(2.));
