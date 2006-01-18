@@ -32,7 +32,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(tof, wavelength);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(ttw_func_str+" (v,v): data "+e.what());
       }
@@ -42,7 +42,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(tof_err2, wavelength_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(ttw_func_str+" (v,v): err2 "+e.what());
       }

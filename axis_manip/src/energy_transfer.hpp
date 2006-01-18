@@ -33,7 +33,7 @@ namespace AxisManip
         Utils::check_sizes_square(initial_energy, final_energy,
   			  energy_transfer);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(et_func_str+" (v,v): data "+e.what());
       }
@@ -44,7 +44,7 @@ namespace AxisManip
         Utils::check_sizes_square(initial_energy_err2, final_energy_err2,
                                   energy_transfer_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(et_func_str+" (v,v): err2 "+e.what());
       }
@@ -96,7 +96,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(initial_energy, energy_transfer);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(et_func_str+" (v,s): data "+e.what());
       }
@@ -106,7 +106,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(initial_energy_err2, energy_transfer_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
       }
@@ -158,7 +158,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(final_energy, energy_transfer);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(et_func_str+" (s,v): data "+e.what());
       }
@@ -168,7 +168,7 @@ namespace AxisManip
       {
         Utils::check_sizes_square(final_energy_err2, energy_transfer_err2);
       }
-    catch(std::invalid_argument e)
+    catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(et_func_str+" (s,v): err2 "+e.what());
       }
