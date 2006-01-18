@@ -111,6 +111,7 @@ namespace ArrayManip
   {
     std::string retstr("");
 
+    // check that the values are of proper size
     try
       {
         Utils::check_sizes_square(input1, input2, output);
@@ -119,7 +120,7 @@ namespace ArrayManip
       {
         throw std::invalid_argument(sub_func_str+" (v,v): data "+e.what());
       }
-
+    // check that the uncertainties are of proper size
     try
       {
         Utils::check_sizes_square(input1_err2, input2_err2, output_err2);
