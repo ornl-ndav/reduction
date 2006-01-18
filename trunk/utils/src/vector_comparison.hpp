@@ -24,12 +24,12 @@ namespace Utils
     int n_max = true_value.size();
     for (int i = 0 ; i < n_max ; i++)
       {
-  if (compare(value[i], true_value[i]) != 0)
-    {
-      __vector_comparison_static(i, value[i], true_value[i],
-  			       error, add_error);
-      break;
-    }
+        if (compare(value[i], true_value[i]) != 0)
+          {
+            __vector_comparison_static(i, value[i], true_value[i],
+                                       error, add_error);
+            break;
+          }
       }
     return;
   }
@@ -41,10 +41,10 @@ namespace Utils
   template <typename NumT>
   void
   __vector_comparison_static(const int index,
-  		     const NumT value,
-  		     const NumT true_value,
-  		     int & error,
-  		     const int add_error)
+                             const NumT value,
+                             const NumT true_value,
+                             int & error,
+                             const int add_error)
   {
     std::cout << "At index #" << index << ": ";
     std::cout << "Value expected was ";

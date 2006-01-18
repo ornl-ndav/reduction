@@ -17,7 +17,7 @@ namespace Utils
   template <typename NumT>
   bool
   vector_is_equals (const Nessi::Vector<NumT> & value,
-  	    const Nessi::Vector<NumT> & true_value)
+                    const Nessi::Vector<NumT> & true_value)
   {
     size_t n_max = true_value.size();
     for (size_t i = 0 ; i < n_max ; i++)
