@@ -26,10 +26,10 @@ namespace AxisManip
                                 const float dist_source_sample_err2,
                                 const float dist_sample_detector,
                                 const float dist_sample_detector_err2,
-				Nessi::Vector<float> & initial_wavelength,
-				Nessi::Vector<float> & initial_wavelength_err2,
+                                Nessi::Vector<float> & initial_wavelength,
+                                Nessi::Vector<float> & initial_wavelength_err2,
                                 void *temp=NULL);
-  
+
   /**
    * This is the float declaration of the function defined in 3.29.
    *
@@ -47,10 +47,10 @@ namespace AxisManip
                                 const float dist_source_sample_err2,
                                 const float dist_sample_detector,
                                 const float dist_sample_detector_err2,
-				float & initial_wavelength,
-				float & initial_wavelength_err2,
+                                float & initial_wavelength,
+                                float & initial_wavelength_err2,
                                 void *temp=NULL);
-  
+
   /**
    * This is the double precision float declaration of the function
    * defined in 3.29.

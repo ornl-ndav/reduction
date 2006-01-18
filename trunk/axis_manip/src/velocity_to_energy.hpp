@@ -15,10 +15,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   velocity_to_energy(const Nessi::Vector<NumT> & velocity,
-		     const Nessi::Vector<NumT> & velocity_err2,
-		     Nessi::Vector<NumT> & energy,
-		     Nessi::Vector<NumT> & energy_err2,
-		     void *temp=NULL)
+                     const Nessi::Vector<NumT> & velocity_err2,
+                     Nessi::Vector<NumT> & energy,
+                     Nessi::Vector<NumT> & energy_err2,
+                     void *temp=NULL)
   {
     throw std::runtime_error("Function [velocity_to_energy] not implemented");
   }
@@ -27,10 +27,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   velocity_to_energy(const NumT velocity,
-		     const NumT velocity_err2,
-		     NumT & energy,
-		     NumT & energy_err2,
-		     void *temp=NULL)
+                     const NumT velocity_err2,
+                     NumT & energy,
+                     NumT & energy_err2,
+                     void *temp=NULL)
   {
     throw std::runtime_error("Function [velocity_to_energy] not implemented");
   }

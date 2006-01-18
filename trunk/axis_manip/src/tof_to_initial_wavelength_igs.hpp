@@ -16,18 +16,18 @@ namespace AxisManip
   template <typename NumT>
   std::string
   tof_to_initial_wavelength_igs(const Nessi::Vector<NumT> & tof,
-				const Nessi::Vector<NumT> & tof_err2,
-				const NumT final_wavelength,
-				const NumT final_wavelength_err2,
-				const NumT time_offset,
-				const NumT time_offset_err2,
-				const NumT dist_source_sample,
-				const NumT dist_source_sample_err2,
-				const NumT dist_sample_detector,
-				const NumT dist_sample_detector_err2,
-				Nessi::Vector<NumT> & initial_wavelength,
-				Nessi::Vector<NumT> & initial_wavelength_err2,
-				void *temp=NULL)
+                                const Nessi::Vector<NumT> & tof_err2,
+                                const NumT final_wavelength,
+                                const NumT final_wavelength_err2,
+                                const NumT time_offset,
+                                const NumT time_offset_err2,
+                                const NumT dist_source_sample,
+                                const NumT dist_source_sample_err2,
+                                const NumT dist_sample_detector,
+                                const NumT dist_sample_detector_err2,
+                                Nessi::Vector<NumT> & initial_wavelength,
+                                Nessi::Vector<NumT> & initial_wavelength_err2,
+                                void *temp=NULL)
   {
     // SNS-FIXME: need to check that input and output vectors are of
     // the same length
@@ -50,7 +50,9 @@ namespace AxisManip
                                                 dist_sample_detector, a, a2,
                                                 b, c2, d2, ls2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     // fill the results array
     size_t size_tof = tof.size();
@@ -66,7 +68,9 @@ namespace AxisManip
                                                     initial_wavelength_err2[i],
                                                     a, a2, b, c2, d2, ls2);
         if(!(warn.empty()))
-          retstr+=warn;
+          {
+            retstr+=warn;
+          }
       }
 
     // send back all warnings
@@ -77,18 +81,18 @@ namespace AxisManip
   template <typename NumT>
   std::string
   tof_to_initial_wavelength_igs(const NumT tof,
-				const NumT tof_err2,
-				const NumT final_wavelength,
-				const NumT final_wavelength_err2,
-				const NumT time_offset,
-				const NumT time_offset_err2,
-				const NumT dist_source_sample,
-				const NumT dist_source_sample_err2,
-				const NumT dist_sample_detector,
-				const NumT dist_sample_detector_err2,
-				NumT & initial_wavelength,
-				NumT & initial_wavelength_err2,
-				void *temp=NULL)
+  			const NumT tof_err2,
+  			const NumT final_wavelength,
+  			const NumT final_wavelength_err2,
+  			const NumT time_offset,
+  			const NumT time_offset_err2,
+  			const NumT dist_source_sample,
+  			const NumT dist_source_sample_err2,
+  			const NumT dist_sample_detector,
+  			const NumT dist_sample_detector_err2,
+  			NumT & initial_wavelength,
+  			NumT & initial_wavelength_err2,
+  			void *temp=NULL)
   {
     // define some parameters that are static across the array calculation
     NumT a;
@@ -108,7 +112,9 @@ namespace AxisManip
                                                 dist_sample_detector, a, a2,
                                                 b, c2, d2, ls2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     // fill the results
     warn=__tof_to_initial_wavelength_igs_dynamic(tof, tof_err2,
@@ -121,7 +127,9 @@ namespace AxisManip
                                                  a, a2, b, c2, d2, ls2);
 
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     // send back all warnings
     return retstr;
@@ -136,16 +144,16 @@ namespace AxisManip
    */
   template <typename NumT>
   std::string __tof_to_initial_wavelength_igs_static(
-				const NumT final_wavelength,
-				const NumT time_offset,
-				const NumT dist_source_sample,
-				const NumT dist_sample_detector,
-                                NumT & a,
-                                NumT & a2,
-                                NumT & b,
-                                NumT & c2,
-                                NumT & d2,
-                                NumT & ls2)
+                                               const NumT final_wavelength,
+                                               const NumT time_offset,
+                                               const NumT dist_source_sample,
+                                               const NumT dist_sample_detector,
+                                               NumT & a,
+                                               NumT & a2,
+                                               NumT & b,
+                                               NumT & c2,
+                                               NumT & d2,
+                                               NumT & ls2)
   {
     a = static_cast<NumT>(PhysConst::H_OVER_MNEUT) / dist_source_sample;
     a2 = a * a;
@@ -154,7 +162,7 @@ namespace AxisManip
     b += (a * time_offset);
     c2 = final_wavelength / dist_source_sample;
     c2 = c2 * c2;
-    
+
     d2 = dist_sample_detector / dist_source_sample;
     d2 = d2 * d2;
 
@@ -194,7 +202,7 @@ namespace AxisManip
     initial_wavelength_err2 = a2 * (tof_err2 + time_offset_err2);
     initial_wavelength_err2 += c2 * dist_sample_detector_err2;
     initial_wavelength_err2 += d2 * final_wavelength_err2;
-    initial_wavelength_err2 += initial_wavelength * 
+    initial_wavelength_err2 += initial_wavelength *
       initial_wavelength * dist_source_sample_err2 / ls2;
 
     return std::string("");

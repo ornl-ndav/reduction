@@ -1,7 +1,7 @@
 #include "constants.hpp"
 #include "conversions.hpp"
 #include "nessi.hpp"
-#include "num_comparison.hpp" 
+#include "num_comparison.hpp"
 #include <cmath>
 #include <iostream>
 #include <limits>
@@ -34,42 +34,42 @@ void d_function_init_scatt_wavevector_to_scalar_Q(
                              Nessi::Vector<double> & d_true_Q_err2,
                              int k);
 
-int main() 
+int main()
 {
   // SNS-FIXME
 
   int num_val = 20;
 
   //float
-  Nessi::Vector<float> f_initial_wavevector;                
-  Nessi::Vector<float> f_initial_wavevector_err2;           
-  Nessi::Vector<float> f_final_wavevector;          
-  Nessi::Vector<float> f_final_wavevector_err2;     
+  Nessi::Vector<float> f_initial_wavevector;
+  Nessi::Vector<float> f_initial_wavevector_err2;
+  Nessi::Vector<float> f_final_wavevector;
+  Nessi::Vector<float> f_final_wavevector_err2;
   Nessi::Vector<float> f_Q(num_val);
   Nessi::Vector<float> f_Q_err2(num_val);
-  Nessi::Vector<float> f_true_Q(num_val);          
-  Nessi::Vector<float> f_true_Q_err2(num_val);     
+  Nessi::Vector<float> f_true_Q(num_val);
+  Nessi::Vector<float> f_true_Q_err2(num_val);
   float f_polar_angle;
   float f_polar_angle_err2;
 
   //double
-  Nessi::Vector<double> d_initial_wavevector;                
-  Nessi::Vector<double> d_initial_wavevector_err2;           
-  Nessi::Vector<double> d_final_wavevector;          
-  Nessi::Vector<double> d_final_wavevector_err2;     
+  Nessi::Vector<double> d_initial_wavevector;
+  Nessi::Vector<double> d_initial_wavevector_err2;
+  Nessi::Vector<double> d_final_wavevector;
+  Nessi::Vector<double> d_final_wavevector_err2;
   Nessi::Vector<double> d_Q(num_val);
   Nessi::Vector<double> d_Q_err2(num_val);
-  Nessi::Vector<double> d_true_Q(num_val);          
-  Nessi::Vector<double> d_true_Q_err2(num_val);     
+  Nessi::Vector<double> d_true_Q(num_val);
+  Nessi::Vector<double> d_true_Q_err2(num_val);
   double d_polar_angle;
-  double d_polar_angle_err2;  
+  double d_polar_angle_err2;
 
   int error_case_1 = 0;
   int error_case_2 = 0;
   int error_case_3 = 0;
   int error_case_4 = 0;
   int error = 0;
-  
+
   //initialization of parameters
 
   f_polar_angle = static_cast<float>(34.45);
@@ -86,60 +86,60 @@ int main()
   d_initial_wavevector.push_back(static_cast<double>(2)*3.5);
   d_initial_wavevector_err2.push_back(static_cast<double>(4.4));
 
-  for(int i = 0 ; i < num_val ; i++)            
+  for(int i = 0 ; i < num_val ; i++)
     {
       f_final_wavevector.push_back(static_cast<float>(2*i+1));
       f_final_wavevector_err2.push_back(static_cast<float>(2*i));
-      
+
       d_final_wavevector.push_back(static_cast<double>(2*i+1));
       d_final_wavevector_err2.push_back(static_cast<double>(2*i));
     }
 
-  AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, 
-					       f_initial_wavevector_err2,
-					       f_final_wavevector, 
-					       f_final_wavevector_err2,
-					       f_polar_angle,
-                                               f_polar_angle_err2, 
-					       f_Q,
+  AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
+                                               f_initial_wavevector_err2,
+                                               f_final_wavevector,
+                                               f_final_wavevector_err2,
+                                               f_polar_angle,
+                                               f_polar_angle_err2,
+                                               f_Q,
                                                f_Q_err2);
-  
-  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-					       d_initial_wavevector_err2,
-					       d_final_wavevector, 
-					       d_final_wavevector_err2,
-					       d_polar_angle,
-                                               d_polar_angle_err2, 
-					       d_Q,
+
+  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                               d_initial_wavevector_err2,
+                                               d_final_wavevector,
+                                               d_final_wavevector_err2,
+                                               d_polar_angle,
+                                               d_polar_angle_err2,
+                                               d_Q,
                                                d_Q_err2);
-  
+
   for(int i = 0 ; i < num_val ; i++)
     {
-      f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, 
-						   f_initial_wavevector_err2,
-						   0,
-                                                   f_final_wavevector, 
-						   f_final_wavevector_err2,
-						   i,
+      f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
+                                                   f_initial_wavevector_err2,
+                                                   0,
+                                                   f_final_wavevector,
+                                                   f_final_wavevector_err2,
+                                                   i,
                                                    f_polar_angle,
-						   f_polar_angle_err2,
-						   f_true_Q,
+                                                   f_polar_angle_err2,
+                                                   f_true_Q,
                                                    f_true_Q_err2,
                                                    i);
-      
-      d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-						   d_initial_wavevector_err2,
-						   0,
-                                                   d_final_wavevector, 
-						   d_final_wavevector_err2,
-						   i,
+
+      d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                                   d_initial_wavevector_err2,
+                                                   0,
+                                                   d_final_wavevector,
+                                                   d_final_wavevector_err2,
+                                                   i,
                                                    d_polar_angle,
-						   d_polar_angle_err2,
-						   d_true_Q,
+                                                   d_polar_angle_err2,
+                                                   d_true_Q,
                                                    d_true_Q_err2,
                                                    i);
     }
-  
+
   //compare results for case 1
 
   while (1)
@@ -153,7 +153,7 @@ int main()
     Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_1, 120);
     break;
    }
-  
+
   // ****case 2****
 
   //initialization
@@ -173,78 +173,78 @@ int main()
 
   f_final_wavevector_err2.push_back(static_cast<float>(4.34));
   d_final_wavevector_err2.push_back(static_cast<double>(4.34));
-  
-  for(int i = 0 ; i < num_val ; i++)            
+
+  for(int i = 0 ; i < num_val ; i++)
     {
       f_initial_wavevector.push_back(static_cast<float>(i+1));
       f_initial_wavevector_err2.push_back(static_cast<float>(i));
-      
+
       d_initial_wavevector.push_back(static_cast<double>(i+1));
       d_initial_wavevector_err2.push_back(static_cast<double>(i));
     }
 
   AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
-					       f_initial_wavevector_err2,
-					       f_final_wavevector, 
-					       f_final_wavevector_err2,
-					       f_polar_angle,
+                                               f_initial_wavevector_err2,
+                                               f_final_wavevector,
+                                               f_final_wavevector_err2,
+                                               f_polar_angle,
                                                f_polar_angle_err2,
-					       f_Q,
+                                               f_Q,
                                                f_Q_err2);
-  
-  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-					       d_initial_wavevector_err2,
-					       d_final_wavevector, 
-					       d_final_wavevector_err2,
-					       d_polar_angle, 
-					       d_polar_angle_err2,
+
+  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                               d_initial_wavevector_err2,
+                                               d_final_wavevector,
+                                               d_final_wavevector_err2,
+                                               d_polar_angle,
+                                               d_polar_angle_err2,
                                                d_Q,
                                                d_Q_err2);
-  
+
   for(int i = 0 ; i < num_val ; i++)
     {
-      f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, 
-						   f_initial_wavevector_err2,
-						   i,
-                                                   f_final_wavevector, 
-						   f_final_wavevector_err2,
-						   0,
+      f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
+                                                   f_initial_wavevector_err2,
+                                                   i,
+                                                   f_final_wavevector,
+                                                   f_final_wavevector_err2,
+                                                   0,
                                                    f_polar_angle,
-						   f_polar_angle_err2,
-						   f_true_Q,
+                                                   f_polar_angle_err2,
+                                                   f_true_Q,
                                                    f_true_Q_err2,
                                                    i);
-						   
-      d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-						   d_initial_wavevector_err2,
-						   i,
-                                                   d_final_wavevector, 
-						   d_final_wavevector_err2,
-						   0,
+
+      d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                                   d_initial_wavevector_err2,
+                                                   i,
+                                                   d_final_wavevector,
+                                                   d_final_wavevector_err2,
+                                                   0,
                                                    d_polar_angle,
-						   d_polar_angle_err2,
-						   d_true_Q,
+                                                   d_polar_angle_err2,
+                                                   d_true_Q,
                                                    d_true_Q_err2,
                                                    i);
-    }  
-  
+    }
+
   //compare results for case 2
 
   while (1)
     {
-  Utils::vector_comparison(f_Q, f_true_Q, error_case_2, 10);
-    if (error_case_2 != 0) break;
-  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_2, 20);
-    if (error_case_2 != 0) break;
-  Utils::vector_comparison(d_Q, d_true_Q, error_case_2, 110);
-    if (error_case_2 != 0) break;
-  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_2, 120);
-    if (error_case_2 != 0) break;
-  break;   
-    }  
+      Utils::vector_comparison(f_Q, f_true_Q, error_case_2, 10);
+      if (error_case_2 != 0) break;
+      Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_2, 20);
+      if (error_case_2 != 0) break;
+      Utils::vector_comparison(d_Q, d_true_Q, error_case_2, 110);
+      if (error_case_2 != 0) break;
+      Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_2, 120);
+      if (error_case_2 != 0) break;
+      break;
+    }
 
   // ****case 3****
-  
+
   //initialization
 
   f_final_wavevector.clear();
@@ -262,72 +262,72 @@ int main()
 
   f_final_wavevector_err2.push_back(static_cast<float>(4.34));
   d_final_wavevector_err2.push_back(static_cast<double>(4.34));
-  
+
   f_initial_wavevector.push_back(static_cast<float>(11.44));
   f_initial_wavevector_err2.push_back(static_cast<float>(2.2));
-  
+
   d_initial_wavevector.push_back(static_cast<double>(11.44));
   d_initial_wavevector_err2.push_back(static_cast<double>(2.2));
-  
-  AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, 
-					       f_initial_wavevector_err2,
-					       f_final_wavevector, 
-					       f_final_wavevector_err2,
-					       f_polar_angle,
-                                               f_polar_angle_err2, 
-					       f_Q,
-                                               f_Q_err2);
-  
-  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-					       d_initial_wavevector_err2,
-					       d_final_wavevector, 
-					       d_final_wavevector_err2,
-					       d_polar_angle,
-                                               d_polar_angle_err2, 
-					       d_Q,
-                                               d_Q_err2);
-  
-  f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, 
-					       f_initial_wavevector_err2,
-					       0,
-                                               f_final_wavevector, 
-					       f_final_wavevector_err2,
-					       0,
+
+  AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
+                                               f_initial_wavevector_err2,
+                                               f_final_wavevector,
+                                               f_final_wavevector_err2,
                                                f_polar_angle,
                                                f_polar_angle_err2,
-					       f_true_Q,
-                                               f_true_Q_err2,
-                                               0);
-  
-  d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-					       d_initial_wavevector_err2,
-					       0,
-                                               d_final_wavevector, 
-					       d_final_wavevector_err2,
-					       0,
+                                               f_Q,
+                                               f_Q_err2);
+
+  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                               d_initial_wavevector_err2,
+                                               d_final_wavevector,
+                                               d_final_wavevector_err2,
                                                d_polar_angle,
                                                d_polar_angle_err2,
-					       d_true_Q,
+                                               d_Q,
+                                               d_Q_err2);
+
+  f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
+                                               f_initial_wavevector_err2,
+                                               0,
+                                               f_final_wavevector,
+                                               f_final_wavevector_err2,
+                                               0,
+                                               f_polar_angle,
+                                               f_polar_angle_err2,
+                                               f_true_Q,
+                                               f_true_Q_err2,
+                                               0);
+
+  d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                               d_initial_wavevector_err2,
+                                               0,
+                                               d_final_wavevector,
+                                               d_final_wavevector_err2,
+                                               0,
+                                               d_polar_angle,
+                                               d_polar_angle_err2,
+                                               d_true_Q,
                                                d_true_Q_err2,
                                                0);
-  
+
   //compare results for case 3
-  
+
   while (1)
     {
-  Utils::vector_comparison(f_Q, f_true_Q, error_case_3, 10);
-    if (error_case_2 != 0) break;
-  Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_3, 20);
-    if (error_case_2 != 0) break;
-  Utils::vector_comparison(d_Q, d_true_Q, error_case_3, 110);
-    if (error_case_3 != 0) break;
-  Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_3, 120);
-    if (error_case_3 != 0) break;
-  break;   
-    }  
+      Utils::vector_comparison(f_Q, f_true_Q, error_case_3, 10);
+      if (error_case_2 != 0) break;
+      Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error_case_3, 20);
+      if (error_case_2 != 0) break;
+      Utils::vector_comparison(d_Q, d_true_Q, error_case_3, 110);
+      if (error_case_3 != 0) break;
+      Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_3, 120);
+      if (error_case_3 != 0) break;
+      break;
+    }
 
   // ****case 4****
-  
+
   //initialization
 
   f_final_wavevector.clear();
@@ -340,67 +340,67 @@ int main()
   d_initial_wavevector.clear();
   d_initial_wavevector_err2.clear();
 
-  for(int i = 0 ; i < num_val ; i++)            
+  for(int i = 0 ; i < num_val ; i++)
     {
       f_initial_wavevector.push_back(static_cast<float>(i+1));
       f_initial_wavevector_err2.push_back(static_cast<float>(i));
       f_final_wavevector.push_back(static_cast<float>(2*i+3));
       f_final_wavevector_err2.push_back(static_cast<float>(i+2));
-      
+
       d_initial_wavevector.push_back(static_cast<double>(i+1));
       d_initial_wavevector_err2.push_back(static_cast<double>(i));
       d_final_wavevector.push_back(static_cast<double>(2*i+3));
       d_final_wavevector_err2.push_back(static_cast<double>(i+2));
     }
 
-  AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, 
-					       f_initial_wavevector_err2,
-					       f_final_wavevector, 
-					       f_final_wavevector_err2,
-					       f_polar_angle,
-                                               f_polar_angle_err2, 
-					       f_Q,
+  AxisManip::init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
+                                               f_initial_wavevector_err2,
+                                               f_final_wavevector,
+                                               f_final_wavevector_err2,
+                                               f_polar_angle,
+                                               f_polar_angle_err2,
+                                               f_Q,
                                                f_Q_err2);
-  
-  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-					       d_initial_wavevector_err2,
-					       d_final_wavevector, 
-					       d_final_wavevector_err2,
-					       d_polar_angle,
-                                               d_polar_angle_err2, 
-					       d_Q,
+
+  AxisManip::init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                               d_initial_wavevector_err2,
+                                               d_final_wavevector,
+                                               d_final_wavevector_err2,
+                                               d_polar_angle,
+                                               d_polar_angle_err2,
+                                               d_Q,
                                                d_Q_err2);
-  
+
   for(int i = 0 ; i < num_val ; i++)
     {
-      f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector, 
-						   f_initial_wavevector_err2,
-						   i,
-                                                   f_final_wavevector, 
-						   f_final_wavevector_err2,
-						   i,
+      f_function_init_scatt_wavevector_to_scalar_Q(f_initial_wavevector,
+                                                   f_initial_wavevector_err2,
+                                                   i,
+                                                   f_final_wavevector,
+                                                   f_final_wavevector_err2,
+                                                   i,
                                                    f_polar_angle,
-						   f_polar_angle_err2,
-						   f_true_Q,
+                                                   f_polar_angle_err2,
+                                                   f_true_Q,
                                                    f_true_Q_err2,
                                                    i);
-						   
 
-      d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector, 
-						   d_initial_wavevector_err2,
-						   i,
-                                                   d_final_wavevector, 
-						   d_final_wavevector_err2,
-						   i,
+
+      d_function_init_scatt_wavevector_to_scalar_Q(d_initial_wavevector,
+                                                   d_initial_wavevector_err2,
+                                                   i,
+                                                   d_final_wavevector,
+                                                   d_final_wavevector_err2,
+                                                   i,
                                                    d_polar_angle,
-						   d_polar_angle_err2,
-						   d_true_Q,
+                                                   d_polar_angle_err2,
+                                                   d_true_Q,
                                                    d_true_Q_err2,
                                                    i);
-    }  
-  
+    }
+
   //compare results for case 4
-  
+
   while (1)
     {
       Utils::vector_comparison(f_Q, f_true_Q, error_case_4, 10);
@@ -411,13 +411,13 @@ int main()
       if (error_case_4 != 0) break;
       Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error_case_4, 120);
       if (error_case_4 != 0) break;
-      break;   
-    }  
-  
+      break;
+    }
+
   error = error_case_1 + error_case_2 + error_case_3 + error_case_4;
-  
+
   cout << "init_scatt_wavevector_to_scalar_Q_test.cpp..........";
-  
+
   switch (error)
     {
     case 0:
@@ -425,101 +425,101 @@ int main()
       break;
     default:
       {
-	if (error_case_1 != 0)
-	  {
-	    cout << "(sz1 == 1 && sz2 != 1):" << endl;
-	    switch (error_case_1)
-	      {
-	      case 10:
-		cout << "(float) FAILED....Output vector different from vector"
+        if (error_case_1 != 0)
+          {
+            cout << "(sz1 == 1 && sz2 != 1):" << endl;
+            switch (error_case_1)
+              {
+              case 10:
+                cout << "(float) FAILED....Output vector different from vector"
                      << " expected" << endl;
-		break;
-	      case 20:
-		cout << "(float) FAILED....Output error vector different from "
+                break;
+              case 20:
+                cout << "(float) FAILED....Output error vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 110:
-		cout << "(double) FAILED....Output vector different from "
+                break;
+              case 110:
+                cout << "(double) FAILED....Output vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 120:
-		cout << "(double) FAILED....Output error vector different from"
+                break;
+              case 120:
+                cout << "(double) FAILED....Output error vector different from"
                      << " vector expected" << endl;
-		break;
-	      }
-	  }
-	else if (error_case_2 != 0)
-	  {
-	    cout << "(sz1 != 1 && sz2 == 1):" << endl;
-	    
-	    switch (error_case_2)
-	      {
-	      case 10:
-		cout << "(float) FAILED....Output vector different from vector"
+                break;
+              }
+          }
+        else if (error_case_2 != 0)
+          {
+            cout << "(sz1 != 1 && sz2 == 1):" << endl;
+
+            switch (error_case_2)
+              {
+              case 10:
+                cout << "(float) FAILED....Output vector different from vector"
                      << " expected" << endl;
-		break;
-	      case 20:
-		cout << "(float) FAILED....Output error vector different from "
+                break;
+              case 20:
+                cout << "(float) FAILED....Output error vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 110:
-		cout << "(double) FAILED....Output vector different from "
+                break;
+              case 110:
+                cout << "(double) FAILED....Output vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 120:
-		cout << "(double) FAILED....Output error vector different from"
+                break;
+              case 120:
+                cout << "(double) FAILED....Output error vector different from"
                      << " vector expected" << endl;
-		break;
-	      }
-	  }
-	else if (error_case_3 != 0)
-	  {
-	    cout << "(sz1 == 1 && sz2 == 1):" << endl;
-	    
-	    switch (error_case_3)
-	      {
-	      case 10:
-		cout << "(float) FAILED....Output vector different from vector"
+                break;
+              }
+          }
+        else if (error_case_3 != 0)
+          {
+            cout << "(sz1 == 1 && sz2 == 1):" << endl;
+
+            switch (error_case_3)
+              {
+              case 10:
+                cout << "(float) FAILED....Output vector different from vector"
                      << " expected" << endl;
-		break;
-	      case 20:
-		cout << "(float) FAILED....Output error vector different from "
+                break;
+              case 20:
+                cout << "(float) FAILED....Output error vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 110:
-		cout << "(double) FAILED....Output vector different from "
+                break;
+              case 110:
+                cout << "(double) FAILED....Output vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 120:
-		cout << "(double) FAILED....Output error vector different from"
+                break;
+              case 120:
+                cout << "(double) FAILED....Output error vector different from"
                      << " vector expected" << endl;
-		break;
-	      }
-	  }
-	else if (error_case_4 != 0)
-	  {
-	    cout << "(sz1 != 1 && sz2 != 1):" << endl;
-	    switch (error_case_4)
-	      {
-	      case 10:
-		cout << "(float) FAILED....Output vector different from vector"
+                break;
+              }
+          }
+        else if (error_case_4 != 0)
+          {
+            cout << "(sz1 != 1 && sz2 != 1):" << endl;
+            switch (error_case_4)
+              {
+              case 10:
+                cout << "(float) FAILED....Output vector different from vector"
                      << " expected" << endl;
-		break;
-	      case 20:
-		cout << "(float) FAILED....Output error vector different from "
+                break;
+              case 20:
+                cout << "(float) FAILED....Output error vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 110:
-		cout << "(double) FAILED....Output vector different from "
+                break;
+              case 110:
+                cout << "(double) FAILED....Output vector different from "
                      << "vector expected" << endl;
-		break;
-	      case 120:
-		cout << "(double) FAILED....Output error vector different from"
+                break;
+              case 120:
+                cout << "(double) FAILED....Output error vector different from"
                      << " vector expected" << endl;
-		break;
-	      }
-	  }
-      }	
+                break;
+              }
+          }
+      }
     }
   return 0;
 }
@@ -554,10 +554,10 @@ void f_function_init_scatt_wavevector_to_scalar_Q(
 
   f_kf2 = f_final_wavevector[j] * f_final_wavevector[j];
   f_akikf = f_a * f_initial_wavevector[i] * f_final_wavevector[j];
-  
-  f_true_Q[k] = static_cast<float>(std::sqrt(static_cast<double>(f_ki2 + f_kf2 
-								 - f_akikf)));
-  
+
+  f_true_Q[k] = static_cast<float>(std::sqrt(static_cast<double>(f_ki2 + f_kf2
+                                                                 - f_akikf)));
+
   f_termi = f_initial_wavevector[i] - (f_final_wavevector[j] * f_pang);
   f_termi2 = f_termi * f_termi;
 
@@ -570,7 +570,7 @@ void f_function_init_scatt_wavevector_to_scalar_Q(
   f_polar2 = f_polar * f_polar;
 
   f_front = 1 / (f_true_Q[k] * f_true_Q[k]);
-  
+
   f_true_Q_err2[k] = f_final_wavevector_err2[j] * f_termf2;
   f_true_Q_err2[k] = f_true_Q_err2[k]
     + f_initial_wavevector_err2[i] * f_termi2;
@@ -611,10 +611,10 @@ void d_function_init_scatt_wavevector_to_scalar_Q(
   d_kf2 = d_final_wavevector[j] * d_final_wavevector[j];
   d_akikf = d_a * d_initial_wavevector[i];
   d_akikf = d_akikf * d_final_wavevector[j];
-  
+
   d_true_Q[k] = static_cast<double>(std::sqrt(static_cast<double>(d_ki2 + d_kf2
-								  - d_akikf)));
-  
+                                                                  - d_akikf)));
+
   d_termi = d_final_wavevector[j] * d_pang;
   d_termi = d_initial_wavevector[i] - d_termi;
   d_termi2 = d_termi * d_termi;
@@ -628,8 +628,8 @@ void d_function_init_scatt_wavevector_to_scalar_Q(
   d_polar2 = d_polar * d_polar;
 
   d_front = 1 / (d_true_Q[k] * d_true_Q[k]);
-  
-  d_true_Q_err2[k] = d_initial_wavevector_err2[i] * d_termi2; 
+
+  d_true_Q_err2[k] = d_initial_wavevector_err2[i] * d_termi2;
   d_true_Q_err2[k] = d_true_Q_err2[k] + d_final_wavevector_err2[j] * d_termf2;
   d_true_Q_err2[k] = d_true_Q_err2[k] + d_polar_angle_err2 * d_polar2;
   d_true_Q_err2[k] = d_true_Q_err2[k] * d_front ;

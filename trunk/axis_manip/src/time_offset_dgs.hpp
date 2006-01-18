@@ -15,14 +15,14 @@ namespace AxisManip
   template <typename NumT>
   std::string
   time_offset_dgs(const NumT dist_downstream_monitor,
-		  const NumT dist_downstream_monitor_err2,
-		  const NumT time_downstream_monitor,
-		  const NumT time_downstream_monitor_err2,
-		  const NumT initial_velocity,
-		  const NumT initial_velocity_err2,
-		  NumT & time_offset,
-		  NumT & time_offset_err2,
-		  void *temp=NULL)
+                  const NumT dist_downstream_monitor_err2,
+                  const NumT time_downstream_monitor,
+                  const NumT time_downstream_monitor_err2,
+                  const NumT initial_velocity,
+                  const NumT initial_velocity_err2,
+                  NumT & time_offset,
+                  NumT & time_offset_err2,
+                  void *temp=NULL)
   {
     throw std::runtime_error("Function [time_offset_dgs] not implemented");
   }

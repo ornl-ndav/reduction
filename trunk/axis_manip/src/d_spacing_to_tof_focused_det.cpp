@@ -25,7 +25,7 @@ namespace AxisManip
                                    Nessi::Vector<float> & tof,
                                    Nessi::Vector<float> & tof_err2,
                                    void *temp);
-  
+
   /**
    * This is the float declaration of the function defined in 3.39.
    *
@@ -42,7 +42,7 @@ namespace AxisManip
                                    float & tof,
                                    float & tof_err2,
                                    void *temp);
-  
+
   /**
    * This is the double precision float declaration of the function
    * defined in 3.39.
@@ -52,7 +52,7 @@ namespace AxisManip
   template std::string
   d_spacing_to_tof_focused_det<double>(
                                   const Nessi::Vector<double> & d_spacing,
-				  const Nessi::Vector<double> & d_spacing_err2,
+                                  const Nessi::Vector<double> & d_spacing_err2,
                                   const double pathlength_focused,
                                   const double pathlength_focused_err2,
                                   const double polar_angle_focused,
@@ -70,7 +70,7 @@ namespace AxisManip
   template std::string
   d_spacing_to_tof_focused_det<double>(
                                   const double d_spacing,
-				  const double d_spacing_err2,
+                                  const double d_spacing_err2,
                                   const double pathlength_focused,
                                   const double pathlength_focused_err2,
                                   const double polar_angle_focused,

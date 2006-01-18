@@ -15,15 +15,15 @@ namespace AxisManip
 {
   /// String for holding the wavelength_to_energy function name
   const std::string wte_func_str = "AxisManip::wavelength_to_energy";
-  
+
   // 3.22
   template <typename NumT>
   std::string
   wavelength_to_energy(const Nessi::Vector<NumT> & wavelength,
-		       const Nessi::Vector<NumT> & wavelength_err2,
-		       Nessi::Vector<NumT> & energy,
-		       Nessi::Vector<NumT> & energy_err2,
-		       void *temp=NULL)
+                       const Nessi::Vector<NumT> & wavelength_err2,
+                       Nessi::Vector<NumT> & energy,
+                       Nessi::Vector<NumT> & energy_err2,
+                       void *temp=NULL)
   {
     // check that the values are of proper size
     try
@@ -32,7 +32,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(wte_func_str+" (v,v): data "+e.what());
+        throw std::invalid_argument(wte_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -42,7 +42,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(wte_func_str+" (v,v): err2 "+e.what());
+        throw std::invalid_argument(wte_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr("");
@@ -53,19 +53,23 @@ namespace AxisManip
     warn = __wavelength_to_energy_static(a2);
 
     if (!warn.empty())
-      retstr += warn;
+      {
+        retstr += warn;
+      }
 
     size_t sz = wavelength.size();
     for (size_t i = 0; i < sz; ++i)
       {
-	warn = __wavelength_to_energy_dynamic(wavelength[i], 
-					      wavelength_err2[i],
-					      energy[i], 
-					      energy_err2[i], 
-					      a2);
+        warn = __wavelength_to_energy_dynamic(wavelength[i],
+                                              wavelength_err2[i],
+                                              energy[i],
+                                              energy_err2[i],
+                                              a2);
 
-	if (!warn.empty())
-	  retstr += warn;
+        if (!warn.empty())
+          {
+            retstr += warn;
+          }
       }
 
     return retstr;
@@ -75,10 +79,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   wavelength_to_energy(const NumT wavelength,
-		       const NumT wavelength_err2,
-		       NumT & energy,
-		       NumT & energy_err2,
-		       void *temp=NULL)
+                       const NumT wavelength_err2,
+                       NumT & energy,
+                       NumT & energy_err2,
+                       void *temp=NULL)
   {
     std::string retstr("");
     std::string warn;
@@ -88,13 +92,17 @@ namespace AxisManip
     warn = __wavelength_to_energy_static(a2);
 
     if (!warn.empty())
-      retstr += warn;
+      {
+        retstr += warn;
+      }
 
     warn = __wavelength_to_energy_dynamic(wavelength,wavelength_err2,
-					  energy, energy_err2, a2);
+                                          energy, energy_err2, a2);
 
     if (!warn.empty())
-      retstr += warn;
+      {
+        retstr += warn;
+      }
 
     return retstr;
   }
@@ -102,34 +110,34 @@ namespace AxisManip
   /**
    * \ingroup wavelength_to_energy
    *
-   * This is a PRIVATE helper function for wavelength_to_energy that 
+   * This is a PRIVATE helper function for wavelength_to_energy that
    * calculates the parameters invariant across the array calculation.
    */
   template <typename NumT>
   std::string
   __wavelength_to_energy_static(NumT & a2)
   {
-    a2 = static_cast<NumT>(4. * PhysConst::H2_OVER_2MNEUT * 
-			   PhysConst::H2_OVER_2MNEUT);
+    a2 = static_cast<NumT>(4. * PhysConst::H2_OVER_2MNEUT *
+                           PhysConst::H2_OVER_2MNEUT);
     return std::string("");
   }
 
   /**
    * \ingroup wavelength_to_energy
    *
-   * This is a PRIVATE helper function for wavelength_to_energy that 
+   * This is a PRIVATE helper function for wavelength_to_energy that
    * calculates the energy and its uncertainty.
    */
   template <typename NumT>
   std::string
   __wavelength_to_energy_dynamic(const NumT wavelength,
-				 const NumT wavelength_err2,
-				 NumT energy,
-				 NumT energy_err2,
-				 const NumT a2)
+                                 const NumT wavelength_err2,
+                                 NumT energy,
+                                 NumT energy_err2,
+                                 const NumT a2)
   {
     NumT wavelength2 = wavelength * wavelength;
-    
+
     energy = static_cast<NumT>(PhysConst::H2_OVER_2MNEUT / wavelength2);
     energy_err2 = (a2 * wavelength_err2)
       / (wavelength2 * wavelength2 * wavelength2);
