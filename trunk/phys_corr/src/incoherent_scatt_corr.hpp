@@ -15,11 +15,11 @@ namespace PhysCorr
   template <typename NumT>
   std::string
   incoherent_scatt_corr(const Nessi::Vector<NumT> & axis_in,
-			const Nessi::Vector<NumT> & input,
-			const Nessi::Vector<NumT> & input_err2,
-			Nessi::Vector<NumT> & output,
-			Nessi::Vector<NumT> & output_err2,
-			void *temp=NULL)
+                        const Nessi::Vector<NumT> & input,
+                        const Nessi::Vector<NumT> & input_err2,
+                        Nessi::Vector<NumT> & output,
+                        Nessi::Vector<NumT> & output_err2,
+                        void *temp=NULL)
   {
     throw std::runtime_error("Function [incoherent_scatt_corr] not implemented");
   }
