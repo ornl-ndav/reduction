@@ -21,6 +21,9 @@
  */
 namespace Utils
 {
+  /// Empty string for no warning to return
+  static const std::string EMPTY_WARN("");
+
   /**
    * \defgroup peak_integration Utils::peak_integration
    * \{

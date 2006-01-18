@@ -25,6 +25,9 @@
  */
 namespace AxisManip
 {
+  /// Empty string for no warning to return
+  static const std::string EMPTY_WARN("");
+
   /**
    * \defgroup tof_to_wavelength AxisManip::tof_to_wavelength
    * \{

@@ -6,6 +6,8 @@
 #ifndef _CONSTANTS_HPP
 #define _CONSTANTS_HPP 1
 
+#include <string>
+
 /**
  * \namespace PhysConst
  *
@@ -14,6 +16,9 @@
  */
 namespace PhysConst
 {
+  /// Empty string for no warning to return
+  static const std::string EMPTY_WARN("");
+
   /**
    * The value of \f$\pi\f$ to 29 decimal digits.
    */
