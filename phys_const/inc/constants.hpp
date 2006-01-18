@@ -24,7 +24,7 @@ namespace PhysConst
    * \f$m_n\f$ is the mass of the neutron. The units of this constant
    * is \f$meters \times Angstroms / microseconds\f$
    */
-  static const double H_OVER_MNEUT = 0.003961617; 
+  static const double H_OVER_MNEUT = 0.003961617;
 
   /**
    * The value of \f$h^2/(2 m_n)\f$ where \f$h\f$ is Plank's constant
