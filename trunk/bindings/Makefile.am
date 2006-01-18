@@ -1,7 +1,7 @@
 # $Id$
 
 clean:
-	rm -f *.py *.o *.lo *_wrap.cpp
+	rm -f *bind.py *.o *.lo *_wrap.cpp
 	rm -rf .libs _libs
 	test -z "libPyArrayManip.la" || rm -f libPyArrayManip.la
 	test -z "libPyAxisManip.la" || rm -f libPyAxisManip.la
