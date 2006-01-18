@@ -20,17 +20,17 @@ namespace Utils
               const float & value2)
   {
     if(!(fabs(value1 - value2) > std::numeric_limits<float>::epsilon()))
-      return 0;
+      {
+	return 0;
+      }
+    
+    if(value1 > value2)
+      {
+	return 1;
+      }
     else
       {
-        if(value1 > value2)
-          {
-            return 1;
-          }
-        else
-          {
-          return -1;
-          }
+	return -1;
       }
   }
 
@@ -42,25 +42,23 @@ namespace Utils
    * \ingroup compare
    */
   int compare(const double & value1,
-        const double & value2)
+              const double & value2)
   {
     if(!(fabs(value1 - value2) > std::numeric_limits<double>::epsilon()))
       {
         return 0;
       }
+
+    if(value1 > value2)
+      {
+	return 1;
+      }
     else
       {
-        if(value1 > value2)
-          {
-            return 1;
-          }
-        else
-          {
-            return -1;
-          }
+	return -1;
       }
   }
-
+  
   // explicit instantiations
 
   /**
