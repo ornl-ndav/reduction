@@ -2,7 +2,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.0.0alpha], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_lib])
+AC_INIT([SNS Common Libraries], [1.0.0alpha], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([Copyright (C) 2005 SNS Analysis Software Group 
 This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
@@ -94,7 +94,7 @@ fi
 
 AC_MSG_RESULT([
 
-Configuration (SNS Data Reduction Library):
+Configuration (SNS Common Libraries):
 
         Source code location:  ${srcdir}
         Version:               ${VERSION}
