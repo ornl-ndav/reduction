@@ -47,11 +47,13 @@ namespace ArrayManip
 
     std::string errstr("");
 
+    NumT scalar2 = scalar * scalar;
+
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
       {
 	array_out[i] = array_in[i] * scalar;
-        array_out_err2[i] = ((scalar * scalar) * array_in_err2[i]) + 
+        array_out_err2[i] = (scalar2 * array_in_err2[i]) + 
 	  ((array_in[i] * array_in[i]) * scalar_err2);
       }
     return errstr;
