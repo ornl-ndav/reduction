@@ -4,9 +4,6 @@
  * \file axis_manip/src/tof_to_initial_wavelength_igs.cpp
  */
 #include "tof_to_initial_wavelength_igs.hpp"
-#include "conversions.hpp"
-#include <string>
-#include <vector>
 
 namespace AxisManip
 {
