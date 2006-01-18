@@ -15,12 +15,12 @@ namespace AxisManip
   template <typename NumT>
   std::string
   wavelength_to_scalar_Q(const Nessi::Vector<NumT> & wavelength,
-			 const Nessi::Vector<NumT> & wavelength_err2,
-			 const NumT scatt_angle,
-			 const NumT scatt_angle_err2,
-			 Nessi::Vector<NumT> & Q,
-			 Nessi::Vector<NumT> & Q_err2,
-			 void *temp=NULL)
+                         const Nessi::Vector<NumT> & wavelength_err2,
+                         const NumT scatt_angle,
+                         const NumT scatt_angle_err2,
+                         Nessi::Vector<NumT> & Q,
+                         Nessi::Vector<NumT> & Q_err2,
+                         void *temp=NULL)
   {
     throw std::runtime_error("Function [wavelength_to_scalar_Q] not implemented");
   }
@@ -29,12 +29,12 @@ namespace AxisManip
   template <typename NumT>
   std::string
   wavelength_to_scalar_Q(const NumT wavelength,
-			 const NumT wavelength_err2,
-			 const NumT scatt_angle,
-			 const NumT scatt_angle_err2,
-			 NumT & Q,
-			 NumT & Q_err2,
-			 void *temp=NULL)
+                         const NumT wavelength_err2,
+                         const NumT scatt_angle,
+                         const NumT scatt_angle_err2,
+                         NumT & Q,
+                         NumT & Q_err2,
+                         void *temp=NULL)
   {
     throw std::runtime_error("Function [wavelength_to_scalar_Q] not implemented");
   }

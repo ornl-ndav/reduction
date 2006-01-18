@@ -7,30 +7,30 @@
 
 using namespace std;
 
-int main() 
+int main()
 {
   // SNS-FIXME
 
   int num_val = 20;
 
   //float
-  Nessi::Vector<float> f_wavelength;                
+  Nessi::Vector<float> f_wavelength;
   float f_wavelength2;
-  Nessi::Vector<float> f_wavelength_err2;           
-  Nessi::Vector<float> f_wavevector(num_val);          
-  Nessi::Vector<float> f_wavevector_err2(num_val);     
-  Nessi::Vector<float> f_true_wavevector(num_val);          
-  Nessi::Vector<float> f_true_wavevector_err2(num_val);     
+  Nessi::Vector<float> f_wavelength_err2;
+  Nessi::Vector<float> f_wavevector(num_val);
+  Nessi::Vector<float> f_wavevector_err2(num_val);
+  Nessi::Vector<float> f_true_wavevector(num_val);
+  Nessi::Vector<float> f_true_wavevector_err2(num_val);
   float f_a, f_a2;
 
   //double
-  Nessi::Vector<double> d_wavelength;                
+  Nessi::Vector<double> d_wavelength;
   double d_wavelength2;
-  Nessi::Vector<double> d_wavelength_err2;           
-  Nessi::Vector<double> d_wavevector(num_val);          
-  Nessi::Vector<double> d_wavevector_err2(num_val);     
-  Nessi::Vector<double> d_true_wavevector(num_val);          
-  Nessi::Vector<double> d_true_wavevector_err2(num_val);     
+  Nessi::Vector<double> d_wavelength_err2;
+  Nessi::Vector<double> d_wavevector(num_val);
+  Nessi::Vector<double> d_wavevector_err2(num_val);
+  Nessi::Vector<double> d_true_wavevector(num_val);
+  Nessi::Vector<double> d_true_wavevector_err2(num_val);
   double d_a, d_a2;
 
   int error=0;                      //==0,Pass  !=0,Fail
@@ -45,34 +45,34 @@ int main()
     {
       //_input1 array
       f_wavelength.push_back(2.*static_cast<float>(i));
-      d_wavelength.push_back(2.*static_cast<double>(i)); 
+      d_wavelength.push_back(2.*static_cast<double>(i));
 
       f_wavelength_err2.push_back(static_cast<float>(i));
-      d_wavelength_err2.push_back(static_cast<double>(i));      
+      d_wavelength_err2.push_back(static_cast<double>(i));
     }
-  
-  AxisManip::wavelength_to_scalar_k(f_wavelength, f_wavelength_err2,  
+
+  AxisManip::wavelength_to_scalar_k(f_wavelength, f_wavelength_err2,
                                     f_wavevector, f_wavevector_err2);
-  AxisManip::wavelength_to_scalar_k(d_wavelength, d_wavelength_err2, 
+  AxisManip::wavelength_to_scalar_k(d_wavelength, d_wavelength_err2,
                                     d_wavevector, d_wavevector_err2);
-  
+
   for (int i = 0 ; i < num_val ; i++)
     {
       //float
       f_true_wavevector[i] = f_a / f_wavelength[i];
-      f_wavelength2 = (f_wavelength[i] * f_wavelength[i] 
-		      * f_wavelength[i] * f_wavelength[i]);
+      f_wavelength2 = (f_wavelength[i] * f_wavelength[i]
+                       * f_wavelength[i] * f_wavelength[i]);
       f_true_wavevector_err2[i] = (f_a2 * f_wavelength_err2[i]) /
-	f_wavelength2;
-      
+        f_wavelength2;
+
       //double
       d_true_wavevector[i] = d_a / d_wavelength[i];
-      d_wavelength2 = 	(d_wavelength[i] * d_wavelength[i] 
-			 * d_wavelength[i] * d_wavelength[i]);
+      d_wavelength2 =   (d_wavelength[i] * d_wavelength[i]
+                         * d_wavelength[i] * d_wavelength[i]);
       d_true_wavevector_err2[i] = (d_a2 * d_wavelength_err2[i]) /
-	d_wavelength2;
+        d_wavelength2;
     }
-  
+
   //check first if the size are in good agreement
   if ( (f_wavelength.size() != f_wavevector.size())
        || (d_wavelength.size() != d_wavevector.size()) )
@@ -83,22 +83,22 @@ int main()
   else
     {
       while(1)
-	{
-	  Utils::vector_comparison(f_wavevector, f_true_wavevector, error, 10);
-	  if (error != 0) break;
-	  Utils::vector_comparison(f_wavevector_err2, f_true_wavevector_err2,
-                               error, 20);
-	  if (error != 0) break;
-	  
-	  Utils::vector_comparison(d_wavevector, d_true_wavevector, error, 110);
-	  if (error != 0) break;
-	  Utils::vector_comparison(d_wavevector_err2, d_true_wavevector_err2,
-                               error, 120);
-	  if (error != 0) break;
+        {
+          Utils::vector_comparison(f_wavevector, f_true_wavevector, error, 10);
+          if (error != 0) break;
+          Utils::vector_comparison(f_wavevector_err2, f_true_wavevector_err2,
+                                   error, 20);
+          if (error != 0) break;
 
-	  break;
-	  
-	}
+          Utils::vector_comparison(d_wavevector, d_true_wavevector, error, 110);
+          if (error != 0) break;
+          Utils::vector_comparison(d_wavevector_err2, d_true_wavevector_err2,
+                                   error, 120);
+          if (error != 0) break;
+
+          break;
+
+        }
     }
 
   cout << "wavelength_to_scalar_k_test.cpp..........";

@@ -13,14 +13,14 @@ namespace AxisManip
 {
   // 3.11
   template <typename NumT>
-  std::string 
+  std::string
   reverse_array_nc(Nessi::Vector<NumT> & inout,
-		   void *temp=NULL)
+                   void *temp=NULL)
   {
     std::string retstr("");
 
     reverse(inout.begin(), inout.end());
-    
+
     return retstr;
   }
 } // AxisManip

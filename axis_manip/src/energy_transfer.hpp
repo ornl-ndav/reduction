@@ -30,23 +30,23 @@ namespace AxisManip
     // check that the values are of proper size
     try
       {
-        Utils::check_sizes_square(initial_energy, final_energy, 
-				  energy_transfer);
+        Utils::check_sizes_square(initial_energy, final_energy,
+  			  energy_transfer);
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(et_func_str+" (v,v): data "+e.what());
+        throw std::invalid_argument(et_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
     try
       {
-        Utils::check_sizes_square(initial_energy_err2, final_energy_err2, 
-				  energy_transfer_err2);
+        Utils::check_sizes_square(initial_energy_err2, final_energy_err2,
+                                  energy_transfer_err2);
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(et_func_str+" (v,v): err2 "+e.what());
+        throw std::invalid_argument(et_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -58,8 +58,9 @@ namespace AxisManip
 
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
-    if(!(warn.empty()))
+    if(!(warn.empty())){
       retstr+=warn;
+    }
 
     // do the calculation
     size_t size_energy = initial_energy.size();
@@ -72,22 +73,23 @@ namespace AxisManip
                                        h, h2,
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
-        if(!(warn.empty()))
+        if(!(warn.empty())){
           retstr+=warn;
+        }
       }
 
     return retstr;
   }
 
   template <typename NumT>
-    std::string
-    energy_transfer(const Nessi::Vector<NumT> & initial_energy,
-		    const Nessi::Vector<NumT> & initial_energy_err2,
-		    const NumT final_energy,
-		    const NumT final_energy_err2,
-		    Nessi::Vector<NumT> & energy_transfer,
-		    Nessi::Vector<NumT> & energy_transfer_err2,
-		    void *temp=NULL)
+  std::string
+  energy_transfer(const Nessi::Vector<NumT> & initial_energy,
+                  const Nessi::Vector<NumT> & initial_energy_err2,
+                  const NumT final_energy,
+                  const NumT final_energy_err2,
+                  Nessi::Vector<NumT> & energy_transfer,
+                  Nessi::Vector<NumT> & energy_transfer_err2,
+                  void *temp=NULL)
   {
     // check that the values are of proper size
     try
@@ -96,7 +98,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(et_func_str+" (v,s): data "+e.what());
+        throw std::invalid_argument(et_func_str+" (v,s): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -106,7 +108,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
+        throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -118,8 +120,9 @@ namespace AxisManip
 
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
-    if(!(warn.empty()))
+    if(!(warn.empty())){
       retstr+=warn;
+    }
 
     // do the calculation
     size_t size_energy = initial_energy.size();
@@ -132,22 +135,23 @@ namespace AxisManip
                                        h, h2,
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
-        if(!(warn.empty()))
+        if(!(warn.empty())){
           retstr+=warn;
+        }
       }
 
     return retstr;
   }
 
   template <typename NumT>
-    std::string
-    energy_transfer(const NumT initial_energy,
-		    const NumT initial_energy_err2,
-		    const Nessi::Vector<NumT> & final_energy,
-		    const Nessi::Vector<NumT> & final_energy_err2,
-		    Nessi::Vector<NumT> & energy_transfer,
-		    Nessi::Vector<NumT> & energy_transfer_err2,
-		    void *temp=NULL)
+  std::string
+  energy_transfer(const NumT initial_energy,
+                  const NumT initial_energy_err2,
+                  const Nessi::Vector<NumT> & final_energy,
+                  const Nessi::Vector<NumT> & final_energy_err2,
+                  Nessi::Vector<NumT> & energy_transfer,
+                  Nessi::Vector<NumT> & energy_transfer_err2,
+                  void *temp=NULL)
   {
     // check that the values are of proper size
     try
@@ -156,7 +160,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(et_func_str+" (s,v): data "+e.what());
+        throw std::invalid_argument(et_func_str+" (s,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -166,7 +170,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(et_func_str+" (s,v): err2 "+e.what());
+        throw std::invalid_argument(et_func_str+" (s,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -179,7 +183,9 @@ namespace AxisManip
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     // do the calculation
     size_t size_energy = final_energy.size();
@@ -193,21 +199,23 @@ namespace AxisManip
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
         if(!(warn.empty()))
-          retstr+=warn;
+          {
+            retstr+=warn;
+          }
       }
 
     return retstr;
   }
 
   template <typename NumT>
-    std::string
-    energy_transfer(const NumT initial_energy,
-		    const NumT initial_energy_err2,
-		    const NumT final_energy,
-		    const NumT final_energy_err2,
-		    NumT & energy_transfer,
-		    NumT & energy_transfer_err2,
-		    void *temp=NULL)
+  std::string
+  energy_transfer(const NumT initial_energy,
+                  const NumT initial_energy_err2,
+                  const NumT final_energy,
+                  const NumT final_energy_err2,
+                  NumT & energy_transfer,
+                  NumT & energy_transfer_err2,
+                  void *temp=NULL)
   {
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
@@ -219,7 +227,9 @@ namespace AxisManip
     // fill the local variables
     warn=__energy_transfer_static(h,h2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     // do the calculation
     warn=__energy_transfer_dynamic(initial_energy, initial_energy_err2,
@@ -227,7 +237,9 @@ namespace AxisManip
                                    h, h2,
                                    energy_transfer, energy_transfer_err2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     return retstr;
   }
@@ -239,9 +251,9 @@ namespace AxisManip
    * calculates parameters invariant across array calculation.
    */
   template <typename NumT>
-    std::string
-    __energy_transfer_static(NumT & h,
-                             NumT & h2)
+  std::string
+  __energy_transfer_static(NumT & h,
+                           NumT & h2)
   {
     h=static_cast<NumT>(PhysConst::H);
     h2=h*h;
@@ -256,15 +268,15 @@ namespace AxisManip
    * calculates the energy_transfer and its uncertainty
    */
   template <typename NumT>
-    std::string
-    __energy_transfer_dynamic(const NumT initial_energy,
-                              const NumT initial_energy_err2,
-                              const NumT final_energy,
-                              const NumT final_energy_err2,
-                              const NumT h,
-                              const NumT h2,
-                              NumT & energy_transfer,
-                              NumT & energy_transfer_err2)
+  std::string
+  __energy_transfer_dynamic(const NumT initial_energy,
+                            const NumT initial_energy_err2,
+                            const NumT final_energy,
+                            const NumT final_energy_err2,
+                            const NumT h,
+                            const NumT h2,
+                            NumT & energy_transfer,
+                            NumT & energy_transfer_err2)
   {
     // the result
     energy_transfer = (initial_energy - final_energy) / h;

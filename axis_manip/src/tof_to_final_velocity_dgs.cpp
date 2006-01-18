@@ -16,18 +16,18 @@ namespace AxisManip
    */
   template std::string
   tof_to_final_velocity_dgs<float>(const Nessi::Vector<float> & tof,
-				   const Nessi::Vector<float> & tof_err2,
-				   const float initial_velocity,
-				   const float initial_velocity_err2,
-				   const float time_offset,
-				   const float time_offset_err2,
-				   const float dist_source_sample,
-				   const float dist_source_sample_err2,
-				   const float dist_sample_detector,
-				   const float dist_sample_detector_err2,
-				   Nessi::Vector<float> & final_velocity,
-				   Nessi::Vector<float> & final_velocity_err2,
-				   void *temp=NULL);
+                                   const Nessi::Vector<float> & tof_err2,
+                                   const float initial_velocity,
+                                   const float initial_velocity_err2,
+                                   const float time_offset,
+                                   const float time_offset_err2,
+                                   const float dist_source_sample,
+                                   const float dist_source_sample_err2,
+                                   const float dist_sample_detector,
+                                   const float dist_sample_detector_err2,
+                                   Nessi::Vector<float> & final_velocity,
+                                   Nessi::Vector<float> & final_velocity_err2,
+                                   void *temp=NULL);
   /**
    * This is the float declaration of the function defined in 3.27.
    *
@@ -35,19 +35,19 @@ namespace AxisManip
    */
   template std::string
   tof_to_final_velocity_dgs<float>(const float tof,
-				   const float tof_err2,
-				   const float initial_velocity,
-				   const float initial_velocity_err2,
-				   const float time_offset,
-				   const float time_offset_err2,
-				   const float dist_source_sample,
-				   const float dist_source_sample_err2,
-				   const float dist_sample_detector,
-				   const float dist_sample_detector_err2,
-				   float & final_velocity,
-				   float & final_velocity_err2,
-				   void *temp=NULL);
-  
+                                   const float tof_err2,
+                                   const float initial_velocity,
+                                   const float initial_velocity_err2,
+                                   const float time_offset,
+                                   const float time_offset_err2,
+                                   const float dist_source_sample,
+                                   const float dist_source_sample_err2,
+                                   const float dist_sample_detector,
+                                   const float dist_sample_detector_err2,
+                                   float & final_velocity,
+                                   float & final_velocity_err2,
+                                   void *temp=NULL);
+
   /**
    * This is the double precision float declaration of the function
    * defined in 3.27.
@@ -67,7 +67,7 @@ namespace AxisManip
                                    const double dist_sample_detector,
                                    const double dist_sample_detector_err2,
                                    Nessi::Vector<double> & final_velocity,
-				   Nessi::Vector<double> & final_velocity_err2,
+                                   Nessi::Vector<double> & final_velocity_err2,
                                    void *temp=NULL);
 
   /**

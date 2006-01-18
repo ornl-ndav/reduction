@@ -13,7 +13,7 @@ namespace AxisManip
 {
   // 3.11
   template <typename NumT>
-  std::string 
+  std::string
   reverse_array_cp(const Nessi::Vector<NumT> & input,
                    Nessi::Vector<NumT> & output,
                    void *temp=NULL)
@@ -21,7 +21,7 @@ namespace AxisManip
     std::string retstr("");
 
     std::reverse_copy(input.begin(), input.end(), output.begin());
-    
+
     return retstr;
   }
 } // AxisManip

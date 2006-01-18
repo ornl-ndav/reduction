@@ -14,15 +14,15 @@
 namespace AxisManip
 {
   /// String for holding the init_scatt_wavevector_to_scalar_Q function name
-  const std::string 
+  const std::string
   iswtsq_func_str = "AxisManip::init_scatt_wavevector_to_scalar_Q";
-  
+
   // 3.33
   template <typename NumT>
   std::string
   init_scatt_wavevector_to_scalar_Q(
                            const Nessi::Vector<NumT> & initial_wavevector,
-			   const Nessi::Vector<NumT> & initial_wavevector_err2,
+                           const Nessi::Vector<NumT> & initial_wavevector_err2,
                            const Nessi::Vector<NumT> & final_wavevector,
                            const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT polar_angle,
@@ -38,18 +38,18 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(iswtsq_func_str+" (v,v): data "+e.what());
+        throw std::invalid_argument(iswtsq_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
     try
       {
         Utils::check_sizes_square(initial_wavevector_err2,
-				  final_wavevector_err2, Q_err2);
+  			  final_wavevector_err2, Q_err2);
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(iswtsq_func_str+" (v,v): err2 "+e.what());
+        throw std::invalid_argument(iswtsq_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -59,7 +59,7 @@ namespace AxisManip
     NumT a;
     NumT b;
     NumT sang;
-    
+
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
                                                     sang);
@@ -89,7 +89,7 @@ namespace AxisManip
   std::string
   init_scatt_wavevector_to_scalar_Q(
                            const NumT initial_wavevector,
-			   const NumT initial_wavevector_err2,
+                           const NumT initial_wavevector_err2,
                            const Nessi::Vector<NumT> & final_wavevector,
                            const Nessi::Vector<NumT> & final_wavevector_err2,
                            const NumT polar_angle,
@@ -105,7 +105,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(iswtsq_func_str+" (s,v): data "+e.what());
+        throw std::invalid_argument(iswtsq_func_str+" (s,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -115,7 +115,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(iswtsq_func_str+" (s,v): err2 "+e.what());
+        throw std::invalid_argument(iswtsq_func_str+" (s,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -125,7 +125,7 @@ namespace AxisManip
     NumT a;
     NumT b;
     NumT sang;
-    
+
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
                                                     sang);
@@ -155,7 +155,7 @@ namespace AxisManip
   std::string
   init_scatt_wavevector_to_scalar_Q(
                            const Nessi::Vector<NumT> & initial_wavevector,
-			   const Nessi::Vector<NumT> & initial_wavevector_err2,
+  		   const Nessi::Vector<NumT> & initial_wavevector_err2,
                            const NumT final_wavevector,
                            const NumT final_wavevector_err2,
                            const NumT polar_angle,
@@ -171,7 +171,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(iswtsq_func_str+" (v,s): data "+e.what());
+        throw std::invalid_argument(iswtsq_func_str+" (v,s): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -181,7 +181,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(iswtsq_func_str+" (v,s): err2 "+e.what());
+        throw std::invalid_argument(iswtsq_func_str+" (v,s): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -191,7 +191,7 @@ namespace AxisManip
     NumT a;
     NumT b;
     NumT c;
-    
+
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
                                                     c);
@@ -221,7 +221,7 @@ namespace AxisManip
   std::string
   init_scatt_wavevector_to_scalar_Q(
                            const NumT initial_wavevector,
-			   const NumT initial_wavevector_err2,
+                           const NumT initial_wavevector_err2,
                            const NumT final_wavevector,
                            const NumT final_wavevector_err2,
                            const NumT polar_angle,
@@ -237,7 +237,7 @@ namespace AxisManip
     NumT a;
     NumT b;
     NumT c;
-    
+
     // fill the local variables
     warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
                                                     c);
@@ -274,7 +274,7 @@ namespace AxisManip
     a = static_cast<NumT>(2. * std::cos(static_cast<double>(polar_angle)));
     b = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
     c = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
-    
+
     return std::string("");
   }
 

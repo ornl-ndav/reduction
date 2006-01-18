@@ -15,10 +15,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   velocity_to_scalar_k(const Nessi::Vector<NumT> & velocity,
-		       const Nessi::Vector<NumT> & velocity_err2,
-		       Nessi::Vector<NumT> & wavevector,
-		       Nessi::Vector<NumT> & wavevector_err2,
-		       void *temp=NULL)
+                       const Nessi::Vector<NumT> & velocity_err2,
+                       Nessi::Vector<NumT> & wavevector,
+                       Nessi::Vector<NumT> & wavevector_err2,
+                       void *temp=NULL)
   {
     throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
   }
@@ -27,10 +27,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   velocity_to_scalar_k(const NumT velocity,
-		       const NumT velocity_err2,
-		       NumT & wavevector,
-		       NumT & wavevector_err2,
-		       void *temp=NULL)
+                       const NumT velocity_err2,
+                       NumT & wavevector,
+                       NumT & wavevector_err2,
+                       void *temp=NULL)
   {
     throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
   }

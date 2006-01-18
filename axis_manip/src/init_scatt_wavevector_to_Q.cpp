@@ -100,7 +100,7 @@ namespace AxisManip
                           float & Qz,
                           float & Qz_err2,
                           void *temp=NULL);
-  
+
   /**
    * This is the double precision float declaration of the function
    * defined in 3.32.

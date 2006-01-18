@@ -20,12 +20,12 @@ namespace AxisManip
   template <typename NumT>
   std::string
   tof_to_wavelength(const Nessi::Vector<NumT> & tof,
-		    const Nessi::Vector<NumT> & tof_err2,
-		    const NumT pathlength,
-		    const NumT pathlength_err2,
-		    Nessi::Vector<NumT> & wavelength,
-		    Nessi::Vector<NumT> & wavelength_err2,
-		    void *temp=NULL)
+                    const Nessi::Vector<NumT> & tof_err2,
+                    const NumT pathlength,
+                    const NumT pathlength_err2,
+                    Nessi::Vector<NumT> & wavelength,
+                    Nessi::Vector<NumT> & wavelength_err2,
+                    void *temp=NULL)
   {
     // check that the values are of proper size
     try
@@ -34,7 +34,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(ttw_func_str+" (v,v): data "+e.what());
+        throw std::invalid_argument(ttw_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -44,7 +44,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument e)
       {
-	throw std::invalid_argument(ttw_func_str+" (v,v): err2 "+e.what());
+        throw std::invalid_argument(ttw_func_str+" (v,v): err2 "+e.what());
       }
 
     std::string retstr(""); // the warning string
@@ -58,7 +58,9 @@ namespace AxisManip
     // fill the local variables
     __tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     // do the calculation
     size_t size_tof = tof.size();
@@ -67,7 +69,9 @@ namespace AxisManip
         warn=__tof_to_wavelength_dynamic(tof[i], tof_err2[i], a, a2, a_err2,
                                          wavelength[i], wavelength_err2[i]);
         if(!(warn.empty()))
-          retstr+=warn;
+          {
+            retstr+=warn;
+          }
       }
 
     return retstr;
@@ -77,12 +81,12 @@ namespace AxisManip
   template <typename NumT>
   std::string
   tof_to_wavelength(const NumT tof,
-		    const NumT tof_err2,
-		    const NumT pathlength,
-		    const NumT pathlength_err2,
-		    NumT & wavelength,
-		    NumT & wavelength_err2,
-		    void *temp=NULL)
+                    const NumT tof_err2,
+                    const NumT pathlength,
+                    const NumT pathlength_err2,
+                    NumT & wavelength,
+                    NumT & wavelength_err2,
+                    void *temp=NULL)
   {
     std::string retstr(""); // the warning string
     std::string warn;       // the temporary warning string
@@ -95,13 +99,17 @@ namespace AxisManip
     // fill the local variables
     __tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     // do the calculation
     warn=__tof_to_wavelength_dynamic(tof, tof_err2, a, a2, a_err2,
                                      wavelength, wavelength_err2);
     if(!(warn.empty()))
-      retstr+=warn;
+      {
+        retstr+=warn;
+      }
 
     return retstr;
   }
@@ -126,7 +134,7 @@ namespace AxisManip
 
     // the result of these two lines is the uncertainty in the
     // multiplicative factor
-	a_err2 = a/pathlength;
+    a_err2 = a/pathlength;
     a_err2 = a_err2*a_err2*pathlength_err2;
 
     return std::string("");
