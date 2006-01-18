@@ -29,15 +29,15 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vv,
                              Nessi::Vector<NumT> & output_vv_err2)
 {
   // initialize the correct outputs for vector vector case
-  output_vv.push_back(static_cast<NumT>(12)); // =(0/1+6/1) * (1+1)
+  output_vv.push_back(static_cast<NumT>(6)); // =(0/1+6/1) * (1+1)/2
   output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(12)); // =(1/1+5/1) * (1+1)
+  output_vv.push_back(static_cast<NumT>(6)); // =(1/1+5/1) * (1+1)/2
   output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(12)); // =(2/1+4/1) * (1+1)
+  output_vv.push_back(static_cast<NumT>(6)); // =(2/1+4/1) * (1+1)/2
   output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(12)); // =(3/1+3/1) * (1+1)
+  output_vv.push_back(static_cast<NumT>(6)); // =(3/1+3/1) * (1+1)/2
   output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(12)); // =(4/1+2/1) * (1+1)
+  output_vv.push_back(static_cast<NumT>(6)); // =(4/1+2/1) * (1+1)/2
   output_vv_err2.push_back(static_cast<NumT>(2));
 }
 
