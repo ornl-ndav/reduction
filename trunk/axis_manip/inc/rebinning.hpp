@@ -61,6 +61,8 @@ namespace AxisManip
 
   /**
    * \brief This function is described in section 3.13.
+   *
+   * THIS FUNCTION IS NOT DEFINED
    */
   template <typename NumT>
   std::string
@@ -85,6 +87,8 @@ namespace AxisManip
 
   /**
    * \brief This function is described in section 3.14.
+   *
+   * THIS FUNCTION IS NOT DEFINED
    */
   template <typename NumT>
   std::string
