@@ -13,7 +13,7 @@
 
 namespace ArrayManip
 {
-  //SNS-FIXEME 
+  //SNS-FIXME 
   //sub_ncerr does not produce the right output (for unsigned int) when 
   //the input is a negative int.
   //ex: sub_ncerr(2,-4) should return 0 but return 4294967295
