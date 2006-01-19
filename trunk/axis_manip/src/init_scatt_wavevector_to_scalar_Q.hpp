@@ -263,6 +263,12 @@ namespace AxisManip
    * This is a PRIVATE helper function for
    * init_scatt_wavevector_to_scalar_Q that calculates parameters
    * invariant across array calculation.
+   *
+   * \param polar_angle (INPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
+   * \param a (OUTPUT) \f$=2\times\cos(polar_angle)\f$
+   * \param b (OUTPUT) \f$=\cos(polar_angle)\f$
+   * \param c (OUTPUT) \f$=\sin(polar_angle)\f$
    */
   template <typename NumT>
   std::string
@@ -284,20 +290,41 @@ namespace AxisManip
    * This is a PRIVATE helper function for
    * init_scatt_wavevector_to_scalar_Q that calculates the scalar
    * momentum transfer and its uncertainty
+   *
+   * \param initial_wavevector (INPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
+   * \param initial_wavevector_err2 (INPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
+   * \param final_wavevector (INPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
+   * \param final_wavevector_err2 (INPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
+   * \param polar_angle_err2 (INPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
+   * \param a (INPUT) same as a parameter of
+   * __init_scatt_wavevector_to_scalar_Q_static()
+   * \param b (INPUT) same as b parameter of
+   * __init_scatt_wavevector_to_scalar_Q_static()
+   * \param c (INPUT) same as c parameter of
+   * __init_scatt_wavevector_to_scalar_Q_static()
+   * \param Q (OUTPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
+   * \param Q_err2 (OUTPUT) same as parameter in
+   * init_scatt_wavevector_to_scalar_Q()
    */
   template <typename NumT>
   std::string
   __init_scatt_wavevector_to_scalar_Q_dynamic(
-                                              const NumT initial_wavevector,
-                                              const NumT initial_wavevector_err2,
-                                              const NumT final_wavevector,
-                                              const NumT final_wavevector_err2,
-                                              const NumT polar_angle_err2,
-                                              const NumT a,
-                                              const NumT b,
-                                              const NumT c,
-                                              NumT & Q,
-                                              NumT & Q_err2)
+                                            const NumT initial_wavevector,
+                                            const NumT initial_wavevector_err2,
+                                            const NumT final_wavevector,
+                                            const NumT final_wavevector_err2,
+                                            const NumT polar_angle_err2,
+                                            const NumT a,
+                                            const NumT b,
+                                            const NumT c,
+                                            NumT & Q,
+                                            NumT & Q_err2)
   {
     NumT ki2 = initial_wavevector * initial_wavevector;
     NumT kf2 = final_wavevector * final_wavevector;
