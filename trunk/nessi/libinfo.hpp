@@ -43,4 +43,13 @@
  *
  * \arg _ncerr This extension denotes that the function calculations
  * the uncertainties assuming non-correlated errors
+ *
+ * \section library_coords Library Coordinate System
+ *
+ * \image html Coordinates.jpg 
+ * \image latex Coordinates.eps "Library Coordinate System" width=10cm
+ *
+ * The figure shown above shows the coordinate system assumed by the SNS 
+ * Common Libraries. This system was chosen to coincide with the coordinate 
+ * system chosen for NeXus.
  */
