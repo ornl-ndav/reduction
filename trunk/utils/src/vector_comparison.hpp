@@ -26,15 +26,13 @@ namespace Utils
       {
         if (compare(value[i], true_value[i]) != 0)
           {
-            __vector_comparison_static(i, value[i], true_value[i],
+            __vector_comparison_dynamic(i, value[i], true_value[i],
                                        error, add_error);
             break;
           }
       }
     return;
   }
-
-  // SNS-FIXME: __vector_comparison_static should be __vector_comparison_dynamic
 
   /**
    * This is a PRIVATE helper function for printing debugging information if
@@ -50,7 +48,7 @@ namespace Utils
    */
   template <typename NumT>
   void
-  __vector_comparison_static(const int index,
+  __vector_comparison_dynamic(const int index,
                              const NumT value,
                              const NumT true_value,
                              int & error,
