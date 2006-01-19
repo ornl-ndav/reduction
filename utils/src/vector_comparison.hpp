@@ -34,9 +34,19 @@ namespace Utils
     return;
   }
 
+  // SNS-FIXME: __vector_comparison_static should be __vector_comparison_dynamic
+
   /**
    * This is a PRIVATE helper function for printing debugging information if
    * the equality check fails.
+   *
+   * \param index (INPUT) what index the values compared come from
+   * \param value (INPUT) the value to compare
+   * \param true_value (INPUT) the actual value
+   * \param error (OUTPUT) changes by add_error if the two values are
+   * not equal
+   * \param add_error (INPUT) the value that the error should change
+   * by if the two values are not equal
    */
   template <typename NumT>
   void
