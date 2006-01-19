@@ -24,7 +24,7 @@ namespace Utils
       {
         if (compare(value[i], true_value[i]) != 0)
           {
-            __vector_is_equals_static(i, value[i], true_value[i]);
+            __vector_is_equals_dynamic(i, value[i], true_value[i]);
             return false;
           }
       }
@@ -45,9 +45,9 @@ namespace Utils
    */
   template <typename NumT>
   void
-  __vector_is_equals_static(const size_t index,
-                            const NumT value,
-                            const NumT true_value)
+  __vector_is_equals_dynamic(const size_t index,
+                             const NumT value,
+                             const NumT true_value)
   {
     std::cout << "At index #" << index << ": ";
     std::cout << "Value expected was ";
