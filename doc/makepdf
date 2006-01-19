@@ -11,5 +11,5 @@
 # Put in error check on argument number
 
 cd latex
-make pdf
+make all
 mv refman.pdf $1
