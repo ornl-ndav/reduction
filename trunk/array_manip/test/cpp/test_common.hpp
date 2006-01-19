@@ -43,10 +43,7 @@ bool test_okay(Nessi::Vector<NumT> & output,
                std::string array_type,
                std::string data_type=EMPTY){
 
-  int error=0; // dummy variable for usin in testing code
-
-  Utils::vector_comparison(output,true_output,error,10);
-  if(error>0)
+  if(!Utils::vector_is_equals(output,true_output))
     {
       std::cout << "(" << type_string(output) << " " << array_type
            << ") FAILED....Output " << data_type
