@@ -249,6 +249,11 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for energy_transfer that
    * calculates parameters invariant across array calculation.
+   *
+   * \param h (OUTPUT) the value of Planck's constant casted to
+   * appropriate type.
+   * \param h2 (OUTPUT) the value of Planck's constant square casted
+   * to appropriate type.
    */
   template <typename NumT>
   std::string
@@ -266,6 +271,16 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for energy_transfer that
    * calculates the energy_transfer and its uncertainty
+   *
+   * \param initial_energy (INPUT) same as parameter in energy_transfer()
+   * \param initial_energy_err2 (INPUT) same as parameter in energy_transfer()
+   * \param final_energy (INPUT) same as parameter in energy_transfer()
+   * \param final_energy_err2 (INPUT) same as parameter in energy_transfer()
+   * \param h (INPUT) the value of Planck's constant
+   * \param h2 (INPUT) the value of Planck's constant squared
+   * \param energy_transfer (OUTPUT) same as parameter in energy_transfer()
+   * \param energy_transfer_err2 (OUTPUT) same as parameter in
+   * energy_transfer()
    */
   template <typename NumT>
   std::string

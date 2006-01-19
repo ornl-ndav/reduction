@@ -141,19 +141,34 @@ namespace AxisManip
    * This is a PRIVATE helper function for
    * tof_to_initial_wavelength_igs that calculates parameters
    * invariant across the array calculation.
+   *
+   * \param const NumT final_wavelength (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param time_offset (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param dist_source_sample (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param dist_sample_detector (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param a (OUTPUT) \f$=h/(m_n \times dist\_source\_sample)\f$
+   * \param a2 (OUTPUT) \f$=a*a\f$
+   * \param b (OUTPUT) \f$=\frac{dist\_sample\_detector\times final\_wavelength}{dist\_source\_sample}+a\times time\_offset\f$
+   * \param c2 (OUTPUT) \f$=(final\_wavelength/dist\_source\_sample)^2\f$
+   * \param d2 (OUTPUT) \f$=(dist\_sample\_detector/dist\_source\_sample)^2\f$
+   * \param ls2 (OUTPUT) \f$=dist\_source\_sample^2\f$
    */
   template <typename NumT>
   std::string __tof_to_initial_wavelength_igs_static(
-                                                     const NumT final_wavelength,
-                                                     const NumT time_offset,
-                                                     const NumT dist_source_sample,
-                                                     const NumT dist_sample_detector,
-                                                     NumT & a,
-                                                     NumT & a2,
-                                                     NumT & b,
-                                                     NumT & c2,
-                                                     NumT & d2,
-                                                     NumT & ls2)
+                                               const NumT final_wavelength,
+                                               const NumT time_offset,
+                                               const NumT dist_source_sample,
+                                               const NumT dist_sample_detector,
+                                               NumT & a,
+                                               NumT & a2,
+                                               NumT & b,
+                                               NumT & c2,
+                                               NumT & d2,
+                                               NumT & ls2)
   {
     a = static_cast<NumT>(PhysConst::H_OVER_MNEUT) / dist_source_sample;
     a2 = a * a;
@@ -177,23 +192,52 @@ namespace AxisManip
    * This is a PRIVATE helper function for
    * tof_to_initial_wavelength_igs that calculates the
    * initial_wavelength and its uncertainty.
+   *
+   * \param tof (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param tof_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param final_wavelength_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param time_offset_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param dist_source_sample_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param dist_sample_detector_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param initial_wavelength (OUTPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param initial_wavelength_err2 (OUTPUT) same as parameter in
+   * tof_to_initial_wavelength_igs()
+   * \param a (INPUT) same as parameter in
+   * __tof_to_initial_wavelength_igs_static()
+   * \param a2 (INPUT) same as parameter in
+   * __tof_to_initial_wavelength_igs_static()
+   * \param b (INPUT) same as parameter in
+   * __tof_to_initial_wavelength_igs_static()
+   * \param c2 (INPUT) same as parameter in
+   * __tof_to_initial_wavelength_igs_static()
+   * \param d2 (INPUT) same as parameter in
+   * __tof_to_initial_wavelength_igs_static()
+   * \param ls2 (INPUT) same as parameter in
+   * __tof_to_initial_wavelength_igs_static()
    */
   template <typename NumT>
   std::string __tof_to_initial_wavelength_igs_dynamic(
-                                                      const NumT tof,
-                                                      const NumT tof_err2,
-                                                      const NumT final_wavelength_err2,
-                                                      const NumT time_offset_err2,
-                                                      const NumT dist_source_sample_err2,
-                                                      const NumT dist_sample_detector_err2,
-                                                      NumT & initial_wavelength,
-                                                      NumT & initial_wavelength_err2,
-                                                      const NumT a,
-                                                      const NumT a2,
-                                                      const NumT b,
-                                                      const NumT c2,
-                                                      const NumT d2,
-                                                      const NumT ls2)
+                                          const NumT tof,
+                                          const NumT tof_err2,
+                                          const NumT final_wavelength_err2,
+                                          const NumT time_offset_err2,
+                                          const NumT dist_source_sample_err2,
+                                          const NumT dist_sample_detector_err2,
+                                          NumT & initial_wavelength,
+                                          NumT & initial_wavelength_err2,
+                                          const NumT a,
+                                          const NumT a2,
+                                          const NumT b,
+                                          const NumT c2,
+                                          const NumT d2,
+                                          const NumT ls2)
   {
     // the result
     initial_wavelength = a * tof - b;
