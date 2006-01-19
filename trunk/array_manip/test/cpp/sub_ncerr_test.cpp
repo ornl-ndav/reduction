@@ -18,8 +18,8 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
     {
       input1.push_back(static_cast<NumT>(NUM_VAL+1-i)); // 6,5,4,3,2
       input2.push_back(static_cast<NumT>(i));           // 0,1,2,3,4
-      input1_err2.push_back(static_cast<NumT>(1));
-      input2_err2.push_back(static_cast<NumT>(1));
+      input1_err2.push_back(static_cast<NumT>(1.));
+      input2_err2.push_back(static_cast<NumT>(1.));
     }
 }
 
@@ -32,40 +32,40 @@ void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
                              Nessi::Vector<NumT> & output_vv_err2)
 {
   // initialize the correct outputs for vector vector case
-  output_vv.push_back(static_cast<NumT>(6)); // =6-0
-  output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(4)); // =5-1
-  output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(2)); // =4-2
-  output_vv_err2.push_back(static_cast<NumT>(2));
-  output_vv.push_back(static_cast<NumT>(0)); // =3-3
-  output_vv_err2.push_back(static_cast<NumT>(2));
+  output_vv.push_back(static_cast<NumT>(6.)); // =6-0
+  output_vv_err2.push_back(static_cast<NumT>(2.));
+  output_vv.push_back(static_cast<NumT>(4.)); // =5-1
+  output_vv_err2.push_back(static_cast<NumT>(2.));
+  output_vv.push_back(static_cast<NumT>(2.)); // =4-2
+  output_vv_err2.push_back(static_cast<NumT>(2.));
+  output_vv.push_back(static_cast<NumT>(0.)); // =3-3
+  output_vv_err2.push_back(static_cast<NumT>(2.));
   output_vv.push_back(static_cast<NumT>(-2)); // =2-4
-  output_vv_err2.push_back(static_cast<NumT>(2));
+  output_vv_err2.push_back(static_cast<NumT>(2.));
 
   // initialize the correct outputs for vector scalar case
-  output_vs.push_back(static_cast<NumT>(2)); // =6-4
-  output_vs_err2.push_back(static_cast<NumT>(2));
-  output_vs.push_back(static_cast<NumT>(1));  // =5-4
-  output_vs_err2.push_back(static_cast<NumT>(2));
-  output_vs.push_back(static_cast<NumT>(0));  // =4-4
-  output_vs_err2.push_back(static_cast<NumT>(2));
+  output_vs.push_back(static_cast<NumT>(2.)); // =6-4
+  output_vs_err2.push_back(static_cast<NumT>(2.));
+  output_vs.push_back(static_cast<NumT>(1.));  // =5-4
+  output_vs_err2.push_back(static_cast<NumT>(2.));
+  output_vs.push_back(static_cast<NumT>(0.));  // =4-4
+  output_vs_err2.push_back(static_cast<NumT>(2.));
   output_vs.push_back(static_cast<NumT>(-1));  // =3-4
-  output_vs_err2.push_back(static_cast<NumT>(2));
+  output_vs_err2.push_back(static_cast<NumT>(2.));
   output_vs.push_back(static_cast<NumT>(-2));  // =2-4
-  output_vs_err2.push_back(static_cast<NumT>(2));
+  output_vs_err2.push_back(static_cast<NumT>(2.));
 
   // initialize the correct outputs for scalar vector case
   output_sv.push_back(static_cast<NumT>(-2)); // =4-6
-  output_sv_err2.push_back(static_cast<NumT>(2));
+  output_sv_err2.push_back(static_cast<NumT>(2.));
   output_sv.push_back(static_cast<NumT>(-1));  // =4-5
-  output_sv_err2.push_back(static_cast<NumT>(2));
-  output_sv.push_back(static_cast<NumT>(0));  // =4-4
-  output_sv_err2.push_back(static_cast<NumT>(2));
-  output_sv.push_back(static_cast<NumT>(1));  // =4-3
-  output_sv_err2.push_back(static_cast<NumT>(2));
-  output_sv.push_back(static_cast<NumT>(2));  // =4-2
-  output_sv_err2.push_back(static_cast<NumT>(2));
+  output_sv_err2.push_back(static_cast<NumT>(2.));
+  output_sv.push_back(static_cast<NumT>(0.));  // =4-4
+  output_sv_err2.push_back(static_cast<NumT>(2.));
+  output_sv.push_back(static_cast<NumT>(1.));  // =4-3
+  output_sv_err2.push_back(static_cast<NumT>(2.));
+  output_sv.push_back(static_cast<NumT>(2.));  // =4-2
+  output_sv_err2.push_back(static_cast<NumT>(2.));
 }
 
 // returns true if nothing is wrong
@@ -153,16 +153,16 @@ int main()
 {
   cout << "sub_ncerr_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1.)))
+  if(!test_func(static_cast<float>(1)))
     return -1;
 
-  if(!test_func(static_cast<double>(1.)))
+  if(!test_func(static_cast<double>(1)))
     return -1;
 
-  if(!test_func(static_cast<int>(1.)))
+  if(!test_func(static_cast<int>(1)))
     return -1;
 
-  if(!test_func(static_cast<unsigned int>(1.)))
+  if(!test_func(static_cast<unsigned int>(1)))
     return -1;
 
   cout << "Functionality OK" << endl;
