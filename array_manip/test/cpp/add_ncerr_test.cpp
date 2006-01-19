@@ -81,7 +81,7 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 {
   for( int i=0 ; i<NUM_VAL ; i++ )
     {
-    input1.push_back(static_cast<NumT>(NUM_VAL+1.-i)); // 6,5,4,3,2
+    input1.push_back(static_cast<NumT>(NUM_VAL+1-i)); // 6,5,4,3,2
       input2.push_back(static_cast<NumT>(i));           // 0,1,2,3,4
       input1_err2.push_back(static_cast<NumT>(1.));
       input2_err2.push_back(static_cast<NumT>(1.));
@@ -206,16 +206,16 @@ int main()
 {
   cout << "add_ncerr_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1.)))
+  if(!test_func(static_cast<float>(1)))
     return -1;
 
-  if(!test_func(static_cast<double>(1.)))
+  if(!test_func(static_cast<double>(1)))
     return -1;
 
-  if(!test_func(static_cast<int>(1.)))
+  if(!test_func(static_cast<int>(1)))
     return -1;
 
-  if(!test_func(static_cast<unsigned int>(1.)))
+  if(!test_func(static_cast<unsigned int>(1)))
     return -1;
 
   cout << "Functionality OK" << endl;

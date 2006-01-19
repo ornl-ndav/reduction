@@ -16,7 +16,7 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 {
   for( int i=0 ; i<NUM_VAL ; i++ )
     {
-      input1.push_back(static_cast<NumT>(NUM_VAL+1.-i)); // 6,5,4,3,2
+      input1.push_back(static_cast<NumT>(NUM_VAL+1-i)); // 6,5,4,3,2
       input2.push_back(static_cast<NumT>(i));           // 0,1,2,3,4
       input1_err2.push_back(static_cast<NumT>(1.));
       input2_err2.push_back(static_cast<NumT>(1.));
