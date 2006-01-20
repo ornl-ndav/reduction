@@ -24,17 +24,24 @@
  * -# They will neither allocate nor de-allocate any persistent
  * resources. This allows for allocating (and de-allocating) temporary
  * memory for calculations.
- * -# There will be at least one unit test for every function.
- * -# The functions will need to be passed the arguments, space for the
- * results, and space for any temporary storage needed. To notify the
- * caller of how much memory is needed for temporary space, any
- * function that uses temporary space must have a related utility
- * function that returns information on the amount of temporary
- * storage needed. If the user passes in null pointers for the
- * temporary storage the function is intended to allocate and
- * de-allocate what is needed.
+ * -# There will be at least one smoke test for every function.
+ * -# Functions will create no heap memory. The functions will need to
+ * be passed the arguments, space for the results, and space for any
+ * temporary storage needed. To notify the caller of how much memory
+ * is needed for temporary space, any function that uses temporary
+ * space may have a related utility function that returns information
+ * on the amount of temporary storage needed. If the user passes in
+ * null pointers for the temporary storage the function is intended to
+ * allocate and de-allocate what is needed.
  * -# The functions will return an integer status report with a helper
  * function that creates strings according to that value.
+ *
+ * \section template_types Template Types
+ *
+ * In various sections of the library the user will encounter the
+ * template types:
+ * - \p NumT - Any numeric type
+ * - \p T - Any type that vector supports
  *
  * \section naming_convention Function Naming Conventions
  *
@@ -43,6 +50,20 @@
  *
  * \arg _ncerr This extension denotes that the function calculations
  * the uncertainties assuming non-correlated errors
+ *
+ * \section definitions Definitions
+ *
+ * \subsection definitions-histogram Histogram
+ *
+ * Some functions in the library assume that the information supplied
+ * is a histogram. A histogram is defined as a list of bin boundaries
+ * and a weight contained with within the boundaries. In practical
+ * terms this means that the independant variable array has one more
+ * value than the function array.
+ *
+ * The other requirement of histograms is that thier independent axis
+ * is monotonically increasing. Note that this does require that the
+ * bins are of equal size.
  *
  * \section library_coords Library Coordinate System
  *
