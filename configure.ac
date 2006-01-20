@@ -61,10 +61,12 @@ AC_PROG_LIBTOOL
 
 AC_CHECK_PROGS(SWIG, [swig])
 AC_CHECK_PROGS(DOXYGEN, [doxygen])
+AC_CHECK_PROGS(DOT, [dot])
 
 AM_CONDITIONAL(HAVE_PYTHON, [test ! -z "$PYTHONROOT"])
 AM_CONDITIONAL(HAVE_SWIG, [test ! -z "$SWIG"])
 AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
+AM_CONDITIONAL(HAVE_DOT, [test ! -z "$DOT"])
 
 AC_CONFIG_FILES([array_manip/test/Makefile 
 		array_manip/test/cpp/Makefile
@@ -103,6 +105,14 @@ else
     SWIGBINDING=no
 fi
 
+if test -n "$DOT" ; then
+    DOTISCOOL="You will have cool UML diagrams available.
+                               Aren't you lucky!"
+else
+    DOTISCOOL="You will have ugly looking UML diagrams.
+                               It is recommended to get dot!"
+fi
+
 if test $pdfdoc == "true" ; then
    MAKEPDF="yes"
 else
@@ -119,6 +129,7 @@ Configuration (SNS Common Libraries):
 
 documentation:
 	Generator:	       ${DOXYGEN}
+	Dot:		       ${DOTISCOOL}
 	PDF Version:	       ${MAKEPDF}
 
 build:
