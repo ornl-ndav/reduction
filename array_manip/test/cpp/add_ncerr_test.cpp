@@ -15,50 +15,13 @@ const int NUM_VAL = 5;
 /**
  * \ingroup add_ncerr_test
  *
- * This function compare the output data calculated by the
- * library function add_ncerr with the true output data manually calculated.
- * Any discrepancy between the outputs will generate an error message
- * that gives details about the location and type ofq the error.
- *
- * This function test the addition of a scalar with each
- * element, \f$i\f$, of an array according to the equation
- * \f[
- * true_output_vs[i]=input1[i]+a
- * \f]
- * with the uncertainties given by
- * \f[
- * (true_output_vs_err2[i])^2=(\sigma_a)^2+(input2_err2[i])^2
- * \f]
- *
- * and the case of the addition of each element, \f$i\f$, of two arrays
- * according to the equation
- * \f[
- * true_output_vv[i]=input1[i]+input2[i]
- * \f]
- * with the uncertainties given by
- * \f[
- * (true_output_vv_err2[i])^2=(input1_err2[i])^2+(input2_err2[i])^2
- * \f]
- *
- * where
- * \f$true_output_vs[i]\f$ is the \f$i^{th}\f$ component of the true output
- * array for the vector-scalar case, \f$true_output_vv[i]\f$ is the
- * \f$i^{th}\f$ component of
- * the true output array for the vector-vector case,
- * \f$input1[i]\f$ is the \f$i^{th}\f$ component of the first array being
- * added, \f$input2[i]\f$ is the \f$i^{th}\f$ component of the second
- * array being added, \f$a=input2[4]\f$, \f$\sigma_a=input2_err2[4]\f$,
- *\f$output_vs_err2[i]\f$ is the \f$i^{th}\f$ component
- * of the uncertainty of the output array for the vector-scalar case,
- * \f$output_vv_err2[i]\f$ is the \f$i^{th}\f$ component of the
- * uncertainty of the output array for the vector-vector case,
- * \f$input1_err2[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
- * in the first array, and \f$input2_err2[i]\f$ is the \f$i^{th}\f$ component
- * of the uncertainty in the second array.
- *
- * The \f$true_output_vs[i]\f$ and \f$true_output_vv[i]\f$ are compared
- * with the output produced by the add_ncerr function (\f$output_vs[i]\f$
- * and \f$output_vv[i]\f$).
+ * This test compares the output (\f$output_vs\f$ and \f$output_vv\f$)
+ * data calculated by the library function add_ncerr and described in
+ * section 3.1 and 3.6 of the DR_Lib_RS_1 with the true output data
+ * (\f$true_output_vs\f$ and (\f$true_output_vv\f$) manually calculated .
+ * Any discrepancy between the outputs (\f$output\f$ and \f$true_output\f$)
+ * will generate an error message that gives details about the location and
+ * type of the error.
  *
  * Notation used:
  * vv : vector-vector
@@ -70,8 +33,18 @@ const int NUM_VAL = 5;
  * EMPTY = ""
  */
 
- /**
- * Function that initialize the arrays input1 and input2
+/**
+ * \ingroup initialize_inputs
+ *
+ * This function initializes \f$NUM_VAL\f$ values of each array, \f$input1\f$
+ * and \f$input2\f$.
+ *
+ * \param input1 (OUTPUT) is the first array to be added
+ * \param input1_err2 (OUTPUT) is the square of the uncertainty in the first
+ * array to be added
+ * \param input2 (OUTPUT) is the second array to be added
+ * \param input2_err2 (OUTPUT) is the square of the uncertainty in the second
+ * array to be added
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & input1,
@@ -81,57 +54,79 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
 {
   for( int i=0 ; i<NUM_VAL ; i++ )
     {
-    input1.push_back(static_cast<NumT>(NUM_VAL+1-i)); // 6,5,4,3,2
+      input1.push_back(static_cast<NumT>(NUM_VAL+1-i)); // 6,5,4,3,2
       input2.push_back(static_cast<NumT>(i));           // 0,1,2,3,4
       input1_err2.push_back(static_cast<NumT>(1.));
       input2_err2.push_back(static_cast<NumT>(1.));
     }
 }
 
- /**
- * Function that generate the true output using input1 and input2
+/**
+ * Function that generates the true outputs using \f$input1\f$ and
+ * \f$input2\f$.
+ * For the vs case, the scalar used is the last element
+ * of the array \f$input2\f$.
+ *
+ * \param true_output_vs (OUTPUT) is the true result array for the
+ * vs case
+ * \param true_output_vs_err2 (OUTPUT) is the square of the uncertainty
+ * in the true result array for the vs case
+ * \param true_output_vv (OUTPUT) is the true result array for the
+ * vv case
+ * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty
+ * in the true result array for the vv case
  */
 template <typename NumT>
-void initialize_true_outputs(Nessi::Vector<NumT> & output_vs,
-                             Nessi::Vector<NumT> & output_vs_err2,
-                             Nessi::Vector<NumT> & output_vv,
-                             Nessi::Vector<NumT> & output_vv_err2)
+void initialize_true_outputs(Nessi::Vector<NumT> & true_output_vs,
+                             Nessi::Vector<NumT> & true_output_vs_err2,
+                             Nessi::Vector<NumT> & true_output_vv,
+                             Nessi::Vector<NumT> & true_output_vv_err2)
 {
   // initialize the correct outputs for vector vector case
-  output_vv.push_back(static_cast<NumT>(6.)); // =0+6
-  output_vv_err2.push_back(static_cast<NumT>(2.));
-  output_vv.push_back(static_cast<NumT>(6.)); // =1+5
-  output_vv_err2.push_back(static_cast<NumT>(2.));
-  output_vv.push_back(static_cast<NumT>(6.)); // =2+4
-  output_vv_err2.push_back(static_cast<NumT>(2.));
-  output_vv.push_back(static_cast<NumT>(6.)); // =3+3
-  output_vv_err2.push_back(static_cast<NumT>(2.));
-  output_vv.push_back(static_cast<NumT>(6.)); // =4+2
-  output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv.push_back(static_cast<NumT>(6.)); // =0+6
+  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv.push_back(static_cast<NumT>(6.)); // =1+5
+  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv.push_back(static_cast<NumT>(6.)); // =2+4
+  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv.push_back(static_cast<NumT>(6.)); // =3+3
+  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv.push_back(static_cast<NumT>(6.)); // =4+2
+  true_output_vv_err2.push_back(static_cast<NumT>(2.));
 
-  // initialize the correct outputs for vector scalar case
-  output_vs.push_back(static_cast<NumT>(10.)); // =4+6
-  output_vs_err2.push_back(static_cast<NumT>(2.));
-  output_vs.push_back(static_cast<NumT>(9.));  // =4+5
-  output_vs_err2.push_back(static_cast<NumT>(2.));
-  output_vs.push_back(static_cast<NumT>(8.));  // =4+4
-  output_vs_err2.push_back(static_cast<NumT>(2.));
-  output_vs.push_back(static_cast<NumT>(7.));  // =4+3
-  output_vs_err2.push_back(static_cast<NumT>(2.));
-  output_vs.push_back(static_cast<NumT>(6.));  // =4+2
-  output_vs_err2.push_back(static_cast<NumT>(2.));
+  // initialize the correct true_outputs for vector scalar case
+  true_output_vs.push_back(static_cast<NumT>(10.)); // =4+6
+  true_output_vs_err2.push_back(static_cast<NumT>(2.));
+  true_output_vs.push_back(static_cast<NumT>(9.));  // =4+5
+  true_output_vs_err2.push_back(static_cast<NumT>(2.));
+  true_output_vs.push_back(static_cast<NumT>(8.));  // =4+4
+  true_output_vs_err2.push_back(static_cast<NumT>(2.));
+  true_output_vs.push_back(static_cast<NumT>(7.));  // =4+3
+  true_output_vs_err2.push_back(static_cast<NumT>(2.));
+  true_output_vs.push_back(static_cast<NumT>(6.));  // =4+2
+  true_output_vs_err2.push_back(static_cast<NumT>(2.));
 }
 
 /**
- * Function that test the discrepancies between the output
- * generated by the add_ncerr function for the vs case,
- * \f$output_vs\f$ and \f$output_vs_err2\f$, and the vv case,
- * \f$output_vv\f$ and \f$output_vv_err2\f$,
- * and the true_output generated by the initialize_true_outputs function
- * for the vs case, \f$true_output_vs\f$ and \f$true_output_vs_err2\f$, and
- * for the vv case, \f$true_output_vv\f$ and \f$true_output_vv_err2\f$.
- * if there are no differences found between the two number compared,
- * test_okay return true, otherwise false is returned.
+ * Function that tests the discrepancies between the output
+ * generated by the add_ncerr function for the vs and vv cases.
+ * The function returns TRUE if the two arrays compared \f$output\f$ and
+ * \f$true_output\f$ match, and returns FALSE if they do not match.
+ *
+ * \param output_vs (INPUT) is the result array created by add_ncerr for the vs
+ * case
+ * \param output_vs_err2 (INPUT) is the square of the uncertainty in the result
+ * array created by add_ncerr for the vs case
+ * \param true_output_vs (INPUT) is the true result array for the vs case
+ * \param true_output_vs_err2 (INPUT) is the square of the uncertainty in the
+ * true result array for the vs case
+ * \param output_vv (INPUT) is the result array created by add_ncerr for the vv
+ * case
+ * \param output_vv_err2 (INPUT) is the square of the uncertainty in the result
+ * array created by add_ncerr for the vv case
+ * \param true_output_vv (INPUT) is the true result array for the vv case
+ * \param true_output_vv_err2 (INPUT) is the square of the uncertainty in the
+ * true result array for the vv case
  */
  template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output_vs,
@@ -162,8 +157,29 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
 /**
  * Function that generate the data using the add_ncerr function
  * (as described in the documentation of the add_ncerr function)
- * and launch the comparison of the data
- */
+ * and launch the comparison of the data. Returns the result
+ * of the test_okay function (TRUE/FALSE).
+ *
+ * \param input1 (OUTPUT) is the first array to be added
+ * \param input1_err2 (OUTPUT) is the square of the uncertainty in the first
+ * array to be added
+ * \param input2 (OUTPUT) is the second array to be added
+ * \param input2_err2 (OUTPUT) is the square of the uncertainty in the second
+ * array to be added
+ * \param output_vs (INPUT) is the result array created by add_ncerr for the vs
+ * case
+ * \param output_vs_err2 (INPUT) is the square of the uncertainty in the result
+ * \param output_vv (INPUT) is the result array created by add_ncerr for the vv
+ * case
+ * \param output_vv_err2 (INPUT) is the square of the uncertainty in the result
+ * array created by add_ncerr for the vv case
+ * \param true_output_vs (INPUT) is the true result array for the vs case
+ * \param true_output_vs_err2 (INPUT) is the square of the uncertainty in the
+ * true result array for the vs case
+ * \param true_output_vv (INPUT) is the true result array for the vv case
+ * \param true_output_vv_err2 (INPUT) is the square of the uncertainty in the
+ * true result array for the vv case
+*/
 template <typename NumT>
 bool test_func(NumT key){ // key forces correct test to happen
   // allocate arrays
@@ -199,8 +215,8 @@ bool test_func(NumT key){ // key forces correct test to happen
 }
 
 /**
- * Main test functino that test add_ncerr using
- * float, double, int and unsigned int
+ * Main test function that test add_ncerr for
+ * float, double, int and unsigned int.
  */
 int main()
 {
