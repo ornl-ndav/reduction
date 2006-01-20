@@ -19,7 +19,7 @@ fi
 
 AM_INIT_AUTOMAKE([1.9])
 
-AM_CONFIG_HEADER(config/snsdrlibconfig.h:config/snsdrlibconfig_h.in)
+AM_CONFIG_HEADER(config/snscomlibconfig.h:config/snscomlibconfig_h.in)
 
 AC_ARG_ENABLE(pdfdoc,
 [  --enable-pdfdoc    Create a PDF version of the documentation],
