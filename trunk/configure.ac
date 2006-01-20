@@ -29,8 +29,8 @@ AC_ARG_ENABLE(pdfdoc,
 esac],[pdfdoc=false])
 AM_CONDITIONAL(PDFDOC, test x$pdfdoc = xtrue)
 
-AM_PATH_PYTHON(,, :)
-AC_CHECK_ROOT([python],[PYTHONROOT],[/usr /usr/local],[include/python$PYTHON_VE\RSION/Python.h])
+AM_PATH_PYTHON(2.3, :)
+AC_CHECK_ROOT([python],[PYTHONROOT],[/usr /usr/local],[include/python$PYTHON_VERSION/Python.h])
 
 DRLIBDOCDIR='${datadir}/$(PACKAGE_TARNAME)/doc'
 AC_SUBST(DRLIBDOCDIR)
