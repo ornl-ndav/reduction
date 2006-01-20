@@ -52,10 +52,10 @@ libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_ARRAY_MANIP_VERSION) \
 			$(ARRAY_MANIP_SRC) $(UTILS_SRC)
 libPyArrayManip_la_LIBS=$(ARRAY_MANIP_LIB) $(UTILS_LIBS)
 ARRAYMANIPPYTHONWRAP=array_manip_wrap.cpp
-endif
 array_manip_wrap.cpp: array_manip.i 
 	$(SWIG) -c++ -o $@ -python $(ARRAY_MANIP_INC) $(NESSI_INC) \
 	-lvector.i -interface libPyArrayManip array_manip.i 
+endif
 endif
 
 if HAVE_SWIG
@@ -68,10 +68,10 @@ libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_AXIS_MANIP_VERSION) \
 			$(AXIS_MANIP_SRC) $(UTILS_SRC)
 libPyAxisManip_la_LIBS=$(AXIS_MANIP_LIB) $(UTILS_LIB)
 AXISMANIPPYTHONWRAP=axis_manip_wrap.cpp
-endif
 axis_manip_wrap.cpp: axis_manip.i 
 	$(SWIG) -c++ -o $@ -python $(AXIS_MANIP_INC) $(NESSI_INC) -lvector.i \
 	-interface libPyAxisManip axis_manip.i 
+endif
 endif
 
 if HAVE_SWIG
@@ -83,10 +83,10 @@ libPyPhysCorr_la_CPPFLAGS= $(PYTHON_INC) $(PHYS_CORR_INC) $(NESSI_INC) \
 libPyPhysCorr_la_LDFLAGS=$(LDFLAGS) $(PYLIB_PHYS_CORR_VERSION) $(PHYS_CORR_SRC)
 libPyPhysCorr_la_LIBS=$(PHYS_CORR_LIB)
 PHYSCORRPYTHONWRAP=phys_corr_wrap.cpp
-endif
 phys_corr_wrap.cpp: phys_corr.i 
 	$(SWIG) -c++ -o $@ -python $(PHYS_CORR_INC) $(NESSI_INC) -lvector.i \
 	-interface libPyPhysCorr phys_corr.i 
+endif
 endif
 
 if HAVE_SWIG
@@ -97,8 +97,8 @@ libPyUtils_la_CPPFLAGS= $(PYTHON_INC) $(UTILS_INC) $(NESSI_INC) $(CFLAGS)
 libPyUtils_la_LDFLAGS=$(LDFLAGS) $(PYLIB_UTILS_VERSION) $(UTILS_SRC)
 libPyUtils_la_LIBS=$(UTILS_LIB)
 UTILSPYTHONWRAP=utils_wrap.cpp
-endif
 utils_wrap.cpp: utils.i 
 	$(SWIG) -c++ -o $@ -python $(UTILS_INC) $(NESSI_INC) -lvector.i \
 	-interface libPyUtils utils.i
+endif
 endif
