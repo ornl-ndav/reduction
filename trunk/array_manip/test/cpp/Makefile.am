@@ -1,7 +1,5 @@
 # $Id$
 
-test: check
-
 AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/utils/inc \
               -I$(top_srcdir)/nessi
 AM_LDFLAGS  = -static \
@@ -32,6 +30,10 @@ sub_ncerr_test_SOURCES = sub_ncerr_test.cpp test_common.hpp
 
 sumw_ncerr_test_SOURCES = sumw_ncerr_test.cpp test_common.hpp
 
+DISTCLEANFILES = atconfig
+
+test: check
+
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\
                 echo '# Signature of the current package.'; \
@@ -54,6 +56,3 @@ atconfig:       $(top_builddir)/config.status
 
 clean-local:
 	-$(SHELL) $(TESTSUITE) --clean
-
-
-DISTCLEANFILES = atconfig

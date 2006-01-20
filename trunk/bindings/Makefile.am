@@ -1,13 +1,5 @@
 # $Id$
 
-clean:
-	rm -f *bind.py *.o *.lo *_wrap.cpp
-	rm -rf .libs _libs
-	test -z "libPyArrayManip.la" || rm -f libPyArrayManip.la
-	test -z "libPyAxisManip.la" || rm -f libPyAxisManip.la
-	test -z "libPyPhysCorr.la" || rm -f libPyPhysCorr.la
-	test -z "libPyUtils.la" || rm -f libPyUtils.la
-
 ARRAY_MANIP_INC=-I$(top_srcdir)/array_manip/inc
 AXIS_MANIP_INC=-I$(top_srcdir)/axis_manip/inc
 PHYS_CORR_INC=-I$(top_srcdir)/phys_corr/inc
@@ -28,6 +20,25 @@ PYTHON_INC=-I$(PYTHONROOT)/include/python$(PYTHON_VERSION)
 
 lib_LTLIBRARIES=$(LIBPYARRAYMANIP) $(LIBPYAXISMANIP) $(LIBPYPHYSCORR) \
 		$(LIBPYUTILS)
+
+python_HEADERS = \
+	array_manip_bind.py \
+	axis_manip_bind.py \
+	phys_corr_bind.py \
+	utils_bind.py
+
+EXTRA_DIST = *.i
+
+BUILT_SOURCES = $(ARRAYMANIPPYTHONWRAP) $(AXISMANIPPYTHONWRAP) \
+		$(PHYSCORRPYTHONWRAP) $(UTILSPYTHONWRAP)
+
+clean:
+	rm -f *bind.py *.o *.lo *_wrap.cpp
+	rm -rf .libs _libs
+	test -z "libPyArrayManip.la" || rm -f libPyArrayManip.la
+	test -z "libPyAxisManip.la" || rm -f libPyAxisManip.la
+	test -z "libPyPhysCorr.la" || rm -f libPyPhysCorr.la
+	test -z "libPyUtils.la" || rm -f libPyUtils.la
 
 # python wrappers
 
@@ -91,14 +102,3 @@ utils_wrap.cpp: utils.i
 	$(SWIG) -c++ -o $@ -python $(UTILS_INC) $(NESSI_INC) -lvector.i \
 	-interface libPyUtils utils.i
 endif
-
-python_HEADERS = \
-	array_manip_bind.py \
-	axis_manip_bind.py \
-	phys_corr_bind.py \
-	utils_bind.py
-
-EXTRA_DIST = *.i
-
-BUILT_SOURCES = $(ARRAYMANIPPYTHONWRAP) $(AXISMANIPPYTHONWRAP) \
-		$(PHYSCORRPYTHONWRAP) $(UTILSPYTHONWRAP)
