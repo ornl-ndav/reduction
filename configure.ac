@@ -77,6 +77,7 @@ AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 AC_CONFIG_FILES([Makefile
 		nessi/Makefile
+		nessi/inc/Makefile
 		array_manip/Makefile
 		array_manip/inc/Makefile
 		array_manip/src/Makefile
