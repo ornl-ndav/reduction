@@ -1,6 +1,6 @@
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi \
+AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi/inc \
 	      -I$(top_srcdir)/utils/inc
 
 lib_LTLIBRARIES = libArrayManip.la

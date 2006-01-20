@@ -1,6 +1,6 @@
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/phys_corr/inc -I$(top_srcdir)/nessi
+AM_CPPFLAGS = -I. -I$(top_srcdir)/phys_corr/inc -I$(top_srcdir)/nessi/inc
 
 lib_LTLIBRARIES = libPhysCorr.la
 
