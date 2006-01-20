@@ -14,12 +14,18 @@ Prerequisites
    tar xzf sns_common_lib-<version>.tar.gz
    cd sns_common_lib-<version>
 
-2) Run 'configure' and 'make'. The build system needs to know where the
-   python directories (include, lib, etc.) live. This is usually /usr, but 
-   could be elsewhere. Therefore, the --with-python switch must be used.
+2) Run 'configure' and 'make'. 
 
-   ./configure --with-python=/pythonhead
-   ./make
+   ./configure
+   make
+
+   If your Python directories (include, lib, etc.) do not reside in the usual 
+   locations (/usr or /usr/local), you need to use the --with-python switch to 
+   tell the build system where the main Python directory is. So, run 
+   'configure' as follows and then run 'make' as usual.
+
+   ./configure --with-python=/pythonmain
+   make
    
    If there are any problems, try different configure options to see if one 
    will work.  You can see what switches are available by typing
