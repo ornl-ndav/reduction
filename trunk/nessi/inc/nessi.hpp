@@ -24,7 +24,8 @@ namespace Nessi
   /**
    * \brief Provides wrapper for std::vector
    *
-   *
+   * \defgroup nessivector Nessi::Vector
+   * \{
    */
 template <typename T>
 class Vector : public std::vector<T>
@@ -45,6 +46,10 @@ public:
    */
   Vector(int i) : std::vector<T>(i) { }
 };
+
+  /**
+   * \}
+   */
 
 } // Nessi
 
