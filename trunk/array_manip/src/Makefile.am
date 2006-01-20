@@ -21,6 +21,5 @@ libArrayManip_la_SOURCES = \
         sumw_ncerr.hpp
 
 EXTRA_libArrayManip_la_SOURCES = \
-	$(top_srcdir)/utils/inc/size_checks.hpp \
 	$(top_srcdir)/utils/src/check_sizes_square.hpp \
 	$(top_srcdir)/utils/src/check_sizes_square.cpp 
