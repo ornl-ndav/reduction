@@ -44,6 +44,9 @@ configure.ac
 	number at this location.
 	- The third argument (author list) may also need to be updated for 
 	a particular release.
+	- Find the section that lists all of the individual library version
+	numbers. Changes these to the appropriate versions for the common 
+	library release.
 
 In nessi:
 
@@ -51,44 +54,5 @@ libinfo.hpp
 	- The version number for the common libraries is contained in this 
 	file on the \mainpage line. Change to the appropriate version for the 
 	release.
-
-In array_manip/src:
-
-Makefile.am
-	- This file contains the version number for the ArrayManip library in 
-	the libArrayManip_la_LDFLAG line. Change the version number 
-	appropriately for the given common libraries release.
-
-In axis_manip/src:
-
-Makefile.am
-	- This file contains the version number for the AxisManip library in 
-	the libAxisManip_la_LDFLAG line. Change the version number 
-	appropriately for the given common libraries release.
-
-In phys_corr/src:
-
-Makefile.am
-	- This file contains the version number for the PhysCorr library in 
-	the libPhysCorr_la_LDFLAG line. Change the version number 
-	appropriately for the given common libraries release.
-
-In utils/src:
-
-Makefile.am
-	- This file contains the version number for the Utils library in 
-	the libUtils_la_LDFLAG line. Change the version number 
-	appropriately for the given common libraries release.
-
-In bindings:
-
-Makefile.am:
-	- This file contains the version numbers for all of the Python binding 
-	libraries (libPyArrayManip, libPyAxisManip, libPyPhysCorr and 
-	libPyUtils). The version numbers are kept in the lines 
-	ARRAY_MANIP_VERSION, AXIS_MANIP_VERSION, PHYS_CORR_VERSION and 
-	UTILS_VERSION for the respective libraries. Changes these version 
-	numbers when libraries change for a given release of the common 
-	libraries.
 
 $Id$
