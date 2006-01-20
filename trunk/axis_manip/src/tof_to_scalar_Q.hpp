@@ -109,6 +109,17 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for tof_to_scalar_Q that calculates the
    * parameters invariant across the array calculation.
+   *
+   * \param pathlength (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param pathlength_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param scatt_angle (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param scatt_angle_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param a (OUTPUT) \f$=4\pi m_n/h\f$
+   * \param a2 (OUTPUT) \f$=a^2\f$
+   * \param sang (OUTPUT) \f$=cos(scatt\_angle)\f$
+   * \param term1 (OUTPUT) \f$=\cos^2(scatt\_angle)\times pathlength\_err2^2\f$
+   * \param term2 (OUTPUT) \f$=\cos^2(scatt\_angle)\times pathlength^2\times scatt\_angle\_err2^2\f$
+   * \param term3 (OUTPUT) \f$\cos^2(scatt\_angle)\times pathlength^2\f$
    */
   template <typename NumT>
   std::string
@@ -127,6 +138,7 @@ namespace AxisManip
     a *= static_cast<NumT>(4. * PhysConst::PI);
     a2 = a * a;
 
+    // SNS-FIXME: Should one of these be sign? Change docs as well if so.
     NumT cang = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
     NumT cang2 = cang * cang;
     sang = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
@@ -146,6 +158,18 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for tof_to_scalar_Q that calculates the
    * scalar_Q and its uncertainty.
+   *
+   * \param tof (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param tof_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param pathlength (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param Q (OUTPUT) same as the parameter in tof_to_scalar_Q()
+   * \param Q_err2 (OUTPUT) same as the parameter in tof_to_scalar_Q()
+   * \param a (INPUT) same as the parameter in __tof_to_scalar_Q_static()
+   * \param a2 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
+   * \param sang (INPUT) same as the parameter in __tof_to_scalar_Q_static()
+   * \param term1 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
+   * \param term2 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
+   * \param term3 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
    */
   template <typename NumT>
   std::string

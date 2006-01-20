@@ -115,6 +115,9 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for wavelength_to_scalar_k that
    * calculates the parameters invariant across the array calculation.
+   *
+   * \param a (INPUT) \f$=2\pi\f$
+   * \param a2 (INPUT) \f$=4\pi^2\f$
    */
   template <typename NumT>
   std::string
@@ -132,6 +135,19 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for wavelength_to_scalar_k that
    * calculates the scalar_k and its uncertainty.
+   *
+   * \param wavelength (INPUT) same as the parameter in
+   * wavelength_to_scalar_k()
+   * \param wavelength_err2 (INPUT) same as the parameter in
+   * wavelength_to_scalar_k()
+   * \param wavevector (OUTPUT) same as the parameter in
+   * wavelength_to_scalar_k()
+   * \param wavevector_err2 (OUTPUT) same as the parameter in
+   * wavelength_to_scalar_k()
+   * \param a (INPUT) same as the parameter in
+   * __wavelength_to_scalar_k_static()
+   * \param a2 (INPUT) same as the parameter in
+   * __wavelength_to_scalar_k_static()
    */
   template <typename NumT>
   std::string

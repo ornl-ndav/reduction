@@ -97,6 +97,14 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for wavelength_to_tof that calculates
    * the parameters invariant across the array calculation.
+   *
+   * \param pathlength (INPUT) same as the parameter in wavelength_to_tof()
+   * \param pathlength_err2 (INPUT) same as the parameter in
+   * wavelength_to_tof()
+   * \param a (OUTPUT) \f$=\frac{m_n pathlength}{h}\f$
+   * \param a2 (OUTPUT) \f$=a^2\f$
+   * \param b (OUTPUT) \f$=pathlength^2\f$
+   * \param c (OUTPUT) \f$=path_length\_err2^2\f$
    */
   template <typename NumT>
   std::string
@@ -124,6 +132,21 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for wavelength_to_tof that calculates
    * tof and its uncertainty.
+   *
+   * \param wavelength (INPUT) same as the parameter in
+   * wavelength_to_tof()
+   * \param wavelength_err2 (INPUT) same as the parameter in
+   * wavelength_to_tof()
+   * \param pathlength (INPUT) same as the parameter in
+   * wavelength_to_tof()
+   * \param pathlength_err2 (INPUT) same as the parameter in
+   * wavelength_to_tof()
+   * \param tof (OUTPUT) same as the parameter in wavelength_to_tof()
+   * \param tof_err2 (OUTPUT) same as the parameter in wavelength_to_tof()
+   * \param a (INPUT) same as the parameter in __wavelength_to_tof_static()
+   * \param a2 (INPUT) same as the parameter in __wavelength_to_tof_static()
+   * \param b (INPUT) same as the parameter in __wavelength_to_tof_static()
+   * \param c (INPUT) same as the parameter in __wavelength_to_tof_static()
    */
   template <typename NumT>
   std::string
