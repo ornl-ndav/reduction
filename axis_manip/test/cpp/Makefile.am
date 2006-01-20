@@ -1,7 +1,5 @@
 # $Id$
 
-test: check
-
 AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc \
 	      -I$(top_srcdir)/nessi -I$(top_srcdir)/phys_const/inc
 AM_LDFLAGS  = -static \
@@ -42,6 +40,10 @@ wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp
 
 wavelength_to_tof_test_SOURCES = wavelength_to_tof_test.cpp
 
+DISTCLEANFILES = atconfig
+
+test: check
+
 $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
 	{\
                 echo '# Signature of the current package.'; \
@@ -64,6 +66,3 @@ atconfig:       $(top_builddir)/config.status
 
 clean-local:
 	-$(SHELL) $(TESTSUITE) --clean
-
-
-DISTCLEANFILES = atconfig

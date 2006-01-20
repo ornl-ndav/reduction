@@ -12,6 +12,9 @@ CPPDF =
 RMPDF = 
 endif
 
+EXTRA_DIST = html latex 
+nodist_EXTRA_DIST = latex/*.aux latex/*.dvi latex/*.log 
+
 docs:
 	doxygen sns_dr_lib.cfg
 	$(MAKEPDF)
@@ -28,6 +31,3 @@ uninstall:
 clean:
 	rm -rf html
 	rm -rf latex
-
-EXTRA_DIST = html latex 
-nodist_EXTRA_DIST = latex/*.aux latex/*.dvi latex/*.log 
