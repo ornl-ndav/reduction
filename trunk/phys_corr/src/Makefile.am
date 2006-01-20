@@ -4,7 +4,7 @@ AM_CPPFLAGS = -I. -I$(top_srcdir)/phys_corr/inc -I$(top_srcdir)/nessi
 
 lib_LTLIBRARIES = libPhysCorr.la
 
-libPhysCorr_la_LDFLAGS = -version-info 1:0:0
+libPhysCorr_la_LDFLAGS = $(LIB_PHYS_CORR_VERSION)
 
 libPhysCorr_la_SOURCES = \
 	absorption_mult_scatt.hpp \

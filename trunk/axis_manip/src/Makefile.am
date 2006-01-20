@@ -5,7 +5,7 @@ AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi \
 
 lib_LTLIBRARIES = libAxisManip.la
 
-libAxisManip_la_LDFLAGS = -version-info 1:0:0 \
+libAxisManip_la_LDFLAGS = $(LIB_AXIS_MANIP_VERSION) \
               -L$(top_srcdir)/utils/src/.libs -lUtils
 
 libAxisManip_la_SOURCES = \
