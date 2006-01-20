@@ -112,6 +112,8 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for wavelength_to_energy that
    * calculates the parameters invariant across the array calculation.
+   *
+   * \param a2 (OUTPUT) \f$=\frac{h^4}{m_n^2}\f$
    */
   template <typename NumT>
   std::string
@@ -127,6 +129,17 @@ namespace AxisManip
    *
    * This is a PRIVATE helper function for wavelength_to_energy that
    * calculates the energy and its uncertainty.
+   *
+   * \param const NumT wavelength (INPUT) same as the parameter in
+   * wavelength_to_energy()
+   * \param wavelength_err2 (INPUT) same as the parameter in
+   * wavelength_to_energy()
+   * \param energy (OUTPUT) same as the parameter in
+   * wavelength_to_energy()
+   * \param energy_err2 (OUTPUT) same as the parameter in
+   * wavelength_to_energy()
+   * \param a2 (INPUT) same as the parameter in
+   * __wavelength_to_energy_static()
    */
   template <typename NumT>
   std::string
