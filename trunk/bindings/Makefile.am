@@ -4,7 +4,7 @@ ARRAY_MANIP_INC=-I$(top_srcdir)/array_manip/inc
 AXIS_MANIP_INC=-I$(top_srcdir)/axis_manip/inc
 PHYS_CORR_INC=-I$(top_srcdir)/phys_corr/inc
 UTILS_INC=-I$(top_srcdir)/utils/inc
-NESSI_INC=-I$(top_srcdir)/nessi
+NESSI_INC=-I$(top_srcdir)/nessi/inc
 
 ARRAY_MANIP_LIB=-L$(top_srcdir)/array_manip/src/.libs
 AXIS_MANIP_LIB=-L$(top_srcdir)/axis_manip/src/.libs

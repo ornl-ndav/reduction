@@ -1,6 +1,6 @@
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi \
+AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi/inc \
               -I$(top_srcdir)/utils/inc -I$(top_srcdir)/phys_const/inc
 
 lib_LTLIBRARIES = libAxisManip.la
