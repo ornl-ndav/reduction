@@ -594,7 +594,8 @@ namespace ArrayManip
    * where \f$N=2\f$ and the uncorrelated uncertainties will be processed
    * according to the equation
    * \f[
-   * \sigma_o[i]=\sqrt{\sum^N_{n=1} \sigma^2_n[i]}
+   * \sigma_o^2[i]=\left( \sigma_1^2\sigma_2 + \sigma_1\sigma_2^2 \right)
+                   \left( \sigma_1 + \sigma_2 \right)
    * \f]
    * However, if the uncertainty in any of the data is not specified,
    * or is zero, the value of the \f$data_o[i]\f$ will be given by
