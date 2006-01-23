@@ -30,6 +30,7 @@
 
 const std::string EMPTY("");
 const std::string ERROR("error ");
+const std::string SS("s,s");
 const std::string SV("s,v");
 const std::string VS("v,s");
 const std::string VV("v,v");
@@ -45,7 +46,17 @@ std::string type_string(Nessi::Vector<double> & vec)
   return std::string("double");
 }
 
+std::string type_string(double vec)
+{
+  return std::string("double");
+}
+
 std::string type_string(Nessi::Vector<float> & vec)
+{
+  return std::string("float");
+}
+
+std::string type_string(float vec)
 {
   return std::string("float");
 }
@@ -68,6 +79,23 @@ bool test_okay(Nessi::Vector<NumT> & output,
                std::string data_type=EMPTY){
 
   if(!Utils::vector_is_equals(output,true_output))
+    {
+      std::cout << "(" << type_string(output) << " " << array_type
+           << ") FAILED....Output " << data_type
+           << "different from vector expected" << std::endl;
+      return false;
+    }
+  return true;
+}
+
+// returns true if nothing is wrong
+template <typename NumT>
+bool test_okay(NumT & output,
+               NumT & true_output,
+               std::string array_type=SS,
+               std::string data_type=EMPTY){
+
+  if(Utils::compare(output,true_output)!=0)
     {
       std::cout << "(" << type_string(output) << " " << array_type
            << ") FAILED....Output " << data_type
