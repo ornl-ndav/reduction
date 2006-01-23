@@ -34,11 +34,9 @@ AXIS_MANIP_TARGETS = \
 	energy_transfer_test \
 	init_scatt_wavevector_to_scalar_Q_test \
 	tof_to_initial_wavelength_igs_test \
-	tof_to_scalar_Q_test \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
-	wavelength_to_scalar_k_test \
-	wavelength_to_tof_test
+	wavelength_to_scalar_k_test 
 
 
 TESTSUITE	= $(srcdir)/testsuite
@@ -54,13 +52,9 @@ tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp
 
 tof_to_initial_wavelength_igs_test_SOURCES = tof_to_initial_wavelength_igs_test.cpp
 
-tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp
-
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp
-
-wavelength_to_tof_test_SOURCES = wavelength_to_tof_test.cpp
 
 DISTCLEANFILES = atconfig
 
