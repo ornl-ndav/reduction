@@ -25,7 +25,7 @@
 /**
  * $Id$
  *
- * \file nessi/libinfo.hpp
+ * \file nessi/inc/libinfo.hpp
  */
 /**
  * The purpose of this file is to add information to the main index page for
