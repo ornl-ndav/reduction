@@ -30,6 +30,7 @@
 #ifndef _REBIN_AXIS_1D_HPP
 #define _REBIN_AXIS_1D_HPP 1
 
+#include "nessi_warn.hpp"
 #include "rebinning.hpp"
 #include "size_checks.hpp"
 #include <stdexcept>
@@ -117,8 +118,7 @@ namespace AxisManip
           }
       }
 
-    std::string retstr("");
-    return retstr;
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 

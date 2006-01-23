@@ -32,6 +32,7 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <stdexcept>
 
@@ -73,8 +74,8 @@ namespace AxisManip
         throw std::invalid_argument(et_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
@@ -135,8 +136,8 @@ namespace AxisManip
         throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
       }
 
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
@@ -197,8 +198,8 @@ namespace AxisManip
         throw std::invalid_argument(et_func_str+" (s,v): err2 "+e.what());
       }
 
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
@@ -241,8 +242,8 @@ namespace AxisManip
                   NumT & energy_transfer_err2,
                   void *temp=NULL)
   {
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
@@ -287,7 +288,7 @@ namespace AxisManip
     h=static_cast<NumT>(PhysConst::H);
     h2=h*h;
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 
   /**
@@ -323,7 +324,7 @@ namespace AxisManip
     // the uncertainty in the result
     energy_transfer_err2 = (initial_energy_err2 + final_energy_err2) / h2;
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 

@@ -32,6 +32,7 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
 #include <cmath>
 #include <stdexcept>
 
@@ -50,7 +51,7 @@ namespace AxisManip
                   Nessi::Vector<NumT> & Q_err2,
                   void *temp=NULL)
   {
-    std::string retstr("");
+    std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
     NumT a;
@@ -99,7 +100,7 @@ namespace AxisManip
                   NumT & Q_err2,
                   void *temp=NULL)
   {
-    std::string retstr("");
+    std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
     NumT a;
@@ -174,7 +175,7 @@ namespace AxisManip
 
     term3 = sang2 * pathlength * pathlength;
 
-    return std::string("");
+    return std::string(Nessi::EMPTY_WARN);
   }
 
   /**
@@ -218,7 +219,7 @@ namespace AxisManip
     Q_err2 += term1 + term2;
     Q_err2 *= a2 / (tof * tof);
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 
 } // AxisManip

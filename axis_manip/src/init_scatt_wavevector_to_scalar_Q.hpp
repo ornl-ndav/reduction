@@ -31,6 +31,7 @@
 #define _INIT_SCATT_WAVEVECTOR_TO_SCALAR_Q_HPP 1
 
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <cmath>
 #include <stdexcept>
@@ -76,8 +77,8 @@ namespace AxisManip
         throw std::invalid_argument(iswtsq_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -142,8 +143,8 @@ namespace AxisManip
         throw std::invalid_argument(iswtsq_func_str+" (s,v): err2 "+e.what());
       }
 
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -208,8 +209,8 @@ namespace AxisManip
         throw std::invalid_argument(iswtsq_func_str+" (v,s): err2 "+e.what());
       }
 
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -254,8 +255,8 @@ namespace AxisManip
                                     NumT & Q_err2,
                                     void *temp=NULL)
   {
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -305,7 +306,7 @@ namespace AxisManip
     b = static_cast<NumT>(std::cos(static_cast<double>(polar_angle)));
     c = static_cast<NumT>(std::sin(static_cast<double>(polar_angle)));
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 
   /**
@@ -373,7 +374,7 @@ namespace AxisManip
     Q_err2 += (polar_angle_err2 * e2);
     Q_err2 *= front;
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 
