@@ -179,13 +179,13 @@ namespace AxisManip
    * This is a PRIVATE helper function for tof_to_wavelength that
    * calculates the wavelength and its uncertainty
    *
-   * \param const NumT tof (INPUT) same as the parameter in
+   * \param tof (INPUT) same as the parameter in
    * tof_to_wavelength()
    * \param tof_err2 (INPUT) same as the parameter in
    * tof_to_wavelength()
    * \param a (INPUT) same as the parameter in
    * __tof_to_wavelength_static()
-   * \param  a (INPUT) same as the parameter in
+   * \param a2 (INPUT) same as the parameter in
    * __tof_to_wavelength_static()
    * \param  a_err2 (INPUT) same as the parameter in
    * __tof_to_wavelength_static()
