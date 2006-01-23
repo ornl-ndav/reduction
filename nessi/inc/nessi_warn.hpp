@@ -7,7 +7,7 @@
 #ifndef _NESSI_WARN_HPP
 #define _NESSI_WARN_HPP 1
 
-#include <vector>
+#include <string>
 
 namespace Nessi
 {
