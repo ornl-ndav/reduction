@@ -50,15 +50,10 @@ const size_t NUM_VAL=5;
  * This function initiales the input arrays.
  */
 template <typename NumT>
-void initialize_inputs(NumT & polar,
-                       NumT & polar_err2,
-                       Nessi::Vector<NumT> & k_i,
+void initialize_inputs(Nessi::Vector<NumT> & k_i,
                        Nessi::Vector<NumT> & k_i_err2,
                        Nessi::Vector<NumT> & k_f,
                        Nessi::Vector<NumT> & k_f_err2){
-  polar=static_cast<NumT>(0.);
-  polar_err2=static_cast<NumT>(0.);
-
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
       k_i.push_back(static_cast<NumT>(0.));
@@ -175,8 +170,8 @@ bool test_okay(NumT                & output_ss,
 template <typename NumT>
 bool test_func(NumT key){ // key forces correct test to happen
   // allocate arrays
-  NumT                polar;
-  NumT                polar_err2;
+  NumT                polar=static_cast<NumT>(0.);
+  NumT                polar_err2=static_cast<NumT>(0.);
   Nessi::Vector<NumT> k_i;
   Nessi::Vector<NumT> k_i_err2;
   Nessi::Vector<NumT> k_f;
@@ -199,7 +194,7 @@ bool test_func(NumT key){ // key forces correct test to happen
   Nessi::Vector<NumT> true_output_vv_err2;
 
   // fill in values as appropriate
-  initialize_inputs(polar,polar_err2,k_i,k_i_err2,k_f,k_f_err2);
+  initialize_inputs(k_i,k_i_err2,k_f,k_f_err2);
   initialize_true_outputs(true_output_ss, true_output_ss_err2,
                           true_output_sv, true_output_sv_err2,
                           true_output_vs, true_output_vs_err2,
