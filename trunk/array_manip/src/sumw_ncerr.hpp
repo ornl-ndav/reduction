@@ -31,6 +31,7 @@
 #define _SUMW_NCERR_HPP 1
 
 #include "arith.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <cmath>
 #include <stdexcept>
@@ -70,8 +71,6 @@ namespace ArrayManip
         throw std::invalid_argument(sumw_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::string retstr("");
-
     size_t sz = input1.size();
     for (size_t i = 0; i < sz; ++i)
       {
@@ -85,7 +84,7 @@ namespace ArrayManip
         output_err2[i] = input1_err2[i] + input2_err2[i];
       }
 
-    return retstr;
+    return Nessi::EMPTY_WARN;
   }
 } // ArrayManip
 

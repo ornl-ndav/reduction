@@ -32,6 +32,7 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
 #include <stdexcept>
 
 namespace AxisManip
@@ -65,7 +66,7 @@ namespace AxisManip
     NumT ls2;
 
     // some string parameters for dealing with warnings
-    std::string retstr("");
+    std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
     // calculate static paramters
@@ -127,7 +128,7 @@ namespace AxisManip
     NumT ls2;
 
     // some string parameters for dealing with warnings
-    std::string retstr("");
+    std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
     // calculate static paramters
@@ -207,7 +208,7 @@ namespace AxisManip
 
     ls2 = dist_source_sample * dist_source_sample;
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 
   /**
@@ -273,7 +274,7 @@ namespace AxisManip
     initial_wavelength_err2 += initial_wavelength *
       initial_wavelength * dist_source_sample_err2 / ls2;
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 

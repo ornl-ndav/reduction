@@ -31,6 +31,7 @@
 #define _DIV_NCERR_HPP 1
 
 #include "arith.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <stdexcept>
 
@@ -69,8 +70,6 @@ namespace ArrayManip
         throw std::invalid_argument(div_func_str+" (s,v): data "+e.what());
       }
 
-    std::string errstr("");
-
     NumT scalar2 = scalar * scalar;
 
     size_t size = array_in.size();
@@ -82,7 +81,7 @@ namespace ArrayManip
         ((scalar2 / (array_in2 * array_in2)) * array_in_err2[i])
         + (scalar_err2 / array_in2);
       }
-    return errstr;
+    return Nessi::EMPTY_WARN;
   }
 
   // 3.5
@@ -115,8 +114,6 @@ namespace ArrayManip
         throw std::invalid_argument(div_func_str+" (v,s): err2 "+e.what());
       }
 
-    std::string errstr("");
-
     NumT scalar2 = scalar * scalar;
     NumT scalar4 = scalar2 * scalar2;
 
@@ -127,7 +124,7 @@ namespace ArrayManip
         array_out_err2[i] = (array_in_err2[i] / scalar2)
           + (((array_in[i] * array_in[i])/ scalar4) * scalar_err2);
       }
-    return errstr;
+    return Nessi::EMPTY_WARN;
   }
 
   // 3.9
@@ -160,8 +157,6 @@ namespace ArrayManip
         throw std::invalid_argument(div_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::string retstr("");
-
     std::transform(input1.begin(), input1.end(), input2.begin(),
                    output.begin(), std::divides<NumT>());
 
@@ -173,7 +168,7 @@ namespace ArrayManip
           (((input1[i] * input1[i]) / (input2_2 * input2_2)) * input2_err2[i]);
       }
 
-    return retstr;
+    return Nessi::EMPTY_WARN;
   }
 } // ArrayManip
 

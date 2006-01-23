@@ -32,6 +32,7 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <stdexcept>
 
@@ -71,8 +72,8 @@ namespace AxisManip
         throw std::invalid_argument(ttw_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -112,8 +113,8 @@ namespace AxisManip
                     NumT & wavelength_err2,
                     void *temp=NULL)
   {
-    std::string retstr(""); // the warning string
-    std::string warn;       // the temporary warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -169,7 +170,7 @@ namespace AxisManip
     a_err2 = a/pathlength;
     a_err2 = a_err2*a_err2*pathlength_err2;
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 
   /**
@@ -209,7 +210,7 @@ namespace AxisManip
     // calculate the uncertainty
     wavelength_err2 = (a2*tof_err2) + ((tof*tof)*a_err2);
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 

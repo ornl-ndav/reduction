@@ -30,6 +30,7 @@
 #ifndef _REVERSE_ARRAY_NC_HPP
 #define _REVERSE_ARRAY_NC_HPP 1
 
+#include "nessi_warn.hpp"
 #include "reverse_array.hpp"
 #include <algorithm>
 
@@ -41,11 +42,9 @@ namespace AxisManip
   reverse_array_nc(Nessi::Vector<NumT> & inout,
                    void *temp=NULL)
   {
-    std::string retstr("");
-
     reverse(inout.begin(), inout.end());
 
-    return retstr;
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 

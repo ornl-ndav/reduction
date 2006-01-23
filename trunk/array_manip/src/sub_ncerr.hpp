@@ -31,6 +31,7 @@
 #define _SUB_NCERR_HPP 1
 
 #include "arith.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <algorithm>
 #include <stdexcept>
@@ -79,15 +80,13 @@ namespace ArrayManip
         throw std::invalid_argument(sub_func_str+" (v,s): err2 "+e.what());
       }
 
-    std::string errstr("");
-
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
       {
         array_out[i] = array_in[i] - scalar;
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
       }
-    return errstr;
+    return Nessi::EMPTY_WARN;
   }
 
   // 3.44
@@ -120,15 +119,13 @@ namespace ArrayManip
         throw std::invalid_argument(sub_func_str+" (s,v): err2 "+e.what());
       }
 
-    std::string errstr("");
-
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
       {
         array_out[i] = scalar - array_in[i];
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
       }
-    return errstr;
+    return Nessi::EMPTY_WARN;
   }
 
   // 3.7
@@ -142,8 +139,6 @@ namespace ArrayManip
             Nessi::Vector<NumT> & output_err2,
             void *temp=NULL)
   {
-    std::string retstr("");
-
     // check that the values are of proper size
     try
       {
@@ -169,7 +164,7 @@ namespace ArrayManip
                    input2_err2.begin(), output_err2.begin(),
                    std::plus<NumT>());
 
-    return retstr;
+    return Nessi::EMPTY_WARN;
   }
 } // ArrayManip
 

@@ -32,6 +32,7 @@
 
 #include "constants.hpp"
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <stdexcept>
 
@@ -69,7 +70,7 @@ namespace AxisManip
         throw std::invalid_argument(wte_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::string retstr("");
+    std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
     NumT a2;
@@ -108,7 +109,7 @@ namespace AxisManip
                        NumT & energy_err2,
                        void *temp=NULL)
   {
-    std::string retstr("");
+    std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
     NumT a2;
@@ -145,7 +146,7 @@ namespace AxisManip
   {
     a2 = static_cast<NumT>(4. * PhysConst::H2_OVER_2MNEUT *
                            PhysConst::H2_OVER_2MNEUT);
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 
   /**
@@ -179,7 +180,7 @@ namespace AxisManip
     energy_err2 = (a2 * wavelength_err2)
       / (wavelength2 * wavelength2 * wavelength2);
 
-    return std::string("");
+    return Nessi::EMPTY_WARN;
   }
 
 } // AxisManip

@@ -31,6 +31,7 @@
 #define _ADD_NCERR_HPP 1
 
 #include "arith.hpp"
+#include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include <algorithm>
 #include <stdexcept>
@@ -70,15 +71,13 @@ namespace ArrayManip
         throw std::invalid_argument(add_func_str+" (v,s): err2 "+e.what());
       }
 
-    std::string errstr("");
-
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
       {
         array_out[i] = array_in[i] + scalar;
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
       }
-    return errstr;
+    return Nessi::EMPTY_WARN;
   }
 
   // 3.6
@@ -111,15 +110,13 @@ namespace ArrayManip
         throw std::invalid_argument(add_func_str+" (v,v): err2 "+e.what());
       }
 
-    std::string retstr("");
-
     std::transform(input1.begin(), input1.end(), input2.begin(),
                    output.begin(), std::plus<NumT>());
     std::transform(input1_err2.begin(), input1_err2.end(),
                    input2_err2.begin(), output_err2.begin(),
                    std::plus<NumT>());
 
-    return retstr;
+    return Nessi::EMPTY_WARN;
   }
 } // ArrayManip
 
