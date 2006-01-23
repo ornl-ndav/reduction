@@ -1,3 +1,24 @@
+dnl                     SNS Common Libraries
+dnl           A part of the SNS Analysis Software Suite.
+dnl
+dnl                  Spallation Neutron Source
+dnl          Oak Ridge National Laboratory, Oak Ridge TN.
+dnl
+dnl
+dnl                             NOTICE
+dnl 
+dnl For this software and its associated documentation, permission is granted 
+dnl to reproduce, prepare derivative works, and distribute copies to the 
+dnl public for any purpose and without fee.
+dnl  
+dnl This material was prepared as an account of work sponsored by an agency of 
+dnl the United States Government.  Neither the United States Government nor the
+dnl United States Department of Energy, nor any of their employees, makes any 
+dnl warranty, express or implied, or assumes any legal liability or 
+dnl responsibility for the accuracy, completeness, or usefulness of any 
+dnl information, apparatus, product, or process disclosed, or represents that 
+dnl its use would not infringe privately owned rights.
+
 dnl $Id$
 
 AC_PREREQ(2.59)
