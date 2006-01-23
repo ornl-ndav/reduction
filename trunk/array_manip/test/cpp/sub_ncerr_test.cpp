@@ -140,9 +140,9 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output_vs,
   true_output_sv_err2.push_back(static_cast<NumT>(2.));
   true_output_sv.push_back(static_cast<NumT>(0.));  // =4-4
   true_output_sv_err2.push_back(static_cast<NumT>(2.));
-  true_output_sv.push_back(static_cast<NumT>(1));  // =4-3
+  true_output_sv.push_back(static_cast<NumT>(1.));  // =4-3
   true_output_sv_err2.push_back(static_cast<NumT>(2.));
-  true_output_sv.push_back(static_cast<NumT>(2));  // =4-2
+  true_output_sv.push_back(static_cast<NumT>(2.));  // =4-2
   true_output_sv_err2.push_back(static_cast<NumT>(2.));
 }
 
