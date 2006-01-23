@@ -26,130 +26,139 @@
 #include "conversions.hpp"
 #include "nessi.hpp"
 #include "num_comparison.hpp"
+#include "test_common.hpp"
 #include <cmath>
 #include <iostream>
 
 using namespace std;
 
-int main()
-{
-  // SNS-FIXME
+const size_t NUM_VAL=5;
 
-  int num_val = 20;
+/**
+ * \defgroup wavelength_to_energy_test wavelength_to_energy_test
+ *
+ * This test compares the output data calculated by the library
+ * function wavelength_to_energy() and described in 3.22
+ * of the DR_Lib_RS_q with the true output data manually
+ * calculated. Any discrepancy between the outputs will generate an
+ * error message in the testsuite.log file that gives details about
+ * the location and type of the error.
+ */
 
-  //float
-  Nessi::Vector<float> f_wavelength;
-  Nessi::Vector<float> f_wavelength_err2;
-  Nessi::Vector<float> f_energy(num_val);
-  Nessi::Vector<float> f_energy_err2(num_val);
-  Nessi::Vector<float> f_true_energy(num_val);
-  Nessi::Vector<float> f_true_energy_err2(num_val);
-  float f_wavelength2;
-  float f_a2;
-
-  //double
-  Nessi::Vector<double> d_wavelength;
-  Nessi::Vector<double> d_wavelength_err2;
-  Nessi::Vector<double> d_energy(num_val);
-  Nessi::Vector<double> d_energy_err2(num_val);
-  Nessi::Vector<double> d_true_energy(num_val);
-  Nessi::Vector<double> d_true_energy_err2(num_val);
-  double d_wavelength2;
-  double d_a2;
-
-  int error=0;                      //==0,Pass  !=0,Fail
-
-  f_a2 = static_cast<float>(2) * static_cast<float>(PhysConst::H2_OVER_2MNEUT);
-  f_a2=f_a2*f_a2;
-  d_a2 = static_cast<double>(4) * PhysConst::H2_OVER_2MNEUT;
-  d_a2=d_a2*d_a2;
-
-  for (int i = 0 ; i < num_val ; i++)            //create the arrays
+/**
+ * This function initiales the input arrays.
+ */
+template <typename NumT>
+void initialize_inputs(Nessi::Vector<NumT> & wavelength,
+                       Nessi::Vector<NumT> & wavelength_err2){
+  for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
-      f_wavelength.push_back(2.*static_cast<float>(i));
-      d_wavelength.push_back(2.*static_cast<double>(i));
-
-      f_wavelength_err2.push_back(static_cast<float>(i));
-      d_wavelength_err2.push_back(static_cast<double>(i));
+      wavelength.push_back(static_cast<NumT>(0.));
+      wavelength_err2.push_back(static_cast<NumT>(0.));
     }
+}
 
-  AxisManip::wavelength_to_energy(f_wavelength, f_wavelength_err2,
-                                  f_energy, f_energy_err2);
-  AxisManip::wavelength_to_energy(d_wavelength, d_wavelength_err2,
-                                  d_energy, d_energy_err2);
+/**
+ * This function generate the values to compare the calculation to.
+ */
+template <typename NumT>
+void initialize_true_outputs(NumT    & true_output_ss,
+           NumT    & true_output_ss_err2,
+           Nessi::Vector<NumT> & true_output_vv,
+           Nessi::Vector<NumT> & true_output_vv_err2){
+  // scalar scalar
+  true_output_ss=static_cast<NumT>(0.);
+  true_output_ss_err2=static_cast<NumT>(0.);
+  
+  // vector vector
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+}
 
-  for (int i = 0 ; i < num_val ; i++)
-    {
-      //float
-      f_wavelength2 = f_wavelength[i] * f_wavelength[i];
-      f_true_energy[i] = static_cast<float>(PhysConst::H2_OVER_2MNEUT)
-        / f_wavelength2;
-      f_true_energy_err2[i] = (f_a2 * f_wavelength_err2[i])
-        / (f_wavelength2 * f_wavelength2 * f_wavelength2);
+/**
+ * This functions compares the expected with calculated values.
+ */
+template <typename NumT>
+bool test_okay(NumT    & output_ss,
+               NumT    & output_ss_err2,
+               NumT    & true_output_ss,
+               NumT    & true_output_ss_err2,
+               Nessi::Vector<NumT> & output_vv,
+               Nessi::Vector<NumT> & output_vv_err2,
+               Nessi::Vector<NumT> & true_output_vv,
+               Nessi::Vector<NumT> & true_output_vv_err2){
+  // scalar scalar
+  if(!test_okay(output_ss,true_output_ss))
+    return false;
+  if(!test_okay(output_ss_err2,true_output_ss_err2))
+    return false;
 
-      //double
-      d_wavelength2 = d_wavelength[i] * d_wavelength[i];
-      d_true_energy[i] = PhysConst::H2_OVER_2MNEUT / d_wavelength2;
-      d_true_energy_err2[i] = (d_a2 * d_wavelength_err2[i])
-        / (d_wavelength2 * d_wavelength2 * d_wavelength2);
-    }
+  // vector vector
+  if(!test_okay(output_vv,true_output_vv,VV))
+    return false;
+  if(!test_okay(output_vv_err2,true_output_vv_err2,VV))
+    return false;
 
-  //check first if the size are in good agreement
-  if ( (f_wavelength.size() != f_energy.size())
-       || (d_wavelength.size() != d_energy.size()) )
-    {
-      cout << "Input and output vectors do not have the same size"  << endl;
-      ++error;
-    }
-  else
-    {
+  // everything okay
+  return true;
+}
 
-      while(1)
-        {
-          Utils::vector_comparison(f_energy, f_true_energy, error, 10);
-          if (error != 0) break;
-          Utils::vector_comparison(f_energy_err2, f_true_energy_err2, error, 20);
-          if (error != 0) break;
+/**
+ * Function that runs the test for a numeric type
+ */
+template <typename NumT>
+bool test_func(NumT key){ // key forces correct test to happen
+  // allocate arrays
+  Nessi::Vector< NumT > wavelength;
+  Nessi::Vector< NumT > wavelength_err2;
+  NumT                  output_ss;
+  NumT                  output_ss_err2;
+  NumT                  true_output_ss;
+  NumT                  true_output_ss_err2;
+  Nessi::Vector<NumT>   output_vv;
+  Nessi::Vector<NumT>   output_vv_err2;
+  Nessi::Vector<NumT>   true_output_vv;
+  Nessi::Vector<NumT>   true_output_vv_err2;
 
-          Utils::vector_comparison(d_energy, d_true_energy, error, 110);
-          if (error != 0) break;
-          Utils::vector_comparison(d_energy_err2, d_true_energy_err2, error, 120);
-          if (error != 0) break;
+  // fill in values as appropriate
+  initialize_inputs(wavelength,wavelength_err2);
+  initialize_true_outputs(true_output_ss, true_output_ss_err2,
+                          true_output_vv, true_output_vv_err2);
 
-          break;
-        }
-    }
+  // run the code being tested
+  AxisManip::wavelength_to_energy(wavelength[0], wavelength_err2[0],
+                                  output_ss, output_ss_err2);
 
+  AxisManip::wavelength_to_energy(wavelength, wavelength_err2,
+                                  output_vv, output_vv_err2);
+
+  return test_okay(output_ss, output_ss_err2,
+                   true_output_ss, true_output_ss_err2,
+                   output_vv, output_vv_err2,
+                   true_output_vv, true_output_vv_err2);
+}
+
+/**
+ * Main function that test energy_transfer for float and double
+ */
+int main(){
   cout << "wavelength_to_energy_test.cpp..........";
 
-  switch (error)
-    {
-    case 0:
-      cout << "Functionality OK" << endl;
-      break;
-    case 1:
-      cout << "FAILED....Output and input vectors have different sizes" << endl;
-      break;
-    case 10:
-      cout << "(float) FAILED....Output vector different from vector expected"
-           << endl;
-      break;
-    case 20:
-      cout << "(float) FAILED....Output error vector different from vector"
-           << " expected" << endl;
-      break;
-    case 110:
-      cout << "(double) FAILED....Output vector different from vector "
-           << "expected" << endl;
-      break;
-    case 120:
-      cout << "(double) FAILED....Output error vector different from vector "
-           << "expected" << endl;
-      break;
-    default:
-      cout << "FAILED" << endl;
-      break;
-    }
+  if(!test_func(static_cast<float>(1)))
+    return -1;
+
+  if(!test_func(static_cast<double>(1)))
+    return -1;
+
+  cout << "Functionality OK" << endl;
 
   return 0;
 }
