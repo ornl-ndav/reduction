@@ -23,7 +23,7 @@
 # $Id$
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc \
-	      -I$(top_srcdir)/nessi -I$(top_srcdir)/phys_const/inc
+	      -I$(top_srcdir)/nessi/inc -I$(top_srcdir)/phys_const/inc
 AM_LDFLAGS  = -static \
               -L$(top_srcdir)/axis_manip/src/.libs -lAxisManip \
               -L$(top_srcdir)/utils/src/.libs -lUtils
