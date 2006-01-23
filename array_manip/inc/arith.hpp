@@ -61,7 +61,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=(\sigma_1[i])^2+(\sigma_2[i])^2
+   * \sigma_o^2[i]=\sigma_1^2[i]+\sigma_2^2[i]
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the first
@@ -110,7 +110,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=(\sigma_a)^2+(\sigma_i[i])^2
+   * \sigma_o^2[i]=\sigma_a^2+\sigma_i^2[i]
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$a\f$ is the scalar being added to each element,
@@ -168,7 +168,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=(\sigma_1[i])^2+(\sigma_2[i])^2
+   * \sigma_o^2[i]=\sigma_1^2[i]+\sigma_2^2[i]
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$data_1[i]\f$ is the \f$i^{th}\f$ being subtracted from
@@ -218,7 +218,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=(\sigma_i[i])^2+(\sigma_a)^2
+   * \sigma_o^2[i]=\sigma_i^2[i]+\sigma_a^2
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$a\f$ is the scalar being subtracted from each element,
@@ -233,7 +233,7 @@ namespace ArrayManip
    *
    * \param array_in (INPUT) is the array to be subtracted from
    * \param array_in_err2 (INPUT) is the square of the uncertainty in the
-   * array to be subtracted fro
+   * array to be subtracted from
    * \param scalar (INPUT) is the scalar to subtract from each element of
    * array_in
    * \param scalar_err2 (INPUT) is the square of the uncertainty in the
@@ -267,7 +267,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=(\sigma_i[i])^2+(\sigma_a)^2
+   * \sigma_o^2[i]=\sigma_i^2[i]+\sigma_a^2
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array
@@ -325,7 +325,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=(data_1[i]\times\sigma_2[i])^2
+   * \sigma_o^2[i]=(data_1[i]\times\sigma_2[i])^2
    * +(data_2[i]\times\sigma_1[i])^2
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
@@ -375,7 +375,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=(a\times\sigma_i[i])^2+(data_i[i]\times\sigma_a)^2
+   * \sigma_o^2[i]=(a\times\sigma_i[i])^2+(data_i[i]\times\sigma_a)^2
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$a\f$ is the scalar being multiplied to each element,
@@ -433,8 +433,8 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=\left(\frac{data_1[i] \sigma_2[i]}{(data_2[i])^2}\right)^2
-   *                 +\left(\frac{\sigma_1[i]}{data_2[i]}\right)^2
+   * \sigma_o^2[i]=\left(\frac{data_1[i]\times \sigma_2[i]}{data_2^2[i]}
+   * \right)^2+\left(\frac{\sigma_1[i]}{data_2[i]}\right)^2
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the array
@@ -484,7 +484,7 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=\left(\frac{a \sigma_i[i]}{(data_i[i])^2}\right)^2
+   * \sigma_o^2[i]=\left(\frac{a \times \sigma_i[i]}{data_i^2[i]}\right)^2
    *                 +\left(\frac{\sigma_a}{data_i[i]}\right)^2
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
@@ -534,8 +534,8 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be processed according to
    * the equation
    * \f[
-   * (\sigma_o[i])^2=\left(\frac{\sigma_i[i]}{a}\right)^2
-   *                 +\left(\frac{data_i[i]\sigma_a}{a^2}\right)^2
+   * \sigma_o^2[i]=\left(\frac{\sigma_i[i]}{a}\right)^2
+   *                 +\left(\frac{data_i[i]\times\sigma_a}{a^2}\right)^2
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$a\f$ is the scalar dividing each element,
