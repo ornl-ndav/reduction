@@ -45,9 +45,6 @@
  */
 namespace PhysCorr
 {
-  /// Empty string for no warning to return
-  static const std::string EMPTY_WARN("");
-
   /**
    * \defgroup absorption_mult_scatt PhysCorr::absorption_mult_scatt
    * \{

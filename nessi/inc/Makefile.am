@@ -23,6 +23,7 @@
 # $Id$
 
 include_HEADERS = \
-	nessi.hpp
+	nessi.hpp \
+	nessi_warn.hpp
 
 EXTRA_DIST = libinfo.hpp
