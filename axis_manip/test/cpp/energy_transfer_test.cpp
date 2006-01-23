@@ -35,7 +35,7 @@ using namespace std;
 const size_t NUM_VAL=5;
 
 /**
- * \ingroup energy_transfer_test
+ * \defgroup energy_transfer_test energy_transfer_test
  *
  * This test compares the output data calculated by the library
  * function energy_transfer() and described in 3.30 of the DR_Lib_RS_q
