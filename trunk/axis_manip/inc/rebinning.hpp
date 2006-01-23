@@ -92,6 +92,15 @@ namespace AxisManip
    * \f[
    * Bin_2^{new} = Bin_3^{old} + 0.5 \times Bin_2^{old}
    * \f]
+   *and
+   * \f[
+   * \sigma^2_{Bin_1^{new}} = \sigma^2_{Bin_1^{old}} + (0.5)^2 \times 
+   * \sigma^2_{Bin_2^{old}}
+   * \f]
+   * \f[
+   * \sigma^2_{Bin_2^{new}} = \sigma^2_{Bin_3^{old}} + (0.5)^2 \times 
+   * \sigma^2_{Bin_2^{old}}
+   * \f]
    *
    * This can be seen in the results presented in the above table. Now, we'll 
    * reverse the process. The original histogram is the rebinned histogram 
@@ -108,6 +117,17 @@ namespace AxisManip
    * \f]
    * \f[
    * Bin_3^{new} = \frac{2}{3} \times Bin_3^{old}
+   * \f]
+   * and
+   * \f[
+   * \sigma^2_{Bin_1^{new}} = (\frac{2}{3})^2 \times \sigma^2_{Bin_1^{old}}
+   * \f]
+   * \f[
+   * \sigma^2_{Bin_2^{new}} = (\frac{1}{3})^2 \times \sigma^2_{Bin_1^{old}} + 
+   * (\frac{1}{3})^2 \times \sigma^2_{Bin_2^{old}}
+   * \f]
+   * \f[
+   * \sigma^2_{Bin_3^{new}} = (\frac{2}{3})^2 \times \sigma^2_{Bin_3^{old}}
    * \f]
    *
    * The results of this operation are shown in the following table:
