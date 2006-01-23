@@ -25,7 +25,7 @@
 /**
  * $Id$
  *
- * \file nessi/nessi.hpp
+ * \file nessi/inc/nessi.hpp
  */
 
 #ifndef _NESSI_HPP
