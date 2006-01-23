@@ -26,131 +26,145 @@
 #include "constants.hpp"
 #include "conversions.hpp"
 #include "num_comparison.hpp"
+#include "test_common.hpp"
 #include <cmath>
 #include <iostream>
 
 using namespace std;
 
-int main()
-{
-  // SNS-FIXME
+const size_t NUM_VAL=5;
 
-  int num_val = 20;
+/**
+ * \defgroup tof_to_wavelength_test tof_to_wavelength_test
+ *
+ * This test compares the output data calculated by the library
+ * function tof_to_wavelength() and described in 3.15
+ * of the DR_Lib_RS_q with the true output data manually
+ * calculated. Any discrepancy between the outputs will generate an
+ * error message in the testsuite.log file that gives details about
+ * the location and type of the error.
+ */
 
-  //float
-  Nessi::Vector<float> f_tof;
-  Nessi::Vector<float> f_tof_err2;
-  const float f_pathlength = 3.3;
-  const float f_pathlength_err2 = .3;
-  Nessi::Vector<float> f_wavelength(num_val);
-  Nessi::Vector<float> f_wavelength_err2(num_val);
-  Nessi::Vector<float> f_true_wavelength(num_val);
-  Nessi::Vector<float> f_true_wavelength_err2(num_val);
-  const float f_a = static_cast<float>(PhysConst::H_OVER_MNEUT)/f_pathlength;
-  float f_a_err2 = static_cast<float>(PhysConst::H_OVER_MNEUT)/f_pathlength;
-  f_a_err2=f_a_err2*f_a_err2*f_pathlength_err2;
-
-  //double
-  Nessi::Vector<double> d_tof;
-  Nessi::Vector<double> d_tof_err2;
-  const double d_pathlength = 3.3;
-  const double d_pathlength_err2 = .3;
-  Nessi::Vector<double> d_wavelength(num_val);
-  Nessi::Vector<double> d_wavelength_err2(num_val);
-  Nessi::Vector<double> d_true_wavelength(num_val);
-  Nessi::Vector<double> d_true_wavelength_err2(num_val);
-  const double d_a = static_cast<double>(PhysConst::H_OVER_MNEUT)/d_pathlength;
-  double d_a_err2 = static_cast<double>(PhysConst::H_OVER_MNEUT)/d_pathlength;
-  d_a_err2=d_a_err2*d_a_err2*d_pathlength_err2;
-
-  int error=0;                      //==0,Pass  !=0,Fail
-
-  for (int i = 0 ; i < num_val ; i++)            //create the arrays
+/**
+ * This function initiales the input arrays.
+ */
+template <typename NumT>
+void initialize_inputs(Nessi::Vector<NumT> & tof,
+                       Nessi::Vector<NumT> & tof_err2){
+  for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
-      //_input1 array
-      f_tof.push_back(2.*static_cast<float>(i));
-      d_tof.push_back(2.*static_cast<double>(i));
-
-      f_tof_err2.push_back(static_cast<float>(i));
-      d_tof_err2.push_back(static_cast<double>(i));
+      tof.push_back(static_cast<NumT>(0.));
+      tof_err2.push_back(static_cast<NumT>(0.));
     }
+}
 
-  AxisManip::tof_to_wavelength(f_tof, f_tof_err2,
-                               f_pathlength, f_pathlength_err2,
-                               f_wavelength, f_wavelength_err2);
+/**
+ * This function generate the values to compare the calculation to.
+ */
+template <typename NumT>
+void initialize_true_outputs(NumT    & true_output_ss,
+           NumT    & true_output_ss_err2,
+           Nessi::Vector<NumT> & true_output_vv,
+           Nessi::Vector<NumT> & true_output_vv_err2){
+  // scalar scalar
+  true_output_ss=static_cast<NumT>(0.);
+  true_output_ss_err2=static_cast<NumT>(0.);
+  
+  // vector vector
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(0.));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+}
 
-  AxisManip::tof_to_wavelength(d_tof, d_tof_err2,
-                               d_pathlength, d_pathlength_err2,
-                               d_wavelength, d_wavelength_err2);
+/**
+ * This functions compares the expected with calculated values.
+ */
+template <typename NumT>
+bool test_okay(NumT    & output_ss,
+         NumT    & output_ss_err2,
+         NumT    & true_output_ss,
+         NumT    & true_output_ss_err2,
+         Nessi::Vector<NumT> & output_vv,
+         Nessi::Vector<NumT> & output_vv_err2,
+         Nessi::Vector<NumT> & true_output_vv,
+         Nessi::Vector<NumT> & true_output_vv_err2){
+  // scalar scalar
+  if(!test_okay(output_ss,true_output_ss))
+    return false;
+  if(!test_okay(output_ss_err2,true_output_ss_err2))
+    return false;
 
-  for (int i = 0 ; i < num_val ; i++)
-    {
-      f_true_wavelength[i] = f_a * f_tof[i];
-      f_true_wavelength_err2[i] = (f_a*f_a) * f_tof_err2[i]
-        + ((f_tof[i]*f_tof[i])*f_a_err2);
+  // vector vector
+  if(!test_okay(output_vv,true_output_vv,VV))
+    return false;
+  if(!test_okay(output_vv_err2,true_output_vv_err2,VV))
+    return false;
 
-      d_true_wavelength[i] = d_a * d_tof[i];
-      d_true_wavelength_err2[i] = (d_a*d_a) * d_tof_err2[i]
-        + ((d_tof[i]*d_tof[i])*d_a_err2);
-    }
+  // everything okay
+  return true;
+}
 
-  //check first if the size are in good agreement
-  if ( (f_tof.size() != f_wavelength.size())
-       || (d_tof.size() != d_wavelength.size()) )
-    {
-      cout << "Input and output vectors do not have the same size"  << endl;
-      ++error;
-    }
-  else
-    {
-      while(1)
-        {
-          Utils::vector_comparison(f_wavelength, f_true_wavelength, error, 10);
-          if (error != 0) break;
-          Utils::vector_comparison(f_wavelength_err2, f_true_wavelength_err2,
-                                   error, 20);
-          if (error != 0) break;
+/**
+ * Function that runs the test for a numeric type
+ */
+template <typename NumT>
+bool test_func(NumT key){ // key forces correct test to happen
+  // allocate arrays
+  Nessi::Vector< NumT > tof;
+  Nessi::Vector< NumT > tof_err2;
+  NumT                  pathlength=static_cast<NumT>(0.);
+  NumT                  pathlength_err2=static_cast<NumT>(0.);
+  NumT                  output_ss;
+  NumT                  output_ss_err2;
+  NumT                  true_output_ss;
+  NumT                  true_output_ss_err2;
+  Nessi::Vector<NumT>   output_vv;
+  Nessi::Vector<NumT>   output_vv_err2;
+  Nessi::Vector<NumT>   true_output_vv;
+  Nessi::Vector<NumT>   true_output_vv_err2;
 
-          Utils::vector_comparison(d_wavelength, d_true_wavelength, error, 110);
-          if (error != 0) break;
-          Utils::vector_comparison(d_wavelength_err2, d_true_wavelength_err2,
-                                   error, 120);
-          if (error != 0) break;
+  // fill in values as appropriate
+  initialize_inputs(tof,tof_err2);
+  initialize_true_outputs(true_output_ss, true_output_ss_err2,
+                          true_output_vv, true_output_vv_err2);
 
-          break;
-        }
-    }
+  // run the code being tested
+  AxisManip::tof_to_wavelength(tof[0], tof_err2[0],
+                               pathlength, pathlength_err2,
+                               output_ss,
+                               output_ss_err2);
 
+  AxisManip::tof_to_wavelength(tof, tof_err2,
+                               pathlength, pathlength_err2,
+                               output_vv,
+                               output_vv_err2);
+
+  return test_okay(output_ss, output_ss_err2,
+                   true_output_ss, true_output_ss_err2,
+                   output_vv, output_vv_err2,
+                   true_output_vv, true_output_vv_err2);
+}
+
+/**
+ * Main functino that test energy_transfer for float and double
+ */
+int main(){
   cout << "tof_to_wavelength_test.cpp..........";
 
-  switch (error)
-    {
-    case 0:
-      cout << "Functionality OK" << endl;
-      break;
-    case 1:
-      cout << "FAILED....Output and input vectors have different sizes" << endl;
-      break;
-    case 10:
-      cout << "(float) FAILED....Output vector different from vector "
-           << "expected" << endl;
-      break;
-    case 20:
-      cout << "(float) FAILED....Output error vector different from vector "
-           << "expected" << endl;
-      break;
-    case 110:
-      cout << "(double) FAILED....Output vector different from vector "
-           << "expected" << endl;
-      break;
-    case 120:
-      cout << "(double) FAILED....Output error vector different from vector "
-           << "expected" << endl;
-      break;
-    default:
-      cout << "FAILED" << endl;
-      break;
-    }
+  if(!test_func(static_cast<float>(1)))
+    return -1;
+
+  if(!test_func(static_cast<double>(1)))
+    return -1;
+
+  cout << "Functionality OK" << endl;
 
   return 0;
 }
