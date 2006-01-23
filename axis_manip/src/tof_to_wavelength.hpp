@@ -151,7 +151,7 @@ namespace AxisManip
    * tof_to_wavelength_static()
    * \param a (OUTPUT) \f$=\frac{h}{m_n pathlength}\f$
    * \param a2 (OUTPUT) \f$=a*a\f$
-   * \param a_err2 (OUTPUT) \f$=\frac{h}{m_n pathlength^2} a\_err2^2 pathlength\_err2
+   * \param a_err2 (OUTPUT) \f$=\frac{h}{m_n pathlength^2} a\_err2^2 pathlength\_err2\f$
    */
   template <typename NumT>
   std::string
