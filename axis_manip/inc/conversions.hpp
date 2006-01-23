@@ -49,6 +49,9 @@
  */
 namespace AxisManip
 {
+  /// Empty string for no warning to return
+  static const std::string EMPTY_WARN("");
+
   /**
    * \defgroup tof_to_wavelength AxisManip::tof_to_wavelength
    * \{
@@ -72,7 +75,7 @@ namespace AxisManip
    *
    * \f[
    * \sigma^2_{\lambda}[i]=\left(\frac{h}{m_n L}\right)^2\sigma^2_{TOF}[i]+
-   * \left(\frac{h TOF[i]}{m_n L^2}\right)^2\sigma^2_L
+   * \left(\frac{\lambda[i]}{L}\right)^2\sigma^2_L
    * \f]
    * where \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis,
    * \f$\sigma_{TOF}\f$ is the uncertainty in the time of flight axis, and
@@ -123,7 +126,7 @@ namespace AxisManip
    *
    * \f[
    * \sigma^2_{\lambda}=\left(\frac{h}{m_n L}\right)^2\sigma^2_{TOF}+
-   * \left(\frac{h TOF}{m_n L^2}\right)^2\sigma^2_L
+   * \left(\frac{\lambda}{L}\right)^2\sigma^2_L
    * \f]
    * where \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis,
    * \f$\sigma_{TOF}\f$ is the uncertainty in the time of flight axis, and
@@ -654,8 +657,7 @@ namespace AxisManip
    * Assuming that the uncertainty are uncorrelated, the uncertainty
    * in the energy is defined by
    * \f[
-   * \sigma^2_E[i]=\left(\frac{h^2}{m_n}\right)^2\frac{1}{\lambda^6}
-   * \sigma^2_{\lambda}[i]
+   * \sigma^2_E[i]=\left(\frac{2E}{\lambda}\right)^2\sigma^2_{\lambda}[i]
    * \f]
    * where \f$\sigma_E\f$ is the uncertainty in the energy, and
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
@@ -697,8 +699,7 @@ namespace AxisManip
    * Assuming that the uncertainty are uncorrelated, the uncertainty
    * in the energy is defined by
    * \f[
-   * \sigma^2_E=\left(\frac{h^2}{m_n}\right)^2\frac{1}{\lambda^6}
-   * \sigma^2_{\lambda}
+   * \sigma^2_E=\left(\frac{2E}{\lambda}\right)^2\sigma^2_{\lambda}
    * \f]
    * where \f$\sigma_E\f$ is the uncertainty in the energy, and
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
@@ -824,7 +825,7 @@ namespace AxisManip
    * Assuming that the uncertainties are uncorrelated, the uncertainty
    * in the scalar wavevector is given by
    * \f[
-   * \sigma^2_k[i]=\frac{4\pi^2}{\lambda^4}\sigma^2_{\lambda}[i]
+   * \sigma^2_k[i]=\left(\frac{k[i]}{\lambda}\right)^2\sigma^2_{\lambda}[i]
    * \f]
    * where \f$\sigma_k\f$ is the uncertainty in the scalar wavevector, and
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
@@ -864,7 +865,7 @@ namespace AxisManip
    * Assuming that the uncertainties are uncorrelated, the uncertainty
    * in the scalar wavevector is given by
    * \f[
-   * \sigma^2_k=\frac{4\pi^2}{\lambda^4}\sigma^2_{\lambda}
+   * \sigma^2_k=\left(\frac{k}{\lambda}\right)^2\sigma^2_{\lambda}
    * \f]
    * where \f$\sigma_k\f$ is the uncertainty in the scalar wavevector, and
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
