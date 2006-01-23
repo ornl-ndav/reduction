@@ -38,15 +38,6 @@
 
 namespace ArrayManip
 {
-  //SNS-FIXME 
-  //sub_ncerr does not produce the right output (for unsigned int) when 
-  //the input is a negative int.
-  //ex: sub_ncerr(2,-4) should return 0 but return 4294967295
-  //Pb is that static_cast<unsigned int>(-2) => 4294967294
-  //           static_cast<unsigned int>(-2.) => 0
-  //           static_cast<unsigned int>(static_cast<float>(-2)) => 0
-  //END OF FIXE-ME
-  
   /// String for holding the subtraction function name
   const std::string sub_func_str = "ArrayManip::sub_ncerr";
 
