@@ -167,7 +167,7 @@ namespace AxisManip
    * tof_to_initial_wavelength_igs that calculates parameters
    * invariant across the array calculation.
    *
-   * \param const NumT final_wavelength (INPUT) same as parameter in
+   * \param final_wavelength (INPUT) same as parameter in
    * tof_to_initial_wavelength_igs()
    * \param time_offset (INPUT) same as parameter in
    * tof_to_initial_wavelength_igs()

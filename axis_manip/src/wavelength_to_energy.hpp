@@ -155,7 +155,7 @@ namespace AxisManip
    * This is a PRIVATE helper function for wavelength_to_energy that
    * calculates the energy and its uncertainty.
    *
-   * \param const NumT wavelength (INPUT) same as the parameter in
+   * \param wavelength (INPUT) same as the parameter in
    * wavelength_to_energy()
    * \param wavelength_err2 (INPUT) same as the parameter in
    * wavelength_to_energy()
