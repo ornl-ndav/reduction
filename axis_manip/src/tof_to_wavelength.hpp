@@ -81,7 +81,7 @@ namespace AxisManip
     NumT a_err2;
 
     // fill the local variables
-    __tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
+    warn=__tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
     if(!(warn.empty()))
       {
         retstr+=warn;
@@ -122,7 +122,8 @@ namespace AxisManip
     NumT a_err2;
 
     // fill the local variables
-    __tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
+    warn=__tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
+    
     if(!(warn.empty()))
       {
         retstr+=warn;
@@ -154,12 +155,11 @@ namespace AxisManip
    * \param a_err2 (OUTPUT) \f$=\frac{h}{m_n pathlength^2} a\_err2^2 pathlength\_err2\f$
    */
   template <typename NumT>
-  std::string
-  __tof_to_wavelength_static(const NumT pathlength,
-                             const NumT pathlength_err2,
-                             NumT & a,
-                             NumT & a2,
-                             NumT & a_err2)
+  std::string  __tof_to_wavelength_static(const NumT pathlength,
+                                          const NumT pathlength_err2,
+                                          NumT & a,
+                                          NumT & a2,
+                                          NumT & a_err2)
   {
     // calculate the factor to multiply each element by
     a = static_cast<NumT>(PhysConst::H_OVER_MNEUT) / pathlength;
@@ -195,14 +195,13 @@ namespace AxisManip
    * tof_to_wavelength()
    */
   template <typename NumT>
-  std::string
-  __tof_to_wavelength_dynamic(const NumT tof,
-                              const NumT tof_err2,
-                              const NumT a,
-                              const NumT a2,
-                              const NumT a_err2,
-                              NumT & wavelength,
-                              NumT & wavelength_err2)
+  std::string  __tof_to_wavelength_dynamic(const NumT tof,
+                                           const NumT tof_err2,
+                                           const NumT a,
+                                           const NumT a2,
+                                           const NumT a_err2,
+                                           NumT & wavelength,
+                                           NumT & wavelength_err2)
   {
     // calculate the value
     wavelength = a * tof;
