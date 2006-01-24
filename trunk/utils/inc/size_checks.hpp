@@ -36,6 +36,34 @@
 namespace Utils
 {
   /**
+   * \defgroup check_histo_sizes Utils::check_histo_sizes
+   * \{
+   */
+
+  /**
+   * \brief This function checks data, error2 and axis vectors for
+   * consistent sizes.
+   *
+   * This function checks the sizes of data, error2 and an axis vector for
+   * the correct sizes in terms of a histogram model. The data and error2
+   * vectors should be one element shorter than the axis vector. If the
+   * vectors have inconsistent sizes, an exception is thrown.
+   *
+   * \param input (INPUT) is the histogram data
+   * \param input_err2 (INPUT) is the histogram uncertainty squared
+   * \param axis (INPUT) is the histogram axis
+   *
+   */
+  template <typename NumT>
+  void check_histo_sizes(const Nessi::Vector<NumT> & input,
+                         const Nessi::Vector<NumT> & input_err2,
+                         const Nessi::Vector<NumT> & axis);
+
+  /**
+   * \}
+   */ // end of check_histo_sizes group
+
+  /**
    * \defgroup check_sizes_square Utils::check_sizes_square
    * \{
    */
@@ -74,34 +102,6 @@ namespace Utils
   /**
    * \}
    */ // end of check_sizes_square group
-
-  /**
-   * \defgroup check_histo_sizes Utils::check_histo_sizes
-   * \{
-   */
-
-  /**
-   * \brief This function checks data, error2 and axis vectors for
-   * consistent sizes.
-   *
-   * This function checks the sizes of data, error2 and an axis vector for
-   * the correct sizes in terms of a histogram model. The data and error2
-   * vectors should be one element shorter than the axis vector. If the
-   * vectors have inconsistent sizes, an exception is thrown.
-   *
-   * \param input (INPUT) is the histogram data
-   * \param input_err2 (INPUT) is the histogram uncertainty squared
-   * \param axis (INPUT) is the histogram axis
-   *
-   */
-  template <typename NumT>
-  void check_histo_sizes(const Nessi::Vector<NumT> & input,
-                         const Nessi::Vector<NumT> & input_err2,
-                         const Nessi::Vector<NumT> & axis);
-
-  /**
-   * \}
-   */ // end of check_histo_sizes group
 
 } // Utils
 
