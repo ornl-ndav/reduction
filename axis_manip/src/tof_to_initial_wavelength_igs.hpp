@@ -33,10 +33,14 @@
 #include "constants.hpp"
 #include "conversions.hpp"
 #include "nessi_warn.hpp"
+#include "size_checks.hpp"
 #include <stdexcept>
 
 namespace AxisManip
 {
+  /// String for holding the tof_to_initial_wavelength_igs function name
+  const std::string ttiwi_func_str = "AxisManip::tof_to_initial_wavelength_igs";
+
   // 3.29
   template <typename NumT>
   std::string
@@ -53,21 +57,38 @@ namespace AxisManip
                                 Nessi::Vector<NumT> & initial_wavelength,
                                 Nessi::Vector<NumT> & initial_wavelength_err2,
                                 void *temp=NULL)
-  {
-    // SNS-FIXME: need to check that input and output vectors are of
-    // the same length
 
-    // define some parameters that are static across the array calculation
+  {
+    // check that the values are of proper size
+    try
+      {
+        Utils::check_sizes_square(tof, initial_wavelength);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(ttiwi_func_str+" (v,v): data "+e.what());
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        Utils::check_sizes_square(tof_err2, initial_wavelength_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(ttiwi_func_str+" (v,v): err2 "+e.what());
+      }
+
+    std::string retstr(Nessi::EMPTY_WARN);    // the warning string
+    std::string warn;                         // the temporary warning string
+
+    // alloacate local variables
     NumT a;
     NumT a2;
     NumT b;
     NumT c2;
     NumT d2;
     NumT ls2;
-
-    // some string parameters for dealing with warnings
-    std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     // calculate static paramters
     warn=__tof_to_initial_wavelength_igs_static(final_wavelength, time_offset,
