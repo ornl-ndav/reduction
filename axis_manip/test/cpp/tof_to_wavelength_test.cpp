@@ -7,17 +7,17 @@
  *
  *
  *                             NOTICE
- * 
- * For this software and its associated documentation, permission is granted 
- * to reproduce, prepare derivative works, and distribute copies to the public 
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
  * for any purpose and without fee.
- *  
- * This material was prepared as an account of work sponsored by an agency of 
- * the United States Government.  Neither the United States Government nor the 
- * United States Department of Energy, nor any of their employees, makes any 
- * warranty, express or implied, or assumes any legal liability or 
- * responsibility for the accuracy, completeness, or usefulness of any 
- * information, apparatus, product, or process disclosed, or represents that 
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
  * its use would not infringe privately owned rights.
  *
  */
@@ -70,7 +70,7 @@ void initialize_true_outputs(NumT    & true_output_ss,
   // scalar scalar
   true_output_ss=static_cast<NumT>(0.00079120679999999997);
   true_output_ss_err2=static_cast<NumT>(0.00000037560492021974);
-  
+
   // vector vector
   true_output_vv.push_back(static_cast<NumT>(0.00079120679999999997));
   true_output_vv_err2.push_back(static_cast<NumT>(0.00000037560492021974));
