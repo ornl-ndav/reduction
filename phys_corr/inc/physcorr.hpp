@@ -95,29 +95,6 @@ namespace PhysCorr
    */ // end of dead_time_corr group
 
   /**
-   * \defgroup inelastic_scatt_corr PhysCorr::inelastic_scatt_corr
-   * \{
-   */
-
-  /**
-   * \brief This function is described in section 3.40.
-   *
-   * THIS FUNCTION IS NOT DEFINED.
-   */
-  template <typename NumT>
-    std::string
-    inelastic_scatt_corr(const Nessi::Vector<NumT> & axis_in,
-                         const Nessi::Vector<NumT> & input,
-                         const Nessi::Vector<NumT> & input_err2,
-                         Nessi::Vector<NumT> & output,
-                         Nessi::Vector<NumT> & output_err2,
-                         void *temp=NULL);
-
-  /**
-   * \}
-   */ // end of inelastic_scatt_corr group
-
-  /**
    * \defgroup incoherent_scatt_corr PhysCorr::incoherent_scatt_corr
    * \{
    */
@@ -139,6 +116,29 @@ namespace PhysCorr
   /**
    * \}
    */ // end of incoherent_scatt_corr group
+
+  /**
+   * \defgroup inelastic_scatt_corr PhysCorr::inelastic_scatt_corr
+   * \{
+   */
+
+  /**
+   * \brief This function is described in section 3.40.
+   *
+   * THIS FUNCTION IS NOT DEFINED.
+   */
+  template <typename NumT>
+    std::string
+    inelastic_scatt_corr(const Nessi::Vector<NumT> & axis_in,
+                         const Nessi::Vector<NumT> & input,
+                         const Nessi::Vector<NumT> & input_err2,
+                         Nessi::Vector<NumT> & output,
+                         Nessi::Vector<NumT> & output_err2,
+                         void *temp=NULL);
+
+  /**
+   * \}
+   */ // end of inelastic_scatt_corr group
 
 } // PhysCorr
 
