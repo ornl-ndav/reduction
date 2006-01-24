@@ -1,6 +1,6 @@
 Installation Instructions
 =========================
-add text to test trac stuff
+
 Prerequisites
 
    The SNS Common Libraries uses Swig for generation of Python bindings to 
