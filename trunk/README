@@ -1,6 +1,6 @@
 Installation Instructions
 =========================
-hi there
+
 Prerequisites
 
    The SNS Common Libraries uses Swig for generation of Python bindings to 
