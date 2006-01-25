@@ -7,27 +7,25 @@
  *
  *
  *                             NOTICE
- * 
- * For this software and its associated documentation, permission is granted 
- * to reproduce, prepare derivative works, and distribute copies to the public 
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
  * for any purpose and without fee.
- *  
- * This material was prepared as an account of work sponsored by an agency of 
- * the United States Government.  Neither the United States Government nor the 
- * United States Department of Energy, nor any of their employees, makes any 
- * warranty, express or implied, or assumes any legal liability or 
- * responsibility for the accuracy, completeness, or usefulness of any 
- * information, apparatus, product, or process disclosed, or represents that 
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
  * its use would not infringe privately owned rights.
  *
  */
 
-#include "constants.hpp"
 #include "conversions.hpp"
 #include "nessi.hpp"
 #include "num_comparison.hpp"
 #include "test_common.hpp"
-#include <cmath>
 #include <iostream>
 
 using namespace std;
@@ -55,10 +53,10 @@ void initialize_inputs(Nessi::Vector<NumT> & E_i,
                        Nessi::Vector<NumT> & E_f_err2){
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
-      E_i.push_back(static_cast<NumT>(0.));
-      E_i_err2.push_back(static_cast<NumT>(0.));
-      E_f.push_back(static_cast<NumT>(0.));
-      E_f_err2.push_back(static_cast<NumT>(0.));
+      E_i.push_back(static_cast<NumT>(2*i));
+      E_i_err2.push_back(static_cast<NumT>(i+0.5));
+      E_f.push_back(static_cast<NumT>(2.5+i));
+      E_f_err2.push_back(static_cast<NumT>(1.5+i));
     }
 }
 
@@ -75,44 +73,44 @@ void initialize_true_outputs(NumT                & true_output_ss,
                              Nessi::Vector<NumT> & true_output_vv,
                              Nessi::Vector<NumT> & true_output_vv_err2){
   // scalar scalar
-  true_output_ss=static_cast<NumT>(0.);
-  true_output_ss_err2=static_cast<NumT>(0.);
-  
+  true_output_ss=static_cast<NumT>(-0.604497349536638139966271410231);
+  true_output_ss_err2=static_cast<NumT>(0.116933454590982560672429713122);
+
   // scalar vector
-  true_output_sv.push_back(static_cast<NumT>(0.));
-  true_output_sv_err2.push_back(static_cast<NumT>(0.));
-  true_output_sv.push_back(static_cast<NumT>(0.));
-  true_output_sv_err2.push_back(static_cast<NumT>(0.));
-  true_output_sv.push_back(static_cast<NumT>(0.));
-  true_output_sv_err2.push_back(static_cast<NumT>(0.));
-  true_output_sv.push_back(static_cast<NumT>(0.));
-  true_output_sv_err2.push_back(static_cast<NumT>(0.));
-  true_output_sv.push_back(static_cast<NumT>(0.));
-  true_output_sv_err2.push_back(static_cast<NumT>(0.));
+  true_output_sv.push_back(static_cast<NumT>(-0.604497349536638139966271410231));
+  true_output_sv_err2.push_back(static_cast<NumT>(0.116933454590982560672429713122));
+  true_output_sv.push_back(static_cast<NumT>(-0.846296289351293418157240466826));
+  true_output_sv_err2.push_back(static_cast<NumT>(0.175400181886473854886432377498));
+  true_output_sv.push_back(static_cast<NumT>(-1.088095229165948696348209523421));
+  true_output_sv_err2.push_back(static_cast<NumT>(0.233866909181965121344859426245));
+  true_output_sv.push_back(static_cast<NumT>(-1.329894168980604085561481042532));
+  true_output_sv_err2.push_back(static_cast<NumT>(0.292333636477456415558862090620));
+  true_output_sv.push_back(static_cast<NumT>(-1.571693108795259252730147636612));
+  true_output_sv_err2.push_back(static_cast<NumT>(0.350800363772947709772864754996));
 
   // vector scalar
-  true_output_vs.push_back(static_cast<NumT>(0.));
-  true_output_vs_err2.push_back(static_cast<NumT>(0.));
-  true_output_vs.push_back(static_cast<NumT>(0.));
-  true_output_vs_err2.push_back(static_cast<NumT>(0.));
-  true_output_vs.push_back(static_cast<NumT>(0.));
-  true_output_vs_err2.push_back(static_cast<NumT>(0.));
-  true_output_vs.push_back(static_cast<NumT>(0.));
-  true_output_vs_err2.push_back(static_cast<NumT>(0.));
-  true_output_vs.push_back(static_cast<NumT>(0.));
-  true_output_vs_err2.push_back(static_cast<NumT>(0.));
+  true_output_vs.push_back(static_cast<NumT>(-0.604497349536638139966271410231));
+  true_output_vs_err2.push_back(static_cast<NumT>(0.116933454590982560672429713122));
+  true_output_vs.push_back(static_cast<NumT>(-0.120899469907327639095484528298));
+  true_output_vs_err2.push_back(static_cast<NumT>(0.175400181886473854886432377498));
+  true_output_vs.push_back(static_cast<NumT>(0.362698409721982917286453584893));
+  true_output_vs_err2.push_back(static_cast<NumT>(0.233866909181965121344859426245));
+  true_output_vs.push_back(static_cast<NumT>(0.846296289351293418157240466826));
+  true_output_vs_err2.push_back(static_cast<NumT>(0.292333636477456415558862090620));
+  true_output_vs.push_back(static_cast<NumT>(1.329894168980604085561481042532));
+  true_output_vs_err2.push_back(static_cast<NumT>(0.350800363772947709772864754996));
 
   // vector vector
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(-0.604497349536638139966271410231));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.116933454590982560672429713122));
+  true_output_vv.push_back(static_cast<NumT>(-0.362698409721982917286453584893));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.233866909181965121344859426245));
+  true_output_vv.push_back(static_cast<NumT>(-0.120899469907327639095484528298));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.350800363772947709772864754996));
+  true_output_vv.push_back(static_cast<NumT>(0.120899469907327639095484528298));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.467733818363930242689718852489));
+  true_output_vv.push_back(static_cast<NumT>(0.362698409721982917286453584893));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.584667272954912831117724181240));
 }
 
 /**
@@ -177,16 +175,16 @@ bool test_func(NumT key){ // key forces correct test to happen
   NumT                output_ss_err2;
   NumT                true_output_ss;
   NumT                true_output_ss_err2;
-  Nessi::Vector<NumT> output_sv;
-  Nessi::Vector<NumT> output_sv_err2;
+  Nessi::Vector<NumT> output_sv(5);
+  Nessi::Vector<NumT> output_sv_err2(5);
   Nessi::Vector<NumT> true_output_sv;
   Nessi::Vector<NumT> true_output_sv_err2;
-  Nessi::Vector<NumT> output_vs;
-  Nessi::Vector<NumT> output_vs_err2;
+  Nessi::Vector<NumT> output_vs(5);
+  Nessi::Vector<NumT> output_vs_err2(5);
   Nessi::Vector<NumT> true_output_vs;
   Nessi::Vector<NumT> true_output_vs_err2;
-  Nessi::Vector<NumT> output_vv;
-  Nessi::Vector<NumT> output_vv_err2;
+  Nessi::Vector<NumT> output_vv(5);
+  Nessi::Vector<NumT> output_vv_err2(5);
   Nessi::Vector<NumT> true_output_vv;
   Nessi::Vector<NumT> true_output_vv_err2;
 
