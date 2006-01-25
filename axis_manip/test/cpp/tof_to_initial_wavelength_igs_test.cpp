@@ -53,8 +53,8 @@ void initialize_inputs(Nessi::Vector<NumT> & tof,
                        Nessi::Vector<NumT> & tof_err2){
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
-      tof.push_back(static_cast<NumT>(0.));
-      tof_err2.push_back(static_cast<NumT>(0.));
+      tof.push_back(static_cast<NumT>(1+i));
+      tof_err2.push_back(static_cast<NumT>(i+0.5));
     }
 }
 
@@ -67,20 +67,20 @@ void initialize_true_outputs(NumT    & true_output_ss,
            Nessi::Vector<NumT> & true_output_vv,
            Nessi::Vector<NumT> & true_output_vv_err2){
   // scalar scalar
-  true_output_ss=static_cast<NumT>(0.);
-  true_output_ss_err2=static_cast<NumT>(0.);
+  true_output_ss=static_cast<NumT>(-0.58583914499999989456);
+  true_output_ss_err2=static_cast<NumT>(0.14668620920470620828);
   
   // vector vector
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
-  true_output_vv.push_back(static_cast<NumT>(0.));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.));
+  true_output_vv.push_back(static_cast<NumT>(-0.58583914499999989456));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.14668620920470620828));
+  true_output_vv.push_back(static_cast<NumT>(-0.58224275045454543243));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.14635196281566775767));
+  true_output_vv.push_back(static_cast<NumT>(-0.57864635590909085927));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.14601985428674937872));
+  true_output_vv.push_back(static_cast<NumT>(-0.57504996136363628612));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.14568988361795109920));
+  true_output_vv.push_back(static_cast<NumT>(-0.57145356681818171296));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.14536205080927291911));
 }
 
 /**
@@ -119,20 +119,20 @@ bool test_func(NumT key){ // key forces correct test to happen
   // allocate arrays
   Nessi::Vector< NumT > tof;
   Nessi::Vector< NumT > tof_err2;
-  NumT                  final_wavelength=static_cast<NumT>(0.);
-  NumT                  final_wavelength_err2=static_cast<NumT>(0.);
-  NumT                  time_offset=static_cast<NumT>(0.);
-  NumT                  time_offset_err2=static_cast<NumT>(0.);
-  NumT                  dist_source_sample=static_cast<NumT>(0.);
-  NumT                  dist_source_sample_err2=static_cast<NumT>(0.);
-  NumT  	        dist_sample_detector=static_cast<NumT>(0.);
-  NumT  	        dist_sample_detector_err2=static_cast<NumT>(0.);
+  NumT                  final_wavelength=static_cast<NumT>(1.25);
+  NumT                  final_wavelength_err2=static_cast<NumT>(0.25);
+  NumT                  time_offset=static_cast<NumT>(2.75);
+  NumT                  time_offset_err2=static_cast<NumT>(0.75);
+  NumT                  dist_source_sample=static_cast<NumT>(1.1);
+  NumT                  dist_source_sample_err2=static_cast<NumT>(0.1);
+  NumT  	        dist_sample_detector=static_cast<NumT>(0.51);
+  NumT  	        dist_sample_detector_err2=static_cast<NumT>(0.05);
   NumT                  output_ss;
   NumT                  output_ss_err2;
   NumT                  true_output_ss;
   NumT                  true_output_ss_err2;
-  Nessi::Vector<NumT>   output_vv;
-  Nessi::Vector<NumT>   output_vv_err2;
+  Nessi::Vector<NumT>   output_vv(5);
+  Nessi::Vector<NumT>   output_vv_err2(5);
   Nessi::Vector<NumT>   true_output_vv;
   Nessi::Vector<NumT>   true_output_vv_err2;
 
@@ -176,11 +176,11 @@ bool test_func(NumT key){ // key forces correct test to happen
 int main(){
   cout << "tof_to_initial_wavelength_igs_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
+   if(!test_func(static_cast<float>(1)))
     return -1;
 
-  if(!test_func(static_cast<double>(1)))
-    return -1;
+   if(!test_func(static_cast<double>(1)))
+   return -1;
 
   cout << "Functionality OK" << endl;
 
