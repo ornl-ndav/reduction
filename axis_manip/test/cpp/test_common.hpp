@@ -25,7 +25,9 @@
 // $Id$
 
 #include "num_comparison.hpp"
+#include <iomanip>
 #include <iostream>
+#include <limits>
 #include <string>
 
 const std::string EMPTY("");
@@ -100,6 +102,16 @@ bool test_okay(NumT & output,
       std::cout << "(" << type_string(output) << " " << array_type
            << ") FAILED....Output " << data_type
            << "different from vector expected" << std::endl;
+
+      std::cout << "Value expected was ";
+      std::cout.setf(std::ios::fixed);
+      std::cout << std::setprecision(std::numeric_limits<NumT>::digits10+1);
+      std::cout << true_output;
+      std::cout << ", Value returned was " << output << std::endl;
+      std::cout << "Difference (Returned - Expected): ";
+      std::cout.setf(std::ios::scientific);
+      std::cout << output - true_output << std::endl;
+
       return false;
     }
   return true;
