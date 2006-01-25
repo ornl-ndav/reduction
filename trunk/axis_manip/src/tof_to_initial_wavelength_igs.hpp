@@ -104,8 +104,7 @@ namespace AxisManip
     size_t size_tof = tof.size();
     for (size_t i = 0 ; i < size_tof ; ++i)
       {
-        warn=__tof_to_initial_wavelength_igs_dynamic(
-                                                     tof[i], tof_err2[i],
+        warn=__tof_to_initial_wavelength_igs_dynamic(tof[i], tof_err2[i],
                                                      final_wavelength_err2,
                                                      time_offset_err2,
                                                      dist_source_sample_err2,
