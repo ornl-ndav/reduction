@@ -144,8 +144,8 @@ namespace AxisManip
   std::string
   __wavelength_to_energy_static(NumT & a2)
   {
-    a2 = static_cast<NumT>(4. * PhysConst::H2_OVER_2MNEUT *
-                           PhysConst::H2_OVER_2MNEUT);
+    a2 = 4. * static_cast<NumT>(PhysConst::H2_OVER_2MNEUT) *
+      static_cast<NumT>(PhysConst::H2_OVER_2MNEUT);
     return Nessi::EMPTY_WARN;
   }
 
@@ -170,15 +170,15 @@ namespace AxisManip
   std::string
   __wavelength_to_energy_dynamic(const NumT wavelength,
                                  const NumT wavelength_err2,
-                                 NumT energy,
-                                 NumT energy_err2,
+                                 NumT & energy,
+                                 NumT & energy_err2,
                                  const NumT a2)
   {
     NumT wavelength2 = wavelength * wavelength;
 
-    energy = static_cast<NumT>(PhysConst::H2_OVER_2MNEUT / wavelength2);
-    energy_err2 = (a2 * wavelength_err2)
-      / (wavelength2 * wavelength2 * wavelength2);
+    energy = static_cast<NumT>(PhysConst::H2_OVER_2MNEUT) / wavelength2;
+    energy_err2 = (a2 * wavelength_err2);
+    energy_err2 /= (wavelength2 * wavelength2 * wavelength2);
 
     return Nessi::EMPTY_WARN;
   }
