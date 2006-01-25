@@ -57,8 +57,8 @@
  * on the amount of temporary storage needed. If the user passes in
  * null pointers for the temporary storage the function is intended to
  * allocate and de-allocate what is needed.
- * -# The functions will return an integer status report with a helper
- * function that creates strings according to that value.
+ * -# The functions will return a warning string when non-fatal errors
+ * are encountered.
  *
  * \section template_types Template Types
  *
