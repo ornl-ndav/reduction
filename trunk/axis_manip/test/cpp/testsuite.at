@@ -65,3 +65,9 @@ AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Reverse Array (Copy) Function.  ])
+AT_CHECK([reverse_array_cp_test | sed -e 's/\r$//' ],[],
+[[reverse_array_cp_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
