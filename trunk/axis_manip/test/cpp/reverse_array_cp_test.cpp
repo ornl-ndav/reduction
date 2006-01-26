@@ -33,10 +33,10 @@ using namespace std;
 const size_t NUM_VAL=5;
 
 /**
- * \defgroup reverse_array_cp_test reverse_array_test
+ * \defgroup reverse_array_cp_test reverse_array_cp_test
  *
  * This test compares the output data calculated by the library
- * function reverse_array_test with the true output data manually
+ * function reverse_array_cp with the true output data manually
  * calculated. Any discrepancy between the outputs will generate an
  * error message in the testsuite.log file that gives details about
  * the location and type of the error.
