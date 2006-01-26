@@ -33,6 +33,7 @@ EXTRA_DIST=testsuite.at
 AXIS_MANIP_TARGETS = \
 	energy_transfer_test \
 	init_scatt_wavevector_to_scalar_Q_test \
+	rebin_axis_1D_test \
 	reverse_array_cp_test \
 	reverse_array_nc_test \
 	tof_to_initial_wavelength_igs_test \
@@ -51,6 +52,8 @@ energy_transfer_test_SOURCES = energy_transfer_test.cpp test_common.hpp
 init_scatt_wavevector_to_scalar_Q_test_SOURCES = \
         init_scatt_wavevector_to_scalar_Q_test.cpp \
         test_common.hpp
+
+rebin_axis_1D_test_SOURCES = rebin_axis_1D_test.cpp test_common.hpp
 
 reverse_array_cp_test_SOURCES = reverse_array_cp_test.cpp test_common.hpp
 
