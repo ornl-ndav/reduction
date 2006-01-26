@@ -71,3 +71,9 @@ AT_CHECK([reverse_array_cp_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Reverse Array (Inplace) Function.  ])
+AT_CHECK([reverse_array_nc_test | sed -e 's/\r$//' ],[],
+[[reverse_array_nc_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
