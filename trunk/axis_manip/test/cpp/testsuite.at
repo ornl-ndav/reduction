@@ -41,6 +41,18 @@ AT_CHECK([init_scatt_wavevector_to_scalar_Q_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Reverse Array (Copy) Function.  ])
+AT_CHECK([reverse_array_cp_test | sed -e 's/\r$//' ],[],
+[[reverse_array_cp_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Reverse Array (Inplace) Function.  ])
+AT_CHECK([reverse_array_nc_test | sed -e 's/\r$//' ],[],
+[[reverse_array_nc_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the TOF to Initial Wavelength for Inverse Geometry Spectrometer Function .  ])
 AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
 [[tof_to_initial_wavelength_igs_test.cpp..........Functionality OK
@@ -62,18 +74,6 @@ AT_CLEANUP
 AT_SETUP([Checking the Wavelength to Scalar Wavevector Function.  ])
 AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_scalar_k_test.cpp..........Functionality OK
-]])
-AT_CLEANUP
-
-AT_SETUP([Checking the Reverse Array (Copy) Function.  ])
-AT_CHECK([reverse_array_cp_test | sed -e 's/\r$//' ],[],
-[[reverse_array_cp_test.cpp..........Functionality OK
-]])
-AT_CLEANUP
-
-AT_SETUP([Checking the Reverse Array (Inplace) Function.  ])
-AT_CHECK([reverse_array_nc_test | sed -e 's/\r$//' ],[],
-[[reverse_array_nc_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
