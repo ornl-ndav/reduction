@@ -22,11 +22,8 @@
  *
  */
 
-#include "num_comparison.hpp"
 #include "rebinning.hpp"
 #include "test_common.hpp"
-#include <cmath>
-#include <iostream>
 
 using namespace std;
 

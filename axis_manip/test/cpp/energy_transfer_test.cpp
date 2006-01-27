@@ -23,10 +23,7 @@
  */
 
 #include "conversions.hpp"
-#include "nessi.hpp"
-#include "num_comparison.hpp"
 #include "test_common.hpp"
-#include <iostream>
 
 using namespace std;
 
