@@ -22,11 +22,8 @@
  *
  */
 
-#include "num_comparison.hpp"
 #include "reverse_array.hpp"
 #include "test_common.hpp"
-#include <cmath>
-#include <iostream>
 
 using namespace std;
 

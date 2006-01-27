@@ -22,13 +22,8 @@
  *
  */
 
-#include "nessi.hpp"
-#include "constants.hpp"
 #include "conversions.hpp"
-#include "num_comparison.hpp"
 #include "test_common.hpp"
-#include <cmath>
-#include <iostream>
 
 using namespace std;
 
