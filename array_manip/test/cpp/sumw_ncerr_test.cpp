@@ -7,17 +7,17 @@
  *
  *
  *                             NOTICE
- * 
- * For this software and its associated documentation, permission is granted 
- * to reproduce, prepare derivative works, and distribute copies to the public 
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
  * for any purpose and without fee.
- *  
- * This material was prepared as an account of work sponsored by an agency of 
- * the United States Government.  Neither the United States Government nor the 
- * United States Department of Energy, nor any of their employees, makes any 
- * warranty, express or implied, or assumes any legal liability or 
- * responsibility for the accuracy, completeness, or usefulness of any 
- * information, apparatus, product, or process disclosed, or represents that 
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
  * its use would not infringe privately owned rights.
  *
  */
@@ -26,7 +26,6 @@
 
 #include "arith.hpp"
 #include "test_common.hpp"
-#include <iostream>
 
 using namespace std;
 
@@ -96,15 +95,15 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output_vv,
 {
   // initialize the correct true_outputs for vector vector case
   true_output_vv.push_back(static_cast<NumT>(6.)); // =(0/1+6/1) * (1+1)/2
-  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv_err2.push_back(static_cast<NumT>(4.));
   true_output_vv.push_back(static_cast<NumT>(6.)); // =(1/1+5/1) * (1+1)/2
-  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv_err2.push_back(static_cast<NumT>(4.));
   true_output_vv.push_back(static_cast<NumT>(6.)); // =(2/1+4/1) * (1+1)/2
-  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv_err2.push_back(static_cast<NumT>(4.));
   true_output_vv.push_back(static_cast<NumT>(6.)); // =(3/1+3/1) * (1+1)/2
-  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv_err2.push_back(static_cast<NumT>(4.));
   true_output_vv.push_back(static_cast<NumT>(6.)); // =(4/1+2/1) * (1+1)/2
-  true_output_vv_err2.push_back(static_cast<NumT>(2.));
+  true_output_vv_err2.push_back(static_cast<NumT>(4.));
 }
 
 /**
