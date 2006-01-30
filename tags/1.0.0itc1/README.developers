@@ -48,4 +48,4 @@ Build a Distribution
 To create a distribution follow steps 1-4 above, followed by
    make dist
 
-$Id: $
+$Id$
