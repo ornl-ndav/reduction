@@ -1,6 +1,6 @@
 *******************************************************************************
-*             				NessiVector for Dummies				              *
-*						         version 0.1						          *
+*             	           NessiVector for Dummies			      *
+*			         version 0.1			              *
 *******************************************************************************
 
 The purpose of this manual is to briefly described the way NessiVector works
@@ -27,54 +27,45 @@ import the class called "NessiVector" from the module of the same name
 
 	Here we create an empty NessiVector of type float
 	>>> MyNessiVectorFloat = NessiVector()
-
+	or
+	>>> MyNessiVectorFloat = NessiVector(type="float")
 	
 	2.2 Create a float non-empty NessiVector
 	----------------------------------------
 
 	To create a NessiVector of type float that contains 5 elements 
-	(initialized to 0)
+	initialized to 0
 	>>> MyNessiVectorFloatInitialized = NessiVector(5,"float")
 	or
 	>>> MyNessiVectorFloatInitialized = NessiVector(5)
 
-
 	2.3 Create a double, int and unsigned int NessiVector
 	-----------------------------------------------------
 
-	It works the same way for double, int and unsigned int.
 	Here are examples of how to create an empty NessiVector and 
-	and 3 elements of type double, int and unsigned respectively.
+	and 3 elements of type double. Use the same procedure to 
+	create NessiVector of types int and unsigned respectively.
 
 	>>> MyNessiVectorDouble = NessiVector(0,"double")
 	or 
 	>>> MyNessiVectorDouble = NessiVector(type="double")
-	>>> MyNessiVectorDoubleInitialized = NessiVector(3,"DoUbLe")
-
-	>>> MyNessiVectorInt = NessiVector(0,"INT")
+	>>> MyNessiVectorDouble = NessiVector(3,"DoUbLe")
 	or 
-	>>> MyNessiVectorInit = NessiVector(type="INT")
-	>>> MyNessiVectorIntInitialized = NessiVector(3,"iNT")
-
-	>>> MyNessiVectorUnsignedInt = NessiVector(0,"uint")
-	or 
-	>>> MyNessiVectorUnsignedInt = NessiVector(type="uint")
-	>>> MyNessiVectorUnsignedIntInitialized = NessiVector(3,"unsigned InT")
-
+	>>> MyNessiVectorDouble = NessiVector(type="double")	
 
 	2.4 types orthographies accepted
 	--------------------------------	
 	
 	the different orthographies accepted are
 
-		type			accepted		Comments
-		------------------------------------------------
-		float			float  			case insensitive
-		double			double			case insensitive
-		int				int				case insensitive
-		unsigned int	uint			case insensitive
-						unsigned int	case insensitive
-						unsigned		case insensitive
+	type			accepted		Comments
+	------------------------------------------------
+	float			float  			case insensitive
+	double			double			case insensitive
+	int			int			case insensitive
+	unsigned int		uint			case insensitive
+				unsigned int		case insensitive
+				unsigned		case insensitive
 
 
 3.0 Append values to the NessiVector
@@ -138,7 +129,7 @@ By using the print_vect method (see section 7.0 Methods)
 	-------------------------------------
 	
 
-		5.3.1 operation(NessiVectorA, NessiVectorB)
+		5.3.1 operation(NessiVector_A, NessiVector_B)
 		-------------------------------------------
 	
 		Then you need to create the NessiVector.
@@ -146,9 +137,9 @@ By using the print_vect method (see section 7.0 Methods)
 		of type float and add them together
 
 		>>> a=NessiVector()      #create a NessiVector of type float
-		>>> a.append(1.25)		 #add 1.25 to the NessiVector a
-		>>> a.append(2.35)		 #add 2.35 to the NessiVector a
-		>>> a.append(3.45)		 #add 3.45 to the NessiVector a
+		>>> a.append(1.25)	 #add 1.25 to the NessiVector_A
+		>>> a.append(2.35)	 #add 2.35 to the NessiVector_A
+		>>> a.append(3.45)	 #add 3.45 to the NessiVector_A
 		>>> b=NessiVector()
 		>>> b.append(5.5)
 		>>> b.append(6.6)
@@ -157,8 +148,8 @@ By using the print_vect method (see section 7.0 Methods)
 		>>> c=add(a,b)
 		
 
-		5.3.2 operation(NessiVectorA, NessiVectorAerr2, 
-						NessiVectorB, NessiVectorBerr2)
+		5.3.2 operation(NessiVector_A, NessiVector_A_err2, 
+				NessiVector_B, NessiVector_B_err2)
 		-----------------------------------------------
 
 		ae2 and be2 need to be created (see section 5.3.1)
@@ -170,7 +161,7 @@ By using the print_vect method (see section 7.0 Methods)
 6.0 Display the NessiVector
 ---------------------------
 
-To check the NessiVector c
+To check the NessiVector_C
 
 >>> from array_manip import print_vect
 
@@ -194,7 +185,7 @@ number as second variable in the print_vect function
 These methods can be used by importing them from the NessiVectorUtils module.
 
 	7.1 print_vect(NessiVector1)
-		print_vect(NessiVector1,n)
+	    print_vect(NessiVector1,n)
 	------------------------------
 	
 	>>> print_vect(c)
@@ -212,15 +203,15 @@ These methods can be used by importing them from the NessiVectorUtils module.
 
 
 	7.2 compare_vect(n,NessiVector1,NessiVector2)
-		compare_vect(n,NessiVector1,NessiVector2,NessiVector3)
+	    compare_vect(n,NessiVector1,NessiVector2,NessiVector3)
 	----------------------------------------------------------
 	
 	To display side by side the first n elements of two or three 
 	NessiVectors
 
 
-	7.3	max_vect(NessiVector1)
-    --------------------------
+	7.3 max_vect(NessiVector1)
+        --------------------------
 	
 	To get the maximum value of the NessiVector's elements
 
