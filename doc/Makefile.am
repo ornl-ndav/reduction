@@ -50,6 +50,6 @@ uninstall:
 	rm -rf $(DRLIBDOCDIR)/latex
 	$(RMPDF)
 
-clean:
+clean-local:
 	rm -rf html
 	rm -rf latex
