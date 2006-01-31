@@ -22,7 +22,7 @@
 
 # $Id$
 
-include_HEADERS = \
+pkginclude_HEADERS = \
 	num_comparison.hpp \
 	size_checks.hpp \
 	utils.hpp 

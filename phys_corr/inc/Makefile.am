@@ -22,5 +22,5 @@
 
 # $Id$
 
-include_HEADERS = \
+pkginclude_HEADERS = \
 	physcorr.hpp

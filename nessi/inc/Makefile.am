@@ -22,7 +22,7 @@
 
 # $Id$
 
-include_HEADERS = \
+pkginclude_HEADERS = \
 	nessi.hpp \
 	nessi_warn.hpp
 

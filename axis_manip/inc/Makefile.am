@@ -22,7 +22,7 @@
 
 # $Id$
 
-include_HEADERS = \
+pkginclude_HEADERS = \
 	conversions.hpp \
 	rebinning.hpp \
 	reverse_array.hpp

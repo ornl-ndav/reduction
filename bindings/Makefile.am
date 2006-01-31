@@ -62,10 +62,10 @@ EXTRA_SWIG=-lvector.i
 
 PYTHON_INC=-I$(PYTHONROOT)/include/python$(PYTHON_VERSION)
 
-lib_LTLIBRARIES=$(LIBPYARRAYMANIP) $(LIBPYAXISMANIP) $(LIBPYPHYSCORR) \
+pkglib_LTLIBRARIES=$(LIBPYARRAYMANIP) $(LIBPYAXISMANIP) $(LIBPYPHYSCORR) \
 		$(LIBPYUTILS)
 
-python_HEADERS = \
+pkgpython_HEADERS = \
 	array_manip_bind.py \
 	axis_manip_bind.py \
 	phys_corr_bind.py \
