@@ -22,20 +22,30 @@
 
 # $Id$
 
-LIBPYARRAYMANIP=libPyArrayManip.la
-LIBPYAXISMANIP=libPyAxisManip.la
-LIBPYPHYSCORR=libPyPhysCorr.la
-LIBPYUTILS=libPyUtils.la
-
 ARRAYMANIP_SWIG=array_manip.i
 AXISMANIP_SWIG=axis_manip.i
 PHYSCORR_SWIG=phys_corr.i
 UTILS_SWIG=utils.i
 
+ARRAYMANIP_BASE=$(subst .i,,$(ARRAYMANIP_SWIG))
+AXISMANIP_BASE=$(subst .i,,$(AXISMANIP_SWIG))
+PHYSCORR_BASE=$(subst .i,,$(PHYSCORR_SWIG))
+UTILS_BASE=$(subst .i,,$(UTILS_SWIG))
+
 ARRAYMANIP_PYTHONWRAP=array_manip_wrap.cpp
 AXISMANIP_PYTHONWRAP=axis_manip_wrap.cpp
 PHYSCORR_PYTHONWRAP=phys_corr_wrap.cpp
 UTILS_PYTHONWRAP=utils_wrap.cpp
+
+ARRAYMANIP_BIND=$(ARRAYMANIP_BASE)_bind.py
+AXISMANIP_BIND=$(AXISMANIP_BASE)_bind.py
+PHYSCORR_BIND=$(PHYSCORR_BASE)_bind.py
+UTILS_BIND=$(UTILS_BASE)_bind.py
+
+LIBPYARRAYMANIP=libPyArrayManip.la
+LIBPYAXISMANIP=libPyAxisManip.la
+LIBPYPHYSCORR=libPyPhysCorr.la
+LIBPYUTILS=libPyUtils.la
 
 ARRAY_MANIP_INC=-I$(top_srcdir)/array_manip/inc
 AXIS_MANIP_INC=-I$(top_srcdir)/axis_manip/inc
@@ -65,19 +75,33 @@ PYTHON_INC=-I$(PYTHONROOT)/include/python$(PYTHON_VERSION)
 pkglib_LTLIBRARIES=$(LIBPYARRAYMANIP) $(LIBPYAXISMANIP) $(LIBPYPHYSCORR) \
 		$(LIBPYUTILS)
 
+SWIG_FILES = \
+	$(ARRAYMANIP_SWIG) \
+	$(AXISMANIP_SWIG) \
+	libexcept.i \
+	$(PHYSCORR_SWIG) \
+	$(UTILS_SWIG) \
+	vector.i
+
+PYTHON_BINDINGS = \
+	$(ARRAYMANIP_BIND) \
+	$(AXISMANIP_BIND) \
+	$(PHYSCORR_BIND) \
+	$(UTILS_BIND)
+
+PYTHON_WRAPPERS = \
+	$(ARRAYMANIP_PYTHONWRAP) \
+	$(AXISMANIP_PYTHONWRAP) \
+	$(PHYSCORR_PYTHONWRAP) \
+	$(UTILS_PYTHONWRAP)
+
 pkgpython_HEADERS = \
-	array_manip_bind.py \
-	axis_manip_bind.py \
-	phys_corr_bind.py \
-	utils_bind.py
+	$(PYTHON_BINDINGS)
 
-EXTRA_DIST = *.i
+EXTRA_DIST = $(SWIG_FILES)
 
-BUILT_SOURCES = $(ARRAYMANIPPYTHONWRAP) $(AXISMANIPPYTHONWRAP) \
-		$(PHYSCORRPYTHONWRAP) $(UTILSPYTHONWRAP)
-
-clean:
-	rm -f *bind.py *.o *.lo *_wrap.cpp
+clean-local:
+	rm -f $(PYTHON_BINDINGS) $(PYTHON_WRAPPERS)
 	rm -rf .libs _libs
 	test -z "libPyArrayManip.la" || rm -f libPyArrayManip.la
 	test -z "libPyAxisManip.la" || rm -f libPyAxisManip.la
@@ -94,9 +118,9 @@ libPyArrayManip_la_CPPFLAGS= $(PYTHON_INC) $(ARRAY_MANIP_INC) $(NESSI_INC) \
 libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_ARRAY_MANIP_VERSION) \
 			$(ARRAY_MANIP_SRC) $(UTILS_SRC)
 libPyArrayManip_la_LIBS=$(ARRAY_MANIP_LIB) $(UTILS_LIBS)
-$(ARRAYMANIP_PYTHONWRAP): $(ARRAYMANIP_SWIG)
-	$(SWIG) -c++ -o $@ -python $(ARRAY_MANIP_INC) $(NESSI_INC) \
-	$(EXTRA_SWIG) -interface $(PYARRAYMANIP_INTERFACE) $<
+$(ARRAYMANIP_PYTHONWRAP) $(ARRAYMANIP_BIND): $(ARRAYMANIP_SWIG)
+	$(SWIG) -c++ -o $(ARRAYMANIP_PYTHONWRAP) -python $(ARRAY_MANIP_INC) \
+	$(NESSI_INC) $(EXTRA_SWIG) -interface $(PYARRAYMANIP_INTERFACE) $<
 endif
 endif
 
@@ -108,9 +132,9 @@ libPyAxisManip_la_CPPFLAGS= $(PYTHON_INC) $(AXIS_MANIP_INC) $(NESSI_INC) \
 libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_AXIS_MANIP_VERSION) \
 			$(AXIS_MANIP_SRC) $(UTILS_SRC)
 libPyAxisManip_la_LIBS=$(AXIS_MANIP_LIB) $(UTILS_LIB)
-$(AXISMANIP_PYTHONWRAP): $(AXISMANIP_SWIG) 
-	$(SWIG) -c++ -o $@ -python $(AXIS_MANIP_INC) $(NESSI_INC) \
-	$(EXTRA_SWIG) -interface $(PYAXISMANIP_INTERFACE) $<
+$(AXISMANIP_PYTHONWRAP) $(AXISMANIP_BIND): $(AXISMANIP_SWIG) 
+	$(SWIG) -c++ -o $(AXISMANIP_PYTHONWRAP) -python $(AXIS_MANIP_INC) \
+	$(NESSI_INC) $(EXTRA_SWIG) -interface $(PYAXISMANIP_INTERFACE) $<
 endif
 endif
 
@@ -121,21 +145,20 @@ libPyPhysCorr_la_CPPFLAGS= $(PYTHON_INC) $(PHYS_CORR_INC) $(NESSI_INC) \
 			$(CFLAGS) 
 libPyPhysCorr_la_LDFLAGS=$(LDFLAGS) $(PYLIB_PHYS_CORR_VERSION) $(PHYS_CORR_SRC)
 libPyPhysCorr_la_LIBS=$(PHYS_CORR_LIB)
-$(PHYSCORR_PYTHONWRAP): $(PHYSCORR_SWIG) 
-	$(SWIG) -c++ -o $@ -python $(PHYS_CORR_INC) $(NESSI_INC) \
-	$(EXTRA_SWIG) -interface $(PYPHYSCORR_INTERFACE) $<
+$(PHYSCORR_PYTHONWRAP) $(PHYSCORR_BIND): $(PHYSCORR_SWIG) 
+	$(SWIG) -c++ -o $(PHYSCORR_PYTHONWRAP) -python $(PHYS_CORR_INC) \
+	$(NESSI_INC) $(EXTRA_SWIG) -interface $(PYPHYSCORR_INTERFACE) $<
 endif
 endif
 
 if HAVE_SWIG
 if HAVE_PYTHON
-
 nodist_libPyUtils_la_SOURCES=$(UTILS_PYTHONWRAP) 
 libPyUtils_la_CPPFLAGS= $(PYTHON_INC) $(UTILS_INC) $(NESSI_INC) $(CFLAGS) 
 libPyUtils_la_LDFLAGS=$(LDFLAGS) $(PYLIB_UTILS_VERSION) $(UTILS_SRC)
 libPyUtils_la_LIBS=$(UTILS_LIB)
-$(UTILS_PYTHONWRAP): $(UTILS_SWIG) 
-	$(SWIG) -c++ -o $@ -python $(UTILS_INC) $(NESSI_INC) $(EXTRA_SWIG) \
-	-interface $(PYUTILS_INTERFACE) $<
+$(UTILS_PYTHONWRAP) $(UTILS_BIND): $(UTILS_SWIG) 
+	$(SWIG) -c++ -o $(UTILS_PYTHONWRAP) -python $(UTILS_INC) \
+	$(NESSI_INC) $(EXTRA_SWIG) -interface $(PYUTILS_INTERFACE) $<
 endif
 endif
