@@ -25,7 +25,7 @@
 AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi/inc \
               -I$(top_srcdir)/utils/inc -I$(top_srcdir)/phys_const/inc
 
-lib_LTLIBRARIES = libAxisManip.la
+pkglib_LTLIBRARIES = libAxisManip.la
 
 libAxisManip_la_LDFLAGS = $(LIB_AXIS_MANIP_VERSION) \
               -L$(top_srcdir)/utils/src/.libs -lUtils

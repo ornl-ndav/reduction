@@ -24,7 +24,7 @@
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/utils/inc -I$(top_srcdir)/nessi/inc
 
-lib_LTLIBRARIES = libUtils.la
+pkglib_LTLIBRARIES = libUtils.la
 
 libUtils_la_LDFLAGS = $(LIB_UTILS_VERSION)
 

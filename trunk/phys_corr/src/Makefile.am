@@ -24,7 +24,7 @@
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/phys_corr/inc -I$(top_srcdir)/nessi/inc
 
-lib_LTLIBRARIES = libPhysCorr.la
+pkglib_LTLIBRARIES = libPhysCorr.la
 
 libPhysCorr_la_LDFLAGS = $(LIB_PHYS_CORR_VERSION)
 

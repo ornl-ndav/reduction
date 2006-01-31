@@ -25,7 +25,7 @@
 AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi/inc \
 	      -I$(top_srcdir)/utils/inc
 
-lib_LTLIBRARIES = libArrayManip.la
+pkglib_LTLIBRARIES = libArrayManip.la
 
 libArrayManip_la_LDFLAGS = $(LIB_ARRAY_MANIP_VERSION) \
 			-L$(top_srcdir)/utils/src/.libs -lUtils
