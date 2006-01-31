@@ -95,7 +95,16 @@ PYTHON_WRAPPERS = \
 	$(PHYSCORR_PYTHONWRAP) \
 	$(UTILS_PYTHONWRAP)
 
+# Files for the Python Abstraction Layer (PAL)
+PAL_FILES = \
+	array_manip.py \
+	axis_manip.py \
+	NessiVector.py \
+	NessiVectorUtils.py
+
+
 pkgpython_HEADERS = \
+	$(PAL_FILES) \
 	$(PYTHON_BINDINGS)
 
 EXTRA_DIST = $(SWIG_FILES)
