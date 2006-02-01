@@ -565,7 +565,7 @@ namespace ArrayManip
    * \sigma_o^2[i]=\sigma_1^2[i]+\sigma_2^2[i]
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
-   * array, \f$data_1[i]\f$ is the \f$i^{th}\f$ being subtracted from
+   * array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component being subtracted from
    * each element, \f$data_2[i]\f$ is the \f$i^{th}\f$ component of
    * the array subtracting, \f$\sigma_o[i]\f$ is the \f$i^{th}\f$
    * component of the uncertainty of the output array,
