@@ -25,7 +25,7 @@
 # $ID: $
 
 ## 
-#\file bindings/NessiVector.py
+#\file bindings/NessiVector.py Python binding of SNS Common Libraries
 #
 
 from array_manip_bind import UnsignedIntNessiVector
