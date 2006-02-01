@@ -788,7 +788,7 @@ namespace ArrayManip
    * \f$n^{th}\f$ array being added, \f$\sigma_o[i]\f$ is the
    * \f$i^{th}\f$ component of the uncertainty of the output array,
    * and \f$\sigma_n[i]\f$ is the \f$i^{th}\f$ component of the
-   * uncertainty in the \f$n^{th}\f$.
+   * uncertainty in the \f$n^{th}\f$ array being added.
    *
    * \param input1 (INPUT) is the first array to be added
    * \param input1_err2 (INPUT) is the square of the uncertainty in
