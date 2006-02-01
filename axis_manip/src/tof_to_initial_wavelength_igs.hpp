@@ -304,15 +304,8 @@ namespace AxisManip
       *dist_source_sample_err2;
     initial_wavelength_err2 += ld2*final_wavelength_err2;
     initial_wavelength_err2 += c*(tof_err2+time_offset_err2);
+    initial_wavelength_err2 += wf2*dist_sample_detector_err2;
     initial_wavelength_err2 *= inv_ls2;
-
-      /*
-    initial_wavelength_err2 = a2 * (tof_err2 + time_offset_err2);
-    initial_wavelength_err2 += c2 * dist_sample_detector_err2;
-    initial_wavelength_err2 += d2 * final_wavelength_err2;
-    initial_wavelength_err2 += initial_wavelength *
-      initial_wavelength * dist_source_sample_err2 / ls2;
-      */
 
     return Nessi::EMPTY_WARN;
   }
