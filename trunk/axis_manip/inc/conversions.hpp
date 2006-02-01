@@ -1448,7 +1448,7 @@ namespace AxisManip
    * \f[
    * \sigma^2_{\lambda_i}[i]=
    * \left(\frac{\lambda_i[i]}{L_S}\right)^2*\sigma^2_{L_S}
-   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t[i]+\sigma^2_{t_0})+
+   * + \left(\frac{h}{m_n*L_S}\right)^2(\sigma^2_t+\sigma^2_{t_0})+
    * \left(\frac{\lambda_f}{L_S}\right)^2\sigma^2_{L_D}
    * + \left(\frac{L_D}{L_S}\right)^2\sigma^2_{\lambda_f}
    * \f]
