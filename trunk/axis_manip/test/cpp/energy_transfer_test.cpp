@@ -162,7 +162,7 @@ bool test_okay(NumT                & output_ss,
  * Function that runs the test for a numeric type
  */
 template <typename NumT>
-bool test_func(NumT key){ // key forces correct test to happen
+bool test_func(NumT key, string debug){ // key forces correct test to happen
   // allocate arrays
   Nessi::Vector<NumT> E_i;
   Nessi::Vector<NumT> E_i_err2;
@@ -209,6 +209,19 @@ bool test_func(NumT key){ // key forces correct test to happen
                              E_f, E_f_err2,
                              output_vv, output_vv_err2);
 
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(output_vv, true_output_vv, VV, debug);
+      print(output_vv_err2, true_output_vv_err2, ERROR+VV, debug);
+      print(output_vs, true_output_vs, VS, debug);
+      print(output_vs_err2, true_output_vs_err2, ERROR+VS, debug);
+      print(output_sv, true_output_sv, SV, debug);
+      print(output_sv_err2, true_output_sv_err2, ERROR+SV, debug);
+      print(output_ss, true_output_ss, SS, debug);
+      print(output_ss_err2, true_output_ss_err2, ERROR+SS, debug);
+    }
+
   return test_okay(output_ss, output_ss_err2,
                    true_output_ss, true_output_ss_err2,
                    output_sv, output_sv_err2,
@@ -220,15 +233,24 @@ bool test_func(NumT key){ // key forces correct test to happen
 }
 
 /**
- * Main functino that test energy_transfer for float and double
+ * Main function that test energy_transfer for float and double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
  */
-int main(){
+int main(int argc, char *argv[]){
   cout << "energy_transfer_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
+  string debug;
+  if(argc > 1)
+    {
+      debug = argv[1];
+    }
+
+  if(!test_func(static_cast<float>(1), debug))
     return -1;
 
-  if(!test_func(static_cast<double>(1)))
+  if(!test_func(static_cast<double>(1), debug))
     return -1;
 
   cout << "Functionality OK" << endl;
