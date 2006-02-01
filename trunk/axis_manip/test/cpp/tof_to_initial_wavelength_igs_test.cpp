@@ -63,19 +63,19 @@ void initialize_true_outputs(NumT    & true_output_ss,
            Nessi::Vector<NumT> & true_output_vv_err2){
   // scalar scalar
   true_output_ss=static_cast<NumT>(-0.58583914499999989456);
-  true_output_ss_err2=static_cast<NumT>(0.14668620920470620828);
+  true_output_ss_err2=static_cast<NumT>(0.0821200935022268902);
 
   // vector vector
   true_output_vv.push_back(static_cast<NumT>(-0.58583914499999989456));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14668620920470620828));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.0821200935022268902));
   true_output_vv.push_back(static_cast<NumT>(-0.58224275045454543243));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14635196281566775767));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.0817858471131884257));
   true_output_vv.push_back(static_cast<NumT>(-0.57864635590909085927));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14601985428674937872));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.0814537385842700606));
   true_output_vv.push_back(static_cast<NumT>(-0.57504996136363628612));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14568988361795109920));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.0811237679154717811));
   true_output_vv.push_back(static_cast<NumT>(-0.57145356681818171296));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14536205080927291911));
+  true_output_vv_err2.push_back(static_cast<NumT>(0.0807959351067936149));
 }
 
 /**
