@@ -1429,7 +1429,7 @@ namespace AxisManip
    * \brief This function is described in section 3.29.
    *
    * This function calculates the initial wavelength for an inverse
-   * geometry spectromer according to the equation
+   * geometry spectrometer according to the equation
    * \f[
    * \lambda_i[i]=\frac{h}{m_n L_S}
    *              \left(t[i]-\frac{m_n \lambda_f L_D}{h} -t_0 \right)
@@ -1483,7 +1483,7 @@ namespace AxisManip
    * \param dist_sample_detector_err2 (INPUT) is the square of the
    * uncertainty in dist_sample_detector
    * \param initial_wavelength (OUTPUT) is the initial wavelength axis
-   * in units of Anstrom
+   * in units of Angstrom
    * \param initial_wavelength_err2 (OUTPUT) is the square of the
    * uncertainty of the initial wavelength axis
    *
@@ -2338,7 +2338,7 @@ namespace AxisManip
    * \brief This function is described in section 3.24.
    *
    * This function calculates the scalar wavevector given the
-   * wavelength accroding to the equation
+   * wavelength according to the equation
    * \f[
    * k[i]=\frac{2\pi}{\lambda[i]}
    * \f]
@@ -2354,7 +2354,7 @@ namespace AxisManip
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
-   * angstroms
+   * Angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty
    * in the wavelength axis
    * \param wavevector (OUTPUT) is the scalar wavevector in units of
@@ -2378,7 +2378,7 @@ namespace AxisManip
    * \brief This function is described in section 3.24.
    *
    * This function calculates the scalar wavevector given the
-   * wavelength accroding to the equation
+   * wavelength according to the equation
    * \f[
    * k=\frac{2\pi}{\lambda}
    * \f]
@@ -2394,7 +2394,7 @@ namespace AxisManip
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
-   * angstroms
+   * Angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty
    * in the wavelength axis
    * \param wavevector (OUTPUT) is the scalar wavevector in units of
