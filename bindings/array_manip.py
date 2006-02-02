@@ -22,7 +22,7 @@
 #
 #
 
-# $ID $
+# $Id$
 
 ##
 # \file bindings/array_manip.py wrapper of array_manip library
