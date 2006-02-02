@@ -22,7 +22,7 @@
 #
 #
 
-# $ID: $
+# $ID $
 
 ##
 # \file bindings/array_manip.py wrapper of array_manip library
@@ -61,8 +61,8 @@ import sys
 # Once a function is called, according to the type of the NessiVectors calling it,
 # the module redirects the call to the right function.
 #
-# For example when calling the function \f$add\f$ with two NessiVector of type 
-# <i>float</i>, the module redirects the called to the function \f$add\_f\f$.
+# For example, when calling the function \f$add\f$ with two NessiVector of type 
+# <i>float</i>, the module redirects the call to the function \f$add\_f\f$.
 #
 
 ##
