@@ -231,14 +231,15 @@ class NessiVector (list):
 # \{
 # Function that called the __array attribute of the NessiVector.
 # 
-# When asking for a value of the NessiVector \f$MyVector\f$, Python translates the
-# operation into a call to \f$MyVector.__getattr__\f$. 
-# /param self (INPUT) is the name of the NessiVector
-# /param name (INPUT) is the name of the attribute to be called
+# When asking for a value of the NessiVector \f$MyVector\f$, Python translates
+# the operation into a call to \f$MyVector.\_\_getattr\_\_\f$. 
+# \param self (INPUT) is the name of the NessiVector
+# \param name (INPUT) is the name of the attribute to be called
 #
 	def __getattr__(self,name):      
 		if(name=="array"):
-##			return self.__array
+			return self.__array
+##
 # \}
 
 ##
