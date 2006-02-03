@@ -158,19 +158,24 @@ class NessiVector (list):
 ##
 # \defgroup __append__ NessiVector::__append__
 # \{
-# Function used to append an element to a NessiVector
+
+##
+# \brief Function used to append elements to a NessiVector
+#
+# This function is used to append a value to an instance of the NessiVector,
+# <i>MyNessiVector</i>:
 # \f[
 # >>> MyNessiVector.append(10.5)
 # \f]
 # The size of the instance increases of 1 unit and the new element appended is
 # the new last element of the instance. That can be a confusion in the case the
 # size of the instance has already been declared during the initialization
-# process. For example, if a NessiVector has been defined has a 5 elements long 
-# of type <i>float</i>
+# process. For example, if a NessiVector has been defined has a 5 elements 
+# long of type <i>float</i>
 # \f[
 # >>> MyVector = NessiVector(5)
 # \f]
-# the <i>append</i> method will add the new element after the 5 first "0" 
+# the <i>append</i> method will add the new element after the 5 first "0". 
 # elements
 # \f[
 # >>> MyVector.append(10.5)
@@ -181,13 +186,35 @@ class NessiVector (list):
 # \f[
 # 10.5
 # \f]
+# It is also possible to append several values in the same time as illustrated
+# here:
+# \f[
+# >>> MyNessiVector.append(1,2,3,4,5,6,7,8)
+# \f]
+# This is the same as appending 1, then 2, then 3, and so on.... one after
+# the other.
+# \f[
+# >>> MyVector.append(1)
+# \f]
+# \f[
+# >>> MyVector.append(2)
+# \f]
+# \f[
+# >>> MyVector.append(3)
+# \f]
+# \f[
+# >>> MyVector.append(4)
+# \f]
+# \f[
+# ...
+# \f]
+#
 # \param self (INPUT) is the name of the NessiVector
 # \param number (INPUT) is the number to append
 #
-# SNS-IMPROVE_ME add multi-appending in the same time a.append(1,2,3,4,5)
-
-	def append(self,number):
-		self.__array.append(number)
+	def append(self,*number):
+		for i in range(len(number)):
+			self.__array.append(number[i])
 
 ##
 # \}
