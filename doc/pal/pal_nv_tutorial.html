@@ -1,3 +1,4 @@
+<!$Id$>
 <!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -52,12 +53,12 @@ or
 <li> Orthographies accepted</li>
 <p> The different orthographies accepted are
 <table border="1"><tr><td>Type</td><td>Accepted</td><td>Comments</td></tr>
-<tr><td>float</td><td>float</td><td>not case sensitive</td></tr>
-<tr><td>double</td><td>double</td><td>not case sensitive</td></tr> 
-<tr><td>int</td><td>int</td><td>not case sensitive</td></tr>
-<tr><td>unsigned int</td><td>uint</td><td>not case sensitive</td></tr>
-<tr><td></td><td>unsigned int</td><td>not case sensitive</td></tr>
-<tr><td></td><td>unsigned</td><td>not case sensitive</td></tr>
+<tr><td>float</td><td>float</td><td>case insensitive</td></tr>
+<tr><td>double</td><td>double</td><td>case insensitive</td></tr> 
+<tr><td>int</td><td>int</td><td>case insensitive</td></tr>
+<tr><td>unsigned int</td><td>uint</td><td>case insensitive</td></tr>
+<tr><td></td><td>unsigned int</td><td>case insensitive</td></tr>
+<tr><td></td><td>unsigned</td><td>case insensitive</td></tr>
 </table>
 <br>
 </ol>
@@ -65,6 +66,9 @@ or
 <p>Once a NessiVector has been created, you can fill the vector with values</p>
 <pre class="cli">>>> My_NessiVector_Int.append(45)<br>
 >>> My_NessiVector_Int.append(35)</pre>
+<p>It also possible to append more than one value at a time as illustrated here
+</P
+<pre class="cli">>>> My_NessiVector_Int.append(1,2,3,4,5,6)</pre>
 <h1>Visualize elements of the NessiVector</h1>
 <p>To visualize the data, you can either use a loop,check the data one by one
 or use the print_vect method from the module NessiVectorUtils</p>
@@ -82,19 +86,22 @@ or use the print_vect method from the module NessiVectorUtils</p>
 >>> My_NessiVector_Int[1]<br>
 35.0<br>
 >>></pre>
+<li>By checking the data several at a time</li>
+<pre class="cli">>>> My_NessiVector_int[0:3]<br>
+45.0<br>35.0<br>1</pre>
 <li>By using the print_vect method</li>
 <p>
 Methods described in the Methods section of this tutorial
 </p>
-<li>Doing simple operation between NessiVector</li><br>
+<h1>Doing simple operation between NessiVector</h1>
 <ol><li>Operators supported</li>
 <p>The operation supported between NessiVector are:<br></p>
 - add: see section 3.6 of the DR_Lib_RS-1.doc<br>
 - sub: see section 3.7 of the DR_Lib_RS-1.doc<br>
 - div: see section 3.9 of the DR_Lib_RS-1.doc<br>
 - mult: see section 3.8 of the DR_Lib_RS-1.doc <br>
-- sumw: see section 3.10 of the DR_Lib_RS-1.doc<br></P
-<li>Import operation</li>
+- sumw: see section 3.10 of the DR_Lib_RS-1.doc<br>
+<br><li>Import operation</li>
 <p>In order to use these operations, you must first import them from the 
 <i>array_manip</i> module:
 <pre class="cli">>>> from array_manip import add   #to import add
@@ -108,30 +115,45 @@ of type float and we will add them together using the operator <i>add</i>
 >>> Vector_A.append(2.35)       #Vector_A[1] is now 2.35<br>
 >>> Vector_A.append(3.45)       #Vector_A[2] is now 3.45<br>
 >>> Vector_B = NessiVector()    #same thing with Vector_B<br>
->>> Vector_B.append(5.5)<br>
->>> Vector_B.append(6.6)<br>
->>> Vector_B.append(7.7)<br>
+>>> Vector_B.append(5.5,6.6,7.7)<br>
 >>> Vector_C = NessiVector(len(Vector_A),"float")   #define a 3 elements long NessiVector<br>
->>> c = add(a,b)</pre>
+>>> c = add(a,b)    # or c = a + b</pre>
 <li>Operator(NessiVector_A, NessiVector_A_err2, NessiVector_B, NessiVector_B_err2)</li><br>
 See previous section on how to create Vector_A_err2 and Vector_B_err2<br>
 See previous section on how to define Vector_C_err2<br>
 <pre class="cli">>>> Vector_C,Vector_C_err2 = add (Vector_A,Vector_A_err2,Vector_B,Vector_B_err2)</pre>
-</ol>
+<li>NessiVector_result = NessiVector_1 <i>operator</i> NessiVector_2</li>
+<br>Simple operations between two NessiVector can be performed without
+using the array_manip module. These operations come free with the NessiVector
+module.<br>
+<table border="1"><tr><td>Operation</td><td>Symbols used</td></tr>
+<tr><td>Addition</td><td align="center">+</td></tr>
+<tr><td>Substraction</td><td align="center">-</td></tr>
+<tr><td>Multiplication</td><td align="center">*</td></tr>
+<tr><td>Division</td><td align="center">/</td></tr>
+</table>
+<br>
+<pre class="cli">>>> NessiVector_add = NessiVector_1 + NessiVector_2<br>
+>>> NessiVector_div = NessiVector_1 / NessiVector_2
+</pre>
+
+
+</ol></ol>
 <h1>Methods</h1>
 <p>These methods can be used by importing them from the <i>NessiVectorUtils</i> module.</p>
-<li> print_vect(NessiVector1)<br>print_vect(NessiVector1,n)</li>
+<ol><li> print_vect(NessiVector1)<br>print_vect(NessiVector1,n)</li>
 <pre class="cli"> print_vect(NessiVector_C)<br>
 5.7500000000000000 8.95000000000000000 11.150000000000000</pre>
 <p>
-Displays the 10 first elements of the array NessiVector_C. If the array contains more than 10 elements, the 10 first elements, 3 dots "..." and the last element of the array are displayed.</p><p> The default number of elements display can be changed by giving this number as second variable to the <i>print_vect</i> method.</p>
+Displays the 10 first elements of the NessiVector called NessiVector_C. If the NessiVector contains more than 10 elements, the 10 first elements, 3 dots "..." and the last element of the NessiVector are displayed.</p><p> The default number of elements displayed can be changed by giving this number as second variable to the <i>print_vect</i> method.</p>
 <pre class="cli"> print_vect(NessiVector_C,2)<br>
 5.7500000000000000 8.9500000000000000</pre>
+<p>For <i>float</i> and <i>double</i> are displayed with 16 digits
+after the decimal separator.</p>
 <li> compare_vect(n,NessiVector1,NessiVector2)<br> compare_vect(n,NessiVector1,NessiVector2,NessiVector3)</li>
 <p>Display side by side the first n elements of two, or three, NessiVectors.</p><li> max_vect(NessiVector1)</li>
-<p>Give the maximum value of the NessiVector's elements</p>
+<p>Return the maximum value of the NessiVector's elements</p>
 <li> min_vect(NessiVector1)</li>
-<p>Give the minimum value of the NessiVector's elements</p>
-
-
+<p>Return the minimum value of the NessiVector's elements</p>
 </ol>
+
