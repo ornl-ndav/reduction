@@ -102,9 +102,8 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 	tab="\t\t"
 
 	#find maximum value and then set the tab
-	max_value = max_vect(object1) 
 
-	if (max_value <= 9999):
+	if (max_vect(object1) <= 9999):
 		pass
 	else:
 		tab = tab + "\t"
@@ -126,7 +125,6 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 					print tab, object3[i]
 				else:
 					print
-	print	
 	
 ##
 # \}
@@ -151,10 +149,9 @@ def max_vect(object):
 			max_value = object[i]
 	if (object.type__ == NessiVector.FLOAT or
 		object.type__ == NessiVector.DOUBLE):
-		print "%7.16f" %max_value
+		return max_value
 	else:
-		print max_value
-	print		
+		return max_value
 
 ##
 # \}
@@ -178,10 +175,9 @@ def min_vect(object):
 			min_value = object[i]
 	if (object.type__ == NessiVector.FLOAT or
 		object.type__ == NessiVector.DOUBLE):
-		print "%7.16f" %min_value
+		return min_value
 	else:
-		print min_value
-	print		
+		return min_value
 
 ##
 # \}
