@@ -33,6 +33,26 @@ from array_manip_bind import FloatNessiVector
 from array_manip_bind import IntNessiVector
 from array_manip_bind import DoubleNessiVector
 
+from array_manip_bind import add_ncerr_f
+from array_manip_bind import add_ncerr_d
+from array_manip_bind import add_ncerr_i
+from array_manip_bind import add_ncerr_u
+
+from array_manip_bind import sub_ncerr_f
+from array_manip_bind import sub_ncerr_d
+from array_manip_bind import sub_ncerr_i
+from array_manip_bind import sub_ncerr_u
+
+from array_manip_bind import mult_ncerr_f
+from array_manip_bind import mult_ncerr_d
+from array_manip_bind import mult_ncerr_i
+from array_manip_bind import mult_ncerr_u
+
+from array_manip_bind import div_ncerr_f
+from array_manip_bind import div_ncerr_d
+from array_manip_bind import div_ncerr_i
+from array_manip_bind import div_ncerr_u
+
 ##
 # The purpose of this class is to provide an abstraction layer that hide the
 # call to the functions according to the type of the instance.
@@ -101,8 +121,8 @@ class NessiVector (list):
 			if length >= 0:
 				self.__array = 	UnsignedIntNessiVector(length)
 			else:
-				raise Exception, "Cannot instantiate Vector with \
-						negative length" 
+				raise Exception, "Cannot instantiate Vector \
+						with negative length" 
 	
 		elif type.lower()==NessiVector.INT:
 			self.type__=self.INT
@@ -110,8 +130,8 @@ class NessiVector (list):
 			if length >= 0:
 				self.__array = IntNessiVector(length)
 			else:
-				raise Exception, "Cannot instantiate Vector with\
-				 negative length"
+				raise Exception, "Cannot instantiate Vector \
+				with negative length"
 
 		elif type.lower() == NessiVector.FLOAT:
 			self.type__=self.FLOAT
@@ -142,15 +162,16 @@ class NessiVector (list):
 # \f[
 # >>> MyNessiVector.append(10.5)
 # \f]
-# The size of the instance increases of 1 unit and the new element appended is the
-# new last element of the instance. That can be a confusion in the case the size of
-# the instance has already been declared during the initialization process. For
-# example, if a NessiVector has been defined has a 5 elements long of type 
-# <i>float</i>
+# The size of the instance increases of 1 unit and the new element appended is
+# the new last element of the instance. That can be a confusion in the case the
+# size of the instance has already been declared during the initialization
+# process. For example, if a NessiVector has been defined has a 5 elements long 
+# of type <i>float</i>
 # \f[
 # >>> MyVector = NessiVector(5)
 # \f]
-# the <i>append</i> method will add the new element after the 5 first "0" elements
+# the <i>append</i> method will add the new element after the 5 first "0" 
+# elements
 # \f[
 # >>> MyVector.append(10.5)
 # \f]
@@ -174,16 +195,23 @@ class NessiVector (list):
 ##
 # \defgroup __getitem__ NessiVector::__getitem__
 # \{
-# Function used to get an element of a NessiVector.
+
+##
+# \brief Function used to get an element of a NessiVector.
 # To get the \f$i^{th}\f$ value of the NessiVector \f$MyVectorA\f$, 
 #\f[
 # >>> MyVectorA[i]
 #\f]
+# The last index of the NessiVector is displayed if one ask for an element
+# of the NessiVector outside its range
+#
 
 	def __getitem__(self,m):     # need to throw exception when m>len(self)
-		return self.__array[m]
-
-##
+		if (m<len(self)):
+			return self.__array[m]
+		else:
+			print "Last index of this  NessiVector is ",len(self)-1
+##			
 # \}
 
 ##
@@ -245,12 +273,155 @@ class NessiVector (list):
 ##
 # \defgroup __add__ NessiVector::__add__
 # \{
-# Function "__add__" not implemented yet
+
+## 
+# \brief The operator \f$+\f$ allows to add two NessiVector together.
+#
+# To add two NessiVectors together, instead of using the function <i>add</i>
+# provided by the NessiVectorUtils module, you can simply use the following
+# technique:
+# \f[
+# <<< NessiVector_{result} = NessiVector_1 + NessiVector_2
+# \f]
 #
 	def __add__(self,right):
-#		for i in range(len(self.__array)):
-#			print self.__array[i] + right.__array[i]
-		print "Not implemented yet"
+		if (self.type__ == NessiVector.FLOAT):
+			c = NessiVector(len(self))
+			add_ncerr_f(self.array, self.array, right.array,\
+			right.array,c.array, c.array)
+		if (self.type__ == NessiVector.DOUBLE):
+			c = NessiVector(len(self))
+			add_ncerr_d(self.array, self.array, right.array,\
+			right.array,c.array, c.array)
+		if (self.type__ == NessiVector.INT):
+			c = NessiVector(len(self))
+			add_ncerr_i(self.array, self.array, right.array,\
+			right.array,c.array, c.array)
+		if (self.type__ == NessiVector.UINT):
+			c = NessiVector(len(self))
+			add_ncerr_u(self.array, self.array, right.array,\
+			right.array,c.array, c.array)
+		return c
+##
+# \}
+
+##
+# \defgroup __sub__ NessiVector::__sub__
+# \{
+
+##
+# \brief The operator \f$-\f$ allows to substract two NessiVectors.
+#
+# To substract one NessiVector from another, instead of using the function
+# <i>sub</i> provided by the NessiVectorUtils module, you can simply use the 
+# following technique:
+# \f[
+# <<< NessiVector_{result} = NessiVector_1 - NessiVector_2
+# \f]
+#
+	def __sub__(self,right):
+		if (self.type__ == NessiVector.FLOAT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			sub_ncerr_f(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.DOUBLE):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			sub_ncerr_d(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.INT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			sub_ncerr_i(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.UINT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			sub_ncerr_u(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		return c
+		
+##
+# \}
+
+##
+# \defgroup __mul__ NessiVector::__mul__
+# \{
+
+## 
+# \brief The operator \f$\times\f$ allows to multiply two NessiVectors.
+#
+# To multiply two NessiVectors, instead of using the function <i>mult</i> 
+# provided by the NessiVectorUtils module, you can simply use the following
+# technique:
+# \f[
+# <<< NessiVector_{result} = NessiVector_1 \times NessiVector_2
+# \f]
+#
+	def __mul__(self,right):
+		if (self.type__ == NessiVector.FLOAT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			mult_ncerr_f(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.DOUBLE):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			mult_ncerr_d(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.INT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			mult_ncerr_i(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.UINT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			mult_ncerr_u(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		return c
+
+##
+# \}
+		
+##
+# \defgroup __div__ NessiVector::__div__
+# \{
+
+## 
+# \brief The operator \f$/\f$ allows to divide two NessiVectors.
+#
+# To divide two NessiVectors, instead of using the function <i>div</i> 
+# provided by the NessiVectorUtils module, you can simply use the following
+# technique:
+# \f[
+# <<< NessiVector_{result} = NessiVector_1 / NessiVector_2
+# \f]
+#
+	def __div__(self,right):
+		if (self.type__ == NessiVector.FLOAT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			div_ncerr_f(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.DOUBLE):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			div_ncerr_d(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.INT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			div_ncerr_i(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		if (self.type__ == NessiVector.UINT):
+			c = NessiVector(len(self))
+			ce2 = NessiVector(len(self))
+			div_ncerr_u(self.array, self.array, right.array,\
+			right.array,c.array, ce2.array)
+		return c
+
 ##
 # \}
 
