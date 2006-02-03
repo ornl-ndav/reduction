@@ -68,7 +68,7 @@ import sys
 ##
 # \defgroup add add
 # \{
-# This function adds each element of two NessiVector.
+# \brief This function adds each element of two NessiVector.
 #
 # This function accepts two or four NessiVector as arguments. The addition of 
 # a NessiVector with a scalar is not supported yet.
@@ -114,7 +114,7 @@ import sys
 #
 
 def add(a,ae2,b=NessiVector(),be2=NessiVector()):
-
+	
 	b_length = len(b)
 
 	if (b_length == 0):				#for case: add(a,b)
@@ -155,7 +155,7 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup sub sub
 # \{
-# This function substracts each element of two NessiVector.
+# \brief This function substracts each element of two NessiVector.
 #
 # This function accepts two or four NessiVector as arguments. The substraction of 
 # a NessiVector with a scalar is not supported yet.
@@ -242,10 +242,10 @@ def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup mult mult
 # \{
-# This function multiplies each element of two NessiVector.
+# \brief This function multiplies each element of two NessiVector.
 #
-# This function accepts two or four NessiVector as arguments. The multiplication of 
-# a NessiVector with a scalar is not supported yet.
+# This function accepts two or four NessiVector as arguments. The multiplication 
+# of a NessiVector with a scalar is not supported yet.
 # 
 # With two arguments,
 # \f[
@@ -328,7 +328,7 @@ def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup div div
 # \{
-# This function divides each element of two NessiVector.
+# \brief This function divides each element of two NessiVector.
 #
 # This function accepts two or four NessiVector as arguments. The division of 
 # a NessiVector by a scalar, or of a scalar by a NessiVector is not supported yet.
@@ -416,7 +416,7 @@ def div(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup sumw sumw
 # \{
-# This function adds two NessiVector weighted by their uncertainties.
+# \brief This function adds two NessiVector weighted by their uncertainties.
 #
 # This function adds two NessiVector weighted by their uncertainties according to 
 # the equation:
