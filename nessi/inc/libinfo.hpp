@@ -31,7 +31,7 @@
  * The purpose of this file is to add information to the main index page for
  * the SNS Data Reduction Library documentation.
  *
- * \mainpage SNS Common Libraries 1.0.0alpha
+ * \mainpage SNS Common Libraries 1.0.0itc2
  *
  * \section rules Rules of the Library
  *
