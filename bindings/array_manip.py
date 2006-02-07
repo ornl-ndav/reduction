@@ -58,16 +58,19 @@ import sys
 # 107030214-TD0001-R00, "Data Reduction Library Software Requirements and
 # Specifications". 
 #
-# Once a function is called, according to the type of the NessiVectors calling it,
-# the module redirects the call to the right function.
+# Once a function is called, according to the type of the NessiVectors calling 
+# it, the module redirects the call to the right function.
 #
-# For example, when calling the function \f$add\f$ with two NessiVector of type 
-# <i>float</i>, the module redirects the call to the function \f$add\_f\f$.
+# For example, when calling the function \f$add\f$ with two NessiVector of 
+# type <i>float</i>, the module redirects the call to the function 
+# \f$add\_f\f$.
 #
 
 ##
 # \defgroup add add
 # \{
+
+##
 # \brief This function adds each element of two NessiVector.
 #
 # This function accepts two or four NessiVector as arguments. The addition of 
@@ -109,8 +112,8 @@ import sys
 # arguments present, otherwise it's the square of the uncertainty in the first
 # NessiVector to be added
 # \param b (INPUT/OPTIONAL) is the second NessiVector to be added
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of the 
-# uncertainty in the second NessiVector to be added
+# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
+# the uncertainty in the second NessiVector to be added
 #
 
 def add(a,ae2,b=NessiVector(),be2=NessiVector()):
@@ -122,8 +125,8 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 
 	if (a.type__ == a.FLOAT):
 		if (b_length ==0): be2=NessiVector(len(a))
-		c = NessiVector(len(a));		
-		ce2 = NessiVector(len(a));		
+		c = NessiVector(len(a))		
+		ce2 = NessiVector(len(a))		
 		add_ncerr_f(a.array,ae2.array,b.array,be2.array,c.array,\
 		ce2.array)
 	if (a.type__ == a.DOUBLE):
@@ -155,10 +158,12 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup sub sub
 # \{
+
+##
 # \brief This function substracts each element of two NessiVector.
 #
-# This function accepts two or four NessiVector as arguments. The substraction of 
-# a NessiVector with a scalar is not supported yet.
+# This function accepts two or four NessiVector as arguments. The substraction 
+# of a NessiVector with a scalar is not supported yet.
 # 
 # With two arguments,
 # \f[
@@ -172,8 +177,8 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \sigma_2)
 # \f]
 # 
-# For both cases, this function substracts each element, \f$i\f$, of two NessiVector
-# according to the equations
+# For both cases, this function substracts each element, \f$i\f$, of two 
+# NessiVector according to the equations
 # \f[
 # Vector_0[i] = Vector_1[i] - Vector_2[i]
 # \f]
@@ -183,9 +188,9 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \sigma_2^2[i]
 # \f]
 # where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output 
-# NessiVector, \f$Vector_1[i]\f$ is the \f$i^{th}\f$ component of the NessiVector
-# being subtracted from, \f$Vector_2[i]\f$ it the \f$i^{th}\f$ component
-# of the NessiVector subtracting, \f$\sigma_0[i]\f$ is the 
+# NessiVector, \f$Vector_1[i]\f$ is the \f$i^{th}\f$ component of the 
+# NessiVector being subtracted from, \f$Vector_2[i]\f$ it the \f$i^{th}\f$ 
+# component of the NessiVector subtracting, \f$\sigma_0[i]\f$ is the 
 # \f$i^{th}\f$ component of the uncertainty of the output NessiVector, 
 # \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
 # in the first NessiVector, and \f$\sigma_2[i]\f$ is the \f$i^{th}\f$ 
@@ -196,8 +201,8 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 # arguments present, otherwise it's the square of the uncertainty in the 
 # NessiVector to be subtracted from
 # \param b (INPUT/OPTIONAL) is the NessiVector to subtract 
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of the 
-# uncertainty in the NessiVector to subtract
+# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of 
+# the uncertainty in the NessiVector to subtract
 #
 
 def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
@@ -242,10 +247,12 @@ def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup mult mult
 # \{
+
+##
 # \brief This function multiplies each element of two NessiVector.
 #
-# This function accepts two or four NessiVector as arguments. The multiplication 
-# of a NessiVector with a scalar is not supported yet.
+# This function accepts two or four NessiVector as arguments. The 
+# multiplication of a NessiVector with a scalar is not supported yet.
 # 
 # With two arguments,
 # \f[
@@ -259,14 +266,15 @@ def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \sigma_2)
 # \f]
 # 
-# For both cases, this function multiplies each element, \f$i\f$, of two NessiVector
-# according to the equations
+# For both cases, this function multiplies each element, \f$i\f$, of two 
+# NessiVector according to the equations
 # \f[
 # Vector_0[i] = Vector_1[i] \times Vector_2[i]
 # \f]
 # and
 # \f[
-# \sigma_0[i] = (Vector_1[i]\times\sigma_1[i])^2 +(Vector_2[i]\times\sigma_2[i])^2
+# \sigma_0[i] = (Vector_1[i]\times\sigma_1[i])^2 +
+# (Vector_2[i]\times\sigma_2[i])^2
 # \f]
 # where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output 
 # NessiVector, \f$Vector_1[i]\f$ is the \f$i^{th}\f$ component of the first 
@@ -278,12 +286,12 @@ def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
 # component of the uncertainty in the second NessiVector. 
 #
 # \param a (INPUT) is the first NessiVector to be multiplied
-# \param ae2 (INPUT) is the second NessiVector to multiplied, if they are no more
-# arguments present, otherwise it's the square of the uncertainty in the first 
-# NessiVector to be multiplied 
+# \param ae2 (INPUT) is the second NessiVector to multiplied, if they are no 
+# more arguments present, otherwise it's the square of the uncertainty in the 
+# first NessiVector to be multiplied 
 # \param b (INPUT/OPTIONAL) is the second NessiVector to be multiplied
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of the 
-# uncertainty in the second NessiVector to be multiplied
+# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of 
+# the uncertainty in the second NessiVector to be multiplied
 #
 
 def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
@@ -328,10 +336,13 @@ def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup div div
 # \{
+
+##
 # \brief This function divides each element of two NessiVector.
 #
 # This function accepts two or four NessiVector as arguments. The division of 
-# a NessiVector by a scalar, or of a scalar by a NessiVector is not supported yet.
+# a NessiVector by a scalar, or of a scalar by a NessiVector is not supported 
+# yet.
 # 
 # With two arguments,
 # \f[
@@ -345,8 +356,8 @@ def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \sigma_2)
 # \f]
 # 
-# For both cases, this function divides each element, \f$i\f$, of two NessiVector
-# according to the equations
+# For both cases, this function divides each element, \f$i\f$, of two 
+# NessiVector according to the equations
 # \f[
 # Vector_0[i] = Vector_1[i] / Vector_2[i]
 # \f]
@@ -369,8 +380,8 @@ def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
 # arguments present, otherwise it's the square of the uncertainty in the  
 # NessiVector being divided 
 # \param b (INPUT/OPTIONAL) is the dividing NessiVector
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of the 
-# uncertainty in the dividing NessiVector
+# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of 
+# the uncertainty in the dividing NessiVector
 #
 
 def div(a,ae2,b=NessiVector(),be2=NessiVector()):
@@ -416,10 +427,12 @@ def div(a,ae2,b=NessiVector(),be2=NessiVector()):
 ##
 # \defgroup sumw sumw
 # \{
+
+##
 # \brief This function adds two NessiVector weighted by their uncertainties.
 #
-# This function adds two NessiVector weighted by their uncertainties according to 
-# the equation:
+# This function adds two NessiVector weighted by their uncertainties according 
+# to the equation:
 # \f[
 # Vector_0[i]=\left( \sum^2_{n=1} \frac{Vector_n[i]}{\sigma_n[i]}\right)
 # \times\left( \frac{1}{2} \sum^2_{n=1} \sigma_n[i] \right)
@@ -434,18 +447,18 @@ def div(a,ae2,b=NessiVector(),be2=NessiVector()):
 # Vector_0[i]=\sum^2_{n=1} Vector_n[i]
 # \f]
 # where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output 
-# NessiVector, \f$Vector_n[i]\f$ is the \f$i^{th}\f$ component of the \f$n^{th}\f$
-# NessiVector being added, \f$\sigma_0[i]\f$ is the 
+# NessiVector, \f$Vector_n[i]\f$ is the \f$i^{th}\f$ component of the 
+# \f$n^{th}\f$ NessiVector being added, \f$\sigma_0[i]\f$ is the 
 # \f$i^{th}\f$ component of the uncertainty of the output NessiVector, 
 # \f$\sigma_n[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
 # in the \f$n^{th}\f$ NessiVector being added.
 #
 # \param a (INPUT) is the first NessiVector to be added
-# \param ae2 (INPUT) is the square of the uncertainty in the first NessiVector to be
-# added
+# \param ae2 (INPUT) is the square of the uncertainty in the first NessiVector 
+# to be added
 # \param b (INPUT) is the second NessiVector to be added
-# \param be2 (INPUT) is the square of the uncertainty in the second NessiVector to be
-# added
+# \param be2 (INPUT) is the square of the uncertainty in the second 
+# NessiVector to be added
 #
 
 def sumw(a,ae2,b,be2):
