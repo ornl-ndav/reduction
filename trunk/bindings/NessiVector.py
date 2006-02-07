@@ -54,8 +54,8 @@ from array_manip_bind import div_ncerr_i
 from array_manip_bind import div_ncerr_u
 
 ##
-# The purpose of this class is to provide an abstraction layer that hide the
-# call to the functions according to the type of the instance.
+# \brief The purpose of this class is to provide an abstraction layer that
+# hide the call to the functions according to the type of the instance.
 #
 # This class plays the role of a template for the function called
 #
@@ -78,6 +78,8 @@ class NessiVector (list):
 ##
 # \defgroup __init__ NessiVector::__init__
 # \{
+
+##
 # Initialization of an instance.
 # A NessiVector can be defined in 4 ways. 
 #
@@ -139,8 +141,8 @@ class NessiVector (list):
 			if length >= 0:
 				self.__array = FloatNessiVector(length)
 			else:
-				raise Exception, "Cannot instantiate Vector with\
-				 negative length"
+				raise Exception, "Cannot instantiate Vector \
+				with  negative length"
 
 		elif type.lower() == NessiVector.DOUBLE:
 			self.type__ = self.DOUBLE
@@ -148,8 +150,8 @@ class NessiVector (list):
 			if length >= 0:
 				self.__array = DoubleNessiVector(length)
 			else:
-				raise Exception, "Cannot instantiate Vector with\
-				 negative length"
+				raise Exception, "Cannot instantiate Vector \
+				with negative length"
 		else:
 			raise Exception,"type not supported by NessiVector"
 ##
@@ -244,6 +246,8 @@ class NessiVector (list):
 ##
 # \defgroup __getslice__ NessiVector::__getslice__
 # \{
+
+##
 # Function used to get a range of value from a NessiVector.
 # \f[
 # >>> MyVector[0:5]
@@ -267,6 +271,8 @@ class NessiVector (list):
 ##
 # \defgroup __len__ NessiVector::__len__
 # \{
+
+##
 # Function used to get the length of a NessiVector
 #
 # \f[
@@ -284,6 +290,9 @@ class NessiVector (list):
 ##
 # \defgroup __getattr__ NessiVector::__getattr__
 # \{
+
+
+##
 # Function that called the __array attribute of the NessiVector.
 # 
 # When asking for a value of the NessiVector \f$MyVector\f$, Python translates
@@ -455,6 +464,8 @@ class NessiVector (list):
 ##
 # \defgroup __contains__ NessiVector::__contains__
 # \{
+
+##
 # Function "__contains__" not implemented yet
 #
 	def __contains__(self):
@@ -465,6 +476,8 @@ class NessiVector (list):
 ##
 # \defgroup __eq__ NessiVector::__eq__
 # \{
+
+##
 # Function "__eq__" not implemented yet
 #
 
@@ -476,6 +489,8 @@ class NessiVector (list):
 ##
 # \defgroup __ge__ NessiVector::__ge__
 # \{
+
+##
 # Function "__ge__" not implemented yet
 #
 	def __ge__(self):
@@ -486,6 +501,8 @@ class NessiVector (list):
 ##
 # \defgroup __gt__ NessiVector::__gt__
 # \{
+
+##
 # Function "__gt__" not implemented yet
 #
 	def __gt__(self):
@@ -496,6 +513,8 @@ class NessiVector (list):
 ##
 # \defgroup __ne__ NessiVector::__ne__
 # \{
+
+##
 # Function "__ne__" not implemented yet
 #
 	def __ne__(self):
@@ -506,6 +525,8 @@ class NessiVector (list):
 ##
 # \defgroup __lt__ NessiVector::__lt__
 # \{
+
+##
 # Function "__lt__" not implemented yet
 #
 	def __lt__(self):
@@ -516,6 +537,8 @@ class NessiVector (list):
 ##
 # \defgroup __pop__ NessiVector::__pop__
 # \{
+
+##
 # Function "pop" not implemented yet"
 #
 	def pop(self):
