@@ -26,7 +26,7 @@ echo "Using $autoconfversion"
 echo "Using $automakeversion"
 echo "Using $libtoolversion"
 case $autoconfversion in
-    *2.59)
+    *2.59 | *2.[6-9]? | 2.???)
 	;;
     *)
 	echo "This autoconf version is not supported by SNS Common Libraries."
@@ -37,22 +37,22 @@ case $autoconfversion in
 esac
 
 case $automakeversion in
-    *1.9.[4-5])
-	;;
+    *1.9.[4-9] | *1.9.??)
+        ;;
     *)
 	echo "This automake version is not supported by SNS Common Libraries."
-	echo "SNS Common Libraries only supports automake 1.9.4."
+	echo "SNS Common Libraries only supports automake 1.9.4 and up."
 	echo "You may download it from ftp://ftp.gnu.org/gnu/automake"
 	exit
 	;;
 esac
 
 case $libtoolversion in
-    *1.5.[10-16]*)
+    *1.5.??)
 	;;
     *)
 	echo "This libtool version is not supported by SNS Common Libraries."
-	echo "SNS Common Libraries only supports libtool 1.5.10."
+	echo "SNS Common Libraries only supports libtool 1.5.10 and up."
 	echo "You may download it from ftp://ftp.gnu.org/gnu/libtool"
 	exit
 	;;
