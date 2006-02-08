@@ -45,7 +45,8 @@ const size_t NUM_VAL=5;
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & wavelength,
-                       Nessi::Vector<NumT> & wavelength_err2){
+                       Nessi::Vector<NumT> & wavelength_err2)
+{
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
       wavelength.push_back(static_cast<NumT>(1+i));
@@ -60,7 +61,8 @@ void initialize_inputs(Nessi::Vector<NumT> & wavelength,
 void initialize_true_outputs(float    & true_output_ss,
                              float    & true_output_ss_err2,
                              Nessi::Vector<float> & true_output_vv,
-                             Nessi::Vector<float> & true_output_vv_err2){
+                             Nessi::Vector<float> & true_output_vv_err2)
+{
   // scalar scalar
   true_output_ss=static_cast<float>(6.283185482025146484375);
   true_output_ss_err2=static_cast<float>(19.7392101287841796875);
@@ -81,7 +83,8 @@ void initialize_true_outputs(float    & true_output_ss,
 void initialize_true_outputs(double    & true_output_ss,
                              double    & true_output_ss_err2,
                              Nessi::Vector<double> & true_output_vv,
-                             Nessi::Vector<double> & true_output_vv_err2){
+                             Nessi::Vector<double> & true_output_vv_err2)
+{
   // scalar scalar
   true_output_ss=static_cast<double>(6.283185307179586231995926937088);
   true_output_ss_err2=static_cast<double>(19.739208802178715984609880251810);
@@ -110,7 +113,8 @@ bool test_okay(NumT    & output_ss,
                Nessi::Vector<NumT> & output_vv,
                Nessi::Vector<NumT> & output_vv_err2,
                Nessi::Vector<NumT> & true_output_vv,
-               Nessi::Vector<NumT> & true_output_vv_err2){
+               Nessi::Vector<NumT> & true_output_vv_err2)
+{
   // scalar scalar
   if(!test_okay(output_ss,true_output_ss))
     return false;
@@ -132,7 +136,8 @@ bool test_okay(NumT    & output_ss,
  * Function that runs the test for a numeric type
  */
 template <typename NumT>
-bool test_func(NumT key){ // key forces correct test to happen
+bool test_func(NumT key, string debug) // key forces correct test to happen
+{
   // allocate arrays
   Nessi::Vector< NumT > wavelength;
   Nessi::Vector< NumT > wavelength_err2;
@@ -157,6 +162,15 @@ bool test_func(NumT key){ // key forces correct test to happen
   AxisManip::wavelength_to_scalar_k(wavelength, wavelength_err2,
                                   output_vv, output_vv_err2);
 
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(output_vv, true_output_vv, VV, debug);
+      print(output_vv_err2, true_output_vv_err2, ERROR+VV, debug);
+      print(output_ss, true_output_ss, SS, debug);
+      print(output_ss_err2, true_output_ss_err2, ERROR+SS, debug);
+    }
+
   return test_okay(output_ss, output_ss_err2,
                    true_output_ss, true_output_ss_err2,
                    output_vv, output_vv_err2,
@@ -165,15 +179,29 @@ bool test_func(NumT key){ // key forces correct test to happen
 
 /**
  * Main function that test scalar_k_transfer for float and double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
  */
-int main(){
+int main(int argc, char *argv[])
+{
   cout << "wavelength_to_scalar_k_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
-    return -1;
+  string debug;
+  if(argc > 1)
+    {
+      debug = argv[1];
+    }
 
-  if(!test_func(static_cast<double>(1)))
-    return -1;
+  if(!test_func(static_cast<float>(1), debug))
+    {
+      return -1;
+    }
+
+  if(!test_func(static_cast<double>(1), debug))
+    {
+      return -1;
+    }
 
   cout << "Functionality OK" << endl;
 
