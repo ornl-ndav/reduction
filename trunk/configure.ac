@@ -134,7 +134,7 @@ if test -n "$DOT" ; then
                                Aren't you lucky!"
 else
     DOTISCOOL="You will have ugly looking UML diagrams.
-                               It is recommended to get dot!"
+                               It is recommended to get graphviz!"
 fi
 
 if test $pdfdoc == "true" ; then
