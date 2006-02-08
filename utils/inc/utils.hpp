@@ -194,7 +194,7 @@ namespace Utils
   /**
    * \brief This function is described in section 3.46
    *
-   * This function takes a slice of an array and calculated the weighted 
+   * This function takes a slice of an array and calculates the weighted 
    * average of that slice. The weighted average is calculated according to 
    * the function
    *
