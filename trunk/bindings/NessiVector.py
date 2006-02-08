@@ -19,7 +19,7 @@
 # responsibility for the accuracy, completeness, or usefulness of any
 # information, apparatus, product, or process disclosed, or represents that
 # its use would not infringe privately owned rights.
-#
+#	
 #
 
 # $Id$
@@ -260,9 +260,6 @@ class NessiVector (list):
 # \param j (INPUT/OPTIONAL) is the index + 1 of the last element to get (-1 by 
 # default, i.e., last element of the NessiVector)
 
-
-# SNS-IMPROVE-ME add possibility to display 1 over n element MyVector[1:10:2]
-
 	def __getslice__(self,i=0,j=-1):
 		print self.__array[i:j]
 ##
@@ -290,7 +287,6 @@ class NessiVector (list):
 ##
 # \defgroup __getattr__ NessiVector::__getattr__
 # \{
-
 
 ##
 # Function that called the __array attribute of the NessiVector.
@@ -326,15 +322,15 @@ class NessiVector (list):
 			add_ncerr_f(self.array, self.array, right.array,\
 			right.array,c.array, c.array)
 		if (self.type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self))
+			c = NessiVector(len(self),type="double")
 			add_ncerr_d(self.array, self.array, right.array,\
 			right.array,c.array, c.array)
 		if (self.type__ == NessiVector.INT):
-			c = NessiVector(len(self))
+			c = NessiVector(len(self),type="int")
 			add_ncerr_i(self.array, self.array, right.array,\
 			right.array,c.array, c.array)
 		if (self.type__ == NessiVector.UINT):
-			c = NessiVector(len(self))
+			c = NessiVector(len(self),type="uint")
 			add_ncerr_u(self.array, self.array, right.array,\
 			right.array,c.array, c.array)
 		return c
@@ -362,18 +358,18 @@ class NessiVector (list):
 			sub_ncerr_f(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="double")
+			ce2 = NessiVector(len(self),type="double")
 			sub_ncerr_d(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.INT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="int")
+			ce2 = NessiVector(len(self),type="int")
 			sub_ncerr_i(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.UINT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="uint")
+			ce2 = NessiVector(len(self),type="uint")
 			sub_ncerr_u(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		return c
@@ -402,18 +398,18 @@ class NessiVector (list):
 			mult_ncerr_f(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="double")
+			ce2 = NessiVector(len(self),type="double")
 			mult_ncerr_d(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.INT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="int")
+			ce2 = NessiVector(len(self),type="int")
 			mult_ncerr_i(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.UINT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="uint")
+			ce2 = NessiVector(len(self),type="uint")
 			mult_ncerr_u(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		return c
@@ -442,18 +438,18 @@ class NessiVector (list):
 			div_ncerr_f(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="double")
+			ce2 = NessiVector(len(self),type="double")
 			div_ncerr_d(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.INT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="int")
+			ce2 = NessiVector(len(self),type="int")
 			div_ncerr_i(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.UINT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
+			c = NessiVector(len(self),type="uint")
+			ce2 = NessiVector(len(self),type="uint")
 			div_ncerr_u(self.array, self.array, right.array,\
 			right.array,c.array, ce2.array)
 		return c
@@ -549,5 +545,3 @@ class NessiVector (list):
 ##
 # \}
 
-
-	
