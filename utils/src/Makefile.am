@@ -46,4 +46,6 @@ libUtils_la_SOURCES = \
 	vector_comparison.hpp \
 	vector_comparison.cpp \
 	vector_is_equals.hpp \
-	vector_is_equals.cpp
+	vector_is_equals.cpp \
+	weighted_average.hpp \
+	weighted_average.cpp
