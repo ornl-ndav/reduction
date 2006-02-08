@@ -67,7 +67,7 @@ import sys
 #
 
 ##
-# \defgroup add add
+# \defgroup add array_manip::add
 # \{
 
 ##
@@ -156,7 +156,7 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \}
 
 ##
-# \defgroup sub sub
+# \defgroup sub array_manip::sub
 # \{
 
 ##
@@ -245,7 +245,7 @@ def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \}
 
 ##
-# \defgroup mult mult
+# \defgroup mult array_manip::mult
 # \{
 
 ##
@@ -334,7 +334,7 @@ def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \}
 
 ##
-# \defgroup div div
+# \defgroup div array_manip::div
 # \{
 
 ##
@@ -425,7 +425,7 @@ def div(a,ae2,b=NessiVector(),be2=NessiVector()):
 # \}
 
 ##
-# \defgroup sumw sumw
+# \defgroup sumw array_manip::sumw
 # \{
 
 ##
