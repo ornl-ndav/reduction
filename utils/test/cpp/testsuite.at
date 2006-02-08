@@ -20,6 +20,18 @@
 # its use would not infringe privately owned rights.
 #
 
+# _*_autotest_*_
 # $Id$
 
-SUBDIRS=inc src test
+m4_version_prereq([2.57])
+
+AT_INIT
+
+AT_BANNER([[Checking Functionality of the Utility Functions
+                  utils/test/cpp]])
+
+AT_SETUP([Checking the Weighted Average Function.  ])
+AT_CHECK([weighted_average_test | sed -e 's/\r$//' ],[],
+[[weighted_average_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
