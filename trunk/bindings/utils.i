@@ -42,3 +42,6 @@
 %template(fit_linear_background_f) Utils::fit_linear_background<float>;
 %template(fit_linear_background_d) Utils::fit_linear_background<double>;
 
+%template(weighted_average_f) Utils::weighted_average<float>;
+%template(weighted_average_d) Utils::weighted_average<double>;
+
