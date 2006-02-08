@@ -93,6 +93,8 @@ AC_CONFIG_FILES([array_manip/test/Makefile
 		array_manip/test/cpp/Makefile
 		axis_manip/test/Makefile
 		axis_manip/test/cpp/Makefile
+		utils/test/Makefile
+		utils/test/cpp/Makefile
 		])
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 

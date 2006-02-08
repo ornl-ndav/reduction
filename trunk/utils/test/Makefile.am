@@ -22,4 +22,8 @@
 
 # $Id$
 
-SUBDIRS=inc src test
+SUBDIRS=cpp
+
+test: check
+
+.PHONY: all
