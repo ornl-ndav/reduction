@@ -54,28 +54,51 @@ void initialize_inputs(Nessi::Vector<NumT> & tof,
 }
 
 /**
- * This function generate the values to compare the calculation to.
+ * This function generate the values for float to compare the calculation to.
  */
-template <typename NumT>
-void initialize_true_outputs(NumT    & true_output_ss,
-           NumT    & true_output_ss_err2,
-           Nessi::Vector<NumT> & true_output_vv,
-           Nessi::Vector<NumT> & true_output_vv_err2){
+void initialize_true_outputs(float    & true_output_ss,
+           float    & true_output_ss_err2,
+           Nessi::Vector<float> & true_output_vv,
+           Nessi::Vector<float> & true_output_vv_err2){
   // scalar scalar
-  true_output_ss=static_cast<NumT>(-0.58583914499999989456);
-  true_output_ss_err2=static_cast<NumT>(0.14668620920470620828);
+  true_output_ss=static_cast<float>(-0.58583915233612060547);
+  true_output_ss_err2=static_cast<float>(0.14668619632720947266);
 
   // vector vector
-  true_output_vv.push_back(static_cast<NumT>(-0.58583914499999989456));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14668620920470620828));
-  true_output_vv.push_back(static_cast<NumT>(-0.58224275045454543243));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14635196281566775767));
-  true_output_vv.push_back(static_cast<NumT>(-0.57864635590909085927));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14601985428674937872));
-  true_output_vv.push_back(static_cast<NumT>(-0.57504996136363628612));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14568988361795109920));
-  true_output_vv.push_back(static_cast<NumT>(-0.57145356681818171296));
-  true_output_vv_err2.push_back(static_cast<NumT>(0.14536205080927291911));
+  true_output_vv.push_back(static_cast<float>(-0.58583915233612060547));
+  true_output_vv_err2.push_back(static_cast<float>(0.14668619632720947266));
+  true_output_vv.push_back(static_cast<float>(-0.58224272727966308594));
+  true_output_vv_err2.push_back(static_cast<float>(0.14635196328163146973));
+  true_output_vv.push_back(static_cast<float>(-0.57864636182785034180));
+  true_output_vv_err2.push_back(static_cast<float>(0.14601984620094299316));
+  true_output_vv.push_back(static_cast<float>(-0.57504993677139282227));
+  true_output_vv_err2.push_back(static_cast<float>(0.14568985998630523682));
+  true_output_vv.push_back(static_cast<float>(-0.57145357131958007812));
+  true_output_vv_err2.push_back(static_cast<float>(0.14536203444004058838));
+}
+
+/**
+ * This function generate the values for double to compare the calculation to.
+ */
+void initialize_true_outputs(double    & true_output_ss,
+           double    & true_output_ss_err2,
+           Nessi::Vector<double> & true_output_vv,
+           Nessi::Vector<double> & true_output_vv_err2){
+  // scalar scalar
+  true_output_ss=static_cast<double>(-0.58583914499999989456);
+  true_output_ss_err2=static_cast<double>(0.14668620920470620828);
+
+  // vector vector
+  true_output_vv.push_back(static_cast<double>(-0.58583914499999989456));
+  true_output_vv_err2.push_back(static_cast<double>(0.14668620920470620828));
+  true_output_vv.push_back(static_cast<double>(-0.58224275045454543243));
+  true_output_vv_err2.push_back(static_cast<double>(0.14635196281566775767));
+  true_output_vv.push_back(static_cast<double>(-0.57864635590909085927));
+  true_output_vv_err2.push_back(static_cast<double>(0.14601985428674937872));
+  true_output_vv.push_back(static_cast<double>(-0.57504996136363628612));
+  true_output_vv_err2.push_back(static_cast<double>(0.14568988361795109920));
+  true_output_vv.push_back(static_cast<double>(-0.57145356681818171296));
+  true_output_vv_err2.push_back(static_cast<double>(0.14536205080927291911));
 }
 
 /**
