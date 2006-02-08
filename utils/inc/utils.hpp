@@ -187,7 +187,7 @@ namespace Utils
    */ // end of peak_integration group
 
   /**
-   * \defgroup weighted_ave Utils::weighted_ave
+   * \defgroup weighted_average Utils::weighted_average
    * \{
    */
 
@@ -238,7 +238,7 @@ namespace Utils
 
   /**
    * \}
-   */ // end of weighted_ave group
+   */ // end of weighted_average group
 
 } // Utils
 
