@@ -43,7 +43,8 @@ const size_t NUM_VAL=5;
  * This function initiales the input arrays.
  */
 template <typename NumT>
-void initialize_inputs(Nessi::Vector<NumT> & input){
+void initialize_inputs(Nessi::Vector<NumT> & input)
+{
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
       input.push_back(static_cast<NumT>(i+1));
@@ -54,7 +55,8 @@ void initialize_inputs(Nessi::Vector<NumT> & input){
  * This function generate the values to compare the calculation to.
  */
 template <typename NumT>
-void initialize_true_outputs(Nessi::Vector<NumT> & true_output){
+void initialize_true_outputs(Nessi::Vector<NumT> & true_output)
+{
   true_output.push_back(static_cast<NumT>(5));
   true_output.push_back(static_cast<NumT>(4));
   true_output.push_back(static_cast<NumT>(3));
@@ -67,7 +69,8 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output){
  */
 template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output,
-               Nessi::Vector<NumT> & true_output){
+               Nessi::Vector<NumT> & true_output)
+{
   return test_okay(output,true_output,VV);
 }
 
@@ -75,7 +78,8 @@ bool test_okay(Nessi::Vector<NumT> & output,
  * Function that runs the test for a numeric type
  */
 template <typename NumT>
-bool test_func(NumT key){ // key forces correct test to happen
+bool test_func(NumT key, string debug) // key forces correct test to happen
+{
   // allocate arrays
   Nessi::Vector< NumT > input;
   Nessi::Vector<NumT>   true_output;
@@ -87,20 +91,40 @@ bool test_func(NumT key){ // key forces correct test to happen
   // run the code being tested
   AxisManip::reverse_array_nc(input);
 
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(input, true_output, VV, debug);
+    }
+
   return test_okay(input, true_output);
 }
 
 /**
  * Main function that test energy_transfer for float and double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
  */
-int main(){
+int main(int argc, char *argv[])
+{
   cout << "reverse_array_nc_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
-    return -1;
+  string debug;
+  if(argc > 1)
+    {
+      debug = argv[1];
+    }
 
-  if(!test_func(static_cast<double>(1)))
-    return -1;
+  if(!test_func(static_cast<float>(1), debug))
+    {
+      return -1;
+    }
+
+  if(!test_func(static_cast<double>(1), debug))
+    {
+      return -1;
+    }
 
   cout << "Functionality OK" << endl;
 

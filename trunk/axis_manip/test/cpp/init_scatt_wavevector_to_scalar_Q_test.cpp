@@ -47,7 +47,8 @@ template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & k_i,
                        Nessi::Vector<NumT> & k_i_err2,
                        Nessi::Vector<NumT> & k_f,
-                       Nessi::Vector<NumT> & k_f_err2){
+                       Nessi::Vector<NumT> & k_f_err2)
+{
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
       k_i.push_back(static_cast<NumT>(i+1));
@@ -78,7 +79,8 @@ void initialize_true_outputs(float                & true_output_ss,
                              Nessi::Vector<float> & true_output_vs,
                              Nessi::Vector<float> & true_output_vs_err2,
                              Nessi::Vector<float> & true_output_vv,
-                             Nessi::Vector<float> & true_output_vv_err2){
+                             Nessi::Vector<float> & true_output_vv_err2)
+{
   // scalar scalar
   true_output_ss=static_cast<float>(0.35036611557006835938);
   true_output_ss_err2=static_cast<float>(0.41659948229789733887);
@@ -127,7 +129,8 @@ void initialize_true_outputs(double                & true_output_ss,
                              Nessi::Vector<double> & true_output_vs,
                              Nessi::Vector<double> & true_output_vs_err2,
                              Nessi::Vector<double> & true_output_vv,
-                             Nessi::Vector<double> & true_output_vv_err2){
+                             Nessi::Vector<double> & true_output_vv_err2)
+{
   // scalar scalar
   true_output_ss=static_cast<double>(0.350366060961226966075088284924);
   true_output_ss_err2=static_cast<double>(0.416599643788511941888685896629);
@@ -190,7 +193,8 @@ bool test_okay(NumT                & output_ss,
                Nessi::Vector<NumT> & output_vv,
                Nessi::Vector<NumT> & output_vv_err2,
                Nessi::Vector<NumT> & true_output_vv,
-               Nessi::Vector<NumT> & true_output_vv_err2){
+               Nessi::Vector<NumT> & true_output_vv_err2)
+{
   // scalar scalar
   if(!test_okay(output_ss,true_output_ss))
     return false;
@@ -223,7 +227,8 @@ bool test_okay(NumT                & output_ss,
  * Function that runs the test for a numeric type
  */
 template <typename NumT>
-bool test_func(NumT key){ // key forces correct test to happen
+bool test_func(NumT key, string debug) // key forces correct test to happen
+{ 
   // allocate arrays
   NumT                polar=static_cast<NumT>(0.22);
   NumT                polar_err2=static_cast<NumT>(0.11);
@@ -276,6 +281,19 @@ bool test_func(NumT key){ // key forces correct test to happen
                                                polar,polar_err2,
                                                output_vv, output_vv_err2);
 
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(output_vv, true_output_vv, VV, debug);
+      print(output_vv_err2, true_output_vv_err2, ERROR+VV, debug);
+      print(output_vs, true_output_vs, VS, debug);
+      print(output_vs_err2, true_output_vs_err2, ERROR+VS, debug);
+      print(output_sv, true_output_sv, SV, debug);
+      print(output_sv_err2, true_output_sv_err2, ERROR+SV, debug);
+      print(output_ss, true_output_ss, SS, debug);
+      print(output_ss_err2, true_output_ss_err2, ERROR+SS, debug);
+    }
+
   return test_okay(output_ss, output_ss_err2,
                    true_output_ss, true_output_ss_err2,
                    output_sv, output_sv_err2,
@@ -288,15 +306,29 @@ bool test_func(NumT key){ // key forces correct test to happen
 
 /**
  * Main functino that test energy_transfer for float and double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
  */
-int main(){
+int main(int argc, char *argv[])
+{
   cout << "init_scatt_wavevector_to_scalar_Q_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
-    return -1;
+  string debug;
+  if(argc > 1)
+    {
+      debug = argv[1];
+    }
 
-  if(!test_func(static_cast<double>(1)))
-    return -1;
+  if(!test_func(static_cast<float>(1), debug))
+    {
+      return -1;
+    }
+
+  if(!test_func(static_cast<double>(1), debug))
+    {
+      return -1;
+    }
 
   cout << "Functionality OK" << endl;
 

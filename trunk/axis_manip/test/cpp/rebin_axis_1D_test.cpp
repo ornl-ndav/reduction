@@ -45,7 +45,8 @@ template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & axis_in,
                        Nessi::Vector<NumT> & axis_out,
                        Nessi::Vector<NumT> & input,
-                       Nessi::Vector<NumT> & input_err2){
+                       Nessi::Vector<NumT> & input_err2)
+{
   axis_in.push_back(static_cast<NumT>(0.));
   axis_in.push_back(static_cast<NumT>(1.));
   axis_in.push_back(static_cast<NumT>(2.));
@@ -69,7 +70,8 @@ void initialize_inputs(Nessi::Vector<NumT> & axis_in,
  */
 template <typename NumT>
 void initialize_true_outputs(Nessi::Vector<NumT> & true_output,
-                             Nessi::Vector<NumT> & true_output_err2){
+                             Nessi::Vector<NumT> & true_output_err2)
+{
   true_output.push_back(static_cast<NumT>(20));
   true_output.push_back(static_cast<NumT>(40));
 
@@ -84,7 +86,8 @@ template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output,
                Nessi::Vector<NumT> & output_err2,
                Nessi::Vector<NumT> & true_output,
-               Nessi::Vector<NumT> & true_output_err2){
+               Nessi::Vector<NumT> & true_output_err2)
+{
   if(!test_okay(output,true_output,VV))
     {
       return false;
@@ -103,7 +106,8 @@ bool test_okay(Nessi::Vector<NumT> & output,
  * Function that runs the test for a numeric type
  */
 template <typename NumT>
-bool test_func(NumT key){ // key forces correct test to happen
+bool test_func(NumT key, string debug) // key forces correct test to happen
+{
   // allocate arrays
   Nessi::Vector< NumT > axis_in;
   Nessi::Vector< NumT > axis_out;
@@ -122,20 +126,41 @@ bool test_func(NumT key){ // key forces correct test to happen
   AxisManip::rebin_axis_1D(axis_in,input,input_err2,axis_out,
                            output,output_err2);
 
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(output, true_output, VV, debug);
+      print(output_err2, true_output_err2, ERROR+VV, debug);
+    }
+
   return test_okay(output, output_err2, true_output, true_output_err2);
 }
 
 /**
  * Main function that test energy_transfer for float and double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
  */
-int main(){
+int main(int argc, char *argv[])
+{
   cout << "rebin_axis_1D_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
-    return -1;
+  string debug;
+  if(argc > 1)
+    {
+      debug = argv[1];
+    }
 
-  if(!test_func(static_cast<double>(1)))
-    return -1;
+  if(!test_func(static_cast<float>(1), debug))
+    {
+      return -1;
+    }
+
+  if(!test_func(static_cast<double>(1), debug))
+    {
+      return -1;
+    }
 
   cout << "Functionality OK" << endl;
 
