@@ -29,31 +29,7 @@
 #
 
 import sys
-
-from array_manip_bind import UnsignedIntNessiVector
-from array_manip_bind import FloatNessiVector
-from array_manip_bind import IntNessiVector
-from array_manip_bind import DoubleNessiVector
-
-from array_manip_bind import add_ncerr_f
-from array_manip_bind import add_ncerr_d
-from array_manip_bind import add_ncerr_i
-from array_manip_bind import add_ncerr_u
-
-from array_manip_bind import sub_ncerr_f
-from array_manip_bind import sub_ncerr_d
-from array_manip_bind import sub_ncerr_i
-from array_manip_bind import sub_ncerr_u
-
-from array_manip_bind import mult_ncerr_f
-from array_manip_bind import mult_ncerr_d
-from array_manip_bind import mult_ncerr_i
-from array_manip_bind import mult_ncerr_u
-
-from array_manip_bind import div_ncerr_f
-from array_manip_bind import div_ncerr_d
-from array_manip_bind import div_ncerr_i
-from array_manip_bind import div_ncerr_u
+import array_manip_bind
 
 ##
 # \brief The purpose of this class is to provide an abstraction layer that
@@ -123,7 +99,8 @@ class NessiVector (list):
 			self.type__=self.UINT
 		
 			if length >= 0:
-				self.array__ = 	UnsignedIntNessiVector(length)
+				self.array__ = 	\
+			array_manip_bind.UnsignedIntNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 						with negative length" 
@@ -132,7 +109,8 @@ class NessiVector (list):
 			self.type__=self.INT
 
 			if length >= 0:
-				self.array__ = IntNessiVector(length)
+				self.array__ = \
+			array_manip_bind.IntNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with negative length"
@@ -141,7 +119,8 @@ class NessiVector (list):
 			self.type__=self.FLOAT
 
 			if length >= 0:
-				self.array__ = FloatNessiVector(length)
+				self.array__ = \
+			array_manip_bind.FloatNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with  negative length"
@@ -150,7 +129,8 @@ class NessiVector (list):
 			self.type__ = self.DOUBLE
 
 			if length >= 0:
-				self.array__ = DoubleNessiVector(length)
+				self.array__ = \
+			array_manip_bind.DoubleNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with negative length"
@@ -321,20 +301,20 @@ class NessiVector (list):
 	def __add__(self,right):
 		if (self.type__ == NessiVector.FLOAT):
 			c = NessiVector(len(self))
-			add_ncerr_f(self.array, self.array, right.array,\
-			right.array,c.array, c.array)
+			array_manip_bind.add_ncerr_f(self.array, self.array,\
+				 right.array,right.array,c.array, c.array)
 		if (self.type__ == NessiVector.DOUBLE):
 			c = NessiVector(len(self),type="double")
-			add_ncerr_d(self.array, self.array, right.array,\
-			right.array,c.array, c.array)
+			array_manip_bind.add_ncerr_d(self.array, self.array,\
+				right.array,right.array,c.array, c.array)
 		if (self.type__ == NessiVector.INT):
 			c = NessiVector(len(self),type="int")
-			add_ncerr_i(self.array, self.array, right.array,\
-			right.array,c.array, c.array)
+			array_manip_bind.add_ncerr_i(self.array, self.array,\
+				 right.array,right.array,c.array, c.array)
 		if (self.type__ == NessiVector.UINT):
 			c = NessiVector(len(self),type="uint")
-			add_ncerr_u(self.array, self.array, right.array,\
-			right.array,c.array, c.array)
+			array_manip_bind.add_ncerr_u(self.array, self.array,\
+				 right.array,right.array,c.array, c.array)
 		return c
 ##
 # \}
@@ -357,23 +337,23 @@ class NessiVector (list):
 		if (self.type__ == NessiVector.FLOAT):
 			c = NessiVector(len(self))
 			ce2 = NessiVector(len(self))
-			sub_ncerr_f(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.sub_ncerr_f(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.DOUBLE):
 			c = NessiVector(len(self),type="double")
 			ce2 = NessiVector(len(self),type="double")
-			sub_ncerr_d(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.sub_ncerr_d(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.INT):
 			c = NessiVector(len(self),type="int")
 			ce2 = NessiVector(len(self),type="int")
-			sub_ncerr_i(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.sub_ncerr_i(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.UINT):
 			c = NessiVector(len(self),type="uint")
 			ce2 = NessiVector(len(self),type="uint")
-			sub_ncerr_u(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.sub_ncerr_u(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		return c
 		
 ##
@@ -397,30 +377,30 @@ class NessiVector (list):
 		if (self.type__ == NessiVector.FLOAT):
 			c = NessiVector(len(self))
 			ce2 = NessiVector(len(self))
-			mult_ncerr_f(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.mult_ncerr_f(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.DOUBLE):
 			c = NessiVector(len(self),type="double")
 			ce2 = NessiVector(len(self),type="double")
-			mult_ncerr_d(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.mult_ncerr_d(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.INT):
 			c = NessiVector(len(self),type="int")
 			ce2 = NessiVector(len(self),type="int")
-			mult_ncerr_i(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.mult_ncerr_i(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.UINT):
 			c = NessiVector(len(self),type="uint")
 			ce2 = NessiVector(len(self),type="uint")
-			mult_ncerr_u(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.mult_ncerr_u(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		return c
 
 ##
 # \}
 		
 ##
-# \defgroup __div__ NessiVector::__div__
+# \defgroup __div__ nessi_vector::__div__
 # \{
 
 ## 
@@ -437,30 +417,30 @@ class NessiVector (list):
 		if (self.type__ == NessiVector.FLOAT):
 			c = NessiVector(len(self))
 			ce2 = NessiVector(len(self))
-			div_ncerr_f(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.div_ncerr_f(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.DOUBLE):
 			c = NessiVector(len(self),type="double")
 			ce2 = NessiVector(len(self),type="double")
-			div_ncerr_d(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.div_ncerr_d(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.INT):
 			c = NessiVector(len(self),type="int")
 			ce2 = NessiVector(len(self),type="int")
-			div_ncerr_i(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.div_ncerr_i(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		if (self.type__ == NessiVector.UINT):
 			c = NessiVector(len(self),type="uint")
 			ce2 = NessiVector(len(self),type="uint")
-			div_ncerr_u(self.array, self.array, right.array,\
-			right.array,c.array, ce2.array)
+			array_manip_bind.div_ncerr_u(self.array, self.array,\
+				 right.array,right.array,c.array, ce2.array)
 		return c
 
 ##
 # \}
 
 ##
-# \defgroup __contains__ NessiVector::__contains__
+# \defgroup __contains__ nessi_vector::__contains__
 # \{
 
 ##
@@ -472,7 +452,7 @@ class NessiVector (list):
 # \}
 
 ##
-# \defgroup __eq__ NessiVector::__eq__
+# \defgroup __eq__ nessi_vector::__eq__
 # \{
 
 ##
@@ -485,7 +465,7 @@ class NessiVector (list):
 # \}
 
 ##
-# \defgroup __ge__ NessiVector::__ge__
+# \defgroup __ge__ nessi_vector::__ge__
 # \{
 
 ##
@@ -497,7 +477,7 @@ class NessiVector (list):
 # \}	
 	
 ##
-# \defgroup __gt__ NessiVector::__gt__
+# \defgroup __gt__ nessi_vector::__gt__
 # \{
 
 ##
@@ -509,7 +489,7 @@ class NessiVector (list):
 # \}
 	
 ##
-# \defgroup __ne__ NessiVector::__ne__
+# \defgroup __ne__ nessi_vector::__ne__
 # \{
 
 ##
@@ -521,7 +501,7 @@ class NessiVector (list):
 # \}
 	
 ##
-# \defgroup __lt__ NessiVector::__lt__
+# \defgroup __lt__ nessi_vector::__lt__
 # \{
 
 ##
@@ -533,7 +513,7 @@ class NessiVector (list):
 # \}
 
 ##
-# \defgroup __pop__ NessiVector::__pop__
+# \defgroup __pop__ nessi_vector::__pop__
 # \{
 
 ##
@@ -548,7 +528,7 @@ class NessiVector (list):
 # \}
 
 ##
-# \defgroup print NessiVector::print
+# \defgroup print nessi_vector::print
 # \{
 
 ## 
@@ -603,7 +583,7 @@ class NessiVector (list):
 #\}
 
 ##
-# \defgroup compare_vect NessiVector::compare_vect
+# \defgroup compare_vect nessi_vector::compare_vect
 # \{
 #
 
@@ -650,7 +630,7 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 #
 
 ##
-# \defgroup max_vect NessiVector::max_vect
+# \defgroup max_vect nessi_vector::max_vect
 # \{
 #	
 
@@ -676,7 +656,7 @@ def max_vect(object):
 # \}
 
 ##
-# \defgroup min_vect NessiVector::min_vect
+# \defgroup min_vect nessi_vector::min_vect
 # \{
 #
 

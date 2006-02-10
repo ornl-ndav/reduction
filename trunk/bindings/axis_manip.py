@@ -33,33 +33,16 @@
 # 107030214-TD0001-R00, "Data Reduction Library Software Requirements and
 # Specifications".
 #
-# Once a function is called, according to the type of the NessiVector calling it,
-# the module redirectes the call to the right function
+# Once a function is called, according to the type of the NessiVector calling 
+# it,the module redirectes the call to the right function
 #
-# For example, when calling the function \f$energy\_transfer\f$ with 4 NessiVector
-# of type <i>float</i>, the module redirects the call to the function
-# \f$energy\_transfer\_f\f$.
+# For example, when calling the function \f$energy\_transfer\f$ with 4
+# NessiVector of type <i>float</i>, the module redirects the call to the
+# function \f$energy\_transfer\_f\f$.
 # 
 
-from NessiVector import NessiVector
-from axis_manip_bind import energy_transfer_f
-from axis_manip_bind import energy_transfer_d
-from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_f
-from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_d
-from axis_manip_bind import rebin_axis_1D_f
-from axis_manip_bind import rebin_axis_1D_d
-from axis_manip_bind import reverse_array_cp_f
-from axis_manip_bind import reverse_array_cp_d
-from axis_manip_bind import reverse_array_nc_f
-from axis_manip_bind import reverse_array_nc_d
-from axis_manip_bind import tof_to_initial_wavelength_igs_f
-from axis_manip_bind import tof_to_initial_wavelength_igs_d
-from axis_manip_bind import tof_to_wavelength_f
-from axis_manip_bind import tof_to_wavelength_d
-from axis_manip_bind import wavelength_to_energy_f
-from axis_manip_bind import wavelength_to_energy_d
-from axis_manip_bind import wavelength_to_scalar_k_f
-from axis_manip_bind import wavelength_to_scalar_k_d
+import nessi_vector
+import axis_manip_bind
 import sys
 
 ##
@@ -104,10 +87,12 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 			 final_energy, final_energy_err2):
 	
 	#float
-	if (initial_energy.type__ == NessiVector.FLOAT):
-		energy_transfer = NessiVector(len(initial_energy));	
-		energy_transfer_err2 = NessiVector(len(initial_energy));
-		energy_transfer_f(initial_energy.array,	\
+	if (initial_energy.type__ == nessi_vector.NessiVector.FLOAT):
+		energy_transfer = nessi_vector.NessiVector(len(\
+			initial_energy));	
+		energy_transfer_err2 = nessi_vector.NessiVector(len(\
+			initial_energy));
+		axis_manip_bind.energy_transfer_f(initial_energy.array,	\
 				initial_energy_err2.array,\
 				final_energy.array,\
 				final_energy_err2.array,\
@@ -115,12 +100,12 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 				energy_transfer_err2.array)
 
 	#double
-	if (initial_energy.type__ == NessiVector.DOUBLE):
-		energy_transfer = NessiVector(len(initial_energy),\
-				"double");	
-		energy_transfer_err2 = NessiVector(len(initial_energy),\
-				"double");
-		energy_transfer_d(initial_energy.array,\
+	if (initial_energy.type__ == nessi_vector.NessiVector.DOUBLE):
+		energy_transfer = nessi_vector.NessiVector(len(\
+			initial_energy),"double");	
+		energy_transfer_err2 = nessi_vector.NessiVector(len(\
+			initial_energy),"double");
+		axis_manip_bind.energy_transfer_d(initial_energy.array,\
 				initial_energy_err2.array,\
 				final_energy.array,\
 				final_energy_err2.array,\
@@ -136,8 +121,8 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # \{
 
 ##
-# \brief This function calculates the scalar momentum transfer from the incident
-# and scattered wavevectors.
+# \brief This function calculates the scalar momentum transfer from the
+# incident and scattered wavevectors.
 #
 # This function is described in section 3.33 of the SNS 107030214-TD0001-R00,
 # "Data Reduciton Library Software Requirements and Specifications".
@@ -171,17 +156,18 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # of reciprocal Angstroms
 # \param initial_wavector_err2 (INPUT) is the square of the uncertainty of the 
 # incident wavevector axis
-# \param final_wavevector (INPUT) is the final wavevector axis in units of reciprocal
-# Angstroms
+# \param final_wavevector (INPUT) is the final wavevector axis in units of
+# reciprocal Angstroms
 # \param final_wavevector_err2 (INPUT) is the square of the uncertainty of the
 # final wavevector axis
-# \param polar (INPUT) is the polar angle in the equation above in units of radians
+# \param polar (INPUT) is the polar angle in the equation above in units of 
+# radians
 # \param polar_err2 (INPUT) is the square of the uncertainty in polar angle
 # \return Two NessiVectors:
 # - The first NessiVector returned is the scalar momentum transfer Q, axis in 
 # units of reciprocal Angstroms
-# - The second NessiVector returned is the square of the uncertainty in the scalar
-# momentum transfer axis
+# - The second NessiVector returned is the square of the uncertainty in the
+# scalar momentum transfer axis
 #
 
 def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
@@ -191,10 +177,11 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 				polar, polar_err2):
 
 	#float
-	if (initial_wavevector.type__ == NessiVector.FLOAT):
-	  	Q = NessiVector(len(initial_wavevector))
-		Q_err2 = NessiVector(len(initial_wavevector))
-		init_scatt_wavevector_to_scalar_Q_f(initial_wavevector.array,\
+	if (initial_wavevector.type__ == nessi_vector.NessiVector.FLOAT):
+	  	Q = nessi_vector.NessiVector(len(initial_wavevector))
+		Q_err2 = nessi_vector.NessiVector(len(initial_wavevector))
+		axis_manip_bind.init_scatt_wavevector_to_scalar_Q_f(\
+					initial_wavevector.array,\
 					initial_wavevector_err2.array,\
 					final_wavevector.array,\
 					final_wavevector_err2.array,\
@@ -202,10 +189,12 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 					Q.array, Q_err2.array)		
 
 	#double
-	if (initial_wavevector.type__ == NessiVector.DOUBLE):
-	  	Q = NessiVector(len(initial_wavevector),"double")
-		Q_err2 = NessiVector(len(initial_wavevector),"double")
-		init_scatt_wavevector_to_scalar_Q_d(initial_wavevector.array,\
+	if (initial_wavevector.type__ == nessi_vector.NessiVector.DOUBLE):
+	  	Q = nessi_vector.NessiVector(len(initial_wavevector),"double")
+		Q_err2 = nessi_vector.NessiVector(len(initial_wavevector),\
+			"double")
+		axis_manip_bind.init_scatt_wavevector_to_scalar_Q_d(\
+					initial_wavevector.array,\
 					initial_wavevector_err2.array,\
 					final_wavevector.array,\
 					final_wavevector_err2.array,\
@@ -222,8 +211,8 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # \{
 
 ##
-# \brief This function rebin data and its associated errors from one axis to another
-# given axis.
+# \brief This function rebin data and its associated errors from one axis to
+# another given axis.
 #
 # This function is described in section 3.12 of the SNS 107030214-TD0001-R00, 
 # "Data Reduction Library Software Requirements and Specifications".
@@ -277,7 +266,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # \f[
 # Bin_2^{new} = Bin_3^{old} + 0.5 \times Bin_2^{old}
 # \f]
-#and
+# and
 # \f[
 # \sigma^2_{Bin_1^{new}} = \sigma^2_{Bin_1^{old}} + (0.5)^2 \times 
 # \sigma^2_{Bin_2^{old}}
@@ -344,26 +333,27 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # with the data
 # \param axis_out (INPUT) is the target axis for rebinning
 # \return Two NessiVectors:
-# - The first NessiVector returned is rebinned data according to the target axis
-# - The second NessiVector returned is the uncertainty associated with the rebinned 
-# data
+# - The first NessiVector returned is rebinned data according to the target 
+# axis
+# - The second NessiVector returned is the uncertainty associated with the 
+# rebinned  data
 #
 
 def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 	
 	#float
-	if (input.type__ == NessiVector.FLOAT):
-		output = NessiVector(len(axis_out)-1)
-		output_err2 = NessiVector(len(axis_out)-1)
-		rebin_axis_1D_f(axis_in.array, input.array,\
+	if (input.type__ == nessi_vector.NessiVector.FLOAT):
+		output = nessi_vector.NessiVector(len(axis_out)-1)
+		output_err2 = nessi_vector.NessiVector(len(axis_out)-1)
+		axis_manip_bind.rebin_axis_1D_f(axis_in.array, input.array,\
 				input_err2.array, axis_out.array,\
 				output.array, output_err2.array)
 
 	#double
-	if (input.type__ == NessiVector.DOUBLE):
-		output = NessiVector(len(axis_out))
-		output_err2 = NessiVector(len(axis_out))
-		rebin_axis_1D_d(axis_in.array, input.array,\
+	if (input.type__ == nessi_vector.NessiVector.DOUBLE):
+		output = nessi_vector.NessiVector(len(axis_out))
+		output_err2 = nessi_vector.NessiVector(len(axis_out))
+		axis_manip_bind.rebin_axis_1D_d(axis_in.array, input.array,\
 				input_err2.array, axis_out.array,\
 				output.array, output_err2.array)
 
@@ -377,8 +367,8 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # \{
 
 ##
-# \brief This function will reorder a NessiVector so the last element of the supplied
-# NessiVector is the first element of the result NessiVector
+# \brief This function will reorder a NessiVector so the last element of the 
+# supplied NessiVector is the first element of the result NessiVector
 #
 # This function is described in section 3.11 of the SNS 107030214-TD0001-R00, 
 # "Data Reduction Library Software Requirements and Specifications".
@@ -394,14 +384,14 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 def reverse_array_cp(input):
 	
 	#float
-	if (input.type__ == NessiVector.FLOAT):
-		output = NessiVector(len(input))
-		reverse_array_cp_f(input.array, output.array)
+	if (input.type__ == nessi_vector.NessiVector.FLOAT):
+		output = nessi_vector.NessiVector(len(input))
+		axis_manip_bind.reverse_array_cp_f(input.array, output.array)
 	
 	#double
-	if (input.type__ == NessiVector.DOUBLE):
-		output = NessiVector(len(input),"double")
-		reverse_array_cp_d(input.array, output.array)
+	if (input.type__ == nessi_vector.NessiVector.DOUBLE):
+		output = nessi_vector.NessiVector(len(input),"double")
+		axis_manip_bind.reverse_array_cp_d(input.array, output.array)
 	
 	return output
 
@@ -422,7 +412,8 @@ def reverse_array_cp(input):
 #
 # This function will reorder a NessiVector so the last element of the
 # supplied NessiVector is the first element of the supplied NessiVector. This
-# NessiVector reversal is done in place on the supplied NessiVector (i.e. no copy).
+# NessiVector reversal is done in place on the supplied NessiVector 
+# (i.e. no copy).
 #
 # \param inout (INPUT/OUTPUT) is the NessiVector to be reversed. It also is the
 # place holder for the reversed NessiVector.
@@ -431,12 +422,12 @@ def reverse_array_cp(input):
 def reverse_array_nc(input):
 	
 	#float
-	if (input.type__ == NessiVector.FLOAT):
-		reverse_array_nc_f(input.array)
+	if (input.type__ == nessi_vector.NessiVector.FLOAT):
+		axis_manip_bind.reverse_array_nc_f(input.array)
 	
 	#double
-	if (input.type__ == NessiVector.DOUBLE):
-		reverse_array_nc_d(input.array)
+	if (input.type__ == nessi_vector.NessiVector.DOUBLE):
+		axis_manip_bind.reverse_array_nc_d(input.array)
 	
 	return
 
@@ -448,8 +439,8 @@ def reverse_array_nc(input):
 # \{
 
 ##
-# \brief This function calculates the initial wavelength for an inverse geometry
-# spectrometer
+# \brief This function calculates the initial wavelength for an inverse 
+# geometry spectrometer
 #
 # This function is described in section 3.29 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".
@@ -486,7 +477,7 @@ def reverse_array_nc(input):
 # uncertainty of the distance from the sample to the detector, and
 # \f$\sigma_{\lambda_f}\f$ the uncertainty of the final wavelength.
 #
-#\param tof (INPUT) is the time-of-flight axis in units of
+# \param tof (INPUT) is the time-of-flight axis in units of
 # micro-seconds
 # \param tof_err2 (INPUT) is the square of the uncertainty in the
 # time-of-flight axis
@@ -522,26 +513,32 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 			dist_sample_detector, dist_sample_detector_err2):
 	
 	#float
-	if (tof.type__ == NessiVector.FLOAT):
-		initial_wavelength = NessiVector(len(tof))
-		initial_wavelength_err2 = NessiVector(len(tof))
-		tof_to_initial_wavelength_igs_f(tof.array, tof_err2.array,\
+	if (tof.type__ == nessi_vector.NessiVector.FLOAT):
+		initial_wavelength = nessi_vector.NessiVector(len(tof))
+		initial_wavelength_err2 = nessi_vector.NessiVector(len(tof))
+		axis_manip_bind.tof_to_initial_wavelength_igs_f(tof.array,\
+			 tof_err2.array,\
 			final_wavelength, final_wavelength_err2,\
 			time_offset, time_offset_err2,\
 			dist_source_sample, dist_source_sample_err2,\
 			dist_sample_detector, dist_sample_detector_err2,\
-			initial_wavelength.array, initial_wavelength_err2.array)
+			initial_wavelength.array, \
+			initial_wavelength_err2.array)
 
 	#double
-	if (tof.type__ == NessiVector.DOUBLE):
-		initial_wavelength = NessiVector(len(tof),"double")
-		initial_wavelength_err2 = NessiVector(len(tof),"double")
-		tof_to_initial_wavelength_igs_d(tof.array, tof_err2.array,\
+	if (tof.type__ == nessi_vector.NessiVector.DOUBLE):
+		initial_wavelength = nessi_vector.NessiVector(len(tof),\
+			"double")
+		initial_wavelength_err2 = nessi_vector.NessiVector(len(tof),\
+			"double")
+		axis_manip_bind.tof_to_initial_wavelength_igs_d(tof.array, \
+			tof_err2.array,\
 			final_wavelength, final_wavelength_err2,\
 			time_offset, time_offset_err2,\
 			dist_source_sample, dist_source_sample_err2,\
 			dist_sample_detector, dist_sample_detector_err2,\
-			initial_wavelength.array, initial_wavelength_err2.array)
+			initial_wavelength.array, \
+			initial_wavelength_err2.array)
 		
 	return initial_wavelength, initial_wavelength_err2		
 
@@ -598,18 +595,18 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 	
 	#float
-	if (tof.type__ == NessiVector.FLOAT):
-		wavelength = NessiVector(len(tof))
-		wavelength_err2 = NessiVector(len(tof))
-		tof_to_wavelength_f(tof.array, tof_err2.array,\
+	if (tof.type__ == nessi_vector.NessiVector.FLOAT):
+		wavelength = nessi_vector.NessiVector(len(tof))
+		wavelength_err2 = nessi_vector.NessiVector(len(tof))
+		axis_manip_bind.tof_to_wavelength_f(tof.array, tof_err2.array,\
 			pathlength, pathlength_err2,\
 			wavelength.array, wavelength_err2.array)
 
 	#double
-	if (tof.type__ == NessiVector.DOUBLE):
-		wavelength = NessiVector(len(tof),"double")
-		wavelength_err2 = NessiVector(len(tof),"double")
-		tof_to_wavelength_d(tof.array, tof_err2.array,\
+	if (tof.type__ == nessi_vector.NessiVector.DOUBLE):
+		wavelength = nessi_vector.NessiVector(len(tof),"double")
+		wavelength_err2 = nessi_vector.NessiVector(len(tof),"double")
+		axis_manip_bind.tof_to_wavelength_d(tof.array, tof_err2.array,\
 			pathlength, pathlength_err2,\
 			wavelength.array, wavelength_err2.array)
 
@@ -661,17 +658,18 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 def wavelength_to_energy(wavelength, wavelength_err2):
 	
 	#float
-	if (wavelength.type__ == NessiVector.FLOAT):
-		energy = NessiVector(len(wavelength))
-		energy_err2 = NessiVector(len(wavelength))
-		wavelength_to_energy_f(wavelength.array, \
+	if (wavelength.type__ == nessi_vector.NessiVector.FLOAT):
+		energy = nessi_vector.NessiVector(len(wavelength))
+		energy_err2 = nessi_vector.NessiVector(len(wavelength))
+		axis_manip_bind.wavelength_to_energy_f(wavelength.array, \
 			wavelength_err2.array, energy.array, energy_err2.array)
 	
 	#double
-	if (wavelength.type__ == NessiVector.DOUBLE):
-		energy = NessiVector(len(wavelength),"double")
-		energy_err2 = NessiVector(len(wavelength),"double")
-		wavelength_to_energy_d(wavelength.array, \
+	if (wavelength.type__ == nessi_vector.NessiVector.DOUBLE):
+		energy = nessi_vector.NessiVector(len(wavelength),"double")
+		energy_err2 = nessi_vector.NessiVector(len(wavelength),\
+			"double")
+		axis_manip_bind.wavelength_to_energy_d(wavelength.array, \
 			wavelength_err2.array, energy.array, energy_err2.array)
 
 	return energy, energy_err2
@@ -720,18 +718,19 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 def wavelength_to_scalar_k(wavelength, wavelength_err2):
 	
 	#float
-	if (wavelength.type__ == NessiVector.FLOAT):
-		wavevector = NessiVector(len(wavelength))
-		wavevector_err2 = NessiVector(len(wavelength))
-		wavelength_to_scalar_k_f(wavelength.array, \
+	if (wavelength.type__ == nessi_vector.NessiVector.FLOAT):
+		wavevector = nessi_vector.NessiVector(len(wavelength))
+		wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
+		axis_manip_bind.wavelength_to_scalar_k_f(wavelength.array, \
 			wavelength_err2.array,\
 			wavevector.array, wavevector_err2.array)
 
 	#double
-	if (wavelength.type__ == NessiVector.DOUBLE):
-		wavevector = NessiVector(len(wavelength),"double")
-		wavevector_err2 = NessiVector(len(wavelength),"double")
-		wavelength_to_scalar_k_d(wavelength.array,\
+	if (wavelength.type__ == nessi_vector.NessiVector.DOUBLE):
+		wavevector = nessi_vector.NessiVector(len(wavelength),"double")
+		wavevector_err2 = nessi_vector.NessiVector(len(wavelength),\
+			"double")
+		axis_manip_bind.wavelength_to_scalar_k_d(wavelength.array,\
 			wavelength_err2.array,\
 			wavevector.array, wavevector_err2.array)
 
