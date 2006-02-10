@@ -2253,7 +2253,7 @@ namespace AxisManip
    * constant, \f$m_n\f$ is the mass of the neutron, and \f$lambda\f$
    * is the wavelength of the neutron.
    *
-   * Assuming that the uncertainty are uncorrelated, the uncertainty
+   * Assuming that the uncertainties are uncorrelated, the uncertainty
    * in the energy is defined by
    * \f[
    * \sigma^2_E[i]=\left(\frac{2E}{\lambda}\right)^2\sigma^2_{\lambda}[i]
@@ -2295,7 +2295,7 @@ namespace AxisManip
    * constant, \f$m_n\f$ is the mass of the neutron, and \f$lambda\f$
    * is the wavelength of the neutron.
    *
-   * Assuming that the uncertainty are uncorrelated, the uncertainty
+   * Assuming that the uncertainties are uncorrelated, the uncertainty
    * in the energy is defined by
    * \f[
    * \sigma^2_E=\left(\frac{2E}{\lambda}\right)^2\sigma^2_{\lambda}
