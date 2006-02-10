@@ -30,6 +30,7 @@
 
 import nessi_vector
 import utils_bind
+import sys
 
 ##
 # \namespace utils 
@@ -104,10 +105,10 @@ def weighted_average(a,ae2,start,fin):
                 
         elif (a.type__ == a.DOUBLE):
             try:
-                c = double(0)
-                ce2 = double(0)
+                c = float(0)
+                ce2 = float(0)
                 utils_bind.weighted_average_d(a.array,ae2.array,\
-                                              double(start),double(fin),\
+                                              float(start),float(fin),\
                                               c,ce2)
 
             except ValueError:
