@@ -25,11 +25,11 @@
 # $Id: NessiVector.py 549 2006-02-08 21:21:20Z j35 $
 
 ## 
-#\file bindings/NessiVector.py Python binding of SNS Common Libraries
+#\file bindings/nessi_vector.py Python binding of SNS Common Libraries
 #
-
-import sys
 import array_manip_bind
+import nessi_vector_bind
+import sys
 
 ##
 # \brief The purpose of this class is to provide an abstraction layer that
@@ -100,7 +100,7 @@ class NessiVector (list):
 		
 			if length >= 0:
 				self.array__ = 	\
-			array_manip_bind.UnsignedIntNessiVector(length)
+			nessi_vector_bind.UnsignedIntNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 						with negative length" 
@@ -110,7 +110,7 @@ class NessiVector (list):
 
 			if length >= 0:
 				self.array__ = \
-			array_manip_bind.IntNessiVector(length)
+			nessi_vector_bind.IntNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with negative length"
@@ -120,7 +120,7 @@ class NessiVector (list):
 
 			if length >= 0:
 				self.array__ = \
-			array_manip_bind.FloatNessiVector(length)
+			nessi_vector_bind.FloatNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with  negative length"
@@ -130,7 +130,7 @@ class NessiVector (list):
 
 			if length >= 0:
 				self.array__ = \
-			array_manip_bind.DoubleNessiVector(length)
+			nessi_vector_bind.DoubleNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with negative length"
