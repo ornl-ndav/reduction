@@ -28,27 +28,8 @@
 # \file bindings/array_manip.py wrapper of array_manip library
 #
 
-from NessiVector import NessiVector
-from array_manip_bind import add_ncerr_f
-from array_manip_bind import add_ncerr_d
-from array_manip_bind import add_ncerr_i
-from array_manip_bind import add_ncerr_u
-from array_manip_bind import sub_ncerr_f
-from array_manip_bind import sub_ncerr_d
-from array_manip_bind import sub_ncerr_i
-from array_manip_bind import sub_ncerr_u
-from array_manip_bind import mult_ncerr_f
-from array_manip_bind import mult_ncerr_d
-from array_manip_bind import mult_ncerr_i
-from array_manip_bind import mult_ncerr_u
-from array_manip_bind import div_ncerr_f
-from array_manip_bind import div_ncerr_d
-from array_manip_bind import div_ncerr_i
-from array_manip_bind import div_ncerr_u
-from array_manip_bind import sumw_ncerr_f
-from array_manip_bind import sumw_ncerr_d
-from array_manip_bind import sumw_ncerr_i
-from array_manip_bind import sumw_ncerr_u
+import nessi_vector
+import array_manip_bind
 import sys
 
 ##
@@ -67,7 +48,7 @@ import sys
 #
 
 ##
-# \defgroup add array_manip::add
+# \defgroup add_ncerr array_manip::add_ncerr
 # \{
 
 ##
@@ -78,12 +59,12 @@ import sys
 # 
 # With two arguments,
 # \f[
-# >>>  Vector_0 = add (Vector_1, Vector_2)
+# >>>  Vector_0 = array_manip.add_ncerr (Vector_1, Vector_2)
 # \f]
 #
 # With four arguments,
 # \f[
-# >>> Vector_0, \sigma_0 = add (Vector_1, 
+# >>> Vector_0, \sigma_0 = array_manip.add_ncerr (Vector_1, 
 # \sigma_1, Vector_2, 
 # \sigma_2)
 # \f]
@@ -116,47 +97,35 @@ import sys
 # the uncertainty in the second NessiVector to be added
 #
 
-def add(a,ae2,b=NessiVector(),be2=NessiVector()):
+def add_ncerr(a,ae2,b,be2):
 	
-	b_length = len(b)
-
-	if (b_length == 0):				#for case: add(a,b)
-		b=ae2
-
 	if (a.type__ == a.FLOAT):
-		if (b_length ==0): be2=NessiVector(len(a))
-		c = NessiVector(len(a))		
-		ce2 = NessiVector(len(a))		
-		add_ncerr_f(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a))		
+		ce2 = nessi_vector.NessiVector(len(a))		
+		array_manip_bind.add_ncerr_f(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.DOUBLE):
-		if (b_length ==0): be2=NessiVector(len(a),a.DOUBLE)
-		c = NessiVector(len(a),a.DOUBLE)
-		ce2 = NessiVector(len(a), a.DOUBLE)
-		add_ncerr_d(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+		array_manip_bind.add_ncerr_d(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.INT):
-		if (b_length ==0): be2=NessiVector(len(a), a.INT)
-		c = NessiVector(len(a),a.INT)
-		ce2 = NessiVector(len(a), a.INT)
-		add_ncerr_i(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.INT)
+		ce2 = nessi_vector.NessiVector(len(a), a.INT)
+		array_manip_bind.add_ncerr_i(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.UINT):
-		if (b_length ==0): be2=NessiVector(len(a),a.UINT)
-		c = NessiVector(len(a),a.UINT)
-		ce2 = NessiVector(len(a), a.UINT)
-		add_ncerr_u(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.UINT)
+		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+		array_manip_bind.add_ncerr_u(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 
-	if (b_length == 0):				#add(a,b)
-		return c
-	else:						#add(a,ae2,b,be2)
-		return c,ce2
+	return c,ce2
 ##
 # \}
 
 ##
-# \defgroup sub array_manip::sub
+# \defgroup sub_ncerr array_manip::sub_ncerr
 # \{
 
 ##
@@ -167,12 +136,12 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 # 
 # With two arguments,
 # \f[
-# >>>  Vector_0 = sub (Vector_1, Vector_2)
+# >>>  Vector_0 = array_manip.sub_ncerr (Vector_1, Vector_2)
 # \f]
 #
 # With four arguments,
 # \f[
-# >>> Vector_0, \sigma_0 = sub (Vector_1, 
+# >>> Vector_0, \sigma_0 = array_manip.sub_ncerr (Vector_1, 
 # \sigma_1, Vector_2, 
 # \sigma_2)
 # \f]
@@ -205,47 +174,35 @@ def add(a,ae2,b=NessiVector(),be2=NessiVector()):
 # the uncertainty in the NessiVector to subtract
 #
 
-def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
-
-	b_length = len(b)
-
-	if (b_length == 0):				#for case: sub(a,b)
-		b=ae2
+def sub_ncerr(a,ae2,b,be2):
 
 	if (a.type__ == a.FLOAT):
-		if (b_length ==0): be2=NessiVector(len(a))
-		c = NessiVector(len(a));		
-		ce2 = NessiVector(len(a));		
-		sub_ncerr_f(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a));		
+		ce2 = nessi_vector.NessiVector(len(a));		
+		array_manip_bind.sub_ncerr_f(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.DOUBLE):
-		if (b_length ==0): be2=NessiVector(len(a),a.DOUBLE)
-		c = NessiVector(len(a),a.DOUBLE)
-		ce2 = NessiVector(len(a), a.DOUBLE)
-		sub_ncerr_d(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+		array_manip_bind.sub_ncerr_d(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.INT):
-		if (b_length ==0): be2=NessiVector(len(a), a.INT)
-		c = NessiVector(len(a),a.INT)
-		ce2 = NessiVector(len(a), a.INT)
-		sub_ncerr_i(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.INT)
+		ce2 = nessi_vector.NessiVector(len(a), a.INT)
+		array_manip_bind.sub_ncerr_i(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.UINT):
-		if (b_length ==0): be2=NessiVector(len(a),a.UINT)
-		c = NessiVector(len(a),a.UINT)
-		ce2 = NessiVector(len(a), a.UINT)
-		sub_ncerr_u(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.UINT)
+		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+		array_manip_bind.sub_ncerr_u(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 
-	if (b_length == 0):				#sub(a,b)
-		return c
-	else:						#sub(a,ae2,b,be2)
-		return c,ce2
+	return c,ce2
 ##
 # \}
 
 ##
-# \defgroup mult array_manip::mult
+# \defgroup mult_ncerr array_manip::mult_ncerr
 # \{
 
 ##
@@ -256,12 +213,12 @@ def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
 # 
 # With two arguments,
 # \f[
-# >>>  Vector_0 = mult (Vector_1, Vector_2)
+# >>>  Vector_0 = array_manip.mult_ncerr (Vector_1, Vector_2)
 # \f]
 #
 # With four arguments,
 # \f[
-# >>> Vector_0, \sigma_0 = mult (Vector_1, 
+# >>> Vector_0, \sigma_0 = array_manip.mult_ncerr (Vector_1, 
 # \sigma_1, Vector_2, 
 # \sigma_2)
 # \f]
@@ -294,47 +251,35 @@ def sub(a,ae2,b=NessiVector(),be2=NessiVector()):
 # the uncertainty in the second NessiVector to be multiplied
 #
 
-def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
-
-	b_length = len(b)
-
-	if (b_length == 0):				#for case: mult(a,b)
-		b=ae2
+def mult_ncerr(a,ae2,b,be2):
 
 	if (a.type__ == a.FLOAT):
-		if (b_length ==0): be2=NessiVector(len(a))
-		c = NessiVector(len(a));		
-		ce2 = NessiVector(len(a));		
-		mult_ncerr_f(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a));		
+		ce2 = nessi_vector.NessiVector(len(a));		
+		array_manip_bind.mult_ncerr_f(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.DOUBLE):
-		if (b_length ==0): be2=NessiVector(len(a),a.DOUBLE)
-		c = NessiVector(len(a),a.DOUBLE)
-		ce2 = NessiVector(len(a), a.DOUBLE)
-		mult_ncerr_d(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+		array_manip_bind.mult_ncerr_d(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.INT):
-		if (b_length ==0): be2=NessiVector(len(a), a.INT)
-		c = NessiVector(len(a),a.INT)
-		ce2 = NessiVector(len(a), a.INT)
-		mult_ncerr_i(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.INT)
+		ce2 = nessi_vector.NessiVector(len(a), a.INT)
+		array_manip_bind.mult_ncerr_i(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.UINT):
-		if (b_length ==0): be2=NessiVector(len(a),a.UINT)
-		c = NessiVector(len(a),a.UINT)
-		ce2 = NessiVector(len(a), a.UINT)
-		mult_ncerr_u(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.UINT)
+		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+		array_manip_bind.mult_ncerr_u(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 
-	if (b_length == 0):				#mult(a,b)
-		return c
-	else:						#mult(a,ae2,b,be2)
-		return c,ce2
+	return c,ce2
 ##
 # \}
 
 ##
-# \defgroup div array_manip::div
+# \defgroup div_ncerr array_manip::div_ncerr
 # \{
 
 ##
@@ -346,12 +291,12 @@ def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
 # 
 # With two arguments,
 # \f[
-# >>>  Vector_0 = div (Vector_1, Vector_2)
+# >>>  Vector_0 = array_manip.div_ncerr (Vector_1, Vector_2)
 # \f]
 #
 # With four arguments,
 # \f[
-# >>> Vector_0, \sigma_0 = div (Vector_1, 
+# >>> Vector_0, \sigma_0 = array_manip.div_ncerr (Vector_1, 
 # \sigma_1, Vector_2, 
 # \sigma_2)
 # \f]
@@ -384,48 +329,36 @@ def mult(a,ae2,b=NessiVector(),be2=NessiVector()):
 # the uncertainty in the dividing NessiVector
 #
 
-def div(a,ae2,b=NessiVector(),be2=NessiVector()):
-
-	b_length = len(b)
-
-	if (b_length == 0):				#for case: div(a,b)
-		b=ae2
+def div_ncerr(a,ae2,b,be2):
 
 	if (a.type__ == a.FLOAT):
-		if (b_length ==0): be2=NessiVector(len(a))
-		c = NessiVector(len(a));		
-		ce2 = NessiVector(len(a));		
-		div_ncerr_f(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a));		
+		ce2 = nessi_vector.NessiVector(len(a));		
+		array_manip_bind.div_ncerr_f(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.DOUBLE):
-		if (b_length ==0): be2=NessiVector(len(a),a.DOUBLE)
-		c = NessiVector(len(a),a.DOUBLE)
-		ce2 = NessiVector(len(a), a.DOUBLE)
-		div_ncerr_d(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+		array_manip_bind.div_ncerr_d(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.INT):
-		if (b_length ==0): be2=NessiVector(len(a), a.INT)
-		c = NessiVector(len(a),a.INT)
-		ce2 = NessiVector(len(a), a.INT)
-		div_ncerr_i(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.INT)
+		ce2 = nessi_vector.NessiVector(len(a), a.INT)
+		array_manip_bind.div_ncerr_i(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.UINT):
-		if (b_length ==0): be2=NessiVector(len(a),a.UINT)
-		c = NessiVector(len(a),a.UINT)
-		ce2 = NessiVector(len(a), a.UINT)
-		div_ncerr_u(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.UINT)
+		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+		array_manip_bind.div_ncerr_u(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 
-	if (b_length == 0):				#div(a,b)
-		return c
-	else:						#div(a,ae2,b,be2)
-		return c,ce2
+	return c,ce2
 
 ##
 # \}
 
 ##
-# \defgroup sumw array_manip::sumw
+# \defgroup sumw_ncerr array_manip::sumw_ncerr
 # \{
 
 ##
@@ -461,28 +394,28 @@ def div(a,ae2,b=NessiVector(),be2=NessiVector()):
 # NessiVector to be added
 #
 
-def sumw(a,ae2,b,be2):
+def sumw_ncerr(a,ae2,b,be2):
 
 	if (a.type__ == a.FLOAT):
-		c = NessiVector(len(a));		
-		ce2 = NessiVector(len(a));		
-		sumw_ncerr_f(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a));		
+		ce2 = nessi_vector.NessiVector(len(a));		
+		array_manip_bind.sumw_ncerr_f(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.DOUBLE):
-		c = NessiVector(len(a),a.DOUBLE)
-		ce2 = NessiVector(len(a), a.DOUBLE)
-		sumw_ncerr_d(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+		array_manip_bind.sumw_ncerr_d(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.INT):
-		c = NessiVector(len(a),a.INT)
-		ce2 = NessiVector(len(a), a.INT)
-		sumw_ncerr_i(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.INT)
+		ce2 = nessi_vector.NessiVector(len(a), a.INT)
+		array_manip_bind.sumw_ncerr_i(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 	if (a.type__ == a.UINT):
-		c = NessiVector(len(a),a.UINT)
-		ce2 = NessiVector(len(a), a.UINT)
-		sumw_ncerr_u(a.array,ae2.array,b.array,be2.array,c.array,\
-		ce2.array)
+		c = nessi_vector.NessiVector(len(a),a.UINT)
+		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+		array_manip_bind.sumw_ncerr_u(a.array,ae2.array,b.array,\
+			be2.array,c.array,ce2.array)
 
 	return c,ce2
 
