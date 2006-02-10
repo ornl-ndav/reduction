@@ -1,8 +1,8 @@
-// vector.i - SWIG interface
+// nessi_vector.i - SWIG interface
 //
 // $Id$
 //
-%module vector
+%module nessi_vector_bind
 %{
 #include "nessi.hpp"
 %}
