@@ -99,29 +99,64 @@ import sys
 
 def add_ncerr(a,ae2,b,be2):
 	
-	if (a.type__ == a.FLOAT):
-		c = nessi_vector.NessiVector(len(a))		
-		ce2 = nessi_vector.NessiVector(len(a))		
-		array_manip_bind.add_ncerr_f(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.DOUBLE):
-		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-		array_manip_bind.add_ncerr_d(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.INT):
-		c = nessi_vector.NessiVector(len(a),a.INT)
-		ce2 = nessi_vector.NessiVector(len(a), a.INT)
-		array_manip_bind.add_ncerr_i(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.UINT):
-		c = nessi_vector.NessiVector(len(a),a.UINT)
-		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-		array_manip_bind.add_ncerr_u(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
+	run_ok = 0		# 0:stop     1:continue
+	
+	try:
+		a.__type__
+	except:			#run if exception is raised
+		try:
+			b.__type__
+		except:
+			print "Types not supported by NessiVector"
+		else:
+			if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
+				a=float(a)
+			else:
+				a=int(a)
+			run_ok = 1
+	else:
+		try:
+			b.__type__
+		except:
+			if (a.__type__ == a.FLOAT or a.type == a.DOUBLE):
+				b=float(b)
+			else:
+				b=int(b)
+			run_ok = 1
+		else:
+			if (a.__type__ != b.__type__):
+				print "Parameters types are different"
+			else:
+				run_ok = 1
 
-	return c,ce2
-##
+	if (run_ok == 1):
+
+		if (a.__type__ == a.FLOAT):
+			c = nessi_vector.NessiVector(len(a))		
+			ce2 = nessi_vector.NessiVector(len(a))		
+			array_manip_bind.add_ncerr_f(a.array,ae2.array,\
+				b.array,be2.array,c.array,ce2.array)
+		if (a.__type__ == a.DOUBLE):
+			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+			array_manip_bind.add_ncerr_d(a.array,ae2.array,\
+				b.array,be2.array,c.array,ce2.array)
+		if (a.__type__ == a.INT):
+			c = nessi_vector.NessiVector(len(a),a.INT)
+			ce2 = nessi_vector.NessiVector(len(a), a.INT)
+			array_manip_bind.add_ncerr_i(a.array,ae2.array,\
+				b.array,be2.array,c.array,ce2.array)
+		if (a.__type__ == a.UINT):
+			c = nessi_vector.NessiVector(len(a),a.UINT)
+			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+			array_manip_bind.add_ncerr_u(a.array,ae2.array,\
+				b.array,be2.array,c.array,ce2.array)
+		
+		return c,ce2
+	else:
+		return 0,0	
+
+##	
 # \}
 
 ##
@@ -176,28 +211,63 @@ def add_ncerr(a,ae2,b,be2):
 
 def sub_ncerr(a,ae2,b,be2):
 
-	if (a.type__ == a.FLOAT):
-		c = nessi_vector.NessiVector(len(a));		
-		ce2 = nessi_vector.NessiVector(len(a));		
-		array_manip_bind.sub_ncerr_f(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.DOUBLE):
-		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-		array_manip_bind.sub_ncerr_d(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.INT):
-		c = nessi_vector.NessiVector(len(a),a.INT)
-		ce2 = nessi_vector.NessiVector(len(a), a.INT)
-		array_manip_bind.sub_ncerr_i(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.UINT):
-		c = nessi_vector.NessiVector(len(a),a.UINT)
-		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-		array_manip_bind.sub_ncerr_u(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
+	run_ok = 0		# 0:stop     1:continue
+	
+	try:
+		a.__type__
+	except:			#run if exception is raised
+		try:
+			b.__type__
+		except:
+			print "Types not supported by NessiVector"
+		else:
+			if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
+				a=float(a)
+			else:
+				a=int(a)
+			run_ok = 1
+	else:
+		try:
+			b.__type__
+		except:
+			if (a.__type__ == a.FLOAT or a.type == a.DOUBLE):
+				b=float(b)
+			else:
+				b=int(b)
+			run_ok = 1
+		else:
+			if (a.__type__ != b.__type__):
+				print "Parameters types are different"
+			else:
+				run_ok = 1
 
-	return c,ce2
+	if (run_ok == 1):
+
+		if (a.__type__ == a.FLOAT):
+			c = nessi_vector.NessiVector(len(a));		
+			ce2 = nessi_vector.NessiVector(len(a));		
+			array_manip_bind.sub_ncerr_f(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.DOUBLE):
+			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+			array_manip_bind.sub_ncerr_d(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.INT):
+			c = nessi_vector.NessiVector(len(a),a.INT)
+			ce2 = nessi_vector.NessiVector(len(a), a.INT)
+			array_manip_bind.sub_ncerr_i(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.UINT):
+			c = nessi_vector.NessiVector(len(a),a.UINT)
+			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+			array_manip_bind.sub_ncerr_u(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+
+		return c,ce2	
+	else:
+		return 0,0
+
 ##
 # \}
 
@@ -253,28 +323,61 @@ def sub_ncerr(a,ae2,b,be2):
 
 def mult_ncerr(a,ae2,b,be2):
 
-	if (a.type__ == a.FLOAT):
-		c = nessi_vector.NessiVector(len(a));		
-		ce2 = nessi_vector.NessiVector(len(a));		
-		array_manip_bind.mult_ncerr_f(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.DOUBLE):
-		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-		array_manip_bind.mult_ncerr_d(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.INT):
-		c = nessi_vector.NessiVector(len(a),a.INT)
-		ce2 = nessi_vector.NessiVector(len(a), a.INT)
-		array_manip_bind.mult_ncerr_i(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.UINT):
-		c = nessi_vector.NessiVector(len(a),a.UINT)
-		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-		array_manip_bind.mult_ncerr_u(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
+	run_ok = 0		# 0:stop     1:continue
+	
+	try:
+		a.__type__
+	except:			#run if exception is raised
+		try:
+			b.__type__
+		except:
+			print "Types not supported by NessiVector"
+		else:
+			if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
+				a=float(a)
+			else:
+				a=int(a)
+			run_ok = 1
+	else:
+		try:
+			b.__type__
+		except:
+			if (a.__type__ == a.FLOAT or a.type == a.DOUBLE):
+				b=float(b)
+			else:
+				b=int(b)
+			run_ok = 1
+		else:
+			if (a.__type__ != b.__type__):
+				print "Parameters types are different"
+			else:
+				run_ok = 1
 
-	return c,ce2
+	if (run_ok == 1):
+
+		if (a.__type__ == a.FLOAT):
+			c = nessi_vector.NessiVector(len(a));		
+			ce2 = nessi_vector.NessiVector(len(a));		
+			array_manip_bind.mult_ncerr_f(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.DOUBLE):
+			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+			array_manip_bind.mult_ncerr_d(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.INT):
+			c = nessi_vector.NessiVector(len(a),a.INT)
+			ce2 = nessi_vector.NessiVector(len(a), a.INT)
+			array_manip_bind.mult_ncerr_i(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.UINT):
+			c = nessi_vector.NessiVector(len(a),a.UINT)
+			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+			array_manip_bind.mult_ncerr_u(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		return c,ce2
+	else:
+		return 0.0
 ##
 # \}
 
@@ -331,28 +434,61 @@ def mult_ncerr(a,ae2,b,be2):
 
 def div_ncerr(a,ae2,b,be2):
 
-	if (a.type__ == a.FLOAT):
-		c = nessi_vector.NessiVector(len(a));		
-		ce2 = nessi_vector.NessiVector(len(a));		
-		array_manip_bind.div_ncerr_f(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.DOUBLE):
-		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-		array_manip_bind.div_ncerr_d(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.INT):
-		c = nessi_vector.NessiVector(len(a),a.INT)
-		ce2 = nessi_vector.NessiVector(len(a), a.INT)
-		array_manip_bind.div_ncerr_i(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.UINT):
-		c = nessi_vector.NessiVector(len(a),a.UINT)
-		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-		array_manip_bind.div_ncerr_u(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
+	run_ok = 0		# 0:stop     1:continue
+	
+	try:
+		a.__type__
+	except:			#run if exception is raised
+		try:
+			b.__type__
+		except:
+			print "Types not supported by NessiVector"
+		else:
+			if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
+				a=float(a)
+			else:
+				a=int(a)
+			run_ok = 1
+	else:
+		try:
+			b.__type__
+		except:
+			if (a.__type__ == a.FLOAT or a.type == a.DOUBLE):
+				b=float(b)
+			else:
+				b=int(b)
+			run_ok = 1
+		else:
+			if (a.__type__ != b.__type__):
+				print "Parameters types are different"
+			else:
+				run_ok = 1
 
-	return c,ce2
+	if (run_ok == 1):
+
+		if (a.__type__ == a.FLOAT):
+			c = nessi_vector.NessiVector(len(a));		
+			ce2 = nessi_vector.NessiVector(len(a));		
+			array_manip_bind.div_ncerr_f(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.DOUBLE):
+			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+			array_manip_bind.div_ncerr_d(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.INT):
+			c = nessi_vector.NessiVector(len(a),a.INT)
+			ce2 = nessi_vector.NessiVector(len(a), a.INT)
+			array_manip_bind.div_ncerr_i(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.UINT):
+			c = nessi_vector.NessiVector(len(a),a.UINT)
+			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+			array_manip_bind.div_ncerr_u(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		return c,ce2
+	else:
+		return 0,0
 
 ##
 # \}
@@ -396,28 +532,61 @@ def div_ncerr(a,ae2,b,be2):
 
 def sumw_ncerr(a,ae2,b,be2):
 
-	if (a.type__ == a.FLOAT):
-		c = nessi_vector.NessiVector(len(a));		
-		ce2 = nessi_vector.NessiVector(len(a));		
-		array_manip_bind.sumw_ncerr_f(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.DOUBLE):
-		c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-		ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-		array_manip_bind.sumw_ncerr_d(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.INT):
-		c = nessi_vector.NessiVector(len(a),a.INT)
-		ce2 = nessi_vector.NessiVector(len(a), a.INT)
-		array_manip_bind.sumw_ncerr_i(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
-	if (a.type__ == a.UINT):
-		c = nessi_vector.NessiVector(len(a),a.UINT)
-		ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-		array_manip_bind.sumw_ncerr_u(a.array,ae2.array,b.array,\
-			be2.array,c.array,ce2.array)
+	run_ok = 0		# 0:stop     1:continue
+	
+	try:
+		a.__type__
+	except:			#run if exception is raised
+		try:
+			b.__type__
+		except:
+			print "Types not supported by NessiVector"
+		else:
+			if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
+				a=float(a)
+			else:
+				a=int(a)
+			run_ok = 1
+	else:
+		try:
+			b.__type__
+		except:
+			if (a.__type__ == a.FLOAT or a.type == a.DOUBLE):
+				b=float(b)
+			else:
+				b=int(b)
+			run_ok = 1
+		else:
+			if (a.__type__ != b.__type__):
+				print "Parameters types are different"
+			else:
+				run_ok = 1
 
-	return c,ce2
+	if (run_ok == 1):
+
+		if (a.__type__ == a.FLOAT):
+			c = nessi_vector.NessiVector(len(a));		
+			ce2 = nessi_vector.NessiVector(len(a));		
+			array_manip_bind.sumw_ncerr_f(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.DOUBLE):
+			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
+			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+			array_manip_bind.sumw_ncerr_d(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.INT):
+			c = nessi_vector.NessiVector(len(a),a.INT)
+			ce2 = nessi_vector.NessiVector(len(a), a.INT)
+			array_manip_bind.sumw_ncerr_i(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		if (a.__type__ == a.UINT):
+			c = nessi_vector.NessiVector(len(a),a.UINT)
+			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+			array_manip_bind.sumw_ncerr_u(a.array,ae2.array,b.array,\
+				be2.array,c.array,ce2.array)
+		return c,ce2
+	else:
+		return 0,0
 
 ##
 # \}
