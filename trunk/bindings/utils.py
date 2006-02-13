@@ -30,7 +30,7 @@
 
 import nessi_vector
 import utils_bind
-import sys
+#import sys
 
 ##
 # \namespace utils 
@@ -87,7 +87,18 @@ def weighted_average(a,ae2,start,fin):
 
     """ This function takes the weighted average of a slice of a NessiVector.
 
-        weighted_average(a,ae2,start,fin)
+        Parameters:
+        a : the NessiVector from which to calculate the weighted average
+        ae2 : the square of the uncertainty in the associated
+        NessiVector from which calculate the weighted average
+        start : the bin of the NessiVector from which to start the 
+        calculation
+        fin : the bin of the NessiVector at which to end the calculation
+
+        Returns:
+        c : the weighted average of the NessiVector slice
+        ce2 : the square of the uncertainty associated with the weighted
+        average
     """
     try:
         
