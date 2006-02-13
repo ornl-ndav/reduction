@@ -267,7 +267,7 @@ class NessiVector (list):
 # \}
 
 ##
-# \defgroup array NessiVector::array
+# \defgroup __getattr__ NessiVector::__getattr__
 # \{
 
 ##
@@ -276,9 +276,17 @@ class NessiVector (list):
 # Method that give access to the private attribute __array__.
 #
 # \param self (INPUT) is the name of the NessiVector
+# \param name (INPUT) is the name of the attribute
 #
-	def array(self):
-		return self.__array__
+
+#	def array(self):
+#		return self.__array__
+
+
+	def __getattr__(self,name):
+		if (name=="array"):
+			return self.__array__
+
 ##
 # \}
 
