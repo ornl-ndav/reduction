@@ -26,8 +26,9 @@
 
 ##
 # \file bindings/axis_manip.py wrapper of axis_manip library
-#
-# This module gives the NessiVector access to the various physical
+
+##
+# \brief This module gives the NessiVector access to the various physical
 # axis conversions that are useful for time-on-flight neutron scattering
 # All of the bases functions are written in reference to SNS
 # 107030214-TD0001-R00, "Data Reduction Library Software Requirements and
@@ -86,31 +87,60 @@ import sys
 def energy_transfer(initial_energy, initial_energy_err2,\
 			 final_energy, final_energy_err2):
 	
-	#float
-	if (initial_energy.type__ == nessi_vector.NessiVector.FLOAT):
-		energy_transfer = nessi_vector.NessiVector(len(\
-			initial_energy));	
-		energy_transfer_err2 = nessi_vector.NessiVector(len(\
-			initial_energy));
-		axis_manip_bind.energy_transfer_f(initial_energy.array,	\
-				initial_energy_err2.array,\
-				final_energy.array,\
-				final_energy_err2.array,\
-				energy_transfer.array,\
-				energy_transfer_err2.array)
+	try:
+		if (initial_energy.__type__ == nessi_vector.NessiVector.FLOAT):
+			if (final_energy.__type__ == nessi_vector.NessiVector.FLOAT):
+				try:
+					energy_transfer = nessi_vector.NessiVector(len(\
+						initial_energy));	
+					energy_transfer_err2 = nessi_vector.NessiVector(len(\
+						initial_energy));
+					axis_manip_bind.energy_transfer_f(\
+						initial_energy.array,\
+						initial_energy_err2.array,\
+						final_energy.array,\
+						final_energy_err2.array,\
+						energy_transfer.array,\
+						energy_transfer_err2.array)
+				except:
+					print "Error"
+			else:
+				raise TypeError			
+				
+		elif (initial_energy.__type__ == nessi_vector.NessiVector.DOUBLE):
+			if (final_energy.__type__ == nessi_vector.NessiVector.DOUBLE):
+				try:
+					energy_transfer = nessi_vector.NessiVector(len(\
+						initial_energy),"double");	
+					energy_transfer_err2 = nessi_vector.NessiVector(len(\
+						initial_energy),"double");
+					axis_manip_bind.energy_transfer_d(\
+						initial_energy.array,\
+						initial_energy_err2.array,\
+						final_energy.array,\
+						final_energy_err2.array,\
+						energy_transfer.array,\
+						energy_transfer_err2.array)
+				except:
+					print "Error"
+			else:
+				raise TypeError
 
-	#double
-	if (initial_energy.type__ == nessi_vector.NessiVector.DOUBLE):
-		energy_transfer = nessi_vector.NessiVector(len(\
-			initial_energy),"double");	
-		energy_transfer_err2 = nessi_vector.NessiVector(len(\
-			initial_energy),"double");
-		axis_manip_bind.energy_transfer_d(initial_energy.array,\
-				initial_energy_err2.array,\
-				final_energy.array,\
-				final_energy_err2.array,\
-				energy_transfer.array,\
-				energy_transfer_err2.array)
+		else:
+			raise AttributeError
+
+	except AttributeError:
+		
+		print "Vector type requested, %s, is not supported!" %initial_energy.__type__
+		energy_transfer=nessi_vector.NessiVector(len(initial_energy))
+		energy_transfer_err2=nessi_vector.NessiVector(len(initial_energy))
+		
+	except TypeError:
+	
+		print "Vector types (%s,%s) are different" %(initial_energy.__type__, \
+			final_energy.__type__)
+		energy_transfer=nessi_vector.NessiVector(len(initial_energy))
+		energy_transfer_err2=nessi_vector.NessiVector(len(initial_energy))
 
 	return energy_transfer,energy_transfer_err2
 ##
@@ -177,7 +207,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 				polar, polar_err2):
 
 	#float
-	if (initial_wavevector.type__ == nessi_vector.NessiVector.FLOAT):
+	if (initial_wavevector.__type__ == nessi_vector.NessiVector.FLOAT):
 	  	Q = nessi_vector.NessiVector(len(initial_wavevector))
 		Q_err2 = nessi_vector.NessiVector(len(initial_wavevector))
 		axis_manip_bind.init_scatt_wavevector_to_scalar_Q_f(\
@@ -189,7 +219,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 					Q.array, Q_err2.array)		
 
 	#double
-	if (initial_wavevector.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (initial_wavevector.__type__ == nessi_vector.NessiVector.DOUBLE):
 	  	Q = nessi_vector.NessiVector(len(initial_wavevector),"double")
 		Q_err2 = nessi_vector.NessiVector(len(initial_wavevector),\
 			"double")
@@ -342,7 +372,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 	
 	#float
-	if (input.type__ == nessi_vector.NessiVector.FLOAT):
+	if (input.__type__ == nessi_vector.NessiVector.FLOAT):
 		output = nessi_vector.NessiVector(len(axis_out)-1)
 		output_err2 = nessi_vector.NessiVector(len(axis_out)-1)
 		axis_manip_bind.rebin_axis_1D_f(axis_in.array, input.array,\
@@ -350,7 +380,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 				output.array, output_err2.array)
 
 	#double
-	if (input.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (input.__type__ == nessi_vector.NessiVector.DOUBLE):
 		output = nessi_vector.NessiVector(len(axis_out))
 		output_err2 = nessi_vector.NessiVector(len(axis_out))
 		axis_manip_bind.rebin_axis_1D_d(axis_in.array, input.array,\
@@ -384,12 +414,12 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 def reverse_array_cp(input):
 	
 	#float
-	if (input.type__ == nessi_vector.NessiVector.FLOAT):
+	if (input.__type__ == nessi_vector.NessiVector.FLOAT):
 		output = nessi_vector.NessiVector(len(input))
 		axis_manip_bind.reverse_array_cp_f(input.array, output.array)
 	
 	#double
-	if (input.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (input.__type__ == nessi_vector.NessiVector.DOUBLE):
 		output = nessi_vector.NessiVector(len(input),"double")
 		axis_manip_bind.reverse_array_cp_d(input.array, output.array)
 	
@@ -422,11 +452,11 @@ def reverse_array_cp(input):
 def reverse_array_nc(input):
 	
 	#float
-	if (input.type__ == nessi_vector.NessiVector.FLOAT):
+	if (input.__type__ == nessi_vector.NessiVector.FLOAT):
 		axis_manip_bind.reverse_array_nc_f(input.array)
 	
 	#double
-	if (input.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (input.__type__ == nessi_vector.NessiVector.DOUBLE):
 		axis_manip_bind.reverse_array_nc_d(input.array)
 	
 	return
@@ -513,7 +543,7 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 			dist_sample_detector, dist_sample_detector_err2):
 	
 	#float
-	if (tof.type__ == nessi_vector.NessiVector.FLOAT):
+	if (tof.__type__ == nessi_vector.NessiVector.FLOAT):
 		initial_wavelength = nessi_vector.NessiVector(len(tof))
 		initial_wavelength_err2 = nessi_vector.NessiVector(len(tof))
 		axis_manip_bind.tof_to_initial_wavelength_igs_f(tof.array,\
@@ -526,7 +556,7 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 			initial_wavelength_err2.array)
 
 	#double
-	if (tof.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (tof.__type__ == nessi_vector.NessiVector.DOUBLE):
 		initial_wavelength = nessi_vector.NessiVector(len(tof),\
 			"double")
 		initial_wavelength_err2 = nessi_vector.NessiVector(len(tof),\
@@ -595,7 +625,7 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 	
 	#float
-	if (tof.type__ == nessi_vector.NessiVector.FLOAT):
+	if (tof.__type__ == nessi_vector.NessiVector.FLOAT):
 		wavelength = nessi_vector.NessiVector(len(tof))
 		wavelength_err2 = nessi_vector.NessiVector(len(tof))
 		axis_manip_bind.tof_to_wavelength_f(tof.array, tof_err2.array,\
@@ -603,7 +633,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 			wavelength.array, wavelength_err2.array)
 
 	#double
-	if (tof.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (tof.__type__ == nessi_vector.NessiVector.DOUBLE):
 		wavelength = nessi_vector.NessiVector(len(tof),"double")
 		wavelength_err2 = nessi_vector.NessiVector(len(tof),"double")
 		axis_manip_bind.tof_to_wavelength_d(tof.array, tof_err2.array,\
@@ -658,14 +688,14 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 def wavelength_to_energy(wavelength, wavelength_err2):
 	
 	#float
-	if (wavelength.type__ == nessi_vector.NessiVector.FLOAT):
+	if (wavelength.__type__ == nessi_vector.NessiVector.FLOAT):
 		energy = nessi_vector.NessiVector(len(wavelength))
 		energy_err2 = nessi_vector.NessiVector(len(wavelength))
 		axis_manip_bind.wavelength_to_energy_f(wavelength.array, \
 			wavelength_err2.array, energy.array, energy_err2.array)
 	
 	#double
-	if (wavelength.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (wavelength.__type__ == nessi_vector.NessiVector.DOUBLE):
 		energy = nessi_vector.NessiVector(len(wavelength),"double")
 		energy_err2 = nessi_vector.NessiVector(len(wavelength),\
 			"double")
@@ -718,7 +748,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 def wavelength_to_scalar_k(wavelength, wavelength_err2):
 	
 	#float
-	if (wavelength.type__ == nessi_vector.NessiVector.FLOAT):
+	if (wavelength.__type__ == nessi_vector.NessiVector.FLOAT):
 		wavevector = nessi_vector.NessiVector(len(wavelength))
 		wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
 		axis_manip_bind.wavelength_to_scalar_k_f(wavelength.array, \
@@ -726,7 +756,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 			wavevector.array, wavevector_err2.array)
 
 	#double
-	if (wavelength.type__ == nessi_vector.NessiVector.DOUBLE):
+	if (wavelength.__type__ == nessi_vector.NessiVector.DOUBLE):
 		wavevector = nessi_vector.NessiVector(len(wavelength),"double")
 		wavevector_err2 = nessi_vector.NessiVector(len(wavelength),\
 			"double")
