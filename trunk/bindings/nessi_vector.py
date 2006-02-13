@@ -96,40 +96,40 @@ class NessiVector (list):
 		if type.lower()==NessiVector.UNSIGNED_INT or \
 		type.lower()==NessiVector.UNSIGNED or \
 		type.lower()==NessiVector.UINT:
-			self.type__=self.UINT
+			self.__type__=self.UINT
 		
 			if length >= 0:
-				self.array__ = 	\
+				self.__array__ = 	\
 			nessi_vector_bind.UnsignedIntNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 						with negative length" 
 	
 		elif type.lower()==NessiVector.INT:
-			self.type__=self.INT
+			self.__type__=self.INT
 
 			if length >= 0:
-				self.array__ = \
+				self.__array__ = \
 			nessi_vector_bind.IntNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with negative length"
 
 		elif type.lower() == NessiVector.FLOAT:
-			self.type__=self.FLOAT
+			self.__type__=self.FLOAT
 
 			if length >= 0:
-				self.array__ = \
+				self.__array__ = \
 			nessi_vector_bind.FloatNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
 				with  negative length"
 
 		elif type.lower() == NessiVector.DOUBLE:
-			self.type__ = self.DOUBLE
+			self.__type__ = self.DOUBLE
 
 			if length >= 0:
-				self.array__ = \
+				self.__array__ = \
 			nessi_vector_bind.DoubleNessiVector(length)
 			else:
 				raise Exception, "Cannot instantiate Vector \
@@ -198,7 +198,7 @@ class NessiVector (list):
 #
 	def append(self,*number):
 		for i in range(len(number)):
-			self.array__.append(number[i])
+			self.__array__.append(number[i])
 
 ##
 # \}
@@ -219,7 +219,7 @@ class NessiVector (list):
 
 	def __getitem__(self,m):     # need to throw exception when m>len(self)
 		if (m<len(self)):
-			return self.array__[m]
+			return self.__array__[m]
 		else:
 			print "Last index of this  NessiVector is ",len(self)-1
 ##			
@@ -243,7 +243,7 @@ class NessiVector (list):
 # default, i.e., last element of the NessiVector)
 
 	def __getslice__(self,i=0,j=-1):
-		print self.array__[i:j]
+		print self.__array__[i:j]
 ##
 # \}
     
@@ -262,25 +262,39 @@ class NessiVector (list):
 #
 
 	def __len__(self):
-		return len(self.array__)	
+		return len(self.__array__)	
 ##
 # \}
 
 ##
-# \defgroup __getattr__ NessiVector::__getattr__
+# \defgroup array NessiVector::array
 # \{
 
 ##
-# Function that called the array__ attribute of the NessiVector.
+# Function that called the __array__ attribute of the NessiVector.
 # 
-# When asking for a value of the NessiVector \f$MyVector\f$, Python translates
-# the operation into a call to \f$MyVector.\_\_getattr\_\_\f$. 
-# \param self (INPUT) is the name of the NessiVector
-# \param name (INPUT) is the name of the attribute to be called
+# Method that give access to the private attribute __array__.
 #
-	def __getattr__(self,name):      
-		if(name=="array"):
-			return self.array__
+# \param self (INPUT) is the name of the NessiVector
+#
+	def array(self):
+		return self.__array__
+##
+# \}
+
+##
+# \defgroup type NessiVector::type
+# \{
+
+##
+# Function that called the __type__ attribute of the NessiVector.
+# 
+# Method that give access to the private attribute __type__.
+#
+# \param self (INPUT) is the name of the NessiVector
+#
+	def type(self):
+		return self.__type__
 ##
 # \}
 
@@ -520,9 +534,10 @@ class NessiVector (list):
 # Function "pop" not implemented yet"
 #
 	def pop(self):
-		if len(self.array__)<=0:
+		raise exception, "Not implemented yet"
+		if len(self.__array__)<=0:
 			raise IndexError,"pop from empty Vector"
-#		return self.array__.pop()
+#		return self.__array__.pop()
 
 ##
 # \}
@@ -552,32 +567,37 @@ class NessiVector (list):
 
 	def __str__(self,last=10):
 						
+		str_output=""
+
 		if len(self)<last:
 			last=len(self)	
 
-		if (self.type__ == NessiVector.FLOAT or 
-			self.type__ == NessiVector.DOUBLE):
+		if (self.__type__ == NessiVector.FLOAT or 
+			self.__type__ == NessiVector.DOUBLE):
 			for i in range(0,last):
-				print "%7.16f" %self.array__[i],
+				str_output = str_output + "%7.16f " \
+					%self.__array__[i]
 		else:	
 			for i in range(0,last):
-				print self.array__[i],
+				str_output = str_output + "%d " %self.__array__[i]
 	
-		if (self.type__ == NessiVector.FLOAT or  
-			self.type__ == NessiVector.DOUBLE):
+		if (self.__type__ == NessiVector.FLOAT or  
+			self.__type__ == NessiVector.DOUBLE):
 			if len(self) > last:
-				print "...",
-				print "%7.16f" %self.array__[len(self)-1]
+				str_output = str_output +"..."
+				str_output = str_output + "%7.16f" \
+					%self.__array__[len(self)-1]
 			else:
-				print
+				str_output = str_output + ""
 		else:	
 			if len(self) > last:
-				print "...",
-				print self.array__[len(self)-1]
+				str_output = str_output + "...",
+				str_output = str_output + "%d " \
+					%self.__array__[len(self)-1]
 			else:
-				print
-		return ''
+				str_output = str_output + ""
 
+		return str_output
 
 ##
 #\}
@@ -600,7 +620,8 @@ class NessiVector (list):
 def compare_vect(n,object1,object2,object3=NessiVector()):
 	
 	tab="\t\t"
-
+	str_output = ""
+	
 	#find maximum value and then set the tab
 
 	if (max_vect(object1) <= 9999):
@@ -610,21 +631,29 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 
 	for i in range(0,n):	
 
-		if (object1.type__ == NessiVector.FLOAT or
-			object1.type__ == NessiVector.DOUBLE):
-				print "%7.16f" %object1[i], tab , \
-				"%7.16f" %object2[i],
+		if (object1.__type__ == NessiVector.FLOAT or
+			object1.__type__ == NessiVector.DOUBLE):
+			
+				str_output = str_output + "%7.16f " \
+					%object1[i] + tab + \
+					"%7.16f " %object2[i]
+
 				if len(object3) !=0:
-					print tab,"%7.16f" %object3[i]
-				else:
-					print
+					str_output = str_output + \
+					tab + "%7.16f " %object3[i]
+		
 		else:
 			for i in range(0,n):
-				print object1[i], tab, object2[i],
+				str_output = str_output + "%d " %object1[i] \
+					+ tab + "%d " %object2[i]
+			
 				if len(object3) !=0:
-					print tab, object3[i]
-				else:
-					print
+					print str_output + tab + "%d " %object3[i]
+
+		str_output = str_output
+		
+	print str_output
+
 ##
 # \}
 #
@@ -646,8 +675,8 @@ def max_vect(object):
 	for i in range(len(object)):
 		if object[i]> max_value:
 			max_value = object[i]
-	if (object.type__ == NessiVector.FLOAT or
-		object.type__ == NessiVector.DOUBLE):
+	if (object.__type__ == NessiVector.FLOAT or
+		object.__type__ == NessiVector.DOUBLE):
 		return max_value
 	else:
 		return max_value
@@ -672,8 +701,8 @@ def min_vect(object):
 	for i in range(len(object)):
 		if object[i] < min_value:
 			min_value = object[i]
-	if (object.type__ == NessiVector.FLOAT or
-		object.type__ == NessiVector.DOUBLE):
+	if (object.__type__ == NessiVector.FLOAT or
+		object.__type__ == NessiVector.DOUBLE):
 		return min_value
 	else:
 		return min_value
