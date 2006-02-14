@@ -4,15 +4,23 @@
 //
 %module utils_bind
 %{
-#include "utils.hpp"
+#include "num_comparison.hpp"
 #include "size_checks.hpp"
+#include "utils.hpp"
 %}
 
 %include "libexcept.i"
 
 // Parse the original header file
-%include "utils.hpp"
+%include "num_comparison.hpp"
 %include "size_checks.hpp"
+%include "utils.hpp"
+
+// Instantiate templates for number comparisons
+%template(vector_is_equals_f) Utils::vector_is_equals<float>;
+%template(vector_is_equals_d) Utils::vector_is_equals<double>;
+%template(vector_is_equals_i) Utils::vector_is_equals<int>;
+%template(vector_is_equals_u) Utils::vector_is_equals<unsigned>;
 
 // Instantiate templates for size checks
 
@@ -26,7 +34,7 @@
 %template(check_histo_sizes_i) Utils::check_histo_sizes<int>;
 %template(check_histo_sizes_u) Utils::check_histo_sizes<unsigned>;
 
-// Instantiate templates
+// Instantiate templates for utils
 
 %template(peak_integration_f) Utils::peak_integration<float>;
 %template(peak_integration_d) Utils::peak_integration<double>;
