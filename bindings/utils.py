@@ -102,11 +102,11 @@ def weighted_average(a,ae2,start,fin):
     """
     try:
         
-        if (a.type__ == a.FLOAT):
+        if (a.__type__ == a.FLOAT):
             try:
                 c = float(0)
                 ce2 = float(0)
-                utils_bind.weighted_average_f(a.array,ae2.array,\
+                utils_bind.weighted_average_f(a.__array__,ae2.__array__,\
                                               float(start),float(fin),\
                                               c,ce2)
 
@@ -114,11 +114,11 @@ def weighted_average(a,ae2,start,fin):
                 print "start and/or fin were not entered as numbers"
 
                 
-        elif (a.type__ == a.DOUBLE):
+        elif (a.__type__ == a.DOUBLE):
             try:
                 c = float(0)
                 ce2 = float(0)
-                utils_bind.weighted_average_d(a.array,ae2.array,\
+                utils_bind.weighted_average_d(a.__array__,ae2.__array__,\
                                               float(start),float(fin),\
                                               c,ce2)
 
@@ -129,7 +129,7 @@ def weighted_average(a,ae2,start,fin):
             raise AttributeError
 
     except AttributeError:
-        print "Vector type requested, %s, is not supported!" % a.type__
+        print "Vector type requested, %s, is not supported!" % a.__type__
     
     return c,ce2
 

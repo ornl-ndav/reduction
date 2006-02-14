@@ -99,12 +99,12 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 	       energy_transfer_err2 = nessi_vector.NessiVector(len(\
 	          initial_energy))
 	       axis_manip_bind.energy_transfer_f(\
-	          initial_energy.array,\
-		  initial_energy_err2.array,\
-	          final_energy.array,\
-		  final_energy_err2.array,\
-		  energy_transfer.array,\
-		  energy_transfer_err2.array)
+	          initial_energy.__array__,\
+		  initial_energy_err2.__array__,\
+	          final_energy.__array__,\
+		  final_energy_err2.__array__,\
+		  energy_transfer.__array__,\
+		  energy_transfer_err2.__array__)
 	    except:
 	       raise CalculationError
 	 else:
@@ -118,12 +118,12 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 	       energy_transfer_err2 = nessi_vector.NessiVector(len(\
 	          initial_energy),"double")
 	       axis_manip_bind.energy_transfer_d(\
-	          initial_energy.array,\
-		  initial_energy_err2.array,\
-		  final_energy.array,\
-		  final_energy_err2.array,\
-		  energy_transfer.array,\
-		  energy_transfer_err2.array)
+	          initial_energy.__array__,\
+		  initial_energy_err2.__array__,\
+		  final_energy.__array__,\
+		  final_energy_err2.__array__,\
+		  energy_transfer.__array__,\
+		  energy_transfer_err2.__array__)
 	    except:
 	       raise CalculationError
 	 else:
@@ -224,12 +224,12 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 	       Q_err2 = nessi_vector.NessiVector(len(\
 		  initial_wavevector))
 	       axis_manip_bind.init_scatt_wavevector_to_scalar_Q_f(\
-	          initial_wavevector.array,\
-		  initial_wavevector_err2.array,\
-		  final_wavevector.array,\
-		  final_wavevector_err2.array,\
+	          initial_wavevector.__array__,\
+		  initial_wavevector_err2.__array__,\
+		  final_wavevector.__array__,\
+		  final_wavevector_err2.__array__,\
 		  float(polar), float(polar_err2),\
-		  Q.array, Q_err2.array)
+		  Q.__array__, Q_err2.__array__)
             except:
 	       raise CalculationError
          else:
@@ -242,12 +242,12 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 	       Q_err2 = nessi_vector.NessiVector(len(initial_wavevector),\
                   "double")
 	       axis_manip_bind.init_scatt_wavevector_to_scalar_Q_d(\
-	          initial_wavevector.array,\
-		  initial_wavevector_err2.array,\
-		  final_wavevector.array,\
-		  final_wavevector_err2.array,\
+	          initial_wavevector.__array__,\
+		  initial_wavevector_err2.__array__,\
+		  final_wavevector.__array__,\
+		  final_wavevector_err2.__array__,\
 		  float(polar), float(polar_err2),\
-		  Q.array, Q_err2.array)		
+		  Q.__array__, Q_err2.__array__)		
 	    except:
 	       raise CalculationError   
 	 else:
@@ -422,9 +422,9 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 	       try:
 	          output = nessi_vector.NessiVector(len(axis_out)-1)
 		  output_err2 = nessi_vector.NessiVector(len(axis_out)-1)
-		  axis_manip_bind.rebin_axis_1D_f(axis_in.array, input.array,\
-		   input_err2.array, axis_out.array,\
-		   output.array, output_err2.array)
+		  axis_manip_bind.rebin_axis_1D_f(axis_in.__array__, input.__array__,\
+		   input_err2.__array__, axis_out.__array__,\
+		   output.__array__, output_err2.__array__)
 	       except:
 		   raise CalculationError
             else:
@@ -438,9 +438,9 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
                try:
                   output = nessi_vector.NessiVector(len(axis_out))
 		  output_err2 = nessi_vector.NessiVector(len(axis_out))
-		  axis_manip_bind.rebin_axis_1D_d(axis_in.array, input.array,\
-		   input_err2.array, axis_out.array,\
-	 	   output.array, output_err2.array)
+		  axis_manip_bind.rebin_axis_1D_d(axis_in.__array__, input.__array__,\
+		   input_err2.__array__, axis_out.__array__,\
+	 	   output.__array__, output_err2.__array__)
 	       except:
 	          raise CalculationError
 	    else:
@@ -499,14 +499,14 @@ def reverse_array_cp(input):
       if (input.__type__ == nessi_vector.NessiVector.FLOAT):
          try:
             output = nessi_vector.NessiVector(len(input))
-            axis_manip_bind.reverse_array_cp_f(input.array, output.array)
+            axis_manip_bind.reverse_array_cp_f(input.__array__, output.__array__)
 	 except:
             raise CalculationError
 
       elif (input.__type__ == nessi_vector.NessiVector.DOUBLE):
          try:
             output = nessi_vector.NessiVector(len(input),"double")
-	    axis_manip_bind.reverse_array_cp_d(input.array, output.array)
+	    axis_manip_bind.reverse_array_cp_d(input.__array__, output.__array__)
 	 except:
             raise CalculationError
 
@@ -555,13 +555,13 @@ def reverse_array_nc(input):
    try:
       if (input.__type__ == nessi_vector.NessiVector.FLOAT):
          try:
-            axis_manip_bind.reverse_array_nc_f(input.array)
+            axis_manip_bind.reverse_array_nc_f(input.__array__)
 	 except:
 	    raise CalculationError
 
       elif (input.__type__ == nessi_vector.NessiVector.DOUBLE):
          try:
- 	    axis_manip_bind.reverse_array_nc_d(input.array)
+ 	    axis_manip_bind.reverse_array_nc_d(input.__array__)
          except:
 	    raise CalculationError
       
@@ -665,14 +665,14 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
          try: 
 	    initial_wavelength = nessi_vector.NessiVector(len(tof))
 	    initial_wavelength_err2 = nessi_vector.NessiVector(len(tof))
-	    axis_manip_bind.tof_to_initial_wavelength_igs_f(tof.array,\
-	     tof_err2.array,\
+	    axis_manip_bind.tof_to_initial_wavelength_igs_f(tof.__array__,\
+	     tof_err2.__array__,\
 	     float(final_wavelength), float(final_wavelength_err2),\
 	     float(time_offset), float(time_offset_err2),\
 	     float(dist_source_sample), float(dist_source_sample_err2),\
 	     float(dist_sample_detector), float(dist_sample_detector_err2),\
-	     initial_wavelength.array, \
-	     initial_wavelength_err2.array)
+	     initial_wavelength.__array__, \
+	     initial_wavelength_err2.__array__)
 	 except:
 	    raise CalculationError
       elif (tof.__type__ == nessi_vector.NessiVector.DOUBLE):
@@ -681,14 +681,14 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 	     "double")
 	    initial_wavelength_err2 = nessi_vector.NessiVector(len(tof),\
 	     "double")
-	    axis_manip_bind.tof_to_initial_wavelength_igs_d(tof.array, \
-	     tof_err2.array,\
+	    axis_manip_bind.tof_to_initial_wavelength_igs_d(tof.__array__, \
+	     tof_err2.__array__,\
 	     final_wavelength, final_wavelength_err2,\
 	     time_offset, time_offset_err2,\
 	     dist_source_sample, dist_source_sample_err2,\
 	     dist_sample_detector, dist_sample_detector_err2,\
-	     initial_wavelength.array, \
-	     initial_wavelength_err2.array)
+	     initial_wavelength.__array__, \
+	     initial_wavelength_err2.__array__)
 	 except:
 	    raise CalculationError
       else:
@@ -767,18 +767,18 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
          try:
 	    wavelength = nessi_vector.NessiVector(len(tof))
 	    wavelength_err2 = nessi_vector.NessiVector(len(tof))
-	    axis_manip_bind.tof_to_wavelength_f(tof.array, tof_err2.array,\
+	    axis_manip_bind.tof_to_wavelength_f(tof.__array__, tof_err2.__array__,\
 	     pathlength, pathlength_err2,\
-	     wavelength.array, wavelength_err2.array)
+	     wavelength.__array__, wavelength_err2.__array__)
          except:
 	    raise CalculationError
       elif (tof.__type__ == nessi_vector.NessiVector.DOUBLE):
          try:
             wavelength = nessi_vector.NessiVector(len(tof),"double")
 	    wavelength_err2 = nessi_vector.NessiVector(len(tof),"double")
-	    axis_manip_bind.tof_to_wavelength_d(tof.array, tof_err2.array,\
+	    axis_manip_bind.tof_to_wavelength_d(tof.__array__, tof_err2.__array__,\
 	     pathlength, pathlength_err2,\
-	     wavelength.array, wavelength_err2.array)
+	     wavelength.__array__, wavelength_err2.__array__)
          except:
             raise CalculationError
       else:
@@ -849,8 +849,8 @@ def wavelength_to_energy(wavelength, wavelength_err2):
          try:        
 	    energy = nessi_vector.NessiVector(len(wavelength))
 	    energy_err2 = nessi_vector.NessiVector(len(wavelength))
-	    axis_manip_bind.wavelength_to_energy_f(wavelength.array, \
-	     wavelength_err2.array, energy.array, energy_err2.array)
+	    axis_manip_bind.wavelength_to_energy_f(wavelength.__array__, \
+	     wavelength_err2.__array__, energy.__array__, energy_err2.__array__)
 	 except:
 	    raise CalculationError
 	 
@@ -859,8 +859,8 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 	    energy = nessi_vector.NessiVector(len(wavelength),"double")
 	    energy_err2 = nessi_vector.NessiVector(len(wavelength),\
 	     "double")
-	    axis_manip_bind.wavelength_to_energy_d(wavelength.array, \
-	     wavelength_err2.array, energy.array, energy_err2.array)
+	    axis_manip_bind.wavelength_to_energy_d(wavelength.__array__, \
+	     wavelength_err2.__array__, energy.__array__, energy_err2.__array__)
 	 except:
 	    raise CalculationError
 
@@ -930,9 +930,9 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
          try:
             wavevector = nessi_vector.NessiVector(len(wavelength))
 	    wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
-	    axis_manip_bind.wavelength_to_scalar_k_f(wavelength.array, \
-	     wavelength_err2.array,\
-	     wavevector.array, wavevector_err2.array)
+	    axis_manip_bind.wavelength_to_scalar_k_f(wavelength.__array__, \
+	     wavelength_err2.__array__,\
+	     wavevector.__array__, wavevector_err2.__array__)
 	 except:
 	    raise CalculationError
 
@@ -941,9 +941,9 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 	    wavevector = nessi_vector.NessiVector(len(wavelength),"double")
 	    wavevector_err2 = nessi_vector.NessiVector(len(wavelength),\
 	     "double")
-	    axis_manip_bind.wavelength_to_scalar_k_d(wavelength.array,\
-	     wavelength_err2.array,\
-	     wavevector.array, wavevector_err2.array)
+	    axis_manip_bind.wavelength_to_scalar_k_d(wavelength.__array__,\
+	     wavelength_err2.__array__,\
+	     wavevector.__array__, wavevector_err2.__array__)
 	 except:
 	    raise CalculationError
 	
