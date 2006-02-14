@@ -291,9 +291,9 @@ namespace AxisManip
    *
    * \param polar_angle (INPUT) same as parameter in
    * init_scatt_wavevector_to_scalar_Q()
-   * \param a (OUTPUT) \f$=2\times\cos(polar_angle)\f$
-   * \param b (OUTPUT) \f$=\cos(polar_angle)\f$
-   * \param c (OUTPUT) \f$=\sin(polar_angle)\f$
+   * \param a (OUTPUT) \f$=2\times\cos(polar\_angle)\f$
+   * \param b (OUTPUT) \f$=\cos(polar\_angle)\f$
+   * \param c (OUTPUT) \f$=\sin(polar\_angle)\f$
    */
   template <typename NumT>
   std::string
