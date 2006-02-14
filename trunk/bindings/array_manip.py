@@ -134,23 +134,23 @@ def add_ncerr(a,ae2,b,be2):
 		if (a.__type__ == a.FLOAT):
 			c = nessi_vector.NessiVector(len(a))		
 			ce2 = nessi_vector.NessiVector(len(a))		
-			array_manip_bind.add_ncerr_f(a.array,ae2.array,\
-				b.array,be2.array,c.array,ce2.array)
+			array_manip_bind.add_ncerr_f(a.__array__,ae2.__array__,\
+				b.__array__,be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.DOUBLE):
 			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
 			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-			array_manip_bind.add_ncerr_d(a.array,ae2.array,\
-				b.array,be2.array,c.array,ce2.array)
+			array_manip_bind.add_ncerr_d(a.__array__,ae2.__array__,\
+				b.__array__,be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.INT):
 			c = nessi_vector.NessiVector(len(a),a.INT)
 			ce2 = nessi_vector.NessiVector(len(a), a.INT)
-			array_manip_bind.add_ncerr_i(a.array,ae2.array,\
-				b.array,be2.array,c.array,ce2.array)
+			array_manip_bind.add_ncerr_i(a.__array__,ae2.__array__,\
+				b.__array__,be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.UINT):
 			c = nessi_vector.NessiVector(len(a),a.UINT)
 			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-			array_manip_bind.add_ncerr_u(a.array,ae2.array,\
-				b.array,be2.array,c.array,ce2.array)
+			array_manip_bind.add_ncerr_u(a.__array__,ae2.__array__,\
+				b.__array__,be2.__array__,c.__array__,ce2.__array__)
 		
 		return c,ce2
 	else:
@@ -246,23 +246,23 @@ def sub_ncerr(a,ae2,b,be2):
 		if (a.__type__ == a.FLOAT):
 			c = nessi_vector.NessiVector(len(a));		
 			ce2 = nessi_vector.NessiVector(len(a));		
-			array_manip_bind.sub_ncerr_f(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sub_ncerr_f(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.DOUBLE):
 			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
 			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-			array_manip_bind.sub_ncerr_d(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sub_ncerr_d(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.INT):
 			c = nessi_vector.NessiVector(len(a),a.INT)
 			ce2 = nessi_vector.NessiVector(len(a), a.INT)
-			array_manip_bind.sub_ncerr_i(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sub_ncerr_i(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.UINT):
 			c = nessi_vector.NessiVector(len(a),a.UINT)
 			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-			array_manip_bind.sub_ncerr_u(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sub_ncerr_u(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 
 		return c,ce2	
 	else:
@@ -358,23 +358,23 @@ def mult_ncerr(a,ae2,b,be2):
 		if (a.__type__ == a.FLOAT):
 			c = nessi_vector.NessiVector(len(a));		
 			ce2 = nessi_vector.NessiVector(len(a));		
-			array_manip_bind.mult_ncerr_f(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.mult_ncerr_f(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.DOUBLE):
 			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
 			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-			array_manip_bind.mult_ncerr_d(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.mult_ncerr_d(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.INT):
 			c = nessi_vector.NessiVector(len(a),a.INT)
 			ce2 = nessi_vector.NessiVector(len(a), a.INT)
-			array_manip_bind.mult_ncerr_i(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.mult_ncerr_i(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.UINT):
 			c = nessi_vector.NessiVector(len(a),a.UINT)
 			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-			array_manip_bind.mult_ncerr_u(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.mult_ncerr_u(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		return c,ce2
 	else:
 		return 0.0
@@ -469,23 +469,23 @@ def div_ncerr(a,ae2,b,be2):
 		if (a.__type__ == a.FLOAT):
 			c = nessi_vector.NessiVector(len(a));		
 			ce2 = nessi_vector.NessiVector(len(a));		
-			array_manip_bind.div_ncerr_f(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.div_ncerr_f(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.DOUBLE):
 			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
 			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-			array_manip_bind.div_ncerr_d(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.div_ncerr_d(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.INT):
 			c = nessi_vector.NessiVector(len(a),a.INT)
 			ce2 = nessi_vector.NessiVector(len(a), a.INT)
-			array_manip_bind.div_ncerr_i(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.div_ncerr_i(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.UINT):
 			c = nessi_vector.NessiVector(len(a),a.UINT)
 			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-			array_manip_bind.div_ncerr_u(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.div_ncerr_u(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		return c,ce2
 	else:
 		return 0,0
@@ -567,23 +567,23 @@ def sumw_ncerr(a,ae2,b,be2):
 		if (a.__type__ == a.FLOAT):
 			c = nessi_vector.NessiVector(len(a));		
 			ce2 = nessi_vector.NessiVector(len(a));		
-			array_manip_bind.sumw_ncerr_f(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sumw_ncerr_f(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.DOUBLE):
 			c = nessi_vector.NessiVector(len(a),a.DOUBLE)
 			ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
-			array_manip_bind.sumw_ncerr_d(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sumw_ncerr_d(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.INT):
 			c = nessi_vector.NessiVector(len(a),a.INT)
 			ce2 = nessi_vector.NessiVector(len(a), a.INT)
-			array_manip_bind.sumw_ncerr_i(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sumw_ncerr_i(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		if (a.__type__ == a.UINT):
 			c = nessi_vector.NessiVector(len(a),a.UINT)
 			ce2 = nessi_vector.NessiVector(len(a), a.UINT)
-			array_manip_bind.sumw_ncerr_u(a.array,ae2.array,b.array,\
-				be2.array,c.array,ce2.array)
+			array_manip_bind.sumw_ncerr_u(a.__array__,ae2.__array__,b.__array__,\
+				be2.__array__,c.__array__,ce2.__array__)
 		return c,ce2
 	else:
 		return 0,0
