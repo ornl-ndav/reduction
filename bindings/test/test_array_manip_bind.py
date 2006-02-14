@@ -9,10 +9,6 @@
 from array_manip_bind import *
 from nessi_vector_bind import *
 import test_common_bind
-from utils_bind import vector_is_equals_f
-from utils_bind import vector_is_equals_d
-from utils_bind import vector_is_equals_i
-from utils_bind import vector_is_equals_u
 
 print "######################################################"
 print "# Checking Array_Manip Swing Generated Binding Layer #"
@@ -204,42 +200,45 @@ Output_Err2_SubNcerr_U = UnsignedIntNessiVector(len(Input1_Err2_U))
 
 print "Checking Vector-Vector Addition Binding Function"
 
-mess = "add_ncerr_f............................."
 add_ncerr_f(Input1_F, Input1_Err2_F, Input2_F, Input2_Err2_F,
             Output_AddNcerr_F, Output_Err2_AddNcerr_F)
+
+mess = test_common_bind.makeCheck("add_ncerr_f", Output_AddNcerr_F,
+                                  TruthOutput_AddNcerr_F,
+                                  Output_Err2_AddNcerr_F,
+                                  TruthOutput_Err2_AddNcerr_F)
 print mess
 
-mess = "add_ncerr_d............................."
 add_ncerr_d(Input1_D, Input1_Err2_D, Input2_D, Input2_Err2_D,
             Output_AddNcerr_D, Output_Err2_AddNcerr_D)
+
+mess = test_common_bind.makeCheck("add_ncerr_d", Output_AddNcerr_D,
+                                  TruthOutput_AddNcerr_D,
+                                  Output_Err2_AddNcerr_D,
+                                  TruthOutput_Err2_AddNcerr_D)
 print mess
 
-mess = "add_ncerr_i............................."
 add_ncerr_i(Input1_I, Input1_Err2_I, Input2_I, Input2_Err2_I,
             Output_AddNcerr_I, Output_Err2_AddNcerr_I)
 
-dval = vector_is_equals_i(Output_AddNcerr_I, TruthOutput_AddNcerr_I)
-eval = vector_is_equals_i(Output_Err2_AddNcerr_I,
-                          TruthOutput_Err2_AddNcerr_I)
-
-mess += test_common.makeCheck(dval, eval)
+mess = test_common_bind.makeCheck("add_ncerr_i", Output_AddNcerr_I,
+                                  TruthOutput_AddNcerr_I,
+                                  Output_Err2_AddNcerr_I,
+                                  TruthOutput_Err2_AddNcerr_I)
 print mess
 
-mess = "add_ncerr_u............................."
 add_ncerr_u(Input1_U, Input1_Err2_U, Input2_U, Input2_Err2_U,
             Output_AddNcerr_U, Output_Err2_AddNcerr_U)
 
-dval = vector_is_equals_u(Output_AddNcerr_U, TruthOutput_AddNcerr_U)
-eval = vector_is_equals_u(Output_Err2_AddNcerr_U,
-                          TruthOutput_Err2_AddNcerr_U)
-
-mess += test_common.makeCheck(dval, eval)
+mess = test_common_bind.makeCheck("add_ncerr_u", Output_AddNcerr_U,
+                                  TruthOutput_AddNcerr_U,
+                                  Output_Err2_AddNcerr_U,
+                                  TruthOutput_Err2_AddNcerr_U)
 print mess
 
+print
 print "Checking Vector-Vector Subtraction Binding Function"
 
-print "sub_ncerr_f............................."
-sub_ncerr_f(Input1_F, Input1_Err2_F, Input2_F, Input2_Err2_F,
-            Output_SubNcerr_F, Output_Err2_SubNcerr_F)
+
 
 
