@@ -33,6 +33,7 @@ def printVector(object, last=10):
 def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
 
     """
+    
        This function checks output and truth vectors for both data and
        square of the uncertainty in the data (err2) arrays.
 
@@ -65,10 +66,15 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
     mess += "............................."
 
     if dataval == False or err2val == False:
+
         if dataval == False:
-            mess += " Data Not OK "
+            if err2val == False:
+                mess += " Data and Err2 Not OK"
+            else:
+                mess += " Data Not OK"
         elif err2val == False:
             mess += " Err2 Not OK"
+
     else:
         mess += " Functionality OK"
 
