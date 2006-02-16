@@ -14,7 +14,7 @@ from nessi_vector_bind import *
 import test_common_bind
 
 print "###########################################################"
-print "# Checking Add_Ncerr Swig Generated Python Binding Layer #"
+print "# Checking Add_Ncerr Swig Generated Python Binding Layer  #"
 print "###########################################################"
 print
 
@@ -63,110 +63,220 @@ for counter in range(vec_length):
 ###############################################################################
 
 # Truth values for add_ncerr vector-vector version
-TruthOutput_AddNcerr_F = FloatNessiVector()
-TruthOutput_AddNcerr_F.append(6.0)
-TruthOutput_AddNcerr_F.append(6.0)
-TruthOutput_AddNcerr_F.append(6.0)
-TruthOutput_AddNcerr_F.append(6.0)
-TruthOutput_AddNcerr_F.append(6.0)
+TruthOutput_VV_F = FloatNessiVector()
+TruthOutput_VV_F.append(6.0)
+TruthOutput_VV_F.append(6.0)
+TruthOutput_VV_F.append(6.0)
+TruthOutput_VV_F.append(6.0)
+TruthOutput_VV_F.append(6.0)
 
-TruthOutput_AddNcerr_D = DoubleNessiVector()
-TruthOutput_AddNcerr_D.append(6.0)
-TruthOutput_AddNcerr_D.append(6.0)
-TruthOutput_AddNcerr_D.append(6.0)
-TruthOutput_AddNcerr_D.append(6.0)
-TruthOutput_AddNcerr_D.append(6.0)
+TruthOutput_VV_D = DoubleNessiVector()
+TruthOutput_VV_D.append(6.0)
+TruthOutput_VV_D.append(6.0)
+TruthOutput_VV_D.append(6.0)
+TruthOutput_VV_D.append(6.0)
+TruthOutput_VV_D.append(6.0)
 
-TruthOutput_AddNcerr_I = IntNessiVector()
-TruthOutput_AddNcerr_I.append(6)
-TruthOutput_AddNcerr_I.append(6)
-TruthOutput_AddNcerr_I.append(6)
-TruthOutput_AddNcerr_I.append(6)
-TruthOutput_AddNcerr_I.append(6)
+TruthOutput_VV_I = IntNessiVector()
+TruthOutput_VV_I.append(6)
+TruthOutput_VV_I.append(6)
+TruthOutput_VV_I.append(6)
+TruthOutput_VV_I.append(6)
+TruthOutput_VV_I.append(6)
 
-TruthOutput_AddNcerr_U = UnsignedIntNessiVector()
-TruthOutput_AddNcerr_U.append(6)
-TruthOutput_AddNcerr_U.append(6)
-TruthOutput_AddNcerr_U.append(6)
-TruthOutput_AddNcerr_U.append(6)
-TruthOutput_AddNcerr_U.append(6)
+TruthOutput_VV_U = UnsignedIntNessiVector()
+TruthOutput_VV_U.append(6)
+TruthOutput_VV_U.append(6)
+TruthOutput_VV_U.append(6)
+TruthOutput_VV_U.append(6)
+TruthOutput_VV_U.append(6)
 
-TruthOutput_Err2_AddNcerr_F = FloatNessiVector()
-TruthOutput_Err2_AddNcerr_F.append(2.0)
-TruthOutput_Err2_AddNcerr_F.append(2.0)
-TruthOutput_Err2_AddNcerr_F.append(2.0)
-TruthOutput_Err2_AddNcerr_F.append(2.0)
-TruthOutput_Err2_AddNcerr_F.append(2.0)
+TruthOutput_Err2_VV_F = FloatNessiVector()
+TruthOutput_Err2_VV_F.append(2.0)
+TruthOutput_Err2_VV_F.append(2.0)
+TruthOutput_Err2_VV_F.append(2.0)
+TruthOutput_Err2_VV_F.append(2.0)
+TruthOutput_Err2_VV_F.append(2.0)
 
-TruthOutput_Err2_AddNcerr_D = DoubleNessiVector()
-TruthOutput_Err2_AddNcerr_D.append(2.0)
-TruthOutput_Err2_AddNcerr_D.append(2.0)
-TruthOutput_Err2_AddNcerr_D.append(2.0)
-TruthOutput_Err2_AddNcerr_D.append(2.0)
-TruthOutput_Err2_AddNcerr_D.append(2.0)
+TruthOutput_Err2_VV_D = DoubleNessiVector()
+TruthOutput_Err2_VV_D.append(2.0)
+TruthOutput_Err2_VV_D.append(2.0)
+TruthOutput_Err2_VV_D.append(2.0)
+TruthOutput_Err2_VV_D.append(2.0)
+TruthOutput_Err2_VV_D.append(2.0)
 
-TruthOutput_Err2_AddNcerr_I = IntNessiVector()
-TruthOutput_Err2_AddNcerr_I.append(2)
-TruthOutput_Err2_AddNcerr_I.append(2)
-TruthOutput_Err2_AddNcerr_I.append(2)
-TruthOutput_Err2_AddNcerr_I.append(2)
-TruthOutput_Err2_AddNcerr_I.append(2)
+TruthOutput_Err2_VV_I = IntNessiVector()
+TruthOutput_Err2_VV_I.append(2)
+TruthOutput_Err2_VV_I.append(2)
+TruthOutput_Err2_VV_I.append(2)
+TruthOutput_Err2_VV_I.append(2)
+TruthOutput_Err2_VV_I.append(2)
 
-TruthOutput_Err2_AddNcerr_U = UnsignedIntNessiVector()
-TruthOutput_Err2_AddNcerr_U.append(2)
-TruthOutput_Err2_AddNcerr_U.append(2)
-TruthOutput_Err2_AddNcerr_U.append(2)
-TruthOutput_Err2_AddNcerr_U.append(2)
-TruthOutput_Err2_AddNcerr_U.append(2)
+TruthOutput_Err2_VV_U = UnsignedIntNessiVector()
+TruthOutput_Err2_VV_U.append(2)
+TruthOutput_Err2_VV_U.append(2)
+TruthOutput_Err2_VV_U.append(2)
+TruthOutput_Err2_VV_U.append(2)
+TruthOutput_Err2_VV_U.append(2)
+
+# Truth values for add_ncerr vector-scalar version
+TruthOutput_VS_F = FloatNessiVector()
+TruthOutput_VS_F.append(10.0)
+TruthOutput_VS_F.append(9.0)
+TruthOutput_VS_F.append(8.0)
+TruthOutput_VS_F.append(7.0)
+TruthOutput_VS_F.append(6.0)
+
+TruthOutput_VS_D = DoubleNessiVector()
+TruthOutput_VS_D.append(10.0)
+TruthOutput_VS_D.append(9.0)
+TruthOutput_VS_D.append(8.0)
+TruthOutput_VS_D.append(7.0)
+TruthOutput_VS_D.append(6.0)
+
+TruthOutput_VS_I = IntNessiVector()
+TruthOutput_VS_I.append(10)
+TruthOutput_VS_I.append(9)
+TruthOutput_VS_I.append(8)
+TruthOutput_VS_I.append(7)
+TruthOutput_VS_I.append(6)
+
+TruthOutput_VS_U = UnsignedIntNessiVector()
+TruthOutput_VS_U.append(10)
+TruthOutput_VS_U.append(9)
+TruthOutput_VS_U.append(8)
+TruthOutput_VS_U.append(7)
+TruthOutput_VS_U.append(6)
+
+TruthOutput_Err2_VS_F = FloatNessiVector()
+TruthOutput_Err2_VS_F.append(2.0)
+TruthOutput_Err2_VS_F.append(2.0)
+TruthOutput_Err2_VS_F.append(2.0)
+TruthOutput_Err2_VS_F.append(2.0)
+TruthOutput_Err2_VS_F.append(2.0)
+
+TruthOutput_Err2_VS_D = DoubleNessiVector()
+TruthOutput_Err2_VS_D.append(2.0)
+TruthOutput_Err2_VS_D.append(2.0)
+TruthOutput_Err2_VS_D.append(2.0)
+TruthOutput_Err2_VS_D.append(2.0)
+TruthOutput_Err2_VS_D.append(2.0)
+
+TruthOutput_Err2_VS_I = IntNessiVector()
+TruthOutput_Err2_VS_I.append(2)
+TruthOutput_Err2_VS_I.append(2)
+TruthOutput_Err2_VS_I.append(2)
+TruthOutput_Err2_VS_I.append(2)
+TruthOutput_Err2_VS_I.append(2)
+
+TruthOutput_Err2_VS_U = UnsignedIntNessiVector()
+TruthOutput_Err2_VS_U.append(2)
+TruthOutput_Err2_VS_U.append(2)
+TruthOutput_Err2_VS_U.append(2)
+TruthOutput_Err2_VS_U.append(2)
+TruthOutput_Err2_VS_U.append(2)
 
 ###############################################################################
 # Create output placeholders for vectors
 ###############################################################################
 
 # Output placeholders for add_ncerr vector-vector version
-Output_AddNcerr_F = FloatNessiVector(len(Input1_F))
-Output_AddNcerr_D = DoubleNessiVector(len(Input1_D))
-Output_AddNcerr_I = IntNessiVector(len(Input1_I))
-Output_AddNcerr_U = UnsignedIntNessiVector(len(Input1_U))
-Output_Err2_AddNcerr_F = FloatNessiVector(len(Input1_Err2_F))
-Output_Err2_AddNcerr_D = DoubleNessiVector(len(Input1_Err2_D))
-Output_Err2_AddNcerr_I = IntNessiVector(len(Input1_Err2_I))
-Output_Err2_AddNcerr_U = UnsignedIntNessiVector(len(Input1_Err2_U))
+Output_VV_F = FloatNessiVector(len(Input1_F))
+Output_VV_D = DoubleNessiVector(len(Input1_D))
+Output_VV_I = IntNessiVector(len(Input1_I))
+Output_VV_U = UnsignedIntNessiVector(len(Input1_U))
+Output_Err2_VV_F = FloatNessiVector(len(Input1_Err2_F))
+Output_Err2_VV_D = DoubleNessiVector(len(Input1_Err2_D))
+Output_Err2_VV_I = IntNessiVector(len(Input1_Err2_I))
+Output_Err2_VV_U = UnsignedIntNessiVector(len(Input1_Err2_U))
+
+# Output placeholders for add_ncerr vector-scalar version
+Output_VS_F = FloatNessiVector(len(Input1_F))
+Output_VS_D = DoubleNessiVector(len(Input1_D))
+Output_VS_I = IntNessiVector(len(Input1_I))
+Output_VS_U = UnsignedIntNessiVector(len(Input1_U))
+Output_Err2_VS_F = FloatNessiVector(len(Input1_Err2_F))
+Output_Err2_VS_D = DoubleNessiVector(len(Input1_Err2_D))
+Output_Err2_VS_I = IntNessiVector(len(Input1_Err2_I))
+Output_Err2_VS_U = UnsignedIntNessiVector(len(Input1_Err2_U))
 
 print "Checking Vector-Vector Addition Binding Function"
 
 add_ncerr_f(Input1_F, Input1_Err2_F, Input2_F, Input2_Err2_F,
-            Output_AddNcerr_F, Output_Err2_AddNcerr_F)
+            Output_VV_F, Output_Err2_VV_F)
 
-mess = test_common_bind.makeCheck("add_ncerr_f", Output_AddNcerr_F,
-                                  TruthOutput_AddNcerr_F,
-                                  Output_Err2_AddNcerr_F,
-                                  TruthOutput_Err2_AddNcerr_F)
+mess = test_common_bind.makeCheck("add_ncerr_f", Output_VV_F,
+                                  TruthOutput_VV_F,
+                                  Output_Err2_VV_F,
+                                  TruthOutput_Err2_VV_F)
 print mess
 
 add_ncerr_d(Input1_D, Input1_Err2_D, Input2_D, Input2_Err2_D,
-            Output_AddNcerr_D, Output_Err2_AddNcerr_D)
+            Output_VV_D, Output_Err2_VV_D)
 
-mess = test_common_bind.makeCheck("add_ncerr_d", Output_AddNcerr_D,
-                                  TruthOutput_AddNcerr_D,
-                                  Output_Err2_AddNcerr_D,
-                                  TruthOutput_Err2_AddNcerr_D)
+mess = test_common_bind.makeCheck("add_ncerr_d", Output_VV_D,
+                                  TruthOutput_VV_D,
+                                  Output_Err2_VV_D,
+                                  TruthOutput_Err2_VV_D)
 print mess
 
 add_ncerr_i(Input1_I, Input1_Err2_I, Input2_I, Input2_Err2_I,
-            Output_AddNcerr_I, Output_Err2_AddNcerr_I)
+            Output_VV_I, Output_Err2_VV_I)
 
-mess = test_common_bind.makeCheck("add_ncerr_i", Output_AddNcerr_I,
-                                  TruthOutput_AddNcerr_I,
-                                  Output_Err2_AddNcerr_I,
-                                  TruthOutput_Err2_AddNcerr_I)
+mess = test_common_bind.makeCheck("add_ncerr_i", Output_VV_I,
+                                  TruthOutput_VV_I,
+                                  Output_Err2_VV_I,
+                                  TruthOutput_Err2_VV_I)
 print mess
 
 add_ncerr_u(Input1_U, Input1_Err2_U, Input2_U, Input2_Err2_U,
-            Output_AddNcerr_U, Output_Err2_AddNcerr_U)
+            Output_VV_U, Output_Err2_VV_U)
 
-mess = test_common_bind.makeCheck("add_ncerr_u", Output_AddNcerr_U,
-                                  TruthOutput_AddNcerr_U,
-                                  Output_Err2_AddNcerr_U,
-                                  TruthOutput_Err2_AddNcerr_U)
+mess = test_common_bind.makeCheck("add_ncerr_u", Output_VV_U,
+                                  TruthOutput_VV_U,
+                                  Output_Err2_VV_U,
+                                  TruthOutput_Err2_VV_U)
 print mess
+print
+print "Checking Vector-Scalar Addition Binding Function"
+
+add_ncerr_f(Input1_F, Input1_Err2_F,
+            Input2_F[vec_length-1], Input2_Err2_F[vec_length-1],
+            Output_VS_F, Output_Err2_VS_F)
+
+mess = test_common_bind.makeCheck("add_ncerr_f", Output_VS_F,
+                                  TruthOutput_VS_F,
+                                  Output_Err2_VS_F,
+                                  TruthOutput_Err2_VS_F)
+print mess
+
+add_ncerr_d(Input1_D, Input1_Err2_D,
+            Input2_D[vec_length-1], Input2_Err2_D[vec_length-1],
+            Output_VS_D, Output_Err2_VS_D)
+
+mess = test_common_bind.makeCheck("add_ncerr_d", Output_VS_D,
+                                  TruthOutput_VS_D,
+                                  Output_Err2_VS_D,
+                                  TruthOutput_Err2_VS_D)
+print mess
+
+add_ncerr_i(Input1_I, Input1_Err2_I,
+            Input2_I[vec_length-1], Input2_Err2_I[vec_length-1],
+            Output_VS_I, Output_Err2_VS_I)
+
+mess = test_common_bind.makeCheck("add_ncerr_i", Output_VS_I,
+                                  TruthOutput_VS_I,
+                                  Output_Err2_VS_I,
+                                  TruthOutput_Err2_VS_I)
+print mess
+
+add_ncerr_u(Input1_U, Input1_Err2_U,
+            Input2_U[vec_length-1], Input2_Err2_U[vec_length-1],
+            Output_VS_U, Output_Err2_VS_U)
+
+mess = test_common_bind.makeCheck("add_ncerr_u", Output_VS_U,
+                                  TruthOutput_VS_U,
+                                  Output_Err2_VS_U,
+                                  TruthOutput_Err2_VS_U)
+print mess
+
