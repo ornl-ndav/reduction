@@ -37,10 +37,10 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
        This function checks output and truth vectors for both data and
        square of the uncertainty in the data (err2) arrays.
 
-       funcName : this is the name of the Swig binding layer function
-       output : this is the data array to be checked
-       output_err2 : this is the err2 array to be checked
-       truth_output : this is the truth data array to be checked against
+       funcName          : this is the name of the Swig binding layer function
+       output            : this is the data array to be checked
+       output_err2       : this is the err2 array to be checked
+       truth_output      : this is the truth data array to be checked against
        truth_output_err2 : this is the truth err2 array to be checked against
     """
 
