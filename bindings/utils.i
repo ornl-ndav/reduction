@@ -11,6 +11,10 @@
 
 %include "libexcept.i"
 
+%ignore _NUM_COMPARISON_HPP;
+%ignore _SIZE_CHECKS_HPP;
+%ignore _UTILS_HPP;
+
 // Parse the original header file
 %include "num_comparison.hpp"
 %include "size_checks.hpp"
