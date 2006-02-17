@@ -39,8 +39,8 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
 
        funcName          : this is the name of the Swig binding layer function
        output            : this is the data array to be checked
-       output_err2       : this is the err2 array to be checked
        truth_output      : this is the truth data array to be checked against
+       output_err2       : this is the err2 array to be checked
        truth_output_err2 : this is the truth err2 array to be checked against
     """
 
@@ -75,6 +75,40 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
         elif err2val == False:
             mess += " Err2 Not OK"
 
+    else:
+        mess += " Functionality OK"
+
+    return mess
+
+def makeCheck1(funcName, output, truth_output):
+
+    """
+    
+       This function checks output and truth vectors for data
+
+       funcName          : this is the name of the Swig binding layer function
+       output            : this is the data array to be checked
+       truth_output      : this is the truth data array to be checked against
+    """
+
+    dataval = ""
+
+    if funcName.endswith("_f"):
+        dataval = vector_is_equals_f(output, truth_output)
+    elif funcName.endswith("_d"):
+        dataval = vector_is_equals_d(output, truth_output)
+    elif funcName.endswith("_i"):
+        dataval = vector_is_equals_i(output, truth_output)
+    elif funcName.endswith("_u"):
+        dataval = vector_is_equals_u(output, truth_output)
+    else:
+        raise TypeError, "Function type not recognized!"
+
+    mess = funcName
+    mess += "............................."
+
+    if dataval == False:
+        mess += " Data Not OK"
     else:
         mess += " Functionality OK"
 
