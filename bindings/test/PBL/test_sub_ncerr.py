@@ -19,7 +19,7 @@ print "##########################################################"
 print
 
 # Set standard size for vectors
-vec_length = 5
+NUM_VAL = 5
 
 # Create input vectors
 Input1_F = FloatNessiVector()
@@ -40,14 +40,14 @@ Input2_U = UnsignedIntNessiVector()
 Input2_Err2_U = UnsignedIntNessiVector()
 
 # Place values in the input vectors
-for counter in range(vec_length):
-    Input1_F.append(float(vec_length+1-counter))
+for counter in range(NUM_VAL):
+    Input1_F.append(float(NUM_VAL+1-counter))
     Input1_Err2_F.append(float(1))
-    Input1_D.append(float(vec_length+1-counter))
+    Input1_D.append(float(NUM_VAL+1-counter))
     Input1_Err2_D.append(float(1))
-    Input1_I.append(vec_length+1-counter)
+    Input1_I.append(NUM_VAL+1-counter)
     Input1_Err2_I.append(1)
-    Input1_U.append(vec_length+1-counter)
+    Input1_U.append(NUM_VAL+1-counter)
     Input1_Err2_U.append(1)
     Input2_F.append(float(counter))
     Input2_Err2_F.append(float(1))
@@ -318,7 +318,7 @@ print
 print "Checking Vector-Scalar Subtraction Binding Function"
 
 sub_ncerr_f(Input1_F, Input1_Err2_F,
-            Input2_F[vec_length-1], Input2_Err2_F[vec_length-1],
+            Input2_F[NUM_VAL-1], Input2_Err2_F[NUM_VAL-1],
             Output_VS_F, Output_Err2_VS_F)
 
 mess = test_common_bind.makeCheck("sub_ncerr_f", Output_VS_F,
@@ -328,7 +328,7 @@ mess = test_common_bind.makeCheck("sub_ncerr_f", Output_VS_F,
 print mess
 
 sub_ncerr_d(Input1_D, Input1_Err2_D,
-            Input2_D[vec_length-1], Input2_Err2_D[vec_length-1],
+            Input2_D[NUM_VAL-1], Input2_Err2_D[NUM_VAL-1],
             Output_VS_D, Output_Err2_VS_D)
 
 mess = test_common_bind.makeCheck("sub_ncerr_d", Output_VS_D,
@@ -338,7 +338,7 @@ mess = test_common_bind.makeCheck("sub_ncerr_d", Output_VS_D,
 print mess
 
 sub_ncerr_i(Input1_I, Input1_Err2_I,
-            Input2_I[vec_length-1], Input2_Err2_I[vec_length-1],
+            Input2_I[NUM_VAL-1], Input2_Err2_I[NUM_VAL-1],
             Output_VS_I, Output_Err2_VS_I)
 
 mess = test_common_bind.makeCheck("sub_ncerr_i", Output_VS_I,
@@ -348,7 +348,7 @@ mess = test_common_bind.makeCheck("sub_ncerr_i", Output_VS_I,
 print mess
 
 sub_ncerr_u(Input1_U, Input1_Err2_U,
-            Input2_U[vec_length-1], Input2_Err2_U[vec_length-1],
+            Input2_U[NUM_VAL-1], Input2_Err2_U[NUM_VAL-1],
             Output_VS_U, Output_Err2_VS_U)
 
 mess = test_common_bind.makeCheck("sub_ncerr_u", Output_VS_U,
@@ -359,7 +359,7 @@ print mess
 print
 print "Checking Scalar-Vector Subtraction Binding Function"
 
-sub_ncerr_f(Input2_F[vec_length-1], Input2_Err2_F[vec_length-1],
+sub_ncerr_f(Input2_F[NUM_VAL-1], Input2_Err2_F[NUM_VAL-1],
             Input1_F, Input1_Err2_F,
             Output_SV_F, Output_Err2_SV_F)
 
@@ -369,7 +369,7 @@ mess = test_common_bind.makeCheck("sub_ncerr_f", Output_SV_F,
                                   TruthOutput_Err2_SV_F)
 print mess
 
-sub_ncerr_d(Input2_D[vec_length-1], Input2_Err2_D[vec_length-1],
+sub_ncerr_d(Input2_D[NUM_VAL-1], Input2_Err2_D[NUM_VAL-1],
             Input1_D, Input1_Err2_D,
             Output_SV_D, Output_Err2_SV_D)
 
@@ -379,7 +379,7 @@ mess = test_common_bind.makeCheck("sub_ncerr_d", Output_SV_D,
                                   TruthOutput_Err2_SV_D)
 print mess
 
-sub_ncerr_i(Input2_I[vec_length-1], Input2_Err2_I[vec_length-1],
+sub_ncerr_i(Input2_I[NUM_VAL-1], Input2_Err2_I[NUM_VAL-1],
             Input1_I, Input1_Err2_I,
             Output_SV_I, Output_Err2_SV_I)
 
@@ -389,7 +389,7 @@ mess = test_common_bind.makeCheck("sub_ncerr_i", Output_SV_I,
                                   TruthOutput_Err2_SV_I)
 print mess
 
-sub_ncerr_u(Input2_U[vec_length-1], Input2_Err2_U[vec_length-1],
+sub_ncerr_u(Input2_U[NUM_VAL-1], Input2_Err2_U[NUM_VAL-1],
             Input1_U, Input1_Err2_U,
             Output_SV_U, Output_Err2_SV_U)
 

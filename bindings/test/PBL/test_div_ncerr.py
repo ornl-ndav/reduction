@@ -19,7 +19,7 @@ print "###########################################################"
 print
 
 # Set standard size for vectors
-vec_length = 5
+NUM_VAL = 5
 
 # Create input vectors
 Input1_F = FloatNessiVector()
@@ -40,7 +40,7 @@ Input2_U = UnsignedIntNessiVector()
 Input2_Err2_U = UnsignedIntNessiVector()
 
 # Place values in the input vectors
-for counter in range(vec_length):
+for counter in range(NUM_VAL):
     Input1_F.append(float(10-counter))
     Input1_Err2_F.append(float(1))
     Input1_D.append(float(10-counter))
