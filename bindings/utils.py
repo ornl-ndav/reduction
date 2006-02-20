@@ -46,13 +46,13 @@ import utils_bind
 # Once a function is called, according to the type of the NessiVectors calling 
 # it, the module redirects the call to the right function.
 #
-# For example, when calling the function \f$weighted_ave\f$ with two
-# NessiVectors (data and error\f$^2\$) of type <i>float</i>, the module
+# For example, when calling the function \f$weighted_average\f$ with two
+# NessiVectors (data and error\f$^2\f$) of type <i>float</i>, the module
 # redirects the call to the function \f$weighted\_average\_f\f$.
 #
 
 ##
-# \defgroup weighted_ave utils::weighted_ave
+# \defgroup weighted_average utils::weighted_average
 # \{
 
 ##
