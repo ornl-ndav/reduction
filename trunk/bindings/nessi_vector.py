@@ -43,6 +43,10 @@ import sys
 # \f[
 # >>> NessiVector_result = add(NessiVector_1, NessiVector_2)
 # \f]
+#
+##
+# \defgroup py_NessiVector NessiVector
+# \{
 class NessiVector (list):
 
     FLOAT = "float"
@@ -51,10 +55,6 @@ class NessiVector (list):
     UNSIGNED = "unsigned"
     UNSIGNED_INT = "unsigned int"
     INT = "int"
-
-##
-# \defgroup __init__ NessiVector::__init__
-# \{
 
 ##
 # Initialization of an instance.
@@ -135,12 +135,6 @@ class NessiVector (list):
                 with negative length"
         else:
             raise Exception,"type not supported by NessiVector"
-##
-# \}
-
-##
-# \defgroup __append__ NessiVector::__append__
-# \{
 
 ##
 # \brief Function used to append elements to a NessiVector
@@ -200,13 +194,6 @@ class NessiVector (list):
             self.__array__.append(num)
 
 ##
-# \}
-
-##
-# \defgroup __getitem__ NessiVector::__getitem__
-# \{
-
-##
 # \brief Function used to get an element of a NessiVector.
 # To get the \f$i^{th}\f$ value of the NessiVector \f$MyVectorA\f$,
 #\f[
@@ -221,12 +208,6 @@ class NessiVector (list):
             return self.__array__[m]
         else:
             print "Last index of this  NessiVector is ",len(self)-1
-##
-# \}
-
-##
-# \defgroup __getslice__ NessiVector::__getslice__
-# \{
 
 ##
 # Function used to get a range of value from a NessiVector.
@@ -243,12 +224,6 @@ class NessiVector (list):
 
     def __getslice__(self,i=0,j=-1):
         print self.__array__[i:j]
-##
-# \}
-
-##
-# \defgroup __len__ NessiVector::__len__
-# \{
 
 ##
 # Function used to get the length of a NessiVector
@@ -262,12 +237,6 @@ class NessiVector (list):
 
     def __len__(self):
         return len(self.__array__)
-##
-# \}
-
-##
-# \defgroup __add__ NessiVector::__add__
-# \{
 
 ##
 # \brief The operator \f$+\f$ allows to add two NessiVector together.
@@ -297,12 +266,6 @@ class NessiVector (list):
             array_manip_bind.add_ncerr_u(self.array, self.array,\
                  right.array,right.array,c.array, c.array)
         return c
-##
-# \}
-
-##
-# \defgroup __sub__ NessiVector::__sub__
-# \{
 
 ##
 # \brief The operator \f$-\f$ allows to substract two NessiVectors.
@@ -337,12 +300,6 @@ class NessiVector (list):
                  right.array,right.array,c.array, ce2.array)
         return c
 
-##
-# \}
-
-##
-# \defgroup __mul__ NessiVector::__mul__
-# \{
 
 ##
 # \brief The operator \f$\times\f$ allows to multiply two NessiVectors.
@@ -377,12 +334,6 @@ class NessiVector (list):
                  right.array,right.array,c.array, ce2.array)
         return c
 
-##
-# \}
-
-##
-# \defgroup __div__ nessi_vector::__div__
-# \{
 
 ##
 # \brief The operator \f$/\f$ allows to divide two NessiVectors.
@@ -417,24 +368,12 @@ class NessiVector (list):
                  right.array,right.array,c.array, ce2.array)
         return c
 
-##
-# \}
-
-##
-# \defgroup __contains__ nessi_vector::__contains__
-# \{
 
 ##
 # Function "__contains__" not implemented yet
 #
     def __contains__(self):
         print  "Not implemented yet"
-##
-# \}
-
-##
-# \defgroup __eq__ nessi_vector::__eq__
-# \{
 
 ##
 # Function "__eq__" not implemented yet
@@ -442,60 +381,30 @@ class NessiVector (list):
 
     def __eq__(self):
         raise exception, "Not implemented yet"
-##
-# \}
-
-##
-# \defgroup __ge__ nessi_vector::__ge__
-# \{
 
 ##
 # Function "__ge__" not implemented yet
 #
     def __ge__(self):
         raise exception, "Not implemented yet"
-##
-# \}
-
-##
-# \defgroup __gt__ nessi_vector::__gt__
-# \{
 
 ##
 # Function "__gt__" not implemented yet
 #
     def __gt__(self):
         raise exception, "Not implemented yet"
-##
-# \}
-
-##
-# \defgroup __ne__ nessi_vector::__ne__
-# \{
 
 ##
 # Function "__ne__" not implemented yet
 #
     def __ne__(self):
         raise exception, "Not implemented yet"
-##
-# \}
-
-##
-# \defgroup __lt__ nessi_vector::__lt__
-# \{
 
 ##
 # Function "__lt__" not implemented yet
 #
     def __lt__(self):
         raise exception, "Not implemented yet"
-##
-# \}
-
-##
-# \defgroup __pop__ nessi_vector::__pop__
-# \{
 
 ##
 # Function "pop" not implemented yet"
@@ -506,12 +415,6 @@ class NessiVector (list):
             raise IndexError,"pop from empty Vector"
 #        return self.__array__.pop()
 
-##
-# \}
-
-##
-# \defgroup print nessi_vector::print
-# \{
 
 ##
 # \brief This method displays elements of a NessiVector.
@@ -568,6 +471,7 @@ class NessiVector (list):
 
 ##
 #\}
+#
 
 ##
 # \defgroup compare_vect nessi_vector::compare_vect
