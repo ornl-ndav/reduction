@@ -226,9 +226,9 @@ namespace Utils
    * average
    * \param input_err2 (INPUT) the square of the uncertainty in the associated 
    * array from which calculate the weighted average
-   * \param start_bin (INPUT) the bin of the array from which to start the 
+   * \param bin_start (INPUT) the bin of the array from which to start the 
    * calculation
-   * \param end_bin (INPUT) the bin of the array at which to end the 
+   * \param bin_end (INPUT) the bin of the array at which to end the 
    * calculation
    * \param weighted_ave (OUTPUT) the weighted average of the array slice
    * \param weighted_ave_err2 (OUTPUT) the square of the uncertainty of the 
@@ -241,8 +241,8 @@ namespace Utils
   std::string
   weighted_average(const Nessi::Vector<NumT> & input,
                    const Nessi::Vector<NumT> & input_err2,
-                   const std::size_t start_bin,
-                   const std::size_t end_bin,
+                   const std::size_t bin_start,
+                   const std::size_t bin_end,
                    NumT & weighted_ave,
                    NumT & weighted_ave_err2,
                    void *temp=NULL);
