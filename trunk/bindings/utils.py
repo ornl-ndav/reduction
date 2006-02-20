@@ -25,7 +25,7 @@
 # $Id$
 
 ##
-# \file bindings/utils.py wrapper of utils library
+# \file bindings/utils.py
 #
 
 import nessi_vector

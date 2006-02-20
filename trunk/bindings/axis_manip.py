@@ -25,7 +25,7 @@
 # $Id$
 
 ##
-# \file bindings/axis_manip.py wrapper of axis_manip library
+# \file bindings/axis_manip.py 
 
 ##
 # \namespace axis_manip
