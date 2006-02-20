@@ -29,7 +29,6 @@
 #
 import array_manip_bind
 import nessi_vector_bind
-import sys
 
 ##
 # \namespace nessi_vector
@@ -539,20 +538,17 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 ##
 # \brief Give the maximum value of the NessiVector's elements
 #
-# \param object (INPUT) is the name of the NessiVector
+# \param array (INPUT) is the name of the NessiVector
 #
 # \return The maximum value of the NessiVector <i>object</i>
 #
-def max_vect(object):
-    max_value = -sys.maxint
-    for i in range(len(object)):
-        if object[i]> max_value:
-            max_value = object[i]
-    if (object.__type__ == NessiVector.FLOAT or
-        object.__type__ == NessiVector.DOUBLE):
-        return max_value
-    else:
-        return max_value
+def max_vect(array):
+    max_value = array[0]
+    for it in array:
+        if it > max_value:
+            max_value = it
+
+    return max_value
 
 ##
 # \}
@@ -565,20 +561,17 @@ def max_vect(object):
 ##
 # \brief Give the minimum value of the NessiVector's elements
 #
-# \param object (INPUT) is the name of the NessiVector
+# \param array (INPUT) is the name of the NessiVector
 #
 # \return The minimum value of the NessiVector <i>object</i>.
 #
-def min_vect(object):
-    min_value = sys.maxint
-    for i in range(len(object)):
-        if object[i] < min_value:
-            min_value = object[i]
-    if (object.__type__ == NessiVector.FLOAT or
-        object.__type__ == NessiVector.DOUBLE):
-        return min_value
-    else:
-        return min_value
+def min_vect(array):
+    min_value = array[0]
+    for it in array:
+        if it < min_value:
+            min_value = it
+
+    return min_value
 
 ##
 # \}
