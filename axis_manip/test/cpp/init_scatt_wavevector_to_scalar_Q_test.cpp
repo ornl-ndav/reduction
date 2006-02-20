@@ -36,7 +36,8 @@ using namespace std;
 const size_t NUM_VAL=5;
 
 /**
- * \defgroup init_scatt_wavevector_to_scalar_Q init_scatt_wavevector_to_scalar_Q
+ * \defgroup init_scatt_wavevector_to_scalar_Q \
+ * init_scatt_wavevector_to_scalar_Q
  *
  * This test compares the output data calculated by the library
  * function init_scatt_wavevector_to_scalar_Q() and described in 3.33

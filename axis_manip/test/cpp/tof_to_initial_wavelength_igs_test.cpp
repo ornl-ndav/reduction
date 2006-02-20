@@ -36,7 +36,8 @@ using namespace std;
 const size_t NUM_VAL=5;
 
 /**
- * \defgroup tof_to_initial_wavelength_igs_test tof_to_initial_wavelength_igs_test
+ * \defgroup tof_to_initial_wavelength_igs_test \
+ * tof_to_initial_wavelength_igs_test
  *
  * This test compares the output data calculated by the library
  * function tof_to_initial_wavelength_igs_test() and described in 3.29
