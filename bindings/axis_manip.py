@@ -28,11 +28,12 @@
 # \file bindings/axis_manip.py wrapper of axis_manip library
 
 ##
-# \brief This module gives the NessiVector access to the various physical
-# axis conversions that are useful for time-on-flight neutron scattering
-# All of the bases functions are written in reference to SNS
-# 107030214-TD0001-R00, "Data Reduction Library Software Requirements and
-# Specifications".
+# \brief Python abstraction layer for access to AxisManip library functions
+#
+# This module gives the NessiVector access to the various physical axis
+# conversions that are useful for time-on-flight neutron scattering. All of
+# the bases functions are written in reference to SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
 #
 # Once a function is called, according to the type of the NessiVector calling
 # it,the module redirectes the call to the right function
