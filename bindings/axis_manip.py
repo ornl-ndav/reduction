@@ -47,7 +47,6 @@
 
 import nessi_vector
 import axis_manip_bind
-import sys
 
 CalculationError = "Error of calculation"
 TypeError = "Error of type"
