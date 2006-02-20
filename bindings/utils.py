@@ -33,7 +33,7 @@ import utils_bind
 #import sys
 
 ##
-# \namespace utils 
+# \namespace utils
 #
 # \brief This Python abstraction layer module provides various utility
 # functions
@@ -41,9 +41,9 @@ import utils_bind
 # This module gives the NessiVector access to the various utility functions
 # provided by the <i>utils</i> library. These functions are written in
 # references to SNS 107030214-TD0001-R00, "Data Reduction Library Software
-# Requirements and Specifications". 
+# Requirements and Specifications".
 #
-# Once a function is called, according to the type of the NessiVectors calling 
+# Once a function is called, according to the type of the NessiVectors calling
 # it, the module redirects the call to the right function.
 #
 # For example, when calling the function \f$weighted_average\f$ with two
@@ -67,7 +67,7 @@ import utils_bind
 # {\sum^{bin_{end}}_{i=bin_{start}} \frac{1}{\sigma_i^2}}
 # \f]
 #
-#  and the square of the uncertainty is calculated according to the 
+#  and the square of the uncertainty is calculated according to the
 # following function
 #
 # \f[
@@ -78,9 +78,9 @@ import utils_bind
 # \param a (INPUT) the NessiVector from which to calculate the weighted average
 # \param ae2 (INPUT) the square of the uncertainty in the associated
 # NessiVector from which calculate the weighted average
-# \param start (INPUT) the bin of the NessiVector from which to start the 
+# \param start (INPUT) the bin of the NessiVector from which to start the
 # calculation
-# \param fin (INPUT) the bin of the NessiVector at which to end the 
+# \param fin (INPUT) the bin of the NessiVector at which to end the
 # calculation
 
 def weighted_average(a,ae2,start,fin):
@@ -91,7 +91,7 @@ def weighted_average(a,ae2,start,fin):
         a : the NessiVector from which to calculate the weighted average
         ae2 : the square of the uncertainty in the associated
         NessiVector from which calculate the weighted average
-        start : the bin of the NessiVector from which to start the 
+        start : the bin of the NessiVector from which to start the
         calculation
         fin : the bin of the NessiVector at which to end the calculation
 
@@ -101,7 +101,7 @@ def weighted_average(a,ae2,start,fin):
         average
     """
     try:
-        
+
         if (a.__type__ == a.FLOAT):
             try:
                 c = float(0)
@@ -113,7 +113,7 @@ def weighted_average(a,ae2,start,fin):
             except ValueError:
                 print "start and/or fin were not entered as numbers"
 
-                
+
         elif (a.__type__ == a.DOUBLE):
             try:
                 c = float(0)
@@ -130,7 +130,7 @@ def weighted_average(a,ae2,start,fin):
 
     except AttributeError:
         print "Vector type requested, %s, is not supported!" % a.__type__
-    
+
     return c,ce2
 
 ##
