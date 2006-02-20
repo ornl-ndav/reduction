@@ -45,8 +45,8 @@ namespace Utils
   std::string
   weighted_average(const Nessi::Vector<NumT> & input,
                    const Nessi::Vector<NumT> & input_err2,
-                   const NumT start_bin,
-                   const NumT end_bin,
+                   const std::size_t start_bin,
+                   const std::size_t end_bin,
                    NumT & weighted_ave,
                    NumT & weighted_ave_err2,
                    void *temp=NULL)
@@ -61,16 +61,10 @@ namespace Utils
         throw std::invalid_argument(wa_func_str+" data & err "+e.what());
       }
 
-    // This makes the starting element for the weighted average
-    const std::size_t start_elem = static_cast<std::size_t>(start_bin);
-    
-    // This makes the ending element for the weighted average
-    const std::size_t end_elem = static_cast<std::size_t>(end_bin);
-
     weighted_ave = static_cast<NumT>(0.0);
     weighted_ave_err2 = static_cast<NumT>(0.0);
 
-    for(std::size_t i = start_elem; i <= end_elem; ++i)
+    for(std::size_t i = start_bin; i <= end_bin; ++i)
       {
         weighted_ave += (input[i] / input_err2[i]);
         weighted_ave_err2 += (static_cast<NumT>(1.) / input_err2[i]);
