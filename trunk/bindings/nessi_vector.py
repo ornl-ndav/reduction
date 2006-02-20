@@ -196,8 +196,8 @@ class NessiVector (list):
 # \param number (INPUT) is the number to append
 #
 	def append(self,*number):
-		for i in range(len(number)):
-			self.__array__.append(number[i])
+		for num in number:
+			self.__array__.append(num)
 
 ##
 # \}
