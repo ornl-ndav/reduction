@@ -111,10 +111,10 @@ template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
 {
   // allocate arrays
-  Nessi::Vector< NumT > axis_in;
-  Nessi::Vector< NumT > axis_out;
-  Nessi::Vector< NumT > input;
-  Nessi::Vector< NumT > input_err2;
+  Nessi::Vector<NumT>   axis_in;
+  Nessi::Vector<NumT>   axis_out;
+  Nessi::Vector<NumT>   input;
+  Nessi::Vector<NumT>   input_err2;
   Nessi::Vector<NumT>   output(2);
   Nessi::Vector<NumT>   output_err2(2);
   Nessi::Vector<NumT>   true_output;

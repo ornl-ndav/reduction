@@ -146,8 +146,8 @@ template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
 {
   // allocate arrays
-  Nessi::Vector< NumT > wavelength;
-  Nessi::Vector< NumT > wavelength_err2;
+  Nessi::Vector<NumT>   wavelength;
+  Nessi::Vector<NumT>   wavelength_err2;
   NumT                  output_ss;
   NumT                  output_ss_err2;
   NumT                  true_output_ss;
