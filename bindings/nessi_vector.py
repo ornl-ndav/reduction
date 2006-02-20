@@ -25,7 +25,7 @@
 # $Id$
 
 ##
-#\file bindings/nessi_vector.py Python binding of SNS Common Libraries
+#\file bindings/nessi_vector.py 
 #
 import array_manip_bind
 import nessi_vector_bind

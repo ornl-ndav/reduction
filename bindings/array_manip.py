@@ -25,7 +25,7 @@
 # $Id$
 
 ##
-# \file bindings/array_manip.py wrapper of array_manip library
+# \file bindings/array_manip.py 
 #
 
 import nessi_vector
