@@ -19,12 +19,12 @@
 # responsibility for the accuracy, completeness, or usefulness of any
 # information, apparatus, product, or process disclosed, or represents that
 # its use would not infringe privately owned rights.
-#	
+#
 #
 
 # $Id$
 
-## 
+##
 #\file bindings/nessi_vector.py Python binding of SNS Common Libraries
 #
 import array_manip_bind
@@ -45,12 +45,12 @@ import sys
 # \f]
 class NessiVector (list):
 
-	FLOAT = "float"	
-	DOUBLE = "double"	
-	UINT = "uint"	
-	UNSIGNED = "unsigned"
-	UNSIGNED_INT = "unsigned int"
-	INT = "int"
+    FLOAT = "float"
+    DOUBLE = "double"
+    UINT = "uint"
+    UNSIGNED = "unsigned"
+    UNSIGNED_INT = "unsigned int"
+    INT = "int"
 
 ##
 # \defgroup __init__ NessiVector::__init__
@@ -58,7 +58,7 @@ class NessiVector (list):
 
 ##
 # Initialization of an instance.
-# A NessiVector can be defined in 4 ways. 
+# A NessiVector can be defined in 4 ways.
 #
 # - Without any argument:
 # \f[
@@ -82,59 +82,59 @@ class NessiVector (list):
 # \f[
 # >>> MyVector4 = NessiVector(4,"int")
 # \f]
-# \f$MyVector4\f$ is a 4 elements long, initialized to 0, NessiVector of type 
+# \f$MyVector4\f$ is a 4 elements long, initialized to 0, NessiVector of type
 # <i>int</i>
 #
 # \param self (INPUT) is the name of the NessiVector
 # \param length (INPUT/OPTIONAL) is the length of the instance (0 by default)
-# \param type (INPUT/OPTIONAL) is the type of the instance (<i>float</i> by 
+# \param type (INPUT/OPTIONAL) is the type of the instance (<i>float</i> by
 # default)
 #
-	def __init__(self, length=0, type="float"):
-	
-		if type.lower()==NessiVector.UNSIGNED_INT or \
-		type.lower()==NessiVector.UNSIGNED or \
-		type.lower()==NessiVector.UINT:
-			self.__type__=self.UINT
-		
-			if length >= 0:
-				self.__array__ = 	\
-			nessi_vector_bind.UnsignedIntNessiVector(length)
-			else:
-				raise Exception, "Cannot instantiate Vector \
-						with negative length" 
-	
-		elif type.lower()==NessiVector.INT:
-			self.__type__=self.INT
+    def __init__(self, length=0, type="float"):
 
-			if length >= 0:
-				self.__array__ = \
-			nessi_vector_bind.IntNessiVector(length)
-			else:
-				raise Exception, "Cannot instantiate Vector \
-				with negative length"
+        if type.lower()==NessiVector.UNSIGNED_INT or \
+        type.lower()==NessiVector.UNSIGNED or \
+        type.lower()==NessiVector.UINT:
+            self.__type__=self.UINT
 
-		elif type.lower() == NessiVector.FLOAT:
-			self.__type__=self.FLOAT
+            if length >= 0:
+                self.__array__ =     \
+            nessi_vector_bind.UnsignedIntNessiVector(length)
+            else:
+                raise Exception, "Cannot instantiate Vector \
+                        with negative length"
 
-			if length >= 0:
-				self.__array__ = \
-			nessi_vector_bind.FloatNessiVector(length)
-			else:
-				raise Exception, "Cannot instantiate Vector \
-				with  negative length"
+        elif type.lower()==NessiVector.INT:
+            self.__type__=self.INT
 
-		elif type.lower() == NessiVector.DOUBLE:
-			self.__type__ = self.DOUBLE
+            if length >= 0:
+                self.__array__ = \
+            nessi_vector_bind.IntNessiVector(length)
+            else:
+                raise Exception, "Cannot instantiate Vector \
+                with negative length"
 
-			if length >= 0:
-				self.__array__ = \
-			nessi_vector_bind.DoubleNessiVector(length)
-			else:
-				raise Exception, "Cannot instantiate Vector \
-				with negative length"
-		else:
-			raise Exception,"type not supported by NessiVector"
+        elif type.lower() == NessiVector.FLOAT:
+            self.__type__=self.FLOAT
+
+            if length >= 0:
+                self.__array__ = \
+            nessi_vector_bind.FloatNessiVector(length)
+            else:
+                raise Exception, "Cannot instantiate Vector \
+                with  negative length"
+
+        elif type.lower() == NessiVector.DOUBLE:
+            self.__type__ = self.DOUBLE
+
+            if length >= 0:
+                self.__array__ = \
+            nessi_vector_bind.DoubleNessiVector(length)
+            else:
+                raise Exception, "Cannot instantiate Vector \
+                with negative length"
+        else:
+            raise Exception,"type not supported by NessiVector"
 ##
 # \}
 
@@ -153,12 +153,12 @@ class NessiVector (list):
 # The size of the instance increases of 1 unit and the new element appended is
 # the new last element of the instance. That can be a confusion in the case the
 # size of the instance has already been declared during the initialization
-# process. For example, if a NessiVector has been defined has a 5 elements 
+# process. For example, if a NessiVector has been defined has a 5 elements
 # long of type <i>float</i>
 # \f[
 # >>> MyVector = NessiVector(5)
 # \f]
-# the <i>append</i> method will add the new element after the 5 first "0". 
+# the <i>append</i> method will add the new element after the 5 first "0".
 # elements
 # \f[
 # >>> MyVector.append(10.5)
@@ -195,9 +195,9 @@ class NessiVector (list):
 # \param self (INPUT) is the name of the NessiVector
 # \param number (INPUT) is the number to append
 #
-	def append(self,*number):
-		for num in number:
-			self.__array__.append(num)
+    def append(self,*number):
+        for num in number:
+            self.__array__.append(num)
 
 ##
 # \}
@@ -208,7 +208,7 @@ class NessiVector (list):
 
 ##
 # \brief Function used to get an element of a NessiVector.
-# To get the \f$i^{th}\f$ value of the NessiVector \f$MyVectorA\f$, 
+# To get the \f$i^{th}\f$ value of the NessiVector \f$MyVectorA\f$,
 #\f[
 # >>> MyVectorA[i]
 #\f]
@@ -216,12 +216,12 @@ class NessiVector (list):
 # of the NessiVector outside its range
 #
 
-	def __getitem__(self,m):     # need to throw exception when m>len(self)
-		if (m<len(self)):
-			return self.__array__[m]
-		else:
-			print "Last index of this  NessiVector is ",len(self)-1
-##			
+    def __getitem__(self,m):     # need to throw exception when m>len(self)
+        if (m<len(self)):
+            return self.__array__[m]
+        else:
+            print "Last index of this  NessiVector is ",len(self)-1
+##
 # \}
 
 ##
@@ -238,14 +238,14 @@ class NessiVector (list):
 # \param self (INPUT) is the name of the NessiVector
 # \param i (INPUT/OPTIONAL) is the index of the first element to get (0 by
 # default, i.e., first element of the NessiVector)
-# \param j (INPUT/OPTIONAL) is the index + 1 of the last element to get (-1 by 
+# \param j (INPUT/OPTIONAL) is the index + 1 of the last element to get (-1 by
 # default, i.e., last element of the NessiVector)
 
-	def __getslice__(self,i=0,j=-1):
-		print self.__array__[i:j]
+    def __getslice__(self,i=0,j=-1):
+        print self.__array__[i:j]
 ##
 # \}
-    
+
 ##
 # \defgroup __len__ NessiVector::__len__
 # \{
@@ -260,8 +260,8 @@ class NessiVector (list):
 # \param self (INPUT) is the name of the NessiVector
 #
 
-	def __len__(self):
-		return len(self.__array__)	
+    def __len__(self):
+        return len(self.__array__)
 ##
 # \}
 
@@ -269,7 +269,7 @@ class NessiVector (list):
 # \defgroup __add__ NessiVector::__add__
 # \{
 
-## 
+##
 # \brief The operator \f$+\f$ allows to add two NessiVector together.
 #
 # To add two NessiVectors together, instead of using the function <i>add</i>
@@ -279,24 +279,24 @@ class NessiVector (list):
 # <<< NessiVector_{result} = NessiVector_1 + NessiVector_2
 # \f]
 #
-	def __add__(self,right):
-		if (self.__type__ == NessiVector.FLOAT):
-			c = NessiVector(len(self))
-			array_manip_bind.add_ncerr_f(self.array, self.array,\
-				 right.array,right.array,c.array, c.array)
-		if (self.__type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self),type="double")
-			array_manip_bind.add_ncerr_d(self.array, self.array,\
-				right.array,right.array,c.array, c.array)
-		if (self.__type__ == NessiVector.INT):
-			c = NessiVector(len(self),type="int")
-			array_manip_bind.add_ncerr_i(self.array, self.array,\
-				 right.array,right.array,c.array, c.array)
-		if (self.__type__ == NessiVector.UINT):
-			c = NessiVector(len(self),type="uint")
-			array_manip_bind.add_ncerr_u(self.array, self.array,\
-				 right.array,right.array,c.array, c.array)
-		return c
+    def __add__(self,right):
+        if (self.__type__ == NessiVector.FLOAT):
+            c = NessiVector(len(self))
+            array_manip_bind.add_ncerr_f(self.array, self.array,\
+                 right.array,right.array,c.array, c.array)
+        if (self.__type__ == NessiVector.DOUBLE):
+            c = NessiVector(len(self),type="double")
+            array_manip_bind.add_ncerr_d(self.array, self.array,\
+                right.array,right.array,c.array, c.array)
+        if (self.__type__ == NessiVector.INT):
+            c = NessiVector(len(self),type="int")
+            array_manip_bind.add_ncerr_i(self.array, self.array,\
+                 right.array,right.array,c.array, c.array)
+        if (self.__type__ == NessiVector.UINT):
+            c = NessiVector(len(self),type="uint")
+            array_manip_bind.add_ncerr_u(self.array, self.array,\
+                 right.array,right.array,c.array, c.array)
+        return c
 ##
 # \}
 
@@ -308,35 +308,35 @@ class NessiVector (list):
 # \brief The operator \f$-\f$ allows to substract two NessiVectors.
 #
 # To substract one NessiVector from another, instead of using the function
-# <i>sub</i> provided by the NessiVectorUtils module, you can simply use the 
+# <i>sub</i> provided by the NessiVectorUtils module, you can simply use the
 # following technique:
 # \f[
 # <<< NessiVector_{result} = NessiVector_1 - NessiVector_2
 # \f]
 #
-	def __sub__(self,right):
-		if (self.__type__ == NessiVector.FLOAT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
-			array_manip_bind.sub_ncerr_f(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self),type="double")
-			ce2 = NessiVector(len(self),type="double")
-			array_manip_bind.sub_ncerr_d(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.INT):
-			c = NessiVector(len(self),type="int")
-			ce2 = NessiVector(len(self),type="int")
-			array_manip_bind.sub_ncerr_i(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.UINT):
-			c = NessiVector(len(self),type="uint")
-			ce2 = NessiVector(len(self),type="uint")
-			array_manip_bind.sub_ncerr_u(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		return c
-		
+    def __sub__(self,right):
+        if (self.__type__ == NessiVector.FLOAT):
+            c = NessiVector(len(self))
+            ce2 = NessiVector(len(self))
+            array_manip_bind.sub_ncerr_f(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.DOUBLE):
+            c = NessiVector(len(self),type="double")
+            ce2 = NessiVector(len(self),type="double")
+            array_manip_bind.sub_ncerr_d(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.INT):
+            c = NessiVector(len(self),type="int")
+            ce2 = NessiVector(len(self),type="int")
+            array_manip_bind.sub_ncerr_i(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.UINT):
+            c = NessiVector(len(self),type="uint")
+            ce2 = NessiVector(len(self),type="uint")
+            array_manip_bind.sub_ncerr_u(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        return c
+
 ##
 # \}
 
@@ -344,78 +344,78 @@ class NessiVector (list):
 # \defgroup __mul__ NessiVector::__mul__
 # \{
 
-## 
+##
 # \brief The operator \f$\times\f$ allows to multiply two NessiVectors.
 #
-# To multiply two NessiVectors, instead of using the function <i>mult</i> 
+# To multiply two NessiVectors, instead of using the function <i>mult</i>
 # provided by the NessiVectorUtils module, you can simply use the following
 # technique:
 # \f[
 # <<< NessiVector_{result} = NessiVector_1 \times NessiVector_2
 # \f]
 #
-	def __mul__(self,right):
-		if (self.__type__ == NessiVector.FLOAT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
-			array_manip_bind.mult_ncerr_f(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self),type="double")
-			ce2 = NessiVector(len(self),type="double")
-			array_manip_bind.mult_ncerr_d(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.INT):
-			c = NessiVector(len(self),type="int")
-			ce2 = NessiVector(len(self),type="int")
-			array_manip_bind.mult_ncerr_i(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.UINT):
-			c = NessiVector(len(self),type="uint")
-			ce2 = NessiVector(len(self),type="uint")
-			array_manip_bind.mult_ncerr_u(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		return c
+    def __mul__(self,right):
+        if (self.__type__ == NessiVector.FLOAT):
+            c = NessiVector(len(self))
+            ce2 = NessiVector(len(self))
+            array_manip_bind.mult_ncerr_f(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.DOUBLE):
+            c = NessiVector(len(self),type="double")
+            ce2 = NessiVector(len(self),type="double")
+            array_manip_bind.mult_ncerr_d(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.INT):
+            c = NessiVector(len(self),type="int")
+            ce2 = NessiVector(len(self),type="int")
+            array_manip_bind.mult_ncerr_i(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.UINT):
+            c = NessiVector(len(self),type="uint")
+            ce2 = NessiVector(len(self),type="uint")
+            array_manip_bind.mult_ncerr_u(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        return c
 
 ##
 # \}
-		
+
 ##
 # \defgroup __div__ nessi_vector::__div__
 # \{
 
-## 
+##
 # \brief The operator \f$/\f$ allows to divide two NessiVectors.
 #
-# To divide two NessiVectors, instead of using the function <i>div</i> 
+# To divide two NessiVectors, instead of using the function <i>div</i>
 # provided by the NessiVectorUtils module, you can simply use the following
 # technique:
 # \f[
 # <<< NessiVector_{result} = NessiVector_1 / NessiVector_2
 # \f]
 #
-	def __div__(self,right):
-		if (self.__type__ == NessiVector.FLOAT):
-			c = NessiVector(len(self))
-			ce2 = NessiVector(len(self))
-			array_manip_bind.div_ncerr_f(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.DOUBLE):
-			c = NessiVector(len(self),type="double")
-			ce2 = NessiVector(len(self),type="double")
-			array_manip_bind.div_ncerr_d(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.INT):
-			c = NessiVector(len(self),type="int")
-			ce2 = NessiVector(len(self),type="int")
-			array_manip_bind.div_ncerr_i(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		if (self.__type__ == NessiVector.UINT):
-			c = NessiVector(len(self),type="uint")
-			ce2 = NessiVector(len(self),type="uint")
-			array_manip_bind.div_ncerr_u(self.array, self.array,\
-				 right.array,right.array,c.array, ce2.array)
-		return c
+    def __div__(self,right):
+        if (self.__type__ == NessiVector.FLOAT):
+            c = NessiVector(len(self))
+            ce2 = NessiVector(len(self))
+            array_manip_bind.div_ncerr_f(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.DOUBLE):
+            c = NessiVector(len(self),type="double")
+            ce2 = NessiVector(len(self),type="double")
+            array_manip_bind.div_ncerr_d(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.INT):
+            c = NessiVector(len(self),type="int")
+            ce2 = NessiVector(len(self),type="int")
+            array_manip_bind.div_ncerr_i(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        if (self.__type__ == NessiVector.UINT):
+            c = NessiVector(len(self),type="uint")
+            ce2 = NessiVector(len(self),type="uint")
+            array_manip_bind.div_ncerr_u(self.array, self.array,\
+                 right.array,right.array,c.array, ce2.array)
+        return c
 
 ##
 # \}
@@ -427,8 +427,8 @@ class NessiVector (list):
 ##
 # Function "__contains__" not implemented yet
 #
-	def __contains__(self):
-		print  "Not implemented yet"
+    def __contains__(self):
+        print  "Not implemented yet"
 ##
 # \}
 
@@ -440,8 +440,8 @@ class NessiVector (list):
 # Function "__eq__" not implemented yet
 #
 
-	def __eq__(self):
-	    raise exception, "Not implemented yet"
+    def __eq__(self):
+        raise exception, "Not implemented yet"
 ##
 # \}
 
@@ -452,11 +452,11 @@ class NessiVector (list):
 ##
 # Function "__ge__" not implemented yet
 #
-	def __ge__(self):
-		raise exception, "Not implemented yet"
+    def __ge__(self):
+        raise exception, "Not implemented yet"
 ##
-# \}	
-	
+# \}
+
 ##
 # \defgroup __gt__ nessi_vector::__gt__
 # \{
@@ -464,11 +464,11 @@ class NessiVector (list):
 ##
 # Function "__gt__" not implemented yet
 #
-	def __gt__(self):
-		raise exception, "Not implemented yet"
+    def __gt__(self):
+        raise exception, "Not implemented yet"
 ##
 # \}
-	
+
 ##
 # \defgroup __ne__ nessi_vector::__ne__
 # \{
@@ -476,11 +476,11 @@ class NessiVector (list):
 ##
 # Function "__ne__" not implemented yet
 #
-	def __ne__(self):
-		raise exception, "Not implemented yet"
+    def __ne__(self):
+        raise exception, "Not implemented yet"
 ##
 # \}
-	
+
 ##
 # \defgroup __lt__ nessi_vector::__lt__
 # \{
@@ -488,8 +488,8 @@ class NessiVector (list):
 ##
 # Function "__lt__" not implemented yet
 #
-	def __lt__(self):
-		raise exception, "Not implemented yet"
+    def __lt__(self):
+        raise exception, "Not implemented yet"
 ##
 # \}
 
@@ -500,11 +500,11 @@ class NessiVector (list):
 ##
 # Function "pop" not implemented yet"
 #
-	def pop(self):
-		raise exception, "Not implemented yet"
-		if len(self.__array__)<=0:
-			raise IndexError,"pop from empty Vector"
-#		return self.__array__.pop()
+    def pop(self):
+        raise exception, "Not implemented yet"
+        if len(self.__array__)<=0:
+            raise IndexError,"pop from empty Vector"
+#        return self.__array__.pop()
 
 ##
 # \}
@@ -513,58 +513,58 @@ class NessiVector (list):
 # \defgroup print nessi_vector::print
 # \{
 
-## 
+##
 # \brief This method displays elements of a NessiVector.
 #
-#  If the NessiVector contains more than 10 elements, the 10 first elements, 
+#  If the NessiVector contains more than 10 elements, the 10 first elements,
 # follow by 3 dots ". . ." and the last element of the NessiVector are displayed.
 # The default number of elements displayed can be changed by giving this number
 # as second variable to the <i>print</i> method.
-# 
+#
 # \param object (INPUT) is the name of the NessiVector
 # \param last (INPUT/OPTIONAL) is the number of element to display, 10 by default
-# 
-# \return 
-# - n first elements, 3 dots and last element of the NessiVector, 
+#
+# \return
+# - n first elements, 3 dots and last element of the NessiVector,
 # if the NessiVector contains more than n elements
-# - all the elements of the NessiVector, if the NessiVector is smaller than n. 
+# - all the elements of the NessiVector, if the NessiVector is smaller than n.
 #
 # The number are displayed with 16 digits after the decimal separator.
 #
 
-	def __str__(self,last=10):
-						
-		str_output=""
+    def __str__(self,last=10):
 
-		if len(self)<last:
-			last=len(self)	
+        str_output=""
 
-		if (self.__type__ == NessiVector.FLOAT or 
-			self.__type__ == NessiVector.DOUBLE):
-			for i in range(0,last):
-				str_output = str_output + "%7.16f " \
-					%self.__array__[i]
-		else:	
-			for i in range(0,last):
-				str_output = str_output + "%d " %self.__array__[i]
-	
-		if (self.__type__ == NessiVector.FLOAT or  
-			self.__type__ == NessiVector.DOUBLE):
-			if len(self) > last:
-				str_output = str_output +"..."
-				str_output = str_output + "%7.16f" \
-					%self.__array__[len(self)-1]
-			else:
-				str_output = str_output + ""
-		else:	
-			if len(self) > last:
-				str_output = str_output + "...",
-				str_output = str_output + "%d " \
-					%self.__array__[len(self)-1]
-			else:
-				str_output = str_output + ""
+        if len(self)<last:
+            last=len(self)
 
-		return str_output
+        if (self.__type__ == NessiVector.FLOAT or
+            self.__type__ == NessiVector.DOUBLE):
+            for i in range(0,last):
+                str_output = str_output + "%7.16f " \
+                    %self.__array__[i]
+        else:
+            for i in range(0,last):
+                str_output = str_output + "%d " %self.__array__[i]
+
+        if (self.__type__ == NessiVector.FLOAT or
+            self.__type__ == NessiVector.DOUBLE):
+            if len(self) > last:
+                str_output = str_output +"..."
+                str_output = str_output + "%7.16f" \
+                    %self.__array__[len(self)-1]
+            else:
+                str_output = str_output + ""
+        else:
+            if len(self) > last:
+                str_output = str_output + "...",
+                str_output = str_output + "%d " \
+                    %self.__array__[len(self)-1]
+            else:
+                str_output = str_output + ""
+
+        return str_output
 
 ##
 #\}
@@ -585,41 +585,41 @@ class NessiVector (list):
 # \return display of the first n elements of the two, or three NessiVectors.
 
 def compare_vect(n,object1,object2,object3=NessiVector()):
-	
-	tab="\t\t"
-	str_output = ""
-	
-	#find maximum value and then set the tab
 
-	if (max_vect(object1) <= 9999):
-		pass
-	else:
-		tab = tab + "\t"
+    tab="\t\t"
+    str_output = ""
 
-	for i in range(0,n):	
+    #find maximum value and then set the tab
 
-		if (object1.__type__ == NessiVector.FLOAT or
-			object1.__type__ == NessiVector.DOUBLE):
-			
-				str_output = str_output + "%7.16f " \
-					%object1[i] + tab + \
-					"%7.16f " %object2[i]
+    if (max_vect(object1) <= 9999):
+        pass
+    else:
+        tab = tab + "\t"
 
-				if len(object3) !=0:
-					str_output = str_output + \
-					tab + "%7.16f " %object3[i]
-		
-		else:
-			for i in range(0,n):
-				str_output = str_output + "%d " %object1[i] \
-					+ tab + "%d " %object2[i]
-			
-				if len(object3) !=0:
-					print str_output + tab + "%d " %object3[i]
+    for i in range(0,n):
 
-		str_output = str_output
-		
-	print str_output
+        if (object1.__type__ == NessiVector.FLOAT or
+            object1.__type__ == NessiVector.DOUBLE):
+
+                str_output = str_output + "%7.16f " \
+                    %object1[i] + tab + \
+                    "%7.16f " %object2[i]
+
+                if len(object3) !=0:
+                    str_output = str_output + \
+                    tab + "%7.16f " %object3[i]
+
+        else:
+            for i in range(0,n):
+                str_output = str_output + "%d " %object1[i] \
+                    + tab + "%d " %object2[i]
+
+                if len(object3) !=0:
+                    print str_output + tab + "%d " %object3[i]
+
+        str_output = str_output
+
+    print str_output
 
 ##
 # \}
@@ -628,7 +628,7 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 ##
 # \defgroup max_vect nessi_vector::max_vect
 # \{
-#	
+#
 
 ##
 # \brief Give the maximum value of the NessiVector's elements
@@ -638,15 +638,15 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 # \return The maximum value of the NessiVector <i>object</i>
 #
 def max_vect(object):
-	max_value = -sys.maxint
-	for i in range(len(object)):
-		if object[i]> max_value:
-			max_value = object[i]
-	if (object.__type__ == NessiVector.FLOAT or
-		object.__type__ == NessiVector.DOUBLE):
-		return max_value
-	else:
-		return max_value
+    max_value = -sys.maxint
+    for i in range(len(object)):
+        if object[i]> max_value:
+            max_value = object[i]
+    if (object.__type__ == NessiVector.FLOAT or
+        object.__type__ == NessiVector.DOUBLE):
+        return max_value
+    else:
+        return max_value
 
 ##
 # \}
@@ -664,15 +664,15 @@ def max_vect(object):
 # \return The minimum value of the NessiVector <i>object</i>.
 #
 def min_vect(object):
-	min_value = sys.maxint
-	for i in range(len(object)):
-		if object[i] < min_value:
-			min_value = object[i]
-	if (object.__type__ == NessiVector.FLOAT or
-		object.__type__ == NessiVector.DOUBLE):
-		return min_value
-	else:
-		return min_value
+    min_value = sys.maxint
+    for i in range(len(object)):
+        if object[i] < min_value:
+            min_value = object[i]
+    if (object.__type__ == NessiVector.FLOAT or
+        object.__type__ == NessiVector.DOUBLE):
+        return min_value
+    else:
+        return min_value
 
 ##
 # \}
