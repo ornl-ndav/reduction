@@ -43,9 +43,9 @@
  *
  * P. J. Mohr and B. N. Taylor, "The 2002 CODATA Recommended Values of the 
  * Fundamental Physical Constants, Web Version 4.0," available at 
- * physics.nist.gov/constants. This database was developed by J. Baker, M. 
- * Douma, and S. Kotochigova. (National Institute of Standards and Technology, 
- * Gaithersburg, MD 20899, 9 December 2003).
+ * http://physics.nist.gov/constants. This database was developed by J. Baker, 
+ * M. Douma, and S. Kotochigova. (National Institute of Standards and 
+ * Technology, Gaithersburg, MD 20899, 9 December 2003).
  */
 namespace PhysConst
 {
