@@ -203,14 +203,25 @@ namespace Utils
    * {\sum^{bin_{end}}_{i=bin_{start}} \frac{1}{\sigma_i^2}}
    * \f]
    *
-   *  and the square of the uncertainty is calculated according to the 
-   * following function
+   *  where \f$x_i\f$ is the \f$i^{th}\f$ element in the input array, 
+   * \f$\sigma_i^2\f$ is the square of the uncertainty associated with the 
+   * input array, \f$bin_{start}\f$ is the starting bin of the array from 
+   * which to calculate the weighted average, \f$bin_{end}\f$ is the ending 
+   * bin of the array where to stop the calculation, and \f$\mu\f$ is the 
+   * weighted average.
+   *
+   * The square of the uncertainty is calculated according to the following 
+   * function
    *
    * \f[
    * \sigma_{\mu}^2 = \frac{1}{\sum^{bin_{end}}_{i=bin_{start}} \frac{1}
    * {\sigma_i^2}}
    * \f]
    *
+   *  where the other symbols are exactly as those mentioned above and 
+   * \f$\sigma_{\mu}^2\f$ is the square of the uncertainty in the weighted 
+   * average.
+   * 
    * \param input (INPUT) the array from which to calculate the weighted 
    * average
    * \param input_err2 (INPUT) the square of the uncertainty in the associated 
