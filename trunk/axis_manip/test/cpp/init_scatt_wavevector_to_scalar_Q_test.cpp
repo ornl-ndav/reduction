@@ -241,7 +241,7 @@ bool test_okay(NumT                & output_ss,
  */
 template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
-{ 
+{
   // allocate arrays
   NumT                polar=static_cast<NumT>(0.22);
   NumT                polar_err2=static_cast<NumT>(0.11);

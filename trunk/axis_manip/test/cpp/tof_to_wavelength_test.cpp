@@ -115,13 +115,13 @@ void initialize_true_outputs(double    & true_output_ss,
  */
 template <typename NumT>
 bool test_okay(NumT    & output_ss,
-         NumT    & output_ss_err2,
-         NumT    & true_output_ss,
-         NumT    & true_output_ss_err2,
-         Nessi::Vector<NumT> & output_vv,
-         Nessi::Vector<NumT> & output_vv_err2,
-         Nessi::Vector<NumT> & true_output_vv,
-         Nessi::Vector<NumT> & true_output_vv_err2)
+               NumT    & output_ss_err2,
+               NumT    & true_output_ss,
+               NumT    & true_output_ss_err2,
+               Nessi::Vector<NumT> & output_vv,
+               Nessi::Vector<NumT> & output_vv_err2,
+               Nessi::Vector<NumT> & true_output_vv,
+               Nessi::Vector<NumT> & true_output_vv_err2)
 {
   bool value = true;
 
@@ -154,7 +154,7 @@ bool test_okay(NumT    & output_ss,
  */
 template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
-{ 
+{
 // allocate arrays
   Nessi::Vector<NumT>   tof;
   Nessi::Vector<NumT>   tof_err2;
@@ -194,7 +194,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
       print(output_ss, true_output_ss, SS, debug);
       print(output_ss_err2, true_output_ss_err2, ERROR+SS, debug);
     }
-  
+
   return test_okay(output_ss, output_ss_err2,
                    true_output_ss, true_output_ss_err2,
                    output_vv, output_vv_err2,
@@ -210,13 +210,13 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
 int main(int argc, char *argv[])
 {
   cout << "tof_to_wavelength_test.cpp..........";
-  
+
   string debug;
   if(argc > 1)
     {
       debug = argv[1];
     }
-  
+
   if(!test_func(static_cast<float>(1), debug))
     {
       return -1;
