@@ -230,8 +230,8 @@ namespace Utils
   std::string
   weighted_average(const Nessi::Vector<NumT> & input,
                    const Nessi::Vector<NumT> & input_err2,
-                   const NumT start_bin,
-                   const NumT end_bin,
+                   const std::size_t start_bin,
+                   const std::size_t end_bin,
                    NumT & weighted_ave,
                    NumT & weighted_ave_err2,
                    void *temp=NULL);
