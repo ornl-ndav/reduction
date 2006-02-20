@@ -28,6 +28,8 @@
 # \file bindings/axis_manip.py wrapper of axis_manip library
 
 ##
+# \namespace axis_manip
+#
 # \brief Python abstraction layer for access to AxisManip library functions
 #
 # This module gives the NessiVector access to the various physical axis

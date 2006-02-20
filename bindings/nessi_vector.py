@@ -32,6 +32,8 @@ import nessi_vector_bind
 import sys
 
 ##
+# \namespace nessi_vector
+#
 # \brief The purpose of this class is to provide an abstraction layer that
 # hide the call to the functions according to the type of the instance.
 #
