@@ -22,6 +22,12 @@
  *
  */
 
+/**
+ * $Id$
+ *
+ * \file axis_manip/test/cpp/init_scatt_wavevector_to_scalar_Q_test.cpp
+ */
+
 #include "conversions.hpp"
 #include "test_common.hpp"
 
