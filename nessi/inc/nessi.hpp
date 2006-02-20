@@ -36,45 +36,51 @@
 /**
  * \namespace Nessi
  *
- * \brief A generic data object that is fundamental to all functions
- * in the library.
+ * \brief Generic features that are fundamental to all functions in the 
+ * library.
  *
- * This file contains the abstraction of std::vector to Nessi::Vector which
- * eliminates explicit calls to std::vector. This allows easy swapping of
- * std::vector for another container.
+ * The features contained in this namespace have influence on all functions 
+ * provided in the SNS common libraries. One feature is the use of global 
+ * abstraction (Nessi::Vector) for the underlying data container, which in 
+ * this case is currently std::vector. The other feature is an empty warning 
+ * string that functions return when no warnings are generated.
  */
 namespace Nessi
 {
   /**
    * \brief Provides wrapper for std::vector
+   * 
+   * This file contains the abstraction of std::vector to Nessi::Vector which
+   * eliminates explicit calls to std::vector. This allows easy swapping of
+   * std::vector for another container.
    *
    * \defgroup nessivector Nessi::Vector
    * \{
    */
-template <typename T>
-class Vector : public std::vector<T>
-{
-public:
-  /**
-   * \brief Constructor for empty Vector
-   *
-   * This provides a constructor method for an empty Vector
-   */
-  Vector() : std::vector<T>() { }
-  /**
-   * \brief Constructor for Vector of size i
-   *
-   * This provides a constructor method for Vector of size i
-   *
-   * \param i is the size of the desired Vector
-   */
-  Vector(int i) : std::vector<T>(i) { }
-};
-
+  template <typename T>
+  class Vector : public std::vector<T>
+  {
+  public:
+    /**
+     * \brief Constructor for empty Vector
+     *
+     * This provides a constructor method for an empty Vector
+     */
+    Vector() : std::vector<T>() { }
+    /**
+     * \brief Constructor for Vector of size i
+     *
+     * This provides a constructor method for Vector of size i
+     *
+     * \param i is the size of the desired Vector
+     */
+    Vector(int i) : std::vector<T>(i) { }
+  };
+  
   /**
    * \}
    */
-
+  
 } // Nessi
 
 #endif // _NESSI_HPP
