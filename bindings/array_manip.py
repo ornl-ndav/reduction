@@ -111,7 +111,7 @@ def add_ncerr(a,ae2,b,be2):
         try:
             b.__type__
         except:
-            print "Types not supported by NessiVector"
+            raise TypeError,"Types not supported by NessiVector"
         else:
             if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
                 a=float(a)
@@ -129,7 +129,7 @@ def add_ncerr(a,ae2,b,be2):
             run_ok = 1
         else:
             if (a.__type__ != b.__type__):
-                print "Parameters types are different"
+                raise TypeError,"Parameters types are different"
             else:
                 run_ok = 1
 
@@ -223,7 +223,7 @@ def sub_ncerr(a,ae2,b,be2):
         try:
             b.__type__
         except:
-            print "Types not supported by NessiVector"
+            raise TypeError,"Types not supported by NessiVector"
         else:
             if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
                 a=float(a)
@@ -241,7 +241,7 @@ def sub_ncerr(a,ae2,b,be2):
             run_ok = 1
         else:
             if (a.__type__ != b.__type__):
-                print "Parameters types are different"
+                raise TypeError,"Parameters types are different"
             else:
                 run_ok = 1
 
@@ -335,7 +335,7 @@ def mult_ncerr(a,ae2,b,be2):
         try:
             b.__type__
         except:
-            print "Types not supported by NessiVector"
+            raise TypeError,"Types not supported by NessiVector"
         else:
             if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
                 a=float(a)
@@ -353,7 +353,7 @@ def mult_ncerr(a,ae2,b,be2):
             run_ok = 1
         else:
             if (a.__type__ != b.__type__):
-                print "Parameters types are different"
+                raise TypeError,"Parameters types are different"
             else:
                 run_ok = 1
 
@@ -446,7 +446,7 @@ def div_ncerr(a,ae2,b,be2):
         try:
             b.__type__
         except:
-            print "Types not supported by NessiVector"
+            raise TypeError,"Types not supported by NessiVector"
         else:
             if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
                 a=float(a)
@@ -464,7 +464,7 @@ def div_ncerr(a,ae2,b,be2):
             run_ok = 1
         else:
             if (a.__type__ != b.__type__):
-                print "Parameters types are different"
+                raise TypeError,"Parameters types are different"
             else:
                 run_ok = 1
 
@@ -544,7 +544,7 @@ def sumw_ncerr(a,ae2,b,be2):
         try:
             b.__type__
         except:
-            print "Types not supported by NessiVector"
+            raise TypeError,"Types not supported by NessiVector"
         else:
             if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
                 a=float(a)
@@ -562,7 +562,7 @@ def sumw_ncerr(a,ae2,b,be2):
             run_ok = 1
         else:
             if (a.__type__ != b.__type__):
-                print "Parameters types are different"
+                raise TypeError,"Parameters types are different"
             else:
                 run_ok = 1
 
