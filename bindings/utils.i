@@ -11,6 +11,7 @@
 
 %include "libexcept.i"
 
+// Need to ignore guard names from header files
 %ignore _NUM_COMPARISON_HPP;
 %ignore _SIZE_CHECKS_HPP;
 %ignore _UTILS_HPP;

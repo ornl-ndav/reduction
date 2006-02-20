@@ -11,6 +11,11 @@
 
 %include "libexcept.i"
 
+// Need to ignore guard names from header files
+%ignore _CONVERSIONS_HPP;
+%ignore _REBINNING_HPP;
+%ignore _REVERSE_ARRAY_HPP;
+
 // Parse the original header file
 %include "conversions.hpp"
 %include "rebinning.hpp"
