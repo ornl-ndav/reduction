@@ -173,10 +173,10 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
 
   // run the code being tested
   AxisManip::wavelength_to_scalar_k(wavelength[0], wavelength_err2[0],
-                                  output_ss, output_ss_err2);
+                                    output_ss, output_ss_err2);
 
   AxisManip::wavelength_to_scalar_k(wavelength, wavelength_err2,
-                                  output_vv, output_vv_err2);
+                                    output_vv, output_vv_err2);
 
   if(!debug.empty())
     {

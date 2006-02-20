@@ -64,9 +64,9 @@ void initialize_inputs(Nessi::Vector<NumT> & tof,
  * This function generate the values for float to compare the calculation to.
  */
 void initialize_true_outputs(float    & true_output_ss,
-           float    & true_output_ss_err2,
-           Nessi::Vector<float> & true_output_vv,
-           Nessi::Vector<float> & true_output_vv_err2)
+                             float    & true_output_ss_err2,
+                             Nessi::Vector<float> & true_output_vv,
+                             Nessi::Vector<float> & true_output_vv_err2)
 {
   // scalar scalar
   true_output_ss=static_cast<float>(-0.58583915233612060547);
@@ -89,9 +89,9 @@ void initialize_true_outputs(float    & true_output_ss,
  * This function generate the values for double to compare the calculation to.
  */
 void initialize_true_outputs(double    & true_output_ss,
-           double    & true_output_ss_err2,
-           Nessi::Vector<double> & true_output_vv,
-           Nessi::Vector<double> & true_output_vv_err2)
+                             double    & true_output_ss_err2,
+                             Nessi::Vector<double> & true_output_vv,
+                             Nessi::Vector<double> & true_output_vv_err2)
 {
   // scalar scalar
   true_output_ss=static_cast<double>(-0.58583914499999989456);
@@ -115,13 +115,13 @@ void initialize_true_outputs(double    & true_output_ss,
  */
 template <typename NumT>
 bool test_okay(NumT    & output_ss,
-         NumT    & output_ss_err2,
-         NumT    & true_output_ss,
-         NumT    & true_output_ss_err2,
-         Nessi::Vector<NumT> & output_vv,
-         Nessi::Vector<NumT> & output_vv_err2,
-         Nessi::Vector<NumT> & true_output_vv,
-         Nessi::Vector<NumT> & true_output_vv_err2)
+               NumT    & output_ss_err2,
+               NumT    & true_output_ss,
+               NumT    & true_output_ss_err2,
+               Nessi::Vector<NumT> & output_vv,
+               Nessi::Vector<NumT> & output_vv_err2,
+               Nessi::Vector<NumT> & true_output_vv,
+               Nessi::Vector<NumT> & true_output_vv_err2)
 {
   bool value = true;
 
@@ -213,9 +213,9 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
     }
 
   return test_okay(output_ss, output_ss_err2,
-       true_output_ss, true_output_ss_err2,
-       output_vv, output_vv_err2,
-       true_output_vv, true_output_vv_err2);
+                   true_output_ss, true_output_ss_err2,
+                   output_vv, output_vv_err2,
+                   true_output_vv, true_output_vv_err2);
 }
 
 /**
@@ -233,17 +233,17 @@ int main(int argc, char *argv[])
     {
       debug = argv[1];
     }
-  
+
   if(!test_func(static_cast<float>(1), debug))
     {
       return -1;
     }
-  
+
   if(!test_func(static_cast<double>(1), debug))
     {
       return -1;
     }
-  
+
   cout << "Functionality OK" << endl;
 
   return 0;
