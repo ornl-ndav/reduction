@@ -198,8 +198,8 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 #
 # \param initial_wavevector (INPUT) is the incident wavevector axis in units
 # of reciprocal Angstroms
-# \param initial_wavector_err2 (INPUT) is the square of the uncertainty of the
-# incident wavevector axis
+# \param initial_wavevector_err2 (INPUT) is the square of the uncertainty of
+# the incident wavevector axis
 # \param final_wavevector (INPUT) is the final wavevector axis in units of
 # reciprocal Angstroms
 # \param final_wavevector_err2 (INPUT) is the square of the uncertainty of the
@@ -564,7 +564,7 @@ def reverse_array_cp(input):
 # NessiVector reversal is done in place on the supplied NessiVector
 # (i.e. no copy).
 #
-# \param inout (INPUT/OUTPUT) is the NessiVector to be reversed. It also is the
+# \param input (INPUT/OUTPUT) is the NessiVector to be reversed. It also is the
 # place holder for the reversed NessiVector.
 #
 
