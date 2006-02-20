@@ -92,7 +92,7 @@ class NessiVector (list):
 # \param type (INPUT/OPTIONAL) is the type of the instance (<i>float</i> by
 # default)
 #
-    def __init__(self, length=0, type="float"):
+    def __init__(self, length=0, type=DOUBLE):
 
         if type.lower()==NessiVector.UNSIGNED_INT or \
         type.lower()==NessiVector.UNSIGNED or \
