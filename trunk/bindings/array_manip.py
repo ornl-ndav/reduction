@@ -30,7 +30,6 @@
 
 import nessi_vector
 import array_manip_bind
-import sys
 
 ##
 # \namespace array_manip
