@@ -9,6 +9,9 @@
 
 %include "libexcept.i"
 
+// Need to ignore guard names from header files
+%ignore _PHYS_CORR_HPP;
+
 // Parse the original header file
 %include "physcorr.hpp"
 
