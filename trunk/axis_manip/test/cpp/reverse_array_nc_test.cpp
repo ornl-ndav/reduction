@@ -81,7 +81,7 @@ template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
 {
   // allocate arrays
-  Nessi::Vector< NumT > input;
+  Nessi::Vector<NumT> input;
   Nessi::Vector<NumT>   true_output;
 
   // fill in values as appropriate

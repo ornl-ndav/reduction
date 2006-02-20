@@ -150,8 +150,8 @@ template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
 { 
 // allocate arrays
-  Nessi::Vector< NumT > tof;
-  Nessi::Vector< NumT > tof_err2;
+  Nessi::Vector<NumT>   tof;
+  Nessi::Vector<NumT>   tof_err2;
   NumT                  pathlength=static_cast<NumT>(5.);
   NumT                  pathlength_err2=static_cast<NumT>(2.5);
   NumT                  output_ss;
