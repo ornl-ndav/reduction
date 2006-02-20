@@ -51,7 +51,7 @@ TypeError = "Error of type"
 TypesDifferentError = "Error in types"
 
 ##
-# \defgroup energy_transfer energy_transfer
+# \defgroup py_energy_transfer axis_manip::energy_transfer
 # \{
 
 ##
@@ -157,7 +157,8 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # \}
 
 ##
-# \defgroup init_scatt_wavevector_to_scalar_Q init_scatt_wavevector_to_scalar_Q
+# \defgroup py_init_scatt_wavevector_to_scalar_Q \
+# axis_manip::init_scatt_wavevector_to_scalar_Q
 # \{
 
 ##
@@ -281,7 +282,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # \}
 
 ##
-# \defgroup rebin_axis_1D rebin_axis_1D
+# \defgroup py_rebin_axis_1D axis_manip::rebin_axis_1D
 # \{
 
 ##
@@ -475,7 +476,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # \}
 
 ##
-# \defgroup reverse_array_cp reverse_array_cp
+# \defgroup py_reverse_array_cp axis_manip::reverse_array_cp
 # \{
 
 ##
@@ -544,7 +545,7 @@ def reverse_array_cp(input):
 # \}
 
 ##
-# \defgroup reverse_array_nc reverse_array_nc
+# \defgroup py_reverse_array_nc axis_manip::reverse_array_nc
 # \{
 
 ##
@@ -609,7 +610,8 @@ def reverse_array_nc(input):
 #\}
 
 ##
-# \defgroup tof_to_initial_wavelength_igs tof_to_initial_wavelength_igs
+# \defgroup py_tof_to_initial_wavelength_igs \
+# axis_manip::tof_to_initial_wavelength_igs
 # \{
 
 ##
@@ -740,7 +742,7 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 # \}
 
 ##
-# \defgroup tof_to_wavelength tof_to_wavelength
+# \defgroup py_tof_to_wavelength axis_manip::tof_to_wavelength
 # \{
 
 ##
@@ -829,7 +831,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 # \}
 
 ##
-# \defgroup wavelength_to_energy wavelength_to_energy
+# \defgroup py_wavelength_to_energy axis_manip::wavelength_to_energy
 # \{
 
 ##
@@ -912,7 +914,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 # \}
 
 ##
-# \defgroup wavelength_to_scalar_k wavelength_to_scalar_k
+# \defgroup py_wavelength_to_scalar_k axis_manip::wavelength_to_scalar_k
 # \{
 
 ##

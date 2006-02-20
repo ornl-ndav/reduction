@@ -52,7 +52,7 @@ import utils_bind
 #
 
 ##
-# \defgroup weighted_average utils::weighted_average
+# \defgroup py_weighted_average utils::weighted_average
 # \{
 
 ##
