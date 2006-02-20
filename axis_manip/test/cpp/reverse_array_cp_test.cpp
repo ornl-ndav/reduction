@@ -89,12 +89,6 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   initialize_inputs(input);
   initialize_true_outputs(true_output);
 
-  if(!debug.empty())
-    {
-      cout << endl;
-      print(output, true_output, VV, debug);
-    }
-
   // run the code being tested
   AxisManip::reverse_array_cp(input, output);
 
