@@ -495,36 +495,50 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
 def reverse_array_cp(input):
 
-   try:
-      if (input.__type__ == nessi_vector.NessiVector.FLOAT):
-         try:
-            output = nessi_vector.NessiVector(len(input))
-            axis_manip_bind.reverse_array_cp_f(input.__array__, output.__array__)
-	 except:
-            raise CalculationError
+    try:
+        if (input.__type__ == nessi_vector.NessiVector.FLOAT):
+            try:
+                output = nessi_vector.NessiVector(len(input))
+                axis_manip_bind.reverse_array_cp_f(input.__array__, output.__array__)
+	        except:
+                raise CalculationError
 
-      elif (input.__type__ == nessi_vector.NessiVector.DOUBLE):
-         try:
-            output = nessi_vector.NessiVector(len(input),"double")
-	    axis_manip_bind.reverse_array_cp_d(input.__array__, output.__array__)
-	 except:
-            raise CalculationError
+        elif (input.__type__ == nessi_vector.NessiVector.DOUBLE):
+            try:
+                output = nessi_vector.NessiVector(len(input),"double")
+	            axis_manip_bind.reverse_array_cp_d(input.__array__, output.__array__)
+	        except:
+                raise CalculationError
 
-      else:
-	 raise TypeError
+        elif (input.__type__ == nessi_vector.NessiVector.INT):
+            try:
+                output = nessi_vector.NessiVector(len(input),"int")
+	            axis_manip_bind.reverse_array_cp_d(input.__array__, output.__array__)
+	        except:
+                raise CalculationError
 
-   except CalculationError:
-      print "Calculation of reverse_array_cp failed"
-      output = nessi_vector.NessiVector(len(input))
-
-   except TypeError:
-      print "Type not supported by NessiVector"
-      output = nessi_vector.NessiVector(len(input))
+        elif (input.__type__ == nessi_vector.NessiVector.UINT):
+            try:
+                output = nessi_vector.NessiVector(len(input),"uint")
+	            axis_manip_bind.reverse_array_cp_d(input.__array__, output.__array__)
+	        except:
+                raise CalculationError
 	
-   except:
-      print "Object has no attribute __type__"
+      	else:
+	        raise TypeError
 
-   return output
+    except CalculationError:
+        print "Calculation of reverse_array_cp failed"
+        output = nessi_vector.NessiVector(len(input))
+
+    except TypeError:
+        print "Type not supported by NessiVector"
+        output = nessi_vector.NessiVector(len(input))
+	
+    except:
+        print "Object has no attribute __type__"
+
+    return output
 
 ##
 # \}
@@ -552,32 +566,44 @@ def reverse_array_cp(input):
 
 def reverse_array_nc(input):
 	
-   try:
-      if (input.__type__ == nessi_vector.NessiVector.FLOAT):
-         try:
-            axis_manip_bind.reverse_array_nc_f(input.__array__)
-	 except:
-	    raise CalculationError
+    try:
+        if (input.__type__ == nessi_vector.NessiVector.FLOAT):
+            try:
+                axis_manip_bind.reverse_array_nc_f(input.__array__)
+	        except:
+	            raise CalculationError
 
-      elif (input.__type__ == nessi_vector.NessiVector.DOUBLE):
-         try:
- 	    axis_manip_bind.reverse_array_nc_d(input.__array__)
-         except:
-	    raise CalculationError
+        elif (input.__type__ == nessi_vector.NessiVector.DOUBLE):
+            try:
+ 	            axis_manip_bind.reverse_array_nc_d(input.__array__)
+            except:
+	            raise CalculationError
       
-      else:
-         raise TypeError
+        elif (input.__type__ == nessi_vector.NessiVector.INT):
+            try:
+ 	            axis_manip_bind.reverse_array_nc_d(input.__array__)
+            except:
+	            raise CalculationError
 
-   except CalculationError:
-      print "Calculation of reverse_array_nc failed"
+        elif (input.__type__ == nessi_vector.NessiVector.UINT):
+            try:
+ 	            axis_manip_bind.reverse_array_nc_d(input.__array__)
+            except:
+	            raise CalculationError
+
+        else:
+            raise TypeError
+
+    except CalculationError:
+        print "Calculation of reverse_array_nc failed"
 	
-   except TypeError:
-      print "Type not supported by NessiVector"
+    except TypeError:
+        print "Type not supported by NessiVector"
 
-   except:
-      print "object has no attribute __type__"
+    except:
+        print "object has no attribute __type__"
 
-   return
+    return
 
 ##
 #\}
