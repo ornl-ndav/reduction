@@ -22,7 +22,11 @@
  *
  */
 
-// $Id$
+/**
+ * $Id$
+ *
+ * \file axis_manip/test/cpp/test_common.hpp
+ */
 
 #include "num_comparison.hpp"
 #include <iomanip>

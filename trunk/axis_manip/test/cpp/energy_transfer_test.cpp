@@ -22,6 +22,12 @@
  *
  */
 
+/**
+ * $Id$
+ *
+ * \file axis_manip/test/cpp/energy_transfer_test.cpp
+ */
+
 #include "conversions.hpp"
 #include "test_common.hpp"
 

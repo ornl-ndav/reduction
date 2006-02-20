@@ -22,6 +22,12 @@
  *
  */
 
+/**
+ * $Id$
+ *
+ * \file axis_manip/test/cpp/rebin_axis_1D_test.cpp
+ */
+
 #include "rebinning.hpp"
 #include "test_common.hpp"
 

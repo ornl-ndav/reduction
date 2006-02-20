@@ -22,6 +22,12 @@
  *
  */
 
+/**
+ * $Id$
+ *
+ * \file axis_manip/test/cpp/wavelength_to_energy_test.cpp
+ */
+
 #include "conversions.hpp"
 #include "test_common.hpp"
 

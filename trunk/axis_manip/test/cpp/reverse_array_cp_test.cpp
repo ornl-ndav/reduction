@@ -22,6 +22,12 @@
  *
  */
 
+/**
+ * $Id$
+ *
+ * \file axis_manip/test/cpp/reverse_array_cp_test.cpp
+ */
+
 #include "reverse_array.hpp"
 #include "test_common.hpp"
 
