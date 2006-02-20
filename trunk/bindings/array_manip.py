@@ -33,6 +33,10 @@ import array_manip_bind
 import sys
 
 ##
+# \namespace array_manip
+#
+# \brief Python abstraction layer access for ArrayManip library functions
+#
 # This module gives the NessiVector access to the various simple
 # arithmetic operations on arrays provided by the <i>array_manip</i>
 # library. These arithmetic operations are written in references to SNS
