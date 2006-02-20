@@ -426,7 +426,7 @@ class NessiVector (list):
 # The default number of elements displayed can be changed by giving this number
 # as second variable to the <i>print</i> method.
 #
-# \param object (INPUT) is the name of the NessiVector
+# \param self (INPUT) is the name of the NessiVector
 # \param last (INPUT/OPTIONAL) is the number of element to display, 10 by default
 #
 # \return
