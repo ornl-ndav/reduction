@@ -45,7 +45,6 @@ import sys
 # \f]
 class NessiVector (list):
 
-	version = 0.1	
 	FLOAT = "float"	
 	DOUBLE = "double"	
 	UINT = "uint"	
