@@ -22,7 +22,7 @@
 #	
 #
 
-# $Id: NessiVector.py 549 2006-02-08 21:21:20Z j35 $
+# $Id$
 
 ## 
 #\file bindings/nessi_vector.py Python binding of SNS Common Libraries
