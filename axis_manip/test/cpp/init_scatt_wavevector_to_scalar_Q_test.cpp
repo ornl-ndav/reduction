@@ -61,17 +61,6 @@ void initialize_inputs(Nessi::Vector<NumT> & k_i,
 /**
  * This function generate the values to compare the calculation to.
  */
-//template <typename NumT>  //REMOVE
-
-/*void initialize_true_outputs(NumT                & true_output_ss,
-                             NumT                & true_output_ss_err2,
-                             Nessi::Vector<NumT> & true_output_sv,
-                             Nessi::Vector<NumT> & true_output_sv_err2,
-                             Nessi::Vector<NumT> & true_output_vs,
-                             Nessi::Vector<NumT> & true_output_vs_err2,
-                             Nessi::Vector<NumT> & true_output_vv,
-                             Nessi::Vector<NumT> & true_output_vv_err2){
-*/
 void initialize_true_outputs(float                & true_output_ss,
                              float                & true_output_ss_err2,
                              Nessi::Vector<float> & true_output_sv,
