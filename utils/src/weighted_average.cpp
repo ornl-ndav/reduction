@@ -41,8 +41,8 @@ namespace Utils
   template std::string
   weighted_average<float>(const Nessi::Vector<float> & input,
                           const Nessi::Vector<float> & input_err2,
-                          const std::size_t start_bin,
-                          const std::size_t end_bin,
+                          const std::size_t bin_start,
+                          const std::size_t bin_end,
                           float & weighted_ave,
                           float & weighted_ave_err2,
                           void *temp);
@@ -55,8 +55,8 @@ namespace Utils
   template std::string
   weighted_average<double>(const Nessi::Vector<double> & input,
                            const Nessi::Vector<double> & input_err2,
-                           const std::size_t start_bin,
-                           const std::size_t end_bin,
+                           const std::size_t bin_start,
+                           const std::size_t bin_end,
                            double & weighted_ave,
                            double & weighted_ave_err2,
                            void *temp);
