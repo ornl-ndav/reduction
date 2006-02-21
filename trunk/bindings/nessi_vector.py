@@ -208,11 +208,8 @@ class NessiVector (list):
         return self.__array__[m]
         
 ##
-# Function used to get a range of value from a NessiVector.
-# \f[
-# >>> MyVector[0:5]
-# \f]
-# displays the 5 first elements of \f$MyVector\f$
+# Function used to get a range of values from a NessiVector. Negative
+# indices are not supported.
 #
 # \param self (INPUT) is the name of the NessiVector
 # \param i (INPUT/OPTIONAL) is the index of the first element to get (0 by
@@ -223,7 +220,7 @@ class NessiVector (list):
 # - The elements defined by the slice
 #
     def __getslice__(self,i=0,j=-1):
-        print self.__array__[i:j]
+        return self.__array__[i:j]
 
 ##
 # Function used to get the length of a NessiVector
