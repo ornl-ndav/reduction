@@ -372,37 +372,21 @@ class NessiVector (list):
 
     def __str__(self,last=10):
 
-        str_output=""
-
+        result=[]
+        
         if len(self)<last:
             last=len(self)
 
-        if (self.__type__ == NessiVector.FLOAT or
-            self.__type__ == NessiVector.DOUBLE):
-            for i in range(0,last):
-                str_output = str_output + "%7.16f " \
-                    %self.__array__[i]
-        else:
-            for i in range(0,last):
-                str_output = str_output + "%d " %self.__array__[i]
+        # print the first n elements
+        for i in range(0,last):
+            result.append(str(self.__array__[i]))
 
-        if (self.__type__ == NessiVector.FLOAT or
-            self.__type__ == NessiVector.DOUBLE):
-            if len(self) > last:
-                str_output = str_output +"..."
-                str_output = str_output + "%7.16f" \
-                    %self.__array__[len(self)-1]
-            else:
-                str_output = str_output + ""
-        else:
-            if len(self) > last:
-                str_output = str_output + "...",
-                str_output = str_output + "%d " \
-                    %self.__array__[len(self)-1]
-            else:
-                str_output = str_output + ""
+        # print elipses and the last element
+        if len(self) > last:
+            result.append("...")
+            result.append(str(self.__array__[len(self)-1]))
 
-        return str_output
+        return "["+",".join(result)+"]"
 
 ##
 #\}
