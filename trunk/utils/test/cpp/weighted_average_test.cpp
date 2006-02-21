@@ -142,8 +142,8 @@ bool test_func(NumT key){ // key forces correct test to happen
   initialize_true_outputs(true_output, true_output_err2);
 
   // run the code being tested
-  Utils::weighted_average(input1, input1_err2, static_cast<NumT>(0), 
-                          static_cast<NumT>(NUM_VAL-1), output, output_err2);
+  Utils::weighted_average(input1, input1_err2, 0, NUM_VAL-1, 
+                          output, output_err2);
 
   return test_okay(output, output_err2, true_output, true_output_err2);
 }
