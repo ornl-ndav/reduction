@@ -83,11 +83,9 @@ TypesDifferentError = "Error in types"
 # \param final_energy (INPUT) is the final energy axis in units of meV
 # \param final_energy_err2 (INPUT) is the square of the uncertainty of the
 # final energy axis
-# \return Two NessiVectors:
-# - The first NessiVector returned is the energy transfer axis in
-# units of THz.
-# - The second NessiVector returned is the square of the uncertainty in the
-# energy tranfser axis.
+# \return
+# - The energy transfer axis in units of THz.
+# - The square of the uncertainty in the energy tranfser axis.
 #
 
 def energy_transfer(initial_energy, initial_energy_err2,\
@@ -202,11 +200,9 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # \param polar (INPUT) is the polar angle in the equation above in units of
 # radians
 # \param polar_err2 (INPUT) is the square of the uncertainty in polar angle
-# \return Two NessiVectors:
-# - The first NessiVector returned is the scalar momentum transfer Q, axis in
-# units of reciprocal Angstroms
-# - The second NessiVector returned is the square of the uncertainty in the
-# scalar momentum transfer axis
+# \return
+# - The scalar momentum transfer Q axis in units of reciprocal Angstroms
+# - The square of the uncertainty in the scalar momentum transfer axis
 #
 
 def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
@@ -404,11 +400,9 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # \param input_err2 (INPUT) is the square of the uncertainty associated
 # with the data
 # \param axis_out (INPUT) is the target axis for rebinning
-# \return Two NessiVectors:
-# - The first NessiVector returned is rebinned data according to the target
-# axis
-# - The second NessiVector returned is the uncertainty associated with the
-# rebinned  data
+# \return
+# - The rebinned data according to the target axis
+# - The uncertainty associated with the rebinned  data
 #
 
 def rebin_axis_1D(axis_in, input, input_err2, axis_out):
@@ -488,7 +482,8 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 #
 # \param input (INPUT) is the NessiVector to be reversed
 #
-# \return The reversed NessiVector.
+# \return 
+# - The reversed NessiVector
 #
 
 def reverse_array_cp(input):
@@ -672,11 +667,9 @@ def reverse_array_nc(input):
 # \param dist_sample_detector_err2 (INPUT) is the square of the
 # uncertainty in dist_sample_detector
 #
-# \return Two NessiVectors:
-# - The first NessiVector returned is the initial wavelength axis
-# in units of Angstrom
-# - The second NessiVector returned is the square of the
-# uncertainty of the initial wavelength axis
+# \return
+# - The initial wavelength axis in units of Angstrom
+# - The square of the uncertainty of the initial wavelength axis
 #
 
 def tof_to_initial_wavelength_igs(tof,tof_err2,\
@@ -777,11 +770,9 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 # \param pathlength_err2 (INPUT) is the square of the uncertainty
 # in pathlength
 #
-# \return Two NessiVectors:
-# - The first NessiVector returned is the wavelength axis in units of
-# angstrom
-# - The second NessiVector returned is the square of the uncertainty
-# in the wavelength axis
+# \return
+# - The wavelength axis in units of Angstroms
+# - The square of the uncertainty in the wavelength axis
 #
 
 def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
@@ -859,11 +850,9 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 # \param wavelength_err2 (INPUT) is the square of the uncertainty
 # in the wavelength axis
 #
-# \return Two NessiVectors:
-# - The first NessiVector returned is the energy of the neutron in units of
-# meV
-# - The second NessiVector returned is the square of the uncertainty in
-# the energy
+# \return
+# - The energy of the neutron in units of meV
+# - The square of the uncertainty in the energy
 #
 
 def wavelength_to_energy(wavelength, wavelength_err2):
@@ -940,11 +929,9 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 # \param wavelength_err2 (INPUT) is the square of the uncertainty
 # in the wavelength axis
 #
-# \return Two NessiVectors:
-# - The first NessiVector returned is the scalar wavevector in units of
-# reciprocal Angstroms
-# - The second NessiVector returned is the square of the uncertainty
-# in the scalar wavevector
+# \return
+# - The scalar wavevector in units of reciprocal Angstroms
+# - The square of the uncertainty in the scalar wavevector
 #
 
 def wavelength_to_scalar_k(wavelength, wavelength_err2):
