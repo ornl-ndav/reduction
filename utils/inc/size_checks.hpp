@@ -53,6 +53,8 @@ namespace Utils
    * \param input_err2 (INPUT) is the histogram uncertainty squared
    * \param axis (INPUT) is the histogram axis
    *
+   * \exception std::invalid_argument is thrown if the size of axis is
+   * not one more than input and input_err2.
    */
   template <typename NumT>
   void check_histo_sizes(const Nessi::Vector<NumT> & input,
@@ -80,6 +82,9 @@ namespace Utils
    * \param array1 (INPUT) is a vector that needs size checking
    * \param array2 (INPUT) is a vector that needs size checking
    * \param array3 (INPUT) is a vector that needs size checking
+   *
+   * \exception std::invalid_argument is thrown if the size of array1,
+   * array2, and array3 are not identical.
    */
   template <typename NumT>
   void check_sizes_square(const Nessi::Vector<NumT> & array1,
@@ -94,6 +99,9 @@ namespace Utils
    *
    * \param array1 (INPUT) is a vector that needs size checking
    * \param array2 (INPUT) is a vector that needs size checking
+   *
+   * \exception std::invalid_argument is thrown if the size of array1
+   * and array2 are not identical.
    */
   template <typename NumT>
   void check_sizes_square(const Nessi::Vector<NumT> & array1,
