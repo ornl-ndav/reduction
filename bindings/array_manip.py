@@ -98,6 +98,9 @@ import array_manip_bind
 # \param b (INPUT/OPTIONAL) is the second NessiVector to be added
 # \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
 # the uncertainty in the second NessiVector to be added
+# \return
+# - The result NessiVector
+# - The square of the uncertainty in the result NessiVector
 #
 
 def add_ncerr(a,ae2,b,be2):
@@ -210,6 +213,9 @@ def add_ncerr(a,ae2,b,be2):
 # \param b (INPUT/OPTIONAL) is the NessiVector to subtract
 # \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
 # the uncertainty in the NessiVector to subtract
+# \return
+# - The result NessiVector
+# - The square of the uncertainty in the result NessiVector 
 #
 
 def sub_ncerr(a,ae2,b,be2):
@@ -322,6 +328,9 @@ def sub_ncerr(a,ae2,b,be2):
 # \param b (INPUT/OPTIONAL) is the second NessiVector to be multiplied
 # \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
 # the uncertainty in the second NessiVector to be multiplied
+# \return
+# - The result NessiVector
+# - The square of the uncertainty in the result NessiVector
 #
 
 def mult_ncerr(a,ae2,b,be2):
@@ -433,6 +442,9 @@ def mult_ncerr(a,ae2,b,be2):
 # \param b (INPUT/OPTIONAL) is the dividing NessiVector
 # \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
 # the uncertainty in the dividing NessiVector
+# \return
+# - The result NessiVector
+# - The square of the uncertainty in the result NessiVector
 #
 
 def div_ncerr(a,ae2,b,be2):
@@ -531,6 +543,9 @@ def div_ncerr(a,ae2,b,be2):
 # \param b (INPUT) is the second NessiVector to be added
 # \param be2 (INPUT) is the square of the uncertainty in the second
 # NessiVector to be added
+# \return
+# - The result NessiVector
+# - The square of the uncertainty in the result NessiVector
 #
 
 def sumw_ncerr(a,ae2,b,be2):

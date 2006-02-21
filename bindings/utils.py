@@ -83,9 +83,10 @@ import utils_bind
 # \param fin (INPUT) the bin of the NessiVector at which to end the
 # calculation
 #
-# \return This function returns a tuple of values of which the first is the
-# weighted average and the second is the square of the uncertainty in the
-# weighted average
+# \return 
+# - The weighted average 
+# - The square of the uncertainty in the weighted average
+#
 
 def weighted_average(a,ae2,start,fin):
 

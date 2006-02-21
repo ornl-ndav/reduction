@@ -222,7 +222,9 @@ class NessiVector (list):
 # default, i.e., first element of the NessiVector)
 # \param j (INPUT/OPTIONAL) is the index + 1 of the last element to get (-1 by
 # default, i.e., last element of the NessiVector)
-
+# \return
+# - The elements defined by the slice
+#
     def __getslice__(self,i=0,j=-1):
         print self.__array__[i:j]
 
@@ -234,6 +236,8 @@ class NessiVector (list):
 # \f]
 #
 # \param self (INPUT) is the name of the NessiVector
+# \return 
+# - The length of the NessiVector
 #
 
     def __len__(self):
