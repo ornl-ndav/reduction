@@ -479,7 +479,7 @@ class NessiVector (list):
 #
 
 ##
-# \defgroup compare_vect nessi_vector::compare_vect
+# \defgroup print_multi nessi_vector::print_multi
 # \{
 #
 
@@ -493,7 +493,7 @@ class NessiVector (list):
 #
 # \return display of the first n elements of the two, or three NessiVectors.
 
-def compare_vect(n,object1,object2,object3=NessiVector()):
+def print_multi(n,object1,object2,object3=NessiVector()):
 
     tab="\t\t"
     str_output = ""
@@ -516,7 +516,7 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
 
                 if len(object3) !=0:
                     str_output = str_output + \
-                    tab + "%7.16f " %object3[i]
+                    tab + "%7.16f \n" %object3[i]
 
         else:
             for i in range(0,n):
@@ -524,7 +524,7 @@ def compare_vect(n,object1,object2,object3=NessiVector()):
                     + tab + "%d " %object2[i]
 
                 if len(object3) !=0:
-                    print str_output + tab + "%d " %object3[i]
+                    print str_output + tab + "%d \n" %object3[i]
 
         str_output = str_output
 
