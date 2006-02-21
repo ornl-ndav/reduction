@@ -106,6 +106,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of input1,
+   * input1_err2, input2, input2_err2, output, and output_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -173,6 +176,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of
+   * array_in, array_in_err2, array_out, and array_out_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -251,6 +257,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of input1,
+   * input1_err2, input2, input2_err2, output, and output_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -319,6 +328,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of
+   * array_in, array_in_err2, array_out, and array_out_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -387,6 +399,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of
+   * array_in, array_in_err2, array_out, and array_out_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -464,6 +479,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of input1,
+   * input1_err2, input2, input2_err2, output, and output_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -531,6 +549,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of
+   * array_in, array_in_err2, array_out, and array_out_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -608,6 +629,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of input1,
+   * input1_err2, input2, input2_err2, output, and output_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -675,6 +699,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of
+   * array_in, array_in_err2, array_out, and array_out_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -742,6 +769,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of
+   * array_in, array_in_err2, array_out, and array_out_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
@@ -821,6 +851,9 @@ namespace ArrayManip
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
    *
+   * \exception std::invalid_argument is thrown if the size of input1,
+   * input1_err2, input2, input2_err2, output, and output_err2 are not
+   * identical.
    */
   template <typename NumT>
   std::string
