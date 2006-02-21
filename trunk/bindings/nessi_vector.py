@@ -205,11 +205,8 @@ class NessiVector (list):
 #
 
     def __getitem__(self,m):     # need to throw exception when m>len(self)
-        if (m<len(self)):
-            return self.__array__[m]
-        else:
-            print "Last index of this  NessiVector is ",len(self)-1
-
+        return self.__array__[m]
+        
 ##
 # Function used to get a range of value from a NessiVector.
 # \f[
@@ -254,22 +251,9 @@ class NessiVector (list):
 # \f]
 #
     def __add__(self,right):
-        if (self.__type__ == NessiVector.FLOAT):
-            c = NessiVector(len(self))
-            array_manip_bind.add_ncerr_f(self.array, self.array,\
-                 right.array,right.array,c.array, c.array)
-        if (self.__type__ == NessiVector.DOUBLE):
-            c = NessiVector(len(self),type="double")
-            array_manip_bind.add_ncerr_d(self.array, self.array,\
-                right.array,right.array,c.array, c.array)
-        if (self.__type__ == NessiVector.INT):
-            c = NessiVector(len(self),type="int")
-            array_manip_bind.add_ncerr_i(self.array, self.array,\
-                 right.array,right.array,c.array, c.array)
-        if (self.__type__ == NessiVector.UINT):
-            c = NessiVector(len(self),type="uint")
-            array_manip_bind.add_ncerr_u(self.array, self.array,\
-                 right.array,right.array,c.array, c.array)
+        c = NessiVector(len(self))
+        for i in range(len(self)):
+            c.__array__[i]=self.__array__[i]+right.__array__[i]
         return c
 
 ##
@@ -283,28 +267,10 @@ class NessiVector (list):
 # \f]
 #
     def __sub__(self,right):
-        if (self.__type__ == NessiVector.FLOAT):
-            c = NessiVector(len(self))
-            ce2 = NessiVector(len(self))
-            array_manip_bind.sub_ncerr_f(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.DOUBLE):
-            c = NessiVector(len(self),type="double")
-            ce2 = NessiVector(len(self),type="double")
-            array_manip_bind.sub_ncerr_d(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.INT):
-            c = NessiVector(len(self),type="int")
-            ce2 = NessiVector(len(self),type="int")
-            array_manip_bind.sub_ncerr_i(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.UINT):
-            c = NessiVector(len(self),type="uint")
-            ce2 = NessiVector(len(self),type="uint")
-            array_manip_bind.sub_ncerr_u(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
+        c = NessiVector(len(self))
+        for i in range(len(self)):
+            c.__array__[i]=self.__array__[i]-right.__array__[i]
         return c
-
 
 ##
 # \brief The operator \f$\times\f$ allows to multiply two NessiVectors.
@@ -317,28 +283,10 @@ class NessiVector (list):
 # \f]
 #
     def __mul__(self,right):
-        if (self.__type__ == NessiVector.FLOAT):
-            c = NessiVector(len(self))
-            ce2 = NessiVector(len(self))
-            array_manip_bind.mult_ncerr_f(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.DOUBLE):
-            c = NessiVector(len(self),type="double")
-            ce2 = NessiVector(len(self),type="double")
-            array_manip_bind.mult_ncerr_d(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.INT):
-            c = NessiVector(len(self),type="int")
-            ce2 = NessiVector(len(self),type="int")
-            array_manip_bind.mult_ncerr_i(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.UINT):
-            c = NessiVector(len(self),type="uint")
-            ce2 = NessiVector(len(self),type="uint")
-            array_manip_bind.mult_ncerr_u(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
+        c = NessiVector(len(self))
+        for i in range(len(self)):
+            c.__array__[i]=self.__array__[i]*right.__array__[i]
         return c
-
 
 ##
 # \brief The operator \f$/\f$ allows to divide two NessiVectors.
@@ -351,28 +299,10 @@ class NessiVector (list):
 # \f]
 #
     def __div__(self,right):
-        if (self.__type__ == NessiVector.FLOAT):
-            c = NessiVector(len(self))
-            ce2 = NessiVector(len(self))
-            array_manip_bind.div_ncerr_f(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.DOUBLE):
-            c = NessiVector(len(self),type="double")
-            ce2 = NessiVector(len(self),type="double")
-            array_manip_bind.div_ncerr_d(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.INT):
-            c = NessiVector(len(self),type="int")
-            ce2 = NessiVector(len(self),type="int")
-            array_manip_bind.div_ncerr_i(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
-        if (self.__type__ == NessiVector.UINT):
-            c = NessiVector(len(self),type="uint")
-            ce2 = NessiVector(len(self),type="uint")
-            array_manip_bind.div_ncerr_u(self.array, self.array,\
-                 right.array,right.array,c.array, ce2.array)
+        c = NessiVector(len(self))
+        for i in range(len(self)):
+            c.__array__[i]=self.__array__[i]/right.__array__[i]
         return c
-
 
 ##
 # Function "__contains__" not implemented yet
