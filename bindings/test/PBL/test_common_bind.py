@@ -63,7 +63,10 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
         raise TypeError, "Function type not recognized!"
 
     mess = funcName
-    mess += "............................."
+    if len(funcName) > 30:
+        mess += "........................."
+    else:
+        mess += "............................."
 
     if dataval == False or err2val == False:
 
