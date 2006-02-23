@@ -342,10 +342,10 @@ class NessiVector (list):
 # Function "pop" not implemented yet"
 #
     def pop(self):
-        raise exception, "Not implemented yet"
         if len(self.__array__)<=0:
-            raise IndexError,"pop from empty Vector"
-#        return self.__array__.pop()
+            raise IndexError, "pop from empty Vector"
+        else:
+			return self.__array__.pop()
 
 
 ##
