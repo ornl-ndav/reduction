@@ -61,16 +61,14 @@ import array_manip_bind
 # a NessiVector with a scalar is not supported yet.
 #
 # With two arguments,
-# \f[
+# \code
 # >>>  Vector_0 = array_manip.add_ncerr (Vector_1, Vector_2)
-# \f]
-#
+# \endcode
 # With four arguments,
-# \f[
-# >>> Vector_0, \sigma_0 = array_manip.add_ncerr (Vector_1,
-# \sigma_1, Vector_2,
-# \sigma_2)
-# \f]
+# \code
+# >>> Vector_0, Vector_err2_0 = array_manip.add_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# \endcode
+# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
 #
 # For both cases, this function adds each element, \f$i\f$, of two NessiVector
 # according to the equations
@@ -194,16 +192,15 @@ def add_ncerr(a,ae2,b,be2):
 # of a NessiVector with a scalar is not supported yet.
 #
 # With two arguments,
-# \f[
+# \code
 # >>>  Vector_0 = array_manip.sub_ncerr (Vector_1, Vector_2)
-# \f]
+# \endcode
 #
 # With four arguments,
-# \f[
-# >>> Vector_0, \sigma_0 = array_manip.sub_ncerr (Vector_1,
-# \sigma_1, Vector_2,
-# \sigma_2)
-# \f]
+# \code
+# >>> Vector_0, Vector_err2_0 = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# \endcode
+# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
 #
 # For both cases, this function substracts each element, \f$i\f$, of two
 # NessiVector according to the equations
@@ -327,16 +324,15 @@ def sub_ncerr(a,ae2,b,be2):
 # multiplication of a NessiVector with a scalar is not supported yet.
 #
 # With two arguments,
-# \f[
+# \code
 # >>>  Vector_0 = array_manip.mult_ncerr (Vector_1, Vector_2)
-# \f]
+# \endcode
 #
 # With four arguments,
-# \f[
-# >>> Vector_0, \sigma_0 = array_manip.mult_ncerr (Vector_1,
-# \sigma_1, Vector_2,
-# \sigma_2)
-# \f]
+# \code
+# >>> Vector_0, Vector_err2_0 = array_manip.mult_ncerr (Vector_1,Vector_err2_1, Vector_2,Vector_err2_2)
+# \endcode
+# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
 #
 # For both cases, this function multiplies each element, \f$i\f$, of two
 # NessiVector according to the equations
@@ -457,16 +453,15 @@ def mult_ncerr(a,ae2,b,be2):
 # yet.
 #
 # With two arguments,
-# \f[
+# \code
 # >>>  Vector_0 = array_manip.div_ncerr (Vector_1, Vector_2)
-# \f]
+# \endcode
 #
 # With four arguments,
-# \f[
-# >>> Vector_0, \sigma_0 = array_manip.div_ncerr (Vector_1,
-# \sigma_1, Vector_2,
-# \sigma_2)
-# \f]
+# \code
+# >>> Vector_0, Vector_err2_0 = array_manip.div_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# \endcode
+# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
 #
 # For both cases, this function divides each element, \f$i\f$, of two
 # NessiVector according to the equations

@@ -41,13 +41,15 @@ import nessi_vector_bind
 # For example: let us add together two NessiVectors of type float.
 # Once the two NessiVector have been defined and fill with data, using the
 # function <i>add</i> is like using the function <i>add_f</i>
-# \f[
+# \code
 # >>> NessiVector_result = add(NessiVector_1, NessiVector_2)
-# \f]
+# \endcode
 #
+
 ##
-# \defgroup py_NessiVector NessiVector
+# \defgroup NessiVector nessi_vector::NessiVector
 # \{
+
 class NessiVector (list):
 
     FLOAT = "float"
@@ -57,44 +59,51 @@ class NessiVector (list):
     UNSIGNED_INT = "unsigned int"
     INT = "int"
 
+
 ##
-# Initialization of an instance.
+# \ingroup __init__ NessiVector
+# 
+# \brief   Initialization of an instance.
 # A NessiVector can be defined in 4 ways.
 #
 # - Without any argument:
-# \f[
+# \code
 # >>> MyVector1 = NessiVector()
-# \f]
-# in such case, the NessiVector is empty and of type <i>float</i> by default.
+# \endcode
+# in such case, the NessiVector is empty and of type <i>double</i> by default.
 #
 # - By declaring its size:
-# \f[
+# \code
 # >>> MyVector2 = NessiVector(2)
-# \f]
-# MyVector2 contains 2 elements, set to 0, of type <i>float</i> (by default)
+# \endcode
+# MyVector2 contains 2 elements, set to 0, of type <i>double</i> (by default)
 #
 # - By declaring its type:
-# \f[
-# >>> MyVector3 = NessiVector(type="double")
-# \f]
-# MyVector3 is an empty NessiVector of type <i>double</i>
+# \code
+# >>> MyVector3 = NessiVector(type="float")
+# \endcode
+# MyVector3 is an empty NessiVector of type <i>float</i>
 #
 # - By declaring its size and type:
-# \f[
+# \code
 # >>> MyVector4 = NessiVector(4,"int")
-# \f]
+# \endcode
+# or
+# \code
+# >>> MyVector4 = NessiVector(length=4,type="int")
+# \endcode
 # \f$MyVector4\f$ is a 4 elements long, initialized to 0, NessiVector of type
 # <i>int</i>
 #
 # \param self (INPUT) is the name of the NessiVector
 # \param length (INPUT/OPTIONAL) is the length of the instance (0 by default)
-# \param type (INPUT/OPTIONAL) is the type of the instance (<i>float</i> by
+# \param type (INPUT/OPTIONAL) is the type of the instance (<i>double</i> by
 # default)
-#
-    def __init__(self, length=0, type=DOUBLE):
 
-        if type.lower()==NessiVector.UNSIGNED_INT or \
-        type.lower()==NessiVector.UNSIGNED or \
+	def __init__(self, length=0, type=DOUBLE):
+
+       if type.lower()==NessiVector.UNSIGNED_INT or \
+       type.lower()==NessiVector.UNSIGNED or \
         type.lower()==NessiVector.UINT:
             self.__type__=self.UINT
 
@@ -136,56 +145,45 @@ class NessiVector (list):
                 with negative length"
         else:
             raise Exception,"type not supported by NessiVector"
-
 ##
-# \brief Function used to append elements to a NessiVector
+# \ingroup append NessiVector
+#
+# Function used to append elements to a NessiVector
 #
 # This function is used to append a value to an instance of the NessiVector,
 # <i>MyNessiVector</i>:
-# \f[
+# \code
 # >>> MyNessiVector.append(10.5)
-# \f]
+# \endcode
 # The size of the instance increases of 1 unit and the new element appended is
 # the new last element of the instance. That can be a confusion in the case the
 # size of the instance has already been declared during the initialization
 # process. For example, if a NessiVector has been defined has a 5 elements
 # long of type <i>float</i>
-# \f[
+# \code
 # >>> MyVector = NessiVector(5)
-# \f]
+# \endcode
 # the <i>append</i> method will add the new element after the 5 first "0".
 # elements
-# \f[
+# \code
 # >>> MyVector.append(10.5)
-# \f]
-# \f[
 # >>> MyVector[5]
-# \f]
-# \f[
 # 10.5
-# \f]
+# \endcode
 # It is also possible to append several values in the same time as illustrated
 # here:
-# \f[
+# \code
 # >>> MyNessiVector.append(1,2,3,4,5,6,7,8)
-# \f]
+# \endcode
 # This is the same as appending 1, then 2, then 3, and so on.... one after
 # the other.
-# \f[
+# \code
 # >>> MyVector.append(1)
-# \f]
-# \f[
 # >>> MyVector.append(2)
-# \f]
-# \f[
 # >>> MyVector.append(3)
-# \f]
-# \f[
 # >>> MyVector.append(4)
-# \f]
-# \f[
 # ...
-# \f]
+# \endcode
 #
 # \param self (INPUT) is the name of the NessiVector
 # \param number (INPUT) is the number to append
@@ -195,19 +193,23 @@ class NessiVector (list):
             self.__array__.append(num)
 
 ##
-# \brief Function used to get an element of a NessiVector.
+# \ingroup __getitem__ NessiVector
+#
+# Function used to get an element of a NessiVector.
 # To get the \f$i^{th}\f$ value of the NessiVector \f$MyVectorA\f$,
-#\f[
+# \code
 # >>> MyVectorA[i]
-#\f]
+# \endcode
 # The last index of the NessiVector is displayed if one ask for an element
 # of the NessiVector outside its range
 #
 
     def __getitem__(self,m):     # need to throw exception when m>len(self)
         return self.__array__[m]
-        
+
 ##
+# \ingroup __getslice__ NessiVector
+#
 # Function used to get a range of values from a NessiVector. Negative
 # indices are not supported.
 #
@@ -223,11 +225,13 @@ class NessiVector (list):
         return self.__array__[i:j]
 
 ##
+# \ingroup __len__ NessiVector
+#
 # Function used to get the length of a NessiVector
 #
-# \f[
+# \code
 # >>> len(MyVectorA)
-# \f]
+# \endcode
 #
 # \param self (INPUT) is the name of the NessiVector
 # \return 
@@ -238,14 +242,16 @@ class NessiVector (list):
         return len(self.__array__)
 
 ##
-# \brief The operator \f$+\f$ allows to add two NessiVector together.
+# \ingroup __add__ NessiVector
+#
+# The operator \f$+\f$ allows to add two NessiVector together.
 #
 # To add two NessiVectors together, instead of using the function <i>add</i>
 # provided by the NessiVectorUtils module, you can simply use the following
 # technique:
-# \f[
-# <<< NessiVector_{result} = NessiVector_1 + NessiVector_2
-# \f]
+# \code
+# >>> NessiVector_{result} = NessiVector_1 + NessiVector_2
+# \endcode
 #
     def __add__(self,right):
         c = NessiVector(len(self))
@@ -253,15 +259,18 @@ class NessiVector (list):
             c.__array__[i]=self.__array__[i]+right.__array__[i]
         return c
 
+
 ##
-# \brief The operator \f$-\f$ allows to substract two NessiVectors.
+# \ingroup __sub__ NessiVector
+#
+# The operator \f$-\f$ allows to substract two NessiVectors.
 #
 # To substract one NessiVector from another, instead of using the function
 # <i>sub</i> provided by the NessiVectorUtils module, you can simply use the
 # following technique:
-# \f[
-# <<< NessiVector_{result} = NessiVector_1 - NessiVector_2
-# \f]
+# \code
+# >>> NessiVector_{result} = NessiVector_1 - NessiVector_2
+# \endcode
 #
     def __sub__(self,right):
         c = NessiVector(len(self))
@@ -270,14 +279,16 @@ class NessiVector (list):
         return c
 
 ##
-# \brief The operator \f$\times\f$ allows to multiply two NessiVectors.
+# \ingroup __mult__ NessiVector
+#
+# The operator \f$\times\f$ allows to multiply two NessiVectors.
 #
 # To multiply two NessiVectors, instead of using the function <i>mult</i>
 # provided by the NessiVectorUtils module, you can simply use the following
 # technique:
-# \f[
-# <<< NessiVector_{result} = NessiVector_1 \times NessiVector_2
-# \f]
+# \code
+# >>> NessiVector_{result} = NessiVector_1 \times NessiVector_2
+# \endcode
 #
     def __mul__(self,right):
         c = NessiVector(len(self))
@@ -285,15 +296,18 @@ class NessiVector (list):
             c.__array__[i]=self.__array__[i]*right.__array__[i]
         return c
 
+
 ##
-# \brief The operator \f$/\f$ allows to divide two NessiVectors.
+# \ingroup __div__ NessiVector
+#
+# The operator \f$/\f$ allows to divide two NessiVectors.
 #
 # To divide two NessiVectors, instead of using the function <i>div</i>
 # provided by the NessiVectorUtils module, you can simply use the following
 # technique:
-# \f[
-# <<< NessiVector_{result} = NessiVector_1 / NessiVector_2
-# \f]
+# \code
+# >>> NessiVector_{result} = NessiVector_1 / NessiVector_2
+# \endcode
 #
     def __div__(self,right):
         c = NessiVector(len(self))
@@ -302,12 +316,16 @@ class NessiVector (list):
         return c
 
 ##
+# \ingroup __contains__ NessiVector
+#
 # Function "__contains__" not implemented yet
 #
     def __contains__(self):
         print  "Not implemented yet"
 
 ##
+# \ingroup __eq__ NessiVector
+#
 # Function "__eq__" not implemented yet
 #
 
@@ -315,31 +333,41 @@ class NessiVector (list):
         raise exception, "Not implemented yet"
 
 ##
+# \ingroup __ge__ NessiVector
+#
 # Function "__ge__" not implemented yet
 #
     def __ge__(self):
         raise exception, "Not implemented yet"
 
 ##
+# \ingroup __gt__ NessiVector
+#
 # Function "__gt__" not implemented yet
 #
     def __gt__(self):
         raise exception, "Not implemented yet"
 
 ##
+# \ingroup __ne__ NessiVector
+#
 # Function "__ne__" not implemented yet
 #
     def __ne__(self):
         raise exception, "Not implemented yet"
 
 ##
+# \ingroup __lt__ NessiVector
+#
 # Function "__lt__" not implemented yet
 #
     def __lt__(self):
         raise exception, "Not implemented yet"
 
 ##
-# Function "pop" not implemented yet"
+# \ingroup pop NessiVector
+#
+# Function used to remove the last element of the NessiVector
 #
     def pop(self):
         if len(self.__array__)<=0:
@@ -347,17 +375,20 @@ class NessiVector (list):
         else:
 			return self.__array__.pop()
 
-
 ##
-# \brief This method displays elements of a NessiVector.
+# \ingroup __str__ NessiVector
+#
+# This method displays elements of a NessiVector.
 #
 #  If the NessiVector contains more than 10 elements, the 10 first elements,
-# follow by 3 dots ". . ." and the last element of the NessiVector are displayed.
+# follow by 3 dots ". . ." and the last element of the NessiVector are
+# displayed.
 # The default number of elements displayed can be changed by giving this number
 # as second variable to the <i>print</i> method.
 #
 # \param self (INPUT) is the name of the NessiVector
-# \param last (INPUT/OPTIONAL) is the number of element to display, 10 by default
+# \param last (INPUT/OPTIONAL) is the number of element to display, 10 by
+# default
 #
 # \return
 # - n first elements, 3 dots and last element of the NessiVector,
@@ -366,7 +397,6 @@ class NessiVector (list):
 #
 # The number are displayed with 16 digits after the decimal separator.
 #
-
     def __str__(self,last=10):
 
         result=[]
@@ -385,17 +415,66 @@ class NessiVector (list):
 
         return "["+",".join(result)+"]"
 
+
+
+
+
+
+
+
+
+
+
 ##
-#\}
+# \defgroup max_vect nessi_vector::max_vect
+# \{
+
+##
+# Give the maximum value of the NessiVector's elements
 #
+# \param array (INPUT) is the name of the NessiVector
+#
+# \return The maximum value of the NessiVector <i>object</i>
+#
+def max_vect(array):
+    max_value = array[0]
+    for it in array:
+        if it > max_value:
+            max_value = it
+
+    return max_value
+
+##
+# \}
+
+##
+# \defgroup min_vect nessi_vector::min_vect
+# \{
+
+##
+# Give the minimum value of the NessiVector's elements
+#
+# \param array (INPUT) is the name of the NessiVector
+#
+# \return The minimum value of the NessiVector <i>object</i>.
+#
+def min_vect(array):
+    min_value = array[0]
+    for it in array:
+        if it < min_value:
+            min_value = it
+
+    return min_value
+
+##
+# \}
 
 ##
 # \defgroup print_multi nessi_vector::print_multi
 # \{
-#
 
 ##
-# \brief Display side by side the first n elements of two, or three NessiVectors.
+# Display side by side the first n elements of two, or three NessiVectors.
 #
 # \param n (INPUT) is number of element to display
 # \param object1 (INPUT) is the name of the first NessiVector
@@ -403,13 +482,12 @@ class NessiVector (list):
 # \param object3 (INPUT/OPTIONAL) is the name of the third NessiVector
 #
 # \return display of the first n elements of the two, or three NessiVectors.
-
 def print_multi(n,object1,object2,object3=NessiVector()):
 
     tab="\t\t"
     str_output = ""
 
-    #find maximum value and then set the tab
+    # find maximum value and then set the tab
 
     if (max_vect(object1) <= 9999):
         pass
@@ -443,50 +521,7 @@ def print_multi(n,object1,object2,object3=NessiVector()):
 
 ##
 # \}
-#
+
 
 ##
-# \defgroup max_vect nessi_vector::max_vect
-# \{
-#
-
-##
-# \brief Give the maximum value of the NessiVector's elements
-#
-# \param array (INPUT) is the name of the NessiVector
-#
-# \return The maximum value of the NessiVector <i>object</i>
-#
-def max_vect(array):
-    max_value = array[0]
-    for it in array:
-        if it > max_value:
-            max_value = it
-
-    return max_value
-
-##
-# \}
-
-##
-# \defgroup min_vect nessi_vector::min_vect
-# \{
-#
-
-##
-# \brief Give the minimum value of the NessiVector's elements
-#
-# \param array (INPUT) is the name of the NessiVector
-#
-# \return The minimum value of the NessiVector <i>object</i>.
-#
-def min_vect(array):
-    min_value = array[0]
-    for it in array:
-        if it < min_value:
-            min_value = it
-
-    return min_value
-
-##
-# \}
+# \@}
