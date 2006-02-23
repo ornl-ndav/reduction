@@ -674,9 +674,11 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
                 initial_wavelength_err2 = nessi_vector.NessiVector(len(tof))
                 axis_manip_bind.tof_to_initial_wavelength_igs_f(tof.__array__,\
                 	tof_err2.__array__,\
-                    float(final_wavelength), float(final_wavelength_err2),\
+                    float(final_wavelength), \
+					float(final_wavelength_err2),\
                     float(time_offset), float(time_offset_err2),\
-                    float(dist_source_sample), float(dist_source_sample_err2),\
+                    float(dist_source_sample), \
+					float(dist_source_sample_err2),\
                     float(dist_sample_detector), \
 					float(dist_sample_detector_err2),\
                     initial_wavelength.__array__, \
@@ -689,10 +691,13 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
                 initial_wavelength_err2 = nessi_vector.NessiVector(len(tof))
                 axis_manip_bind.tof_to_initial_wavelength_igs_d(tof.__array__,\
 					tof_err2.__array__,\
-                    final_wavelength, final_wavelength_err2,\
-                    time_offset, time_offset_err2,\
-                    dist_source_sample, dist_source_sample_err2,\
-                    dist_sample_detector, dist_sample_detector_err2,\
+                    float(final_wavelength),\
+					float(final_wavelength_err2),\
+                    float(time_offset, time_offset_err2),\
+                    float(dist_source_sample),\
+					float(dist_source_sample_err2),\
+                    float(dist_sample_detector),\
+					float(dist_sample_detector_err2),\
                     initial_wavelength.__array__, \
                     initial_wavelength_err2.__array__)
             except:
@@ -772,8 +777,8 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
                 wavelength_err2 = nessi_vector.NessiVector(len(tof))
                 axis_manip_bind.tof_to_wavelength_f(tof.__array__, \
 													tof_err2.__array__,\
-													pathlength,\
-													pathlength_err2,\
+													float(pathlength),\
+													float(pathlength_err2),\
 													wavelength.__array__,\
 													wavelength_err2.__array__)
             except:
@@ -784,8 +789,8 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
                 wavelength_err2 = nessi_vector.NessiVector(len(tof),"double")
                 axis_manip_bind.tof_to_wavelength_d(tof.__array__,\
 													tof_err2.__array__,\
-													pathlength,\
-													pathlength_err2,\
+													float(pathlength),\
+													float(pathlength_err2),\
 													wavelength.__array__,\
 													wavelength_err2.__array__)
             except:
