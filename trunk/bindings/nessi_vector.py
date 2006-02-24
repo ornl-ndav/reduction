@@ -100,10 +100,10 @@ class NessiVector (list):
 # \param type (INPUT/OPTIONAL) is the type of the instance (<i>double</i> by
 # default)
 
-	def __init__(self, length=0, type=DOUBLE):
+    def __init__(self, length=0, type=DOUBLE):
 
-       if type.lower()==NessiVector.UNSIGNED_INT or \
-       type.lower()==NessiVector.UNSIGNED or \
+        if type.lower()==NessiVector.UNSIGNED_INT or \
+        type.lower()==NessiVector.UNSIGNED or \
         type.lower()==NessiVector.UINT:
             self.__type__=self.UINT
 
@@ -254,11 +254,14 @@ class NessiVector (list):
 # \endcode
 #
     def __add__(self,right):
-        c = NessiVector(len(self))
-        for i in range(len(self)):
-            c.__array__[i]=self.__array__[i]+right.__array__[i]
+        if (len(self) != len(right)):
+			raise IndexError ,"NessiVectors don't have the same size"
+        if (self.__type__ != right.__type__):
+            raise AttributeError , "NessiVectors don't have the same type"
+        c = NessiVector(type=self.__type__)
+        for (a,b) in map(None,self.__array__,right.__array__):
+			c.append(a+b)
         return c
-
 
 ##
 # \ingroup __sub__ NessiVector
@@ -273,9 +276,13 @@ class NessiVector (list):
 # \endcode
 #
     def __sub__(self,right):
-        c = NessiVector(len(self))
-        for i in range(len(self)):
-            c.__array__[i]=self.__array__[i]-right.__array__[i]
+        if (len(self) != len(right)):
+			raise IndexError ,"NessiVectors don't have the same size"
+        if (self.__type__ != right.__type__):
+            raise AttributeError , "NessiVectors don't have the same type"
+        c = NessiVector(type=self.__type__)
+        for (a,b) in map(None,self.__array__,right.__array__):
+			c.append(a-b)
         return c
 
 ##
@@ -291,11 +298,14 @@ class NessiVector (list):
 # \endcode
 #
     def __mul__(self,right):
-        c = NessiVector(len(self))
-        for i in range(len(self)):
-            c.__array__[i]=self.__array__[i]*right.__array__[i]
+        if (len(self) != len(right)):
+			raise IndexError ,"NessiVectors don't have the same size"
+        if (self.__type__ != right.__type__):
+            raise AttributeError , "NessiVectors don't have the same type"
+        c = NessiVector(type=self.__type__)
+        for (a,b) in map(None,self.__array__,right.__array__):
+			c.append(a*b)
         return c
-
 
 ##
 # \ingroup __div__ NessiVector
@@ -310,9 +320,13 @@ class NessiVector (list):
 # \endcode
 #
     def __div__(self,right):
-        c = NessiVector(len(self))
-        for i in range(len(self)):
-            c.__array__[i]=self.__array__[i]/right.__array__[i]
+        if (len(self) != len(right)):
+			raise IndexError ,"NessiVectors don't have the same size"
+        if (self.__type__ != right.__type__):
+            raise AttributeError , "NessiVectors don't have the same type"
+        c = NessiVector(type=self.__type__)
+        for (a,b) in map(None,self.__array__,right.__array__):
+			c.append(a/b)
         return c
 
 ##
@@ -415,15 +429,8 @@ class NessiVector (list):
 
         return "["+",".join(result)+"]"
 
-
-
-
-
-
-
-
-
-
+##
+# \}
 
 ##
 # \defgroup max_vect nessi_vector::max_vect
