@@ -192,6 +192,13 @@ class NessiVector (list):
         for num in number:
             self.__array__.append(num)
 
+
+#    def __iter__(self):
+#        print "Iteration here"
+#        return self.__array__
+
+
+	
 ##
 # \ingroup __getitem__ NessiVector
 #
@@ -244,67 +251,160 @@ class NessiVector (list):
 ##
 # \ingroup __add__ NessiVector
 #
-# The operator \f$+\f$ allows to add two NessiVector together.
+# The operator \f$+\f$ allows to add two NessiVector together or each member
+# of a NessiVector with a scalar
 #
-# To add two NessiVectors together, instead of using the function <i>add</i>
-# provided by the NessiVectorUtils module, you can simply use the following
-# technique:
+# To add two NessiVectors together or a NessiVector with a scalar, instead of
+# using the function <i>add</i> provided by the NessiVectorUtils module,
+# you can simply use the following technique:
 # \code
-# >>> NessiVector_{result} = NessiVector_1 + NessiVector_2
+# >>> NessiVector_VV = NessiVector_1 + NessiVector_2
+# >>> NessiVector_VS = NessiVector + Scalar
 # \endcode
+# \return The resulting NessiVector
 #
     def __add__(self,right):
-        if (len(self) != len(right)):
-			raise IndexError ,"NessiVectors don't have the same size"
-        if (self.__type__ != right.__type__):
-            raise AttributeError , "NessiVectors don't have the same type"
-        c = NessiVector(type=self.__type__)
-        for (a,b) in map(None,self.__array__,right.__array__):
-			c.append(a+b)
+        try:
+            if (self.__type__ != right.__type__):
+               	raise AttributeError, "NessiVectors don't have the same type"
+            if (len(self)!=len(right)):
+                raise IndexError
+            else:
+                c = NessiVector(type=self.__type__)
+                for (a,b) in map(None,self.__array__,right.__array__):
+			        c.append(a+b)
+                return c
+        except AttributeError:
+            c = NessiVector(type=self.__type__)
+            for i in range(len(self)):
+                c.append(right+self.__array__[i])
+            return c
+        except IndexError:
+            raise IndexError,"NessiVector don't have the same size"
+
+##
+# \ingroup __radd__ NessiVector
+#
+# The operator \f$+\f$ allows to add a scalar with a NessiVector.
+#
+# To add each element of a NessiVector with a scalar, instead of using
+# the function <i>add</i> provided by the NessiVectorUtils module, you
+# can simply use the following technique:
+# \code
+# >>> NessiVector_SV = Scalar + NessiVector
+# \endcode
+# \return The resulting NessiVector
+#
+    def __radd__(self,left):
+        c=NessiVector(type=self.__type__)
+        for i in range(len(self)):
+            c.append(self.__array__[i]+left)
         return c
 
 ##
 # \ingroup __sub__ NessiVector
 #
-# The operator \f$-\f$ allows to substract two NessiVectors.
+# The operator \f$-\f$ allows to substract two NessiVectors or each member of
+# a NessiVector by a scalar.
 #
-# To substract one NessiVector from another, instead of using the function
-# <i>sub</i> provided by the NessiVectorUtils module, you can simply use the
-# following technique:
+# To substract one NessiVector from another or each member of a NessiVector
+# by a scalar, instead of using the function <i>sub</i> provided by the
+# NessiVectorUtils module, you can simply use the following technique:
 # \code
-# >>> NessiVector_{result} = NessiVector_1 - NessiVector_2
+# >>> NessiVector_VV = NessiVector_1 - NessiVector_2
+# >>> NessiVector_VS = NessiVector - Scalar
 # \endcode
 #
+# \return the resulting NessiVector
+#
     def __sub__(self,right):
-        if (len(self) != len(right)):
-			raise IndexError ,"NessiVectors don't have the same size"
-        if (self.__type__ != right.__type__):
-            raise AttributeError , "NessiVectors don't have the same type"
-        c = NessiVector(type=self.__type__)
-        for (a,b) in map(None,self.__array__,right.__array__):
-			c.append(a-b)
+        try:
+            if (self.__type__ != right.__type__):
+               	raise AttributeError, "NessiVectors don't have the same type"
+            if (len(self)!=len(right)):
+                raise IndexError
+            else:
+                c = NessiVector(type=self.__type__)
+                for (a,b) in map(None,self.__array__,right.__array__):
+			        c.append(a-b)
+                return c
+        except AttributeError:
+            c = NessiVector(type=self.__type__)
+            for i in range(len(self)):
+                c.append(self.__array__[i]-right)
+            return c
+        except IndexError:
+            raise IndexError,"NessiVector don't have the same size"
+##
+# \ingroup __rsub__ NessiVector
+#
+# The operator \f$-\f$ allows to substract a scalar by a NessiVector.
+#
+# To substract each element of a NessiVector from a scalar, instead of
+# using the function <i>sub</i> provided by the NessiVectorUtils module,
+# you can simply use the following technique:
+# \code
+# >>> NessiVector_SV = Scalar - NessiVector
+# \endcode
+#
+# \return the resulting NessiVector
+#
+    def __rsub__(self,left):
+        c=NessiVector(type=self.__type__)
+        for i in range(len(self)):
+            c.append(left - self.__array__[i])
         return c
-
+	
 ##
 # \ingroup __mult__ NessiVector
 #
 # The operator \f$\times\f$ allows to multiply two NessiVectors.
 #
-# To multiply two NessiVectors, instead of using the function <i>mult</i>
-# provided by the NessiVectorUtils module, you can simply use the following
-# technique:
+# To multiply two NessiVectors or each member of a NessiVector by a scalar,
+# instead of using the function <i>mult</i> provided by the NessiVectorUtils
+# module, you can simply use the following technique:
 # \code
-# >>> NessiVector_{result} = NessiVector_1 \times NessiVector_2
+# >>> NessiVector_VV = NessiVector_1 * times NessiVector_2
+# >>> NessiVector_VS = NessiVector * Scalar
 # \endcode
 #
     def __mul__(self,right):
-        if (len(self) != len(right)):
-			raise IndexError ,"NessiVectors don't have the same size"
-        if (self.__type__ != right.__type__):
-            raise AttributeError , "NessiVectors don't have the same type"
-        c = NessiVector(type=self.__type__)
-        for (a,b) in map(None,self.__array__,right.__array__):
-			c.append(a*b)
+        try:
+            if (self.__type__ != right.__type__):
+               	raise AttributeError, "NessiVectors don't have the same type"
+            if (len(self)!=len(right)):
+                raise IndexError
+            else:
+                c = NessiVector(type=self.__type__)
+                for (a,b) in map(None,self.__array__,right.__array__):
+                    c.append(a*b)
+                return c
+        except AttributeError:
+            c = NessiVector(type=self.__type__)
+            for i in range(len(self)):
+                c.append(right*self.__array__[i])
+            return c
+        except IndexError:
+            raise IndexError,"NessiVector don't have the same size"
+
+##
+# \ingroup __rmult__ NessiVector
+#
+# The operator \f$\times\f$ allows to multiply a scalar by a NessiVector.
+#
+# To multiply each element of a NessiVector by a scalar, instead of using
+# the function <i>mult</i> provided by the NessiVectorUtils module, you
+# can simply use the following technique:
+# \code
+# >>> NessiVector_SV = scalar *  times NessiVector
+# \endcode
+#
+# \return The resulting NessiVector
+#
+    def __rmul__(self,left):
+        c=NessiVector(type=self.__type__)
+        for i in range(len(self)):
+            c.append(left * self.__array__[i])
         return c
 
 ##
@@ -312,22 +412,54 @@ class NessiVector (list):
 #
 # The operator \f$/\f$ allows to divide two NessiVectors.
 #
-# To divide two NessiVectors, instead of using the function <i>div</i>
-# provided by the NessiVectorUtils module, you can simply use the following
-# technique:
+# To divide two NessiVectors or each element of a NessiVector by a scalar,
+# instead of using the function <i>div</i> provided by the NessiVectorUtils
+# module, you can simply use the following technique:
 # \code
-# >>> NessiVector_{result} = NessiVector_1 / NessiVector_2
+# >>> NessiVector_VV = NessiVector_1 / NessiVector_2
+# >>> NessiVector_VS = NessiVector / Scalar
 # \endcode
 #
     def __div__(self,right):
-        if (len(self) != len(right)):
-			raise IndexError ,"NessiVectors don't have the same size"
-        if (self.__type__ != right.__type__):
-            raise AttributeError , "NessiVectors don't have the same type"
-        c = NessiVector(type=self.__type__)
-        for (a,b) in map(None,self.__array__,right.__array__):
-			c.append(a/b)
+        try:
+            if (self.__type__ != right.__type__):
+               	raise AttributeError, "NessiVectors don't have the same type"
+            if (len(self)!=len(right)):
+                raise IndexError
+            else:
+                c = NessiVector(type=self.__type__)
+                for (a,b) in map(None,self.__array__,right.__array__):
+			        c.append(a/b)
+                return c
+        except AttributeError:
+            c = NessiVector(type=self.__type__)
+            for i in range(len(self)):
+                c.append(self.__array__[i]/right)
+            return c
+        except IndexError:
+            raise IndexError,"NessiVector don't have the same size"
+
+##
+# \ingroup __rdiv__ NessiVector
+#
+# The operator \f\\f$ allows to divide a scalar by a NessiVector.
+#
+# To divide a scalar by each element of a NessiVector, instead of using
+# the function <i>div</i> provided by the NessiVectorUtils module, you
+# can simply use the following technique:
+# \code
+# >>> NessiVector_SV = scalar /  times NessiVector
+# \endcode
+#
+# \return The resulting NessiVector
+#
+    def __rdiv__(self,left):
+        c=NessiVector(type=self.__type__)
+        for i in range(len(self)):
+            c.append(left / self.__array__[i])
         return c
+
+
 
 ##
 # \ingroup __contains__ NessiVector
@@ -531,4 +663,4 @@ def print_multi(n,object1,object2,object3=NessiVector()):
 
 
 ##
-# \@}
+# \
