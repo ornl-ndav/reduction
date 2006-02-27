@@ -51,6 +51,7 @@ import axis_manip_bind
 CalculationError = "Error of calculation"
 TypeError = "Error of type"
 TypesDifferentError = "Error in types"
+TypeNotSupported = "Type of NessiVector is not supported by this function"
 
 ##
 # \defgroup py_energy_transfer axis_manip::energy_transfer
@@ -90,57 +91,152 @@ TypesDifferentError = "Error in types"
 
 def energy_transfer(initial_energy, initial_energy_err2,\
 						final_energy, final_energy_err2):
+
     try:
         if (initial_energy.__type__ == nessi_vector.NessiVector.FLOAT):
-            if (final_energy.__type__ == nessi_vector.NessiVector.FLOAT):
+			#V(?)-??
+            try:
+                if (final_energy.__type__ == nessi_vector.NessiVector.FLOAT):
+					#V(float)-V(float)
+#                    print "in energy_transfer V(float)-V(float)"  #REMOVE
+                    try:
+                        energy_transfer = nessi_vector.NessiVector(len(\
+                            initial_energy), type="FLOAT")
+                        energy_transfer_err2 = nessi_vector.NessiVector(len(initial_energy),type="FLOAT")
+                        axis_manip_bind.energy_transfer_f(\
+                            initial_energy.__array__,\
+                            initial_energy_err2.__array__,\
+                            final_energy.__array__,\
+                            final_energy_err2.__array__,\
+                            energy_transfer.__array__,\
+                            energy_transfer_err2.__array__)
+                    except:
+                        raise CalculationError, "Calculation of energy_transfer failed"
+                elif (final_energy.__type__ == nessi_vector.NessiVector.DOUBLE):
+					#V(float)-V(double)
+                    raise TypesDifferentError, "Vector types (%s,%s) are different" %(initial_energy.__type__,final_energy.__type__)
+                else:
+					#V(float)-V(type not supported)
+                    raise TypeNotSupported, "Type of final_energy, %s, is not supported by this function" %final_energy.__type__
+
+            except:
+				#V(float)-S(forced float)
+#                print "in energy_transfer V(float)-S(florced float)" #REMOVE
                 try:
                     energy_transfer = nessi_vector.NessiVector(len(\
-						initial_energy), type="FLOAT")
+                        initial_energy), type="FLOAT")
                     energy_transfer_err2 = nessi_vector.NessiVector(\
-						len(initial_energy),type="FLOAT")
+                        len(initial_energy),type="FLOAT")
                     axis_manip_bind.energy_transfer_f(\
-								initial_energy.__array__,\
-                                initial_energy_err2.__array__,\
-                                final_energy.__array__,\
-                                final_energy_err2.__array__,\
-                                energy_transfer.__array__,\
-                                energy_transfer_err2.__array__)
+                        initial_energy.__array__,\
+                        initial_energy_err2.__array__,\
+                        float(final_energy),\
+                        float(final_energy_err2),\
+                        energy_transfer.__array__,\
+                        energy_transfer_err2.__array__)
                 except:
-                    raise CalculationError
-            else:
-                raise TypesDifferentError
+                    raise CalculationError, "Calculation of energy_transfer failed"
+				
         elif (initial_energy.__type__ == nessi_vector.NessiVector.DOUBLE):
-            if (final_energy.__type__ == nessi_vector.NessiVector.DOUBLE):
+            try:
+                if (final_energy.__type__ == nessi_vector.NessiVector.DOUBLE):
+					#V(double)-V(double)
+#                    print "in energy_transfer V(double)-V(double)" #REMOVE
+                    try:
+                        energy_transfer = nessi_vector.NessiVector(len(initial_energy))
+                        energy_transfer_err2 = nessi_vector.NessiVector(len(initial_energy))
+                        axis_manip_bind.energy_transfer_d(\
+                            initial_energy.__array__,\
+                            initial_energy_err2.__array__,\
+                            final_energy.__array__,\
+                            final_energy_err2.__array__,\
+                            energy_transfer.__array__,\
+                            energy_transfer_err2.__array__)
+                    except:
+                        raise CalculationError, "Calculation of energy_transfer failed"
+                elif (final_energy.__type__ == nessi_vector.NessiVector.FLOAT):
+					#V(double)-V(float)
+                    raise TypesDifferentError, "Vector types (%s, %s) are different" %(initial_energy.__type__, final.energy.__type__)
+                else:
+					#V(double)-V(type not supported)
+                    raise TypeNotSupported, "Type of final_energy, %s, is not supported by this function" %final_energy.__type__
+            except:
+				#V(double)-S(forced float)
+#                print "in energy_transfer V(double)-S(forced float)" #REMOVE
                 try:
+                    energy_transfer = nessi_vector.NessiVector(len(initial_energy))
+                    energy_transfer_err2 = nessi_vector.NessiVector(len(initial_energy))
                     axis_manip_bind.energy_transfer_d(\
-								initial_energy.__array__,\
-                                initial_energy_err2.__array__,\
+                        initial_energy.__array__,\
+                        initial_energy_err2.__array__,\
+                        float(final_energy),\
+                        float(final_energy_err2),\
+                        energy_transfer.__array__,\
+                        energy_transfer_err2.__array__)
+                except:
+                    raise CalculationError, "Calculation of energy_transfer failed"
+
+
+        else:
+           raise TypeError, "Vector type requested, %s, is not supported by this function!" %initial_energy.__type__
+
+    except:
+		#S(?)-??
+        try:
+            if (final_energy.__type__ == nessi_vector.NessiVector.FLOAT):
+				#S(forced float)-V(float)
+#                print "in energy_transfer S(forced float)-V(float)" #REMOVE
+                try:
+                    energy_transfer = nessi_vector.NessiVector(len(\
+				                final_energy), type="FLOAT")
+                    energy_transfer_err2 = nessi_vector.NessiVector(\
+						        len(final_energy),type="FLOAT")
+                    axis_manip_bind.energy_transfer_f(\
+								float(initial_energy),\
+                                float(initial_energy_err2),\
                                 final_energy.__array__,\
                                 final_energy_err2.__array__,\
                                 energy_transfer.__array__,\
                                 energy_transfer_err2.__array__)
                 except:
-                    raise CalculationError
+                    raise CalculationError, "Calculation of energy_transfer failed"
+            elif (final_energy.__type__ == nessi_vector.NessiVector.DOUBLE):
+				#S(forced float)-V(double)
+#                print "in energy_transfer S(forced float)-V(double)" #REMOVE
+                try:
+                    energy_transfer = nessi_vector.NessiVector(len(\
+				                final_energy))
+                    energy_transfer_err2 = nessi_vector.NessiVector(\
+						        len(final_energy))
+                    axis_manip_bind.energy_transfer_d(\
+								float(initial_energy),\
+                                float(initial_energy_err2),\
+                                final_energy.__array__,\
+                                final_energy_err2.__array__,\
+                                energy_transfer.__array__,\
+                                energy_transfer_err2.__array__)
+                except:
+                    raise CalculationError, "Calculation of energy_transfer failed"
+
             else:
-                raise TypesDifferentError
-        else:
-            raise TypeError
-    except TypeError:
-        print "Vector type requested, %s, is not supported!"\
-			  %initial_energy.__type__
-        energy_transfer=nessi_vector.NessiVector(len(initial_energy))
-        energy_transfer_err2=nessi_vector.NessiVector(len(initial_energy))
-    except TypesDifferentError:
-        print "Vector types (%s,%s) are different" %(initial_energy.__type__,\
-													 final_energy.__type__)
-        energy_transfer=nessi_vector.NessiVector(len(initial_energy))
-        energy_transfer_err2=nessi_vector.NessiVector(len(initial_energy))
-    except CalculationError:
-        print "Calculation of energy_transfer failed"
-        energy_transfer=nessi_vector.NessiVector(len(initial_energy))
-        energy_transfer_err2=nessi_vector.NessiVector(len(initial_energy))
-    except:
-        print "Object has no attribute __type__"
+				#S(float)-V(type not supported)
+                raise TypeNotSupported, "Type of final_energy, %s, is not supported by this function" %final_energy.__type__
+		#S(float)-S(float)
+        except:
+#            print "in energy_transfer S(float)-S(float)" #REMOVE			
+            try:
+                energy_transfer = nessi_vector.NessiVector(1)
+                energy_transfer_err2 = nessi_vector.NessiVector(1)
+                axis_manip_bind.energy_transfer_d(\
+								float(initial_energy),\
+                                float(initial_energy_err2),\
+                                float(final_energy),\
+                                float(final_energy_err2),\
+                                energy_transfer.__array__,\
+                                energy_transfer_err2.__array__)
+            except:
+                raise CalculationError, "Calculation of energy_transfer failed"
+				
     return energy_transfer, energy_transfer_err2
 
 ##
