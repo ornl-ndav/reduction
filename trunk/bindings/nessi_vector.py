@@ -190,7 +190,20 @@ class NessiVector (list):
         for num in number:
             self.__array__.append(num)
 
-
+##
+# \ingroup __repr__ NessiVector
+#
+# Function that is used to get the real state of a NessiVector
+# \code
+# >>> MyVector = NessiVector()
+# >>> MyVector.append(1,2,3,4,5)
+# >>> MyVector
+# [1.0,2.0,3.0,4.0,5.0]
+# \endcode
+#
+    def __repr__(self):
+	    return self.__str__()
+		
 ##
 # \ingroup __iter__ NessiVector
 #
