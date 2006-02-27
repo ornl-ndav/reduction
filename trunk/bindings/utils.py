@@ -30,7 +30,6 @@
 
 import nessi_vector
 import utils_bind
-#import sys
 
 ##
 # \namespace utils
@@ -67,7 +66,7 @@ import utils_bind
 # {\sum^{bin_{end}}_{i=bin_{start}} \frac{1}{\sigma_i^2}}
 # \f]
 #
-#  and the square of the uncertainty is calculated according to the
+# and the square of the uncertainty is calculated according to the
 # following function
 #
 # \f[
@@ -114,10 +113,8 @@ def weighted_average(a,ae2,start,fin):
                 utils_bind.weighted_average_f(a.__array__,ae2.__array__,\
                                               float(start),float(fin),\
                                               c,ce2)
-
-            except ValueError:
-                print "start and/or fin were not entered as numbers"
-
+            except:
+				raise ValueError, "Error of calculation"
 
         elif (a.__type__ == a.DOUBLE):
             try:
@@ -127,14 +124,14 @@ def weighted_average(a,ae2,start,fin):
                                               float(start),float(fin),\
                                               c,ce2)
 
-            except ValueError:
-                print "start and/or fin were not entered as numbers"
+            except :
+                raise ValueError, "Error of calculation"
 
         else:
             raise AttributeError
 
     except AttributeError:
-        print "Vector type requested, %s, is not supported!" % a.__type__
+        raise AttributeError, "Vector type requested, %s, is not supported by the weighter_average function!" % a.__type__
 
     return c,ce2
 
