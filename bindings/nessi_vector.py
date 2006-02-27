@@ -33,7 +33,7 @@ import nessi_vector_bind
 ##
 # \namespace nessi_vector
 #
-# \brief The purpose of this class is to provide an abstraction layer that
+# \brief The purpose of this module is to provide an abstraction layer that
 # hide the call to the functions according to the type of the instance.
 #
 # This class plays the role of a template for the function called
@@ -49,7 +49,6 @@ import nessi_vector_bind
 ##
 # \defgroup NessiVector nessi_vector::NessiVector
 # \{
-
 class NessiVector (list):
 
     FLOAT = "float"
@@ -99,7 +98,6 @@ class NessiVector (list):
 # \param length (INPUT/OPTIONAL) is the length of the instance (0 by default)
 # \param type (INPUT/OPTIONAL) is the type of the instance (<i>double</i> by
 # default)
-
     def __init__(self, length=0, type=DOUBLE):
 
         if type.lower()==NessiVector.UNSIGNED_INT or \
@@ -193,11 +191,13 @@ class NessiVector (list):
             self.__array__.append(num)
 
 
-#    def __iter__(self):
-#        print "Iteration here"
-#        return self.__array__
-
-
+##
+# \ingroup __iter__ NessiVector
+#
+# Function not implemented yet
+#
+    def __iter__(self):
+        print "Not implemented yet"
 	
 ##
 # \ingroup __getitem__ NessiVector
@@ -210,7 +210,6 @@ class NessiVector (list):
 # The last index of the NessiVector is displayed if one ask for an element
 # of the NessiVector outside its range
 #
-
     def __getitem__(self,m):     # need to throw exception when m>len(self)
         return self.__array__[m]
 
@@ -244,7 +243,6 @@ class NessiVector (list):
 # \return 
 # - The length of the NessiVector
 #
-
     def __len__(self):
         return len(self.__array__)
 
@@ -280,7 +278,7 @@ class NessiVector (list):
                 c.append(right+self.__array__[i])
             return c
         except IndexError:
-            raise IndexError,"NessiVector don't have the same size"
+            raise IndexError,"NessiVectors don't have the same size"
 
 ##
 # \ingroup __radd__ NessiVector
@@ -334,7 +332,7 @@ class NessiVector (list):
                 c.append(self.__array__[i]-right)
             return c
         except IndexError:
-            raise IndexError,"NessiVector don't have the same size"
+            raise IndexError,"NessiVectors don't have the same size"
 ##
 # \ingroup __rsub__ NessiVector
 #
@@ -385,7 +383,7 @@ class NessiVector (list):
                 c.append(right*self.__array__[i])
             return c
         except IndexError:
-            raise IndexError,"NessiVector don't have the same size"
+            raise IndexError,"NessiVectors don't have the same size"
 
 ##
 # \ingroup __rmult__ NessiVector
@@ -437,7 +435,7 @@ class NessiVector (list):
                 c.append(self.__array__[i]/right)
             return c
         except IndexError:
-            raise IndexError,"NessiVector don't have the same size"
+            raise IndexError,"NessiVectors don't have the same size"
 
 ##
 # \ingroup __rdiv__ NessiVector
@@ -474,7 +472,6 @@ class NessiVector (list):
 #
 # Function "__eq__" not implemented yet
 #
-
     def __eq__(self):
         raise exception, "Not implemented yet"
 
@@ -537,12 +534,10 @@ class NessiVector (list):
 # default
 #
 # \return
-# - n first elements, 3 dots and last element of the NessiVector,
+# - a list of the n first elements, 3 dots and last element of the NessiVector,
 # if the NessiVector contains more than n elements
-# - all the elements of the NessiVector, if the NessiVector is smaller than n.
-#
-# The number are displayed with 16 digits after the decimal separator.
-#
+# - a list of all the elements of the NessiVector, if the NessiVector is
+# smaller than n.
     def __str__(self,last=10):
 
         result=[]
@@ -562,9 +557,6 @@ class NessiVector (list):
         return "["+",".join(result)+"]"
 
 ##
-# \}
-
-##
 # \defgroup max_vect nessi_vector::max_vect
 # \{
 
@@ -582,7 +574,6 @@ def max_vect(array):
             max_value = it
 
     return max_value
-
 ##
 # \}
 
@@ -604,7 +595,6 @@ def min_vect(array):
             min_value = it
 
     return min_value
-
 ##
 # \}
 
@@ -657,10 +647,9 @@ def print_multi(n,object1,object2,object3=NessiVector()):
         str_output = str_output
 
     print str_output
-
 ##
 # \}
 
 
 ##
-# \
+# \}
