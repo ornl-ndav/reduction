@@ -442,7 +442,7 @@ class NessiVector (list):
 ##
 # \ingroup __rdiv__ NessiVector
 #
-# The operator \f\\f$ allows to divide a scalar by a NessiVector.
+# The operator \f$/\f$ allows to divide a scalar by a NessiVector.
 #
 # To divide a scalar by each element of a NessiVector, instead of using
 # the function <i>div</i> provided by the NessiVectorUtils module, you
@@ -519,7 +519,7 @@ class NessiVector (list):
         if len(self.__array__)<=0:
             raise IndexError, "pop from empty Vector"
         else:
-			return self.__array__.pop()
+            return self.__array__.pop()
 
 ##
 # \ingroup __str__ NessiVector
