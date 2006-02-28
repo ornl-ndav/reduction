@@ -1,4 +1,4 @@
-/*
+¶/*
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
@@ -716,7 +716,7 @@ namespace ArrayManip
  /**
    * \brief This function is described in section 3.44.
    *
-   * This function subtracts each element from a scalar, \f$i\f$, of
+   * This function subtracts from a scalar each element, \f$i\f$, of
    * an array according to the equation
    * \f[
    * data_o[i]=a-data_i[i]
@@ -728,7 +728,7 @@ namespace ArrayManip
    * \f]
    * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
    * array, \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array
-   * being subtracted from the scalar, \f$a\f$ is the scalar
+   * being subtracted from the scalar, \f$a\f$ is the scalar,
    * \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of the
    * uncertainty of the output array, \f$\sigma_a\f$ is the
    * uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
