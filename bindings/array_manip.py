@@ -57,51 +57,128 @@ import array_manip_bind
 ##
 # \brief This function adds each element of two NessiVector.
 #
-# This function accepts two or four NessiVector as arguments. The addition of
-# a NessiVector with a scalar is not supported yet.
+# This function accepts four NessiVector as arguments or 2 NessiVectors and
+# 2 scalars.
 #
-# With two arguments,
+# - With four NessiVectors:
 # \code
-# >>>  Vector_0 = array_manip.add_ncerr (Vector_1, Vector_2)
+# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
 # \endcode
-# With four arguments,
+#
+# - With 2 NessiVectors and 2 scalars:
 # \code
-# >>> Vector_0, Vector_err2_0 = array_manip.add_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1, Scalar, Scalar_err2)
 # \endcode
-# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
+# or
+# \code
+# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Scalar, Scalar_err2, Vector_1, Vector_err2_1)
+# \endcode
 #
-# For both cases, this function adds each element, \f$i\f$, of two NessiVector
-# according to the equations
-# \f[
-# Vector_0[i] = Vector_1[i] + Vector_2[i]
-# \f]
-# and
-# \f[
-# \sigma_0[i] = \sigma_1^2[i] +
-# \sigma_2^2[i]
-# \f]
-# where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output
-# NessiVector, \f$Vector_1[i]\f$ is the \f$i^{th}\f$ component of the first
-# NessiVector being added, \f$Vector_2[i]\f$ it the \f$i^{th}\f$ component
-# of the second NessiVector being added, \f$\sigma_0[i]\f$ is the
-# \f$i^{th}\f$ component of the uncertainty of the output NessiVector,
-# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
-# in the first NessiVector, and \f$\sigma_2[i]\f$ is the \f$i^{th}\f$
-# component of the uncertainty in the second NessiVector.
+#     ========================================================================
 #
-# \param a (INPUT) is the first NessiVector to be added
-# \param ae2 (INPUT) is the second NessiVector to be added if there are no more
-# arguments present, otherwise it's the square of the uncertainty in the first
-# NessiVector to be added
-# \param b (INPUT/OPTIONAL) is the second NessiVector to be added
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
-# the uncertainty in the second NessiVector to be added
+# - With 4 NessiVectors, this function adds each element, \f$i\f$, of two
+# NessiVectors according to the equation:
+# \f[
+# data_o[i]=data_1[i]+data_2[i]
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2[i]=\sigma_1^2[i]+\sigma_2^2[i]
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the first
+# array being added, \f$data_2[i]\f$ is the \f$i^{th}\f$ component
+# of the second array being added, \f$\sigma_o[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty of the output array,
+# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty in the first array, and \f$\sigma_2[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the second array.
+#
+# - With 2 NessiVectors and 2 scalars, this function adds a scalar to each
+# element, \f$i\f$, of an array according to the equation:
+# \f[
+# data_o[i]=a+data_i[i]
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2[i]=\sigma_a^2+\sigma_i^2[i]
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$a\f$ is the scalar being added to each element,
+# \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array,
+# \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty of the output array, \f$\sigma_a\f$ is the
+# uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the input array.
+#
+# \param a (INPUT) is the first NessiVector or scalar to be added
+# \param ae2 (INPUT) is the square of the uncertainty in the first
+# NessiVector of in the scalar to be added
+# \param b (INPUT) is the second NessiVector or scalar to be added
+# \param be2 (INPUT) is the square of the uncertainty in the second
+# NessiVector or scalar to be added
 # \return
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector
 #
-
 def add_ncerr(a,ae2,b,be2):
+
+    """
+
+    This function accepts four arguments:
+	   - 4 NessiVectors
+	   - 2 NessiVectors and 2 scalars
+	
+    >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1,
+        Vector_err2_1, Vector_2, Vector_err2_2)
+
+    >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector, Vector_err2,
+        Scalar, Scalar_err2)
+
+    where Vector_o is the resulting NessiVector and Vector_err2_o is the
+    uncertainty in the NessiVector o.
+
+    ================================================================	
+    - With 4 NessiVectors, this function adds each element, i, of two
+    NessiVectors according to the equation:
+
+    Vector_o[i] = Vector_1[i] + Vector_2[i]
+
+    and the uncorrelated uncertainties will be present according to the
+    equation:
+	
+    Vector_err2_o[i] = Vector_err2_1^2[i] + Vector_err2_2^2[i]
+
+    Where Vector_o[i] is the i^th component of the output
+    array, Vector_1[i] is the i^th component of the first
+    array, Vector_2[i] is the i^th component of the
+    second array, Vector_err2_o[i] is the i^th component of
+    the uncertainty of the output array, Vector_err2_1[i] is the
+    i^th component of the uncertainty in the first array, and
+    Vector_err2_2[i] is the i^th component of the
+    uncertainty in the second array.
+
+    - With 2 NessiVectors and 2 scalars, this function adds each element of the
+    NessiVectors with a scalar according to the equation:
+
+    Vector_o[i] = Vector[i] + Scalar
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation:
+	
+    Vector_err2_o[i] = Vector_err2[i] + Scalar_err2
+	
+    Where Vector_o[i] is the i^th component of the output
+    array, Scalar is the scalar being added to each element,
+    Vector_1[i] is the i^th component of the input array,
+    Vector_err2_o[i] is the i^th component of the
+    uncertainty of the output array, Scalar_err2 is the
+    uncertainty in the scalar, and Vector_err2_1[i] is the
+    i^th component of the uncertainty in the input array.
+
+    """
 
     run_ok = False
 
@@ -188,52 +265,175 @@ def add_ncerr(a,ae2,b,be2):
 ##
 # \brief This function substracts each element of two NessiVector.
 #
-# This function accepts two or four NessiVector as arguments. The substraction
-# of a NessiVector with a scalar is not supported yet.
+# This function accepts four NessiVector as arguments or 2 NessiVectors and
+# 2 scalars
 #
-# With two arguments,
+# - With four NessiVectors:
 # \code
-# >>>  Vector_0 = array_manip.sub_ncerr (Vector_1, Vector_2)
+# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
 # \endcode
 #
-# With four arguments,
+# - With 2 NessiVectors and 2 scalars:
 # \code
-# >>> Vector_0, Vector_err2_0 = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Scalar, Scalar_err2)
 # \endcode
-# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
 #
-# For both cases, this function substracts each element, \f$i\f$, of two
-# NessiVector according to the equations
-# \f[
-# Vector_0[i] = Vector_1[i] - Vector_2[i]
-# \f]
-# and
-# \f[
-# \sigma_0[i] = \sigma_1^2[i] +
-# \sigma_2^2[i]
-# \f]
-# where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output
-# NessiVector, \f$Vector_1[i]\f$ is the \f$i^{th}\f$ component of the
-# NessiVector being subtracted from, \f$Vector_2[i]\f$ it the \f$i^{th}\f$
-# component of the NessiVector subtracting, \f$\sigma_0[i]\f$ is the
-# \f$i^{th}\f$ component of the uncertainty of the output NessiVector,
-# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
-# in the first NessiVector, and \f$\sigma_2[i]\f$ is the \f$i^{th}\f$
-# component of the uncertainty in the second NessiVector.
+# - With 2 scalars and 2 NessiVectors:
+# \code
+# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Scalar, Scalar_err2, Vector_1, Vector_err2_1)
+# \endcode
 #
-# \param a (INPUT) is the NessiVector to be subtracted from
-# \param ae2 (INPUT) is the NessiVector to subtract, if they are no more
-# arguments present, otherwise it's the square of the uncertainty in the
-# NessiVector to be subtracted from
-# \param b (INPUT/OPTIONAL) is the NessiVector to subtract
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
-# the uncertainty in the NessiVector to subtract
+#     ========================================================================
+#
+# - With 4 NessiVectors, This function subtracts each element, \f$i\f$, of two
+# arrays according to the equation:
+# \f[
+# data_o[i]=data_1[i]/data_2[i]
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation:
+# \f[
+# \sigma_o^2[i]=\left(\frac{data_1[i]\times \sigma_2[i]}{data_2^2[i]}
+# \right)^2+\left(\frac{\sigma_1[i]}{data_2[i]}\right)^2
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the array
+# being subtracted from each element, \f$data_2[i]\f$ is the \f$i^{th}\f$
+# component of the array subtracting, \f$\sigma_o[i]\f$ is the \f$i^{th}\f$
+# component of the uncertainty of the output array,
+# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty in the array being subtracting, and \f$\sigma_i[i]\f$ is
+# the \f$i^{th}\f$ component of the uncertainty in the array subtracting.
+# array.
+#
+# - With 2 NessiVectors and 2 Scalars, this function subtracts each element,
+# \f$i\f$, of an array by a scalar according to the equation:
+# \f[
+# data_o[i]=data_i[i]/a
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation:
+# \f[
+# \sigma_o^2[i]=\left(\frac{\sigma_i[i]}{a}\right)^2
+#                 +\left(\frac{data_i[i]\times\sigma_a}{a^2}\right)^2
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$a\f$ is the scalar subtracting each element,
+# \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array,
+# \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty of the output array, \f$\sigma_a\f$ is the
+# uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the input array.
+#
+# - With 2 scalars and 2 NessiVectors, this function subtracts a scalar by each
+# element, \f$i\f$, of an array according to the equation:
+# \f[
+# data_o[i]=a/data_i[i]
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation:
+# \f[
+# \sigma_o^2[i]=\left(\frac{a \times \sigma_i[i]}{data_i^2[i]}\right)^2
+#                 +\left(\frac{\sigma_a}{data_i[i]}\right)^2
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$a\f$ is the scalar each element is subtracting,
+# \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array,
+# \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty of the output array, \f$\sigma_a\f$ is the
+# uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the input array.
+#
+# \param a (INPUT) is the NessiVector or scalar to be subtracted from 
+# \param ae2 (INPUT) is the square of the uncertainty in the
+# NessiVector or scalar to be subtracted from
+# \param b (INPUT) is the NessiVector or scalar to subtract
+# \param be2 (INPUT) is the square of the uncertainty in the NessiVector or
+# scalar to subtract
 # \return
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector 
 #
-
 def sub_ncerr(a,ae2,b,be2):
+
+    """
+
+    This function accepts four arguments:
+	   - 4 NessiVectors
+	   - 2 NessiVectors and 2 scalars
+	   - 2 scalars and 2 NessiVectors
+	
+    >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1,
+        Vector_err2_1, Vector_2, Vector_err2_2)
+
+    >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector, Vector_err2,
+        Scalar, Scalar_err2)
+
+    >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Scalar, Scalar_err2,
+        Vector, Vector_err2)
+
+    where Vector_o is the resulting NessiVector and Vector_err2_o is the
+    uncertainty in the NessiVector o.
+
+    ================================================================
+
+    - With 4 NessiVectors, this function subtracts each element, i, of two
+    NessiVectors according to the equation:
+
+    Vector_o[i] = Vector_1[i] - Vector_2[i]
+
+    and the uncorrelated uncertainties will be present according to the
+    equation
+
+    Vector_err2_o^2[i] = Vector_err2_1^2[i] + Vector_err2_2^2[i]
+
+    Where Vector_o[i] is the i^th component of the output
+    array, Vector_1[i] is the i^th component being subtracted from
+    each element, Vector_2[i] is the i^th component of
+    the array subtracting, Vector_err2_o[i] is the i^th
+    component of the uncertainty of the output array,
+    Vector_err2_1[i] is the i^th component of the
+    uncertainty in the array begin subtracted from and
+    Vector_err2_2[i] is the i^th component of the
+    uncertainty in the array subtracting.
+    
+    - With 2 NessiVectors and 2 scalars, this function subtracts a scalar
+    from each element, i, of a NessiVectors according to the equation:
+
+    Vector_o[i] = Vector_1[i] - Scalar
+
+    and the uncorrelated uncertainties will be present according to the
+    equation
+
+    Vector_err2_o^2[i] = Vector_err2_1^2[i] + Scalar_err2^2
+
+    Where Vector_o[i] is the i^th component of the output
+    array, Vector_1[i] is the i^th component being subtracted from
+    each element, Scalar is the being subtracted from each element,
+    Vector_err2_o[i] is the i^th component of the uncertainty of the
+    output array, Vector_err2_1[i] is the i^th component of the
+    uncertainty in the array begin subtracted from and
+    Scalar_err2 is the uncertainty in the scalar.
+
+    - With 2 scalar and 2 NessiVectors, this function subtracts from a
+    scalar each element, i, of a NessiVectors according to the equation:
+
+    Vector_o[i] = Scalar - Vector_1[i]
+
+    and the uncorrelated uncertainties will be present according to the
+    equation
+
+    Vector_err2_o^2[i] = Scalar_err2^2 + Vector_err2_1^2[i]
+
+    Where Vector_o[i] is the i^th component of the output
+    array, Vector_1[i] is the i^th component of the input array
+    being subtracted from the scalar, Scalar is the scalar,
+    Vector_err2_o[i] is the i^th component of the
+    uncertainty of the output array, Scalar_err2 is the
+    uncertainty in the scalar, and Vector_err2_1[i] is the
+    i^th component of the uncertainty in the input array.
+
+    """
 
     run_ok = False
 
@@ -320,52 +520,126 @@ def sub_ncerr(a,ae2,b,be2):
 ##
 # \brief This function multiplies each element of two NessiVector.
 #
-# This function accepts two or four NessiVector as arguments. The
-# multiplication of a NessiVector with a scalar is not supported yet.
+# This function accepts four NessiVector as arguments or 2 NessiVectors and 2
+# scalars.
 #
-# With two arguments,
+# - With four NessiVectors:
 # \code
-# >>>  Vector_0 = array_manip.mult_ncerr (Vector_1, Vector_2)
+# >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,Vector_err2_1, Vector_2,Vector_err2_2)
 # \endcode
 #
-# With four arguments,
+# - With 2 NessiVectors and 2 scalars:
 # \code
-# >>> Vector_0, Vector_err2_0 = array_manip.mult_ncerr (Vector_1,Vector_err2_1, Vector_2,Vector_err2_2)
+# >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector,Vector_err2, Scalar, Scalar_err2)
 # \endcode
-# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
 #
-# For both cases, this function multiplies each element, \f$i\f$, of two
-# NessiVector according to the equations
+#     ========================================================================
+#
+# - With 4 NessiVectors, this function multiply each element, \f$i\f$, of two
+# NessiVectors according to the equation:
 # \f[
-# Vector_0[i] = Vector_1[i] \times Vector_2[i]
+# data_o[i]=data_1[i]\times data_2[i]
 # \f]
-# and
+# and the uncorrelated uncertainties will be processed according to
+# the equation
 # \f[
-# \sigma_0[i] = (Vector_1[i]\times\sigma_1[i])^2 +
-# (Vector_2[i]\times\sigma_2[i])^2
+# \sigma_o^2[i]=(data_1[i]\times\sigma_2[i])^2
+# +(data_2[i]\times\sigma_1[i])^2
 # \f]
-# where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output
-# NessiVector, \f$Vector_1[i]\f$ is the \f$i^{th}\f$ component of the first
-# NessiVector to be multiplied, \f$Vector_2[i]\f$ it the \f$i^{th}\f$ component
-# of the second NessiVector to be multiplied, \f$\sigma_0[i]\f$ is the
-# \f$i^{th}\f$ component of the uncertainty of the output NessiVector,
-# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
-# in the first NessiVector, and \f$\sigma_2[i]\f$ is the \f$i^{th}\f$
-# component of the uncertainty in the second NessiVector.
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the first
+# array, \f$data_2[i]\f$ is the \f$i^{th}\f$ component of the
+# second array, \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of
+# the uncertainty of the output array, \f$\sigma_1[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the first array, and
+# \f$\sigma_2[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty in the second array.
+#
+# - With 2 NessiVectors and 2 scalars, this function multiplies a scalar to
+# each element, \f$i\f$, of an NessiVector according to the equation
+# \f[
+# data_o[i]=data_i[i]\times a
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2[i]=(a\times\sigma_i[i])^2+(data_i[i]\times\sigma_a)^2
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$a\f$ is the scalar being multiplied to each element,
+# \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array,
+# \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty of the output array, \f$\sigma_a\f$ is the
+# uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the input array.
 #
 # \param a (INPUT) is the first NessiVector to be multiplied
-# \param ae2 (INPUT) is the second NessiVector to multiplied, if they are no
-# more arguments present, otherwise it's the square of the uncertainty in the
-# first NessiVector to be multiplied
-# \param b (INPUT/OPTIONAL) is the second NessiVector to be multiplied
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
-# the uncertainty in the second NessiVector to be multiplied
+# \param ae2 (INPUT) is the second NessiVector to multiplied
+# \param b (INPUT) is the second NessiVector/scalar to be multiplied
+# \param be2 (INPUT) is the square of the uncertainty in the second
+# NessiVector/scalar to be multiplied
+#
 # \return
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector
 #
-
 def mult_ncerr(a,ae2,b,be2):
+
+    """
+
+    This function accepts four arguments:
+       - 4 NessiVectors
+       - 2 NessiVectors and 2 scalars
+	
+    >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,
+        Vector_err2_1, Vector_2, Vector_err2_2)
+
+    >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector, Vector_err2,
+        Scalar, Scalar_err2)
+
+    where Vector_o is the resulting NessiVector and Vector_err2_o is the
+    uncertainty in the NessiVector o.
+
+	=================================================================	
+
+    - With 4 NessiVectors, this function multiply each element, i, of two
+    NessiVectors according to the equation:
+
+    Vector_o[i] = Vector_1[i] * Vector_2[i]
+
+    and the uncorrelated uncertainties will be present according to the
+    equation
+	
+    Vector_err2_o^2[i] = Vector_err2_1^2[i] * Vector_err2_2^2[i]
+
+    Where Vector_o[i] is the i^th component of the output
+    array, Vector_1[i] is the i^th component of the first
+    array, Vector_2[i] is the i^th component of the
+    second array, Vector_err2_o[i] is the i^th component of
+    the uncertainty of the output array, Vector_err2_1[i] is the
+    i^th component of the uncertainty in the first array, and
+    Vector_err2_2[i] is the i^th component of the
+    uncertainty in the second array.
+
+    - With 2 NessiVectors and 2 scalars, this function multiply each element
+    of the NessiVectors with a scalar according to the equations:
+
+    Vector_o[i] = Vector[i] * Scalar
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation
+	
+    Vector_err2_o^2[i] = Vector_err2[i] * Scalar_err2
+	
+    Where Vector_o[i] is the i^th component of the output
+    array, Scalar is the scalar being multiplied to each element,
+    Vector_1[i] is the i^th component of the input array,
+    Vector_err2_o[i] is the i^th component of the
+    uncertainty of the output array, Scalar_err2 is the
+    uncertainty in the scalar, and Vector_err2_1[i] is the
+    i^th component of the uncertainty in the input array.
+
+    """
 
     run_ok = False
 
@@ -446,48 +720,93 @@ def mult_ncerr(a,ae2,b,be2):
 # \{
 
 ##
-# \brief This function divides each element of two NessiVector.
+# \brief This function divides each element of two NessiVectors.
 #
-# This function accepts two or four NessiVector as arguments. The division of
-# a NessiVector by a scalar, or of a scalar by a NessiVector is not supported
-# yet.
+# This function accepts four NessiVectors as arguments, 2 NessiVectors and 2
+# scalars or 2 scalars and 2 NessiVectors.
 #
-# With two arguments,
+# - With 4 NessiVectors:
 # \code
-# >>>  Vector_0 = array_manip.div_ncerr (Vector_1, Vector_2)
+# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
 # \endcode
 #
-# With four arguments,
-# \code
-# >>> Vector_0, Vector_err2_0 = array_manip.div_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# - With 2 NessiVectors and 2 scalars:
+# \code 
+# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector, Vector_err2, Scalar, Scalar_err2)
 # \endcode
-# where \f$Vector\_err2\_0\f$ is the square of the uncertainty in the NessiVector 0.
 #
-# For both cases, this function divides each element, \f$i\f$, of two
-# NessiVector according to the equations
+# - With 2 scalars and 2 NessiVectors:
+# \code 
+# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Scalar, Scalar_err2, Vector, Vector_err2)
+# \endcode
+#
+#     ========================================================================
+# 
+# - With 4 NessiVectors, this function divides each element, \f$i\f$, of two
+# NessiVectors according to the equation
 # \f[
-# Vector_0[i] = Vector_1[i] / Vector_2[i]
+# Vector_o[i] = Vector_1[i] / Vector_2[i]
 # \f]
-# and
+# and the uncorrelated uncertainties will be processed according to
+# the equation
 # \f[
-# \sigma_0[i] = \left(\frac{Vector_1[i]\times\sigma_2[i]}{Vector_2^2[i]}\right)
+# \sigma_o[i] = \left(\frac{Vector_1[i]\times\sigma_2[i]}{Vector_2^2[i]}\right)
 # ^2 +\left(\frac{\sigma_1[i]}{Vector_2[i]}\right)^2
 # \f]
-# where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output
-# NessiVector, \f$Vector_1[i]\f$ is the \f$i^{th}\f$ component of the
-# NessiVector being divided, \f$Vector_2[i]\f$ it the \f$i^{th}\f$ component
-# of the dividing NessiVector, \f$\sigma_0[i]\f$ is the
-# \f$i^{th}\f$ component of the uncertainty of the output NessiVector,
-# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
-# in the NessiVector being divided, and \f$\sigma_2[i]\f$ is the \f$i^{th}\f$
-# component of the uncertainty in the divided NessiVector.
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the array
+# being divided, \f$data_2[i]\f$ is the \f$i^{th}\f$ component of
+# the dividing array, \f$\sigma_o[i]\f$ is the \f$i^{th}\f$
+# component of the uncertainty of the output array,
+# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty in the array being divided, and \f$\sigma_i[i]\f$ is
+# the \f$i^{th}\f$ component of the uncertainty in the dividing
+# array.
+#
+# - With 2 NessiVectors and 2 scalars, this function divides each element,
+# \f$i\f$, of a NessiVector by a scalar according to the equation
+# \f[
+# data_o[i]=data_i[i]/a
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2[i]=\left(\frac{\sigma_i[i]}{a}\right)^2
+#                 +\left(\frac{data_i[i]\times\sigma_a}{a^2}\right)^2
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$a\f$ is the scalar dividing each element,
+# \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array,
+# \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty of the output array, \f$\sigma_a\f$ is the
+# uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the input array.
+#
+# - With 2 Scalars and 2 NessiVectors, this function divides a scalar by each
+# element, \f$i\f$, of a NessiVector according to the equation
+# \f[
+# data_o[i]=a/data_i[i]
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2[i]=\left(\frac{a \times \sigma_i[i]}{data_i^2[i]}\right)^2
+#                 +\left(\frac{\sigma_a}{data_i[i]}\right)^2
+# \f]
+# Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$a\f$ is the scalar each element is dividing,
+# \f$data_i[i]\f$ is the \f$i^{th}\f$ component of the input array,
+# \f$\sigma_o[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty of the output array, \f$\sigma_a\f$ is the
+# uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty in the input array.
 #
 # \param a (INPUT) is the NessiVector being divided
 # \param ae2 (INPUT) is the dividing NessiVector, if they are no more
 # arguments present, otherwise it's the square of the uncertainty in the
 # NessiVector being divided
-# \param b (INPUT/OPTIONAL) is the dividing NessiVector
-# \param be2 (INPUT/OPTIONAL) required only if b is present, is the square of
+# \param b (INPUT) is the dividing NessiVector
+# \param be2 (INPUT) is the square of
 # the uncertainty in the dividing NessiVector
 # \return
 # - The result NessiVector
@@ -495,6 +814,90 @@ def mult_ncerr(a,ae2,b,be2):
 #
 
 def div_ncerr(a,ae2,b,be2):
+
+    """
+
+    This function accepts four arguments:
+       - 4 NessiVectors
+
+    >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector_1,
+        Vector_err2_1, Vector_2, Vector_err2_2)
+
+       - 2 NessiVectors and 2 scalars
+
+    >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector, Vector_err2,
+        Scalar, Scalar_err2)
+
+       - 2 scalars and 2 NessiVectors
+	
+    >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Scalar, Scalar_err2,
+        Vector, Vector_err2)
+
+    where Vector_o is the resulting NessiVector and Vector_err2_o is the
+    uncertainty in the NessiVector o.
+
+	=================================================================
+
+    - With 4 NessiVectors, this function divides each element, i, of two
+    NessiVectors according to the equation:
+
+    Vector_o[i] = Vector_1[i] / Vector_2[i]
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation
+	
+    Vector_err2_o[i] = {(Vector_1[i]*Vector_err2_[i])/(Vector_2^2[i])}^2
+    +{(Vector_err2_1[i])/(Vector_2[i])}^2
+
+    Where Vector_o[i] is the i^th component of the output
+    array, Vector_1[i] is the i^th component of the array
+    being divided, Vector_2[i] is the i^th component of
+    the dividing array, Vector_err2_o[i] is the i^th
+    component of the uncertainty of the output array,
+    Vector_err2_1[i] is the i^th component of the
+    uncertainty in the array being divided, and Vector_err2_2[i] is
+    the i^th component of the uncertainty in the dividing
+    array.
+
+    - With 2 NessiVectors and 2 scalars, this function divides each element
+    of the NessiVectors with a scalar according to the equations:
+
+    Vector_o[i] = Vector[i] / Scalar
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation
+
+    Vector_err2_o[i] = (Vector_err2[i]/Scalar)^2 +
+    {(Vector[i]*Scalar_err2)/(Scalar^2)}^2
+	
+    Where Vector_o[i] is the i^th component of the output
+    array, Scalar is the scalar dividing each element,
+    Vector[i] is the i^th component of the input array,
+    Vector_err2_o[i] is the i^th component of the
+    uncertainty of the output array, Scalar_err2 is the
+    uncertainty in the scalar, and Vector_err2[i] is the
+    i^th component of the uncertainty in the input array.
+
+    - With 2 scalar and 2 NessiVectors, this function divides each element
+    of the NessiVectors with a scalar according to the equations:
+
+    Vector_o[i] = Scalar / Vector[i]
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation
+
+    Vector_err2_o[i] = {(Scalar*Vector_err2[i])/(Vector[i]^2)}^2
+    + (Scalar_err2/Vector[i])^2
+
+    Where Vector_o[i] is the i^th component of the output
+    array, Scalar is the scalar each element is dividing,
+    Vector[i] is the i^th component of the input array,
+    Vector_err2_o[i] is the i^th component of the
+    uncertainty of the output array, Scalar_err2 is the
+    uncertainty in the scalar, and Vector_err2[i] is the
+    i^th component of the uncertainty in the input array.
+
+    """
 
     run_ok = False
 
@@ -581,21 +984,21 @@ def div_ncerr(a,ae2,b,be2):
 # This function adds two NessiVector weighted by their uncertainties according
 # to the equation:
 # \f[
-# Vector_0[i]=\left( \sum^2_{n=1} \frac{Vector_n[i]}{\sigma_n[i]}\right)
+# Vector_o[i]=\left( \sum^2_{n=1} \frac{Vector_n[i]}{\sigma_n[i]}\right)
 # \times\left( \frac{1}{2} \sum^2_{n=1} \sigma_n[i] \right)
 # \f]
 # and
 # \f[
-# \sigma_0^2[i]=(\sigma_1^2\sigma_2 + \sigma_1\sigma_2^2)(\sigma_1+\sigma_2)
+# \sigma_o^2[i]=(\sigma_1^2\sigma_2 + \sigma_1\sigma_2^2)(\sigma_1+\sigma_2)
 # \f]
 # However, if the uncertainty in any of the data is zero, the value of the
-# \f$Vector_0[i]\f$ will be given by
+# \f$Vector_o[i]\f$ will be given by
 # \f[
-# Vector_0[i]=\sum^2_{n=1} Vector_n[i]
+# Vector_o[i]=\sum^2_{n=1} Vector_n[i]
 # \f]
-# where \f$Vector_0[i]\f$ is the \f$i^{th}\f$ component of the output
+# where \f$Vector_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # NessiVector, \f$Vector_n[i]\f$ is the \f$i^{th}\f$ component of the
-# \f$n^{th}\f$ NessiVector being added, \f$\sigma_0[i]\f$ is the
+# \f$n^{th}\f$ NessiVector being added, \f$\sigma_o[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty of the output NessiVector,
 # \f$\sigma_n[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
 # in the \f$n^{th}\f$ NessiVector being added.
@@ -612,6 +1015,45 @@ def div_ncerr(a,ae2,b,be2):
 #
 
 def sumw_ncerr(a,ae2,b,be2):
+
+    """
+
+    This function accepts four arguments:
+        - 4 NessiVectors
+
+    >>> Vector_o, Vector_err2_o = array_manip.sumw_ncerr(Vector_1,
+        Vector_1_err2)
+
+    where Vector_o is the resulting NessiVector and NessiVector_err2_o is the
+    uncertainty in the NessiVector o.
+
+	===================================================================
+
+    This function adds two arrays weighted by their uncertainties
+    according to the equation
+
+    Vector_o[i]= sum^N_(n=1) {(Vector_n[i])/(Vector_err2_n[i])}
+    * 1/N  sum^N_(n=1) {Vector_err2_n[i]}
+
+    where N=2 and the uncorrelated uncertainties will be processed
+    according to the equation
+
+    Vector_err2_o[i] = (Vector_err2_1^2*Vector_err2_2+
+    Vector_err2_1*Vector_err2_2^2)*(Vector_err1_1+Vector_err2_2)
+
+    However, if the uncertainty in any of the data is not specified,
+    or is zero, the value of the Vector_o[i] will be given by
+
+    Vector_o[i] = sum^N_{n=1} {Vector_n[i]}
+
+    Where Vector_o[i] is the i^th$ component of the output
+    array, Vector_n[i] is the i^th component of the
+    n^th array being added, Vector_err2_o[i] is the
+    i^th component of the uncertainty of the output array,
+    and Vector_err2_n[i] is the i^th component of the
+    uncertainty in the n^th array being added.
+	
+	"""
 
     run_ok = False
 
@@ -687,3 +1129,4 @@ def sumw_ncerr(a,ae2,b,be2):
 
 ##
 # \}
+
