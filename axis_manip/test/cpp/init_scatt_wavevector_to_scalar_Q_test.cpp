@@ -36,19 +36,43 @@ using namespace std;
 const size_t NUM_VAL=5;
 
 /**
- * \defgroup init_scatt_wavevector_to_scalar_Q \
- * init_scatt_wavevector_to_scalar_Q
+ * \defgroup init_scatt_wavevector_to_scalar_Q init_scatt_wavevector_to_scalar_Q
+ * \{
  *
  * This test compares the output data calculated by the library
- * function init_scatt_wavevector_to_scalar_Q() and described in 3.33
- * of the DR_Lib_RS_q with the true output data manually
- * calculated. Any discrepancy between the outputs will generate an
- * error message in the testsuite.log file that gives details about
- * the location and type of the error.
+ * function <i>init_scatt_wavevector_to_scalar_Q</i> and described in 3.33
+ * of the <i>SNS 107030214-TD0001-R00, "Data Reduction Library Software
+ * Requirements and Specifications"</i> with the true output data 
+ * \f$true\_output\_ss\f$, \f$true\_output\_sv\f$, \f$true\_output\_vs\f$, and
+ * \f$true\_output\_vv\f$ manually calculated.
+ * Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
+ * will generate in the testsuite.log file an error message that gives details
+ * about the location and type of the error.
+ *
+ * <b>Notation used:</b>
+ * - ss : scalar-scalar
+ * - vv : vector-vector
+ * - vs : vector-scalar
+ * - SS : "s,s"
+ * - VV = "v,v"
+ * - SV = "s,v"
+ * - VS = "v,s"
+ * - ERROR = "Error"
+ * - EMPTY = ""
  */
 
 /**
- * This function initiales the input arrays.
+ * This function initializes the value of arrays, \f$k\_i\f$, \f$k\_i\_err2\f$,
+ * \f$k\_f\f$, and \f$k\_f\_err2\f$.
+ *
+ * \param k_i (OUTPUT) is the incident wavevector axis in units of reciprocal
+ * Angstroms 
+ * \param k_i_err2 (OUTPUT) is the square of the uncertainty of the incident 
+ * wavevector axis
+ * \param k_f (OUTPUT) is the final wavevector axis in units of reciprocal
+ * Angstroms 
+ * \param k_f_err2 (OUTPUT) is the square of the uncertainty of the final 
+ * wavector axis
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & k_i,
@@ -66,7 +90,26 @@ void initialize_inputs(Nessi::Vector<NumT> & k_i,
 }
 
 /**
- * This function generate the values to compare the calculation to.
+ * This function sets the true outputs based on values contained in
+ * \f$k\_i\f$, \f$k\_i\_err2\f$, \f$k\_f\f$, and \f$k\_f\_err2\f$ for the 
+ * float case.
+ *
+ * For the scalar case, the scalar used is the first element of the arrays 
+ * (\f$k\_i[0]\f$, \f$k\_i\_err2[0]\f$, \f$k\_f[0]\f$, and 
+ * \f$k\_f\_err2[0]\f$).
+ *
+ * \param true_output_ss (OUTPUT) is the true output for the ss case
+ * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the ss case
+ * \param true_output_sv (OUTPUT) is the true array for the sv case
+ * \param true_output_sv_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the sv case
+ * \param true_output_vs (OUTPUT) is the true array for the vs case
+ * \param true_output_vs_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the vs case
+ * \param true_output_vv (OUTPUT) is the true array for the vv case
+ * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the vv case
  */
 void initialize_true_outputs(float                & true_output_ss,
                              float                & true_output_ss_err2,
@@ -118,6 +161,27 @@ void initialize_true_outputs(float                & true_output_ss,
   true_output_vv_err2.push_back(static_cast<float>(3.2094576355));
 }
 
+/**
+ * This function sets the true outputs based on values contained in
+ * \f$k\_i\f$, \f$k\_i\_err2\f$, \f$k\_f\f$, and \f$k\_f\_err2\f$ for the 
+ * double case.
+ *
+ * For the scalar case, the scalar used is the first element of the arrays (
+ * \f$k\_i[0]\f$, \f$k\_i\_err2[0]\f$, \f$k\_f[0]\f$, and \f$k\_f\_err2[0]\f$.
+ *
+ * \param true_output_ss (OUTPUT) is the true output for the ss case
+ * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the ss case
+ * \param true_output_sv (OUTPUT) is the true array for the sv case
+ * \param true_output_sv_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the sv case
+ * \param true_output_vs (OUTPUT) is the true array for the vs case
+ * \param true_output_vs_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the vs case
+ * \param true_output_vv (OUTPUT) is the true array for the vv case
+ * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the vv case
+ */
 void initialize_true_outputs(double                & true_output_ss,
                              double                & true_output_ss_err2,
                              Nessi::Vector<double> & true_output_sv,
@@ -169,7 +233,41 @@ void initialize_true_outputs(double                & true_output_ss,
 }
 
 /**
- * This functions compares the expected with calculated values.
+ * Function that tests the discrepancies between the true outputs and the
+ * outputs generated by the <i>init_scatt_wavevector_to_scalar_Q</i> function
+ * for the ss, sv, vs and  vv cases. 
+ * 
+ * The function returns TRUE if the two arrays compared \f$output\f$ and
+ * \f$true_output\f$ match, and returns FALSE if they do not match.
+ *
+ * \param output_ss (INPUT) is the value created by 
+ * <i>init_scatt_wavevector_to_scalar_Q</i> for the ss case
+ * \param output_ss_err2 (INPUT) is the square of the uncertainty of the value
+ * created by <i>init_scatt_wavevector_to_scalar_Q</i> for the ss case
+ * \param true_output_ss (INPUT)) is the true value for the ss case
+ * \param true_output_ss_err2 (INPUT) is the square of the uncertainty of the 
+ * true value for the ss case
+ * \param output_sv (INPUT) is the array created by 
+ * <i>init_scatt_wavevector_to_scalar_Q</i> for the sv case
+ * \param output_sv_err2 (INPUT) is the square of the uncertainty in the array
+ * created by <i>init_scatt_wavevector_to_scalar_Q</i> for the sv case
+ * \param true_output_sv (INPUT) is the true array for the sv case
+ * \param true_output_err2_sv (INPUT) is the square of the uncertainty in the
+ * true array for the sv case
+ * \param output_vs (INPUT) is the array created by 
+ * <i>init_scatt_wavevector_to_scalar_Q</i> for the vs case
+ * \param output_vs_err2 (INPUT) is the square of the uncertainty in the array
+ * created by <i>init_scatt_wavevector_to_scalar_Q</i> for the vs case
+ * \param true_output_vs (INPUT) is the true array for the vs case
+ * \param true_output_err2_vs (INPUT) is the square of the uncertainty in the
+ * true array for the vs case
+ * \param output_vv (INPUT) is the array created by 
+ * <i>init_scatt_wavevector_to_scalar_Q</i> for the vv case
+ * \param output_vv_err2 (INPUT) is the square of the uncertainty in the array
+ * created by <i>init_scatt_wavevector_to_scalar_Q</i> for the vv case
+ * \param true_output_vv (INPUT) is the true array for the vv case
+ * \param true_output_err2_vv (INPUT) is the square of the uncertainty in the
+ * true array for the vv case
  */
 template <typename NumT>
 bool test_okay(NumT                & output_ss,
@@ -236,7 +334,16 @@ bool test_okay(NumT                & output_ss,
 }
 
 /**
- * Function that runs the test for a numeric type
+ * Function that generates the data using the 
+ * <i>init_scatt_wavevector_to_scalar_Q</i> function (as described in the 
+ * documentation of the <i>init_scatt_wavevector_to_scalar_Q</i> function)
+ * and launches the comparison of the data. 
+ *
+ * \param key (INPUT) is a key that permits to launch the correct test
+ * \param debug (INPUT) is any string that launches the debug mode (print all
+ * the array created and calculated)
+ *
+ * \return Result of the function (TRUE/FALSE)
  */
 template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
@@ -317,7 +424,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
 }
 
 /**
- * Main functino that test energy_transfer for float and double
+ * Main functino that test init_scatt_wavevector_to_scalar_Q_test for float 
+ * and double.
  *
  * \param argc The number of command-line arguments present
  * \param argv The list of command-line arguments
