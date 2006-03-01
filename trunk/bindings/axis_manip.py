@@ -930,32 +930,34 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
             try:
                 initial_wavelength = nessi_vector.NessiVector(len(tof))
                 initial_wavelength_err2 = nessi_vector.NessiVector(len(tof))
-                axis_manip_bind.tof_to_initial_wavelength_igs_f(tof.__array__,\
-                                                                tof_err2.__array__,\
-                                                                float(final_wavelength), \
-                                                                float(final_wavelength_err2),\
-                                                                float(time_offset), float(time_offset_err2),\
-                                                                float(dist_source_sample), \
-                                                                float(dist_source_sample_err2),\
-                                                                float(dist_sample_detector), \
-                                                                float(dist_sample_detector_err2),\
-                                                                initial_wavelength.__array__, \
-                                                                initial_wavelength_err2.__array__)
+                axis_manip_bind.tof_to_initial_wavelength_igs_f(\
+                    tof.__array__,\
+                    tof_err2.__array__,\
+                    float(final_wavelength), \
+                    float(final_wavelength_err2),\
+                    float(time_offset), float(time_offset_err2),\
+                    float(dist_source_sample), \
+                    float(dist_source_sample_err2),\
+                    float(dist_sample_detector), \
+                    float(dist_sample_detector_err2),\
+                    initial_wavelength.__array__, \
+                    initial_wavelength_err2.__array__)
             except:
                 raise CalculationError
         elif (tof.__type__ == nessi_vector.NessiVector.DOUBLE):
             try:
                 initial_wavelength = nessi_vector.NessiVector(len(tof))
                 initial_wavelength_err2 = nessi_vector.NessiVector(len(tof))
-                axis_manip_bind.tof_to_initial_wavelength_igs_d(tof.__array__,\
-          tof_err2.__array__,\
+                axis_manip_bind.tof_to_initial_wavelength_igs_d(\
+                    tof.__array__,\
+                    tof_err2.__array__,\
                     float(final_wavelength),\
-          float(final_wavelength_err2),\
+                    float(final_wavelength_err2),\
                     float(time_offset, time_offset_err2),\
                     float(dist_source_sample),\
-          float(dist_source_sample_err2),\
+                    float(dist_source_sample_err2),\
                     float(dist_sample_detector),\
-          float(dist_sample_detector_err2),\
+                    float(dist_sample_detector_err2),\
                     initial_wavelength.__array__, \
                     initial_wavelength_err2.__array__)
             except:
