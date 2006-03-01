@@ -521,6 +521,17 @@ class NessiVector (list):
         raise exception, "Not implemented yet"
 
 ##
+# \ingroup index NessiVector
+#
+# Function used to find index of a item by matching values
+#
+    def index(self,item):
+        for i in range(len(self.__array__)):
+            if self.__array__[i]==item:
+                return i
+        raise ValueError,"NessiVector.index(x): x not in list"
+
+##
 # \ingroup pop NessiVector
 #
 # Function used to remove the last element of the NessiVector
