@@ -180,37 +180,9 @@ def add_ncerr(a,ae2,b,be2):
 
     """
 
-    run_ok = False
-
     try:
-        a.__type__
-    except:            #run if exception is raised
-        try:
-            b.__type__
-        except:
-            raise TypeError,"Types not supported by NessiVector"
-        else:
-            if (b.__type__ == b.FLOAT or b.type == b.DOUBLE):
-                a=float(a)
-            else:
-                a=int(a)
-            run_ok = True
-    else:
-        try:
-            b.__type__
-        except:
-            if (a.__type__ == a.FLOAT or a.type == a.DOUBLE):
-                b=float(b)
-            else:
-                b=int(b)
-            run_ok = True
-        else:
-            if (a.__type__ != b.__type__):
-                raise TypeError,"Parameters types are different"
-            else:
-                run_ok = True
-
-    if (run_ok):
+        if(a.__type__!=b.__type__):
+            raise RuntimeError,"incompatible types passed to add_ncerr"
 
         if (a.__type__ == a.FLOAT):
             c = nessi_vector.NessiVector(len(a))
@@ -221,7 +193,7 @@ def add_ncerr(a,ae2,b,be2):
                                          be2.__array__,\
                                          c.__array__,\
                                          ce2.__array__)
-        if (a.__type__ == a.DOUBLE):
+        elif (a.__type__ == a.DOUBLE):
             c = nessi_vector.NessiVector(len(a),a.DOUBLE)
             ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
             array_manip_bind.add_ncerr_d(a.__array__,\
@@ -230,7 +202,7 @@ def add_ncerr(a,ae2,b,be2):
                                          be2.__array__,\
                                          c.__array__,\
                                          ce2.__array__)
-        if (a.__type__ == a.INT):
+        elif (a.__type__ == a.INT):
             c = nessi_vector.NessiVector(len(a),a.INT)
             ce2 = nessi_vector.NessiVector(len(a), a.INT)
             array_manip_bind.add_ncerr_i(a.__array__,\
@@ -239,7 +211,7 @@ def add_ncerr(a,ae2,b,be2):
                                          be2.__array__,\
                                          c.__array__,\
                                          ce2.__array__)
-            if (a.__type__ == a.UINT):
+        elif (a.__type__ == a.UINT):
             c = nessi_vector.NessiVector(len(a),a.UINT)
             ce2 = nessi_vector.NessiVector(len(a), a.UINT)
             array_manip_bind.add_ncerr_u(a.__array__,\
@@ -248,12 +220,70 @@ def add_ncerr(a,ae2,b,be2):
                                          be2.__array__,\
                                          c.__array__,\
                                          ce2.__array__)
-
+        else:
+            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+        
         return c,ce2
 
-    else:
+    except AttributeError:
+        pass
 
-        return
+    try:
+        a.__type__
+        scalar=b
+        scalar_e2=be2
+        array=a
+        array_e2=ae2
+    except AttributeError:
+        try:
+            b.__type__
+            scalar=a
+            scalar_e2=ae2
+            array=b
+            array_e2=be2
+        except AttributeError:
+            raise TypeError,"add_ncerr does not understand types given to it"
+
+    if (array.__type__ == array.FLOAT):
+        c = nessi_vector.NessiVector(len(array))
+        ce2 = nessi_vector.NessiVector(len(array))
+        array_manip_bind.add_ncerr_f(array.__array__,\
+                                     array_e2.__array__,\
+                                     float(scalar),\
+                                     float(scalar_e2),\
+                                     c.__array__,\
+                                     ce2.__array__)
+    elif (array.__type__ == array.DOUBLE):
+        c = nessi_vector.NessiVector(len(array),array.DOUBLE)
+        ce2 = nessi_vector.NessiVector(len(array), array.DOUBLE)
+        array_manip_bind.add_ncerr_d(array.__array__,\
+                                     array_e2.__array__,\
+                                     float(scalar),\
+                                     float(scalar_e2),\
+                                     c.__array__,\
+                                     ce2.__array__)
+    elif (array.__type__ == array.INT):
+        c = nessi_vector.NessiVector(len(array),array.INT)
+        ce2 = nessi_vector.NessiVector(len(array), array.INT)
+        array_manip_bind.add_ncerr_i(array.__array__,\
+                                     array_e2.__array__,\
+                                     int(scalar),\
+                                     int(scalar_e2),\
+                                     c.__array__,\
+                                     ce2.__array__)
+    elif (array.__type__ == array.UINT):
+        c = nessi_vector.NessiVector(len(array),array.UINT)
+        ce2 = nessi_vector.NessiVector(len(array), array.UINT)
+        array_manip_bind.add_ncerr_u(array.__array__,\
+                                     array_e2.__array__,\
+                                     int(scalar),\
+                                     int(scalar),\
+                                     c.__array__,\
+                                     ce2.__array__)
+    else:
+        raise TypeError,"Unknown primative type %s" % str(a.__type__)
+        
+    return c,ce2
 
 ##
 # \}
