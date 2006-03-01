@@ -72,7 +72,7 @@ namespace AxisManip
    * \brief This function is not described but is based on section 3.11.
    *
    * This function will reorder an array so the last element of the
-   * supplied array is the first element of the supplied array. This array
+   * supplied array is the first element of the resulting array. This array
    * reversal is done in place on the supplied array (i.e. no copy).
    *
    * \param inout (INPUT/OUTPUT) is the array to be reversed. It also is the
