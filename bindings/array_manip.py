@@ -222,7 +222,7 @@ def add_ncerr(a,ae2,b,be2):
                                          ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
 
     except AttributeError:
@@ -282,7 +282,7 @@ def add_ncerr(a,ae2,b,be2):
                                      ce2.__array__)
     else:
         raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
     return c,ce2
 
 ##
@@ -507,7 +507,7 @@ def sub_ncerr(a,ae2,b,be2):
                                          ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
 
     except AttributeError:
@@ -558,9 +558,9 @@ def sub_ncerr(a,ae2,b,be2):
                                          ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
-        
+
     except AttributeError:
         try:
             b.__type__
@@ -609,7 +609,7 @@ def sub_ncerr(a,ae2,b,be2):
                                          ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
 
 ##
@@ -785,7 +785,7 @@ def mult_ncerr(a,ae2,b,be2):
                                           ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
 
     except AttributeError:
@@ -845,7 +845,7 @@ def mult_ncerr(a,ae2,b,be2):
                                       ce2.__array__)
     else:
         raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
     return c,ce2
 
 ##
@@ -1077,7 +1077,7 @@ def div_ncerr(a,ae2,b,be2):
                                          ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
 
     except AttributeError:
@@ -1128,9 +1128,9 @@ def div_ncerr(a,ae2,b,be2):
                                          ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
-        
+
     except AttributeError:
         try:
             b.__type__
@@ -1179,7 +1179,7 @@ def div_ncerr(a,ae2,b,be2):
                                          ce2.__array__)
         else:
             raise TypeError,"Unknown primative type %s" % str(a.__type__)
-        
+
         return c,ce2
 
 ##
@@ -1268,7 +1268,7 @@ def sumw_ncerr(a,ae2,b,be2):
 
     if(a.__type__!=b.__type__):
         raise RuntimeError,"Incompatible types passed to sumw_ncerr"
-    
+
     if (a.__type__ == a.FLOAT):
         c = nessi_vector.NessiVector(len(a))
         ce2 = nessi_vector.NessiVector(len(a))
@@ -1307,7 +1307,7 @@ def sumw_ncerr(a,ae2,b,be2):
                                       ce2.__array__)
     else:
         raise TypeError,"Unknown primative type %s" % str(a.__type__)
-    
+
     return c,ce2
 
 ##

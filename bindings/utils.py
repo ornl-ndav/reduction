@@ -107,12 +107,12 @@ def weighted_average(a,ae2,start,fin):
 
     if (a.__type__ != ae2.__type__):
         raise RuntimeError, "Incompatible types passed to weighted_average"
-    
+
     if (a.__type__ == a.FLOAT):
         raise NotImplementedError, "This function is not implemented yet."
-    
+
     elif (a.__type__ == a.DOUBLE):
         raise NotImplementedError, "This function is not implemented yet."
-    
+
 ##
 # \}
