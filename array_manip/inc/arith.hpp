@@ -1,4 +1,4 @@
-¶/*
+/*
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
