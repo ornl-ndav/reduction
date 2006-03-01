@@ -91,7 +91,23 @@ TypeNotSupported = "Type of NessiVector is not supported by this function"
 
 def energy_transfer(initial_energy, initial_energy_err2,\
 						final_energy, final_energy_err2):
+    """
+    This function calculates the energy transfer according to the equation:
 
+    nu[i]=(E_i - E_f)/h = (E_i - E_f)/4.1357 * THz/meV
+
+	where, nu is the energy transfer, E_i is the incident energy, E_f is
+    the final energy.
+
+    Using the assumption of uncorrelated uncertainties, the square of the
+    uncertainty of the energy transfer is given by:
+
+    nu_err2[i]^2 = (E_i_err2[i]^2 + E_f_err2[i]^2)/h^2
+
+    where E_i_err2 is the uncertainty of the incident energy axis, and
+    E_f_err2 is the uncertainty of the final energy axis.
+
+	"""
     try:
         if (initial_energy.__type__ == nessi_vector.NessiVector.FLOAT):
 			#V(?)-??
@@ -301,6 +317,29 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 									  final_wavevector_err2,\
 									  polar, polar_err2):
 
+    """
+    This function calculates the scalar momentum transfer from the incident
+    and scattered wavevectors according to the equation:
+
+    Q[i] = sqrt{k_i[i]^2 + k_f[i]^2 - 2.k_i[i].k_f[i].cos(theta)}
+
+    Where Q is the scalar momentum transfer, k_i is the incident wavevector,
+    k_f is the final wavevector, and theta is the angle between the z-axis and
+    the scattered neutron.
+
+    Using the assumption that the uncertainties are uncorrelated, the square of
+    of the uncertainty of the scalar momentum transfer is given by:
+
+    Q_err2[i]^2 = 1/Q^2{(k_i[i]^2-k_f[i]^2.cos(theta))^2.k_i_err2[i]^2 +
+                  (k_f[i]-k_i.cos(theta))^2.k_f_err2[i]^2 +
+                  (k_i[i].k_f[i].sin(theta))^2.theta_err2^2
+
+    where Q_err2[i] it the uncertainty of the scalar momentum transfer,
+    k_i_err2 is the uncertainty of the incident wavevector, k_f_err2 is the
+    uncertainty of the final wavevector, and theta_err2 is the
+    uncertainty of the angle between the z-axis and the scattered neutron
+
+	"""
     try:
         if (initial_wavevector.__type__ == nessi_vector.NessiVector.FLOAT):
             if (final_wavevector.__type__ == nessi_vector.NessiVector.FLOAT):
@@ -494,6 +533,76 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 
 def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
+    """
+
+    This function rebins data and its associated errors from one axis to
+    another given axis. This function uses fractional overlap of bins to
+    perform the rebinning process. The function also assumes that the data
+    is represented by a histogram model.
+
+    To show the effects of rebinning, an example will now be discussed. We
+    start with a histogram containing 3 bins, which runs from 0 to 3 on its
+    x-axis. So, the histogram looks like:
+
+               X-axis Value   |  Counts   |   sigma^2
+               _______________|___________|___________
+                     0        |    10     |     1
+                     1        |    20     |     4
+                     2        |    30     |     9
+                     3
+
+     Notice that the final x-axis value is not associated with a count value.
+     This is a property of the histogram data model. 
+     Our new histogram has the same x-axis range [0,3], but it only has two
+     bins. The result of the rebinned histrogram is shown in the table below.
+	
+               X-axis Value   |  Counts   |   sigma^2
+               _______________|___________|___________
+                     0        |    20     |     2
+                    1.5       |    40     |     10
+                     3
+					 
+     The new bin boundary (1.5) lies in the middle of the second bin in the
+     original histogram. That means that its contents will be envly split into
+     the new bins. So,
+
+          Bin_1_new = Bin_1_old + 0.5.Bin_2_old
+          Bin_2_new = Bin_3_old + 0.5.Bin_2_old
+     and
+          (Bin_1_new_err2)^2 = (Bin_1_old_err2)^2 + (0.5)^2.(Bin_2_old_err2)^2
+          (Bin_2_new_err2)^2 = (Bin_3_old_err2)^2 + (0.5)^2.(Bin_2_old_err2)^2
+		  
+     This can be seen in the results presented in the above table. Now, we will
+     reverse the process. The original histogram is the rebinned histogram with
+     the two bins used previously and the new rebinned histogram will have the
+     same number of bins (3) as the previously used original histogram. One
+     can see that we have the following distribution of bins contents:
+
+          Bin_1_new = 2/3.Bin_1_old
+          Bin_2_new = 1/3.Bin_1_old + 1/3.Bin_2_old
+          Bin_3_new = 2/3.Bin_3_old
+     and
+          (Bin_1_new_err2)^2 = (2/3)^2.(Bin_1_old_err2)^2
+          (Bin_2_new_err2)^2 = (1/3)^2.(Bin_1_old_err2)^2 +
+                               (1/3)^2.(Bin_2_old_err2)^2
+          (Bin_3_new_err2)^2 = (2/3)^2.(Bin_3_old_err2)^2
+
+     The result of this operation are shown in the following table:
+
+               X-axis Value   |  Counts   |   sigma^2
+               _______________|___________|___________
+                     0        | 13.33333  |  0.88888
+                     1        |    20     |  1.33333
+                     2        | 26.66666  |  4.44444
+                     3
+
+     As one can see, these values are different from the first table
+     shown in this example. This is due to the loss of information when
+     performing a rebin on data. Therefore, rebin your data thoughtfully and
+     carefully!
+
+     """
+
     try:
         if (axis_in.__type__ == nessi_vector.NessiVector.FLOAT):
             if (input.__type__ == nessi_vector.NessiVector.FLOAT):
@@ -574,6 +683,13 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
 def reverse_array_cp(input):
 
+    """
+
+	This function will reorder an NessiVector so the last element of the
+    supplied NessiVector is the first element of the result NessiVector.
+
+    """
+
     try:
         if (input.__type__ == nessi_vector.NessiVector.FLOAT):
             try:
@@ -642,6 +758,14 @@ def reverse_array_cp(input):
 #
 
 def reverse_array_nc(input):
+
+    """
+
+    This function will reorder a NessiVector so the last element of the
+    supplied NessiVector is the first element of the resulting array.
+    This NessiVector reversal is done in place of the supplied NessiVector.
+
+    """
 
     try:
         if (input.__type__ == nessi_vector.NessiVector.FLOAT):
@@ -760,8 +884,40 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 								  time_offset_err2,\
 								  dist_source_sample,\
 								  dist_source_sample_err2,\
+
 								  dist_sample_detector,\
 								  dist_sample_detector_err2):
+
+    """
+
+    This function calculates the initial wavelength for an inverse geometry
+    spectrometer according to the equation:
+
+    lambda_i[i] = {h/(m_n.L_s)}{t[i] - (m_n.lambda.L_d)/h - t_0}
+
+    where lambda is the incident wavelength, h is Planck's constant,
+    m_n is the mass of the neutron, L_s is the distance from the source to
+    the sample, t[i] is the total time-of-flight, lambda is the final
+    wavelength, L_d is the distance from the sample to the detector, and
+    t_0 is the time offset.
+
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the initial wavelength for an inverse geometry spectromter
+    is defined by
+
+    lambda_i_err2[i]^2 = (lambda_i[i]/L_s)^2.L_s_err2^2 +
+                         {h/(m_n.L_s)}^2.(t_err2^2 + t_0_err2^2) +
+                         (lambda_f/L_s)^2.L_d_err2^2 +
+                         (L_d/L_s)^2.lambda_f_err2^2
+
+    where lambda_i_err2 is the uncertainty of the initial wavelength axis,
+    L_s_err2 is the uncertainty of the distance from the source to the sample,
+    t_err2 is the uncertainty of the time-of-flight, t_0_err2 is the
+    uncertainty of the time-offset, L_d_err2 is the uncertainty of the
+    distance from the sample to the detector, and lambda_f_err2 is the
+    uncertainty of the final wavelength.
+
+    """
 
     try:
         if (tof.__type__ == nessi_vector.NessiVector.FLOAT):
@@ -866,6 +1022,29 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 
 def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 
+    """
+
+    This function converts the time-of-flight to wavelength according
+    to the equation:
+
+    lambda[i] = (h.TOF[i])/(m_n.L)
+
+    where lambda is the wavelength, h is Planck's constant, TOF
+    is the time-of-flight, m_n is the mass of the neutron, and
+    L is the total flight path of the neutron.
+
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the wavelength axis is given by:
+
+    lambda_err2[i]^2 = {h/(m_n.L)}^2.TOF_err2^2 +
+                       (lambda/L)^2.L_err2^2
+
+    where lambda_err2 is the uncertainty in the wavelength axis,
+    TOF_err2 is the uncertainty in the time of flight axis, and
+    L_err2 is the uncertainty in the pathlength.
+
+    """
+	
     try:
         if (tof.__type__ == nessi_vector.NessiVector.FLOAT):
             try:
@@ -952,47 +1131,68 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 
 def wavelength_to_energy(wavelength, wavelength_err2):
 
-   try:
-      if (wavelength.__type__ == nessi_vector.NessiVector.FLOAT):
-         try:
-            energy = nessi_vector.NessiVector(len(wavelength))
-            energy_err2 = nessi_vector.NessiVector(len(wavelength))
-            axis_manip_bind.wavelength_to_energy_f(wavelength.__array__, \
-                                                   wavelength_err2.__array__,\
-												   energy.__array__, \
-												   energy_err2.__array__)
-         except:
-            raise CalculationError
+    """
+    This function calculates the energy of a neutron given its
+    wavelength according to the equation:
 
-      elif (wavelength.__type__ == nessi_vector.NessiVector.DOUBLE):
-         try:
-            energy = nessi_vector.NessiVector(len(wavelength),"double")
-            energy_err2 = nessi_vector.NessiVector(len(wavelength),\
+    E[i] = (h^2)/(2.m_n.lambda[i]^2)
+         = (81.83 Angstroms^2)/(lambda[i]^2) meV
+
+    where E is the energy of the neutron, h is Planck's constant,
+    m_n is the mass of the neutron, and lambda is the wavelength of
+    the neutron.
+
+    Assuming that the uncertainties are uncorrelated, the uncertainty in the
+    energy is defined by:
+
+    E_err2[i]^2 = (2.E/lambda)^2.lambda_err2[i]^2
+
+    where E_err2 is the uncertainty in the energy, and
+    lambda_err2 is the uncertainty in the wavelength axis.
+
+
+    """
+
+    try:
+        if (wavelength.__type__ == nessi_vector.NessiVector.FLOAT):
+            try:
+                energy = nessi_vector.NessiVector(len(wavelength))
+                energy_err2 = nessi_vector.NessiVector(len(wavelength))
+                axis_manip_bind.wavelength_to_energy_f(wavelength.__array__, \
+													   wavelength_err2.__array__,energy.__array__, \
+													   energy_err2.__array__)
+            except:
+                raise CalculationError
+			
+        elif (wavelength.__type__ == nessi_vector.NessiVector.DOUBLE):
+            try:
+                energy = nessi_vector.NessiVector(len(wavelength),"double")
+                energy_err2 = nessi_vector.NessiVector(len(wavelength),\
                                                    "double")
-            axis_manip_bind.wavelength_to_energy_d(wavelength.__array__, \
-                                                   wavelength_err2.__array__,\
-												   energy.__array__,\
-												   energy_err2.__array__)
-         except:
-            raise CalculationError
+                axis_manip_bind.wavelength_to_energy_d(wavelength.__array__, \
+													   wavelength_err2.__array__,\
+													   energy.__array__,\
+													   energy_err2.__array__)
+            except:
+                raise CalculationError
 
-      else:
-         raise TypeError
+        else:
+            raise TypeError
 
-   except CalculationError:
-      print "Calculation of wavelength_to_energy failded"
-      energy = nessi_vector.NessiVector(len(wavelength))
-      energy_err2 = nessi_vector.NessiVector(len(wavelength))
+    except CalculationError:
+        print "Calculation of wavelength_to_energy failded"
+        energy = nessi_vector.NessiVector(len(wavelength))
+        energy_err2 = nessi_vector.NessiVector(len(wavelength))
 
-   except TypeError:
-      print "Type not supported by NessiVector"
-      energy = nessi_vector.NessiVector(len(wavelength))
-      energy_err2 = nessi_vector.NessiVector(len(wavelength))
+    except TypeError:
+        print "Type not supported by NessiVector"
+        energy = nessi_vector.NessiVector(len(wavelength))
+        energy_err2 = nessi_vector.NessiVector(len(wavelength))
 
-   except:
-      print "Object has no attribute __type__"
+    except:
+        print "Object has no attribute __type__"
 
-   return energy, energy_err2
+    return energy, energy_err2
 
 ##
 # \}
@@ -1035,47 +1235,66 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 
 def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
-   try:
-      if (wavelength.__type__ == nessi_vector.NessiVector.FLOAT):
-         try:
-            wavevector = nessi_vector.NessiVector(len(wavelength))
-            wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
-            axis_manip_bind.wavelength_to_scalar_k_f(wavelength.__array__, \
+    """
+
+    This function calculates the scalar wavevector given the
+    wavelength according to the equation:
+
+    k[i] = (2.Pi)/(lambda[i])
+
+    where k[i] is the scalar wavevector, and lambda is the wavelength.
+
+    assuming that the uncertainties are uncorrelated, the uncertainty
+    in the scalar wavevector is given by:
+
+    k_err2[i]^2 = (k[i]/lambda)^2.lambda_err2[i]^2
+
+    where k_err2 is the uncertainty in the scalar wavevector, and
+    lambda_err2 is the uncertainty in the wavelength axis.
+
+    """
+	
+    try:
+        if (wavelength.__type__ == nessi_vector.NessiVector.FLOAT):
+            try:
+                wavevector = nessi_vector.NessiVector(len(wavelength))
+                wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
+                axis_manip_bind.wavelength_to_scalar_k_f(wavelength.__array__, \
                                                  wavelength_err2.__array__,\
                                                  wavevector.__array__,\
 												 wavevector_err2.__array__)
-         except:
-            raise CalculationError
+            except:
+                raise CalculationError
 
-      elif (wavelength.__type__ == nessi_vector.NessiVector.DOUBLE):
-         try:
-            wavevector = nessi_vector.NessiVector(len(wavelength),"double")
-            wavevector_err2 = nessi_vector.NessiVector(len(wavelength),\
+        elif (wavelength.__type__ == nessi_vector.NessiVector.DOUBLE):
+            try:
+                wavevector = nessi_vector.NessiVector(len(wavelength),"double")
+                wavevector_err2 = nessi_vector.NessiVector(len(wavelength),\
                                                        "double")
-            axis_manip_bind.wavelength_to_scalar_k_d(wavelength.__array__,\
+                axis_manip_bind.wavelength_to_scalar_k_d(wavelength.__array__,\
                                                 wavelength_err2.__array__,\
                                                 wavevector.__array__,\
 												wavevector_err2.__array__)
-         except:
-            raise CalculationError
+            except:
+                raise CalculationError
 
-      else:
-         raise TypeError
+        else:
+            raise TypeError
 
-   except CalculationError:
-      print "Calculation of wavelength_to_scalar_k failed"
-      wavevector = nessi_vector.NessiVector(len(wavelength))
-      wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
+    except CalculationError:
+        print "Calculation of wavelength_to_scalar_k failed"
+        wavevector = nessi_vector.NessiVector(len(wavelength))
+        wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
 
-   except TypeError:
-      print "Type not supported by NessiVector"
-      wavevector = nessi_vector.NessiVector(len(wavelength))
-      wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
+    except TypeError:
+        print "Type not supported by NessiVector"
+        wavevector = nessi_vector.NessiVector(len(wavelength))
+        wavevector_err2 = nessi_vector.NessiVector(len(wavelength))
 
-   except:
-      print "Object has no attribute __type__"
+    except:
+        print "Object has no attribute __type__"
 
-   return wavevector, wavevector_err2
+    return wavevector, wavevector_err2
 
 ##
 # \}
