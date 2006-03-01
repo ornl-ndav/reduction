@@ -58,7 +58,6 @@ class NessiVector (list):
     UNSIGNED_INT = "unsigned int"
     INT = "int"
 
-
 ##
 # \ingroup __init__ NessiVector
 #
@@ -202,15 +201,15 @@ class NessiVector (list):
 # \endcode
 #
     def __repr__(self):
-      return self.__str__()
+        return self.__str__()
 
 ##
 # \ingroup __iter__ NessiVector
 #
-# Function not implemented yet
+# Function returns an iterator for a NessiVector
 #
     def __iter__(self):
-        print "Not implemented yet"
+        return iter(self.__array__)
 
 ##
 # \ingroup __getitem__ NessiVector
@@ -469,8 +468,6 @@ class NessiVector (list):
         for i in range(len(self)):
             c.append(left / self.__array__[i])
         return c
-
-
 
 ##
 # \ingroup __contains__ NessiVector
