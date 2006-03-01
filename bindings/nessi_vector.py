@@ -25,7 +25,7 @@
 # $Id$
 
 ##
-#\file bindings/nessi_vector.py 
+#\file bindings/nessi_vector.py
 #
 import array_manip_bind
 import nessi_vector_bind
@@ -61,7 +61,7 @@ class NessiVector (list):
 
 ##
 # \ingroup __init__ NessiVector
-# 
+#
 # \brief   Initialization of an instance.
 # A NessiVector can be defined in 4 ways.
 #
@@ -101,13 +101,13 @@ class NessiVector (list):
     def __init__(self, length=0, type=DOUBLE):
 
         if type.lower()==NessiVector.UNSIGNED_INT or \
-        type.lower()==NessiVector.UNSIGNED or \
-        type.lower()==NessiVector.UINT:
+               type.lower()==NessiVector.UNSIGNED or \
+               type.lower()==NessiVector.UINT:
             self.__type__=self.UINT
 
             if length >= 0:
-                self.__array__ =     \
-            nessi_vector_bind.UnsignedIntNessiVector(length)
+                self.__array__ = \
+                               nessi_vector_bind.UnsignedIntNessiVector(length)
             else:
                 raise Exception, "Cannot instantiate Vector \
                         with negative length"
@@ -117,7 +117,7 @@ class NessiVector (list):
 
             if length >= 0:
                 self.__array__ = \
-            nessi_vector_bind.IntNessiVector(length)
+                               nessi_vector_bind.IntNessiVector(length)
             else:
                 raise Exception, "Cannot instantiate Vector \
                 with negative length"
@@ -127,17 +127,17 @@ class NessiVector (list):
 
             if length >= 0:
                 self.__array__ = \
-            nessi_vector_bind.FloatNessiVector(length)
+                               nessi_vector_bind.FloatNessiVector(length)
             else:
                 raise Exception, "Cannot instantiate Vector \
-                with  negative length"
+                with negative length"
 
         elif type.lower() == NessiVector.DOUBLE:
             self.__type__ = self.DOUBLE
 
             if length >= 0:
                 self.__array__ = \
-            nessi_vector_bind.DoubleNessiVector(length)
+                               nessi_vector_bind.DoubleNessiVector(length)
             else:
                 raise Exception, "Cannot instantiate Vector \
                 with negative length"
@@ -202,8 +202,8 @@ class NessiVector (list):
 # \endcode
 #
     def __repr__(self):
-	    return self.__str__()
-		
+      return self.__str__()
+
 ##
 # \ingroup __iter__ NessiVector
 #
@@ -211,7 +211,7 @@ class NessiVector (list):
 #
     def __iter__(self):
         print "Not implemented yet"
-	
+
 ##
 # \ingroup __getitem__ NessiVector
 #
@@ -253,7 +253,7 @@ class NessiVector (list):
 # \endcode
 #
 # \param self (INPUT) is the name of the NessiVector
-# \return 
+# \return
 # - The length of the NessiVector
 #
     def __len__(self):
@@ -277,13 +277,13 @@ class NessiVector (list):
     def __add__(self,right):
         try:
             if (self.__type__ != right.__type__):
-               	raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiVectors don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
                 c = NessiVector(type=self.__type__)
                 for (a,b) in map(None,self.__array__,right.__array__):
-			        c.append(a+b)
+                    c.append(a+b)
                 return c
         except AttributeError:
             c = NessiVector(type=self.__type__)
@@ -331,13 +331,13 @@ class NessiVector (list):
     def __sub__(self,right):
         try:
             if (self.__type__ != right.__type__):
-               	raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiVectors don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
                 c = NessiVector(type=self.__type__)
                 for (a,b) in map(None,self.__array__,right.__array__):
-			        c.append(a-b)
+                    c.append(a-b)
                 return c
         except AttributeError:
             c = NessiVector(type=self.__type__)
@@ -365,7 +365,7 @@ class NessiVector (list):
         for i in range(len(self)):
             c.append(left - self.__array__[i])
         return c
-	
+
 ##
 # \ingroup __mult__ NessiVector
 #
@@ -382,7 +382,7 @@ class NessiVector (list):
     def __mul__(self,right):
         try:
             if (self.__type__ != right.__type__):
-               	raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiVectors don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
@@ -434,13 +434,13 @@ class NessiVector (list):
     def __div__(self,right):
         try:
             if (self.__type__ != right.__type__):
-               	raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiVectors don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
                 c = NessiVector(type=self.__type__)
                 for (a,b) in map(None,self.__array__,right.__array__):
-			        c.append(a/b)
+                    c.append(a/b)
                 return c
         except AttributeError:
             c = NessiVector(type=self.__type__)
@@ -554,7 +554,7 @@ class NessiVector (list):
     def __str__(self,last=10):
 
         result=[]
-        
+
         if len(self)<last:
             last=len(self)
 
