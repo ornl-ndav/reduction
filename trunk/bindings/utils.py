@@ -82,8 +82,8 @@ import utils_bind
 # \param fin (INPUT) the bin of the NessiVector at which to end the
 # calculation
 #
-# \return 
-# - The weighted average 
+# \return
+# - The weighted average
 # - The square of the uncertainty in the weighted average
 #
 
@@ -104,36 +104,15 @@ def weighted_average(a,ae2,start,fin):
         ce2 : the square of the uncertainty associated with the weighted
         average
     """
-    try:
 
-        if (a.__type__ == a.FLOAT):
-            try:
-                c = float(0)
-                ce2 = float(0)
-                utils_bind.weighted_average_f(a.__array__,ae2.__array__,\
-                                              float(start),float(fin),\
-                                              c,ce2)
-            except:
-				raise ValueError, "Error of calculation"
-
-        elif (a.__type__ == a.DOUBLE):
-            try:
-                c = float(0)
-                ce2 = float(0)
-                utils_bind.weighted_average_d(a.__array__,ae2.__array__,\
-                                              float(start),float(fin),\
-                                              c,ce2)
-
-            except :
-                raise ValueError, "Error of calculation"
-
-        else:
-            raise AttributeError
-
-    except AttributeError:
-        raise AttributeError, "Vector type requested, %s, is not supported by the weighter_average function!" % a.__type__
-
-    return c,ce2
-
+    if (a.__type__ != ae2.__type__):
+        raise RuntimeError, "Incompatible types passed to weighted_average"
+    
+    if (a.__type__ == a.FLOAT):
+        raise NotImplementedError, "This function is not implemented yet."
+    
+    elif (a.__type__ == a.DOUBLE):
+        raise NotImplementedError, "This function is not implemented yet."
+    
 ##
 # \}
