@@ -901,7 +901,7 @@ namespace AxisManip
    * \param polar_err2 (INPUT) is the square of the uncertainty in
    * polar
    * \param Q (OUTPUT) is the scalar momentum transfer, Q, axis in
-   * units of reciprocal angstroms
+   * units of reciprocal Angstroms
    * \param Q_err2 (OUTPUT) is the square of the uncertainty in the
    * scalar momentum transfer axis
    *
@@ -1507,7 +1507,7 @@ namespace AxisManip
    * \param dist_sample_detector_err2 (INPUT) is the square of the
    * uncertainty in dist_sample_detector
    * \param initial_wavelength (OUTPUT) is the initial wavelength axis
-   * in units of Angstrom
+   * in units of Angstroms
    * \param initial_wavelength_err2 (OUTPUT) is the square of the
    * uncertainty of the initial wavelength axis
    *
@@ -1945,7 +1945,7 @@ namespace AxisManip
    * \param pathlength_err2 (INPUT) is the square of the uncertainty
    * in pathlength
    * \param wavelength (OUTPUT) is the wavelength axis in units of
-   * angstrom
+   * Angstroms
    * \param wavelength_err2 (OUTPUT) is the square of the uncertainty
    * in the wavelength axis
    *
@@ -2290,7 +2290,7 @@ namespace AxisManip
    * \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
-   * angstroms
+   * Angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty
    * in the wavelength axis
    * \param energy (OUTPUT) is the energy of the neutron in units of
