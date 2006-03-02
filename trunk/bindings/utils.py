@@ -89,20 +89,26 @@ import utils_bind
 
 def weighted_average(a,ae2,start,fin):
 
-    """ This function takes the weighted average of a slice of a NessiVector.
+    """
+    ---------------------------------------------------------------------------
+	This function takes the weighted average of a slice of a NessiVector.
 
-        Parameters:
-        a : the NessiVector from which to calculate the weighted average
-        ae2 : the square of the uncertainty in the associated
-        NessiVector from which calculate the weighted average
-        start : the bin of the NessiVector from which to start the
-        calculation
-        fin : the bin of the NessiVector at which to end the calculation
+    Parameters:
+    __________
 
-        Returns:
-        c : the weighted average of the NessiVector slice
-        ce2 : the square of the uncertainty associated with the weighted
-        average
+    -> a is the NessiVector from which to calculate the weighted average
+    -> ae2 is the square of the uncertainty in the associated NessiVector
+       from which calculate the weighted average
+	-> start is the bin of the NessiVector from which to start the calculation
+    -> fin the bin of the NessiVector at which to end the calculation
+
+    Returns 2 NessiVectors:
+    ______________________
+
+    <- the weighted average of the NessiVector slice
+    <- the square of the uncertainty associated with the weighted
+	   average
+
     """
 
     if (a.__type__ != ae2.__type__):
