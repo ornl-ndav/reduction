@@ -92,11 +92,13 @@ TypeNotSupported = "Type of NessiVector is not supported by this function"
 def energy_transfer(initial_energy, initial_energy_err2,\
                     final_energy, final_energy_err2):
     """
+    ---------------------------------------------------------------------------
+
     This function calculates the energy transfer according to the equation:
 
     nu[i]=(E_i - E_f)/h = (E_i - E_f)/4.1357 * THz/meV
 
-  where, nu is the energy transfer, E_i is the incident energy, E_f is
+    where, nu is the energy transfer, E_i is the incident energy, E_f is
     the final energy.
 
     Using the assumption of uncorrelated uncertainties, the square of the
@@ -106,6 +108,22 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 
     where E_i_err2 is the uncertainty of the incident energy axis, and
     E_f_err2 is the uncertainty of the final energy axis.
+
+    Parameters:
+    __________
+
+    -> initial_energy is the incident energy axis in units of meV
+    -> initial_energy_err2 is the square of the uncertainty of the incident
+       energy axis
+    -> final_energy is the final energy axis in units of meV
+    -> final_energy_err2 is the square of the uncertainty of the final energy
+       axis
+
+	Returns - 2 NessiVectors:
+    ________________________
+	
+    <- the energy transfer axis in units of THz
+    <- the square of the uncertainty in the energy transfer axis
 
   """
     try:
@@ -322,6 +340,8 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
                                       polar, polar_err2):
 
     """
+    ---------------------------------------------------------------------------
+
     This function calculates the scalar momentum transfer from the incident
     and scattered wavevectors according to the equation:
 
@@ -342,6 +362,26 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
     k_i_err2 is the uncertainty of the incident wavevector, k_f_err2 is the
     uncertainty of the final wavevector, and theta_err2 is the
     uncertainty of the angle between the z-axis and the scattered neutron
+
+    Parameters:
+    __________
+
+    -> initial_wavevector is the incident wavevector axis in units of
+       reciprocal Angstroms
+    -> initial_wavevector_err2 is the square of the uncertainty of the incident
+       wavevector axis
+    -> final_wavevector is the final wavevector axis in units of reciprocal
+       Angstroms
+    -> final_wavevector_err2 is the square of the uncertainty of the final
+       wavevector axis
+    -> polar is the polar angle in units of radians
+    -> polar_err2 is the square of the uncertainty in polar
+
+	Returns - 2 NessiVectors:
+    ________________________
+
+    <- the scalar momentum transfer axis in units of reciprocal Angstroms
+    <- the square of the uncertainty in the scalar momentum transfer axis
 
   """
     try:
@@ -539,7 +579,8 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function rebins data and its associated errors from one axis to
     another given axis. This function uses fractional overlap of bins to
     perform the rebinning process. The function also assumes that the data
@@ -556,10 +597,10 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
                      2        |    30     |     9
                      3
 
-     Notice that the final x-axis value is not associated with a count value.
-     This is a property of the histogram data model.
-     Our new histogram has the same x-axis range [0,3], but it only has two
-     bins. The result of the rebinned histrogram is shown in the table below.
+    Notice that the final x-axis value is not associated with a count value.
+    This is a property of the histogram data model.
+    Our new histogram has the same x-axis range [0,3], but it only has two
+    bins. The result of the rebinned histrogram is shown in the table below.
 
                X-axis Value   |  Counts   |   sigma^2
                _______________|___________|___________
@@ -567,32 +608,32 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
                     1.5       |    40     |     10
                      3
 
-     The new bin boundary (1.5) lies in the middle of the second bin in the
-     original histogram. That means that its contents will be envly split into
-     the new bins. So,
+    The new bin boundary (1.5) lies in the middle of the second bin in the
+    original histogram. That means that its contents will be envly split into
+    the new bins. So,
 
           Bin_1_new = Bin_1_old + 0.5.Bin_2_old
           Bin_2_new = Bin_3_old + 0.5.Bin_2_old
-     and
+    and
           (Bin_1_new_err2)^2 = (Bin_1_old_err2)^2 + (0.5)^2.(Bin_2_old_err2)^2
           (Bin_2_new_err2)^2 = (Bin_3_old_err2)^2 + (0.5)^2.(Bin_2_old_err2)^2
 
-     This can be seen in the results presented in the above table. Now, we will
-     reverse the process. The original histogram is the rebinned histogram with
-     the two bins used previously and the new rebinned histogram will have the
-     same number of bins (3) as the previously used original histogram. One
-     can see that we have the following distribution of bins contents:
+    This can be seen in the results presented in the above table. Now, we will
+    reverse the process. The original histogram is the rebinned histogram with
+    the two bins used previously and the new rebinned histogram will have the
+    same number of bins (3) as the previously used original histogram. One
+    can see that we have the following distribution of bins contents:
 
           Bin_1_new = 2/3.Bin_1_old
           Bin_2_new = 1/3.Bin_1_old + 1/3.Bin_2_old
           Bin_3_new = 2/3.Bin_3_old
-     and
+    and
           (Bin_1_new_err2)^2 = (2/3)^2.(Bin_1_old_err2)^2
           (Bin_2_new_err2)^2 = (1/3)^2.(Bin_1_old_err2)^2 +
                                (1/3)^2.(Bin_2_old_err2)^2
           (Bin_3_new_err2)^2 = (2/3)^2.(Bin_3_old_err2)^2
 
-     The result of this operation are shown in the following table:
+    The result of this operation are shown in the following table:
 
                X-axis Value   |  Counts   |   sigma^2
                _______________|___________|___________
@@ -601,10 +642,24 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
                      2        | 26.66666  |  4.44444
                      3
 
-     As one can see, these values are different from the first table
-     shown in this example. This is due to the loss of information when
-     performing a rebin on data. Therefore, rebin your data thoughtfully and
-     carefully!
+    As one can see, these values are different from the first table
+    shown in this example. This is due to the loss of information when
+    performing a rebin on data. Therefore, rebin your data thoughtfully and
+    carefully!
+
+    Parameters:
+    __________
+
+    -> axis_in is the initial data axis
+    -> input is the data associated with the initial axis
+    -> input_err2 is the square of the uncertainty associated with the data
+    -> axis_out is the target axis for rebinning
+
+    Returns - two NessiVectors:
+    __________________________
+
+    <- the rebinned data according to the target axis
+    <- the square of the uncertainty associated with the rebinned data
 
      """
 
@@ -690,9 +745,20 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 def reverse_array_cp(input):
 
     """
+    ---------------------------------------------------------------------------
 
-  This function will reorder an NessiVector so the last element of the
+    This function will reorder an NessiVector so the last element of the
     supplied NessiVector is the first element of the result NessiVector.
+
+    Parameter:
+    _________
+
+    -> input is the NessiVector to be reversed
+
+    Return - 1 NessiVector:
+    ______________________
+
+    <- the reversed NessiVector
 
     """
 
@@ -766,10 +832,17 @@ def reverse_array_cp(input):
 def reverse_array_nc(input):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function will reorder a NessiVector so the last element of the
     supplied NessiVector is the first element of the resulting array.
     This NessiVector reversal is done in place of the supplied NessiVector.
+
+    Parameter/Return:
+    ________________
+
+    -> input is the NessiVector to be reversed. It is also the place holder
+       for the reversed NessiVector.
 
     """
 
@@ -883,18 +956,19 @@ def reverse_array_nc(input):
 # - The square of the uncertainty of the initial wavelength axis
 #
 
-def tof_to_initial_wavelength_igs(tof,tof_err2,\
-                  final_wavelength,\
-                  final_wavelength_err2,\
-                  time_offset,\
-                  time_offset_err2,\
-                  dist_source_sample,\
-                  dist_source_sample_err2,\
-
-                  dist_sample_detector,\
-                  dist_sample_detector_err2):
+def tof_to_initial_wavelength_igs(tof,\
+								  tof_err2,\
+								  final_wavelength,\
+								  final_wavelength_err2,\
+								  time_offset,\
+								  time_offset_err2,\
+								  dist_source_sample,\
+								  dist_source_sample_err2,\
+								  dist_sample_detector,\
+								  dist_sample_detector_err2):
 
     """
+    ---------------------------------------------------------------------------
 
     This function calculates the initial wavelength for an inverse geometry
     spectrometer according to the equation:
@@ -923,6 +997,33 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
     distance from the sample to the detector, and lambda_f_err2 is the
     uncertainty of the final wavelength.
 
+    Parameters:
+    __________
+
+    -> tof is the time-of-flight axis in units of micro-seconds
+    -> tof_err2 is the square of the uncertainty in the time-of-flight axis
+    -> final_wavelength is the final wavelength of the neutron in units of
+       Angstroms
+    -> final_wavelength_err2 is the square of the uncertainty in
+       final_wavelength
+    -> time_offset is the time offset of the neutron emitting from the source
+       assuming the velocity supplied in units of micro-seconds
+    -> time_offset_err2 is the square of the uncertainty in time_offset
+    -> dist_source_sample is the distance from source to sample in units of
+       meter
+    -> dist_source_sample_err2 is the square of the uncertainty in
+       dist_source_sample
+    -> dist_sample_detector is the distance from sample to detector in units
+       of meter
+    -> dist_sample_detector_err2 is the square of the uncertainty in
+       dist_sample_detector
+
+    Returns - 2 NessiVectors:
+    ________________________
+
+    <- the initial wavelength axis in units of Angstroms
+    <- the square of the uncertainty of the initial wavelength axis
+	
     """
 
     try:
@@ -1031,7 +1132,8 @@ def tof_to_initial_wavelength_igs(tof,tof_err2,\
 def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function converts the time-of-flight to wavelength according
     to the equation:
 
@@ -1050,6 +1152,20 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
     where lambda_err2 is the uncertainty in the wavelength axis,
     TOF_err2 is the uncertainty in the time of flight axis, and
     L_err2 is the uncertainty in the pathlength.
+
+    Parameters:
+    __________
+
+    -> tof is the time-of-flight axis in units of micro-seconds
+    -> tof_err2 is the square of the uncertainty in the time-of-flight axis
+    -> pathlength is the total flight path of the neutron in units of meter
+    -> pathlength_err2 is the square of the uncertainty in pathlength
+
+    Returns - 2 NessiVectors:
+    ________________________
+
+    <- the wavelength axis in units of Angstroms
+    <- the square of the uncertainty in the wavelength axis
 
     """
 
@@ -1140,6 +1256,8 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 def wavelength_to_energy(wavelength, wavelength_err2):
 
     """
+    ---------------------------------------------------------------------------
+	
     This function calculates the energy of a neutron given its
     wavelength according to the equation:
 
@@ -1158,6 +1276,18 @@ def wavelength_to_energy(wavelength, wavelength_err2):
     where E_err2 is the uncertainty in the energy, and
     lambda_err2 is the uncertainty in the wavelength axis.
 
+    Parameters:
+    __________
+
+    -> wavelength is the wavelength axis in units of Angstroms
+    -> wavelength_err2 is the square of the uncertainty in the wavelength
+       axis
+
+    Returns 2 NessiVectors:
+    ______________________
+
+    <- the energy of the neutron in units of meV
+    <- the square of the uncertainty in the energy
 
     """
 
@@ -1247,7 +1377,8 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function calculates the scalar wavevector given the
     wavelength according to the equation:
 
@@ -1262,6 +1393,18 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     where k_err2 is the uncertainty in the scalar wavevector, and
     lambda_err2 is the uncertainty in the wavelength axis.
+
+    Parameters:
+    __________
+
+    -> wavelength is the wavelength axis in units of Angstroms
+    -> wavelength_err2 is the square of the uncertainty in the wavelength_axis
+
+    Returns 2 NessiVectors:
+    ______________________
+
+    <- the scalar wavevector in units of reciprocal Angstroms
+    <- the square of the uncertainty in the scalar wavevector
 
     """
 

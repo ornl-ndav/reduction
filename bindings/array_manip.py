@@ -126,7 +126,8 @@ import array_manip_bind
 def add_ncerr(a,ae2,b,be2):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function accepts four arguments:
      - 4 NessiVectors
      - 2 NessiVectors and 2 scalars
@@ -177,6 +178,22 @@ def add_ncerr(a,ae2,b,be2):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
+
+    Parameters:
+    __________
+
+    -> a is the first NessiVector or scalar to be added
+    -> ae2 is the square of the uncertainty in the first NessiVector or scalar
+       to be added
+    -> b is the second NessiVector or scalar to be added
+    -> be2 is the square of the uncertainty in the second NessiVector or scalar
+       to be added
+
+    Returns 2 Nessivectors:
+    ______________________
+
+    <- the result NessiVector
+    <- the square of the uncertainty in the result NessiVector
 
     """
 
@@ -387,7 +404,8 @@ def add_ncerr(a,ae2,b,be2):
 def sub_ncerr(a,ae2,b,be2):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function accepts four arguments:
      - 4 NessiVectors
      - 2 NessiVectors and 2 scalars
@@ -462,6 +480,22 @@ def sub_ncerr(a,ae2,b,be2):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
+
+    Parameters:
+    __________
+
+    -> a is the NessiVector or scalar to be subtracted from
+    -> ae2 is the square of the uncertainty in the NessiVector or scalar to be
+       subtracted from
+    -> b is the NessiVector or scalar to subtract
+    -> be2 is the square of the uncertainty in the NessiVector or scalar to
+       subtract
+
+    Returns 2 NessiVectors:
+    ______________________
+
+    <- the result NessiVector
+    <- the square of the uncertainty in the result NessiVector
 
     """
 
@@ -688,7 +722,8 @@ def sub_ncerr(a,ae2,b,be2):
 def mult_ncerr(a,ae2,b,be2):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function accepts four arguments:
        - 4 NessiVectors
        - 2 NessiVectors and 2 scalars
@@ -740,6 +775,22 @@ def mult_ncerr(a,ae2,b,be2):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
+
+    Parameters:
+    __________
+
+    -> a is the first NessiVector or scalar to be multiplied
+    -> ae2 is the square of the uncertainty in the first NessiVector or scalar
+       to be multiplied
+    -> b is the second NessiVector or scalar to be multiplied
+    -> be2 is the square of the uncertainty in the second NessiVector or
+       scalar to be multiplied
+
+    Returns 2 NessiVectors:
+    ______________________
+
+    <- the result NessiVector
+    <- the square of the uncertainty in the result NessiVector
 
     """
 
@@ -952,7 +1003,8 @@ def mult_ncerr(a,ae2,b,be2):
 def div_ncerr(a,ae2,b,be2):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function accepts four arguments:
        - 4 NessiVectors
 
@@ -1032,6 +1084,22 @@ def div_ncerr(a,ae2,b,be2):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2[i] is the
     i^th component of the uncertainty in the input array.
+
+    Parameters:
+    __________
+
+    -> a is the NessiVector or scalar to be divided from
+    -> ae2 is the square of the uncertainty in the NessiVector or scalar to
+       be divided from
+    -> b is the NessiVector or scalar to divide by
+    -> be2 is the square of the uncertainty in the NessiVector or scalar to
+       divide by
+
+	Returns 2 NessiVectors:
+    ______________________
+
+    <- the result NessiVector
+    <- the square of the uncertainty in the result NessiVector
 
     """
 
@@ -1228,7 +1296,8 @@ def div_ncerr(a,ae2,b,be2):
 def sumw_ncerr(a,ae2,b,be2):
 
     """
-
+    ---------------------------------------------------------------------------
+	
     This function accepts four arguments:
         - 4 NessiVectors
 
@@ -1238,7 +1307,7 @@ def sumw_ncerr(a,ae2,b,be2):
     where Vector_o is the resulting NessiVector and NessiVector_err2_o is the
     uncertainty in the NessiVector o.
 
-  ===================================================================
+    ===================================================================
 
     This function adds two arrays weighted by their uncertainties
     according to the equation
@@ -1264,7 +1333,23 @@ def sumw_ncerr(a,ae2,b,be2):
     and Vector_err2_n[i] is the i^th component of the
     uncertainty in the n^th array being added.
 
-  """
+    Parameters:
+    __________
+
+    -> a is the first NessiVector to be added
+    -> ae2 is the square of the uncertainty in the first NessiVector to be
+       added
+    -> b is the second NessiVector to be added
+    -> be2 is the square of the uncertainty in the second NessiVector to be
+       added
+
+    Returns 2 NessiVectors:
+    ______________________
+
+    <- the result NessiVector
+    <- the square of the uncertainty in the result NessiVector
+
+    """
 
     if(a.__type__!=b.__type__):
         raise RuntimeError,"Incompatible types passed to sumw_ncerr"
