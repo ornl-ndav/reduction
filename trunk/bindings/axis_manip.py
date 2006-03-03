@@ -83,6 +83,10 @@ import axis_manip_bind
 # - The energy transfer axis in units of THz.
 # - The square of the uncertainty in the energy tranfser axis.
 #
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the lists are not
+# recognized types
 
 def energy_transfer(initial_energy, initial_energy_err2,\
                     final_energy, final_energy_err2):
@@ -120,6 +124,12 @@ def energy_transfer(initial_energy, initial_energy_err2,\
     <- the energy transfer axis in units of THz
     <- the square of the uncertainty in the energy transfer axis
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the lists are not
+       recognized types
   """
     
     try:
@@ -294,6 +304,11 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # - The scalar momentum transfer Q axis in units of reciprocal Angstroms
 # - The square of the uncertainty in the scalar momentum transfer axis
 #
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
 
 def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
                                       initial_wavevector_err2,\
@@ -345,6 +360,12 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
     <- the scalar momentum transfer axis in units of reciprocal Angstroms
     <- the square of the uncertainty in the scalar momentum transfer axis
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+    types
   """
     
     try:
@@ -600,6 +621,10 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # - The rebinned data according to the target axis
 # - The uncertainty associated with the rebinned  data
 #
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
 
 def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
@@ -686,6 +711,12 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
     <- the rebinned data according to the target axis
     <- the square of the uncertainty associated with the rebinned data
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+    types
      """
 
     if axis_in.__type__ != input.__type__:
@@ -744,6 +775,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # \return
 # - The reversed NessiVector
 #
+# \exception TypeError is thrown if the array is not a recognized type
 
 def reverse_array_cp(input):
 
@@ -763,6 +795,10 @@ def reverse_array_cp(input):
 
     <- the reversed NessiVector
 
+    Exception:
+    _________
+
+    <- TypeError is thrown if the array is not a recognized type
     """
 
     if input.__type__ != output.__type__:
@@ -812,6 +848,8 @@ def reverse_array_cp(input):
 # \param input (INPUT/OUTPUT) is the NessiVector to be reversed. It also is the
 # place holder for the reversed NessiVector.
 #
+# \exception TypeError is thrown if the array is not a recognized
+# type
 
 def reverse_array_nc(input):
 
@@ -828,6 +866,11 @@ def reverse_array_nc(input):
     -> input is the NessiVector to be reversed. It is also the place holder
        for the reversed NessiVector.
 
+
+    Exception:
+    _________
+
+    <- TypeError is thrown if the array is not a recognized type
     """
 
     if (input.__type__ == nessi_vector.NessiVector.FLOAT):
@@ -920,6 +963,10 @@ def reverse_array_nc(input):
 # - The initial wavelength axis in units of Angstrom
 # - The square of the uncertainty of the initial wavelength axis
 #
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
 
 def tof_to_initial_wavelength_igs(tof,\
                                   tof_err2,\
@@ -989,6 +1036,12 @@ def tof_to_initial_wavelength_igs(tof,\
     <- the initial wavelength axis in units of Angstroms
     <- the square of the uncertainty of the initial wavelength axis
 	
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+    types
     """
     try:
         if tof.__type__ != tof_err2.__type__:
@@ -1097,6 +1150,10 @@ def tof_to_initial_wavelength_igs(tof,\
 # - The wavelength axis in units of Angstroms
 # - The square of the uncertainty in the wavelength axis
 #
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
 
 def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 
@@ -1136,6 +1193,12 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
     <- the wavelength axis in units of Angstroms
     <- the square of the uncertainty in the wavelength axis
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+    types
     """
 
     try:
@@ -1225,6 +1288,10 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 # - The energy of the neutron in units of meV
 # - The square of the uncertainty in the energy
 #
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
 
 def wavelength_to_energy(wavelength, wavelength_err2):
 
@@ -1262,6 +1329,12 @@ def wavelength_to_energy(wavelength, wavelength_err2):
     <- the energy of the neutron in units of meV
     <- the square of the uncertainty in the energy
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+    types
     """
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
@@ -1346,6 +1419,10 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 # - The scalar wavevector in units of reciprocal Angstroms
 # - The square of the uncertainty in the scalar wavevector
 #
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
 
 def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
@@ -1379,6 +1456,12 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
     <- the scalar wavevector in units of reciprocal Angstroms
     <- the square of the uncertainty in the scalar wavevector
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+    types
     """
 
     try:
