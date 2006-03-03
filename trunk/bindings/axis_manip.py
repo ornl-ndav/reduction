@@ -717,7 +717,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
        types
-       
+
     """
 
     if axis_in.__type__ != input.__type__:
@@ -800,7 +800,7 @@ def reverse_array_cp(input):
     _________
 
     <- TypeError is thrown if the array is not a recognized type
-    
+
     """
 
     try:
@@ -881,7 +881,7 @@ def reverse_array_nc(input):
     _________
 
     <- TypeError is thrown if the array is not a recognized type
-    
+
     """
 
     if (input.__type__ == nessi_vector.NessiVector.FLOAT):
@@ -1053,7 +1053,7 @@ def tof_to_initial_wavelength_igs(tof,\
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
        types
-       
+
     """
     try:
         if tof.__type__ != tof_err2.__type__:
@@ -1211,7 +1211,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
        types
-       
+
     """
 
     try:
@@ -1348,7 +1348,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
        types
-       
+
     """
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
@@ -1476,7 +1476,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
        types
-       
+
     """
 
     try:
