@@ -131,7 +131,7 @@ def add_ncerr(a,ae2,b,be2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function accepts four arguments:
      - 4 NessiVectors
      - 2 NessiVectors and 2 scalars
@@ -420,7 +420,7 @@ def sub_ncerr(a,ae2,b,be2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function accepts four arguments:
      - 4 NessiVectors
      - 2 NessiVectors and 2 scalars
@@ -749,7 +749,7 @@ def mult_ncerr(a,ae2,b,be2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function accepts four arguments:
        - 4 NessiVectors
        - 2 NessiVectors and 2 scalars
@@ -1040,7 +1040,7 @@ def div_ncerr(a,ae2,b,be2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function accepts four arguments:
        - 4 NessiVectors
 
@@ -1131,7 +1131,7 @@ def div_ncerr(a,ae2,b,be2):
     -> be2 is the square of the uncertainty in the NessiVector or scalar to
        divide by
 
-	Returns 2 NessiVectors:
+    Returns 2 NessiVectors:
     ______________________
 
     <- the result NessiVector
@@ -1343,7 +1343,7 @@ def sumw_ncerr(a,ae2,b,be2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function accepts four arguments:
         - 4 NessiVectors
 

@@ -118,9 +118,9 @@ def energy_transfer(initial_energy, initial_energy_err2,\
     -> final_energy_err2 is the square of the uncertainty of the final energy
        axis
 
-	Returns - 2 NessiVectors:
+    Returns - 2 NessiVectors:
     ________________________
-	
+
     <- the energy transfer axis in units of THz
     <- the square of the uncertainty in the energy transfer axis
 
@@ -130,8 +130,8 @@ def energy_transfer(initial_energy, initial_energy_err2,\
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the lists are not
        recognized types
-  """
-    
+    """
+
     try:
         if initial_energy.__type__ != final_energy.__type__:
             raise TypeError, "Initial Energy and Final Energy array types \
@@ -140,7 +140,7 @@ def energy_transfer(initial_energy, initial_energy_err2,\
         if initial_energy.__type__ != initial_energy_err2.__type__:
             raise TypeError, "Initial Energy and Initial Energy Err2 array \
             types are not the same."
-    
+
         if (initial_energy.__type__ == nessi_vector.NessiVector.FLOAT):
             energy_transfer = nessi_vector.NessiVector(len(initial_energy), \
                                                        "float")
@@ -192,7 +192,7 @@ def energy_transfer(initial_energy, initial_energy_err2,\
                         float(scalar_err2),\
                         energy_transfer.__array__,\
                         energy_transfer_err2.__array__)
-            
+
         elif(array.__type__ == array.DOUBLE):
             energy_transfer = nessi_vector.NessiVector(len(array))
             energy_transfer_err2 = nessi_vector.NessiVector(len(array))
@@ -216,7 +216,7 @@ def energy_transfer(initial_energy, initial_energy_err2,\
             array_err2 = final_energy_err2
             scalar = initial_energy
             scalar_err2 = initial_energy_err2
-            
+
             if (array.__type__ == nessi_vector.NessiVector.FLOAT):
                 energy_transfer = nessi_vector.NessiVector(len(array), "FLOAT")
                 energy_transfer_err2 = nessi_vector.NessiVector(len(array), \
@@ -354,7 +354,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
     -> polar is the polar angle in units of radians
     -> polar_err2 is the square of the uncertainty in polar
 
-	Returns - 2 NessiVectors:
+    Returns - 2 NessiVectors:
     ________________________
 
     <- the scalar momentum transfer axis in units of reciprocal Angstroms
@@ -365,9 +365,9 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
-    types
-  """
-    
+       types
+    """
+
     try:
         if initial_wavevector.__type__ != final_wavevector.__type__:
             raise TypeError, "Initial Wavevector and Scattered Wavevector \
@@ -376,7 +376,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
         if initial_wavevector.__type__ != initial_wavevector_err2.__type__:
             raise TypeError, "Initial Wavevector and Initial Wavevector Err2 \
             array types are not the same."
-        
+
         if (initial_wavevector.__type__ == nessi_vector.NessiVector.FLOAT):
             Q = nessi_vector.NessiVector(len(initial_wavevector), "float")
             Q_err2 = nessi_vector.NessiVector(len(initial_wavevector),\
@@ -453,7 +453,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
             array_err2 = final_wavevector_err2
             scalar = initial_wavevector
             scalar_err2 = initial_wavevector_err2
-            
+
             if (array.__type__ == nessi_vector.NessiVector.FLOAT):
                 Q = nessi_vector.NessiVector(len(array), "FLOAT")
                 Q_err2 = nessi_vector.NessiVector(len(array), "FLOAT")
@@ -630,7 +630,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function rebins data and its associated errors from one axis to
     another given axis. This function uses fractional overlap of bins to
     perform the rebinning process. The function also assumes that the data
@@ -716,8 +716,9 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
-    types
-     """
+       types
+       
+    """
 
     if axis_in.__type__ != input.__type__:
         raise TypeError, "Input Axis and Input Data are not the same type."
@@ -799,6 +800,7 @@ def reverse_array_cp(input):
     _________
 
     <- TypeError is thrown if the array is not a recognized type
+    
     """
 
     try:
@@ -817,7 +819,7 @@ def reverse_array_cp(input):
     elif (input.__type__ == nessi_vector.NessiVector.INT):
         output = nessi_vector.NessiVector(len(input),"int")
         axis_manip_bind.reverse_array_cp_i(input.__array__, output.__array__)
-        
+
     elif (input.__type__ == nessi_vector.NessiVector.UINT):
         output = nessi_vector.NessiVector(len(input),"uint")
         axis_manip_bind.reverse_array_cp_u(input.__array__, output.__array__)
@@ -859,7 +861,7 @@ def reverse_array_nc(input):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function will reorder a NessiVector so the last element of the
     supplied NessiVector is the first element of the resulting array.
     This NessiVector reversal is done in place of the supplied NessiVector.
@@ -879,6 +881,7 @@ def reverse_array_nc(input):
     _________
 
     <- TypeError is thrown if the array is not a recognized type
+    
     """
 
     if (input.__type__ == nessi_vector.NessiVector.FLOAT):
@@ -895,7 +898,7 @@ def reverse_array_nc(input):
 
     else:
         raise TypeError, "Unknown primitive type %s", str(input.__type__)
-        
+
     return input
 
 ##
@@ -986,7 +989,7 @@ def tof_to_initial_wavelength_igs(tof,\
                                   dist_source_sample_err2,\
                                   dist_sample_detector,\
                                   dist_sample_detector_err2):
-    
+
     """
     ---------------------------------------------------------------------------
 
@@ -1043,17 +1046,18 @@ def tof_to_initial_wavelength_igs(tof,\
 
     <- the initial wavelength axis in units of Angstroms
     <- the square of the uncertainty of the initial wavelength axis
-	
+
     Exceptions:
     __________
 
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
-    types
+       types
+       
     """
     try:
         if tof.__type__ != tof_err2.__type__:
-            raise TypeError, "Tof and Tof Err2 arrays are not the same type." 
+            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
 
         if (tof.__type__ == nessi_vector.NessiVector.FLOAT):
             initial_wavelength = nessi_vector.NessiVector(len(tof), "float")
@@ -1167,7 +1171,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function converts the time-of-flight to wavelength according
     to the equation:
 
@@ -1206,13 +1210,14 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
-    types
+       types
+       
     """
 
     try:
         if tof.__type__ != tof_err2.__type:
             raise TypeError, "Tof and Tof Err2 arrays are not the same type."
-        
+
         if (tof.__type__ == nessi_vector.NessiVector.FLOAT):
             wavelength = nessi_vector.NessiVector(len(tof), "float")
             wavelength_err2 = nessi_vector.NessiVector(len(tof), "float")
@@ -1255,7 +1260,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
     raise NotImplementedError, "Scalar version of tof_to_wavelength is not \
     implemented."
 
-    
+
 ##
 # \}
 
@@ -1305,7 +1310,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function calculates the energy of a neutron given its
     wavelength according to the equation:
 
@@ -1342,7 +1347,8 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
-    types
+       types
+       
     """
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
@@ -1436,7 +1442,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     """
     ---------------------------------------------------------------------------
-	
+
     This function calculates the scalar wavevector given the
     wavelength according to the equation:
 
@@ -1469,7 +1475,8 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     <- IndexError is thrown if the arrays are not of compatible sizes
     <- TypeError is thrown if any of the arrays are not recognized
-    types
+       types
+       
     """
 
     try:
