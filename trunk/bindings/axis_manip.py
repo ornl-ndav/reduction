@@ -801,8 +801,10 @@ def reverse_array_cp(input):
     <- TypeError is thrown if the array is not a recognized type
     """
 
-    if input.__type__ != output.__type__:
-        raise TypeError, "Input and output arrays should be of the same type."
+    try:
+        output = nessi_vector.NessiVector(len(input), input.__type__)
+    except AttributeError:
+        raise TypeError, "Function must be supplied a NessiVector"
 
     if (input.__type__ == nessi_vector.NessiVector.FLOAT):
         output = nessi_vector.NessiVector(len(input), "float")
@@ -848,6 +850,8 @@ def reverse_array_cp(input):
 # \param input (INPUT/OUTPUT) is the NessiVector to be reversed. It also is the
 # place holder for the reversed NessiVector.
 #
+# \return reference to the input array
+#
 # \exception TypeError is thrown if the array is not a recognized
 # type
 
@@ -860,12 +864,16 @@ def reverse_array_nc(input):
     supplied NessiVector is the first element of the resulting array.
     This NessiVector reversal is done in place of the supplied NessiVector.
 
-    Parameter/Return:
+    Parameter:
     ________________
 
     -> input is the NessiVector to be reversed. It is also the place holder
        for the reversed NessiVector.
 
+    Return - one NessiVector:
+    ______________________
+
+    <- reference to the input array
 
     Exception:
     _________
@@ -888,7 +896,7 @@ def reverse_array_nc(input):
     else:
         raise TypeError, "Unknown primitive type %s", str(input.__type__)
         
-    return
+    return input
 
 ##
 #\}
