@@ -123,6 +123,10 @@ import array_manip_bind
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector
 #
+# \exception IndexError is thrown if a, ae2, b and be2 are not the same length
+# \exception TypeError is thrown if any of the arrays are not recognized types
+# \exception RuntimeError is thrown if a and b are not the same type
+
 def add_ncerr(a,ae2,b,be2):
 
     """
@@ -194,6 +198,13 @@ def add_ncerr(a,ae2,b,be2):
 
     <- the result NessiVector
     <- the square of the uncertainty in the result NessiVector
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if a, ae2, b and be2 are not the same length
+    <- TypeError is thrown if any of the arrays are not recognized types
+    <- RuntimeError is thrown if a and b are not the same type
 
     """
 
@@ -298,7 +309,7 @@ def add_ncerr(a,ae2,b,be2):
                                      c.__array__,\
                                      ce2.__array__)
     else:
-        raise TypeError,"Unknown primative type %s" % str(a.__type__)
+        raise TypeError,"Unknown primative type %s" % str(array.__type__)
 
     return c,ce2
 
@@ -401,6 +412,10 @@ def add_ncerr(a,ae2,b,be2):
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector
 #
+# \exception IndexError is thrown if a, ae2, b and be2 are not the same length
+# \exception TypeError is thrown if any of the arrays are not recognized types
+# \exception RuntimeError is thrown if a and b are not the same type
+
 def sub_ncerr(a,ae2,b,be2):
 
     """
@@ -497,6 +512,13 @@ def sub_ncerr(a,ae2,b,be2):
     <- the result NessiVector
     <- the square of the uncertainty in the result NessiVector
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if a, ae2, b and be2 are not the same length
+    <- TypeError is thrown if any of the arrays are not recognized types
+    <- RuntimeError is thrown if a and b are not the same type
+
     """
 
     try:
@@ -591,7 +613,7 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError,"Unknown primative type %s" % str(array.__type__)
 
         return c,ce2
 
@@ -642,7 +664,7 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError,"Unknown primative type %s" % str(array.__type__)
 
         return c,ce2
 
@@ -719,6 +741,10 @@ def sub_ncerr(a,ae2,b,be2):
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector
 #
+# \exception IndexError is thrown if a, ae2, b and be2 are not the same length
+# \exception TypeError is thrown if any of the arrays are not recognized types
+# \exception RuntimeError is thrown if a and b are not the same type
+
 def mult_ncerr(a,ae2,b,be2):
 
     """
@@ -791,6 +817,13 @@ def mult_ncerr(a,ae2,b,be2):
 
     <- the result NessiVector
     <- the square of the uncertainty in the result NessiVector
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if a, ae2, b and be2 are not the same length
+    <- TypeError is thrown if any of the arrays are not recognized types
+    <- RuntimeError is thrown if a and b are not the same type
 
     """
 
@@ -999,6 +1032,9 @@ def mult_ncerr(a,ae2,b,be2):
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector
 #
+# \exception IndexError is thrown if a, ae2, b and be2 are not the same length
+# \exception TypeError is thrown if any of the arrays are not recognized types
+# \exception RuntimeError is thrown if a and b are not the same type
 
 def div_ncerr(a,ae2,b,be2):
 
@@ -1101,6 +1137,13 @@ def div_ncerr(a,ae2,b,be2):
     <- the result NessiVector
     <- the square of the uncertainty in the result NessiVector
 
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if a, ae2, b and be2 are not the same length
+    <- TypeError is thrown if any of the arrays are not recognized types
+    <- RuntimeError is thrown if a and b are not the same type
+
     """
 
     try:
@@ -1195,7 +1238,7 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError,"Unknown primative type %s" % str(array.__type__)
 
         return c,ce2
 
@@ -1246,7 +1289,7 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError,"Unknown primative type %s" % str(array.__type__)
 
         return c,ce2
 
@@ -1292,6 +1335,9 @@ def div_ncerr(a,ae2,b,be2):
 # - The result NessiVector
 # - The square of the uncertainty in the result NessiVector
 #
+# \exception IndexError is thrown if a, ae2, b and be2 are not the same length
+# \exception TypeError is thrown if any of the arrays are not recognized types
+# \exception RuntimeError is thrown if a and b are not the same type
 
 def sumw_ncerr(a,ae2,b,be2):
 
@@ -1348,6 +1394,13 @@ def sumw_ncerr(a,ae2,b,be2):
 
     <- the result NessiVector
     <- the square of the uncertainty in the result NessiVector
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if a, ae2, b and be2 are not the same length
+    <- TypeError is thrown if any of the arrays are not recognized types
+    <- RuntimeError is thrown if a and b are not the same type
 
     """
 
