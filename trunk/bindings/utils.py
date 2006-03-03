@@ -86,6 +86,11 @@ import utils_bind
 # - The weighted average
 # - The square of the uncertainty in the weighted average
 #
+# \exception IndexError is raised if a and ae2 are not the same length
+# \exception NotImplementedError is raised since the PBL function signature is
+# not available
+# \exception TypeError is raised if a and ae2 are not the same type
+
 
 def weighted_average(a,ae2,start,fin):
 
@@ -99,7 +104,7 @@ def weighted_average(a,ae2,start,fin):
     -> a is the NessiVector from which to calculate the weighted average
     -> ae2 is the square of the uncertainty in the associated NessiVector
        from which calculate the weighted average
-	-> start is the bin of the NessiVector from which to start the calculation
+    -> start is the bin of the NessiVector from which to start the calculation
     -> fin the bin of the NessiVector at which to end the calculation
 
     Returns 2 NessiVectors:
@@ -109,10 +114,18 @@ def weighted_average(a,ae2,start,fin):
     <- the square of the uncertainty associated with the weighted
 	   average
 
+    Exceptions:
+    __________
+
+    <- IndexError is raised if a and ae2 are not the same length
+    <- NotImplementedError is raised since the PBL function signature is
+       not available
+    <- TypeError is raised if a and ae2 are not the same type
+
     """
 
     if (a.__type__ != ae2.__type__):
-        raise RuntimeError, "Incompatible types passed to weighted_average"
+        raise TypeError, "Incompatible types passed to weighted_average"
 
     if (a.__type__ == a.FLOAT):
         raise NotImplementedError, "This function is not implemented yet."
