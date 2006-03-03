@@ -674,8 +674,8 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
         type."
 
     if (axis_in.__type__ == nessi_vector.NessiVector.FLOAT):
-        output = nessi_vector.NessiVector(len(input), "float")
-        output_err2 = nessi_vector.NessiVector(len(input), "float")
+        output = nessi_vector.NessiVector(len(axis_out)-1, "float")
+        output_err2 = nessi_vector.NessiVector(len(axis_out)-1, "float")
         axis_manip_bind.rebin_axis_1D_f(axis_in.__array__,\
                                         input.__array__,\
                                         input_err2.__array__, \
@@ -684,8 +684,8 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
                                         output_err2.__array__)
 
     elif (axis_in.__type__ == nessi_vector.NessiVector.DOUBLE):
-        output = nessi_vector.NessiVector(len(input))
-        output_err2 = nessi_vector.NessiVector(len(input))
+        output = nessi_vector.NessiVector(len(axis_out)-1)
+        output_err2 = nessi_vector.NessiVector(len(axis_out)-1)
         axis_manip_bind.rebin_axis_1D_d(axis_in.__array__,\
                                         input.__array__,\
                                         input_err2.__array__,\
