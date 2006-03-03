@@ -337,7 +337,7 @@ bool test_okay(NumT                & output_ss,
  * and launches the comparison of the data. 
  *
  * \param key (INPUT) is a key that permits to launch the correct test
- * \param debug (INPUT) is any sting that launches the debug mode (print all
+ * \param debug (INPUT) is any string that launches the debug mode (print all
  * the array created and calculated)
  *
  * \return Result of the function (TRUE/FALSE)
