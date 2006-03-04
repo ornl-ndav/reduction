@@ -763,7 +763,7 @@ def mult_ncerr(a,ae2,b,be2):
     where Vector_o is the resulting NessiVector and Vector_err2_o is the
     uncertainty in the NessiVector o.
 
-  =================================================================
+    =================================================================
 
     - With 4 NessiVectors, this function multiply each element, i, of two
     NessiVectors according to the equation:
@@ -1060,7 +1060,7 @@ def div_ncerr(a,ae2,b,be2):
     where Vector_o is the resulting NessiVector and Vector_err2_o is the
     uncertainty in the NessiVector o.
 
-  =================================================================
+    =================================================================
 
     - With 4 NessiVectors, this function divides each element, i, of two
     NessiVectors according to the equation:
