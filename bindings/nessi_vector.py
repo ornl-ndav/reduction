@@ -156,7 +156,7 @@ class NessiVector (list):
 # the new last element of the instance. That can be a confusion in the case the
 # size of the instance has already been declared during the initialization
 # process. For example, if a NessiVector has been defined has a 5 elements
-# long of type <i>float</i>
+# long of type <i>double</i>
 # \code
 # >>> MyVector = NessiVector(5)
 # \endcode
