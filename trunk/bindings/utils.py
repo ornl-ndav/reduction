@@ -96,7 +96,7 @@ def weighted_average(a,ae2,start,fin):
 
     """
     ---------------------------------------------------------------------------
-  This function takes the weighted average of a slice of a NessiVector.
+    This function takes the weighted average of a slice of a NessiVector.
 
     Parameters:
     __________
