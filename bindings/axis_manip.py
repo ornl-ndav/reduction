@@ -27,6 +27,9 @@
 ##
 # \file bindings/axis_manip.py
 
+import nessi_vector
+import axis_manip_bind
+
 ##
 # \namespace axis_manip
 #
@@ -44,9 +47,6 @@
 # NessiVector of type <i>float</i>, the module redirects the call to the
 # function \f$energy\_transfer\_f\f$.
 #
-
-import nessi_vector
-import axis_manip_bind
 
 ##
 # \defgroup py_energy_transfer axis_manip::energy_transfer
