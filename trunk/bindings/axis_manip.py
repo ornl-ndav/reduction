@@ -1100,20 +1100,8 @@ def tof_to_initial_wavelength_igs(tof,\
     except AttributeError:
         pass
 
-    try:
-        tof.__type__
-        raise TypeError, "Tof and Tof Err2 must both be scalar values."
-
-    except AttributeError:
-        try:
-            tof_err2.__type__
-            raise TypeError, "Tof and Tof Err2 must both be scalar values."
-        except AttributeError:
-            pass
-
     raise NotImplementedError, "Scalar version of \
     tof_to_initial_wavelength_igs is not implemented."
-
 
 ##
 # \}
@@ -1246,20 +1234,8 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
     except AttributeError:
         pass
 
-    try:
-        tof.__type__
-        raise TypeError, "Tof and Tof Err2 must both be scalar values."
-
-    except AttributeError:
-        try:
-            tof_err2.__type__
-            raise TypeError, "Tof and Tof Err2 must both be scalar values."
-        except AttributeError:
-            pass
-
     raise NotImplementedError, "Scalar version of tof_to_wavelength is not \
     implemented."
-
 
 ##
 # \}
@@ -1379,19 +1355,6 @@ def wavelength_to_energy(wavelength, wavelength_err2):
     except AttributeError:
         pass
 
-    try:
-        wavelength.__type__
-        raise TypeError, "Wavelength and Wavelength Err2 must both be \
-        scalar values."
-
-    except AttributeError:
-        try:
-            wavelength_err2.__type__
-            raise TypeError, "Wavelength and Wavelength Err2 must both be \
-            scalar values."
-        except AttributeError:
-            pass
-
     raise NotImplementedError, "Scalar version of wavelength_to_energy is not \
     implemented."
 
@@ -1510,19 +1473,6 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     except AttributeError:
         pass
-
-    try:
-        wavelength.__type__
-        raise TypeError, "Wavelength and Wavelength Err2 must both be \
-        scalar values."
-
-    except AttributeError:
-        try:
-            wavelength_err2.__type__
-            raise TypeError, "Wavelength and Wavelength Err2 must both be \
-            scalar values."
-        except AttributeError:
-            pass
 
     raise NotImplementedError, "Scalar version of wavelength_to_scalar_k is \
     not implemented."
