@@ -145,13 +145,16 @@ bool test_okay(Nessi::Vector<NumT> & output_vv,
 /**
  * Function that generates the data using the <i>sumw_ncerr</i> function
  * (as described in the documentation of the <i>sumw_ncerr</i> function)
- * and launches the comparison of the data. Returns the result
- * of the test_okay function (TRUE/FALSE).
+ * and launches the comparison of the data.
  *
  * \param key (INPUT) key that permits to launch the correct test
+ * \param debug (INPUT) is any string that launches the debug mode (print all
+ * the array created and calculated)
+ * 
+ * \return Result of the function (TRUE/FALSE)
  */
 template <typename NumT>
-bool test_func(NumT key){ // key forces correct test to happen
+bool test_func(NumT key, string debug){ // key forces correct test to happen
   // allocate arrays
   Nessi::Vector<NumT> input1;
   Nessi::Vector<NumT> input1_err2;
@@ -170,32 +173,55 @@ bool test_func(NumT key){ // key forces correct test to happen
   ArrayManip::sumw_ncerr(input1, input1_err2, input2, input2_err2,
                          output_vv, output_vv_err2);
 
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(output_vv,true_output_vv,VV,debug);
+      print(output_vv_err2,true_output_vv_err2,ERROR+VV,debug);
+    }
+
   return test_okay(output_vv, output_vv_err2,
                    true_output_vv, true_output_vv_err2);
 }
 
 /**
- * Main function that tests <i>sumw_ncerr</i> for
+ * Main function that tests <i>sub_ncerr</i> for
  * float, double, int and unsigned int.
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
  */
-int main()
+int main(int argc, char *argv[])
 {
   cout << "sumw_ncerr_test.cpp..........";
 
-  if(!test_func(static_cast<float>(1)))
-    return -1;
+  string debug;
+  if (argc>1)
+    {
+      debug = argv[1];
+    }
 
-  if(!test_func(static_cast<double>(1)))
-    return -1;
-
-  if(!test_func(static_cast<int>(1)))
-    return -1;
-
-  if(!test_func(static_cast<unsigned int>(1)))
-    return -1;
-
+  if(!test_func(static_cast<float>(1), debug))
+    {
+      return -1;
+    }
+  if(!test_func(static_cast<double>(1), debug))
+    {
+      return -1;
+    }
+  
+  if(!test_func(static_cast<int>(1), debug))
+    {
+      return -1;
+    }
+  
+  if(!test_func(static_cast<unsigned int>(1), debug))
+    {
+      return -1;
+    }
+  
   cout << "Functionality OK" << endl;
-
+  
   return 0;
 }
 
