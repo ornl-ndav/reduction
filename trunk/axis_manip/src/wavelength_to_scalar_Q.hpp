@@ -7,17 +7,17 @@
  *
  *
  *                             NOTICE
- * 
- * For this software and its associated documentation, permission is granted 
- * to reproduce, prepare derivative works, and distribute copies to the public 
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
  * for any purpose and without fee.
- *  
- * This material was prepared as an account of work sponsored by an agency of 
- * the United States Government.  Neither the United States Government nor the 
- * United States Department of Energy, nor any of their employees, makes any 
- * warranty, express or implied, or assumes any legal liability or 
- * responsibility for the accuracy, completeness, or usefulness of any 
- * information, apparatus, product, or process disclosed, or represents that 
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
  * its use would not infringe privately owned rights.
  *
  */
@@ -88,7 +88,7 @@ namespace AxisManip
       {
         retstr+=warn;
       }
-    
+
     // do the calculation
     size_t size_wavelength = wavelength.size();
     for (size_t i=0; i < size_wavelength ; ++i)
@@ -98,18 +98,18 @@ namespace AxisManip
                                                 scatt_angle,
                                                 scatt_angle_err2,
                                                 _4Pi, sin, sin2, cos2,
-                                                Q[i], 
+                                                Q[i],
                                                 Q_err2[i]);
-        
+
         if(!(warn.empty()))
           {
             retstr+=warn;
           }
       }
-    
+
     return retstr;
   }
-  
+
   template <typename NumT>
   std::string
   wavelength_to_scalar_Q(const NumT wavelength,
@@ -122,7 +122,7 @@ namespace AxisManip
   {
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
     std::string warn;                      // the temporary warning string
-    
+
     // allocate local variables
     NumT _4Pi;
     NumT sin;
@@ -135,21 +135,21 @@ namespace AxisManip
       {
         retstr+=warn;
       }
-    
+
     // do the calculation
     warn = __wavelength_to_scalar_Q_dynamic(wavelength,
                                             wavelength_err2,
                                             scatt_angle,
                                             scatt_angle_err2,
                                             _4Pi, sin, sin2, cos2,
-                                            Q, 
+                                            Q,
                                             Q_err2);
-    
+
     if(!(warn.empty()))
       {
         retstr+=warn;
       }
-    
+
     return retstr;
   }
 
@@ -180,10 +180,10 @@ namespace AxisManip
     sin=static_cast<NumT>(std::sin(static_cast<double>(scatt_angle)));
     sin2=sin*sin;
     cos2=static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
-    
+
     return Nessi::EMPTY_WARN;
   }
-  
+
   /**
    * \ingroup wavelength_to_scalar_Q
    *
@@ -194,7 +194,7 @@ namespace AxisManip
    * \param wavelength_err2 (INPUT) same as parameter in
    * wavelength_to_scalar_Q()
    * \param scatt_angle (INPUT) same as parameter in wavelength_to_scalar_Q()
-   * \param scatt_angle_err2 (INPUT) same as parameter in 
+   * \param scatt_angle_err2 (INPUT) same as parameter in
    * wavelength_to_scalar_Q()
    * \param _4Pi (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
    * \param sin (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
