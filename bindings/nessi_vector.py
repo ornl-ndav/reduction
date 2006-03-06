@@ -579,6 +579,10 @@ class NessiVector (list):
         return "["+",".join(result)+"]"
 
 ##
+# \}
+
+
+##
 # \defgroup max_vect nessi_vector::max_vect
 # \{
 
@@ -672,6 +676,3 @@ def print_multi(n,object1,object2,object3=NessiVector()):
 ##
 # \}
 
-
-##
-# \}
