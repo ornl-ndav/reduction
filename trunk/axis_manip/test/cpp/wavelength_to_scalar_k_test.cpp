@@ -97,20 +97,20 @@ void initialize_true_outputs(float    & true_output_ss,
                              Nessi::Vector<float> & true_output_vv_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<float>(6.2831854820);
-  true_output_ss_err2=static_cast<float>(19.7392101287);
+  true_output_ss=static_cast<float>(6.28318548);
+  true_output_ss_err2=static_cast<float>(19.73921012);
 
   // vector vector
-  true_output_vv.push_back(static_cast<float>(6.283185482));
-  true_output_vv_err2.push_back(static_cast<float>(19.7392101287));
-  true_output_vv.push_back(static_cast<float>(3.1415927410));
-  true_output_vv_err2.push_back(static_cast<float>(3.70110177993));
-  true_output_vv.push_back(static_cast<float>(2.0943951606));
-  true_output_vv_err2.push_back(static_cast<float>(1.21846973896));
-  true_output_vv.push_back(static_cast<float>(1.5707963705));
-  true_output_vv_err2.push_back(static_cast<float>(0.53974401950));
-  true_output_vv.push_back(static_cast<float>(1.2566370964));
-  true_output_vv_err2.push_back(static_cast<float>(0.28424462676));
+  true_output_vv.push_back(static_cast<float>(6.28318548));
+  true_output_vv_err2.push_back(static_cast<float>(19.73921012));
+  true_output_vv.push_back(static_cast<float>(3.14159274));
+  true_output_vv_err2.push_back(static_cast<float>(3.70110177));
+  true_output_vv.push_back(static_cast<float>(2.09439516));
+  true_output_vv_err2.push_back(static_cast<float>(1.21846973));
+  true_output_vv.push_back(static_cast<float>(1.57079637));
+  true_output_vv_err2.push_back(static_cast<float>(0.53974401));
+  true_output_vv.push_back(static_cast<float>(1.25663709));
+  true_output_vv_err2.push_back(static_cast<float>(0.28424462));
 }
 
 /**
@@ -140,13 +140,13 @@ void initialize_true_outputs(double    & true_output_ss,
   true_output_vv.push_back(static_cast<double>(6.28318530717958623));
   true_output_vv_err2.push_back(static_cast<double>(19.73920880217871598));
   true_output_vv.push_back(static_cast<double>(3.14159265358979311));
-  true_output_vv_err2.push_back(static_cast<double>(3.701101650408509247));
+  true_output_vv_err2.push_back(static_cast<double>(3.70110165040850924));
   true_output_vv.push_back(static_cast<double>(2.09439510239319526));
-  true_output_vv_err2.push_back(static_cast<double>(1.218469679146834350));
+  true_output_vv_err2.push_back(static_cast<double>(1.21846967914683435));
   true_output_vv.push_back(static_cast<double>(1.57079632679489655));
-  true_output_vv_err2.push_back(static_cast<double>(0.539743990684574237));
+  true_output_vv_err2.push_back(static_cast<double>(0.53974399068457423));
   true_output_vv.push_back(static_cast<double>(1.25663706143591724));
-  true_output_vv_err2.push_back(static_cast<double>(0.284244606751373529));
+  true_output_vv_err2.push_back(static_cast<double>(0.28424460675137352));
 }
 
 /**
