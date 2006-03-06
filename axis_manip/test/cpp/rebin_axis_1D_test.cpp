@@ -40,7 +40,7 @@ using namespace std;
  * This test compares the output data calculated by the library
  * function <i>rebin_array_1D</i> and described in 3.12
  * of the <i>SNS 107030214-TD0001-R00, "Data Reduction Library Software
- * Requirements and Specifications"</i> with the true output data 
+ * Requirements and Specifications"</i> with the true output data
  * \f$true\_output\f$ manually calculated.
  * Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
  * will generate in the testsuite.log file an error message that gives details
@@ -48,7 +48,7 @@ using namespace std;
  */
 
 /**
- * This function initializes the value of arrays, \f$axis\_in\f$, 
+ * This function initializes the value of arrays, \f$axis\_in\f$,
  * \f$axis\_out\f$, \f$input\f$, and \f$input\_err2\f$.
  *
  * \param axis_in (OUTPUT) is the initial data axis
@@ -83,7 +83,7 @@ void initialize_inputs(Nessi::Vector<NumT> & axis_in,
 
 /**
  * This function sets the true outputs based on values contained in
- * \f$axis\_in\f$, \f$axis\_out\f$, \f$input\f$, and \f$input\_err2\f$. 
+ * \f$axis\_in\f$, \f$axis\_out\f$, \f$input\f$, and \f$input\_err2\f$.
  *
  * \param true_output (OUTPUT) is the true output
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
@@ -140,12 +140,12 @@ bool test_okay(Nessi::Vector<NumT> & output,
 /**
  * Function that generates the data using the <i>rebin_axis_1D</i> function
  * (as described in the documentation of the <i>rebin_axis_1D</i> function)
- * and launches the comparison of the data. 
+ * and launches the comparison of the data.
  *
  * \param key (INPUT) is a key that permits to launch the correct test
  * \param debut (INPUT) is any string that launches the debug mode (print all
  * the array created and calculated)
- * 
+ *
  * \return Result of the function (TRUE/FALSE)
  */
 template <typename NumT>

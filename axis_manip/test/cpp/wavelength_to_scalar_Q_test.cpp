@@ -179,14 +179,14 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
                                     wavelength_err2[0],
                                     scatt_angle,
                                     scatt_angle_err2,
-                                    output_ss, 
+                                    output_ss,
                                     output_ss_err2);
-  
+
   AxisManip::wavelength_to_scalar_Q(wavelength,
                                     wavelength_err2,
                                     scatt_angle,
                                     scatt_angle_err2,
-                                    output_vs, 
+                                    output_vs,
                                     output_vs_err2);
 
   if(!debug.empty())

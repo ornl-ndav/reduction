@@ -7,17 +7,17 @@
  *
  *
  *                             NOTICE
- * 
- * For this software and its associated documentation, permission is granted 
- * to reproduce, prepare derivative works, and distribute copies to the public 
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
  * for any purpose and without fee.
- *  
- * This material was prepared as an account of work sponsored by an agency of 
- * the United States Government.  Neither the United States Government nor the 
- * United States Department of Energy, nor any of their employees, makes any 
- * warranty, express or implied, or assumes any legal liability or 
- * responsibility for the accuracy, completeness, or usefulness of any 
- * information, apparatus, product, or process disclosed, or represents that 
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
  * its use would not infringe privately owned rights.
  *
  */
@@ -48,8 +48,8 @@ namespace AxisManip
    * perform the rebinning process. The function also assumes that the data
    * is represented by a histogram model.
    *
-   * To show the effects of rebinning, an example will now be discussed. We 
-   * start with a histogram containing 3 bins, which runs from 0 to 3 on its 
+   * To show the effects of rebinning, an example will now be discussed. We
+   * start with a histogram containing 3 bins, which runs from 0 to 3 on its
    * x-axis. So, the histogram looks like:
    *
    * <CENTER>
@@ -66,10 +66,10 @@ namespace AxisManip
    * </TABLE>
    * </CENTER>
    *
-   * Notice that the final x-axis value is not associated with a count value. 
-   * This is a property of the histogram data model. Our new histogram has the 
-   * same x-axis range [0,3], but it only has two bins. The result of the 
-   * rebinned histogram is shown in the table below. 
+   * Notice that the final x-axis value is not associated with a count value.
+   * This is a property of the histogram data model. Our new histogram has the
+   * same x-axis range [0,3], but it only has two bins. The result of the
+   * rebinned histogram is shown in the table below.
    * <CENTER>
    * <TABLE>
    * <TR>
@@ -82,9 +82,9 @@ namespace AxisManip
    * <TR ALIGN="CENTER"><TD>3</TD><TD>  </TD><TD> </TD></TR>
    * </TABLE>
    * </CENTER>
-   * 
-   * The new bin boundary (1.5) lies in the middle of the second bin in the 
-   * original histogram. That means that its contents will be evenly split 
+   *
+   * The new bin boundary (1.5) lies in the middle of the second bin in the
+   * original histogram. That means that its contents will be evenly split
    * into the new bins. So,
    * \f[
    * Bin_1^{new} = Bin_1^{old} + 0.5 \times Bin_2^{old}
@@ -94,25 +94,25 @@ namespace AxisManip
    * \f]
    *and
    * \f[
-   * \sigma^2_{Bin_1^{new}} = \sigma^2_{Bin_1^{old}} + (0.5)^2 \times 
+   * \sigma^2_{Bin_1^{new}} = \sigma^2_{Bin_1^{old}} + (0.5)^2 \times
    * \sigma^2_{Bin_2^{old}}
    * \f]
    * \f[
-   * \sigma^2_{Bin_2^{new}} = \sigma^2_{Bin_3^{old}} + (0.5)^2 \times 
+   * \sigma^2_{Bin_2^{new}} = \sigma^2_{Bin_3^{old}} + (0.5)^2 \times
    * \sigma^2_{Bin_2^{old}}
    * \f]
    *
-   * This can be seen in the results presented in the above table. Now, we'll 
-   * reverse the process. The original histogram is the rebinned histogram 
-   * with two bins used previously and the new rebinned histogram will have 
-   * the same number of bins (3) as the previously used original histogram. 
+   * This can be seen in the results presented in the above table. Now, we'll
+   * reverse the process. The original histogram is the rebinned histogram
+   * with two bins used previously and the new rebinned histogram will have
+   * the same number of bins (3) as the previously used original histogram.
    * One can see that we have the following distribution of bin contents:
    *
    * \f[
    * Bin_1^{new} = \frac{2}{3} \times Bin_1^{old}
    * \f]
    * \f[
-   * Bin_2^{new} = \frac{1}{3} \times Bin_1^{old} + \frac{1}{3} \times 
+   * Bin_2^{new} = \frac{1}{3} \times Bin_1^{old} + \frac{1}{3} \times
    * Bin_2^{old}
    * \f]
    * \f[
@@ -123,7 +123,7 @@ namespace AxisManip
    * \sigma^2_{Bin_1^{new}} = (\frac{2}{3})^2 \times \sigma^2_{Bin_1^{old}}
    * \f]
    * \f[
-   * \sigma^2_{Bin_2^{new}} = (\frac{1}{3})^2 \times \sigma^2_{Bin_1^{old}} + 
+   * \sigma^2_{Bin_2^{new}} = (\frac{1}{3})^2 \times \sigma^2_{Bin_1^{old}} +
    * (\frac{1}{3})^2 \times \sigma^2_{Bin_2^{old}}
    * \f]
    * \f[
@@ -146,8 +146,8 @@ namespace AxisManip
    * </TABLE>
    * </CENTER>
    *
-   * As one can see, these values are different from the first table shown in 
-   * this example. This is due to the loss of information when performing a 
+   * As one can see, these values are different from the first table shown in
+   * this example. This is due to the loss of information when performing a
    * rebin on data. Therefore, rebin your data thoughtfully and carefully!
    *
    * This function was provided by Paul Kienzle (NIST) and is based on an
