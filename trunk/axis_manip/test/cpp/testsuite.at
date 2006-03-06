@@ -83,3 +83,8 @@ AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Wavelength to Scalar Momentum Transfer Function.  ])
+AT_CHECK([wavelength_to_scalar_Q_test | sed -e 's/\r$//' ],[],
+[[wavelength_to_scalar_Q_test.cpp..........Functionality OK
+]])
+AT_CLEANUP

@@ -39,7 +39,8 @@ AXIS_MANIP_TARGETS = \
 	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
-	wavelength_to_scalar_k_test 
+	wavelength_to_scalar_k_test \
+    wavelength_to_scalar_Q_test
 
 
 TESTSUITE	= $(srcdir)/testsuite
@@ -69,6 +70,9 @@ wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp \
         test_common.hpp
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp \
+        test_common.hpp
+
+wavelength_to_scalar_Q_test_SOURCES = wavelength_to_scalar_Q_test.cpp \
         test_common.hpp
 
 DISTCLEANFILES = atconfig
