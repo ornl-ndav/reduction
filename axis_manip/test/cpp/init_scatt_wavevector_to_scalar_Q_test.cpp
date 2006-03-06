@@ -121,44 +121,44 @@ void initialize_true_outputs(float                & true_output_ss,
                              Nessi::Vector<float> & true_output_vv_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<float>(0.3503661155);
-  true_output_ss_err2=static_cast<float>(0.4165994822);
+  true_output_ss=static_cast<float>(0.35036611);
+  true_output_ss_err2=static_cast<float>(0.41659948);
 
   // scalar vector
-  true_output_sv.push_back(static_cast<float>(0.3503661155));
-  true_output_sv_err2.push_back(static_cast<float>(0.4165994822));
-  true_output_sv.push_back(static_cast<float>(1.2926567518));
-  true_output_sv_err2.push_back(static_cast<float>(1.6581019042));
-  true_output_sv.push_back(static_cast<float>(2.2845494747));
-  true_output_sv_err2.push_back(static_cast<float>(2.6918807029));
-  true_output_sv.push_back(static_cast<float>(3.2813673019));
-  true_output_sv_err2.push_back(static_cast<float>(3.7044682502));
-  true_output_sv.push_back(static_cast<float>(4.2796702384));
-  true_output_sv_err2.push_back(static_cast<float>(4.7109990119));
+  true_output_sv.push_back(static_cast<float>(0.35036611));
+  true_output_sv_err2.push_back(static_cast<float>(0.41659948));
+  true_output_sv.push_back(static_cast<float>(1.29265675));
+  true_output_sv_err2.push_back(static_cast<float>(1.65810190));
+  true_output_sv.push_back(static_cast<float>(2.28454947));
+  true_output_sv_err2.push_back(static_cast<float>(2.69188070));
+  true_output_sv.push_back(static_cast<float>(3.28136730));
+  true_output_sv_err2.push_back(static_cast<float>(3.70446825));
+  true_output_sv.push_back(static_cast<float>(4.27967023));
+  true_output_sv_err2.push_back(static_cast<float>(4.71099901));
 
   // vector scalar
-  true_output_vs.push_back(static_cast<float>(0.3503661155));
-  true_output_vs_err2.push_back(static_cast<float>(0.4165994822));
-  true_output_vs.push_back(static_cast<float>(0.8264459371));
-  true_output_vs_err2.push_back(static_cast<float>(1.5647885799));
-  true_output_vs.push_back(static_cast<float>(1.8009078502));
-  true_output_vs_err2.push_back(static_cast<float>(2.6823163032));
-  true_output_vs.push_back(static_cast<float>(2.7934792041));
-  true_output_vs_err2.push_back(static_cast<float>(3.7089958190));
-  true_output_vs.push_back(static_cast<float>(3.7899582386));
-  true_output_vs_err2.push_back(static_cast<float>(4.7202110290));
+  true_output_vs.push_back(static_cast<float>(0.35036611));
+  true_output_vs_err2.push_back(static_cast<float>(0.41659948));
+  true_output_vs.push_back(static_cast<float>(0.82644593));
+  true_output_vs_err2.push_back(static_cast<float>(1.56478857));
+  true_output_vs.push_back(static_cast<float>(1.80090785));
+  true_output_vs_err2.push_back(static_cast<float>(2.68231630));
+  true_output_vs.push_back(static_cast<float>(2.79347920));
+  true_output_vs_err2.push_back(static_cast<float>(3.70899581));
+  true_output_vs.push_back(static_cast<float>(3.78995823));
+  true_output_vs_err2.push_back(static_cast<float>(4.72021102));
 
   // vector vector
-  true_output_vv.push_back(static_cast<float>(0.3503661155));
-  true_output_vv_err2.push_back(static_cast<float>(0.4165994822));
-  true_output_vv.push_back(static_cast<float>(0.5286048650));
-  true_output_vv_err2.push_back(static_cast<float>(0.9832010269));
-  true_output_vv.push_back(static_cast<float>(0.7297254800));
-  true_output_vv_err2.push_back(static_cast<float>( 1.512506723));
-  true_output_vv.push_back(static_cast<float>(0.9391418099));
-  true_output_vv_err2.push_back(static_cast<float>(2.2451405525));
-  true_output_vv.push_back(static_cast<float>(1.1523394584));
-  true_output_vv_err2.push_back(static_cast<float>(3.2094576355));
+  true_output_vv.push_back(static_cast<float>(0.35036611));
+  true_output_vv_err2.push_back(static_cast<float>(0.41659948));
+  true_output_vv.push_back(static_cast<float>(0.52860486));
+  true_output_vv_err2.push_back(static_cast<float>(0.98320102));
+  true_output_vv.push_back(static_cast<float>(0.72972548));
+  true_output_vv_err2.push_back(static_cast<float>( 1.5125067));
+  true_output_vv.push_back(static_cast<float>(0.93914180));
+  true_output_vv_err2.push_back(static_cast<float>(2.24514055));
+  true_output_vv.push_back(static_cast<float>(1.15233945));
+  true_output_vv_err2.push_back(static_cast<float>(3.20945763));
 }
 
 /**
@@ -193,7 +193,7 @@ void initialize_true_outputs(double                & true_output_ss,
 {
   // scalar scalar
   true_output_ss=static_cast<double>(0.35036606096122696);
-  true_output_ss_err2=static_cast<double>(0.41659964378851194);
+  true_output_ss_err2=static_cast<double>(0.416599643788511941);
 
   // scalar vector
   true_output_sv.push_back(static_cast<double>(0.35036606096122696));
