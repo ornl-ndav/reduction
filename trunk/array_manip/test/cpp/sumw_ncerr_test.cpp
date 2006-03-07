@@ -150,7 +150,7 @@ bool test_okay(Nessi::Vector<NumT> & output_vv,
  * \param key (INPUT) key that permits to launch the correct test
  * \param debug (INPUT) is any string that launches the debug mode (print all
  * the array created and calculated)
- * 
+ *
  * \return Result of the function (TRUE/FALSE)
  */
 template <typename NumT>
@@ -209,19 +209,19 @@ int main(int argc, char *argv[])
     {
       return -1;
     }
-  
+
   if(!test_func(static_cast<int>(1), debug))
     {
       return -1;
     }
-  
+
   if(!test_func(static_cast<unsigned int>(1), debug))
     {
       return -1;
     }
-  
+
   cout << "Functionality OK" << endl;
-  
+
   return 0;
 }
 

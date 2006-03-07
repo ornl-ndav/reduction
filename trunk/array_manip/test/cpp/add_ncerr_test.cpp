@@ -176,7 +176,7 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
   if(!test_okay(output_vs_err2,true_output_vs_err2,VS,ERROR))
     {
       value = false;
-    }    
+    }
 
   // vector vector
   if(!test_okay(output_vv,true_output_vv,VV))
@@ -195,7 +195,7 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
 /**
  * Function that generates the data using the <i>add_ncerr</i> function
  * (as described in the documentation of the <i>add_ncerr</i> function)
- * and launches the comparison of the data. 
+ * and launches the comparison of the data.
  *
  * \param key (INPUT) key that permits to launch the correct test
  * \param debug (INPUT) is any string that launches the debug mode (print all

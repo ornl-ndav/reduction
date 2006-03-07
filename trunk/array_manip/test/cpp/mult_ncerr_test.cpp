@@ -184,12 +184,12 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
 /**
  * Function that generates the data using the <i>mult_ncerr</i> function
  * (as described in the documentation of the <i>mult_ncerr</i> function)
- * and launches the comparison of the data. 
+ * and launches the comparison of the data.
  *
  * \param key (INPUT) key that permits to launch the correct test
  * \param debug (INPUT) is any string that launches the debug mode (print all
  * the array created and calculated)
- * 
+ *
  * \return Result of the function (TRUE/FALSE)
  */
 template <typename NumT>
@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
 {
     return -1;
 }
- 
+
  if(!test_func(static_cast<int>(1),debug))
 {
     return -1;
