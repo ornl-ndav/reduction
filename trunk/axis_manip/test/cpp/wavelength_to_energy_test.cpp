@@ -145,7 +145,7 @@ void initialize_true_outputs(double    & true_output_ss,
   true_output_vv.push_back(static_cast<double>(5.11276281875000021));
   true_output_vv_err2.push_back(static_cast<double>(22.87280068569339164));
   true_output_vv.push_back(static_cast<double>(3.27216820400000011));
-  true_output_vv_err2.push_back(static_cast<double>(7.7091010237933828));
+  true_output_vv_err2.push_back(static_cast<double>(7.70910102379338281));
 }
 
 /**
@@ -154,7 +154,7 @@ void initialize_true_outputs(double    & true_output_ss,
  * vv cases.
  *
  * The function returns TRUE if the two arrays compared \f$output\f$ and
- * \f$true_output\f$ match, and returns FALSE if they do not match.
+ * \f$true\_output\f$ match, and returns FALSE if they do not match.
  *
  * \param output_ss (INPUT) is the value created by <i>wavelength_to_energy</i>
  * for the ss case
@@ -292,3 +292,7 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
+/**
+ * \}
+ */  // end of wavelength_to_energy_test group

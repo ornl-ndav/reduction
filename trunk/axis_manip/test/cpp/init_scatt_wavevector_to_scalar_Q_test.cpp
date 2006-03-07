@@ -36,7 +36,7 @@ using namespace std;
 const size_t NUM_VAL=5;
 
 /**
- * \defgroup init_scatt_wavevector_to_scalar_Q init_scatt_wavevector_to_scalar_Q
+ * \defgroup init_scatt_wavevector_to_scalar_Q_test init_scatt_wavevector_to_scalar_Q_test
  * \{
  *
  * This test compares the output data calculated by the library
@@ -53,6 +53,7 @@ const size_t NUM_VAL=5;
  * - ss : scalar-scalar
  * - vv : vector-vector
  * - vs : vector-scalar
+ * - sv : scalar-vector
  * - SS : "s,s"
  * - VV = "v,v"
  * - SV = "s,v"
@@ -154,7 +155,7 @@ void initialize_true_outputs(float                & true_output_ss,
   true_output_vv.push_back(static_cast<float>(0.52860486));
   true_output_vv_err2.push_back(static_cast<float>(0.98320102));
   true_output_vv.push_back(static_cast<float>(0.72972548));
-  true_output_vv_err2.push_back(static_cast<float>( 1.5125067));
+  true_output_vv_err2.push_back(static_cast<float>(1.5125067));
   true_output_vv.push_back(static_cast<float>(0.93914180));
   true_output_vv_err2.push_back(static_cast<float>(2.24514055));
   true_output_vv.push_back(static_cast<float>(1.15233945));
@@ -238,7 +239,7 @@ void initialize_true_outputs(double                & true_output_ss,
  * for the ss, sv, vs and  vv cases.
  *
  * The function returns TRUE if the two arrays compared \f$output\f$ and
- * \f$true_output\f$ match, and returns FALSE if they do not match.
+ * \f$true\_output\f$ match, and returns FALSE if they do not match.
  *
  * \param output_ss (INPUT) is the value created by
  * <i>init_scatt_wavevector_to_scalar_Q</i> for the ss case
@@ -454,3 +455,7 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
+/**
+ * \}
+ */  // end of init_scatt_wavevector_to_scalar_Q_test group
