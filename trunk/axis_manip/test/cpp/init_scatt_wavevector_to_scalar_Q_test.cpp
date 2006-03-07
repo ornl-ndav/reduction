@@ -253,21 +253,21 @@ void initialize_true_outputs(double                & true_output_ss,
  * \param output_sv_err2 (INPUT) is the square of the uncertainty in the array
  * created by <i>init_scatt_wavevector_to_scalar_Q</i> for the sv case
  * \param true_output_sv (INPUT) is the true array for the sv case
- * \param true_output_err2_sv (INPUT) is the square of the uncertainty in the
+ * \param true_output_sv_err2 (INPUT) is the square of the uncertainty in the
  * true array for the sv case
  * \param output_vs (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_scalar_Q</i> for the vs case
  * \param output_vs_err2 (INPUT) is the square of the uncertainty in the array
  * created by <i>init_scatt_wavevector_to_scalar_Q</i> for the vs case
  * \param true_output_vs (INPUT) is the true array for the vs case
- * \param true_output_err2_vs (INPUT) is the square of the uncertainty in the
+ * \param true_output_vs_err2 (INPUT) is the square of the uncertainty in the
  * true array for the vs case
  * \param output_vv (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_scalar_Q</i> for the vv case
  * \param output_vv_err2 (INPUT) is the square of the uncertainty in the array
  * created by <i>init_scatt_wavevector_to_scalar_Q</i> for the vv case
  * \param true_output_vv (INPUT) is the true array for the vv case
- * \param true_output_err2_vv (INPUT) is the square of the uncertainty in the
+ * \param true_output_vv_err2 (INPUT) is the square of the uncertainty in the
  * true array for the vv case
  */
 template <typename NumT>
