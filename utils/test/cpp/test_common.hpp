@@ -22,13 +22,22 @@
  *
  */
 
-// $Id$
+/**
+ * $Id$
+ * \file utils/test/cpp/test_common utils/test/cpp/test_common
+ */
 
 #include "num_comparison.hpp"
 #include <iomanip>
 #include <iostream>
 #include <limits>
 #include <string>
+
+/**
+ * \defgroup utils_test_common utils_test_common
+ * \{
+ *
+ */
 
 const std::string EMPTY("");
 const std::string ERROR("error ");
@@ -155,3 +164,7 @@ void print(NumT & value1,
   std::cout << std::setprecision(std::numeric_limits<NumT>::digits10+1);
   std::cout << value1 << "\t" << value2 << std::endl;
 }
+
+/**
+ * \}
+ */  // end of utils_test_common group
