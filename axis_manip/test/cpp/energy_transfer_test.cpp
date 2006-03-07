@@ -124,7 +124,7 @@ void initialize_true_outputs(float                & true_output_ss,
   true_output_ss_err2=static_cast<float>(0.11693345);
 
   // scalar vector
-  true_output_sv.push_back(static_cast<float>(-0.60449737));   
+  true_output_sv.push_back(static_cast<float>(-0.60449737));
   true_output_sv_err2.push_back(static_cast<float>(0.11693345));
   true_output_sv.push_back(static_cast<float>(-0.84629631));
   true_output_sv_err2.push_back(static_cast<float>(0.17540018));
