@@ -82,4 +82,4 @@ libAxisManip_la_SOURCES = \
 	wavelength_to_scalar_k.hpp \
 	wavelength_to_scalar_k.cpp \
 	wavelength_to_tof.hpp \
-	wavelength_to_tof.cpp 
+	wavelength_to_tof.cpp
