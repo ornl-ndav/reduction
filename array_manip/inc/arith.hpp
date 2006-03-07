@@ -566,7 +566,7 @@ namespace ArrayManip
   /**
    * \}
    */ // end of mult_ncerr group
- 
+
   /**
    * \defgroup sub_ncerr ArrayManip::sub_ncerr
    * \{

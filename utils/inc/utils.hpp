@@ -7,17 +7,17 @@
  *
  *
  *                             NOTICE
- * 
- * For this software and its associated documentation, permission is granted 
- * to reproduce, prepare derivative works, and distribute copies to the public 
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
  * for any purpose and without fee.
- *  
- * This material was prepared as an account of work sponsored by an agency of 
- * the United States Government.  Neither the United States Government nor the 
- * United States Department of Energy, nor any of their employees, makes any 
- * warranty, express or implied, or assumes any legal liability or 
- * responsibility for the accuracy, completeness, or usefulness of any 
- * information, apparatus, product, or process disclosed, or represents that 
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
  * its use would not infringe privately owned rights.
  *
  */
@@ -194,8 +194,8 @@ namespace Utils
   /**
    * \brief This function is described in section 3.46
    *
-   * This function takes a slice of an array and calculates the weighted 
-   * average of that slice. The weighted average is calculated according to 
+   * This function takes a slice of an array and calculates the weighted
+   * average of that slice. The weighted average is calculated according to
    * the function
    *
    * \f[
@@ -203,14 +203,14 @@ namespace Utils
    * {\sum^{bin_{end}}_{i=bin_{start}} \frac{1}{\sigma_i^2}}
    * \f]
    *
-   *  where \f$x_i\f$ is the \f$i^{th}\f$ element in the input array, 
-   * \f$\sigma_i^2\f$ is the square of the uncertainty associated with the 
-   * input array, \f$bin_{start}\f$ is the starting bin of the array from 
-   * which to calculate the weighted average, \f$bin_{end}\f$ is the ending 
-   * bin of the array where to stop the calculation, and \f$\mu\f$ is the 
+   *  where \f$x_i\f$ is the \f$i^{th}\f$ element in the input array,
+   * \f$\sigma_i^2\f$ is the square of the uncertainty associated with the
+   * input array, \f$bin_{start}\f$ is the starting bin of the array from
+   * which to calculate the weighted average, \f$bin_{end}\f$ is the ending
+   * bin of the array where to stop the calculation, and \f$\mu\f$ is the
    * weighted average.
    *
-   * The square of the uncertainty is calculated according to the following 
+   * The square of the uncertainty is calculated according to the following
    * function
    *
    * \f[
@@ -218,20 +218,20 @@ namespace Utils
    * {\sigma_i^2}}
    * \f]
    *
-   *  where the other symbols are exactly as those mentioned above and 
-   * \f$\sigma_{\mu}^2\f$ is the square of the uncertainty in the weighted 
+   *  where the other symbols are exactly as those mentioned above and
+   * \f$\sigma_{\mu}^2\f$ is the square of the uncertainty in the weighted
    * average.
-   * 
-   * \param input (INPUT) the array from which to calculate the weighted 
+   *
+   * \param input (INPUT) the array from which to calculate the weighted
    * average
-   * \param input_err2 (INPUT) the square of the uncertainty in the associated 
+   * \param input_err2 (INPUT) the square of the uncertainty in the associated
    * array from which calculate the weighted average
-   * \param bin_start (INPUT) the bin of the array from which to start the 
+   * \param bin_start (INPUT) the bin of the array from which to start the
    * calculation
-   * \param bin_end (INPUT) the bin of the array at which to end the 
+   * \param bin_end (INPUT) the bin of the array at which to end the
    * calculation
    * \param weighted_ave (OUTPUT) the weighted average of the array slice
-   * \param weighted_ave_err2 (OUTPUT) the square of the uncertainty of the 
+   * \param weighted_ave_err2 (OUTPUT) the square of the uncertainty of the
    * weighted average of the array slice
    * \param temp holds temporary memory to be passed to the function
    *

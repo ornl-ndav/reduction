@@ -196,7 +196,7 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
                Nessi::Vector<NumT> & true_output_vv_err2)
 {
   bool value = true;
-  
+
   // vector scalar
   if(!test_okay(output_vs,true_output_vs,VS))
     {
@@ -206,13 +206,13 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
     {
       value = false;
     }
-  
+
   // scalar vector
   if(!test_okay(output_sv,true_output_sv,SV))
     {
       value = false;
     }
-  
+
   if(!test_okay(output_sv_err2,true_output_sv_err2,SV,ERROR))
     {
       value = false;
@@ -223,7 +223,7 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
     {
       value = false;
     }
-  
+
   if(!test_okay(output_vv_err2,true_output_vv_err2,VV,ERROR))
     {
       value = false;
@@ -237,11 +237,11 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
  * Function that generates the data using the <i>sub_ncerr</i> function
  * (as described in the documentation of the <i>sub_ncerr</i> function)
  * and launches the comparison of the data.
- * 
+ *
  * \param key (INPUT) key that permits to launch the correct test
  * \param debug (INPUT) is any string that launches the debug mode (print all
  * the array created and calculated)
- * 
+ *
  * \return Result of the function (TRUE/FALSE)
  */
 template <typename NumT>
@@ -324,19 +324,19 @@ int main(int argc, char *argv[])
     {
       return -1;
     }
-  
+
   if(!test_func(static_cast<int>(1), debug))
     {
       return -1;
     }
-  
+
   if(!test_func(static_cast<unsigned int>(1), debug))
     {
       return -1;
     }
-  
+
   cout << "Functionality OK" << endl;
-  
+
   return 0;
 }
 
