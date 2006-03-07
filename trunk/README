@@ -3,10 +3,10 @@ Installation Instructions
 
 Prerequisites
 
-   The SNS Common Libraries uses Swig for generation of Python bindings to 
-   the library functions. This program must be accessable on the compilation 
-   machine. Doxygen is used for creating documentation. If documentation is 
-   desired and did not come with the distribution, this program must be 
+   The SNS Common Libraries uses Swig for generation of Python bindings to
+   the library functions. This program must be accessable on the compilation
+   machine. Doxygen is used for creating documentation. If documentation is
+   desired and did not come with the distribution, this program must be
    accessable on the compilation machine.
 
 1) Extract the archive
@@ -14,25 +14,25 @@ Prerequisites
    tar xzf sns_common_lib-<version>.tar.gz
    cd sns_common_lib-<version>
 
-2) Run 'configure' and 'make'. 
+2) Run 'configure' and 'make'.
 
    ./configure
    make
 
-   If your Python directories (include, lib, etc.) do not reside in the usual 
-   locations (/usr or /usr/local), you need to use the --with-python switch to 
-   tell the build system where the main Python directory is. So, run 
+   If your Python directories (include, lib, etc.) do not reside in the usual
+   locations (/usr or /usr/local), you need to use the --with-python switch to
+   tell the build system where the main Python directory is. So, run
    'configure' as follows and then run 'make' as usual.
 
    ./configure --with-python=/pythonmain
    make
-   
-   If there are any problems, try different configure options to see if one 
+
+   If there are any problems, try different configure options to see if one
    will work.  You can see what switches are available by typing
-   
+
    ./configure --help
 
-3) Test the installation using 
+3) Test the installation using
 
    make test
 
