@@ -34,6 +34,11 @@
 #include <limits>
 #include <string>
 
+/**
+ * \defgroup axis_manip_test_common axis_manip_test_common
+ * \{
+ */
+
 const std::string EMPTY("");
 const std::string ERROR("error ");
 const std::string SS("s,s");
@@ -159,3 +164,7 @@ void print(NumT & value1,
   std::cout << std::setprecision(std::numeric_limits<NumT>::digits10+1);
   std::cout << value1 << "\t" << value2 << std::endl;
 }
+
+/**
+ * \}
+ */ // end of axis_manip_test_common group
