@@ -49,6 +49,8 @@ const int NUM_VAL = 5;
  * about the location and type of the error.
  *
  * <b>Notations used:</b>
+ * - ss : scalar-scalar
+ * - SS : "s,s"
  * - ERROR = "error "
  */
 
