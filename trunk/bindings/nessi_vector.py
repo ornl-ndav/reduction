@@ -476,7 +476,7 @@ class NessiVector (list):
 # Function "__contains__" not implemented yet
 #
     def __contains__(self):
-        print  "Not implemented yet"
+        raise NotImplementedError, "Not implemented yet"
 
 ##
 # \ingroup __eq__ NessiVector
@@ -484,7 +484,7 @@ class NessiVector (list):
 # Function "__eq__" not implemented yet
 #
     def __eq__(self):
-        raise exception, "Not implemented yet"
+        raise NotImplementedError, "Not implemented yet"
 
 ##
 # \ingroup __ge__ NessiVector
@@ -492,7 +492,7 @@ class NessiVector (list):
 # Function "__ge__" not implemented yet
 #
     def __ge__(self):
-        raise exception, "Not implemented yet"
+        raise NotImplementedError, "Not implemented yet"
 
 ##
 # \ingroup __gt__ NessiVector
@@ -500,7 +500,7 @@ class NessiVector (list):
 # Function "__gt__" not implemented yet
 #
     def __gt__(self):
-        raise exception, "Not implemented yet"
+        raise NotImplementedError, "Not implemented yet"
 
 ##
 # \ingroup __ne__ NessiVector
@@ -508,7 +508,7 @@ class NessiVector (list):
 # Function "__ne__" not implemented yet
 #
     def __ne__(self):
-        raise exception, "Not implemented yet"
+        raise NotImplementedError, "Not implemented yet"
 
 ##
 # \ingroup __lt__ NessiVector
@@ -516,7 +516,7 @@ class NessiVector (list):
 # Function "__lt__" not implemented yet
 #
     def __lt__(self):
-        raise exception, "Not implemented yet"
+        raise NotImplementedError, "Not implemented yet"
 
 ##
 # \ingroup index NessiVector
