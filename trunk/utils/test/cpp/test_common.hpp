@@ -24,7 +24,7 @@
 
 /**
  * $Id$
- * \file utils/test/cpp/test_common.hpp 
+ * \file utils/test/cpp/test_common.hpp
  */
 
 #include "num_comparison.hpp"
