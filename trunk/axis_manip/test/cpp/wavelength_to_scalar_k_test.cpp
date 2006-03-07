@@ -155,7 +155,7 @@ void initialize_true_outputs(double    & true_output_ss,
  * ss and vv cases.
  *
  * The function returns TRUE if the two arrays compared \f$output\f$ and
- * \f$true_output\f$ match, and returns FALSE if they do not match.
+ * \f$true\_output\f$ match, and returns FALSE if they do not match.
  *
  * \param output_ss (INPUT) is the value created by
  * <i>wavelength_to_scalar_k</i> for the ss case
@@ -293,3 +293,7 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
+/**
+ * \}
+ */  // end of wavelength_to_scalar_k_test group
