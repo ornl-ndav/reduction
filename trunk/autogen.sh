@@ -2,7 +2,7 @@
 
 rm -fr autom4te.cache
 
-for libtoolize in glibtoolize libtoolize ; do 
+for libtoolize in glibtoolize libtoolize ; do
 	LIBTOOLIZE=`which $libtoolize 2>/dev/null`
 	if test "$LIBTOOLIZE" ; then
 		break;
@@ -78,18 +78,18 @@ else
 	echo `which $GNUM4`
 fi
 
-# 
-if { test ! -d config ; } ; then 
-	mkdir config ; 
-else 
-	rm -rf config/* ;  
+#
+if { test ! -d config ; } ; then
+	mkdir config ;
+else
+	rm -rf config/* ;
 fi
 
 # Prepare the use of libtool
 if ( $LIBTOOLIZE --version ) < /dev/null > /dev/null 2>&1 ; then
 	echo "Preparing the use of libtool ..."
 	$LIBTOOLIZE
-	if { test -r ltmain.sh ; } ; then mv ltmain.sh config/ ; fi 
+	if { test -r ltmain.sh ; } ; then mv ltmain.sh config/ ; fi
 	echo "done."
 else
 	echo "libtoolize not found -- aborting"
@@ -108,7 +108,7 @@ fi
 
 if ( $AUTOHEADER --version ) < /dev/null > /dev/null 2>&1; then
 	echo "Building config header template..."
-	$AUTOHEADER 
+	$AUTOHEADER
 	echo "done."
 else
 	echo "autoheader not found -- aborting"
