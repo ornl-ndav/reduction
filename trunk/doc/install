@@ -2,7 +2,7 @@
 
 ###############################################################################
 #
-# This script installs the SNS Common Library documentation. It checks to see 
+# This script installs the SNS Common Library documentation. It checks to see
 # if the documentation directories exist in the source code. If they do not,
 # the install is ignored.
 #
@@ -14,7 +14,7 @@
 
 if [[ -d html && -d latex ]]; then
   echo "mkdir -p $1"
-  mkdir -p $1	  
+  mkdir -p $1
   echo "mkdir -p $1/latex"
   mkdir -p $1/latex
   echo "cp -r html $1"
