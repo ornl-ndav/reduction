@@ -6,17 +6,17 @@
 #
 #
 #                             NOTICE
-#
-# For this software and its associated documentation, permission is granted
-# to reproduce, prepare derivative works, and distribute copies to the public
+# 
+# For this software and its associated documentation, permission is granted 
+# to reproduce, prepare derivative works, and distribute copies to the public 
 # for any purpose and without fee.
-#
-# This material was prepared as an account of work sponsored by an agency of
-# the United States Government.  Neither the United States Government nor the
-# United States Department of Energy, nor any of their employees, makes any
-# warranty, express or implied, or assumes any legal liability or
-# responsibility for the accuracy, completeness, or usefulness of any
-# information, apparatus, product, or process disclosed, or represents that
+#  
+# This material was prepared as an account of work sponsored by an agency of 
+# the United States Government.  Neither the United States Government nor the 
+# United States Department of Energy, nor any of their employees, makes any 
+# warranty, express or implied, or assumes any legal liability or 
+# responsibility for the accuracy, completeness, or usefulness of any 
+# information, apparatus, product, or process disclosed, or represents that 
 # its use would not infringe privately owned rights.
 #
 
@@ -39,8 +39,7 @@ AXIS_MANIP_TARGETS = \
 	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
-	wavelength_to_scalar_k_test \
-    wavelength_to_scalar_Q_test
+	wavelength_to_scalar_k_test 
 
 
 TESTSUITE	= $(srcdir)/testsuite
@@ -72,9 +71,6 @@ wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp \
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp \
         test_common.hpp
 
-wavelength_to_scalar_Q_test_SOURCES = wavelength_to_scalar_Q_test.cpp \
-        test_common.hpp
-
 DISTCLEANFILES = atconfig
 
 test: check
@@ -89,7 +85,7 @@ $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
                 echo 'm4_define([AT_PACKAGE_BUGREPORT], [@PACKAGE_BUGREPORT@])'; \
 	} > $(srcdir)/package.m4
 
-check-local:    $(TESTSUITE)
+check-local:    $(TESTSUITE) 
 	$(SHELL) $(TESTSUITE)
 
 $(TESTSUITE):   $(srcdir)/testsuite.at $(TESTSUITE_AT) $(srcdir)/package.m4
