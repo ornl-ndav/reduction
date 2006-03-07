@@ -59,7 +59,7 @@ const size_t NUM_VAL=5;
 
 /**
  * This function initializes the value of arrays, \f$tof\f$ and \f$tof\_err2\f$. *
- * \param tof_i (OUTPUT) is the time-of-flight axis in units of micro-seconds
+ * \param tof (OUTPUT) is the time-of-flight axis in units of micro-seconds
  * \param tof_err2 (OUTPUT) is the square of the uncertainty in the
  * time-of-flight axis.
  */
