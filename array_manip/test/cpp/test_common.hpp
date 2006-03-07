@@ -25,7 +25,7 @@
 /**
  * $Id$
  *
- * \file axis_manip/test/cpp/test_common.hpp
+ * \file array_manip/test/cpp/test_common.hpp
  */
 
 #include "num_comparison.hpp"
@@ -33,6 +33,11 @@
 #include <iostream>
 #include <limits>
 #include <string>
+
+/**
+ * \defgroup array_manip_test_common array_manip_test_common
+ * \{
+ */
 
 const std::string EMPTY("");
 const std::string ERROR("error ");
@@ -159,3 +164,7 @@ void print(NumT & value1,
   std::cout << std::setprecision(std::numeric_limits<NumT>::digits10+1);
   std::cout << value1 << "\t" << value2 << std::endl;
 }
+
+/**
+ * \}
+ */ // end of array_manip_test_common group
