@@ -6,17 +6,17 @@ dnl          Oak Ridge National Laboratory, Oak Ridge TN.
 dnl
 dnl
 dnl                             NOTICE
-dnl 
-dnl For this software and its associated documentation, permission is granted 
-dnl to reproduce, prepare derivative works, and distribute copies to the 
+dnl
+dnl For this software and its associated documentation, permission is granted
+dnl to reproduce, prepare derivative works, and distribute copies to the
 dnl public for any purpose and without fee.
-dnl  
-dnl This material was prepared as an account of work sponsored by an agency of 
+dnl
+dnl This material was prepared as an account of work sponsored by an agency of
 dnl the United States Government.  Neither the United States Government nor the
-dnl United States Department of Energy, nor any of their employees, makes any 
-dnl warranty, express or implied, or assumes any legal liability or 
-dnl responsibility for the accuracy, completeness, or usefulness of any 
-dnl information, apparatus, product, or process disclosed, or represents that 
+dnl United States Department of Energy, nor any of their employees, makes any
+dnl warranty, express or implied, or assumes any legal liability or
+dnl responsibility for the accuracy, completeness, or usefulness of any
+dnl information, apparatus, product, or process disclosed, or represents that
 dnl its use would not infringe privately owned rights.
 
 dnl $Id$
@@ -91,7 +91,7 @@ AM_CONDITIONAL(HAVE_SWIG, [test ! -z "$SWIG"])
 AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
 AM_CONDITIONAL(HAVE_DOT, [test ! -z "$DOT"])
 
-AC_CONFIG_FILES([array_manip/test/Makefile 
+AC_CONFIG_FILES([array_manip/test/Makefile
 		array_manip/test/cpp/Makefile
 		axis_manip/test/Makefile
 		axis_manip/test/cpp/Makefile
@@ -111,7 +111,7 @@ AC_CONFIG_FILES([Makefile
 		axis_manip/src/Makefile
 		phys_const/Makefile
 		phys_const/inc/Makefile
-		phys_const/src/Makefile		
+		phys_const/src/Makefile
 		phys_corr/Makefile
 		phys_corr/inc/Makefile
 		phys_corr/src/Makefile
@@ -123,7 +123,7 @@ AC_CONFIG_FILES([Makefile
 		])
 AC_OUTPUT
 
-if test -n "$SWIG" ; then 
+if test -n "$SWIG" ; then
     SWIGBINDING="yes ("
     test -n "$PYTHONROOT" && SWIGBINDING="$SWIGBINDING python"
     SWIGBINDING="$SWIGBINDING )"
