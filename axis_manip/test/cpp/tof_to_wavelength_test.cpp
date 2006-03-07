@@ -141,7 +141,7 @@ void initialize_true_outputs(double    & true_output_ss,
   true_output_vv.push_back(static_cast<double>(0.00237362040000000));
   true_output_vv_err2.push_back(static_cast<double>(0.00000212842788124));
   true_output_vv.push_back(static_cast<double>(0.00316482719999999));
-  true_output_vv_err2.push_back(static_cast<double>( 0.0000031926418218));
+  true_output_vv_err2.push_back(static_cast<double>(0.0000031926418218));
   true_output_vv.push_back(static_cast<double>(0.00395603399999999));
   true_output_vv_err2.push_back(static_cast<double>(0.00000438205740256));
 }
@@ -152,7 +152,7 @@ void initialize_true_outputs(double    & true_output_ss,
  * vv cases.
  *
  * The function returns TRUE if the two arrays compared \f$output\f$ and
- * \f$true_output\f$ match, and returns FALSE if they do not match.
+ * \f$true\_output\f$ match, and returns FALSE if they do not match.
  *
  * \param output_ss (INPUT) is the value created by <i>tof_to_wavelength</i>
  * for the ss case
@@ -295,3 +295,8 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
+/**
+ * \}
+ */  // end of tof_to_wavelength_test.cpp group
+

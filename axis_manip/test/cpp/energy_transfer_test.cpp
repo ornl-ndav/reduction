@@ -53,6 +53,7 @@ const size_t NUM_VAL=5;
  * - ss : scalar-scalar
  * - vv : vector-vector
  * - vs : vector-scalar
+ * - sv : scalar-vector
  * - SS : "s,s"
  * - VV = "v,v"
  * - SV = "s,v"
@@ -137,7 +138,7 @@ void initialize_true_outputs(float                & true_output_ss,
   // vector scalar
   true_output_vs.push_back(static_cast<float>(-0.60449737));
   true_output_vs_err2.push_back(static_cast<float>(0.11693345));
-  true_output_vs.push_back(static_cast<float>(-0.120899476));
+  true_output_vs.push_back(static_cast<float>(-0.12089947));
   true_output_vs_err2.push_back(static_cast<float>(0.17540018));
   true_output_vs.push_back(static_cast<float>(0.36269840));
   true_output_vs_err2.push_back(static_cast<float>(0.23386691));
@@ -198,7 +199,7 @@ void initialize_true_outputs(double                & true_output_ss,
   true_output_sv_err2.push_back(static_cast<double>(0.11693345459098251));
   true_output_sv.push_back(static_cast<double>(-0.84629628935129341));
   true_output_sv_err2.push_back(static_cast<double>(0.17540018188647385));
-  true_output_sv.push_back(static_cast<double>(-1.088095229165948696));
+  true_output_sv.push_back(static_cast<double>(-1.08809522916594869));
   true_output_sv_err2.push_back(static_cast<double>(0.23386690918196512));
   true_output_sv.push_back(static_cast<double>(-1.32989416898060408));
   true_output_sv_err2.push_back(static_cast<double>(0.29233363647745641));
@@ -236,7 +237,7 @@ void initialize_true_outputs(double                & true_output_ss,
  * vs and  vv cases.
  *
  * The function returns TRUE if the two arrays compared \f$output\f$ and
- * \f$true_output\f$ match, and returns FALSE if they do not match.
+ * \f$true\_output\f$ match, and returns FALSE if they do not match.
  *
  * \param output_ss (INPUT) is the value created by <i>energy_transfer</i> for
  * the ss case
@@ -444,3 +445,7 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
+/**
+ * \}
+ */  // end of energy_transfer_test group

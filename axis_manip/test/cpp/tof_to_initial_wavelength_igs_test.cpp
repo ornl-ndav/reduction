@@ -286,7 +286,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
 }
 
 /**
- * Main function that test tof_to_initial_wavelength for float and double
+ * Main function that test tof_to_initial_wavelength_igs for float and double
  *
  * \param argc The number of command-line arguments present
  * \param argv The list of command-line arguments
@@ -315,3 +315,7 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+
+/**
+ * \}
+ */  // end of tof_to_initial_wavelength_igs_test group
