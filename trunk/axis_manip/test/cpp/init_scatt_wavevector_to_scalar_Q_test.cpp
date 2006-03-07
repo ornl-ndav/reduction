@@ -193,7 +193,7 @@ void initialize_true_outputs(double                & true_output_ss,
 {
   // scalar scalar
   true_output_ss=static_cast<double>(0.35036606096122696);
-  true_output_ss_err2=static_cast<double>(0.416599643788511941);
+  true_output_ss_err2=static_cast<double>(0.41659964378851194);
 
   // scalar vector
   true_output_sv.push_back(static_cast<double>(0.35036606096122696));

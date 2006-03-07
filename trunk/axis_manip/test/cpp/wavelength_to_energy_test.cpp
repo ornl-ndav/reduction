@@ -132,19 +132,19 @@ void initialize_true_outputs(double    & true_output_ss,
                              Nessi::Vector<double> & true_output_vv_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<double>(81.80420510000000431);
+  true_output_ss=static_cast<double>(81.80420510000000433);
   true_output_ss_err2=static_cast<double>(13383.85594408573342661);
 
   // vector vector
-  true_output_vv.push_back(static_cast<double>(81.804205100000004331));
+  true_output_vv.push_back(static_cast<double>(81.80420510000000433));
   true_output_vv_err2.push_back(static_cast<double>(13383.85594408573342661));
   true_output_vv.push_back(static_cast<double>(20.45105127500000108));
   true_output_vv_err2.push_back(static_cast<double>(627.36824737901872595));
-  true_output_vv.push_back(static_cast<double>(9.0893561222222221));
+  true_output_vv.push_back(static_cast<double>(9.08935612222222211));
   true_output_vv_err2.push_back(static_cast<double>(91.79599412953177761));
-  true_output_vv.push_back(static_cast<double>(5.1127628187500002));
+  true_output_vv.push_back(static_cast<double>(5.11276281875000021));
   true_output_vv_err2.push_back(static_cast<double>(22.87280068569339164));
-  true_output_vv.push_back(static_cast<double>(3.2721682040000001));
+  true_output_vv.push_back(static_cast<double>(3.27216820400000011));
   true_output_vv_err2.push_back(static_cast<double>(7.7091010237933828));
 }
 

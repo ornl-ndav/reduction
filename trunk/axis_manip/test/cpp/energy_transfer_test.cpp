@@ -124,7 +124,7 @@ void initialize_true_outputs(float                & true_output_ss,
 
   // scalar vector
   true_output_sv.push_back(static_cast<float>(-0.60449737));   
-  true_output_sv_err2.push_back(static_cast<float>(0.1169334));
+  true_output_sv_err2.push_back(static_cast<float>(0.11693345));
   true_output_sv.push_back(static_cast<float>(-0.84629631));
   true_output_sv_err2.push_back(static_cast<float>(0.17540018));
   true_output_sv.push_back(static_cast<float>(-1.08809530));
@@ -210,11 +210,11 @@ void initialize_true_outputs(double                & true_output_ss,
   true_output_vs_err2.push_back(static_cast<double>(0.11693345459098256));
   true_output_vs.push_back(static_cast<double>(-0.12089946990732763));
   true_output_vs_err2.push_back(static_cast<double>(0.17540018188647385));
-  true_output_vs.push_back(static_cast<double>(0.362698409721982917));
+  true_output_vs.push_back(static_cast<double>(0.36269840972198291));
   true_output_vs_err2.push_back(static_cast<double>(0.23386690918196512));
-  true_output_vs.push_back(static_cast<double>(0.846296289351293418));
+  true_output_vs.push_back(static_cast<double>(0.84629628935129341));
   true_output_vs_err2.push_back(static_cast<double>(0.29233363647745641));
-  true_output_vs.push_back(static_cast<double>(1.329894168980604085));
+  true_output_vs.push_back(static_cast<double>(1.32989416898060408));
   true_output_vs_err2.push_back(static_cast<double>(0.35080036377294770));
 
   // vector vector
@@ -224,9 +224,9 @@ void initialize_true_outputs(double                & true_output_ss,
   true_output_vv_err2.push_back(static_cast<double>(0.23386690918196512));
   true_output_vv.push_back(static_cast<double>(-0.12089946990732763));
   true_output_vv_err2.push_back(static_cast<double>(0.35080036377294770));
-  true_output_vv.push_back(static_cast<double>(0.120899469907327639));
+  true_output_vv.push_back(static_cast<double>(0.12089946990732763));
   true_output_vv_err2.push_back(static_cast<double>(0.46773381836393024));
-  true_output_vv.push_back(static_cast<double>(0.362698409721982917));
+  true_output_vv.push_back(static_cast<double>(0.36269840972198291));
   true_output_vv_err2.push_back(static_cast<double>(0.58466727295491283));
 }
 

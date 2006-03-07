@@ -134,15 +134,15 @@ void initialize_true_outputs(double    & true_output_ss,
   true_output_ss_err2=static_cast<double>(0.00000037560492021);
 
   // vector vector
-  true_output_vv.push_back(static_cast<double>(0.0007912067999999));
+  true_output_vv.push_back(static_cast<double>(0.00079120679999999));
   true_output_vv_err2.push_back(static_cast<double>(0.00000037560492021));
-  true_output_vv.push_back(static_cast<double>(0.0015824135999999));
+  true_output_vv.push_back(static_cast<double>(0.00158241359999999));
   true_output_vv_err2.push_back(static_cast<double>(0.00000118941558069));
-  true_output_vv.push_back(static_cast<double>(0.0023736204000000));
+  true_output_vv.push_back(static_cast<double>(0.00237362040000000));
   true_output_vv_err2.push_back(static_cast<double>(0.00000212842788124));
-  true_output_vv.push_back(static_cast<double>(0.0031648271999999));
+  true_output_vv.push_back(static_cast<double>(0.00316482719999999));
   true_output_vv_err2.push_back(static_cast<double>( 0.0000031926418218));
-  true_output_vv.push_back(static_cast<double>(0.0039560339999999));
+  true_output_vv.push_back(static_cast<double>(0.00395603399999999));
   true_output_vv_err2.push_back(static_cast<double>(0.00000438205740256));
 }
 
