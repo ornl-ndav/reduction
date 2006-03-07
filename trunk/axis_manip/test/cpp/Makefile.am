@@ -89,7 +89,7 @@ $(srcdir)/package.m4:   $(top_srcdir)/configure.ac
                 echo 'm4_define([AT_PACKAGE_BUGREPORT], [@PACKAGE_BUGREPORT@])'; \
 	} > $(srcdir)/package.m4
 
-check-local:    $(TESTSUITE) 
+check-local:    $(TESTSUITE)
 	$(SHELL) $(TESTSUITE)
 
 $(TESTSUITE):   $(srcdir)/testsuite.at $(TESTSUITE_AT) $(srcdir)/package.m4

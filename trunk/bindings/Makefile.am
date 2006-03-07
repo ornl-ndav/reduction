@@ -6,17 +6,17 @@
 #
 #
 #                             NOTICE
-# 
-# For this software and its associated documentation, permission is granted 
-# to reproduce, prepare derivative works, and distribute copies to the public 
+#
+# For this software and its associated documentation, permission is granted
+# to reproduce, prepare derivative works, and distribute copies to the public
 # for any purpose and without fee.
-#  
-# This material was prepared as an account of work sponsored by an agency of 
-# the United States Government.  Neither the United States Government nor the 
-# United States Department of Energy, nor any of their employees, makes any 
-# warranty, express or implied, or assumes any legal liability or 
-# responsibility for the accuracy, completeness, or usefulness of any 
-# information, apparatus, product, or process disclosed, or represents that 
+#
+# This material was prepared as an account of work sponsored by an agency of
+# the United States Government.  Neither the United States Government nor the
+# United States Department of Energy, nor any of their employees, makes any
+# warranty, express or implied, or assumes any legal liability or
+# responsibility for the accuracy, completeness, or usefulness of any
+# information, apparatus, product, or process disclosed, or represents that
 # its use would not infringe privately owned rights.
 #
 
@@ -128,9 +128,9 @@ clean-local:
 
 if HAVE_SWIG
 if HAVE_PYTHON
-nodist_libPyArrayManip_la_SOURCES=$(ARRAYMANIP_PYTHONWRAP) 
+nodist_libPyArrayManip_la_SOURCES=$(ARRAYMANIP_PYTHONWRAP)
 libPyArrayManip_la_CPPFLAGS= $(PYTHON_INC) $(ARRAY_MANIP_INC) $(NESSI_INC) \
-			$(CFLAGS) 
+			$(CFLAGS)
 libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_ARRAY_MANIP_VERSION) \
 			$(ARRAY_MANIP_SRC) $(UTILS_SRC)
 libPyArrayManip_la_LIBS=$(ARRAY_MANIP_LIB) $(UTILS_LIBS)
@@ -142,13 +142,13 @@ endif
 
 if HAVE_SWIG
 if HAVE_PYTHON
-nodist_libPyAxisManip_la_SOURCES=$(AXISMANIP_PYTHONWRAP) 
+nodist_libPyAxisManip_la_SOURCES=$(AXISMANIP_PYTHONWRAP)
 libPyAxisManip_la_CPPFLAGS= $(PYTHON_INC) $(AXIS_MANIP_INC) $(NESSI_INC) \
-			$(CFLAGS) 
+			$(CFLAGS)
 libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_AXIS_MANIP_VERSION) \
 			$(AXIS_MANIP_SRC) $(UTILS_SRC)
 libPyAxisManip_la_LIBS=$(AXIS_MANIP_LIB) $(UTILS_LIB)
-$(AXISMANIP_PYTHONWRAP) $(AXISMANIP_PBL): $(AXISMANIP_SWIG) 
+$(AXISMANIP_PYTHONWRAP) $(AXISMANIP_PBL): $(AXISMANIP_SWIG)
 	$(SWIG) -c++ -o $(AXISMANIP_PYTHONWRAP) -python $(AXIS_MANIP_INC) \
 	-interface $(PYAXISMANIP_INTERFACE) $<
 endif
@@ -156,10 +156,10 @@ endif
 
 if HAVE_SWIG
 if HAVE_PYTHON
-nodist_libPyNessiVector_la_SOURCES=$(NESSIVECTOR_PYTHONWRAP) 
-libPyNessiVector_la_CPPFLAGS= $(PYTHON_INC) $(NESSI_INC) $(CFLAGS) 
+nodist_libPyNessiVector_la_SOURCES=$(NESSIVECTOR_PYTHONWRAP)
+libPyNessiVector_la_CPPFLAGS= $(PYTHON_INC) $(NESSI_INC) $(CFLAGS)
 libPyNessiVector_la_LDFLAGS=$(LDFLAGS) $(PYLIB_NESSI_VECTOR_VERSION)
-$(NESSIVECTOR_PYTHONWRAP) $(NESSIVECTOR_PBL): $(NESSIVECTOR_SWIG) 
+$(NESSIVECTOR_PYTHONWRAP) $(NESSIVECTOR_PBL): $(NESSIVECTOR_SWIG)
 	$(SWIG) -c++ -o $(NESSIVECTOR_PYTHONWRAP) -python $(NESSI_INC)\
 	 -interface $(PYNESSIVECTOR_INTERFACE) $<
 endif
@@ -167,12 +167,12 @@ endif
 
 if HAVE_SWIG
 if HAVE_PYTHON
-nodist_libPyPhysCorr_la_SOURCES=$(PHYSCORR_PYTHONWRAP) 
+nodist_libPyPhysCorr_la_SOURCES=$(PHYSCORR_PYTHONWRAP)
 libPyPhysCorr_la_CPPFLAGS= $(PYTHON_INC) $(PHYS_CORR_INC) $(NESSI_INC) \
-			$(CFLAGS) 
+			$(CFLAGS)
 libPyPhysCorr_la_LDFLAGS=$(LDFLAGS) $(PYLIB_PHYS_CORR_VERSION) $(PHYS_CORR_SRC)
 libPyPhysCorr_la_LIBS=$(PHYS_CORR_LIB)
-$(PHYSCORR_PYTHONWRAP) $(PHYSCORR_PBL): $(PHYSCORR_SWIG) 
+$(PHYSCORR_PYTHONWRAP) $(PHYSCORR_PBL): $(PHYSCORR_SWIG)
 	$(SWIG) -c++ -o $(PHYSCORR_PYTHONWRAP) -python $(PHYS_CORR_INC) \
 	-interface $(PYPHYSCORR_INTERFACE) $<
 endif
@@ -180,11 +180,11 @@ endif
 
 if HAVE_SWIG
 if HAVE_PYTHON
-nodist_libPyUtils_la_SOURCES=$(UTILS_PYTHONWRAP) 
-libPyUtils_la_CPPFLAGS= $(PYTHON_INC) $(UTILS_INC) $(NESSI_INC) $(CFLAGS) 
+nodist_libPyUtils_la_SOURCES=$(UTILS_PYTHONWRAP)
+libPyUtils_la_CPPFLAGS= $(PYTHON_INC) $(UTILS_INC) $(NESSI_INC) $(CFLAGS)
 libPyUtils_la_LDFLAGS=$(LDFLAGS) $(PYLIB_UTILS_VERSION) $(UTILS_SRC)
 libPyUtils_la_LIBS=$(UTILS_LIB)
-$(UTILS_PYTHONWRAP) $(UTILS_PBL): $(UTILS_SWIG) 
+$(UTILS_PYTHONWRAP) $(UTILS_PBL): $(UTILS_SWIG)
 	$(SWIG) -c++ -o $(UTILS_PYTHONWRAP) -python $(UTILS_INC) \
 	-interface $(PYUTILS_INTERFACE) $<
 endif
