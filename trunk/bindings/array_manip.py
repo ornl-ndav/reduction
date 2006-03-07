@@ -213,8 +213,8 @@ def add_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to add_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a))
-            ce2 = nessi_vector.NessiVector(len(a))
+            c = nessi_vector.NessiVector(len(a), a.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
             array_manip_bind.add_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -273,8 +273,8 @@ def add_ncerr(a,ae2,b,be2):
             raise TypeError,"add_ncerr does not understand types given to it"
 
     if (array.__type__ == array.FLOAT):
-        c = nessi_vector.NessiVector(len(array))
-        ce2 = nessi_vector.NessiVector(len(array))
+        c = nessi_vector.NessiVector(len(array), array.FLOAT)
+        ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
         array_manip_bind.add_ncerr_f(array.__array__,\
                                      array_e2.__array__,\
                                      float(scalar),\
@@ -526,8 +526,8 @@ def sub_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to sub_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a))
-            ce2 = nessi_vector.NessiVector(len(a))
+            c = nessi_vector.NessiVector(len(a), a.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
             array_manip_bind.sub_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -577,8 +577,8 @@ def sub_ncerr(a,ae2,b,be2):
         array_e2=ae2
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array))
-            ce2 = nessi_vector.NessiVector(len(array))
+            c = nessi_vector.NessiVector(len(array), array.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
             array_manip_bind.sub_ncerr_f(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -628,8 +628,8 @@ def sub_ncerr(a,ae2,b,be2):
             raise TypeError,"sub_ncerr does not understand types given to it"
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array))
-            ce2 = nessi_vector.NessiVector(len(array))
+            c = nessi_vector.NessiVector(len(array), array.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
             array_manip_bind.sub_ncerr_f(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -832,8 +832,8 @@ def mult_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to mult_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a))
-            ce2 = nessi_vector.NessiVector(len(a))
+            c = nessi_vector.NessiVector(len(a), a.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
             array_manip_bind.mult_ncerr_f(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -892,8 +892,8 @@ def mult_ncerr(a,ae2,b,be2):
             raise TypeError,"mult_ncerr does not understand types given to it"
 
     if (array.__type__ == array.FLOAT):
-        c = nessi_vector.NessiVector(len(array))
-        ce2 = nessi_vector.NessiVector(len(array))
+        c = nessi_vector.NessiVector(len(array), array.FLOAT)
+        ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
         array_manip_bind.mult_ncerr_f(array.__array__,\
                                       array_e2.__array__,\
                                       float(scalar),\
@@ -1151,8 +1151,8 @@ def div_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to div_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a))
-            ce2 = nessi_vector.NessiVector(len(a))
+            c = nessi_vector.NessiVector(len(a), a.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
             array_manip_bind.div_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1202,8 +1202,8 @@ def div_ncerr(a,ae2,b,be2):
         array_e2=ae2
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array))
-            ce2 = nessi_vector.NessiVector(len(array))
+            c = nessi_vector.NessiVector(len(array), array.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
             array_manip_bind.div_ncerr_f(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -1253,8 +1253,8 @@ def div_ncerr(a,ae2,b,be2):
             raise TypeError,"div_ncerr does not understand types given to it"
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array))
-            ce2 = nessi_vector.NessiVector(len(array))
+            c = nessi_vector.NessiVector(len(array), array.FLOAT)
+            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
             array_manip_bind.div_ncerr_f(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -1408,8 +1408,8 @@ def sumw_ncerr(a,ae2,b,be2):
         raise RuntimeError,"Incompatible types passed to sumw_ncerr"
 
     if (a.__type__ == a.FLOAT):
-        c = nessi_vector.NessiVector(len(a))
-        ce2 = nessi_vector.NessiVector(len(a))
+        c = nessi_vector.NessiVector(len(a), a.FLOAT)
+        ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
         array_manip_bind.sumw_ncerr_f(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
