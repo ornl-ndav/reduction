@@ -7,6 +7,7 @@
 #include "conversions.hpp"
 #include "rebinning.hpp"
 #include "reverse_array.hpp"
+#include "vpair.hpp"
 %}
 
 %include <std_string.i>
@@ -43,6 +44,15 @@
 %template(d_spacing_to_tof_focused_det_d) AxisManip::d_spacing_to_tof_focused_det<double>;
 
 %template(energy_transfer_d) AxisManip::energy_transfer<double>;
+
+%{
+std::string energy_transfer_ss_d(const double initial_energy, const double initial_energy_err2, const double final_energy, double final_energy_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::energy_transfer(initial_energy, initial_energy_err2, final_energy, final_energy_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string energy_transfer_ss_d(const double initial_energy, const double initial_energy_err2, const double final_energy, double final_energy_err2, VPair<double> & value, void *temp=NULL);
 
 %template(final_velocity_igs_d) AxisManip::final_velocity_igs<double>;
 
