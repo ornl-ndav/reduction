@@ -56,7 +56,9 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
         raise TypeError, "Function type not recognized!"
 
     mess = funcName
-    if len(funcName) > 30:
+    if len(funcName) > 34:
+        mess += "..................."
+    elif len(funcName) > 30 and len(funcName) <= 34:
         mess += "........................."
     else:
         mess += "............................."
@@ -97,7 +99,12 @@ def makeCheck1(funcName, output, truth_output):
         raise TypeError, "Function type not recognized!"
 
     mess = funcName
-    mess += "............................."
+    if len(funcName) > 34:
+        mess += "..................."
+    elif len(funcName) > 30 and len(funcName) <= 34:
+        mess += "........................."
+    else:
+        mess += "............................."
 
     if dataval == False:
         mess += " Data Not OK"
@@ -127,7 +134,12 @@ def makeCheck2(funcName, output, truth_output, output_err2, truth_output_err2):
     err2val = compare(output_err2, truth_output_err2)
 
     mess = funcName
-    mess += "............................."
+    if len(funcName) > 34:
+        mess += "................"
+    elif len(funcName) > 30 and len(funcName) <= 34:
+        mess += "......................"
+    else:
+        mess += ".........................."
 
     if dataval != 0 or err2val != 0:
 
