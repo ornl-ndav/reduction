@@ -25,7 +25,7 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/add_ncerr_test.cpp
+# \file bindings/test/PAL/sumw_ncerr_test.cpp
 #
 
 import array_manip
@@ -35,29 +35,25 @@ import test_common
 NUM_VAL = 5
 
 ##
-# \defgroup add_ncerr_test add_ncerr_test
+# \defgroup sumw_ncerr_test sumw_ncerr_test
 # \{
 #
-# This test compares the output data (\f$output\_vs\f$ and \f$output\_vv\f$)
-# calculated by the binding module <i>add_ncerr.py</i> of the Python
+# This test compares the output data (\f$output\_vv\f$)
+# calculated by the binding module <i>sumw_ncerr.py</i> of the Python
 # Abstration Layer (PAL) <i>array_manip.py</i> with the true output
-# data calculated (\f$true\_output\_vs\f$ and \f$true\_output\_vv\f$) manually
-# calculated.
+# data calculated (\f$true\_output\_vv\f$) manually calculated.
 # Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
 # will generate an error message that give details about the location and type
 # of the error
 # 
 # <b>Notation used:</b>
 # - vv : vector-vector
-# - vs : vector-scalar
 # - VV = "v,v"
-# - VS = "v,s"
 # - ERROR = "error "
 # - EMPTY = ""
 #
 
 ##
-#
 # This function initializes the values of arrays, \f$input1\f$, \f$input2\f$,
 # \f$input1\_err2\f$, and \f$input2\_err2\f$.
 #
@@ -97,14 +93,9 @@ def initialize_inputs(key):
 # Function that sets the true output based on values contained in
 # \f$input1\f$, \f$input1\_err2\f$, \f$input2\f$, and \f$input2\_err2\f$.
 #
-# For the vs case, the scalar used is the last element of the
-# NessiVector \f$input2\f$, \f$input2[NUM\_VAL - 1]\f$
-#
 # \param key (INPUT) forces correct test to happen
 #
 # \return
-# - The true NessiVector for the vs he
-# - The square of the uncertainty in the true NessiVector for the vs case
 # - The true NessiVector for the vv case
 # - The square of the uncertainty in the true NessiVector for the vv case
 #
@@ -114,85 +105,53 @@ def initialize_true_outputs(key):
 
         true_output_vv=nessi_vector.NessiVector()
         true_output_vv_err2=nessi_vector.NessiVector()
-        true_output_vs=nessi_vector.NessiVector()
-        true_output_vs_err2=nessi_vector.NessiVector()
 
 	    # initialize the correct outputs for vector vector case
-        true_output_vv.append(float(6.))       # 0+6
-        true_output_vv_err2.append(float(2.))		
-        true_output_vv.append(float(6.))	   # 1+5	
-        true_output_vv_err2.append(float(2.))
-        true_output_vv.append(float(6.))	   # 2+4
-        true_output_vv_err2.append(float(2.))
-        true_output_vv.append(float(6.))	   # 3+3
-        true_output_vv_err2.append(float(2.))
-        true_output_vv.append(float(6.))	   # 4+2
-        true_output_vv_err2.append(float(2.))
+        true_output_vv.append(float(6.))       # =(0/1+6/1)*(1+1)/2
+        true_output_vv_err2.append(float(4.))		
+        true_output_vv.append(float(6.))	   # =(1/1+5/1)*(1+1)/2
+        true_output_vv_err2.append(float(4.))
+        true_output_vv.append(float(6.))	   # =(2/1+4/1)*(1+1)/2
+        true_output_vv_err2.append(float(4.))
+        true_output_vv.append(float(6.))	   # =(3/1+3/1)*(1+1)/2
+        true_output_vv_err2.append(float(4.))
+        true_output_vv.append(float(6.))	   # =(4/1+2/1)*(1+1)/2
+        true_output_vv_err2.append(float(4.))
 		
-	    # initialize the correct outputs for vector scalar case
-        true_output_vs.append(float(10.))      # 4+6
-        true_output_vs_err2.append(float(2.))		
-        true_output_vs.append(float(9.))	   # 4+5
-        true_output_vs_err2.append(float(2.))
-        true_output_vs.append(float(8.))	   # 4+4
-        true_output_vs_err2.append(float(2.))
-        true_output_vs.append(float(7.))	   # 4+3
-        true_output_vs_err2.append(float(2.))
-        true_output_vs.append(float(6.))	   # 4+2
-        true_output_vs_err2.append(float(2.))
-
     else:
 
         true_output_vv=nessi_vector.NessiVector(type="int")
         true_output_vv_err2=nessi_vector.NessiVector(type="int")
-        true_output_vs=nessi_vector.NessiVector(type="int")
-        true_output_vs_err2=nessi_vector.NessiVector(type="int")
 
 	    # initialize the correct outputs for vector vector case
-        true_output_vv.append(int(6))      # 0+6
-        true_output_vv_err2.append(int(2))		
-        true_output_vv.append(int(6))	   # 1+5	
-        true_output_vv_err2.append(int(2))
-        true_output_vv.append(int(6))	   # 2+4
-        true_output_vv_err2.append(int(2))
-        true_output_vv.append(int(6))	   # 3+3
-        true_output_vv_err2.append(int(2))
-        true_output_vv.append(int(6))	   # 4+2
-        true_output_vv_err2.append(int(2))
+        true_output_vv.append(int(6))      # =(0/1+6/1)*(1+1)/2
+        true_output_vv_err2.append(int(4))		
+        true_output_vv.append(int(6))	   # =(1/1+5/1)*(1+1)/2
+        true_output_vv_err2.append(int(4))
+        true_output_vv.append(int(6))	   # =(2/1+4/1)*(1+1)/2
+        true_output_vv_err2.append(int(4))
+        true_output_vv.append(int(6))	   # =(3/1+3/1)*(1+1)/2
+        true_output_vv_err2.append(int(4))
+        true_output_vv.append(int(6))	   # =(4/1+2/1)*(1+1)/2
+        true_output_vv_err2.append(int(4))
 		
-	    # initialize the correct outputs for vector scalar case
-        true_output_vs.append(int(10))     # 4+6
-        true_output_vs_err2.append(int(2))		
-        true_output_vs.append(int(9))	   # 4+5
-        true_output_vs_err2.append(int(2))
-        true_output_vs.append(int(8))	   # 4+4
-        true_output_vs_err2.append(int(2))
-        true_output_vs.append(int(7))	   # 4+3
-        true_output_vs_err2.append(int(2))
-        true_output_vs.append(int(6))	   # 4+2
-        true_output_vs_err2.append(int(2))
-
     return true_output_vv,\
 		   true_output_vv_err2,\
-		   true_output_vs,\
-		   true_output_vs_err2
 
 
 if __name__ == "__main__":
 
     mess =""
 
-    print "###################################################"
-    print "#   Checking add_ncerr Python Abstraction layer   #"
-    print "###################################################"
+    print "####################################################"
+    print "#   Checking sumw_ncerr Python Abstraction layer   #"
+    print "####################################################"
     print
  
-    true_output_vv_d, true_output_vv_err2_d, true_output_vs_d,\
-					  true_output_vs_err2_d =\
+    true_output_vv_d, true_output_vv_err2_d = \
 					  initialize_true_outputs("double")    	
 
-    true_output_vv_i, true_output_vv_err2_i, true_output_vs_i,\
-					  true_output_vs_err2_i =\
+    true_output_vv_i, true_output_vv_err2_i = \
 					  initialize_true_outputs("int")    	
 
     # vv case
@@ -202,7 +161,7 @@ if __name__ == "__main__":
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
     output_vv=nessi_vector.NessiVector()
     output_vv_err2=nessi_vector.NessiVector()
-    output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
+    output_vv, output_vv_err2 = array_manip.sumw_ncerr(input1,\
 													  input1_err2,\
 													  input2,\
 													  input2_err2)
@@ -219,7 +178,7 @@ if __name__ == "__main__":
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
     output_vv=nessi_vector.NessiVector(type="int")
     output_vv_err2=nessi_vector.NessiVector(type="int")
-    output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
+    output_vv, output_vv_err2 = array_manip.sumw_ncerr(input1,\
 													  input1_err2,\
 													  input2,\
 													  input2_err2)
@@ -233,40 +192,3 @@ if __name__ == "__main__":
     print mess
 
 
-    # vs case
-    print
-    print "Checking Vector-Scalar Addition Abstraction Layer Function"
-
-	# double case
-    input1,input1_err2,input2,input2_err2=initialize_inputs("double")
-    output_vs=nessi_vector.NessiVector()
-    output_vs_err2=nessi_vector.NessiVector()
-    output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
-													  input1_err2,\
-													  input2[4],\
-													  input2_err2[4])
-
-    mess = test_common.MakeCheck("double",\
-								 output_vs,\
-								 true_output_vs_d,\
-								 output_vs_err2,\
-								 true_output_vs_err2_d)
-
-    print mess
-
-	# int case
-    input1,input1_err2,input2,input2_err2=initialize_inputs("int")
-    output_vs=nessi_vector.NessiVector(type="int")
-    output_vs_err2=nessi_vector.NessiVector(type="int")
-    output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
-													  input1_err2,\
-													  input2[4],\
-													  input2_err2[4])
-
-    mess = test_common.MakeCheck("int",\
-								 output_vs,\
-								 true_output_vs_i,\
-								 output_vs_err2,\
-								 true_output_vs_err2_i)
-
-    print mess
