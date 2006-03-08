@@ -29,8 +29,9 @@
 #
 
 import nessi_vector
-import utils_bind
 import nessi_vector_bind
+import utils_bind
+
 
 ##
 # \namespace utils
@@ -146,19 +147,21 @@ def vector_is_equals(output,true_output):
    if (output.__type__ == nessi_vector.NessiVector.DOUBLE):
         output_d = nessi_vector_bind.DoubleNessiVector()
         true_output_d = nessi_vector_bind.DoubleNessiVector()
-		for i in range(len(output)):
+        for i in range(len(output)):
             output_d.append(output[i])
             true_output_d.append(true_output[i])
+
         result = utils_bind.vector_is_equals_d(output_d, true_output_d)
    else:
         output_i = nessi_vector_bind.IntNessiVector()
         true_output_i = nessi_vector_bind.IntNessiVector()
-		for i in range(len(output)):
+	for i in range(len(output)):
             output_i.append(output[i])
             true_output_i.append(true_output[i])
-		result = utils_bind.vector_is_equals_i(output_i, true_output_i)
 
-    return result
+        result = utils_bind.vector_is_equals_i(output_i, true_output_i)
+
+   return result
 
 ##
 # \}
