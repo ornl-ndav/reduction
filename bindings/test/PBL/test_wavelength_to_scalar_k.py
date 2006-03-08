@@ -7,8 +7,10 @@
 ###############################################################################
 
 from axis_manip_bind import wavelength_to_scalar_k_d
+from axis_manip_bind import wavelength_to_scalar_k_ss_d
 from nessi_vector_bind import *
 import test_common_bind
+from vpair_bind import *
 
 print "#######################################################################"
 print "# Checking Wavelength_to_Scalar_K Swig Generated Python Binding Layer #"
@@ -47,9 +49,9 @@ TruthOutput_Err2_VV_D.append(0.539743990684574237)
 TruthOutput_Err2_VV_D.append(0.284244606751373529)
 
 # Truth values for wavelength_to_scalar_k scalar-scalar version
-TruthOutput_SS_D = 6.28318530717958623
-
-TruthOutput_Err2_SS_D = 19.73920880217871598
+TruthOutput_SS_D = DoubleVPair()
+TruthOutput_SS_D.val = 6.28318530717958623
+TruthOutput_SS_D.val_err2 = 19.73920880217871598
 
 ###############################################################################
 # Create output placeholders for vectors
@@ -60,8 +62,7 @@ Output_VV_D = DoubleNessiVector(len(Input_D))
 Output_Err2_VV_D = DoubleNessiVector(len(Input_Err2_D))
 
 # Output placeholders for wavelength_to_scalar_k scalar-scalar version
-Output_SS_D = 0.0
-Output_Err2_SS_D = 0.0
+Output_SS_D = DoubleVPair()
 
 print "Checking Vector-Vector Wavelength to Scalar K Binding Function"
 
@@ -77,12 +78,12 @@ print mess
 print
 print "Checking Scalar-Scalar Wavelength to Scalar K Binding Function"
 
-wavelength_to_scalar_k_d(Input_D[0], Input_Err2_D[0],
-                         Output_SS_D, Output_Err2_SS_D)
+wavelength_to_scalar_k_ss_d(Input_D[0], Input_Err2_D[0], Output_SS_D)
 
-#mess = test_common_bind.makeCheck("wavelength_to_scalar_k_d",
-#Output_SS_D,
-#                                  TruthOutput_SS_D,
-#                                  Output_Err2_SS_D,
-#                                  TruthOutput_Err2_SS_D)
-#print mess
+mess = test_common_bind.makeCheck2("wavelength_to_scalar_k_d",
+                                   Output_SS_D.val,
+                                   TruthOutput_SS_D.val,
+                                   Output_SS_D.val_err2,
+                                   TruthOutput_SS_D.val_err2)
+
+print mess

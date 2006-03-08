@@ -8,8 +8,10 @@
 ###############################################################################
 
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_d
+from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_ss_d
 from nessi_vector_bind import *
 import test_common_bind
+from vpair_bind import *
 
 print "##############################################"
 print "# Checking Init_Scatt_Wavevector_to_Scalar_Q #"
@@ -87,9 +89,9 @@ TruthOutput_Err2_SV_D.append(3.70446789959436140)
 TruthOutput_Err2_SV_D.append(4.71099862050503759)
 
 # Truth values for init_scatt_wavevector_to_scalar_Q scalar-scalar version
-TruthOutput_SS_D = 0.35036606096122696
-
-TruthOutput_Err2_SS_D = 0.41659964378851194
+TruthOutput_SS_D = DoubleVPair()
+TruthOutput_SS_D.val = 0.35036606096122696
+TruthOutput_SS_D.val_err2 = 0.41659964378851194
 
 ###############################################################################
 # Create output placeholders for vectors
@@ -112,8 +114,7 @@ Output_Err2_SV_D = DoubleNessiVector(len(Input1_Err2_D))
 
 # Output placeholders for init_scatt_wavevector_to_scalar_Q scalar-scalar
 # version
-Output_SS_D = 0.0
-Output_Err2_SS_D = 0.0
+Output_SS_D = DoubleVPair()
 
 print "Checking Vector-Vector Initial and Scattering Wavevector to Scalar Q"
 print "Binding Function"
@@ -163,14 +164,15 @@ print
 print "Checking Scalar-Scalar Initial and Scattering Wavevector to Scalar Q"
 print "Binding Function"
 
-init_scatt_wavevector_to_scalar_Q_d(Input1_D[0], Input1_Err2_D[0],
-                                    Input2_D[0], Input2_Err2_D[0],
-                                    polar_angle, polar_angle_err2,
-                                    Output_SS_D, Output_Err2_SS_D)
+init_scatt_wavevector_to_scalar_Q_ss_d(Input1_D[0], Input1_Err2_D[0],
+                                       Input2_D[0], Input2_Err2_D[0],
+                                       polar_angle, polar_angle_err2,
+                                       Output_SS_D)
 
-#mess = test_common_bind.makeCheck("init_scatt_wavevector_to_scalar_Q_d",
-#Output_SS_D,
-#                                  TruthOutput_SS_D,
-#                                  Output_Err2_SS_D,
-#                                  TruthOutput_Err2_SS_D)
-#print mess
+mess = test_common_bind.makeCheck2("init_scatt_wavevector_to_scalar_Q_ss_d",
+                                   Output_SS_D.val,
+                                   TruthOutput_SS_D.val,
+                                   Output_SS_D.val_err2,
+                                   TruthOutput_SS_D.val_err2)
+print mess
+
