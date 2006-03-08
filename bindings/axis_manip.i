@@ -140,4 +140,14 @@ std::string wavelength_to_scalar_k_ss_d(const double wavelength, const double wa
 
 %template(wavelength_to_scalar_Q_d) AxisManip::wavelength_to_scalar_Q<double>;
 
+%{
+std::string wavelength_to_scalar_Q_ss_d(const double wavelength, const double wavelength_err2, const double scatt_angle, const double scatt_angle_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::wavelength_to_scalar_Q(wavelength, wavelength_err2, scatt_angle, scatt_angle_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string wavelength_to_scalar_Q_ss_d(const double wavelength, const double wavelength_err2, const double scatt_angle, const double scatt_angle_err2, VPair<double> & value, void *temp=NULL);
+
+
 %template(wavelength_to_tof_d) AxisManip::wavelength_to_tof<double>;
