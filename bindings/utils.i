@@ -7,6 +7,7 @@
 #include "num_comparison.hpp"
 #include "size_checks.hpp"
 #include "utils.hpp"
+#include "vpair.hpp"
 %}
 
 %include <std_string.i>
@@ -45,5 +46,12 @@
 
 %template(fit_linear_background_d) Utils::fit_linear_background<double>;
 
-%template(weighted_average_d) Utils::weighted_average<double>;
+%{
+std::string weighted_average_d(const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const std::size_t bin_start, const std::size_t bin_end, VPair<double> & value, void *temp=NULL) {
+std::string ret = Utils::weighted_average(input, input_err2, bin_start, bin_end, value.val, value.val_err2, temp);
+return ret;
+}
+%}
+
+std::string weighted_average_d(const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const std::size_t bin_start, const std::size_t bin_end, VPair<double> & value);
 
