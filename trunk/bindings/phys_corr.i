@@ -7,6 +7,7 @@
 #include "physcorr.hpp"
 %}
 
+%include <std_string.i>
 %include "libexcept.i"
 
 // Need to ignore guard names from header files
