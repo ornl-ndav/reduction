@@ -45,7 +45,7 @@ print "Checking Weighted Average Binding Function"
 
 print "weighted_average_d..........."
 
-weighted_average_f(Input1_D, Input1_Err2_D, float(0), float(vec_length-1),
+weighted_average_d(Input1_D, Input1_Err2_D, 0, vec_length-1,
                    output_wa, output_err2_wa)
 
 
