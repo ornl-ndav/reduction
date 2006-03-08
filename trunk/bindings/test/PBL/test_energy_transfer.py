@@ -7,8 +7,10 @@
 ###############################################################################
 
 from axis_manip_bind import energy_transfer_d
+from axis_manip_bind import energy_transfer_ss_d
 from nessi_vector_bind import *
 import test_common_bind
+from vpair_bind import *
 
 print "#################################################################"
 print "# Checking Energy_Transfer Swig Generated Python Binding Layer  #"
@@ -81,9 +83,9 @@ TruthOutput_Err2_SV_D.append(0.29233363647745641)
 TruthOutput_Err2_SV_D.append(0.35080036377294770)
 
 # Truth values for energy_transfer scalar-scalar version
-TruthOutput_SS_D = -0.60449734953663813
-
-TruthOutput_Err2_SS_D = 0.11693345459098256
+TruthOutput_SS_D = DoubleVPair()
+TruthOutput_SS_D.val = -0.60449734953663813
+TruthOutput_SS_D.val_err2 = 0.11693345459098256
 
 ###############################################################################
 # Create output placeholders for vectors
@@ -102,8 +104,7 @@ Output_SV_D = DoubleNessiVector(len(Input1_D))
 Output_Err2_SV_D = DoubleNessiVector(len(Input1_Err2_D))
 
 # Output placeholders for energy_transfer scalar-scalar version
-Output_SS_D = 0.0
-Output_Err2_SS_D = 0.0
+Output_SS_D = DoubleVPair()
 
 print "Checking Vector-Vector Energy Transfer Binding Function"
 
@@ -140,11 +141,13 @@ print mess
 print
 print "Checking Scalar-Scalar Energy Transfer Binding Function"
 
-energy_transfer_d(Input1_D[0], Input1_Err2_D[0], Input2_D[0], Input2_Err2_D[0],
-                  Output_SS_D, Output_Err2_SS_D)
+energy_transfer_ss_d(Input1_D[0], Input1_Err2_D[0],
+                     Input2_D[0], Input2_Err2_D[0],
+                     Output_SS_D)
 
-#mess = test_common_bind.makeCheck("energy_transfer_d", Output_SS_D,
-#                                  TruthOutput_SS_D,
-#                                  Output_Err2_SS_D,
-#                                  TruthOutput_Err2_SS_D)
-#print mess
+mess = test_common_bind.makeCheck2("energy_transfer_ss_d",
+                                   Output_SS_D.val,
+                                   TruthOutput_SS_D.val,
+                                   Output_SS_D.val_err2,
+                                   TruthOutput_SS_D.val_err2)
+print mess
