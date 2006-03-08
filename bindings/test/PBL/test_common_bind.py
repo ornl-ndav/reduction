@@ -6,6 +6,7 @@
 #
 ###############################################################################
 
+from utils_bind import compare
 from utils_bind import vector_is_equals_d
 from utils_bind import vector_is_equals_i
 
@@ -100,6 +101,44 @@ def makeCheck1(funcName, output, truth_output):
 
     if dataval == False:
         mess += " Data Not OK"
+    else:
+        mess += " Functionality OK"
+
+    return mess
+
+def makeCheck2(funcName, output, truth_output, output_err2, truth_output_err2):
+
+    """
+    
+       This function checks output and truth vectors for both data and
+       square of the uncertainty in the data (err2) arrays.
+
+       funcName          : this is the name of the Swig binding layer function
+       output            : this is the value to be checked
+       truth_output      : this is the truth value to be checked against
+       output_err2       : this is the err2 value to be checked
+       truth_output_err2 : this is the truth err2 value to be checked against
+    """
+
+    dataval = -1
+    err2val = -1
+    
+    dataval = compare(output, truth_output)
+    err2val = compare(output_err2, truth_output_err2)
+
+    mess = funcName
+    mess += "............................."
+
+    if dataval != 0 or err2val != 0:
+
+        if dataval != 0:
+            if err2val !=0:
+                mess += " Data and Err2 Not OK"
+            else:
+                mess += " Data Not OK"
+        elif err2val != 0:
+            mess += " Err2 Not OK"
+
     else:
         mess += " Functionality OK"
 
