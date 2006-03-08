@@ -3,7 +3,8 @@
 // $Id$
 //
 %module libexcept
-%include "exception.i"
+
+%include <exception.i>
 
 // Exceptions
 %exception {

@@ -10,7 +10,7 @@
 // Need to ignore guard names from header files
 %ignore _NESSI_HPP;
 
-%include "std_vector.i"
+%include <std_vector.i>
 %include "nessi.hpp"
 
 namespace std {
