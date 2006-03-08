@@ -40,27 +40,19 @@
 
 // Instantiate conversion templates
 
-%template(tof_to_wavelength_d) AxisManip::tof_to_wavelength<double>;
+%template(d_spacing_to_tof_focused_det_d) AxisManip::d_spacing_to_tof_focused_det<double>;
 
-%template(wavelength_to_tof_d) AxisManip::wavelength_to_tof<double>;
-
-%template(tof_to_scalar_Q_d) AxisManip::tof_to_scalar_Q<double>;
-
-%template(wavelength_to_scalar_Q_d) AxisManip::wavelength_to_scalar_Q<double>;
-
-%template(initial_velocity_dgs_d) AxisManip::initial_velocity_dgs<double>;
+%template(energy_transfer_d) AxisManip::energy_transfer<double>;
 
 %template(final_velocity_igs_d) AxisManip::final_velocity_igs<double>;
 
-%template(velocity_to_energy_d) AxisManip::velocity_to_energy<double>;
+%template(frequency_to_angular_frequency_d) AxisManip::frequency_to_angular_frequency<double>;
 
-%template(wavelength_to_energy_d) AxisManip::wavelength_to_energy<double>;
+%template(initial_velocity_dgs_d) AxisManip::initial_velocity_dgs<double>;
 
-%template(velocity_to_scalar_k_d) AxisManip::velocity_to_scalar_k<double>;
+%template(init_scatt_wavevector_to_Q_d) AxisManip::init_scatt_wavevector_to_Q<double>;
 
-%template(wavelength_to_scalar_k_d) AxisManip::wavelength_to_scalar_k<double>;
-
-%template(wavelength_to_d_spacing_d) AxisManip::wavelength_to_d_spacing<double>;
+%template(init_scatt_wavevector_to_scalar_Q_d) AxisManip::init_scatt_wavevector_to_scalar_Q<double>;
 
 %template(time_offset_dgs_d) AxisManip::time_offset_dgs<double>;
 
@@ -70,14 +62,21 @@
 
 %template(tof_to_initial_wavelength_igs_d) AxisManip::tof_to_initial_wavelength_igs<double>;
 
-%template(energy_transfer_d) AxisManip::energy_transfer<double>;
-
-%template(frequency_to_angular_frequency_d) AxisManip::frequency_to_angular_frequency<double>;
-
-%template(init_scatt_wavevector_to_Q_d) AxisManip::init_scatt_wavevector_to_Q<double>;
-
-%template(init_scatt_wavevector_to_scalar_Q_d) AxisManip::init_scatt_wavevector_to_scalar_Q<double>;
-
 %template(tof_to_Q_d) AxisManip::tof_to_Q<double>;
 
-%template(d_spacing_to_tof_focused_det_d) AxisManip::d_spacing_to_tof_focused_det<double>;
+%template(tof_to_scalar_Q_d) AxisManip::tof_to_scalar_Q<double>;
+
+%template(tof_to_wavelength_d) AxisManip::tof_to_wavelength<double>;
+
+%template(velocity_to_energy_d) AxisManip::velocity_to_energy<double>;
+
+%template(velocity_to_scalar_k_d) AxisManip::velocity_to_scalar_k<double>;
+
+%template(wavelength_to_d_spacing_d) AxisManip::wavelength_to_d_spacing<double>;
+%template(wavelength_to_energy_d) AxisManip::wavelength_to_energy<double>;
+
+%template(wavelength_to_scalar_k_d) AxisManip::wavelength_to_scalar_k<double>;
+
+%template(wavelength_to_scalar_Q_d) AxisManip::wavelength_to_scalar_Q<double>;
+
+%template(wavelength_to_tof_d) AxisManip::wavelength_to_tof<double>;
