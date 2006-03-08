@@ -50,12 +50,13 @@ void initialize_inputs(Nessi::Vector<NumT> & wavelength,
                        NumT & scatt_angle,
                        NumT & scatt_angle_err2)
 {
+  scatt_angle = static_cast<NumT>(2.);
+  scatt_angle_err2 = static_cast<NumT>(0.5);
+
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
       wavelength.push_back(static_cast<NumT>(2*i+1));
       wavelength_err2.push_back(static_cast<NumT>(i+0.5));
-      scatt_angle = static_cast<NumT>(2.);
-      scatt_angle_err2 = static_cast<NumT>(0.5);
     }
 }
 
@@ -63,24 +64,24 @@ void initialize_inputs(Nessi::Vector<NumT> & wavelength,
  */
 void initialize_true_outputs(float                & true_output_ss,
                              float                & true_output_ss_err2,
-                             Nessi::Vector<float> & true_output_vs,
-                             Nessi::Vector<float> & true_output_vs_err2)
+                             Nessi::Vector<float> & true_output_vv,
+                             Nessi::Vector<float> & true_output_vv_err2)
 {
   // scalar scalar
   true_output_ss=static_cast<float>(11.42656898);
   true_output_ss_err2=static_cast<float>(32.42559432);
 
   // vector scalar
-  true_output_vs.push_back(static_cast<float>(11.42656898));
-  true_output_vs_err2.push_back(static_cast<float>(32.42559432));
-  true_output_vs.push_back(static_cast<float>(3.80885624));
-  true_output_vs_err2.push_back(static_cast<float>(-1.23295164));
-  true_output_vs.push_back(static_cast<float>(2.28531360));
-  true_output_vs_err2.push_back(static_cast<float>(-0.79203975));
-  true_output_vs.push_back(static_cast<float>(1.63236689));
-  true_output_vs_err2.push_back(static_cast<float>(-0.48023393));
-  true_output_vs.push_back(static_cast<float>(1.26961874));
-  true_output_vs_err2.push_back(static_cast<float>(-0.31609812));
+  true_output_vv.push_back(static_cast<float>(11.42656898));
+  true_output_vv_err2.push_back(static_cast<float>(32.42559432));
+  true_output_vv.push_back(static_cast<float>(3.80885624));
+  true_output_vv_err2.push_back(static_cast<float>(-1.23295164));
+  true_output_vv.push_back(static_cast<float>(2.28531360));
+  true_output_vv_err2.push_back(static_cast<float>(-0.79203975));
+  true_output_vv.push_back(static_cast<float>(1.63236689));
+  true_output_vv_err2.push_back(static_cast<float>(-0.48023393));
+  true_output_vv.push_back(static_cast<float>(1.26961874));
+  true_output_vv_err2.push_back(static_cast<float>(-0.31609812));
 
 }
 
@@ -88,24 +89,24 @@ void initialize_true_outputs(float                & true_output_ss,
  */
 void initialize_true_outputs(double                & true_output_ss,
                              double                & true_output_ss_err2,
-                             Nessi::Vector<double> & true_output_vs,
-                             Nessi::Vector<double> & true_output_vs_err2)
+                             Nessi::Vector<double> & true_output_vv,
+                             Nessi::Vector<double> & true_output_vv_err2)
 {
   // scalar scalar
   true_output_ss=static_cast<double>(11.42656846417465566);
   true_output_ss_err2=static_cast<double>(32.42559623735466801);
 
   // vector scalar
-  true_output_vs.push_back(static_cast<double>(11.42656846417465566));
-  true_output_vs_err2.push_back(static_cast<double>(32.42559623735466801));
-  true_output_vs.push_back(static_cast<double>(3.80885615472488537));
-  true_output_vs_err2.push_back(static_cast<double>(-1.23295104275580614));
-  true_output_vs.push_back(static_cast<double>(2.28531369283493113));
-  true_output_vs_err2.push_back(static_cast<double>(-0.79203962036934561));
-  true_output_vs.push_back(static_cast<double>(1.63236692345352230));
-  true_output_vs_err2.push_back(static_cast<double>(-0.48023389777822056));
-  true_output_vs.push_back(static_cast<double>(1.26961871824162853));
-  true_output_vs_err2.push_back(static_cast<double>(-0.31609808138503581));
+  true_output_vv.push_back(static_cast<double>(11.42656846417465566));
+  true_output_vv_err2.push_back(static_cast<double>(32.42559623735466801));
+  true_output_vv.push_back(static_cast<double>(3.80885615472488537));
+  true_output_vv_err2.push_back(static_cast<double>(-1.23295104275580614));
+  true_output_vv.push_back(static_cast<double>(2.28531369283493113));
+  true_output_vv_err2.push_back(static_cast<double>(-0.79203962036934561));
+  true_output_vv.push_back(static_cast<double>(1.63236692345352230));
+  true_output_vv_err2.push_back(static_cast<double>(-0.48023389777822056));
+  true_output_vv.push_back(static_cast<double>(1.26961871824162853));
+  true_output_vv_err2.push_back(static_cast<double>(-0.31609808138503581));
 }
 
 /**
@@ -115,10 +116,10 @@ bool test_okay(NumT                & output_ss,
                NumT                & output_ss_err2,
                NumT                & true_output_ss,
                NumT                & true_output_ss_err2,
-               Nessi::Vector<NumT> & output_vs,
-               Nessi::Vector<NumT> & output_vs_err2,
-               Nessi::Vector<NumT> & true_output_vs,
-               Nessi::Vector<NumT> & true_output_vs_err2)
+               Nessi::Vector<NumT> & output_vv,
+               Nessi::Vector<NumT> & output_vv_err2,
+               Nessi::Vector<NumT> & true_output_vv,
+               Nessi::Vector<NumT> & true_output_vv_err2)
 {
   bool value = true;
 
@@ -133,11 +134,11 @@ bool test_okay(NumT                & output_ss,
     }
 
   // vector scalar
-  if(!test_okay(output_vs,true_output_vs,VS))
+  if(!test_okay(output_vv,true_output_vv,VV))
     {
       value = false;
     }
-  if(!test_okay(output_vs_err2,true_output_vs_err2,VS))
+  if(!test_okay(output_vv_err2,true_output_vv_err2,VV))
     {
       value = false;
     }
@@ -160,10 +161,10 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   NumT                output_ss_err2;
   NumT                true_output_ss;
   NumT                true_output_ss_err2;
-  Nessi::Vector<NumT> output_vs(5);
-  Nessi::Vector<NumT> output_vs_err2(5);
-  Nessi::Vector<NumT> true_output_vs;
-  Nessi::Vector<NumT> true_output_vs_err2;
+  Nessi::Vector<NumT> output_vv(5);
+  Nessi::Vector<NumT> output_vv_err2(5);
+  Nessi::Vector<NumT> true_output_vv;
+  Nessi::Vector<NumT> true_output_vv_err2;
 
   // fill in values as appropriate
   initialize_inputs(wavelength,
@@ -172,7 +173,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
                     scatt_angle_err2);
 
   initialize_true_outputs(true_output_ss, true_output_ss_err2,
-                          true_output_vs, true_output_vs_err2);
+                          true_output_vv, true_output_vv_err2);
 
   // run the code being tested
   AxisManip::wavelength_to_scalar_Q(wavelength[0],
@@ -186,22 +187,22 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
                                     wavelength_err2,
                                     scatt_angle,
                                     scatt_angle_err2,
-                                    output_vs,
-                                    output_vs_err2);
+                                    output_vv,
+                                    output_vv_err2);
 
   if(!debug.empty())
     {
       cout << endl;
-      print(output_vs, true_output_vs, VS, debug);
-      print(output_vs_err2, true_output_vs_err2, ERROR+VS, debug);
+      print(output_vv, true_output_vv, VV, debug);
+      print(output_vv_err2, true_output_vv_err2, ERROR+VV, debug);
       print(output_ss, true_output_ss, SS, debug);
       print(output_ss_err2, true_output_ss_err2, ERROR+SS, debug);
     }
 
   return test_okay(output_ss, output_ss_err2,
                    true_output_ss, true_output_ss_err2,
-                   output_vs, output_vs_err2,
-                   true_output_vs, true_output_vs_err2);
+                   output_vv, output_vv_err2,
+                   true_output_vv, true_output_vv_err2);
 }
 
 /**
