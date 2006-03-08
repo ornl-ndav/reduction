@@ -30,7 +30,7 @@
 
 import array_manip
 import nessi_vector
-import test_common_bind
+import test_common
 
 NUM_VAL = 5
 
@@ -71,11 +71,11 @@ NUM_VAL = 5
 # NessiVector to be added
 #
 def initialize_inputs(key):
-    if (key == nessi_vector.NessiVector.DOUBLE):
-        input1=nessi_vector.NessiVector()
-        input1_err2=nessi_vector.NessiVector()
-        input2=nessi_vector.NessiVector()
-        input2_err2=nessi_vector.NessiVector()
+    if (key == "double"):
+        input1=nessi_vector.NessiVector(type="double")
+        input1_err2=nessi_vector.NessiVector(type="double")
+        input2=nessi_vector.NessiVector(type="double")
+        input2_err2=nessi_vector.NessiVector(type="double")
         for i in range(NUM_VAL):
             input1.append(float(NUM_VAL+1-i))  #6.,5.,4.,3.,2.
             input2.append(float(i))            #0.,1.,2.,3.,4.
@@ -87,10 +87,10 @@ def initialize_inputs(key):
         input2=nessi_vector.NessiVector(type="int")
         input2_err2=nessi_vector.NessiVector(type="int")
         for i in range(NUM_VAL):
-            input1.append(int(NUM_VAL+1+i))    #6,5,4,3,2
+            input1.append(int(NUM_VAL+1-i))    #6,5,4,3,2
             input2.append(int(i))              #0,1,2,3,4
-            input1_err2.append(int(1.))        #1,1,1,1,1
-            input2_err2.append(int(1.))        #1,1,1,1,1
+            input1_err2.append(int(1))        #1,1,1,1,1
+            input2_err2.append(int(1))        #1,1,1,1,1
 
     return input1, input1_err2, input2, input2_err2
 
@@ -110,7 +110,8 @@ def initialize_inputs(key):
 # - The square of the uncertainty in the true NessiVector for the vv case
 #
 def initialize_true_outputs(key):
-    if (key == nessi_vector.NessiVector.DOUBLE):
+
+    if (key == "double"):
 
         true_output_vv=nessi_vector.NessiVector()
         true_output_vv_err2=nessi_vector.NessiVector()
@@ -178,53 +179,95 @@ def initialize_true_outputs(key):
 		   true_output_vs_err2
 
 
-def test_func(key):
+if __name__ == "__main__":
 
-	# fill in values as appropriate
-    input1,input1_err2, input2, input2_err2 = initialize_inputs(key)
-    true_output_vv, true_output_vv_err2, true_output_vs, true_output_vs_err2 =initialize_true_outputs(key)
+    mess =""
 
+    print "###################################################"
+    print "#   Checking add_ncerr Python Abstraction layer   #"
+    print "###################################################"
+    print
+ 
+    true_output_vv_d, true_output_vv_err2_d, true_output_vs_d,\
+					  true_output_vs_err2_d =\
+					  initialize_true_outputs("double")    	
+
+    true_output_vv_i, true_output_vv_err2_i, true_output_vs_i,\
+					  true_output_vs_err2_i =\
+					  initialize_true_outputs("int")    	
+
+    # vv case
+    print "Checking Vector-Vector Addition Abstraction Layer Function"
+
+	# double case
+    input1,input1_err2,input2,input2_err2=initialize_inputs("double")
+    output_vv=nessi_vector.NessiVector()
+    output_vv_err2=nessi_vector.NessiVector()
     output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
-													  input2_err2,\
+													  input1_err2,\
 													  input2,\
 													  input2_err2)
 
+    mess = test_common.MakeCheck("double",\
+								 output_vv,\
+								 true_output_vv_d,\
+								 output_vv_err2,\
+								 true_output_vv_err2_d)
+
+    print mess
+
+	# int case
+    input1,input1_err2,input2,input2_err2=initialize_inputs("int")
+    output_vv=nessi_vector.NessiVector(type="int")
+    output_vv_err2=nessi_vector.NessiVector(type="int")
+    output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
+													  input1_err2,\
+													  input2,\
+													  input2_err2)
+
+    mess = test_common.MakeCheck("int",\
+								 output_vv,\
+								 true_output_vv_i,\
+								 output_vv_err2,\
+								 true_output_vv_err2_i)
+
+    print mess
+
+
+    # vs case
+    print
+    print "Checking Vector-Scalar Addition Abstraction Layer Function"
+
+	# double case
+    input1,input1_err2,input2,input2_err2=initialize_inputs("double")
+    output_vs=nessi_vector.NessiVector()
+    output_vs_err2=nessi_vector.NessiVector()
     output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
 													  input1_err2,\
-													  input2[NUM_VAL-1],\
-													  input2_err2[NUM_VAL-1])
+													  input2[4],\
+													  input2_err2[4])
 
-	# run test
-    mess = test_common_bind.makecheck("vv",\
-									  output_vv,\
-									  true_output_vv,\
-									  output_vv_err2,\
-									  true_output_vv_err2)
-	
-    mess = test_common_bind.makecheck("vs",\
-									  output_vs,\
-									  true_output_vs,\
-									  output_vs_err2,\
-									  true_output_vs_err2)
+    mess = test_common.MakeCheck("double",\
+								 output_vs,\
+								 true_output_vs_d,\
+								 output_vs_err2,\
+								 true_output_vs_err2_d)
 
+    print mess
 
-						  
-if __name__ == "__main__":
+	# int case
+    input1,input1_err2,input2,input2_err2=initialize_inputs("int")
+    output_vs=nessi_vector.NessiVector(type="int")
+    output_vs_err2=nessi_vector.NessiVector(type="int")
+    output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
+													  input1_err2,\
+													  input2[4],\
+													  input2_err2[4])
 
-    print "###############################################"
-    print "# Checking add_ncerr Python Abstraction layer #"
-    print "###############################################"
+    mess = test_common.MakeCheck("int",\
+								 output_vs,\
+								 true_output_vs_i,\
+								 output_vs_err2,\
+								 true_output_vs_err2_i)
 
-    status = True
-
-    key_range = ["double","int"]
-    
-    for key in key_range:
-        string = "Checking " + key + " Addition Abstraction Function"
-        print string
-        test_func(key)
-
-
-			
-	
-						  
+    print mess
