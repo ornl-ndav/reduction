@@ -54,6 +54,7 @@ std::string energy_transfer_ss_d(const double initial_energy, const double initi
 
 std::string energy_transfer_ss_d(const double initial_energy, const double initial_energy_err2, const double final_energy, double final_energy_err2, VPair<double> & value, void *temp=NULL);
 
+
 %template(final_velocity_igs_d) AxisManip::final_velocity_igs<double>;
 
 %template(frequency_to_angular_frequency_d) AxisManip::frequency_to_angular_frequency<double>;
@@ -64,6 +65,16 @@ std::string energy_transfer_ss_d(const double initial_energy, const double initi
 
 %template(init_scatt_wavevector_to_scalar_Q_d) AxisManip::init_scatt_wavevector_to_scalar_Q<double>;
 
+%{
+std::string init_scatt_wavevector_to_scalar_Q_ss_d(const double initial_wavevector, const double initial_wavevector_err2, const double final_wavevector, const double final_wavevector_err2, const double polar_angle, const double polar_angle_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::init_scatt_wavevector_to_scalar_Q(initial_wavevector, initial_wavevector_err2, final_wavevector, final_wavevector_err2, polar_angle, polar_angle_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string init_scatt_wavevector_to_scalar_Q_ss_d(const double initial_wavevector, const double initial_wavevector_err2, const double final_wavevector, const double final_wavevector_err2, const double polar_angle, const double polar_angle_err2, VPair<double> & value, void *temp=NULL);
+
+
 %template(time_offset_dgs_d) AxisManip::time_offset_dgs<double>;
 
 %template(tof_to_final_velocity_dgs_d) AxisManip::tof_to_final_velocity_dgs<double>;
@@ -72,11 +83,31 @@ std::string energy_transfer_ss_d(const double initial_energy, const double initi
 
 %template(tof_to_initial_wavelength_igs_d) AxisManip::tof_to_initial_wavelength_igs<double>;
 
+%{
+std::string tof_to_initial_wavelength_igs_ss_d(const double tof, const double tof_err2, const double final_wavelength, const double final_wavelength_err2, const double time_offset, const double time_offset_err2, const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::tof_to_initial_wavelength_igs(tof, tof_err2, final_wavelength, final_wavelength_err2, time_offset, time_offset_err2, dist_source_sample, dist_source_sample_err2, dist_sample_detector, dist_sample_detector_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string tof_to_initial_wavelength_igs_ss_d(const double tof, const double tof_err2, const double final_wavelength, const double final_wavelength_err2, const double time_offset, const double time_offset_err2, const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL);
+
+
 %template(tof_to_Q_d) AxisManip::tof_to_Q<double>;
 
 %template(tof_to_scalar_Q_d) AxisManip::tof_to_scalar_Q<double>;
 
 %template(tof_to_wavelength_d) AxisManip::tof_to_wavelength<double>;
+
+%{
+std::string tof_to_wavelength_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string tof_to_wavelength_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, VPair<double> & value, void *temp=NULL);
+
 
 %template(velocity_to_energy_d) AxisManip::velocity_to_energy<double>;
 
@@ -85,7 +116,27 @@ std::string energy_transfer_ss_d(const double initial_energy, const double initi
 %template(wavelength_to_d_spacing_d) AxisManip::wavelength_to_d_spacing<double>;
 %template(wavelength_to_energy_d) AxisManip::wavelength_to_energy<double>;
 
+%{
+std::string wavelength_to_energy_ss_d(const double wavelength, const double wavelength_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::wavelength_to_energy(wavelength, wavelength_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string wavelength_to_energy_ss_d(const double wavelength, const double wavelength_err2, VPair<double> & value, void *temp=NULL);
+
+
 %template(wavelength_to_scalar_k_d) AxisManip::wavelength_to_scalar_k<double>;
+
+%{
+std::string wavelength_to_scalar_k_ss_d(const double wavelength, const double wavelength_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::wavelength_to_scalar_k(wavelength, wavelength_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string wavelength_to_scalar_k_ss_d(const double wavelength, const double wavelength_err2, VPair<double> & value, void *temp=NULL);
+
 
 %template(wavelength_to_scalar_Q_d) AxisManip::wavelength_to_scalar_Q<double>;
 
