@@ -6,10 +6,8 @@
 #
 ###############################################################################
 
-from utils_bind import vector_is_equals_f
 from utils_bind import vector_is_equals_d
 from utils_bind import vector_is_equals_i
-from utils_bind import vector_is_equals_u
 
 
 def printVector(object, last=10):
@@ -47,18 +45,12 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
     dataval = ""
     err2val = ""
 
-    if funcName.endswith("_f"):
-        dataval = vector_is_equals_f(output, truth_output)
-        err2val = vector_is_equals_f(output_err2, truth_output_err2)
-    elif funcName.endswith("_d"):
+    if funcName.endswith("_d"):
         dataval = vector_is_equals_d(output, truth_output)
         err2val = vector_is_equals_d(output_err2, truth_output_err2)
     elif funcName.endswith("_i"):
         dataval = vector_is_equals_i(output, truth_output)
         err2val = vector_is_equals_i(output_err2, truth_output_err2)
-    elif funcName.endswith("_u"):
-        dataval = vector_is_equals_u(output, truth_output)
-        err2val = vector_is_equals_u(output_err2, truth_output_err2)
     else:
         raise TypeError, "Function type not recognized!"
 
@@ -96,14 +88,10 @@ def makeCheck1(funcName, output, truth_output):
 
     dataval = ""
 
-    if funcName.endswith("_f"):
-        dataval = vector_is_equals_f(output, truth_output)
-    elif funcName.endswith("_d"):
+    if funcName.endswith("_d"):
         dataval = vector_is_equals_d(output, truth_output)
     elif funcName.endswith("_i"):
         dataval = vector_is_equals_i(output, truth_output)
-    elif funcName.endswith("_u"):
-        dataval = vector_is_equals_u(output, truth_output)
     else:
         raise TypeError, "Function type not recognized!"
 

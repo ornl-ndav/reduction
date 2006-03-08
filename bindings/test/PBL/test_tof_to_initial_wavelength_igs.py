@@ -7,7 +7,6 @@
 #
 ###############################################################################
 
-from axis_manip_bind import tof_to_initial_wavelength_igs_f
 from axis_manip_bind import tof_to_initial_wavelength_igs_d
 from nessi_vector_bind import *
 import test_common_bind
@@ -32,15 +31,11 @@ dist_sample_detector = 0.51
 dist_sample_detector_err2 = 0.05
 
 # Create input vectors
-Input_F = FloatNessiVector()
-Input_Err2_F = FloatNessiVector()
 Input_D = DoubleNessiVector()
 Input_Err2_D = DoubleNessiVector()
 
 # Place values in the input vectors
 for counter in range(NUM_VAL):
-    Input_F.append(float(counter+1))
-    Input_Err2_F.append(float(counter+0.5))
     Input_D.append(float(counter+1))
     Input_Err2_D.append(float(counter+0.5))
 
@@ -49,26 +44,12 @@ for counter in range(NUM_VAL):
 ###############################################################################
 
 # Truth values for tof_to_initial_wavelength_igs vector-vector version
-TruthOutput_VV_F = FloatNessiVector()
-TruthOutput_VV_F.append(-0.5858391523)
-TruthOutput_VV_F.append(-0.5822427272)
-TruthOutput_VV_F.append(-0.5786463618)
-TruthOutput_VV_F.append(-0.5750499367)
-TruthOutput_VV_F.append(-0.5714535713)
-
 TruthOutput_VV_D = DoubleNessiVector()
 TruthOutput_VV_D.append(-0.58583914499999989)
 TruthOutput_VV_D.append(-0.58224275045454543)
 TruthOutput_VV_D.append(-0.57864635590909085)
 TruthOutput_VV_D.append(-0.57504996136363628)
 TruthOutput_VV_D.append(-0.57145356681818171)
-
-TruthOutput_Err2_VV_F = FloatNessiVector()
-TruthOutput_Err2_VV_F.append(0.146686196327)
-TruthOutput_Err2_VV_F.append(0.146351963281)
-TruthOutput_Err2_VV_F.append(0.146019846200)
-TruthOutput_Err2_VV_F.append(0.145689859986)
-TruthOutput_Err2_VV_F.append(0.145362034440)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 TruthOutput_Err2_VV_D.append(0.14668620920470620)
@@ -78,11 +59,7 @@ TruthOutput_Err2_VV_D.append(0.14568988361795109)
 TruthOutput_Err2_VV_D.append(0.14536205080927291)
 
 # Truth values for tof_to_initial_wavelength_igs scalar-scalar version
-TruthOutput_SS_F = -0.5858391523
-
 TruthOutput_SS_D = -0.58583914499999989
-
-TruthOutput_Err2_SS_F = 0.14668619632
 
 TruthOutput_Err2_SS_D = 0.14668620920470620
 
@@ -92,36 +69,15 @@ TruthOutput_Err2_SS_D = 0.14668620920470620
 
 # Output placeholders for tof_to_initial_wavelength_igs vector-vector
 # version
-Output_VV_F = FloatNessiVector(len(Input_F))
 Output_VV_D = DoubleNessiVector(len(Input_D))
-Output_Err2_VV_F = FloatNessiVector(len(Input_Err2_F))
 Output_Err2_VV_D = DoubleNessiVector(len(Input_Err2_D))
 
 # Output placeholders for tof_to_initial_wavelength_igs scalar-scalar
 # version
-Output_SS_F = 0.0
 Output_SS_D = 0.0
-Output_Err2_SS_F = 0.0
 Output_Err2_SS_D = 0.0
 
 print "Checking Vector-Vector TOF to Initial Wavelength IGS Binding Function"
-
-tof_to_initial_wavelength_igs_f(Input_F, Input_Err2_F,
-                                final_wavelength,
-                                final_wavelength_err2,
-                                time_offset, time_offset_err2,
-                                dist_source_sample,
-                                dist_source_sample_err2,
-                                dist_sample_detector,
-                                dist_sample_detector_err2,
-                                Output_VV_F, Output_Err2_VV_F)
-
-mess = test_common_bind.makeCheck("tof_to_initial_wavelength_igs_f",
-                                  Output_VV_F,
-                                  TruthOutput_VV_F,
-                                  Output_Err2_VV_F,
-                                  TruthOutput_Err2_VV_F)
-print mess
 
 tof_to_initial_wavelength_igs_d(Input_D, Input_Err2_D,
                                 final_wavelength,
@@ -141,23 +97,6 @@ mess = test_common_bind.makeCheck("tof_to_initial_wavelength_igs_d",
 print mess
 print
 print "Checking Scalar-Scalar TOF to Initial Wavelength IGS Binding Function"
-
-tof_to_initial_wavelength_igs_f(Input_F[0], Input_Err2_F[0],
-                                final_wavelength,
-                                final_wavelength_err2,
-                                time_offset, time_offset_err2,
-                                dist_source_sample,
-                                dist_source_sample_err2,
-                                dist_sample_detector,
-                                dist_sample_detector_err2,
-                                Output_SS_F, Output_Err2_SS_F)
-
-#mess = test_common_bind.makeCheck("tof_to_initial_wavelength_igs_f",
-#Output_SS_F,
-#                                  TruthOutput_SS_F,
-#                                  Output_Err2_SS_F,
-#                                  TruthOutput_Err2_SS_F)
-#print mess
 
 tof_to_initial_wavelength_igs_d(Input_D[0], Input_Err2_D[0],
                                 final_wavelength,
