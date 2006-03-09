@@ -49,16 +49,24 @@ def MakeCheck(function_type,\
     dataval = ""
     err2val = ""
 
-    if (function_type=="double"):
-        dataval = utils.vector_is_equals(output, truth_output)
-        err2val = utils.vector_is_equals(output_err2, truth_output_err2)
-    elif (function_type=="int"):
+    if (function_type=="double" or \
+		function_type=="int" or \
+		function_type=="vv" or \
+		function_type=="vs" or \
+		function_type=="sv"):
         dataval = utils.vector_is_equals(output, truth_output)
         err2val = utils.vector_is_equals(output_err2, truth_output_err2)
     else:
         raise TypeError, "Function type not recognized!"
 
-    mess = function_type
+    if function_type=="vv":
+        mess = "vector-vector"
+    elif function_type=="vs":
+        mess = "vector-scalar"
+    elif function_type=="sv":
+        mess = "scalar-vector"
+    else:
+        mess = function_type
 
     if (function_type=="double"):
         mess += "............................."
@@ -80,38 +88,50 @@ def MakeCheck(function_type,\
 
     return mess
 
-
-
-def makeCheck1(funcName, output, truth_output):
+def MakeCheck1(function_type,\
+			   output,\
+			   truth_output,\
+			   output_err2,\
+			   truth_output_err2):
 
     """
     
-       This function checks output and truth vectors for data
+       This function checks output and truth vectors for both data and
+       square of the uncertainty in the data (err2) arrays.
 
-       funcName          : this is the name of the Swig binding layer function
+       function_type     : this is the type of the Swig binding layer function
        output            : this is the data array to be checked
        truth_output      : this is the truth data array to be checked against
+       output_err2       : this is the err2 array to be checked
+       truth_output_err2 : this is the truth err2 array to be checked against
     """
 
     dataval = ""
+    err2val = ""
 
-    if funcName.endswith("_f"):
-        dataval = vector_is_equals_f(output, truth_output)
-    elif funcName.endswith("_d"):
-        dataval = vector_is_equals_d(output, truth_output)
-    elif funcName.endswith("_i"):
-        dataval = vector_is_equals_i(output, truth_output)
-    elif funcName.endswith("_u"):
-        dataval = vector_is_equals_u(output, truth_output)
+    dataval = utils.compare(output, truth_output)
+    err2val = utils.compare(output_err2, truth_output_err2)
+
+    mess = "scalar-scalar"
+
+    if (function_type=="double"):
+        mess += "............................."
     else:
-        raise TypeError, "Function type not recognized!"
+        mess += "................................"
 
-    mess = funcName
-    mess += "............................."
+    if dataval != 0 or err2val != 0:
 
-    if dataval == False:
-        mess += " Data Not OK"
+        if dataval != 0:
+            if err2val != 0:
+                mess += " Data and Err2 Not OK"
+            else:
+                mess += " Data Not OK"
+        elif err2val != 0:
+            mess += " Err2 Not OK"
+
     else:
         mess += " Functionality OK"
 
     return mess
+
+
