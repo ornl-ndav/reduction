@@ -29,6 +29,7 @@
 
 import nessi_vector
 import axis_manip_bind
+import vpair_bind
 
 ##
 # \namespace axis_manip
@@ -246,9 +247,14 @@ def energy_transfer(initial_energy, initial_energy_err2,\
             return energy_transfer, energy_transfer_err2
 
         except AttributeError:
-            raise NotImplementedError, "Scalar-Scalar version of \
-            energy_transfer is not implemented"
+            energy_transfer_ss = vpair_bind.DoubleVPair()
+            axis_manip_bind.energy_transfer_ss_d(float(initial_energy),\
+												 float(initial_energy_err2),\
+												 float(final_energy),\
+												 float(final_energy_err2),\
+												 energy_transfer_ss)
 
+            return energy_transfer_ss.val, energy_transfer_ss.val_err2
 ##
 # \}
 
@@ -485,8 +491,17 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
             return Q, Q_err2
 
         except AttributeError:
-            raise NotImplementedError, "Scalar-Scalar version of \
-            init_scatt_wavevector_to_scalar_Q is not implemented"
+            init_scatt_wavevector_to_scalar_Q_ss = vpair_bind.DoubleVPair()
+            axis_manip_bind.init_scatt_wavevector_to_scalar_Q_ss_d(\
+				float(initial_wavevector),\
+				float(initial_wavevector_err2),\
+				float(final_wavevector),\
+				float(final_wavevector_err2),\
+				float(polar),\
+				float(polar_err2),\
+				init_scatt_wavevector_to_scalar_Q_ss)
+
+            return init_scatt_wavevector_to_scalar_Q_ss.val, init_scatt_wavevector_to_scalar_Q_ss.val_err2
 
 ##
 # \}
