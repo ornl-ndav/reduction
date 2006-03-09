@@ -134,4 +134,34 @@ def MakeCheck1(function_type,\
 
     return mess
 
+def MakeCheck2(function_type,\
+			   output,\
+			   truth_output):
+
+    """
+    
+       This function checks output and truth vectors for data arrays.
+
+       function_type     : this is the type of the Swig binding layer function
+       output            : this is the data array to be checked
+       truth_output      : this is the truth data array to be checked against
+    """
+
+    dataval = ""
+
+    dataval = utils.vector_is_equals(output, truth_output)
+
+    mess = function_type
+
+    if (function_type=="double"):
+        mess += "............................."
+    else:
+        mess += "................................"
+
+    if dataval == False:
+        mess += " Data Not OK"
+    else:
+        mess += " Functionality OK"
+
+    return mess
 
