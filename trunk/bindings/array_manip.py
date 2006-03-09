@@ -51,7 +51,7 @@ import array_manip_bind
 #
 
 ##
-# \defgroup py_add_ncerr array_manip::add_ncerr
+# \defgroup add_ncerr array_manip::add_ncerr
 # \{
 
 ##
@@ -317,7 +317,7 @@ def add_ncerr(a,ae2,b,be2):
 # \}
 
 ##
-# \defgroup py_sub_ncerr array_manip::sub_ncerr
+# \defgroup sub_ncerr array_manip::sub_ncerr
 # \{
 
 ##
@@ -672,7 +672,7 @@ def sub_ncerr(a,ae2,b,be2):
 # \}
 
 ##
-# \defgroup py_mult_ncerr array_manip::mult_ncerr
+# \defgroup mult_ncerr array_manip::mult_ncerr
 # \{
 
 ##
@@ -936,7 +936,7 @@ def mult_ncerr(a,ae2,b,be2):
 # \}
 
 ##
-# \defgroup py_div_ncerr array_manip::div_ncerr
+# \defgroup div_ncerr array_manip::div_ncerr
 # \{
 
 ##
@@ -1297,7 +1297,7 @@ def div_ncerr(a,ae2,b,be2):
 # \}
 
 ##
-# \defgroup py_sumw_ncerr array_manip::sumw_ncerr
+# \defgroup sumw_ncerr array_manip::sumw_ncerr
 # \{
 
 ##

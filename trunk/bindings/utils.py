@@ -53,7 +53,7 @@ import utils_bind
 #
 
 ##
-# \defgroup py_weighted_average utils::weighted_average
+# \defgroup weighted_average utils::weighted_average
 # \{
 
 ##
@@ -139,7 +139,7 @@ def weighted_average(a,ae2,start,fin):
 # \}
 
 ##
-# \defgroup py_vector_is_equals utils::vector_is_equals
+# \defgroup vector_is_equals utils::vector_is_equals
 # \{
 
 def vector_is_equals(output,true_output):
@@ -166,7 +166,7 @@ def vector_is_equals(output,true_output):
 # \}  // end of vector_is_equals group
 
 ##
-# \defgroup py_compare utils::compare
+# \defgroup compare utils::compare
 # \{
 
 def compare(output,true_output):

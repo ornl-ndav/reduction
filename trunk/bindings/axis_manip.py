@@ -50,7 +50,7 @@ import vpair_bind
 #
 
 ##
-# \defgroup py_energy_transfer axis_manip::energy_transfer
+# \defgroup energy_transfer axis_manip::energy_transfer
 # \{
 
 ##
@@ -259,7 +259,7 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # \}
 
 ##
-# \defgroup py_init_scatt_wavevector_to_scalar_Q \
+# \defgroup init_scatt_wavevector_to_scalar_Q \
 # axis_manip::init_scatt_wavevector_to_scalar_Q
 # \{
 
@@ -507,7 +507,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # \}
 
 ##
-# \defgroup py_rebin_axis_1D axis_manip::rebin_axis_1D
+# \defgroup rebin_axis_1D axis_manip::rebin_axis_1D
 # \{
 
 ##
@@ -773,7 +773,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # \}
 
 ##
-# \defgroup py_reverse_array_cp axis_manip::reverse_array_cp
+# \defgroup reverse_array_cp axis_manip::reverse_array_cp
 # \{
 
 ##
@@ -848,7 +848,7 @@ def reverse_array_cp(input):
 # \}
 
 ##
-# \defgroup py_reverse_array_nc axis_manip::reverse_array_nc
+# \defgroup reverse_array_nc axis_manip::reverse_array_nc
 # \{
 
 ##
@@ -920,7 +920,7 @@ def reverse_array_nc(input):
 #\}
 
 ##
-# \defgroup py_tof_to_initial_wavelength_igs \
+# \defgroup tof_to_initial_wavelength_igs \
 # axis_manip::tof_to_initial_wavelength_igs
 # \{
 
@@ -1122,7 +1122,7 @@ def tof_to_initial_wavelength_igs(tof,\
 # \}
 
 ##
-# \defgroup py_tof_to_wavelength axis_manip::tof_to_wavelength
+# \defgroup tof_to_wavelength axis_manip::tof_to_wavelength
 # \{
 
 ##
@@ -1256,7 +1256,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 # \}
 
 ##
-# \defgroup py_wavelength_to_energy axis_manip::wavelength_to_energy
+# \defgroup wavelength_to_energy axis_manip::wavelength_to_energy
 # \{
 
 ##
@@ -1377,7 +1377,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 # \}
 
 ##
-# \defgroup py_wavelength_to_scalar_k axis_manip::wavelength_to_scalar_k
+# \defgroup wavelength_to_scalar_k axis_manip::wavelength_to_scalar_k
 # \{
 
 ##
