@@ -1083,7 +1083,8 @@ def tof_to_initial_wavelength_igs(tof,\
                     tof_err2.__array__,\
                     float(final_wavelength), \
                     float(final_wavelength_err2),\
-                    float(time_offset), float(time_offset_err2),\
+                    float(time_offset), \
+					float(time_offset_err2),\
                     float(dist_source_sample), \
                     float(dist_source_sample_err2),\
                     float(dist_sample_detector), \
@@ -1099,7 +1100,8 @@ def tof_to_initial_wavelength_igs(tof,\
                     tof_err2.__array__,\
                     float(final_wavelength),\
                     float(final_wavelength_err2),\
-                    float(time_offset, time_offset_err2),\
+                    float(time_offse),\
+					float(time_offset_err2),\
                     float(dist_source_sample),\
                     float(dist_source_sample_err2),\
                     float(dist_sample_detector),\
@@ -1113,10 +1115,20 @@ def tof_to_initial_wavelength_igs(tof,\
         return initial_wavelength, initial_wavelength_err2
 
     except AttributeError:
-        pass
-
-    raise NotImplementedError, "Scalar version of \
-    tof_to_initial_wavelength_igs is not implemented."
+        initial_wavelength_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.tof_to_initial_wavelength_igs_ss_d(\
+			float(tof),\
+			float(tof_err2),\
+			float(final_wavelength),\
+			float(final_wavelength_err2),\
+			float(time_offset),\
+			float(time_offset_err2),\
+			float(dist_source_sample),\
+			float(dist_source_sample_err2),\
+			float(dist_sample_detector),\
+			float(dist_sample_detector_err2),\
+			initial_wavelength_ss)
+        return initial_wavelength_ss.val, initial_wavelength_ss.val_err2
 
 ##
 # \}
@@ -1247,10 +1259,14 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
         return wavelength, wavelength_err2
 
     except AttributeError:
-        pass
-
-    raise NotImplementedError, "Scalar version of tof_to_wavelength is not \
-    implemented."
+        wavelength_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.tof_to_wavelength_ss_d(\
+			float(tof),\
+			float(tof_err2),\
+			float(pathlength),\
+			float(pathlength_err2),\
+			wavelength_ss)
+        return wavelength_ss.val, wavelength_ss.val_err2
 
 ##
 # \}
@@ -1368,10 +1384,12 @@ def wavelength_to_energy(wavelength, wavelength_err2):
         return energy, energy_err2
 
     except AttributeError:
-        pass
-
-    raise NotImplementedError, "Scalar version of wavelength_to_energy is not \
-    implemented."
+        energy_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.wavelength_to_energy_d(\
+			float(wavelength),\
+			float(wavelength_err2),\
+			energy_ss)
+        return energy_ss.val, energy_ss.val_err2
 
 ##
 # \}
@@ -1487,10 +1505,12 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
         return wavevector, wavevector_err2
 
     except AttributeError:
-        pass
-
-    raise NotImplementedError, "Scalar version of wavelength_to_scalar_k is \
-    not implemented."
+        wavevector_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.wavelength_to_scalar_k_d(\
+			float(wavelength),\
+			float(wavelength_err2),\
+			wavevector_ss)
+        return wavevector_ss.val, wavevector_ss.val_err2
 
 ##
 # \}
