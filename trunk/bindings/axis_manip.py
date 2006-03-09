@@ -1100,7 +1100,7 @@ def tof_to_initial_wavelength_igs(tof,\
                     tof_err2.__array__,\
                     float(final_wavelength),\
                     float(final_wavelength_err2),\
-                    float(time_offse),\
+                    float(time_offset),\
 					float(time_offset_err2),\
                     float(dist_source_sample),\
                     float(dist_source_sample_err2),\
