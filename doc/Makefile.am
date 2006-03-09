@@ -22,34 +22,49 @@
 
 # $Id$
 
-PDFFILE = $(PACKAGE_TARNAME)-$(VERSION).pdf
+CPP_PDFFILE = $(PACKAGE_TARNAME)_cpp-$(VERSION).pdf
+PYTHON_PDFFILE = $(PACKAGE_TARNAME)_python-$(VERSION).pdf
 
 if PDFDOC
-MAKEPDF = ./makepdf $(PDFFILE)
-CPPDF = cp latex/$(PDFFILE) $(DRLIBDOCDIR)
-RMPDF = rm $(DRLIBDOCDIR)/$(PDFFILE)
+MAKEPDF = ./makepdf $(CPP_PDFFILE) $(PYTHON_PDFFILE)
+CP_CPP_PDF = cp latex_cpp/$(CPP_PDFFILE) $(DRLIBDOCDIR)
+CP_PYTHON_PDF = cp latex_python/$(PYTHON_PDFFILE) $(DRLIBDOCDIR)
+RM_CPP_PDF = rm $(DRLIBDOCDIR)/$(CPP_PDFFILE)
+RM_PYTHON_PDF = rm $(DRLIBDOCDIR)/$(PYTHON_PDFFILE)
 else
 MAKEPDF =
-CPPDF =
-RMPDF =
+CP_CPP_PDF =
+CP_PYTHON_PDF =
+RM_CPP_PDF =
+RM_PYTHON_PDF =
 endif
 
-EXTRA_DIST = html latex
-nodist_EXTRA_DIST = latex/*.aux latex/*.dvi latex/*.log
+EXTRA_DIST = html_cpp html_python images index.html install latex_cpp \
+	     latex_python makepdf material scl_cpp.cfg scl_python.cfg tutorials
+
+nodist_EXTRA_DIST = latex_cpp/*.aux latex_cpp/*.dvi latex_cpp/*.log \
+		    latex_python/*.aux latex_python/*.dvi latex_python/*.log
 
 docs:
-	doxygen sns_dr_lib.cfg
+	doxygen scl_cpp.cfg
+	doxygen scl_python.cfg
 	$(MAKEPDF)
 
 install:
-	./install $(DRLIBDOCDIR) $(PACKAGE_TARNAME) $(VERSION)
-	$(CPPDF)
+	./install $(DRLIBDOCDIR)
+	$(CP_CPP_PDF)
+	$(CP_PYTHON_PDF)
 
 uninstall:
-	rm -rf $(DRLIBDOCDIR)/html
-	rm -rf $(DRLIBDOCDIR)/latex
-	$(RMPDF)
+	rm -rf $(DRLIBDOCDIR)/html_cpp
+	rm -rf $(DRLIBDOCDIR)/latex_cpp
+	rm -rf $(DRLIBDOCDIR)/html_python
+	rm -rf $(DRLIBDOCDIR)/latex_python
+	$(RM_CPP_PDF)	
+	$(RM_PYTHON_PDF)
 
 clean-local:
-	rm -rf html
-	rm -rf latex
+	rm -rf html_cpp
+	rm -rf latex_cpp
+	rm -rf html_python
+	rm -rf latex_python
