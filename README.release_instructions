@@ -48,11 +48,10 @@ configure.ac
   numbers. Changes these to the appropriate versions for the common
   library release.
 
-In nessi:
+In doc:
 
-libinfo.hpp
+index.html
   - The version number for the common libraries is contained in this
-  file on the \mainpage line. Change to the appropriate version for the
-  release.
+  file. Change to the appropriate version for the release.
 
 $Id$
