@@ -1388,7 +1388,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 
     except AttributeError:
         energy_ss = vpair_bind.DoubleVPair()
-        axis_manip_bind.wavelength_to_energy_d(\
+        axis_manip_bind.wavelength_to_energy_ss_d(\
 			float(wavelength),\
 			float(wavelength_err2),\
 			energy_ss)
