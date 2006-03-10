@@ -52,3 +52,127 @@ AC_DEFUN(
         fi
     fi
   ])
+
+# SCL_SWIG_CHECK
+#
+# Adds an Autotools check on the version of Swig for the SNS Common Libraries
+#
+# $1 = required version of swig
+#
+# e.g. SCL_SWIG_CHECK(1.3.28)
+#
+AC_DEFUN(
+  [SCL_SWIG_CHECK],
+  [AC_CHECK_PROGS([SWIG], [swig])
+    if test -z "$SWIG" ; then
+	AC_MSG_WARN([Cannot find swig. See http://www.swig.org])
+    elif test -n "$1" ; then
+	AC_MSG_CHECKING([for SWIG version])
+	[swig_version=`$SWIG -version 2>&1 | grep 'SWIG Version' | cut -d" " -f3`]
+        AC_MSG_RESULT([$swig_version])
+	if test -n "$swig_version" ; then
+          [required=$1]
+          [required_major=`echo $required | sed 's/[^0-9].*//'`]
+          if test -z "$required_major" ; then
+            [required_major=0]
+          fi
+          [required=`echo $required | sed 's/[0-9]*[^0-9]//'`]
+          [required_minor=`echo $required | sed 's/[^0-9].*//'`]
+          if test -z "$required_minor" ; then
+             [required_minor=0]
+          fi
+          [required=`echo $required | sed 's/[0-9]*[^0-9]//'`]
+          [required_patch=`echo $required | sed 's/[^0-9].*//'`]
+          if test -z "$required_patch" ; then
+             [required_patch=0]
+          fi
+          # Calculate the available version number components
+          [available=`echo $swig_version | sed 's/[^0-9]*//'`]
+          [available_major=`echo $available | sed 's/[^0-9].*//'`]
+          if test -z "$available_major" ; then
+             [available_major=0]
+          fi
+          [available=`echo $available | sed 's/[0-9]*[^0-9]//'`]
+          [available_minor=`echo $available | sed 's/[^0-9].*//'`]
+          if test -z "$available_minor" ; then
+             [available_minor=0]
+          fi
+          [available=`echo $available | sed 's/[0-9]*[^0-9]//'`]
+          [available_patch=`echo $available | sed -e 's/.*Patch[^0-9]*//' -e 's/[^0-9]*//g' `]
+          if test -z "$available_patch" ; then
+             [available_patch=0]
+          fi
+
+	  if test $available_major -ne $required_major \
+               -o $available_minor -ne $required_minor \
+               -o $available_patch -lt $required_patch ; then
+	    AC_MSG_ERROR([You need $SWIG version $1 and have $SWIG version $swig_version])
+	  else
+	    AM_CONDITIONAL(HAVE_SWIG, [test ! -z "$SWIG"])
+	  fi
+       fi
+    fi
+  ])
+
+# SCL_DOXYGEN_CHECK
+#
+# Adds an Autotools check on the version of Doxygen for the SNS Common 
+# Libraries
+#
+# $1 = required version of doxygen
+#
+# e.g. SCL_DOXYGEN_CHECK(1.4.6)
+#
+AC_DEFUN(
+  [SCL_DOXYGEN_CHECK],
+  [AC_CHECK_PROGS([DOXYGEN], [doxygen])
+    if test -z "$DOXYGEN" ; then
+	AC_MSG_WARN([Cannot find doxygen. See http://www.doxygen.org])
+    elif test -n "$1" ; then
+	AC_MSG_CHECKING([for DOXYGEN version])
+	[doxygen_version=`$DOXYGEN --version 2>&1`]
+        AC_MSG_RESULT([$doxygen_version])
+	if test -n "$doxygen_version" ; then
+          [required=$1]
+          [required_major=`echo $required | sed 's/[^0-9].*//'`]
+          if test -z "$required_major" ; then
+            [required_major=0]
+          fi
+          [required=`echo $required | sed 's/[0-9]*[^0-9]//'`]
+          [required_minor=`echo $required | sed 's/[^0-9].*//'`]
+          if test -z "$required_minor" ; then
+             [required_minor=0]
+          fi
+          [required=`echo $required | sed 's/[0-9]*[^0-9]//'`]
+          [required_patch=`echo $required | sed 's/[^0-9].*//'`]
+          if test -z "$required_patch" ; then
+             [required_patch=0]
+          fi
+          # Calculate the available version number components
+          [available=`echo $doxygen_version | sed 's/[^0-9]*//'`]
+          [available_major=`echo $available | sed 's/[^0-9].*//'`]
+          if test -z "$available_major" ; then
+             [available_major=0]
+          fi
+          [available=`echo $available | sed 's/[0-9]*[^0-9]//'`]
+          [available_minor=`echo $available | sed 's/[^0-9].*//'`]
+          if test -z "$available_minor" ; then
+             [available_minor=0]
+          fi
+          [available=`echo $available | sed 's/[0-9]*[^0-9]//'`]
+          [available_patch=`echo $available | sed -e 's/.*Patch[^0-9]*//' -e 's/[^0-9]*//g' `]
+          if test -z "$available_patch" ; then
+             [available_patch=0]
+          fi
+
+	  if test $available_major -ne $required_major \
+               -o $available_minor -ne $required_minor \
+               -o $available_patch -lt $required_patch ; then
+	    AC_MSG_WARN([You need $DOXYGEN version $1 and have $DOXYGEN version $doxygen_version])
+	    AM_CONDITIONAL(HAVE_DOXYGEN, [bad])
+	  else
+	    AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
+	  fi
+       fi
+    fi
+  ])
