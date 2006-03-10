@@ -25,11 +25,8 @@
 # $Id$
 
 ##
-#\file bindings/nessi_vector.py
+#\file bindings/nessi_list.py
 #
-
-import array_manip_bind
-import nessi_vector_bind
 
 ##
 # \namespace nessi_vector
@@ -39,18 +36,18 @@ import nessi_vector_bind
 #
 # This class plays the role of a template for the function called
 #
-# For example: let us add together two NessiVectors of type float.
-# Once the two NessiVector have been defined and fill with data, using the
+# For example: let us add together two NessiLists of type float.
+# Once the two NessiList have been defined and fill with data, using the
 # function <i>add</i> is like using the function <i>add_f</i>
 # \code
-# >>> NessiVector_result = add(NessiVector_1, NessiVector_2)
+# >>> NessiList_result = add(NessiList_1, NessiList_2)
 # \endcode
 #
 
 ##
-# \defgroup NessiVector nessi_vector::NessiVector
+# \defgroup NessiList nessi_vector::NessiList
 # \{
-class NessiVector (list):
+class NessiList (list):
 
     FLOAT = "float"
     DOUBLE = "double"
@@ -60,106 +57,95 @@ class NessiVector (list):
     INT = "int"
 
 ##
-# \ingroup __init__ NessiVector
+# \ingroup __init__ NessiList
 #
 # \brief   Initialization of an instance.
-# A NessiVector can be defined in 4 ways.
+# A NessiList can be defined in 4 ways.
 #
 # - Without any argument:
 # \code
-# >>> MyVector1 = NessiVector()
+# >>> MyVector1 = NessiList()
 # \endcode
-# in such case, the NessiVector is empty and of type <i>double</i> by default.
+# in such case, the NessiList is empty and of type <i>double</i> by default.
 #
 # - By declaring its size:
 # \code
-# >>> MyVector2 = NessiVector(2)
+# >>> MyVector2 = NessiList(2)
 # \endcode
 # MyVector2 contains 2 elements, set to 0, of type <i>double</i> (by default)
 #
 # - By declaring its type:
 # \code
-# >>> MyVector3 = NessiVector(type="float")
+# >>> MyVector3 = NessiList(type="float")
 # \endcode
-# MyVector3 is an empty NessiVector of type <i>float</i>
+# MyVector3 is an empty NessiList of type <i>float</i>
 #
 # - By declaring its size and type:
 # \code
-# >>> MyVector4 = NessiVector(4,"int")
+# >>> MyVector4 = NessiList(4,"int")
 # \endcode
 # or
 # \code
-# >>> MyVector4 = NessiVector(length=4,type="int")
+# >>> MyVector4 = NessiList(length=4,type="int")
 # \endcode
-# \f$MyVector4\f$ is a 4 elements long, initialized to 0, NessiVector of type
+# \f$MyVector4\f$ is a 4 elements long, initialized to 0, NessiList of type
 # <i>int</i>
 #
-# \param self (INPUT) is the name of the NessiVector
+# \param self (INPUT) is the name of the NessiList
 # \param length (INPUT/OPTIONAL) is the length of the instance (0 by default)
 # \param type (INPUT/OPTIONAL) is the type of the instance (<i>double</i> by
 # default)
-    def __init__(self, length=0, type=DOUBLE):
+    def __init__(self, length=0, **kwargs):
+        import nessi_vector_bind
 
-        if type.lower()==NessiVector.UNSIGNED_INT or \
-               type.lower()==NessiVector.UNSIGNED or \
-               type.lower()==NessiVector.UINT:
-            self.__type__=self.UINT
+        # check the length argument
+        length=int(length)
+        if length<0:
+            raise Exception, "Cannot instantiate Vector with negative length"
 
-            if length >= 0:
-                self.__array__ = \
-                               nessi_vector_bind.UnsignedIntNessiVector(length)
+        # get the type from the keyword arguments or set the default
+        if(kwargs.has_key("type")):
+            type=kwargs["type"].lower()
+            if(type.lower()==NessiList.UNSIGNED_INT):
+                type=NessiList.UINT
+            elif(type.lower()==NessiList.UNSIGNED):
+                type=NessiList.UINT
             else:
-                raise Exception, "Cannot instantiate Vector \
-                        with negative length"
-
-        elif type.lower()==NessiVector.INT:
-            self.__type__=self.INT
-
-            if length >= 0:
-                self.__array__ = \
-                               nessi_vector_bind.IntNessiVector(length)
-            else:
-                raise Exception, "Cannot instantiate Vector \
-                with negative length"
-
-        elif type.lower() == NessiVector.FLOAT:
-            self.__type__=self.FLOAT
-
-            if length >= 0:
-                self.__array__ = \
-                               nessi_vector_bind.FloatNessiVector(length)
-            else:
-                raise Exception, "Cannot instantiate Vector \
-                with negative length"
-
-        elif type.lower() == NessiVector.DOUBLE:
-            self.__type__ = self.DOUBLE
-
-            if length >= 0:
-                self.__array__ = \
-                               nessi_vector_bind.DoubleNessiVector(length)
-            else:
-                raise Exception, "Cannot instantiate Vector \
-                with negative length"
+                type=type.lower() # lowercase everything else so code
+                                  # below works
         else:
-            raise Exception,"type not supported by NessiVector"
+            type=NessiList.DOUBLE # set the default value
+        self.__type__=type
+
+        # call the correct instructor
+        if type==NessiList.UINT:
+            self.__array__ = nessi_vector_bind.UnsignedIntNessiVector(length)
+        elif type==NessiList.INT:
+            self.__array__ = nessi_vector_bind.IntNessiVector(length)
+        elif type == NessiList.FLOAT:
+            self.__array__ = nessi_vector_bind.FloatNessiVector(length)
+        elif type == NessiList.DOUBLE:
+            self.__array__ = nessi_vector_bind.DoubleNessiVector(length)
+        else:
+            raise Exception,"type [%s] not supported by NessiList" % type
+
 ##
-# \ingroup append NessiVector
+# \ingroup append NessiList
 #
-# Function used to append elements to a NessiVector
+# Function used to append elements to a NessiList
 #
-# This function is used to append a value to an instance of the NessiVector,
-# <i>MyNessiVector</i>:
+# This function is used to append a value to an instance of the NessiList,
+# <i>MyNessiList</i>:
 # \code
-# >>> MyNessiVector.append(10.5)
+# >>> MyNessiList.append(10.5)
 # \endcode
 # The size of the instance increases of 1 unit and the new element appended is
 # the new last element of the instance. That can be a confusion in the case the
 # size of the instance has already been declared during the initialization
-# process. For example, if a NessiVector has been defined has a 5 elements
+# process. For example, if a NessiList has been defined has a 5 elements
 # long of type <i>double</i>
 # \code
-# >>> MyVector = NessiVector(5)
+# >>> MyVector = NessiList(5)
 # \endcode
 # the <i>append</i> method will add the new element after the 5 first "0".
 # elements
@@ -171,7 +157,7 @@ class NessiVector (list):
 # It is also possible to append several values in the same time as illustrated
 # here:
 # \code
-# >>> MyNessiVector.append(1,2,3,4,5,6,7,8)
+# >>> MyNessiList.append(1,2,3,4,5,6,7,8)
 # \endcode
 # This is the same as appending 1, then 2, then 3, and so on.... one after
 # the other.
@@ -183,7 +169,7 @@ class NessiVector (list):
 # ...
 # \endcode
 #
-# \param self (INPUT) is the name of the NessiVector
+# \param self (INPUT) is the name of the NessiList
 # \param number (INPUT) is the number to append
 #
     def append(self,*number):
@@ -191,11 +177,11 @@ class NessiVector (list):
             self.__array__.append(num)
 
 ##
-# \ingroup __repr__ NessiVector
+# \ingroup __repr__ NessiList
 #
-# Function that is used to get the real state of a NessiVector
+# Function that is used to get the real state of a NessiList
 # \code
-# >>> MyVector = NessiVector()
+# >>> MyVector = NessiList()
 # >>> MyVector.append(1,2,3,4,5)
 # >>> MyVector
 # [1.0,2.0,3.0,4.0,5.0]
@@ -205,38 +191,38 @@ class NessiVector (list):
         return self.__str__()
 
 ##
-# \ingroup __iter__ NessiVector
+# \ingroup __iter__ NessiList
 #
-# Function returns an iterator for a NessiVector
+# Function returns an iterator for a NessiList
 #
     def __iter__(self):
         return iter(self.__array__)
 
 ##
-# \ingroup __getitem__ NessiVector
+# \ingroup __getitem__ NessiList
 #
-# Function used to get an element of a NessiVector.
-# To get the \f$i^{th}\f$ value of the NessiVector \f$MyVectorA\f$,
+# Function used to get an element of a NessiList.
+# To get the \f$i^{th}\f$ value of the NessiList \f$MyVectorA\f$,
 # \code
 # >>> MyVectorA[i]
 # \endcode
-# The last index of the NessiVector is displayed if one ask for an element
-# of the NessiVector outside its range
+# The last index of the NessiList is displayed if one ask for an element
+# of the NessiList outside its range
 #
     def __getitem__(self,m):     # need to throw exception when m>len(self)
         return self.__array__[m]
 
 ##
-# \ingroup __getslice__ NessiVector
+# \ingroup __getslice__ NessiList
 #
-# Function used to get a range of values from a NessiVector. Negative
+# Function used to get a range of values from a NessiList. Negative
 # indices are not supported.
 #
-# \param self (INPUT) is the name of the NessiVector
+# \param self (INPUT) is the name of the NessiList
 # \param i (INPUT/OPTIONAL) is the index of the first element to get (0 by
-# default, i.e., first element of the NessiVector)
+# default, i.e., first element of the NessiList)
 # \param j (INPUT/OPTIONAL) is the index + 1 of the last element to get (-1 by
-# default, i.e., last element of the NessiVector)
+# default, i.e., last element of the NessiList)
 # \return
 # - The elements defined by the slice
 #
@@ -244,234 +230,234 @@ class NessiVector (list):
         return self.__array__[i:j]
 
 ##
-# \ingroup __len__ NessiVector
+# \ingroup __len__ NessiList
 #
-# Function used to get the length of a NessiVector
+# Function used to get the length of a NessiList
 #
 # \code
 # >>> len(MyVectorA)
 # \endcode
 #
-# \param self (INPUT) is the name of the NessiVector
+# \param self (INPUT) is the name of the NessiList
 # \return
-# - The length of the NessiVector
+# - The length of the NessiList
 #
     def __len__(self):
         return len(self.__array__)
 
 ##
-# \ingroup __add__ NessiVector
+# \ingroup __add__ NessiList
 #
-# The operator \f$+\f$ allows to add two NessiVector together or each member
-# of a NessiVector with a scalar
+# The operator \f$+\f$ allows to add two NessiList together or each member
+# of a NessiList with a scalar
 #
-# To add two NessiVectors together or a NessiVector with a scalar, instead of
-# using the function <i>add</i> provided by the NessiVectorUtils module,
+# To add two NessiLists together or a NessiList with a scalar, instead of
+# using the function <i>add</i> provided by the NessiListUtils module,
 # you can simply use the following technique:
 # \code
-# >>> NessiVector_VV = NessiVector_1 + NessiVector_2
-# >>> NessiVector_VS = NessiVector + Scalar
+# >>> NessiList_VV = NessiList_1 + NessiList_2
+# >>> NessiList_VS = NessiList + Scalar
 # \endcode
-# \return The resulting NessiVector
+# \return The resulting NessiList
 #
     def __add__(self,right):
         try:
             if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiLists don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
-                c = NessiVector(type=self.__type__)
+                c = NessiList(type=self.__type__)
                 for (a,b) in map(None,self.__array__,right.__array__):
                     c.append(a+b)
                 return c
         except AttributeError:
-            c = NessiVector(type=self.__type__)
+            c = NessiList(type=self.__type__)
             for i in range(len(self)):
                 c.append(right+self.__array__[i])
             return c
         except IndexError:
-            raise IndexError,"NessiVectors don't have the same size"
+            raise IndexError,"NessiLists don't have the same size"
 
 ##
-# \ingroup __radd__ NessiVector
+# \ingroup __radd__ NessiList
 #
-# The operator \f$+\f$ allows to add a scalar with a NessiVector.
+# The operator \f$+\f$ allows to add a scalar with a NessiList.
 #
-# To add each element of a NessiVector with a scalar, instead of using
-# the function <i>add</i> provided by the NessiVectorUtils module, you
+# To add each element of a NessiList with a scalar, instead of using
+# the function <i>add</i> provided by the NessiListUtils module, you
 # can simply use the following technique:
 # \code
-# >>> NessiVector_SV = Scalar + NessiVector
+# >>> NessiList_SV = Scalar + NessiList
 # \endcode
-# \return The resulting NessiVector
+# \return The resulting NessiList
 #
     def __radd__(self,left):
-        c=NessiVector(type=self.__type__)
+        c=NessiList(type=self.__type__)
         for i in range(len(self)):
             c.append(self.__array__[i]+left)
         return c
 
 ##
-# \ingroup __sub__ NessiVector
+# \ingroup __sub__ NessiList
 #
-# The operator \f$-\f$ allows to substract two NessiVectors or each member of
-# a NessiVector by a scalar.
+# The operator \f$-\f$ allows to substract two NessiLists or each member of
+# a NessiList by a scalar.
 #
-# To substract one NessiVector from another or each member of a NessiVector
+# To substract one NessiList from another or each member of a NessiList
 # by a scalar, instead of using the function <i>sub</i> provided by the
-# NessiVectorUtils module, you can simply use the following technique:
+# NessiListUtils module, you can simply use the following technique:
 # \code
-# >>> NessiVector_VV = NessiVector_1 - NessiVector_2
-# >>> NessiVector_VS = NessiVector - Scalar
+# >>> NessiList_VV = NessiList_1 - NessiList_2
+# >>> NessiList_VS = NessiList - Scalar
 # \endcode
 #
-# \return the resulting NessiVector
+# \return the resulting NessiList
 #
     def __sub__(self,right):
         try:
             if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiLists don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
-                c = NessiVector(type=self.__type__)
+                c = NessiList(type=self.__type__)
                 for (a,b) in map(None,self.__array__,right.__array__):
                     c.append(a-b)
                 return c
         except AttributeError:
-            c = NessiVector(type=self.__type__)
+            c = NessiList(type=self.__type__)
             for i in range(len(self)):
                 c.append(self.__array__[i]-right)
             return c
         except IndexError:
-            raise IndexError,"NessiVectors don't have the same size"
+            raise IndexError,"NessiLists don't have the same size"
 ##
-# \ingroup __rsub__ NessiVector
+# \ingroup __rsub__ NessiList
 #
-# The operator \f$-\f$ allows to substract a scalar by a NessiVector.
+# The operator \f$-\f$ allows to substract a scalar by a NessiList.
 #
-# To substract each element of a NessiVector from a scalar, instead of
-# using the function <i>sub</i> provided by the NessiVectorUtils module,
+# To substract each element of a NessiList from a scalar, instead of
+# using the function <i>sub</i> provided by the NessiListUtils module,
 # you can simply use the following technique:
 # \code
-# >>> NessiVector_SV = Scalar - NessiVector
+# >>> NessiList_SV = Scalar - NessiList
 # \endcode
 #
-# \return the resulting NessiVector
+# \return the resulting NessiList
 #
     def __rsub__(self,left):
-        c=NessiVector(type=self.__type__)
+        c=NessiList(type=self.__type__)
         for i in range(len(self)):
             c.append(left - self.__array__[i])
         return c
 
 ##
-# \ingroup __mult__ NessiVector
+# \ingroup __mult__ NessiList
 #
-# The operator \f$\times\f$ allows to multiply two NessiVectors.
+# The operator \f$\times\f$ allows to multiply two NessiLists.
 #
-# To multiply two NessiVectors or each member of a NessiVector by a scalar,
-# instead of using the function <i>mult</i> provided by the NessiVectorUtils
+# To multiply two NessiLists or each member of a NessiList by a scalar,
+# instead of using the function <i>mult</i> provided by the NessiListUtils
 # module, you can simply use the following technique:
 # \code
-# >>> NessiVector_VV = NessiVector_1 * times NessiVector_2
-# >>> NessiVector_VS = NessiVector * Scalar
+# >>> NessiList_VV = NessiList_1 * times NessiList_2
+# >>> NessiList_VS = NessiList * Scalar
 # \endcode
 #
     def __mul__(self,right):
         try:
             if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiLists don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
-                c = NessiVector(type=self.__type__)
+                c = NessiList(type=self.__type__)
                 for (a,b) in map(None,self.__array__,right.__array__):
                     c.append(a*b)
                 return c
         except AttributeError:
-            c = NessiVector(type=self.__type__)
+            c = NessiList(type=self.__type__)
             for i in range(len(self)):
                 c.append(right*self.__array__[i])
             return c
         except IndexError:
-            raise IndexError,"NessiVectors don't have the same size"
+            raise IndexError,"NessiLists don't have the same size"
 
 ##
-# \ingroup __rmult__ NessiVector
+# \ingroup __rmult__ NessiList
 #
-# The operator \f$\times\f$ allows to multiply a scalar by a NessiVector.
+# The operator \f$\times\f$ allows to multiply a scalar by a NessiList.
 #
-# To multiply each element of a NessiVector by a scalar, instead of using
-# the function <i>mult</i> provided by the NessiVectorUtils module, you
+# To multiply each element of a NessiList by a scalar, instead of using
+# the function <i>mult</i> provided by the NessiListUtils module, you
 # can simply use the following technique:
 # \code
-# >>> NessiVector_SV = scalar *  times NessiVector
+# >>> NessiList_SV = scalar *  times NessiList
 # \endcode
 #
-# \return The resulting NessiVector
+# \return The resulting NessiList
 #
     def __rmul__(self,left):
-        c=NessiVector(type=self.__type__)
+        c=NessiList(type=self.__type__)
         for i in range(len(self)):
             c.append(left * self.__array__[i])
         return c
 
 ##
-# \ingroup __div__ NessiVector
+# \ingroup __div__ NessiList
 #
-# The operator \f$/\f$ allows to divide two NessiVectors.
+# The operator \f$/\f$ allows to divide two NessiLists.
 #
-# To divide two NessiVectors or each element of a NessiVector by a scalar,
-# instead of using the function <i>div</i> provided by the NessiVectorUtils
+# To divide two NessiLists or each element of a NessiList by a scalar,
+# instead of using the function <i>div</i> provided by the NessiListUtils
 # module, you can simply use the following technique:
 # \code
-# >>> NessiVector_VV = NessiVector_1 / NessiVector_2
-# >>> NessiVector_VS = NessiVector / Scalar
+# >>> NessiList_VV = NessiList_1 / NessiList_2
+# >>> NessiList_VS = NessiList / Scalar
 # \endcode
 #
     def __div__(self,right):
         try:
             if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiVectors don't have the same type"
+                 raise AttributeError, "NessiLists don't have the same type"
             if (len(self)!=len(right)):
                 raise IndexError
             else:
-                c = NessiVector(type=self.__type__)
+                c = NessiList(type=self.__type__)
                 for (a,b) in map(None,self.__array__,right.__array__):
                     c.append(a/b)
                 return c
         except AttributeError:
-            c = NessiVector(type=self.__type__)
+            c = NessiList(type=self.__type__)
             for i in range(len(self)):
                 c.append(self.__array__[i]/right)
             return c
         except IndexError:
-            raise IndexError,"NessiVectors don't have the same size"
+            raise IndexError,"NessiLists don't have the same size"
 
 ##
-# \ingroup __rdiv__ NessiVector
+# \ingroup __rdiv__ NessiList
 #
-# The operator \f$/\f$ allows to divide a scalar by a NessiVector.
+# The operator \f$/\f$ allows to divide a scalar by a NessiList.
 #
-# To divide a scalar by each element of a NessiVector, instead of using
-# the function <i>div</i> provided by the NessiVectorUtils module, you
+# To divide a scalar by each element of a NessiList, instead of using
+# the function <i>div</i> provided by the NessiListUtils module, you
 # can simply use the following technique:
 # \code
-# >>> NessiVector_SV = scalar /  times NessiVector
+# >>> NessiList_SV = scalar /  times NessiList
 # \endcode
 #
-# \return The resulting NessiVector
+# \return The resulting NessiList
 #
     def __rdiv__(self,left):
-        c=NessiVector(type=self.__type__)
+        c=NessiList(type=self.__type__)
         for i in range(len(self)):
             c.append(left / self.__array__[i])
         return c
 
 ##
-# \ingroup __contains__ NessiVector
+# \ingroup __contains__ NessiList
 #
 # Function "__contains__" not implemented yet
 #
@@ -479,7 +465,7 @@ class NessiVector (list):
         raise NotImplementedError, "Not implemented yet"
 
 ##
-# \ingroup __eq__ NessiVector
+# \ingroup __eq__ NessiList
 #
 # Function "__eq__" not implemented yet
 #
@@ -487,7 +473,7 @@ class NessiVector (list):
         raise NotImplementedError, "Not implemented yet"
 
 ##
-# \ingroup __ge__ NessiVector
+# \ingroup __ge__ NessiList
 #
 # Function "__ge__" not implemented yet
 #
@@ -495,7 +481,7 @@ class NessiVector (list):
         raise NotImplementedError, "Not implemented yet"
 
 ##
-# \ingroup __gt__ NessiVector
+# \ingroup __gt__ NessiList
 #
 # Function "__gt__" not implemented yet
 #
@@ -503,7 +489,7 @@ class NessiVector (list):
         raise NotImplementedError, "Not implemented yet"
 
 ##
-# \ingroup __ne__ NessiVector
+# \ingroup __ne__ NessiList
 #
 # Function "__ne__" not implemented yet
 #
@@ -511,7 +497,7 @@ class NessiVector (list):
         raise NotImplementedError, "Not implemented yet"
 
 ##
-# \ingroup __lt__ NessiVector
+# \ingroup __lt__ NessiList
 #
 # Function "__lt__" not implemented yet
 #
@@ -519,7 +505,7 @@ class NessiVector (list):
         raise NotImplementedError, "Not implemented yet"
 
 ##
-# \ingroup index NessiVector
+# \ingroup index NessiList
 #
 # Function used to find index of a item by matching values
 #
@@ -527,12 +513,12 @@ class NessiVector (list):
         for i in range(len(self.__array__)):
             if self.__array__[i]==item:
                 return i
-        raise ValueError,"NessiVector.index(x): x not in list"
+        raise ValueError,"NessiList.index(x): x not in list"
 
 ##
-# \ingroup pop NessiVector
+# \ingroup pop NessiList
 #
-# Function used to remove the last element of the NessiVector
+# Function used to remove the last element of the NessiList
 #
     def pop(self):
         if len(self.__array__)<=0:
@@ -541,24 +527,24 @@ class NessiVector (list):
             return self.__array__.pop()
 
 ##
-# \ingroup __str__ NessiVector
+# \ingroup __str__ NessiList
 #
-# This method displays elements of a NessiVector.
+# This method displays elements of a NessiList.
 #
-#  If the NessiVector contains more than 10 elements, the 10 first elements,
-# follow by 3 dots ". . ." and the last element of the NessiVector are
+#  If the NessiList contains more than 10 elements, the 10 first elements,
+# follow by 3 dots ". . ." and the last element of the NessiList are
 # displayed.
 # The default number of elements displayed can be changed by giving this number
 # as second variable to the <i>print</i> method.
 #
-# \param self (INPUT) is the name of the NessiVector
+# \param self (INPUT) is the name of the NessiList
 # \param last (INPUT/OPTIONAL) is the number of element to display, 10 by
 # default
 #
 # \return
-# - a list of the n first elements, 3 dots and last element of the NessiVector,
-# if the NessiVector contains more than n elements
-# - a list of all the elements of the NessiVector, if the NessiVector is
+# - a list of the n first elements, 3 dots and last element of the NessiList,
+# if the NessiList contains more than n elements
+# - a list of all the elements of the NessiList, if the NessiList is
 # smaller than n.
     def __str__(self,last=10):
 
@@ -587,11 +573,11 @@ class NessiVector (list):
 # \{
 
 ##
-# Give the maximum value of the NessiVector's elements
+# Give the maximum value of the NessiList's elements
 #
-# \param array (INPUT) is the name of the NessiVector
+# \param array (INPUT) is the name of the NessiList
 #
-# \return The maximum value of the NessiVector <i>object</i>
+# \return The maximum value of the NessiList <i>object</i>
 #
 def max_vect(array):
     max_value = array[0]
@@ -608,11 +594,11 @@ def max_vect(array):
 # \{
 
 ##
-# Give the minimum value of the NessiVector's elements
+# Give the minimum value of the NessiList's elements
 #
-# \param array (INPUT) is the name of the NessiVector
+# \param array (INPUT) is the name of the NessiList
 #
-# \return The minimum value of the NessiVector <i>object</i>.
+# \return The minimum value of the NessiList <i>object</i>.
 #
 def min_vect(array):
     min_value = array[0]
@@ -629,15 +615,15 @@ def min_vect(array):
 # \{
 
 ##
-# Display side by side the first n elements of two, or three NessiVectors.
+# Display side by side the first n elements of two, or three NessiLists.
 #
 # \param n (INPUT) is number of element to display
-# \param object1 (INPUT) is the name of the first NessiVector
-# \param object2 (INPUT) is the name of the second NessiVector
-# \param object3 (INPUT/OPTIONAL) is the name of the third NessiVector
+# \param object1 (INPUT) is the name of the first NessiList
+# \param object2 (INPUT) is the name of the second NessiList
+# \param object3 (INPUT/OPTIONAL) is the name of the third NessiList
 #
-# \return display of the first n elements of the two, or three NessiVectors.
-def print_multi(n,object1,object2,object3=NessiVector()):
+# \return display of the first n elements of the two, or three NessiLists.
+def print_multi(n,object1,object2,object3=NessiList()):
 
     tab="\t\t"
     str_output = ""
@@ -651,8 +637,8 @@ def print_multi(n,object1,object2,object3=NessiVector()):
 
     for i in range(0,n):
 
-        if (object1.__type__ == NessiVector.FLOAT or
-            object1.__type__ == NessiVector.DOUBLE):
+        if (object1.__type__ == NessiList.FLOAT or
+            object1.__type__ == NessiList.DOUBLE):
 
                 str_output = str_output + "%7.16f " \
                     %object1[i] + tab + \
