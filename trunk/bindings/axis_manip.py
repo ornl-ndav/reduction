@@ -1230,12 +1230,13 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
     """
 
     try:
-        if tof.__type__ != tof_err2.__type:
+        if tof.__type__ != tof_err2.__type__:
             raise TypeError, "Tof and Tof Err2 arrays are not the same type."
 
         if (tof.__type__ == nessi_vector.NessiVector.FLOAT):
             wavelength = nessi_vector.NessiVector(len(tof), "float")
             wavelength_err2 = nessi_vector.NessiVector(len(tof), "float")
+
             axis_manip_bind.tof_to_wavelength_f(tof.__array__, \
                                                 tof_err2.__array__,\
                                                 float(pathlength),\
@@ -1244,6 +1245,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
                                                 wavelength_err2.__array__)
 
         elif (tof.__type__ == nessi_vector.NessiVector.DOUBLE):
+           
             wavelength = nessi_vector.NessiVector(len(tof))
             wavelength_err2 = nessi_vector.NessiVector(len(tof))
             axis_manip_bind.tof_to_wavelength_d(tof.__array__,\
@@ -1259,6 +1261,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
         return wavelength, wavelength_err2
 
     except AttributeError:
+
         wavelength_ss = vpair_bind.DoubleVPair()
         axis_manip_bind.tof_to_wavelength_ss_d(\
 			float(tof),\
