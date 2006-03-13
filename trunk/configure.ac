@@ -150,7 +150,7 @@ fi
 if test -n "$DOXYGEN_VERSION_REQ" ; then
    DOXYGEN_WARNING="If you wish to remake documentation, you need to get \
 $DOXYGEN_VERSION_REQ. Otherwise 
-       the documentation you produce may be incomplete and inaccurate.
+        the documentation you produce may be incomplete and inaccurate.
 "
 else 
    DOXYGEN_WARNING=""
