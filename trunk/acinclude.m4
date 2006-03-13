@@ -66,7 +66,7 @@ AC_DEFUN(
   [AC_CHECK_PROGS([SWIG], [swig])
     AC_SUBST(SWIG)
     if test -z "$SWIG" ; then
-	AC_MSG_ERROR([Cannot find swig. See http://www.swig.org])
+	AC_MSG_ERROR([Cannot find SWIG. This is vital to the library build, so please obtain SWIG. See http://www.swig.org])
     elif test -n "$1" ; then
 	AC_MSG_CHECKING([for SWIG version])
 	[swig_version=`$SWIG -version 2>&1 | grep 'SWIG Version' | cut -d" " -f3`]
@@ -107,7 +107,7 @@ AC_DEFUN(
 	  if test $available_major -ne $required_major \
                -o $available_minor -ne $required_minor \
                -o $available_patch -lt $required_patch ; then
-	    AC_MSG_ERROR([You need $SWIG version $1 and have $SWIG version $swig_version])
+	    AC_MSG_ERROR([You need SWIG version $1 and have SWIG version $swig_version])
 	  fi
        fi
     fi
