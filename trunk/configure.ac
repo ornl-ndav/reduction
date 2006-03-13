@@ -90,6 +90,7 @@ AC_CHECK_PROGS(DOT, [dot])
 
 AM_CONDITIONAL(HAVE_PYTHON, [test ! -z "$PYTHONROOT"])
 AM_CONDITIONAL(HAVE_SWIG, [test ! -z "$SWIG"])
+AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
 AM_CONDITIONAL(HAVE_DOT, [test ! -z "$DOT"])
 
 AC_CONFIG_FILES([array_manip/test/Makefile
@@ -146,15 +147,13 @@ else
    MAKEPDF="no"
 fi
 
-if test -n "$HAVE_DOXYGEN_TRUE" ; then
-   if test -n "$DOXYGEN_VERSION_REQ" ; then
-      DOXYGEN_WARNING="If you wish to remake documentation, you need to get \
+if test -n "$DOXYGEN_VERSION_REQ" ; then
+   DOXYGEN_WARNING="If you wish to remake documentation, you need to get \
 $DOXYGEN_VERSION_REQ. Otherwise 
-        the documentation you produce may be incomplete and inaccurate.
+       the documentation you produce may be incomplete and inaccurate.
 "
-   else 
-      DOXYGEN_WARNING=""
-   fi
+else 
+   DOXYGEN_WARNING=""
 fi
 
 AC_MSG_RESULT([
