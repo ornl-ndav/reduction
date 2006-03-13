@@ -68,8 +68,8 @@ __reversed__      __reversed__        please write - reverse itterator
 __rmul__          __rmul__            done
                   __rsub__            n/a
 __setattr__       __setattr__         inherited
-__setitem__       __setitem__         please write - x[i]=y
-__setslice__      __setslice__        please write - x[i:j]=y
+__setitem__       __setitem__         done
+__setslice__      __setslice__        done
 __str__           __str__             done
                   __sub__             n/a
                   __type__            n/a
@@ -312,6 +312,18 @@ class NessiList (list):
         return self.__array__[m]
 
 ##
+# \ingroup __setitem__ NessiList
+#
+# Function used to set an element of a NessiList.
+# To set the \f$i^{th}\f$ value of the NessiList \f$MyVectorA\f$,
+# \code
+# >>> MyVectorA[i]=5
+# \endcode
+#
+    def __setitem__(self,m,val):
+        return self.__array__.__setitem__(m,val)
+
+##
 # \ingroup __getslice__ NessiList
 #
 # Function used to get a range of values from a NessiList. Negative
@@ -327,6 +339,15 @@ class NessiList (list):
 #
     def __getslice__(self,i=0,j=-1):
         return self.__array__[i:j]
+
+##
+# \ingroup __setslice__ NessiList
+#
+# Function used to get a range of values from a NessiList. Negative
+# indices are not supported.
+#
+    def __setslice__(self,i,j,val):
+        return self.__array__.__setslice__(i,j,val)
 
 ##
 # \ingroup __len__ NessiList
