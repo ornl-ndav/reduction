@@ -170,6 +170,8 @@ AC_DEFUN(
                -o $available_patch -lt $required_patch ; then
 	    AC_MSG_WARN([You need $DOXYGEN version $1 and have $DOXYGEN version $doxygen_version])
 	    AM_CONDITIONAL(HAVE_DOXYGEN, [bad])
+	    DOXYGEN_VERSION_REQ=$1
+	    AC_SUBST(DOXYGEN_VERSION_REQ)
 	  else
 	    AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
 	  fi
