@@ -84,7 +84,7 @@ if test $GXX = yes; then
 fi
 AC_PROG_LIBTOOL
 
-AC_CHECK_PROGS(SWIG, [swig])
+SCL_SWIG_CHECK([1.3.24])
 SCL_DOXYGEN_CHECK([1.4.6])
 AC_CHECK_PROGS(DOT, [dot])
 
