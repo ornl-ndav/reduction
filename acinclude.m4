@@ -126,9 +126,15 @@ AC_DEFUN(
 AC_DEFUN(
   [SCL_DOXYGEN_CHECK],
   [AC_CHECK_PROGS([DOXYGEN], [doxygen])
+    AC_SUBST(HAVE_DOXYGEN_TRUE)
+    AC_SUBST(HAVE_DOXYGEN_FALSE)
     if test -z "$DOXYGEN" ; then
+	HAVE_DOXYGEN_TRUE=
+	HAVE_DOXYGEN_FALSE='#'
 	AC_MSG_WARN([Cannot find doxygen. See http://www.doxygen.org])
     elif test -n "$1" ; then
+	HAVE_DOXYGEN_TRUE='#'
+	HAVE_DOXYGEN_FALSE=
 	AC_MSG_CHECKING([for DOXYGEN version])
 	[doxygen_version=`$DOXYGEN --version 2>&1`]
         AC_MSG_RESULT([$doxygen_version])
@@ -169,11 +175,8 @@ AC_DEFUN(
                -o $available_minor -ne $required_minor \
                -o $available_patch -lt $required_patch ; then
 	    AC_MSG_WARN([You need $DOXYGEN version $1 and have $DOXYGEN version $doxygen_version])
-	    AM_CONDITIONAL(HAVE_DOXYGEN, [bad])
-	    DOXYGEN_VERSION_REQ=$1
-	    AC_SUBST(DOXYGEN_VERSION_REQ)
-	  else
-	    AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
+	    DOXYGEN_VERSION_REQ='$1'
+	    AC_SUBST(DOXYGEN_VERSION_REQ)	
 	  fi
        fi
     fi
