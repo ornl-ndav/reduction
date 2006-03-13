@@ -34,30 +34,30 @@
 __add__           __add__             done
                   __array__           n/a
 __class__         __class__           inherited
-__contains__      __contains__        stub
+__contains__      __contains__        done
 __delattr__       __delattr__         inherited
 __delitem__       __delitem__         inherited
 __delslice__      __delslice__        inherited
                   __dict__            n/a
                   __div__             n/a
 __doc__           __doc__             please write
-__eq__            __eq__              stub
-__ge__            __ge__              stub
+__eq__            __eq__              done
+__ge__            __ge__              done
 __getattribute__  __getattribute__    inherited
 __getitem__       __getitem__         done
 __getslice__      __getslice__        done
-__gt__            __gt__              stub
+__gt__            __gt__              done
 __hash__          __hash__            inherited
 __iadd__          __iadd__            please write
 __imul__          __imul__            please write
 __init__          __init__            done
 __iter__          __iter__            done
-__le__            __le__              stub
+__le__            __le__              done
 __len__           __len__             done
-__lt__            __lt__              stub
+__lt__            __lt__              done
                   __module__          n/a
 __mul__           __mul__             done
-__ne__            __ne__              stub
+__ne__            __ne__              done
 __new__           __new__             inherited
                   __radd__            n/a
                   __rdiv__            n/a
@@ -75,7 +75,7 @@ __str__           __str__             done
                   __type__            n/a
                   __weakref__         n/a
 append            append              done
-count             count               please write - number of occurences of value
+count             count               done
 extend            extend              done
 index             index               done
 insert            insert              please write - insert before index
@@ -579,59 +579,100 @@ class NessiList (list):
 ##
 # \ingroup __contains__ NessiList
 #
-# Function "__contains__" not implemented yet
+# Function "__contains__" needs documentation
 #
-    def __contains__(self):
-        # SNS:FIXME - implement this
-        raise NotImplementedError, "Not implemented yet"
+    def __contains__(self,value):
+        try:
+            self.index(value)
+            return True
+        except ValueError:
+            return False
 
 ##
 # \ingroup __eq__ NessiList
 #
 # Function "__eq__" not implemented yet
 #
-    def __eq__(self):
-        raise NotImplementedError, "Not implemented yet"
+    def __eq__(self,other):
+        # check if they have the same length
+        try:
+            if len(self)!=len(other):
+                return False
+        except:
+            return False
+
+        # deep comparison
+        import utils
+        try:
+            for (mine,yours) in map(None,self,other):
+                if utils.compare(mine,yours)!=0:
+                    return False
+        except:
+            return False
+
+        # anything that gets here must be okay
+        return True
+
 
 ##
 # \ingroup __ge__ NessiList
 #
 # Function "__ge__" not implemented yet
 #
-    def __ge__(self):
-        raise NotImplementedError, "Not implemented yet"
+    def __ge__(self,other):
+        # deep comparison
+        import utils
+        try:
+            for (mine,yours) in map(None,self,other):
+                if(utils.compare(mine,yours)<0):
+                    return False
+        except:
+            return False
+
+        # anything that gets here must be okay
+        return True
 
 ##
 # \ingroup __gt__ NessiList
 #
 # Function "__gt__" not implemented yet
 #
-    def __gt__(self):
-        raise NotImplementedError, "Not implemented yet"
+    def __gt__(self,other):
+        # deep comparison
+        import utils
+        try:
+            for (mine,yours) in map(None,self,other):
+                if(utils.compare(mine,yours)!=1):
+                    return False
+        except:
+            return False
+
+        # anything that gets here must be okay
+        return True
 
 ##
 # \ingroup __ne__ NessiList
 #
 # Function "__ne__" not implemented yet
 #
-    def __ne__(self):
-        raise NotImplementedError, "Not implemented yet"
+    def __ne__(self,other):
+        return not self.__eq__(other)
 
 ##
 # \ingroup __lt__ NessiList
 #
 # Function "__lt__" not implemented yet
 #
-    def __lt__(self):
-        raise NotImplementedError, "Not implemented yet"
+    def __lt__(self,other):
+        return not self.__ge__(other)
 
 ##
 # \ingroup __le__ NessiList
 #
 # Function "__le__" not implemented yet
 #
-    def __le__(self):
-        raise NotImplementedError, "Not implemented yet"
+    def __le__(self,other):
+        return not self.__gt__(other)
 
 ##
 # \ingroup index NessiList
@@ -639,12 +680,33 @@ class NessiList (list):
 # Function used to find index of a item by matching values.
 #
     def index(self,item,start=0,stop=-1):
+        # fix the arguments
         if stop<start:
             stop=len(self.__array__)
+
+        # search for the next occurence
+        import utils
         for i in range(start,stop):
-            if self.__array__[i]==item:
+            if utils.compare(self.__array__[i],item)==0:
                 return i
         raise ValueError,"NessiList.index(x): x not in list"
+
+##
+# \ingroup count NessiList
+#
+# Function used to count the number of occurences of a value
+#
+    def count(self,value):
+        start=0
+        count=0
+        try:
+            while True:
+                start=self.index(value,start)+1
+                count=count+1
+        except ValueError:
+            pass
+            
+        return count
 
 ##
 # \ingroup pop NessiList
