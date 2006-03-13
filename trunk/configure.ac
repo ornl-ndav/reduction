@@ -153,8 +153,7 @@ $DOXYGEN_VERSION_REQ. Otherwise
         the documentation you produce may be incomplete and inaccurate.
 "
    else 
-      DOXYGEN_WARNING="\n"
-
+      DOXYGEN_WARNING=""
    fi
 fi
 
