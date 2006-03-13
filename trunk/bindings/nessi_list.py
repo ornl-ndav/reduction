@@ -24,6 +24,67 @@
 
 # $Id$
 
+"""
+                  DOUBLE              n/a
+                  FLOAT               n/a
+                  INT                 n/a
+                  UINT                n/a
+                  UNSIGNED            n/a
+                  UNSIGNED_INT        n/a
+__add__           __add__             done
+                  __array__           n/a
+__class__         __class__           inherited
+__contains__      __contains__        stub
+__delattr__       __delattr__         inherited
+__delitem__       __delitem__         inherited
+__delslice__      __delslice__        inherited
+                  __dict__            n/a
+                  __div__             n/a
+__doc__           __doc__             please write
+__eq__            __eq__              stub
+__ge__            __ge__              stub
+__getattribute__  __getattribute__    inherited
+__getitem__       __getitem__         done
+__getslice__      __getslice__        done
+__gt__            __gt__              stub
+__hash__          __hash__            inherited
+__iadd__          __iadd__            please write
+__imul__          __imul__            please write
+__init__          __init__            done
+__iter__          __iter__            done
+__le__            __le__              stub
+__len__           __len__             done
+__lt__            __lt__              stub
+                  __module__          n/a
+__mul__           __mul__             done
+__ne__            __ne__              stub
+__new__           __new__             inherited
+                  __radd__            n/a
+                  __rdiv__            n/a
+__reduce__        __reduce__          inherited - for pickling
+__reduce_ex__     __reduce_ex__       inherited - for pickling
+__repr__          __repr__            done
+__reversed__      __reversed__        please write - reverse itterator
+__rmul__          __rmul__            done
+                  __rsub__            n/a
+__setattr__       __setattr__         inherited
+__setitem__       __setitem__         please write - x[i]=y
+__setslice__      __setslice__        please write - x[i:j]=y
+__str__           __str__             done
+                  __sub__             n/a
+                  __type__            n/a
+                  __weakref__         n/a
+append            append              done
+count             count               please write - number of occurences of value
+extend            extend              done
+index             index               partial - needs opt start and stop params
+insert            insert              please write - insert before index
+pop               pop                 partial - needs opt index param
+remove            remove              please write - first occur of val
+reverse           reverse             please write - reverse in place
+sort              sort                please write - stable sort in place (cmp=None, key=None, reverse=False)
+"""
+
 ##
 #\file bindings/nessi_list.py
 #
@@ -154,10 +215,44 @@ class NessiList (list):
 # >>> MyVector[5]
 # 10.5
 # \endcode
-# It is also possible to append several values in the same time as illustrated
-# here:
+#
+# \param self (INPUT) is the name of the NessiList
+# \param number (INPUT) is the number to append
+#
+    def append(self,number):
+        self.__array__.append(number)
+
+
+##
+# \ingroup extend NessiList
+#
+# Function used to append elements to a NessiList
+#
+# This function is used to append one or more values to an instance of
+# the NessiList,
+# <i>MyNessiList</i>:
 # \code
-# >>> MyNessiList.append(1,2,3,4,5,6,7,8)
+# >>> MyNessiList.extend(10.5)
+# \endcode
+# The size of the instance increases of 1 unit and the new element appended is
+# the new last element of the instance. That can be a confusion in the case the
+# size of the instance has already been declared during the initialization
+# process. For example, if a NessiList has been defined has a 5 elements
+# long of type <i>double</i>
+# \code
+# >>> MyVector = NessiList(5)
+# \endcode
+# the <i>extend</i> method will add the new element after the 5 first "0".
+# elements
+# \code
+# >>> MyVector.extend(10.5)
+# >>> MyVector[5]
+# 10.5
+# \endcode
+# It is also possible to extend several values in the same time as
+# illustrated here:
+# \code
+# >>> MyNessiList.extend(1,2,3,4,5,6,7,8)
 # \endcode
 # This is the same as appending 1, then 2, then 3, and so on.... one after
 # the other.
@@ -170,9 +265,9 @@ class NessiList (list):
 # \endcode
 #
 # \param self (INPUT) is the name of the NessiList
-# \param number (INPUT) is the number to append
+# \param *number (INPUT) is the number(s) to append
 #
-    def append(self,*number):
+    def extend(self,*number):
         for num in number:
             self.__array__.append(num)
 
@@ -385,7 +480,7 @@ class NessiList (list):
             raise IndexError,"NessiLists don't have the same size"
 
 ##
-# \ingroup __rmult__ NessiList
+# \ingroup __rmul__ NessiList
 #
 # The operator \f$\times\f$ allows to multiply a scalar by a NessiList.
 #
@@ -462,6 +557,7 @@ class NessiList (list):
 # Function "__contains__" not implemented yet
 #
     def __contains__(self):
+        # SNS:FIXME - implement this
         raise NotImplementedError, "Not implemented yet"
 
 ##
@@ -502,6 +598,14 @@ class NessiList (list):
 # Function "__lt__" not implemented yet
 #
     def __lt__(self):
+        raise NotImplementedError, "Not implemented yet"
+
+##
+# \ingroup __le__ NessiList
+#
+# Function "__le__" not implemented yet
+#
+    def __le__(self):
         raise NotImplementedError, "Not implemented yet"
 
 ##
