@@ -77,7 +77,7 @@ __str__           __str__             done
 append            append              done
 count             count               please write - number of occurences of value
 extend            extend              done
-index             index               partial - needs opt start and stop params
+index             index               done
 insert            insert              please write - insert before index
 pop               pop                 partial - needs opt index param
 remove            remove              please write - first occur of val
@@ -269,7 +269,11 @@ class NessiList (list):
 #
     def extend(self,*number):
         for num in number:
-            self.__array__.append(num)
+            try:
+                for i in num:
+                    self.__array__.append(i)
+            except TypeError:
+                    self.__array__.append(num)
 
 ##
 # \ingroup __repr__ NessiList
@@ -611,10 +615,12 @@ class NessiList (list):
 ##
 # \ingroup index NessiList
 #
-# Function used to find index of a item by matching values
+# Function used to find index of a item by matching values.
 #
-    def index(self,item):
-        for i in range(len(self.__array__)):
+    def index(self,item,start=0,stop=-1):
+        if stop<start:
+            stop=len(self.__array__)
+        for i in range(start,stop):
             if self.__array__[i]==item:
                 return i
         raise ValueError,"NessiList.index(x): x not in list"
