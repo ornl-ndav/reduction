@@ -64,7 +64,7 @@ __new__           __new__             inherited
 __reduce__        __reduce__          inherited - for pickling
 __reduce_ex__     __reduce_ex__       inherited - for pickling
 __repr__          __repr__            done
-__reversed__      __reversed__        please write - reverse itterator
+__reversed__      __reversed__        done
 __rmul__          __rmul__            done
                   __rsub__            n/a
 __setattr__       __setattr__         inherited
@@ -298,6 +298,20 @@ class NessiList (list):
         return iter(self.__array__)
 
 ##
+# \ingroup __reversed__ NessiList
+#
+# Function returns a backwards iterator for a NessiList
+#
+    def __reversed__(self):
+        i=len(self.__array__)-1
+        while True:
+            try:
+                yield self.__array__[i]
+            except IndexError:
+                raise StopIteration
+            i=i-1
+
+##
 # \ingroup __getitem__ NessiList
 #
 # Function used to get an element of a NessiList.
@@ -419,9 +433,25 @@ class NessiList (list):
         return c
 
 ##
+# \ingroup __iadd__ NessiList
+#
+# The operator \f$+=\f$ allows to add a NessiList in place
+#
+# To add each element of a NessiList with a scalar, instead of using
+# the function <i>add</i> provided by the NessiListUtils module, you
+# can simply use the following technique:
+# \code
+# >>> NessiList_SV = Scalar + NessiList
+# \endcode
+# \return The resulting NessiList
+#
+    def __iadd__(self,left):
+        raise NotImplementedError
+
+#
 # \ingroup __sub__ NessiList
 #
-# The operator \f$-\f$ allows to substract two NessiLists or each member of
+# The operator \f$-\f$ allows to subtract two NessiLists or each member of
 # a NessiList by a scalar.
 #
 # To substract one NessiList from another or each member of a NessiList
@@ -452,10 +482,11 @@ class NessiList (list):
             return c
         except IndexError:
             raise IndexError,"NessiLists don't have the same size"
+
 ##
 # \ingroup __rsub__ NessiList
 #
-# The operator \f$-\f$ allows to substract a scalar by a NessiList.
+# The operator \f$-\f$ allows to subtract a scalar by a NessiList.
 #
 # To substract each element of a NessiList from a scalar, instead of
 # using the function <i>sub</i> provided by the NessiListUtils module,
@@ -473,7 +504,24 @@ class NessiList (list):
         return c
 
 ##
-# \ingroup __mult__ NessiList
+# \ingroup __isub__ NessiList
+#
+# The operator \f$-=\f$ allows to subtract a NessiList inplace
+#
+# To substract each element of a NessiList from a scalar, instead of
+# using the function <i>sub</i> provided by the NessiListUtils module,
+# you can simply use the following technique:
+# \code
+# >>> NessiList_SV = Scalar - NessiList
+# \endcode
+#
+# \return the resulting NessiList
+#
+    def __isub__(self,left):
+        raise NotImplementedError
+
+##
+# \ingroup __mul__ NessiList
 #
 # The operator \f$\times\f$ allows to multiply two NessiLists.
 #
@@ -523,6 +571,23 @@ class NessiList (list):
         for i in range(len(self)):
             c.append(left * self.__array__[i])
         return c
+
+##
+# \ingroup __imul__ NessiList
+#
+# The operator \f$\times=\f$ allows to multiply a NessiList in place.
+#
+# To multiply each element of a NessiList by a scalar, instead of using
+# the function <i>mult</i> provided by the NessiListUtils module, you
+# can simply use the following technique:
+# \code
+# >>> NessiList_SV = scalar *  times NessiList
+# \endcode
+#
+# \return The resulting NessiList
+#
+    def __imul__(self,left):
+        raise NotImplementedError
 
 ##
 # \ingroup __div__ NessiList
@@ -575,6 +640,23 @@ class NessiList (list):
         for i in range(len(self)):
             c.append(left / self.__array__[i])
         return c
+
+##
+# \ingroup __idiv__ NessiList
+#
+# The operator \f$/=\f$ allows to divide a NessiList in place
+#
+# To divide a scalar by each element of a NessiList, instead of using
+# the function <i>div</i> provided by the NessiListUtils module, you
+# can simply use the following technique:
+# \code
+# >>> NessiList_SV = scalar /  times NessiList
+# \endcode
+#
+# \return The resulting NessiList
+#
+    def __idiv__(self,left):
+        raise NotImplementedError
 
 ##
 # \ingroup __contains__ NessiList
