@@ -48,7 +48,7 @@ __getitem__       __getitem__         done
 __getslice__      __getslice__        done
 __gt__            __gt__              done
 __hash__          __hash__            inherited
-__iadd__          __iadd__            please write
+__iadd__          __iadd__            done
 __imul__          __imul__            please write
 __init__          __init__            done
 __iter__          __iter__            done
@@ -395,7 +395,7 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __add__(self,right):
-        try: # try adding this to another iterable thing
+        try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot add things of unequal length"
             result=NessiList(type=self.__type__)
@@ -442,12 +442,12 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __iadd__(self,right):
-        try: # try adding this to another iterable thing
+        try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot add things of unequal length"
 
             for i in range(len(self)):
-                self[i]=self[i]+left[i]
+                self[i]=self[i]+right[i]
             return self
 
         except TypeError: # must be a scalar
@@ -475,22 +475,21 @@ class NessiList (list):
 #
     def __sub__(self,right):
         try:
-            if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiLists don't have the same type"
-            if (len(self)!=len(right)):
-                raise IndexError
-            else:
-                c = NessiList(type=self.__type__)
-                for (a,b) in map(None,self.__array__,right.__array__):
-                    c.append(a-b)
-                return c
-        except AttributeError:
-            c = NessiList(type=self.__type__)
-            for i in range(len(self)):
-                c.append(self.__array__[i]-right)
-            return c
-        except IndexError:
-            raise IndexError,"NessiLists don't have the same size"
+            if len(self)!=len(right):
+                raise ValueError,"Cannot subtract things of unequal length"
+            result=NessiList(type=self.__type__)
+
+            for (a,b) in map(None,self,right):
+                result.append(a-b)
+            return result
+
+        except TypeError: # must be a scalar
+            result=NessiList(type=self.__type__)
+            for a in self:
+                result.append(a-right)
+            return result
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __rsub__ NessiList
@@ -507,10 +506,22 @@ class NessiList (list):
 # \return the resulting NessiList
 #
     def __rsub__(self,left):
-        c=NessiList(type=self.__type__)
-        for i in range(len(self)):
-            c.append(left - self.__array__[i])
-        return c
+        try:
+            if len(self)!=len(right):
+                raise ValueError,"Cannot subtract things of unequal length"
+            result=NessiList(type=self.__type__)
+
+            for (a,b) in map(None,self,right):
+                result.append(b-a)
+            return result
+
+        except TypeError: # must be a scalar
+            result=NessiList(type=self.__type__)
+            for a in self:
+                result.append(left-a)
+            return result
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __isub__ NessiList
@@ -527,7 +538,20 @@ class NessiList (list):
 # \return the resulting NessiList
 #
     def __isub__(self,right):
-        raise NotImplementedError
+        try:
+            if len(self)!=len(right):
+                raise ValueError,"Cannot subtract things of unequal length"
+
+            for i in range(len(self)):
+                self[i]=self[i]-right[i]
+            return self
+
+        except TypeError: # must be a scalar
+            for i in range(len(self)):
+                self[i]=self[i]-right
+            return self
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __mul__ NessiList
@@ -544,22 +568,21 @@ class NessiList (list):
 #
     def __mul__(self,right):
         try:
-            if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiLists don't have the same type"
-            if (len(self)!=len(right)):
-                raise IndexError
-            else:
-                c = NessiList(type=self.__type__)
-                for (a,b) in map(None,self.__array__,right.__array__):
-                    c.append(a*b)
-                return c
-        except AttributeError:
-            c = NessiList(type=self.__type__)
-            for i in range(len(self)):
-                c.append(right*self.__array__[i])
-            return c
-        except IndexError:
-            raise IndexError,"NessiLists don't have the same size"
+            if len(self)!=len(right):
+                raise ValueError,"Cannot multiply things of unequal length"
+            result=NessiList(type=self.__type__)
+
+            for (a,b) in map(None,self,right):
+                result.append(a*b)
+            return result
+
+        except TypeError: # must be a scalar
+            result=NessiList(type=self.__type__)
+            for a in self:
+                result.append(a*right)
+            return result
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __rmul__ NessiList
@@ -576,10 +599,7 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __rmul__(self,left):
-        c=NessiList(type=self.__type__)
-        for i in range(len(self)):
-            c.append(left * self.__array__[i])
-        return c
+        return self*left
 
 ##
 # \ingroup __imul__ NessiList
@@ -596,7 +616,20 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __imul__(self,right):
-        raise NotImplementedError
+        try:
+            if len(self)!=len(right):
+                raise ValueError,"Cannot multiply things of unequal length"
+
+            for i in range(len(self)):
+                self[i]=self[i]*right[i]
+            return self
+
+        except TypeError: # must be a scalar
+            for i in range(len(self)):
+                self[i]=self[i]*right
+            return self
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __div__ NessiList
@@ -613,22 +646,21 @@ class NessiList (list):
 #
     def __div__(self,right):
         try:
-            if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiLists don't have the same type"
-            if (len(self)!=len(right)):
-                raise IndexError
-            else:
-                c = NessiList(type=self.__type__)
-                for (a,b) in map(None,self.__array__,right.__array__):
-                    c.append(a/b)
-                return c
-        except AttributeError:
-            c = NessiList(type=self.__type__)
-            for i in range(len(self)):
-                c.append(self.__array__[i]/right)
-            return c
-        except IndexError:
-            raise IndexError,"NessiLists don't have the same size"
+            if len(self)!=len(right):
+                raise ValueError,"Cannot divide things of unequal length"
+            result=NessiList(type=self.__type__)
+
+            for (a,b) in map(None,self,right):
+                result.append(a/b)
+            return result
+
+        except TypeError: # must be a scalar
+            result=NessiList(type=self.__type__)
+            for a in self:
+                result.append(a/right)
+            return result
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __rdiv__ NessiList
@@ -645,10 +677,20 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __rdiv__(self,left):
-        c=NessiList(type=self.__type__)
-        for i in range(len(self)):
-            c.append(left / self.__array__[i])
-        return c
+        try:
+            if len(self)!=len(right):
+                raise ValueError,"Cannot divide things of unequal length"
+
+            for i in range(len(self)):
+                self[i]=self[i]/right[i]
+            return self
+
+        except TypeError: # must be a scalar
+            for i in range(len(self)):
+                self[i]=self[i]/right
+            return self
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __idiv__ NessiList
