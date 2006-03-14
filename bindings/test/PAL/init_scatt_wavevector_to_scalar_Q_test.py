@@ -29,7 +29,7 @@
 #
 
 import axis_manip
-import nessi_vector
+import nessi_list
 import test_common
 from vpair_bind import *
 
@@ -76,10 +76,10 @@ NUM_VAL = 5
 #
 def initialize_inputs(key):
     if (key == "double"):
-        k_i=nessi_vector.NessiVector(type="double")
-        k_i_err2=nessi_vector.NessiVector(type="double")
-        k_f=nessi_vector.NessiVector(type="double")
-        k_f_err2=nessi_vector.NessiVector(type="double")
+        k_i=nessi_list.NessiList(type="double")
+        k_i_err2=nessi_list.NessiList(type="double")
+        k_f=nessi_list.NessiList(type="double")
+        k_f_err2=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
             k_i.append(float(i+1))         
             k_f.append(float(i+1.25))          
@@ -95,18 +95,18 @@ def initialize_inputs(key):
 # \f$k\_i\f$, \f$k\_i\_err2\f$, \f$k\_f\f$, and \f$k\_f\_err2\f$.
 #
 # For the vs, sv, and ss cases, the scalar used is the first element of the
-# NessiVectors \f$input1\f$ and \f$input2\f$ (\f$input1[0]\f$ and
+# NessiLists \f$input1\f$ and \f$input2\f$ (\f$input1[0]\f$ and
 # \f$input2[0]\f$
 #
 # \param key (INPUT) forces correct test to happen
 #
 # \return
-# - The true NessiVector for the vv case
-# - The square of the uncertainty in the true NessiVector for the vv case
-# - The true NessiVector for the vs case
-# - The square of the uncertainty in the true NessiVector for the vs case
-# - The true NessiVector for the sv case
-# - The square of the uncertainty in the true NessiVector for the sv case
+# - The true NessiList for the vv case
+# - The square of the uncertainty in the true NessiList for the vv case
+# - The true NessiList for the vs case
+# - The square of the uncertainty in the true NessiList for the vs case
+# - The true NessiList for the sv case
+# - The square of the uncertainty in the true NessiList for the sv case
 # - The true value for the ss case
 # - The square of the uncertainty of the true value for the ss case
 #
@@ -114,12 +114,12 @@ def initialize_true_outputs(key):
 
     if (key == "double"):
 
-        true_output_vv=nessi_vector.NessiVector()
-        true_output_vv_err2=nessi_vector.NessiVector()
-        true_output_vs=nessi_vector.NessiVector()
-        true_output_vs_err2=nessi_vector.NessiVector()
-        true_output_sv=nessi_vector.NessiVector()
-        true_output_sv_err2=nessi_vector.NessiVector()
+        true_output_vv=nessi_list.NessiList()
+        true_output_vv_err2=nessi_list.NessiList()
+        true_output_vs=nessi_list.NessiList()
+        true_output_vs_err2=nessi_list.NessiList()
+        true_output_sv=nessi_list.NessiList()
+        true_output_sv_err2=nessi_list.NessiList()
         true_output_ss=DoubleVPair()
 
 	    # initialize the correct outputs for vector vector case
@@ -196,8 +196,8 @@ if __name__ == "__main__":
 
     # vv case
     k_i,k_i_err2,k_f,k_f_err2=initialize_inputs("double")
-    output_vv=nessi_vector.NessiVector()
-    output_vv_err2=nessi_vector.NessiVector()
+    output_vv=nessi_list.NessiList()
+    output_vv_err2=nessi_list.NessiList()
     output_vv, output_vv_err2 = \
 			   axis_manip.init_scatt_wavevector_to_scalar_Q(k_i,\
 															k_i_err2,\
@@ -216,8 +216,8 @@ if __name__ == "__main__":
 
     # vs case
     k_i,k_i_err2,input2,input2_err2=initialize_inputs("double")
-    output_vs=nessi_vector.NessiVector()
-    output_vs_err2=nessi_vector.NessiVector()
+    output_vs=nessi_list.NessiList()
+    output_vs_err2=nessi_list.NessiList()
     output_vs, output_vs_err2 = \
 			   axis_manip.init_scatt_wavevector_to_scalar_Q(k_i,\
 															k_i_err2,\
@@ -236,8 +236,8 @@ if __name__ == "__main__":
 
     # sv case
     k_i,k_i_err2,k_f,k_f_err2=initialize_inputs("double")
-    output_sv=nessi_vector.NessiVector()
-    output_sv_err2=nessi_vector.NessiVector()
+    output_sv=nessi_list.NessiList()
+    output_sv_err2=nessi_list.NessiList()
     output_sv, output_sv_err2 = \
 			   axis_manip.init_scatt_wavevector_to_scalar_Q(k_i[0],\
 															k_i_err2[0],\

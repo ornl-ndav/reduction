@@ -29,7 +29,7 @@
 #
 
 import array_manip
-import nessi_vector
+import nessi_list
 import test_common
 
 NUM_VAL = 5
@@ -65,29 +65,29 @@ NUM_VAL = 5
 # \f$input1\_err2\f$, and \f$input2\_err2\f$.
 #
 # \returns
-# - input1 is the NessiVector to be subtracted from
+# - input1 is the NessiList to be subtracted from
 # - input1_err2 is the square of the uncertainty in the 
-# NessiVector to be subtracted from
-# - input2 is the second NessiVector to subtract
+# NessiList to be subtracted from
+# - input2 is the second NessiList to subtract
 # -input2_err2 is the square of the uncertainty in the second 
-# NessiVector to subtract
+# NessiList to subtract
 #
 def initialize_inputs(key):
     if (key == "double"):
-        input1=nessi_vector.NessiVector(type="double")
-        input1_err2=nessi_vector.NessiVector(type="double")
-        input2=nessi_vector.NessiVector(type="double")
-        input2_err2=nessi_vector.NessiVector(type="double")
+        input1=nessi_list.NessiList(type="double")
+        input1_err2=nessi_list.NessiList(type="double")
+        input2=nessi_list.NessiList(type="double")
+        input2_err2=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
             input1.append(float(NUM_VAL+1-i))  #6.,5.,4.,3.,2.
             input2.append(float(i))            #0.,1.,2.,3.,4.
             input1_err2.append(float(1.))      #1.,1.,1.,1.,1.
             input2_err2.append(float(1.))      #1.,1.,1.,1.,1.
     else:
-        input1=nessi_vector.NessiVector(type="int")
-        input1_err2=nessi_vector.NessiVector(type="int")
-        input2=nessi_vector.NessiVector(type="int")
-        input2_err2=nessi_vector.NessiVector(type="int")
+        input1=nessi_list.NessiList(type="int")
+        input1_err2=nessi_list.NessiList(type="int")
+        input2=nessi_list.NessiList(type="int")
+        input2_err2=nessi_list.NessiList(type="int")
         for i in range(NUM_VAL):
             input1.append(int(NUM_VAL+1-i))    #6,5,4,3,2
             input2.append(int(i))              #0,1,2,3,4
@@ -101,28 +101,28 @@ def initialize_inputs(key):
 # \f$input1\f$, \f$input1\_err2\f$, \f$input2\f$, and \f$input2\_err2\f$.
 #
 # For the vs and sv cases, the scalar used is the last element of the
-# NessiVector \f$input2\f$, \f$input2[NUM\_VAL - 1]\f$
+# NessiList \f$input2\f$, \f$input2[NUM\_VAL - 1]\f$
 #
 # \param key (INPUT) forces correct test to happen
 #
 # \return
-# - The true NessiVector for the vv case
-# - The square of the uncertainty in the true NessiVector for the vv case
-# - The true NessiVector for the vs he
-# - The square of the uncertainty in the true NessiVector for the vs case
-# - The true NessiVector for the sv he
-# - The square of the uncertainty in the true NessiVector for the sv case
+# - The true NessiList for the vv case
+# - The square of the uncertainty in the true NessiList for the vv case
+# - The true NessiList for the vs he
+# - The square of the uncertainty in the true NessiList for the vs case
+# - The true NessiList for the sv he
+# - The square of the uncertainty in the true NessiList for the sv case
 #
 def initialize_true_outputs(key):
 
     if (key == "double"):
 
-        true_output_vv=nessi_vector.NessiVector()
-        true_output_vv_err2=nessi_vector.NessiVector()
-        true_output_vs=nessi_vector.NessiVector()
-        true_output_vs_err2=nessi_vector.NessiVector()
-        true_output_sv=nessi_vector.NessiVector()
-        true_output_sv_err2=nessi_vector.NessiVector()
+        true_output_vv=nessi_list.NessiList()
+        true_output_vv_err2=nessi_list.NessiList()
+        true_output_vs=nessi_list.NessiList()
+        true_output_vs_err2=nessi_list.NessiList()
+        true_output_sv=nessi_list.NessiList()
+        true_output_sv_err2=nessi_list.NessiList()
 
 	    # initialize the correct outputs for vector vector case
         true_output_vv.append(float(6.))       # 6-0
@@ -162,12 +162,12 @@ def initialize_true_outputs(key):
 
     else:
 
-        true_output_vv=nessi_vector.NessiVector(type="int")
-        true_output_vv_err2=nessi_vector.NessiVector(type="int")
-        true_output_vs=nessi_vector.NessiVector(type="int")
-        true_output_vs_err2=nessi_vector.NessiVector(type="int")
-        true_output_sv=nessi_vector.NessiVector(type="int")
-        true_output_sv_err2=nessi_vector.NessiVector(type="int")
+        true_output_vv=nessi_list.NessiList(type="int")
+        true_output_vv_err2=nessi_list.NessiList(type="int")
+        true_output_vs=nessi_list.NessiList(type="int")
+        true_output_vs_err2=nessi_list.NessiList(type="int")
+        true_output_sv=nessi_list.NessiList(type="int")
+        true_output_sv_err2=nessi_list.NessiList(type="int")
 
 	    # initialize the correct outputs for vector vector case
         true_output_vv.append(int(6))      # 6-0
@@ -236,8 +236,8 @@ if __name__ == "__main__":
 
 	# double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
-    output_vv=nessi_vector.NessiVector()
-    output_vv_err2=nessi_vector.NessiVector()
+    output_vv=nessi_list.NessiList()
+    output_vv_err2=nessi_list.NessiList()
     output_vv, output_vv_err2 = array_manip.sub_ncerr(input1,\
 													  input1_err2,\
 													  input2,\
@@ -253,8 +253,8 @@ if __name__ == "__main__":
 
 	# int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
-    output_vv=nessi_vector.NessiVector(type="int")
-    output_vv_err2=nessi_vector.NessiVector(type="int")
+    output_vv=nessi_list.NessiList(type="int")
+    output_vv_err2=nessi_list.NessiList(type="int")
     output_vv, output_vv_err2 = array_manip.sub_ncerr(input1,\
 													  input1_err2,\
 													  input2,\
@@ -275,8 +275,8 @@ if __name__ == "__main__":
 
 	# double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
-    output_vs=nessi_vector.NessiVector()
-    output_vs_err2=nessi_vector.NessiVector()
+    output_vs=nessi_list.NessiList()
+    output_vs_err2=nessi_list.NessiList()
     output_vs, output_vs_err2 = array_manip.sub_ncerr(input1,\
 													  input1_err2,\
 													  input2[4],\
@@ -292,8 +292,8 @@ if __name__ == "__main__":
 
 	# int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
-    output_vs=nessi_vector.NessiVector(type="int")
-    output_vs_err2=nessi_vector.NessiVector(type="int")
+    output_vs=nessi_list.NessiList(type="int")
+    output_vs_err2=nessi_list.NessiList(type="int")
     output_vs, output_vs_err2 = array_manip.sub_ncerr(input1,\
 													  input1_err2,\
 													  input2[4],\
@@ -313,8 +313,8 @@ if __name__ == "__main__":
 
 	# double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
-    output_sv=nessi_vector.NessiVector()
-    output_sv_err2=nessi_vector.NessiVector()
+    output_sv=nessi_list.NessiList()
+    output_sv_err2=nessi_list.NessiList()
     output_sv, output_sv_err2 = array_manip.sub_ncerr(input2[4],\
 													  input2_err2[4],\
 													  input1,\
@@ -330,8 +330,8 @@ if __name__ == "__main__":
 
 	# int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
-    output_sv=nessi_vector.NessiVector(type="int")
-    output_sv_err2=nessi_vector.NessiVector(type="int")
+    output_sv=nessi_list.NessiList(type="int")
+    output_sv_err2=nessi_list.NessiList(type="int")
     output_sv, output_sv_err2 = array_manip.sub_ncerr(input2[4],\
 													  input2_err2[4],\
 													  input1,\

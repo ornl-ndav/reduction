@@ -29,7 +29,7 @@
 #
 
 import axis_manip
-import nessi_vector
+import nessi_list
 import test_common
 from vpair_bind import *
 
@@ -67,8 +67,8 @@ NUM_VAL = 5
 #
 def initialize_inputs(key):
     if (key == "double"):
-        wavelength=nessi_vector.NessiVector(type="double")
-        wavelength_err2=nessi_vector.NessiVector(type="double")
+        wavelength=nessi_list.NessiList(type="double")
+        wavelength_err2=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
             wavelength.append(float(i+1))         
             wavelength_err2.append(float(i+0.5))          
@@ -82,14 +82,14 @@ def initialize_inputs(key):
 # \f$wavelength\f$ and \f$wavelength\_err2\f$ for the double case.
 #
 # For the ss case, the scalar used is the first element of the
-# NessiVectors \f$wavelength\f$ and \f$wavelength_err2\f$
+# NessiLists \f$wavelength\f$ and \f$wavelength_err2\f$
 # (\f$wavelength[0]\f$ and \f$wavelength\_err2[0]\f$
 #
 # \param key (INPUT) forces correct test to happen
 #
 # \return
-# - The true NessiVector for the vv case
-# - The square of the uncertainty in the true NessiVector for the vv case
+# - The true NessiList for the vv case
+# - The square of the uncertainty in the true NessiList for the vv case
 # - The true value for the ss case
 # - The square of the uncertainty of the true value for the ss case
 #
@@ -97,8 +97,8 @@ def initialize_true_outputs(key):
 
     if (key == "double"):
 
-        true_output_vv=nessi_vector.NessiVector()
-        true_output_vv_err2=nessi_vector.NessiVector()
+        true_output_vv=nessi_list.NessiList()
+        true_output_vv_err2=nessi_list.NessiList()
         true_output_ss=DoubleVPair()
 
 	    # initialize the correct outputs for vector vector case
@@ -143,8 +143,8 @@ if __name__ == "__main__":
     wavelength, wavelength_err2=initialize_inputs("double")
 
     # vv case
-    output_vv=nessi_vector.NessiVector()
-    output_vv_err2=nessi_vector.NessiVector()
+    output_vv=nessi_list.NessiList()
+    output_vv_err2=nessi_list.NessiList()
 
     output_vv, output_vv_err2 = \
 			   axis_manip.wavelength_to_energy(wavelength,\

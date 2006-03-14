@@ -29,7 +29,7 @@
 #
 
 import axis_manip
-import nessi_vector
+import nessi_list
 import test_common
 
 NUM_VAL = 5
@@ -55,11 +55,11 @@ NUM_VAL = 5
 # This function initializes the values of array \f$input\f$.
 #
 # \returns
-# - input is the NessiVector to be reversed
+# - input is the NessiList to be reversed
 #
 def initialize_inputs(key):
     if (key == "double"):
-        input=nessi_vector.NessiVector(type="double")
+        input=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
             input.append(float(1+i))         
     else:
@@ -80,7 +80,7 @@ def initialize_true_outputs(key):
 
     if (key == "double"):
 
-        true_output = nessi_vector.NessiVector()
+        true_output = nessi_list.NessiList()
 
 	    # initialize the correct outputs for vector vector case
         true_output.append(float(5))       
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     input = initialize_inputs("double")
 
-    output = nessi_vector.NessiVector()
+    output = nessi_list.NessiList()
     output = axis_manip.reverse_array_nc(input)
 
     # Check values

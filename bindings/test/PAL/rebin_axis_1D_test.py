@@ -29,7 +29,7 @@
 #
 
 import axis_manip
-import nessi_vector
+import nessi_list
 import test_common
 
 NUM_VAL = 4
@@ -65,10 +65,10 @@ NUM_VAL = 4
 #
 def initialize_inputs(key):
     if (key == "double"):
-        axis_in=nessi_vector.NessiVector(type="double")
-        axis_out=nessi_vector.NessiVector(type="double")
-        input=nessi_vector.NessiVector(type="double")
-        input_err2=nessi_vector.NessiVector(type="double")
+        axis_in=nessi_list.NessiList(type="double")
+        axis_out=nessi_list.NessiList(type="double")
+        input=nessi_list.NessiList(type="double")
+        input_err2=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
             axis_in.append(float(i))         
         for i in range(NUM_VAL-1):
@@ -87,15 +87,15 @@ def initialize_inputs(key):
 # \param key (INPUT) forces correct test to happen
 #
 # \return
-# - The true NessiVector for the vv case
-# - The square of the uncertainty in the true NessiVector for the vv case
+# - The true NessiList for the vv case
+# - The square of the uncertainty in the true NessiList for the vv case
 #
 def initialize_true_outputs(key):
 
     if (key == "double"):
 
-        true_output_vv=nessi_vector.NessiVector()
-        true_output_vv_err2=nessi_vector.NessiVector()
+        true_output_vv=nessi_list.NessiList()
+        true_output_vv_err2=nessi_list.NessiList()
 
 	    # initialize the correct outputs for vector vector case
         true_output_vv.append(float(20))       
@@ -123,8 +123,8 @@ if __name__ == "__main__":
 
     # vv case
     axis_in,axis_out,input,input_err2=initialize_inputs("double")
-    output_vv=nessi_vector.NessiVector()
-    output_vv_err2=nessi_vector.NessiVector()
+    output_vv=nessi_list.NessiList()
+    output_vv_err2=nessi_list.NessiList()
     output_vv, output_vv_err2 = axis_manip.rebin_axis_1D(axis_in,\
 														 input,\
 														 input_err2,\
