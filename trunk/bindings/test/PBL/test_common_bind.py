@@ -67,43 +67,36 @@ def printVector(object, last=10):
 # \{
 
 ##
-# \brief This function checks vector sets against one another
+# \brief This function checks vector or value pairs against one another
 #
-# Thisfunction checks output and truth vectors for both data and
-# square of the uncertainty in the data (err2) arrays.
+# This function checks output and truth vectors or values for both data and
+# square of the uncertainty in the data (err2) vectors or values. It can also
+# handle just output and truth vectors only.
 #
 # \param funcName (INPUT) Name of the PBL function that was used to generate
 #        the output
-# \param output (INPUT) Data array to be checked
-# \param truth_output (INPUT) Truth data array to be checked against
-# \param output_err2 (INPUT) Err2 array to be checked
-# \param truth_output_err2 (INPUT) Truth err2 array to be checked against
+# \param output (INPUT) Data vector to be checked
+# \param truth_output (INPUT) Truth data vector to be checked against
+# \param output_err2 (INPUT/OPTIONAL) Err2 vector to be checked
+# \param truth_output_err2 (INPUT/OPTIONAL) Truth err2 vector to be checked
+#        against
 
-def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
-
-    """
+def makeCheck(funcName, output, truth_output,
+              output_err2=None, truth_output_err2=None):
+   """
     
-       This function checks output and truth vectors for both data and
-       square of the uncertainty in the data (err2) arrays.
-
-       funcName          : this is the name of the Swig binding layer function
-       output            : this is the data array to be checked
-       truth_output      : this is the truth data array to be checked against
-       output_err2       : this is the err2 array to be checked
-       truth_output_err2 : this is the truth err2 array to be checked against
+       This function checks output and truth vectors or values for both data
+       and square of the uncertainty in the data (err2) vectors or values. It
+       can also handle just output and truth vectors only.
+       
+       funcName          : this is the name of the PBL function
+       output            : this is the vector or value to be checked
+       truth_output      : this is the truth vector or value to be checked
+                           against
+       output_err2       : this is the err2 vector or value to be checked
+       truth_output_err2 : this is the truth err2 vector or value to be
+                           checked against
     """
-
-    dataval = ""
-    err2val = ""
-
-    if funcName.endswith("_d"):
-        dataval = vector_is_equals_d(output, truth_output)
-        err2val = vector_is_equals_d(output_err2, truth_output_err2)
-    elif funcName.endswith("_i"):
-        dataval = vector_is_equals_i(output, truth_output)
-        err2val = vector_is_equals_i(output_err2, truth_output_err2)
-    else:
-        raise TypeError, "Function type not recognized!"
 
     mess = funcName
     if len(funcName) > 34:
@@ -113,115 +106,56 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
     else:
         mess += "............................."
 
-    if dataval == False or err2val == False:
+    try:
+        output.__type__()
 
-        if dataval == False:
-            if err2val == False:
-                mess += " Data and Err2 Not OK"
+        if funcName.endswith("_d"):
+            dataval = vector_is_equals_d(output, truth_output)
+            if output_err2!=None and truth_output_err2!=None:
+                err2val = vector_is_equals_d(output_err2, truth_output_err2)
             else:
-                mess += " Data Not OK"
-        elif err2val == False:
-            mess += " Err2 Not OK"
-
-    else:
-        mess += " Functionality OK"
-
-    return mess
-
-##
-# \}
-#
-
-##
-# \defgroup makeCheck1 test_common_bind::makeCheck1
-# \{
-
-def makeCheck1(funcName, output, truth_output):
-
-    """
-    
-       This function checks output and truth vectors for data
-
-       funcName          : this is the name of the Swig binding layer function
-       output            : this is the data array to be checked
-       truth_output      : this is the truth data array to be checked against
-    """
-
-    dataval = ""
-
-    if funcName.endswith("_d"):
-        dataval = vector_is_equals_d(output, truth_output)
-    elif funcName.endswith("_i"):
-        dataval = vector_is_equals_i(output, truth_output)
-    else:
-        raise TypeError, "Function type not recognized!"
-
-    mess = funcName
-    if len(funcName) > 34:
-        mess += "..................."
-    elif len(funcName) > 30 and len(funcName) <= 34:
-        mess += "........................."
-    else:
-        mess += "............................."
-
-    if dataval == False:
-        mess += " Data Not OK"
-    else:
-        mess += " Functionality OK"
-
-    return mess
-
-##
-# \}
-#
-
-##
-# \defgroup makeCheck2 test_common_bind::makeCheck2
-# \{
-
-def makeCheck2(funcName, output, truth_output, output_err2, truth_output_err2):
-
-    """
-    
-       This function checks output and truth vectors for both data and
-       square of the uncertainty in the data (err2) arrays.
-
-       funcName          : this is the name of the Swig binding layer function
-       output            : this is the value to be checked
-       truth_output      : this is the truth value to be checked against
-       output_err2       : this is the err2 value to be checked
-       truth_output_err2 : this is the truth err2 value to be checked against
-    """
-
-    dataval = -1
-    err2val = -1
-    
-    dataval = compare(output, truth_output)
-    err2val = compare(output_err2, truth_output_err2)
-
-    mess = funcName
-    if len(funcName) > 34:
-        mess += "................"
-    elif len(funcName) > 30 and len(funcName) <= 34:
-        mess += "......................"
-    else:
-        mess += ".........................."
-
-    if dataval != 0 or err2val != 0:
-
-        if dataval != 0:
-            if err2val !=0:
-                mess += " Data and Err2 Not OK"
+                err2val = True
+        elif funcName.endswith("_i"):
+            dataval = vector_is_equals_i(output, truth_output)
+            if output_err2!=None and truth_output_err2!=None:
+                err2val = vector_is_equals_i(output_err2, truth_output_err2)
             else:
-                mess += " Data Not OK"
-        elif err2val != 0:
-            mess += " Err2 Not OK"
+                err2val = True
+        else:
+            raise TypeError, "Function type not recognized!"
 
-    else:
-        mess += " Functionality OK"
+        if dataval == False or err2val == False:
+            
+            if dataval == False:
+                if err2val == False:
+                    mess += " Data and Err2 Not OK"
+                else:
+                    mess += " Data Not OK"
+            elif err2val == False:
+                mess += " Err2 Not OK"
 
+        else:
+            mess += " Functionality OK"
+
+    except AttributeError:
+        dataval = compare(output, truth_output)
+        err2val = compare(output_err2, truth_output_err2)
+
+        if dataval != 0 or err2val != 0:
+
+            if dataval != 0:
+                if err2val !=0:
+                    mess += " Data and Err2 Not OK"
+                else:
+                    mess += " Data Not OK"
+            elif err2val != 0:
+                mess += " Err2 Not OK"
+                    
+        else:
+            mess += " Functionality OK"
+        
     return mess
 
 ##
-# \}
-#
+# \}  // end of test_common_bind::makeCheck group
+# 
