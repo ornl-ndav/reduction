@@ -43,12 +43,12 @@ namespace std {
 namespace Nessi {
   %extend Vector<double> {
     std::string __type__() {
-	return "double";
+      return "double";
     }
   }
   %extend Vector<int> {
     std::string __type__() {
-	return "int";
+      return "int";
     }
   }
   %template(DoubleNessiVector) Vector<double>;
