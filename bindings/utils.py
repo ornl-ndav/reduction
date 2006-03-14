@@ -28,7 +28,7 @@
 # \file bindings/utils.py
 #
 
-import nessi_vector
+import nessi_list
 import utils_bind
 
 
@@ -38,16 +38,16 @@ import utils_bind
 # \brief This Python abstraction layer module provides various utility
 # functions
 #
-# This module gives the NessiVector access to the various utility functions
+# This module gives the NessiList access to the various utility functions
 # provided by the <i>utils</i> library. These functions are written in
 # references to SNS 107030214-TD0001-R00, "Data Reduction Library Software
 # Requirements and Specifications".
 #
-# Once a function is called, according to the type of the NessiVectors calling
+# Once a function is called, according to the type of the NessiLists calling
 # it, the module redirects the call to the right function.
 #
 # For example, when calling the function \f$weighted_average\f$ with two
-# NessiVectors (data and error\f$^2\f$) of type <i>float</i>, the module
+# NessiLists (data and error\f$^2\f$) of type <i>float</i>, the module
 # redirects the call to the function \f$weighted\_average\_f\f$.
 #
 
@@ -56,9 +56,9 @@ import utils_bind
 # \{
 
 ##
-# \brief This function takes the weighted average of a slice of a NessiVector.
+# \brief This function takes the weighted average of a slice of a NessiList.
 #
-# This function accepts two NessiVectors (data and associated square of
+# This function accepts two NessiLists (data and associated square of
 # uncertainties), the starting element number and the ending element number in
 # order to calculate the weighted average.
 #
@@ -75,12 +75,12 @@ import utils_bind
 # {\sigma_i^2}}
 # \f]
 #
-# \param a (INPUT) the NessiVector from which to calculate the weighted average
+# \param a (INPUT) the NessiList from which to calculate the weighted average
 # \param ae2 (INPUT) the square of the uncertainty in the associated
-# NessiVector from which calculate the weighted average
-# \param start (INPUT) the bin of the NessiVector from which to start the
+# NessiList from which calculate the weighted average
+# \param start (INPUT) the bin of the NessiList from which to start the
 # calculation
-# \param fin (INPUT) the bin of the NessiVector at which to end the
+# \param fin (INPUT) the bin of the NessiList at which to end the
 # calculation
 #
 # \return
@@ -97,21 +97,21 @@ def weighted_average(a,ae2,start,fin):
 
     """
     ---------------------------------------------------------------------------
-    This function takes the weighted average of a slice of a NessiVector.
+    This function takes the weighted average of a slice of a NessiList.
 
     Parameters:
     __________
 
-    -> a is the NessiVector from which to calculate the weighted average
-    -> ae2 is the square of the uncertainty in the associated NessiVector
+    -> a is the NessiList from which to calculate the weighted average
+    -> ae2 is the square of the uncertainty in the associated NessiList
        from which calculate the weighted average
-    -> start is the bin of the NessiVector from which to start the calculation
-    -> fin the bin of the NessiVector at which to end the calculation
+    -> start is the bin of the NessiList from which to start the calculation
+    -> fin the bin of the NessiList at which to end the calculation
 
-    Returns 2 NessiVectors:
+    Returns 2 NessiLists:
     ______________________
 
-    <- the weighted average of the NessiVector slice
+    <- the weighted average of the NessiList slice
     <- the square of the uncertainty associated with the weighted
        average
 
@@ -143,17 +143,17 @@ def weighted_average(a,ae2,start,fin):
 
 def vector_is_equals(output,true_output):
 
-    if (output.__type__ == nessi_vector.NessiVector.DOUBLE):
-        output_d = nessi_vector.NessiVector(0,nessi_vector.NessiVector.DOUBLE)
-        true_output_d = nessi_vector.NessiVector(0,nessi_vector.NessiVector.DOUBLE)
+    if (output.__type__ == nessi_list.NessiList.DOUBLE):
+        output_d = nessi_list.NessiList(0,nessi_list.NessiList.DOUBLE)
+        true_output_d = nessi_list.NessiList(0,nessi_list.NessiList.DOUBLE)
         for i in range(len(output)):
             output_d.append(output[i])
             true_output_d.append(true_output[i])
 
         result = utils_bind.vector_is_equals_d(output_d, true_output_d)
     else:
-        output_i = nessi_vectorNessiVector(0,nessi_vector.NessiVector.DOUBLE)
-        true_output_i = nessi_vectorNessiVector(0,nessi_vector.NessiVector.DOUBLE)
+        output_i = nessi_listNessiList(0,nessi_list.NessiList.INT)
+        true_output_i = nessi_listNessiList(0,nessi_list.NessiList.INT)
         for i in range(len(output)):
             output_i.append(output[i])
             true_output_i.append(true_output[i])

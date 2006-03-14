@@ -28,7 +28,7 @@
 # \file bindings/array_manip.py
 #
 
-import nessi_vector
+import nessi_list
 import array_manip_bind
 
 ##
@@ -36,16 +36,16 @@ import array_manip_bind
 #
 # \brief Python abstraction layer access for ArrayManip library functions
 #
-# This module gives the NessiVector access to the various simple
+# This module gives the NessiList access to the various simple
 # arithmetic operations on arrays provided by the <i>array_manip</i>
 # library. These arithmetic operations are written in references to SNS
 # 107030214-TD0001-R00, "Data Reduction Library Software Requirements and
 # Specifications".
 #
-# Once a function is called, according to the type of the NessiVectors calling
+# Once a function is called, according to the type of the NessiLists calling
 # it, the module redirects the call to the right function.
 #
-# For example, when calling the function \f$add\f$ with two NessiVector of
+# For example, when calling the function \f$add\f$ with two NessiList of
 # type <i>float</i>, the module redirects the call to the function
 # \f$add\_f\f$.
 #
@@ -55,17 +55,17 @@ import array_manip_bind
 # \{
 
 ##
-# \brief This function adds each element of two NessiVector.
+# \brief This function adds each element of two NessiList.
 #
-# This function accepts four NessiVector as arguments or 2 NessiVectors and
+# This function accepts four NessiList as arguments or 2 NessiLists and
 # 2 scalars.
 #
-# - With four NessiVectors:
+# - With four NessiLists:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
 # \endcode
 #
-# - With 2 NessiVectors and 2 scalars:
+# - With 2 NessiLists and 2 scalars:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1, Scalar, Scalar_err2)
 # \endcode
@@ -76,8 +76,8 @@ import array_manip_bind
 #
 #     ========================================================================
 #
-# - With 4 NessiVectors, this function adds each element, \f$i\f$, of two
-# NessiVectors according to the equation:
+# - With 4 NessiLists, this function adds each element, \f$i\f$, of two
+# NessiLists according to the equation:
 # \f[
 # data_o[i]=data_1[i]+data_2[i]
 # \f]
@@ -95,7 +95,7 @@ import array_manip_bind
 # uncertainty in the first array, and \f$\sigma_2[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the second array.
 #
-# - With 2 NessiVectors and 2 scalars, this function adds a scalar to each
+# - With 2 NessiLists and 2 scalars, this function adds a scalar to each
 # element, \f$i\f$, of an array according to the equation:
 # \f[
 # data_o[i]=a+data_i[i]
@@ -113,15 +113,15 @@ import array_manip_bind
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# \param a (INPUT) is the first NessiVector or scalar to be added
+# \param a (INPUT) is the first NessiList or scalar to be added
 # \param ae2 (INPUT) is the square of the uncertainty in the first
-# NessiVector of in the scalar to be added
-# \param b (INPUT) is the second NessiVector or scalar to be added
+# NessiList of in the scalar to be added
+# \param b (INPUT) is the second NessiList or scalar to be added
 # \param be2 (INPUT) is the square of the uncertainty in the second
-# NessiVector or scalar to be added
+# NessiList or scalar to be added
 # \return
-# - The result NessiVector
-# - The square of the uncertainty in the result NessiVector
+# - The result NessiList
+# - The square of the uncertainty in the result NessiList
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -133,8 +133,8 @@ def add_ncerr(a,ae2,b,be2):
     ---------------------------------------------------------------------------
 
     This function accepts four arguments:
-     - 4 NessiVectors
-     - 2 NessiVectors and 2 scalars
+     - 4 NessiLists
+     - 2 NessiLists and 2 scalars
 
     >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
@@ -142,12 +142,12 @@ def add_ncerr(a,ae2,b,be2):
     >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector, Vector_err2,
         Scalar, Scalar_err2)
 
-    where Vector_o is the resulting NessiVector and Vector_err2_o is the
-    uncertainty in the NessiVector o.
+    where Vector_o is the resulting NessiList and Vector_err2_o is the
+    uncertainty in the NessiList o.
 
     ================================================================
-    - With 4 NessiVectors, this function adds each element, i, of two
-    NessiVectors according to the equation:
+    - With 4 NessiLists, this function adds each element, i, of two
+    NessiLists according to the equation:
 
     Vector_o[i] = Vector_1[i] + Vector_2[i]
 
@@ -165,8 +165,8 @@ def add_ncerr(a,ae2,b,be2):
     Vector_err2_2[i] is the i^th component of the
     uncertainty in the second array.
 
-    - With 2 NessiVectors and 2 scalars, this function adds each element of the
-    NessiVectors with a scalar according to the equation:
+    - With 2 NessiLists and 2 scalars, this function adds each element of the
+    NessiLists with a scalar according to the equation:
 
     Vector_o[i] = Vector[i] + Scalar
 
@@ -186,18 +186,18 @@ def add_ncerr(a,ae2,b,be2):
     Parameters:
     __________
 
-    -> a is the first NessiVector or scalar to be added
-    -> ae2 is the square of the uncertainty in the first NessiVector or scalar
+    -> a is the first NessiList or scalar to be added
+    -> ae2 is the square of the uncertainty in the first NessiList or scalar
        to be added
-    -> b is the second NessiVector or scalar to be added
-    -> be2 is the square of the uncertainty in the second NessiVector or scalar
+    -> b is the second NessiList or scalar to be added
+    -> be2 is the square of the uncertainty in the second NessiList or scalar
        to be added
 
     Returns 2 Nessivectors:
     ______________________
 
-    <- the result NessiVector
-    <- the square of the uncertainty in the result NessiVector
+    <- the result NessiList
+    <- the square of the uncertainty in the result NessiList
 
     Exceptions:
     __________
@@ -213,8 +213,8 @@ def add_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to add_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a), a.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
             array_manip_bind.add_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -222,8 +222,8 @@ def add_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
             array_manip_bind.add_ncerr_d(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -231,8 +231,8 @@ def add_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_vector.NessiVector(len(a),a.INT)
-            ce2 = nessi_vector.NessiVector(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),a.INT)
+            ce2 = nessi_list.NessiList(len(a), a.INT)
             array_manip_bind.add_ncerr_i(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -240,8 +240,8 @@ def add_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_vector.NessiVector(len(a),a.UINT)
-            ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),a.UINT)
+            ce2 = nessi_list.NessiList(len(a), a.UINT)
             array_manip_bind.add_ncerr_u(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -273,8 +273,8 @@ def add_ncerr(a,ae2,b,be2):
             raise TypeError,"add_ncerr does not understand types given to it"
 
     if (array.__type__ == array.FLOAT):
-        c = nessi_vector.NessiVector(len(array), array.FLOAT)
-        ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
+        c = nessi_list.NessiList(len(array), array.FLOAT)
+        ce2 = nessi_list.NessiList(len(array), array.FLOAT)
         array_manip_bind.add_ncerr_f(array.__array__,\
                                      array_e2.__array__,\
                                      float(scalar),\
@@ -282,8 +282,8 @@ def add_ncerr(a,ae2,b,be2):
                                      c.__array__,\
                                      ce2.__array__)
     elif (array.__type__ == array.DOUBLE):
-        c = nessi_vector.NessiVector(len(array),array.DOUBLE)
-        ce2 = nessi_vector.NessiVector(len(array), array.DOUBLE)
+        c = nessi_list.NessiList(len(array),array.DOUBLE)
+        ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
         array_manip_bind.add_ncerr_d(array.__array__,\
                                      array_e2.__array__,\
                                      float(scalar),\
@@ -291,8 +291,8 @@ def add_ncerr(a,ae2,b,be2):
                                      c.__array__,\
                                      ce2.__array__)
     elif (array.__type__ == array.INT):
-        c = nessi_vector.NessiVector(len(array),array.INT)
-        ce2 = nessi_vector.NessiVector(len(array), array.INT)
+        c = nessi_list.NessiList(len(array),array.INT)
+        ce2 = nessi_list.NessiList(len(array), array.INT)
         array_manip_bind.add_ncerr_i(array.__array__,\
                                      array_e2.__array__,\
                                      int(scalar),\
@@ -300,8 +300,8 @@ def add_ncerr(a,ae2,b,be2):
                                      c.__array__,\
                                      ce2.__array__)
     elif (array.__type__ == array.UINT):
-        c = nessi_vector.NessiVector(len(array),array.UINT)
-        ce2 = nessi_vector.NessiVector(len(array), array.UINT)
+        c = nessi_list.NessiList(len(array),array.UINT)
+        ce2 = nessi_list.NessiList(len(array), array.UINT)
         array_manip_bind.add_ncerr_u(array.__array__,\
                                      array_e2.__array__,\
                                      int(scalar),\
@@ -321,29 +321,29 @@ def add_ncerr(a,ae2,b,be2):
 # \{
 
 ##
-# \brief This function substracts each element of two NessiVector.
+# \brief This function substracts each element of two NessiList.
 #
-# This function accepts four NessiVector as arguments or 2 NessiVectors and
+# This function accepts four NessiList as arguments or 2 NessiLists and
 # 2 scalars
 #
-# - With four NessiVectors:
+# - With four NessiLists:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
 # \endcode
 #
-# - With 2 NessiVectors and 2 scalars:
+# - With 2 NessiLists and 2 scalars:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Scalar, Scalar_err2)
 # \endcode
 #
-# - With 2 scalars and 2 NessiVectors:
+# - With 2 scalars and 2 NessiLists:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Scalar, Scalar_err2, Vector_1, Vector_err2_1)
 # \endcode
 #
 #     ========================================================================
 #
-# - With 4 NessiVectors, This function subtracts each element, \f$i\f$, of two
+# - With 4 NessiLists, This function subtracts each element, \f$i\f$, of two
 # arrays according to the equation:
 # \f[
 # data_o[i]=data_1[i]/data_2[i]
@@ -364,7 +364,7 @@ def add_ncerr(a,ae2,b,be2):
 # the \f$i^{th}\f$ component of the uncertainty in the array subtracting.
 # array.
 #
-# - With 2 NessiVectors and 2 Scalars, this function subtracts each element,
+# - With 2 NessiLists and 2 Scalars, this function subtracts each element,
 # \f$i\f$, of an array by a scalar according to the equation:
 # \f[
 # data_o[i]=data_i[i]/a
@@ -383,7 +383,7 @@ def add_ncerr(a,ae2,b,be2):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# - With 2 scalars and 2 NessiVectors, this function subtracts a scalar by each
+# - With 2 scalars and 2 NessiLists, this function subtracts a scalar by each
 # element, \f$i\f$, of an array according to the equation:
 # \f[
 # data_o[i]=a/data_i[i]
@@ -402,15 +402,15 @@ def add_ncerr(a,ae2,b,be2):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# \param a (INPUT) is the NessiVector or scalar to be subtracted from
+# \param a (INPUT) is the NessiList or scalar to be subtracted from
 # \param ae2 (INPUT) is the square of the uncertainty in the
-# NessiVector or scalar to be subtracted from
-# \param b (INPUT) is the NessiVector or scalar to subtract
-# \param be2 (INPUT) is the square of the uncertainty in the NessiVector or
+# NessiList or scalar to be subtracted from
+# \param b (INPUT) is the NessiList or scalar to subtract
+# \param be2 (INPUT) is the square of the uncertainty in the NessiList or
 # scalar to subtract
 # \return
-# - The result NessiVector
-# - The square of the uncertainty in the result NessiVector
+# - The result NessiList
+# - The square of the uncertainty in the result NessiList
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -422,9 +422,9 @@ def sub_ncerr(a,ae2,b,be2):
     ---------------------------------------------------------------------------
 
     This function accepts four arguments:
-     - 4 NessiVectors
-     - 2 NessiVectors and 2 scalars
-     - 2 scalars and 2 NessiVectors
+     - 4 NessiLists
+     - 2 NessiLists and 2 scalars
+     - 2 scalars and 2 NessiLists
 
     >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
@@ -435,13 +435,13 @@ def sub_ncerr(a,ae2,b,be2):
     >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Scalar, Scalar_err2,
         Vector, Vector_err2)
 
-    where Vector_o is the resulting NessiVector and Vector_err2_o is the
-    uncertainty in the NessiVector o.
+    where Vector_o is the resulting NessiList and Vector_err2_o is the
+    uncertainty in the NessiList o.
 
     ================================================================
 
-    - With 4 NessiVectors, this function subtracts each element, i, of two
-    NessiVectors according to the equation:
+    - With 4 NessiLists, this function subtracts each element, i, of two
+    NessiLists according to the equation:
 
     Vector_o[i] = Vector_1[i] - Vector_2[i]
 
@@ -460,8 +460,8 @@ def sub_ncerr(a,ae2,b,be2):
     Vector_err2_2[i] is the i^th component of the
     uncertainty in the array subtracting.
 
-    - With 2 NessiVectors and 2 scalars, this function subtracts a scalar
-    from each element, i, of a NessiVectors according to the equation:
+    - With 2 NessiLists and 2 scalars, this function subtracts a scalar
+    from each element, i, of a NessiLists according to the equation:
 
     Vector_o[i] = Vector_1[i] - Scalar
 
@@ -478,8 +478,8 @@ def sub_ncerr(a,ae2,b,be2):
     uncertainty in the array begin subtracted from and
     Scalar_err2 is the uncertainty in the scalar.
 
-    - With 2 scalar and 2 NessiVectors, this function subtracts from a
-    scalar each element, i, of a NessiVectors according to the equation:
+    - With 2 scalar and 2 NessiLists, this function subtracts from a
+    scalar each element, i, of a NessiLists according to the equation:
 
     Vector_o[i] = Scalar - Vector_1[i]
 
@@ -499,18 +499,18 @@ def sub_ncerr(a,ae2,b,be2):
     Parameters:
     __________
 
-    -> a is the NessiVector or scalar to be subtracted from
-    -> ae2 is the square of the uncertainty in the NessiVector or scalar to be
+    -> a is the NessiList or scalar to be subtracted from
+    -> ae2 is the square of the uncertainty in the NessiList or scalar to be
        subtracted from
-    -> b is the NessiVector or scalar to subtract
-    -> be2 is the square of the uncertainty in the NessiVector or scalar to
+    -> b is the NessiList or scalar to subtract
+    -> be2 is the square of the uncertainty in the NessiList or scalar to
        subtract
 
-    Returns 2 NessiVectors:
+    Returns 2 NessiLists:
     ______________________
 
-    <- the result NessiVector
-    <- the square of the uncertainty in the result NessiVector
+    <- the result NessiList
+    <- the square of the uncertainty in the result NessiList
 
     Exceptions:
     __________
@@ -526,8 +526,8 @@ def sub_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to sub_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a), a.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
             array_manip_bind.sub_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -535,8 +535,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
             array_manip_bind.sub_ncerr_d(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -544,8 +544,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_vector.NessiVector(len(a),a.INT)
-            ce2 = nessi_vector.NessiVector(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),a.INT)
+            ce2 = nessi_list.NessiList(len(a), a.INT)
             array_manip_bind.sub_ncerr_i(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -553,8 +553,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_vector.NessiVector(len(a),a.UINT)
-            ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),a.UINT)
+            ce2 = nessi_list.NessiList(len(a), a.UINT)
             array_manip_bind.sub_ncerr_u(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -577,8 +577,8 @@ def sub_ncerr(a,ae2,b,be2):
         array_e2=ae2
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array), array.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
             array_manip_bind.sub_ncerr_f(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -586,8 +586,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_vector.NessiVector(len(array),array.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
             array_manip_bind.sub_ncerr_d(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -595,8 +595,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_vector.NessiVector(len(array),array.INT)
-            ce2 = nessi_vector.NessiVector(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),array.INT)
+            ce2 = nessi_list.NessiList(len(array), array.INT)
             array_manip_bind.sub_ncerr_i(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -604,8 +604,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_vector.NessiVector(len(array),array.UINT)
-            ce2 = nessi_vector.NessiVector(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),array.UINT)
+            ce2 = nessi_list.NessiList(len(array), array.UINT)
             array_manip_bind.sub_ncerr_u(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -628,8 +628,8 @@ def sub_ncerr(a,ae2,b,be2):
             raise TypeError,"sub_ncerr does not understand types given to it"
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array), array.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
             array_manip_bind.sub_ncerr_f(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -637,8 +637,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_vector.NessiVector(len(array),array.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
             array_manip_bind.sub_ncerr_d(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -646,8 +646,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_vector.NessiVector(len(array),array.INT)
-            ce2 = nessi_vector.NessiVector(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),array.INT)
+            ce2 = nessi_list.NessiList(len(array), array.INT)
             array_manip_bind.sub_ncerr_i(int(scalar),\
                                          int(scalar_e2),\
                                          array.__array__,\
@@ -655,8 +655,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_vector.NessiVector(len(array),array.UINT)
-            ce2 = nessi_vector.NessiVector(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),array.UINT)
+            ce2 = nessi_list.NessiList(len(array), array.UINT)
             array_manip_bind.sub_ncerr_u(int(scalar),\
                                          int(scalar),\
                                          array.__array__,\
@@ -676,25 +676,25 @@ def sub_ncerr(a,ae2,b,be2):
 # \{
 
 ##
-# \brief This function multiplies each element of two NessiVector.
+# \brief This function multiplies each element of two NessiList.
 #
-# This function accepts four NessiVector as arguments or 2 NessiVectors and 2
+# This function accepts four NessiList as arguments or 2 NessiLists and 2
 # scalars.
 #
-# - With four NessiVectors:
+# - With four NessiLists:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,Vector_err2_1, Vector_2,Vector_err2_2)
 # \endcode
 #
-# - With 2 NessiVectors and 2 scalars:
+# - With 2 NessiLists and 2 scalars:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector,Vector_err2, Scalar, Scalar_err2)
 # \endcode
 #
 #     ========================================================================
 #
-# - With 4 NessiVectors, this function multiply each element, \f$i\f$, of two
-# NessiVectors according to the equation:
+# - With 4 NessiLists, this function multiply each element, \f$i\f$, of two
+# NessiLists according to the equation:
 # \f[
 # data_o[i]=data_1[i]\times data_2[i]
 # \f]
@@ -713,8 +713,8 @@ def sub_ncerr(a,ae2,b,be2):
 # \f$\sigma_2[i]\f$ is the \f$i^{th}\f$ component of the
 # uncertainty in the second array.
 #
-# - With 2 NessiVectors and 2 scalars, this function multiplies a scalar to
-# each element, \f$i\f$, of an NessiVector according to the equation
+# - With 2 NessiLists and 2 scalars, this function multiplies a scalar to
+# each element, \f$i\f$, of an NessiList according to the equation
 # \f[
 # data_o[i]=data_i[i]\times a
 # \f]
@@ -731,15 +731,15 @@ def sub_ncerr(a,ae2,b,be2):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# \param a (INPUT) is the first NessiVector to be multiplied
-# \param ae2 (INPUT) is the second NessiVector to multiplied
-# \param b (INPUT) is the second NessiVector/scalar to be multiplied
+# \param a (INPUT) is the first NessiList to be multiplied
+# \param ae2 (INPUT) is the second NessiList to multiplied
+# \param b (INPUT) is the second NessiList/scalar to be multiplied
 # \param be2 (INPUT) is the square of the uncertainty in the second
-# NessiVector/scalar to be multiplied
+# NessiList/scalar to be multiplied
 #
 # \return
-# - The result NessiVector
-# - The square of the uncertainty in the result NessiVector
+# - The result NessiList
+# - The square of the uncertainty in the result NessiList
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -751,8 +751,8 @@ def mult_ncerr(a,ae2,b,be2):
     ---------------------------------------------------------------------------
 
     This function accepts four arguments:
-       - 4 NessiVectors
-       - 2 NessiVectors and 2 scalars
+       - 4 NessiLists
+       - 2 NessiLists and 2 scalars
 
     >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
@@ -760,13 +760,13 @@ def mult_ncerr(a,ae2,b,be2):
     >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector, Vector_err2,
         Scalar, Scalar_err2)
 
-    where Vector_o is the resulting NessiVector and Vector_err2_o is the
-    uncertainty in the NessiVector o.
+    where Vector_o is the resulting NessiList and Vector_err2_o is the
+    uncertainty in the NessiList o.
 
     =================================================================
 
-    - With 4 NessiVectors, this function multiply each element, i, of two
-    NessiVectors according to the equation:
+    - With 4 NessiLists, this function multiply each element, i, of two
+    NessiLists according to the equation:
 
     Vector_o[i] = Vector_1[i] * Vector_2[i]
 
@@ -784,8 +784,8 @@ def mult_ncerr(a,ae2,b,be2):
     Vector_err2_2[i] is the i^th component of the
     uncertainty in the second array.
 
-    - With 2 NessiVectors and 2 scalars, this function multiply each element
-    of the NessiVectors with a scalar according to the equations:
+    - With 2 NessiLists and 2 scalars, this function multiply each element
+    of the NessiLists with a scalar according to the equations:
 
     Vector_o[i] = Vector[i] * Scalar
 
@@ -805,18 +805,18 @@ def mult_ncerr(a,ae2,b,be2):
     Parameters:
     __________
 
-    -> a is the first NessiVector or scalar to be multiplied
-    -> ae2 is the square of the uncertainty in the first NessiVector or scalar
+    -> a is the first NessiList or scalar to be multiplied
+    -> ae2 is the square of the uncertainty in the first NessiList or scalar
        to be multiplied
-    -> b is the second NessiVector or scalar to be multiplied
-    -> be2 is the square of the uncertainty in the second NessiVector or
+    -> b is the second NessiList or scalar to be multiplied
+    -> be2 is the square of the uncertainty in the second NessiList or
        scalar to be multiplied
 
-    Returns 2 NessiVectors:
+    Returns 2 NessiLists:
     ______________________
 
-    <- the result NessiVector
-    <- the square of the uncertainty in the result NessiVector
+    <- the result NessiList
+    <- the square of the uncertainty in the result NessiList
 
     Exceptions:
     __________
@@ -832,8 +832,8 @@ def mult_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to mult_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a), a.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
             array_manip_bind.mult_ncerr_f(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -841,8 +841,8 @@ def mult_ncerr(a,ae2,b,be2):
                                           c.__array__,\
                                           ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
             array_manip_bind.mult_ncerr_d(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -850,8 +850,8 @@ def mult_ncerr(a,ae2,b,be2):
                                           c.__array__,\
                                           ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_vector.NessiVector(len(a),a.INT)
-            ce2 = nessi_vector.NessiVector(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),a.INT)
+            ce2 = nessi_list.NessiList(len(a), a.INT)
             array_manip_bind.mult_ncerr_i(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -859,8 +859,8 @@ def mult_ncerr(a,ae2,b,be2):
                                           c.__array__,\
                                           ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_vector.NessiVector(len(a),a.UINT)
-            ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),a.UINT)
+            ce2 = nessi_list.NessiList(len(a), a.UINT)
             array_manip_bind.mult_ncerr_u(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -892,8 +892,8 @@ def mult_ncerr(a,ae2,b,be2):
             raise TypeError,"mult_ncerr does not understand types given to it"
 
     if (array.__type__ == array.FLOAT):
-        c = nessi_vector.NessiVector(len(array), array.FLOAT)
-        ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
+        c = nessi_list.NessiList(len(array), array.FLOAT)
+        ce2 = nessi_list.NessiList(len(array), array.FLOAT)
         array_manip_bind.mult_ncerr_f(array.__array__,\
                                       array_e2.__array__,\
                                       float(scalar),\
@@ -901,8 +901,8 @@ def mult_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (array.__type__ == array.DOUBLE):
-        c = nessi_vector.NessiVector(len(array),array.DOUBLE)
-        ce2 = nessi_vector.NessiVector(len(array), array.DOUBLE)
+        c = nessi_list.NessiList(len(array),array.DOUBLE)
+        ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
         array_manip_bind.mult_ncerr_d(array.__array__,\
                                       array_e2.__array__,\
                                       float(scalar),\
@@ -910,8 +910,8 @@ def mult_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (array.__type__ == array.INT):
-        c = nessi_vector.NessiVector(len(array),array.INT)
-        ce2 = nessi_vector.NessiVector(len(array), array.INT)
+        c = nessi_list.NessiList(len(array),array.INT)
+        ce2 = nessi_list.NessiList(len(array), array.INT)
         array_manip_bind.mult_ncerr_i(array.__array__,\
                                       array_e2.__array__,\
                                       int(scalar),\
@@ -919,8 +919,8 @@ def mult_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (array.__type__ == array.UINT):
-        c = nessi_vector.NessiVector(len(array),array.UINT)
-        ce2 = nessi_vector.NessiVector(len(array), array.UINT)
+        c = nessi_list.NessiList(len(array),array.UINT)
+        ce2 = nessi_list.NessiList(len(array), array.UINT)
         array_manip_bind.mult_ncerr_u(array.__array__,\
                                       array_e2.__array__,\
                                       int(scalar),\
@@ -940,30 +940,30 @@ def mult_ncerr(a,ae2,b,be2):
 # \{
 
 ##
-# \brief This function divides each element of two NessiVectors.
+# \brief This function divides each element of two NessiLists.
 #
-# This function accepts four NessiVectors as arguments, 2 NessiVectors and 2
-# scalars or 2 scalars and 2 NessiVectors.
+# This function accepts four NessiLists as arguments, 2 NessiLists and 2
+# scalars or 2 scalars and 2 NessiLists.
 #
-# - With 4 NessiVectors:
+# - With 4 NessiLists:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
 # \endcode
 #
-# - With 2 NessiVectors and 2 scalars:
+# - With 2 NessiLists and 2 scalars:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector, Vector_err2, Scalar, Scalar_err2)
 # \endcode
 #
-# - With 2 scalars and 2 NessiVectors:
+# - With 2 scalars and 2 NessiLists:
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Scalar, Scalar_err2, Vector, Vector_err2)
 # \endcode
 #
 #     ========================================================================
 #
-# - With 4 NessiVectors, this function divides each element, \f$i\f$, of two
-# NessiVectors according to the equation
+# - With 4 NessiLists, this function divides each element, \f$i\f$, of two
+# NessiLists according to the equation
 # \f[
 # Vector_o[i] = Vector_1[i] / Vector_2[i]
 # \f]
@@ -983,8 +983,8 @@ def mult_ncerr(a,ae2,b,be2):
 # the \f$i^{th}\f$ component of the uncertainty in the dividing
 # array.
 #
-# - With 2 NessiVectors and 2 scalars, this function divides each element,
-# \f$i\f$, of a NessiVector by a scalar according to the equation
+# - With 2 NessiLists and 2 scalars, this function divides each element,
+# \f$i\f$, of a NessiList by a scalar according to the equation
 # \f[
 # data_o[i]=data_i[i]/a
 # \f]
@@ -1002,8 +1002,8 @@ def mult_ncerr(a,ae2,b,be2):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# - With 2 Scalars and 2 NessiVectors, this function divides a scalar by each
-# element, \f$i\f$, of a NessiVector according to the equation
+# - With 2 Scalars and 2 NessiLists, this function divides a scalar by each
+# element, \f$i\f$, of a NessiList according to the equation
 # \f[
 # data_o[i]=a/data_i[i]
 # \f]
@@ -1021,16 +1021,16 @@ def mult_ncerr(a,ae2,b,be2):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# \param a (INPUT) is the NessiVector being divided
-# \param ae2 (INPUT) is the dividing NessiVector, if they are no more
+# \param a (INPUT) is the NessiList being divided
+# \param ae2 (INPUT) is the dividing NessiList, if they are no more
 # arguments present, otherwise it's the square of the uncertainty in the
-# NessiVector being divided
-# \param b (INPUT) is the dividing NessiVector
+# NessiList being divided
+# \param b (INPUT) is the dividing NessiList
 # \param be2 (INPUT) is the square of
-# the uncertainty in the dividing NessiVector
+# the uncertainty in the dividing NessiList
 # \return
-# - The result NessiVector
-# - The square of the uncertainty in the result NessiVector
+# - The result NessiList
+# - The square of the uncertainty in the result NessiList
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -1042,28 +1042,28 @@ def div_ncerr(a,ae2,b,be2):
     ---------------------------------------------------------------------------
 
     This function accepts four arguments:
-       - 4 NessiVectors
+       - 4 NessiLists
 
     >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
 
-       - 2 NessiVectors and 2 scalars
+       - 2 NessiLists and 2 scalars
 
     >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector, Vector_err2,
         Scalar, Scalar_err2)
 
-       - 2 scalars and 2 NessiVectors
+       - 2 scalars and 2 NessiLists
 
     >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Scalar, Scalar_err2,
         Vector, Vector_err2)
 
-    where Vector_o is the resulting NessiVector and Vector_err2_o is the
-    uncertainty in the NessiVector o.
+    where Vector_o is the resulting NessiList and Vector_err2_o is the
+    uncertainty in the NessiList o.
 
     =================================================================
 
-    - With 4 NessiVectors, this function divides each element, i, of two
-    NessiVectors according to the equation:
+    - With 4 NessiLists, this function divides each element, i, of two
+    NessiLists according to the equation:
 
     Vector_o[i] = Vector_1[i] / Vector_2[i]
 
@@ -1083,8 +1083,8 @@ def div_ncerr(a,ae2,b,be2):
     the i^th component of the uncertainty in the dividing
     array.
 
-    - With 2 NessiVectors and 2 scalars, this function divides each element
-    of the NessiVectors with a scalar according to the equations:
+    - With 2 NessiLists and 2 scalars, this function divides each element
+    of the NessiLists with a scalar according to the equations:
 
     Vector_o[i] = Vector[i] / Scalar
 
@@ -1102,8 +1102,8 @@ def div_ncerr(a,ae2,b,be2):
     uncertainty in the scalar, and Vector_err2[i] is the
     i^th component of the uncertainty in the input array.
 
-    - With 2 scalar and 2 NessiVectors, this function divides each element
-    of the NessiVectors with a scalar according to the equations:
+    - With 2 scalar and 2 NessiLists, this function divides each element
+    of the NessiLists with a scalar according to the equations:
 
     Vector_o[i] = Scalar / Vector[i]
 
@@ -1124,18 +1124,18 @@ def div_ncerr(a,ae2,b,be2):
     Parameters:
     __________
 
-    -> a is the NessiVector or scalar to be divided from
-    -> ae2 is the square of the uncertainty in the NessiVector or scalar to
+    -> a is the NessiList or scalar to be divided from
+    -> ae2 is the square of the uncertainty in the NessiList or scalar to
        be divided from
-    -> b is the NessiVector or scalar to divide by
-    -> be2 is the square of the uncertainty in the NessiVector or scalar to
+    -> b is the NessiList or scalar to divide by
+    -> be2 is the square of the uncertainty in the NessiList or scalar to
        divide by
 
-    Returns 2 NessiVectors:
+    Returns 2 NessiLists:
     ______________________
 
-    <- the result NessiVector
-    <- the square of the uncertainty in the result NessiVector
+    <- the result NessiList
+    <- the square of the uncertainty in the result NessiList
 
     Exceptions:
     __________
@@ -1151,8 +1151,8 @@ def div_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to div_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_vector.NessiVector(len(a), a.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
             array_manip_bind.div_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1160,8 +1160,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
             array_manip_bind.div_ncerr_d(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1169,8 +1169,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_vector.NessiVector(len(a),a.INT)
-            ce2 = nessi_vector.NessiVector(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),a.INT)
+            ce2 = nessi_list.NessiList(len(a), a.INT)
             array_manip_bind.div_ncerr_i(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1178,8 +1178,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_vector.NessiVector(len(a),a.UINT)
-            ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),a.UINT)
+            ce2 = nessi_list.NessiList(len(a), a.UINT)
             array_manip_bind.div_ncerr_u(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1202,8 +1202,8 @@ def div_ncerr(a,ae2,b,be2):
         array_e2=ae2
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array), array.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
             array_manip_bind.div_ncerr_f(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -1211,8 +1211,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_vector.NessiVector(len(array),array.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
             array_manip_bind.div_ncerr_d(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -1220,8 +1220,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_vector.NessiVector(len(array),array.INT)
-            ce2 = nessi_vector.NessiVector(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),array.INT)
+            ce2 = nessi_list.NessiList(len(array), array.INT)
             array_manip_bind.div_ncerr_i(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -1229,8 +1229,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_vector.NessiVector(len(array),array.UINT)
-            ce2 = nessi_vector.NessiVector(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),array.UINT)
+            ce2 = nessi_list.NessiList(len(array), array.UINT)
             array_manip_bind.div_ncerr_u(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -1253,8 +1253,8 @@ def div_ncerr(a,ae2,b,be2):
             raise TypeError,"div_ncerr does not understand types given to it"
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_vector.NessiVector(len(array), array.FLOAT)
-            ce2 = nessi_vector.NessiVector(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
             array_manip_bind.div_ncerr_f(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -1262,8 +1262,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_vector.NessiVector(len(array),array.DOUBLE)
-            ce2 = nessi_vector.NessiVector(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
             array_manip_bind.div_ncerr_d(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -1271,8 +1271,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_vector.NessiVector(len(array),array.INT)
-            ce2 = nessi_vector.NessiVector(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),array.INT)
+            ce2 = nessi_list.NessiList(len(array), array.INT)
             array_manip_bind.div_ncerr_i(int(scalar),\
                                          int(scalar_e2),\
                                          array.__array__,\
@@ -1280,8 +1280,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_vector.NessiVector(len(array),array.UINT)
-            ce2 = nessi_vector.NessiVector(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),array.UINT)
+            ce2 = nessi_list.NessiList(len(array), array.UINT)
             array_manip_bind.div_ncerr_u(int(scalar),\
                                          int(scalar),\
                                          array.__array__,\
@@ -1301,9 +1301,9 @@ def div_ncerr(a,ae2,b,be2):
 # \{
 
 ##
-# \brief This function adds two NessiVector weighted by their uncertainties.
+# \brief This function adds two NessiList weighted by their uncertainties.
 #
-# This function adds two NessiVector weighted by their uncertainties according
+# This function adds two NessiList weighted by their uncertainties according
 # to the equation:
 # \f[
 # Vector_o[i]=\left( \sum^2_{n=1} \frac{Vector_n[i]}{\sigma_n[i]}\right)
@@ -1319,21 +1319,21 @@ def div_ncerr(a,ae2,b,be2):
 # Vector_o[i]=\sum^2_{n=1} Vector_n[i]
 # \f]
 # where \f$Vector_o[i]\f$ is the \f$i^{th}\f$ component of the output
-# NessiVector, \f$Vector_n[i]\f$ is the \f$i^{th}\f$ component of the
-# \f$n^{th}\f$ NessiVector being added, \f$\sigma_o[i]\f$ is the
-# \f$i^{th}\f$ component of the uncertainty of the output NessiVector,
+# NessiList, \f$Vector_n[i]\f$ is the \f$i^{th}\f$ component of the
+# \f$n^{th}\f$ NessiList being added, \f$\sigma_o[i]\f$ is the
+# \f$i^{th}\f$ component of the uncertainty of the output NessiList,
 # \f$\sigma_n[i]\f$ is the \f$i^{th}\f$ component of the uncertainty
-# in the \f$n^{th}\f$ NessiVector being added.
+# in the \f$n^{th}\f$ NessiList being added.
 #
-# \param a (INPUT) is the first NessiVector to be added
-# \param ae2 (INPUT) is the square of the uncertainty in the first NessiVector
+# \param a (INPUT) is the first NessiList to be added
+# \param ae2 (INPUT) is the square of the uncertainty in the first NessiList
 # to be added
-# \param b (INPUT) is the second NessiVector to be added
+# \param b (INPUT) is the second NessiList to be added
 # \param be2 (INPUT) is the square of the uncertainty in the second
-# NessiVector to be added
+# NessiList to be added
 # \return
-# - The result NessiVector
-# - The square of the uncertainty in the result NessiVector
+# - The result NessiList
+# - The square of the uncertainty in the result NessiList
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -1345,13 +1345,13 @@ def sumw_ncerr(a,ae2,b,be2):
     ---------------------------------------------------------------------------
 
     This function accepts four arguments:
-        - 4 NessiVectors
+        - 4 NessiLists
 
     >>> Vector_o, Vector_err2_o = array_manip.sumw_ncerr(Vector_1,
         Vector_1_err2)
 
-    where Vector_o is the resulting NessiVector and NessiVector_err2_o is the
-    uncertainty in the NessiVector o.
+    where Vector_o is the resulting NessiList and NessiList_err2_o is the
+    uncertainty in the NessiList o.
 
     ===================================================================
 
@@ -1382,18 +1382,18 @@ def sumw_ncerr(a,ae2,b,be2):
     Parameters:
     __________
 
-    -> a is the first NessiVector to be added
-    -> ae2 is the square of the uncertainty in the first NessiVector to be
+    -> a is the first NessiList to be added
+    -> ae2 is the square of the uncertainty in the first NessiList to be
        added
-    -> b is the second NessiVector to be added
-    -> be2 is the square of the uncertainty in the second NessiVector to be
+    -> b is the second NessiList to be added
+    -> be2 is the square of the uncertainty in the second NessiList to be
        added
 
-    Returns 2 NessiVectors:
+    Returns 2 NessiLists:
     ______________________
 
-    <- the result NessiVector
-    <- the square of the uncertainty in the result NessiVector
+    <- the result NessiList
+    <- the square of the uncertainty in the result NessiList
 
     Exceptions:
     __________
@@ -1408,8 +1408,8 @@ def sumw_ncerr(a,ae2,b,be2):
         raise RuntimeError,"Incompatible types passed to sumw_ncerr"
 
     if (a.__type__ == a.FLOAT):
-        c = nessi_vector.NessiVector(len(a), a.FLOAT)
-        ce2 = nessi_vector.NessiVector(len(a), a.FLOAT)
+        c = nessi_list.NessiList(len(a), a.FLOAT)
+        ce2 = nessi_list.NessiList(len(a), a.FLOAT)
         array_manip_bind.sumw_ncerr_f(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
@@ -1417,8 +1417,8 @@ def sumw_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (a.__type__ == a.DOUBLE):
-        c = nessi_vector.NessiVector(len(a),a.DOUBLE)
-        ce2 = nessi_vector.NessiVector(len(a), a.DOUBLE)
+        c = nessi_list.NessiList(len(a),a.DOUBLE)
+        ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
         array_manip_bind.sumw_ncerr_d(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
@@ -1426,8 +1426,8 @@ def sumw_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (a.__type__ == a.INT):
-        c = nessi_vector.NessiVector(len(a),a.INT)
-        ce2 = nessi_vector.NessiVector(len(a), a.INT)
+        c = nessi_list.NessiList(len(a),a.INT)
+        ce2 = nessi_list.NessiList(len(a), a.INT)
         array_manip_bind.sumw_ncerr_i(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
@@ -1435,8 +1435,8 @@ def sumw_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (a.__type__ == a.UINT):
-        c = nessi_vector.NessiVector(len(a),a.UINT)
-        ce2 = nessi_vector.NessiVector(len(a), a.UINT)
+        c = nessi_list.NessiList(len(a),a.UINT)
+        ce2 = nessi_list.NessiList(len(a), a.UINT)
         array_manip_bind.sumw_ncerr_u(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
