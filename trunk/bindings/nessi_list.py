@@ -395,23 +395,22 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __add__(self,right):
-        try:
-            if (self.__type__ != right.__type__):
-                 raise AttributeError, "NessiLists don't have the same type"
-            if (len(self)!=len(right)):
-                raise IndexError
-            else:
-                c = NessiList(type=self.__type__)
-                for (a,b) in map(None,self.__array__,right.__array__):
-                    c.append(a+b)
-                return c
-        except AttributeError:
-            c = NessiList(type=self.__type__)
-            for i in range(len(self)):
-                c.append(right+self.__array__[i])
-            return c
-        except IndexError:
-            raise IndexError,"NessiLists don't have the same size"
+        try: # try adding this to another iterable thing
+            if len(self)!=len(right):
+                raise ValueError,"Cannot add things of unequal length"
+            result=NessiList(type=self.__type__)
+
+            for (a,b) in map(None,self,right):
+                result.append(a+b)
+            return result
+
+        except TypeError: # must be a scalar
+            result=NessiList(type=self.__type__)
+            for a in self:
+                result.append(a+right)
+            return result
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __radd__ NessiList
@@ -427,10 +426,7 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __radd__(self,left):
-        c=NessiList(type=self.__type__)
-        for i in range(len(self)):
-            c.append(self.__array__[i]+left)
-        return c
+        return self+left
 
 ##
 # \ingroup __iadd__ NessiList
@@ -445,8 +441,21 @@ class NessiList (list):
 # \endcode
 # \return The resulting NessiList
 #
-    def __iadd__(self,left):
-        raise NotImplementedError
+    def __iadd__(self,right):
+        try: # try adding this to another iterable thing
+            if len(self)!=len(right):
+                raise ValueError,"Cannot add things of unequal length"
+
+            for i in range(len(self)):
+                self[i]=self[i]+left[i]
+            return self
+
+        except TypeError: # must be a scalar
+            for i in range(len(self)):
+                self[i]=self[i]+right
+            return self
+
+        raise Exception,"This statement should never be reached"
 
 #
 # \ingroup __sub__ NessiList
@@ -517,7 +526,7 @@ class NessiList (list):
 #
 # \return the resulting NessiList
 #
-    def __isub__(self,left):
+    def __isub__(self,right):
         raise NotImplementedError
 
 ##
@@ -586,7 +595,7 @@ class NessiList (list):
 #
 # \return The resulting NessiList
 #
-    def __imul__(self,left):
+    def __imul__(self,right):
         raise NotImplementedError
 
 ##
@@ -655,7 +664,7 @@ class NessiList (list):
 #
 # \return The resulting NessiList
 #
-    def __idiv__(self,left):
+    def __idiv__(self,right):
         raise NotImplementedError
 
 ##
