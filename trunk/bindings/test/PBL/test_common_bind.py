@@ -75,11 +75,11 @@ def printVector(object, last=10):
 #
 # \param funcName (INPUT) Name of the PBL function that was used to generate
 #        the output
-# \param output (INPUT) Data vector to be checked
-# \param truth_output (INPUT) Truth data vector to be checked against
-# \param output_err2 (INPUT/OPTIONAL) Err2 vector to be checked
-# \param truth_output_err2 (INPUT/OPTIONAL) Truth err2 vector to be checked
-#        against
+# \param output (INPUT) Data vector or value to be checked
+# \param truth_output (INPUT) Truth data vector or value to be checked against
+# \param output_err2 (INPUT/OPTIONAL) Err2 vector or value to be checked
+# \param truth_output_err2 (INPUT/OPTIONAL) Truth err2 vector or value to be
+#        checked against
 
 def makeCheck(funcName, output, truth_output,
               output_err2=None, truth_output_err2=None):
