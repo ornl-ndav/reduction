@@ -6,6 +6,10 @@
 #
 ###############################################################################
 
+##
+# \file bindings/PBL/test_rebin_axis_1D.py
+#
+
 from axis_manip_bind import rebin_axis_1D_d
 from nessi_vector_bind import *
 import test_common_bind

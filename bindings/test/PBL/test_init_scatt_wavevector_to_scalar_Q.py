@@ -7,6 +7,10 @@
 #
 ###############################################################################
 
+##
+# \file bindings/PBL/test_init_scatt_wavevector_to_scalar_Q.py
+#
+
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_d
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_ss_d
 from nessi_vector_bind import *

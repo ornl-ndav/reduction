@@ -6,6 +6,10 @@
 #
 ###############################################################################
 
+##
+# \file bindings/PBL/test_weighted_average.py
+#
+
 from nessi_vector_bind import *
 from utils_bind import weighted_average_d
 import test_common_bind
