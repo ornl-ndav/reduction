@@ -144,20 +144,20 @@ def weighted_average(a,ae2,start,fin):
 def vector_is_equals(output,true_output):
 
     if (output.__type__ == nessi_list.NessiList.DOUBLE):
-        output_d = nessi_list.NessiList(0,nessi_list.NessiList.DOUBLE)
-        true_output_d = nessi_list.NessiList(0,nessi_list.NessiList.DOUBLE)
+        output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
+        true_output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
         for i in range(len(output)):
             output_d.append(output[i])
             true_output_d.append(true_output[i])
 
-        result = utils_bind.vector_is_equals_d(output_d, true_output_d)
+        result = utils_bind.vector_is_equals_d(output_d.__array__, true_output_d.__array__)
     else:
-        output_i = nessi_listNessiList(0,nessi_list.NessiList.INT)
-        true_output_i = nessi_listNessiList(0,nessi_list.NessiList.INT)
+        output_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
+        true_output_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
         for i in range(len(output)):
             output_i.append(output[i])
             true_output_i.append(true_output[i])
-        result = utils_bind.vector_is_equals_i(output_i, true_output_i)
+        result = utils_bind.vector_is_equals_i(output_i.__array__, true_output_i.__array__)
 
 	return result
 
