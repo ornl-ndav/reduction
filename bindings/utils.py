@@ -29,7 +29,6 @@
 #
 
 import nessi_vector
-import nessi_vector_bind
 import utils_bind
 
 
@@ -145,16 +144,16 @@ def weighted_average(a,ae2,start,fin):
 def vector_is_equals(output,true_output):
 
     if (output.__type__ == nessi_vector.NessiVector.DOUBLE):
-        output_d = nessi_vector_bind.DoubleNessiVector()
-        true_output_d = nessi_vector_bind.DoubleNessiVector()
+        output_d = nessi_vector.NessiVector(0,nessi_vector.NessiVector.DOUBLE)
+        true_output_d = nessi_vector.NessiVector(0,nessi_vector.NessiVector.DOUBLE)
         for i in range(len(output)):
             output_d.append(output[i])
             true_output_d.append(true_output[i])
 
         result = utils_bind.vector_is_equals_d(output_d, true_output_d)
     else:
-        output_i = nessi_vector_bind.IntNessiVector()
-        true_output_i = nessi_vector_bind.IntNessiVector()
+        output_i = nessi_vectorNessiVector(0,nessi_vector.NessiVector.DOUBLE)
+        true_output_i = nessi_vectorNessiVector(0,nessi_vector.NessiVector.DOUBLE)
         for i in range(len(output)):
             output_i.append(output[i])
             true_output_i.append(true_output[i])
