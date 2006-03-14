@@ -84,10 +84,10 @@ print "Checking Scalar-Scalar Wavelength to Scalar K Binding Function"
 
 wavelength_to_scalar_k_ss_d(Input_D[0], Input_Err2_D[0], Output_SS_D)
 
-mess = test_common_bind.makeCheck2("wavelength_to_scalar_k_d",
-                                   Output_SS_D.val,
-                                   TruthOutput_SS_D.val,
+mess = test_common_bind.makeCheck("wavelength_to_scalar_k_d",
+                                  Output_SS_D.val,
+                                  TruthOutput_SS_D.val,
                                    Output_SS_D.val_err2,
-                                   TruthOutput_SS_D.val_err2)
+                                  TruthOutput_SS_D.val_err2)
 
 print mess
