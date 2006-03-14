@@ -6,6 +6,10 @@
 #
 ###############################################################################
 
+##
+# \file bindings/PBL/test_add_ncerr.py
+#
+
 from array_manip_bind import add_ncerr_d
 from array_manip_bind import add_ncerr_i
 from nessi_vector_bind import *

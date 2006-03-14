@@ -6,6 +6,10 @@
 #
 ###############################################################################
 
+##
+# \file bindings/test_sub_ncerr.py
+#
+
 from array_manip_bind import sub_ncerr_d
 from array_manip_bind import sub_ncerr_i
 from nessi_vector_bind import *

@@ -6,6 +6,10 @@
 #
 ###############################################################################
 
+##
+# \file bindings/PBL/test_mult_ncerr.py
+#
+
 from array_manip_bind import mult_ncerr_d
 from array_manip_bind import mult_ncerr_i
 from nessi_vector_bind import *

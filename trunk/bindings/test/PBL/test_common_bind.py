@@ -6,12 +6,42 @@
 #
 ###############################################################################
 
+##
+# \file bindings/PBL/test_common_bind.py
+#
+
 from utils_bind import compare
 from utils_bind import vector_is_equals_d
 from utils_bind import vector_is_equals_i
 
+##
+# \defgroup printVector test_common_bind::printVector
+# \{
+
+##
+# \brief This function prints out a certain number of elements including the
+# last.
+#
+# This function takes an array and prints out the first 10 elements of the
+# array and the last element (if the array is larger than 10). An optional
+# argument can be passed that changes the number of elements printed. The
+# last element is always printed.
+#
+# \param object (INPUT) The array to be printed
+# \param last (INPUT/OPTIONAL) The number of elements from the beginning of the
+#        array to be printed
 
 def printVector(object, last=10):
+    """
+    
+       This function takes an array and prints out the first 10 elements of the
+       array and the last element (if the array is larger than 10). An optional
+       argument can be passed that changes the number of elements printed. The
+       last element is always printed.
+
+       object  :  The array to be printed
+       last    :  The number of initial array elements to print
+    """
     lenobj = len(object)
 
     if lenobj < last:
@@ -28,6 +58,26 @@ def printVector(object, last=10):
     else:
         print
 
+##
+# \}
+#
+
+##
+# \defgroup makeCheck test_common_bind::makeCheck
+# \{
+
+##
+# \brief This function checks vector sets against one another
+#
+# Thisfunction checks output and truth vectors for both data and
+# square of the uncertainty in the data (err2) arrays.
+#
+# \param funcName (INPUT) Name of the PBL function that was used to generate
+#        the output
+# \param output (INPUT) Data array to be checked
+# \param truth_output (INPUT) Truth data array to be checked against
+# \param output_err2 (INPUT) Err2 array to be checked
+# \param truth_output_err2 (INPUT) Truth err2 array to be checked against
 
 def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
 
@@ -78,6 +128,14 @@ def makeCheck(funcName, output, truth_output, output_err2, truth_output_err2):
 
     return mess
 
+##
+# \}
+#
+
+##
+# \defgroup makeCheck1 test_common_bind::makeCheck1
+# \{
+
 def makeCheck1(funcName, output, truth_output):
 
     """
@@ -112,6 +170,14 @@ def makeCheck1(funcName, output, truth_output):
         mess += " Functionality OK"
 
     return mess
+
+##
+# \}
+#
+
+##
+# \defgroup makeCheck2 test_common_bind::makeCheck2
+# \{
 
 def makeCheck2(funcName, output, truth_output, output_err2, truth_output_err2):
 
@@ -155,3 +221,7 @@ def makeCheck2(funcName, output, truth_output, output_err2, truth_output_err2):
         mess += " Functionality OK"
 
     return mess
+
+##
+# \}
+#
