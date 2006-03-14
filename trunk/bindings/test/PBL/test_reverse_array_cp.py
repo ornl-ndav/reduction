@@ -65,14 +65,14 @@ print "Checking Reverse Array Copy Binding Function"
 
 reverse_array_cp_d(Input_D, Output_D)
 
-mess = test_common_bind.makeCheck1("reverse_array_cp_d",
-                                   Output_D, TruthOutput_D)
+mess = test_common_bind.makeCheck("reverse_array_cp_d",
+                                  Output_D, TruthOutput_D)
 
 print mess
 
 reverse_array_cp_i(Input_I, Output_I)
 
-mess = test_common_bind.makeCheck1("reverse_array_cp_i",
-                                   Output_I, TruthOutput_I)
+mess = test_common_bind.makeCheck("reverse_array_cp_i",
+                                  Output_I, TruthOutput_I)
 
 print mess

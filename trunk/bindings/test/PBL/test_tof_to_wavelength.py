@@ -91,10 +91,10 @@ tof_to_wavelength_ss_d(Input_D[0], Input_Err2_D[0],
                        pathlength, pathlength_err2,
                        Output_SS_D)
 
-mess = test_common_bind.makeCheck2("tof_to_wavelength_d",
-                                   Output_SS_D.val,
-                                   TruthOutput_SS_D.val,
-                                   Output_SS_D.val_err2,
-                                   TruthOutput_SS_D.val_err2)
+mess = test_common_bind.makeCheck("tof_to_wavelength_d",
+                                  Output_SS_D.val,
+                                  TruthOutput_SS_D.val,
+                                  Output_SS_D.val_err2,
+                                  TruthOutput_SS_D.val_err2)
 
 print mess

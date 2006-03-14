@@ -91,10 +91,10 @@ wavelength_to_scalar_Q_ss_d(Input_D[0], Input_Err2_D[0],
                             polar_angle, polar_angle_err2,
                             Output_SS_D)
 
-mess = test_common_bind.makeCheck2("wavelength_to_scalar_Q_ss_d",
-                                   Output_SS_D.val,
-                                   TruthOutput_SS_D.val,
-                                   Output_SS_D.val_err2,
-                                   TruthOutput_SS_D.val_err2)
+mess = test_common_bind.makeCheck("wavelength_to_scalar_Q_ss_d",
+                                  Output_SS_D.val,
+                                  TruthOutput_SS_D.val,
+                                  Output_SS_D.val_err2,
+                                  TruthOutput_SS_D.val_err2)
 
 print mess

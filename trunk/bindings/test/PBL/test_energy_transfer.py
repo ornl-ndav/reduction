@@ -149,9 +149,9 @@ energy_transfer_ss_d(Input1_D[0], Input1_Err2_D[0],
                      Input2_D[0], Input2_Err2_D[0],
                      Output_SS_D)
 
-mess = test_common_bind.makeCheck2("energy_transfer_ss_d",
-                                   Output_SS_D.val,
-                                   TruthOutput_SS_D.val,
-                                   Output_SS_D.val_err2,
-                                   TruthOutput_SS_D.val_err2)
+mess = test_common_bind.makeCheck("energy_transfer_ss_d",
+                                  Output_SS_D.val,
+                                  TruthOutput_SS_D.val,
+                                  Output_SS_D.val_err2,
+                                  TruthOutput_SS_D.val_err2)
 print mess

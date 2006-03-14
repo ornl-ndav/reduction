@@ -51,11 +51,11 @@ print "Checking Weighted Average Binding Function"
 
 weighted_average_d(Input1_D, Input1_Err2_D, 0, NUM_VAL-1, Output_D)
 
-mess = test_common_bind.makeCheck2("weighted_average_d",
-                                   Output_D.val,
-                                   TruthOutput_D.val,
-                                   Output_D.val_err2,
-                                   TruthOutput_D.val_err2)
+mess = test_common_bind.makeCheck("weighted_average_d",
+                                  Output_D.val,
+                                  TruthOutput_D.val,
+                                  Output_D.val_err2,
+                                  TruthOutput_D.val_err2)
 
 print mess
 

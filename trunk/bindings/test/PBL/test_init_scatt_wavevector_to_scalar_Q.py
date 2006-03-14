@@ -173,10 +173,10 @@ init_scatt_wavevector_to_scalar_Q_ss_d(Input1_D[0], Input1_Err2_D[0],
                                        polar_angle, polar_angle_err2,
                                        Output_SS_D)
 
-mess = test_common_bind.makeCheck2("init_scatt_wavevector_to_scalar_Q_ss_d",
-                                   Output_SS_D.val,
-                                   TruthOutput_SS_D.val,
-                                   Output_SS_D.val_err2,
-                                   TruthOutput_SS_D.val_err2)
+mess = test_common_bind.makeCheck("init_scatt_wavevector_to_scalar_Q_ss_d",
+                                  Output_SS_D.val,
+                                  TruthOutput_SS_D.val,
+                                  Output_SS_D.val_err2,
+                                  TruthOutput_SS_D.val_err2)
 print mess
 
