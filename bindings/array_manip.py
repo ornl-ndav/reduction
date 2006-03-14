@@ -213,8 +213,8 @@ def add_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to add_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_list.NessiList(len(a), a.FLOAT)
-            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), type=a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), type=a.FLOAT)
             array_manip_bind.add_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -222,8 +222,8 @@ def add_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_list.NessiList(len(a),a.DOUBLE)
-            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
             array_manip_bind.add_ncerr_d(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -231,8 +231,8 @@ def add_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_list.NessiList(len(a),a.INT)
-            ce2 = nessi_list.NessiList(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),type=a.INT)
+            ce2 = nessi_list.NessiList(len(a), type=a.INT)
             array_manip_bind.add_ncerr_i(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -240,8 +240,8 @@ def add_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_list.NessiList(len(a),a.UINT)
-            ce2 = nessi_list.NessiList(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),type=a.UINT)
+            ce2 = nessi_list.NessiList(len(a), type=a.UINT)
             array_manip_bind.add_ncerr_u(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -273,8 +273,8 @@ def add_ncerr(a,ae2,b,be2):
             raise TypeError,"add_ncerr does not understand types given to it"
 
     if (array.__type__ == array.FLOAT):
-        c = nessi_list.NessiList(len(array), array.FLOAT)
-        ce2 = nessi_list.NessiList(len(array), array.FLOAT)
+        c = nessi_list.NessiList(len(array), type=array.FLOAT)
+        ce2 = nessi_list.NessiList(len(array), type=array.FLOAT)
         array_manip_bind.add_ncerr_f(array.__array__,\
                                      array_e2.__array__,\
                                      float(scalar),\
@@ -282,8 +282,8 @@ def add_ncerr(a,ae2,b,be2):
                                      c.__array__,\
                                      ce2.__array__)
     elif (array.__type__ == array.DOUBLE):
-        c = nessi_list.NessiList(len(array),array.DOUBLE)
-        ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
+        c = nessi_list.NessiList(len(array),type=array.DOUBLE)
+        ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
         array_manip_bind.add_ncerr_d(array.__array__,\
                                      array_e2.__array__,\
                                      float(scalar),\
@@ -291,8 +291,8 @@ def add_ncerr(a,ae2,b,be2):
                                      c.__array__,\
                                      ce2.__array__)
     elif (array.__type__ == array.INT):
-        c = nessi_list.NessiList(len(array),array.INT)
-        ce2 = nessi_list.NessiList(len(array), array.INT)
+        c = nessi_list.NessiList(len(array),type=array.INT)
+        ce2 = nessi_list.NessiList(len(array), type=array.INT)
         array_manip_bind.add_ncerr_i(array.__array__,\
                                      array_e2.__array__,\
                                      int(scalar),\
@@ -300,8 +300,8 @@ def add_ncerr(a,ae2,b,be2):
                                      c.__array__,\
                                      ce2.__array__)
     elif (array.__type__ == array.UINT):
-        c = nessi_list.NessiList(len(array),array.UINT)
-        ce2 = nessi_list.NessiList(len(array), array.UINT)
+        c = nessi_list.NessiList(len(array),type=array.UINT)
+        ce2 = nessi_list.NessiList(len(array), type=array.UINT)
         array_manip_bind.add_ncerr_u(array.__array__,\
                                      array_e2.__array__,\
                                      int(scalar),\
@@ -526,8 +526,8 @@ def sub_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to sub_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_list.NessiList(len(a), a.FLOAT)
-            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), type=a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), type=a.FLOAT)
             array_manip_bind.sub_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -535,8 +535,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_list.NessiList(len(a),a.DOUBLE)
-            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
             array_manip_bind.sub_ncerr_d(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -544,8 +544,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_list.NessiList(len(a),a.INT)
-            ce2 = nessi_list.NessiList(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),type=a.INT)
+            ce2 = nessi_list.NessiList(len(a), type=a.INT)
             array_manip_bind.sub_ncerr_i(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -553,8 +553,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_list.NessiList(len(a),a.UINT)
-            ce2 = nessi_list.NessiList(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),type=a.UINT)
+            ce2 = nessi_list.NessiList(len(a), type=a.UINT)
             array_manip_bind.sub_ncerr_u(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -577,8 +577,8 @@ def sub_ncerr(a,ae2,b,be2):
         array_e2=ae2
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_list.NessiList(len(array), array.FLOAT)
-            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), type=array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), type=array.FLOAT)
             array_manip_bind.sub_ncerr_f(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -586,8 +586,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
             array_manip_bind.sub_ncerr_d(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -595,8 +595,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),array.INT)
-            ce2 = nessi_list.NessiList(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),type=array.INT)
+            ce2 = nessi_list.NessiList(len(array), type=array.INT)
             array_manip_bind.sub_ncerr_i(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -604,8 +604,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_list.NessiList(len(array),array.UINT)
-            ce2 = nessi_list.NessiList(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),type=array.UINT)
+            ce2 = nessi_list.NessiList(len(array), type=array.UINT)
             array_manip_bind.sub_ncerr_u(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -628,8 +628,8 @@ def sub_ncerr(a,ae2,b,be2):
             raise TypeError,"sub_ncerr does not understand types given to it"
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_list.NessiList(len(array), array.FLOAT)
-            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), type=array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), type=array.FLOAT)
             array_manip_bind.sub_ncerr_f(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -637,8 +637,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
             array_manip_bind.sub_ncerr_d(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -646,8 +646,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),array.INT)
-            ce2 = nessi_list.NessiList(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),type=array.INT)
+            ce2 = nessi_list.NessiList(len(array), type=array.INT)
             array_manip_bind.sub_ncerr_i(int(scalar),\
                                          int(scalar_e2),\
                                          array.__array__,\
@@ -655,8 +655,8 @@ def sub_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_list.NessiList(len(array),array.UINT)
-            ce2 = nessi_list.NessiList(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),type=array.UINT)
+            ce2 = nessi_list.NessiList(len(array), type=array.UINT)
             array_manip_bind.sub_ncerr_u(int(scalar),\
                                          int(scalar),\
                                          array.__array__,\
@@ -832,8 +832,8 @@ def mult_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to mult_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_list.NessiList(len(a), a.FLOAT)
-            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), type=a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), type=a.FLOAT)
             array_manip_bind.mult_ncerr_f(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -841,8 +841,8 @@ def mult_ncerr(a,ae2,b,be2):
                                           c.__array__,\
                                           ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_list.NessiList(len(a),a.DOUBLE)
-            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
             array_manip_bind.mult_ncerr_d(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -850,8 +850,8 @@ def mult_ncerr(a,ae2,b,be2):
                                           c.__array__,\
                                           ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_list.NessiList(len(a),a.INT)
-            ce2 = nessi_list.NessiList(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),type=a.INT)
+            ce2 = nessi_list.NessiList(len(a), type=a.INT)
             array_manip_bind.mult_ncerr_i(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -859,8 +859,8 @@ def mult_ncerr(a,ae2,b,be2):
                                           c.__array__,\
                                           ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_list.NessiList(len(a),a.UINT)
-            ce2 = nessi_list.NessiList(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),type=a.UINT)
+            ce2 = nessi_list.NessiList(len(a), type=a.UINT)
             array_manip_bind.mult_ncerr_u(a.__array__,\
                                           ae2.__array__,\
                                           b.__array__,\
@@ -892,8 +892,8 @@ def mult_ncerr(a,ae2,b,be2):
             raise TypeError,"mult_ncerr does not understand types given to it"
 
     if (array.__type__ == array.FLOAT):
-        c = nessi_list.NessiList(len(array), array.FLOAT)
-        ce2 = nessi_list.NessiList(len(array), array.FLOAT)
+        c = nessi_list.NessiList(len(array), type=array.FLOAT)
+        ce2 = nessi_list.NessiList(len(array), type=array.FLOAT)
         array_manip_bind.mult_ncerr_f(array.__array__,\
                                       array_e2.__array__,\
                                       float(scalar),\
@@ -901,8 +901,8 @@ def mult_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (array.__type__ == array.DOUBLE):
-        c = nessi_list.NessiList(len(array),array.DOUBLE)
-        ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
+        c = nessi_list.NessiList(len(array),type=array.DOUBLE)
+        ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
         array_manip_bind.mult_ncerr_d(array.__array__,\
                                       array_e2.__array__,\
                                       float(scalar),\
@@ -910,8 +910,8 @@ def mult_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (array.__type__ == array.INT):
-        c = nessi_list.NessiList(len(array),array.INT)
-        ce2 = nessi_list.NessiList(len(array), array.INT)
+        c = nessi_list.NessiList(len(array),type=array.INT)
+        ce2 = nessi_list.NessiList(len(array), type=array.INT)
         array_manip_bind.mult_ncerr_i(array.__array__,\
                                       array_e2.__array__,\
                                       int(scalar),\
@@ -919,8 +919,8 @@ def mult_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (array.__type__ == array.UINT):
-        c = nessi_list.NessiList(len(array),array.UINT)
-        ce2 = nessi_list.NessiList(len(array), array.UINT)
+        c = nessi_list.NessiList(len(array),type=array.UINT)
+        ce2 = nessi_list.NessiList(len(array), type=array.UINT)
         array_manip_bind.mult_ncerr_u(array.__array__,\
                                       array_e2.__array__,\
                                       int(scalar),\
@@ -1151,8 +1151,8 @@ def div_ncerr(a,ae2,b,be2):
             raise RuntimeError,"Incompatible types passed to div_ncerr"
 
         if (a.__type__ == a.FLOAT):
-            c = nessi_list.NessiList(len(a), a.FLOAT)
-            ce2 = nessi_list.NessiList(len(a), a.FLOAT)
+            c = nessi_list.NessiList(len(a), type=a.FLOAT)
+            ce2 = nessi_list.NessiList(len(a), type=a.FLOAT)
             array_manip_bind.div_ncerr_f(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1160,8 +1160,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.DOUBLE):
-            c = nessi_list.NessiList(len(a),a.DOUBLE)
-            ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
+            c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+            ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
             array_manip_bind.div_ncerr_d(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1169,8 +1169,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.INT):
-            c = nessi_list.NessiList(len(a),a.INT)
-            ce2 = nessi_list.NessiList(len(a), a.INT)
+            c = nessi_list.NessiList(len(a),type=a.INT)
+            ce2 = nessi_list.NessiList(len(a), type=a.INT)
             array_manip_bind.div_ncerr_i(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1178,8 +1178,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (a.__type__ == a.UINT):
-            c = nessi_list.NessiList(len(a),a.UINT)
-            ce2 = nessi_list.NessiList(len(a), a.UINT)
+            c = nessi_list.NessiList(len(a),type=a.UINT)
+            ce2 = nessi_list.NessiList(len(a), type=a.UINT)
             array_manip_bind.div_ncerr_u(a.__array__,\
                                          ae2.__array__,\
                                          b.__array__,\
@@ -1202,8 +1202,8 @@ def div_ncerr(a,ae2,b,be2):
         array_e2=ae2
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_list.NessiList(len(array), array.FLOAT)
-            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), type=array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), type=array.FLOAT)
             array_manip_bind.div_ncerr_f(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -1211,8 +1211,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
             array_manip_bind.div_ncerr_d(array.__array__,\
                                          array_e2.__array__,\
                                          float(scalar),\
@@ -1220,8 +1220,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),array.INT)
-            ce2 = nessi_list.NessiList(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),type=array.INT)
+            ce2 = nessi_list.NessiList(len(array), type=array.INT)
             array_manip_bind.div_ncerr_i(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -1229,8 +1229,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_list.NessiList(len(array),array.UINT)
-            ce2 = nessi_list.NessiList(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),type=array.UINT)
+            ce2 = nessi_list.NessiList(len(array), type=array.UINT)
             array_manip_bind.div_ncerr_u(array.__array__,\
                                          array_e2.__array__,\
                                          int(scalar),\
@@ -1253,8 +1253,8 @@ def div_ncerr(a,ae2,b,be2):
             raise TypeError,"div_ncerr does not understand types given to it"
 
         if (array.__type__ == array.FLOAT):
-            c = nessi_list.NessiList(len(array), array.FLOAT)
-            ce2 = nessi_list.NessiList(len(array), array.FLOAT)
+            c = nessi_list.NessiList(len(array), type=array.FLOAT)
+            ce2 = nessi_list.NessiList(len(array), type=array.FLOAT)
             array_manip_bind.div_ncerr_f(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -1262,8 +1262,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), array.DOUBLE)
+            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
             array_manip_bind.div_ncerr_d(float(scalar),\
                                          float(scalar_e2),\
                                          array.__array__,\
@@ -1271,8 +1271,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),array.INT)
-            ce2 = nessi_list.NessiList(len(array), array.INT)
+            c = nessi_list.NessiList(len(array),type=array.INT)
+            ce2 = nessi_list.NessiList(len(array), type=array.INT)
             array_manip_bind.div_ncerr_i(int(scalar),\
                                          int(scalar_e2),\
                                          array.__array__,\
@@ -1280,8 +1280,8 @@ def div_ncerr(a,ae2,b,be2):
                                          c.__array__,\
                                          ce2.__array__)
         elif (array.__type__ == array.UINT):
-            c = nessi_list.NessiList(len(array),array.UINT)
-            ce2 = nessi_list.NessiList(len(array), array.UINT)
+            c = nessi_list.NessiList(len(array),type=array.UINT)
+            ce2 = nessi_list.NessiList(len(array), type=array.UINT)
             array_manip_bind.div_ncerr_u(int(scalar),\
                                          int(scalar),\
                                          array.__array__,\
@@ -1408,8 +1408,8 @@ def sumw_ncerr(a,ae2,b,be2):
         raise RuntimeError,"Incompatible types passed to sumw_ncerr"
 
     if (a.__type__ == a.FLOAT):
-        c = nessi_list.NessiList(len(a), a.FLOAT)
-        ce2 = nessi_list.NessiList(len(a), a.FLOAT)
+        c = nessi_list.NessiList(len(a), type=a.FLOAT)
+        ce2 = nessi_list.NessiList(len(a), type=a.FLOAT)
         array_manip_bind.sumw_ncerr_f(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
@@ -1417,8 +1417,8 @@ def sumw_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (a.__type__ == a.DOUBLE):
-        c = nessi_list.NessiList(len(a),a.DOUBLE)
-        ce2 = nessi_list.NessiList(len(a), a.DOUBLE)
+        c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+        ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
         array_manip_bind.sumw_ncerr_d(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
@@ -1426,8 +1426,8 @@ def sumw_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (a.__type__ == a.INT):
-        c = nessi_list.NessiList(len(a),a.INT)
-        ce2 = nessi_list.NessiList(len(a), a.INT)
+        c = nessi_list.NessiList(len(a),type=a.INT)
+        ce2 = nessi_list.NessiList(len(a), type=a.INT)
         array_manip_bind.sumw_ncerr_i(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
@@ -1435,8 +1435,8 @@ def sumw_ncerr(a,ae2,b,be2):
                                       c.__array__,\
                                       ce2.__array__)
     elif (a.__type__ == a.UINT):
-        c = nessi_list.NessiList(len(a),a.UINT)
-        ce2 = nessi_list.NessiList(len(a), a.UINT)
+        c = nessi_list.NessiList(len(a),type=a.UINT)
+        ce2 = nessi_list.NessiList(len(a), type=a.UINT)
         array_manip_bind.sumw_ncerr_u(a.__array__,\
                                       ae2.__array__,\
                                       b.__array__,\
