@@ -31,15 +31,26 @@
 // Need to ignore guard names from header files
 %ignore _NESSI_HPP;
 
+%include <std_string.i>
 %include <std_vector.i>
 %include "nessi.hpp"
 
 namespace std {
-  %template(IntVector) vector<int>;
   %template(DoubleVector) vector<double>;
+  %template(IntVector) vector<int>;
 }
 
 namespace Nessi {
-  %template(IntNessiVector) Vector<int>;
+  %extend Vector<double> {
+    std::string __type__() {
+	return "double";
+    }
+  }
+  %extend Vector<int> {
+    std::string __type__() {
+	return "int";
+    }
+  }
   %template(DoubleNessiVector) Vector<double>;
+  %template(IntNessiVector) Vector<int>;
 }
