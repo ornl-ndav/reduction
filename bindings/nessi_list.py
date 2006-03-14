@@ -24,66 +24,7 @@
 
 # $Id$
 
-"""
-                  DOUBLE              n/a
-                  FLOAT               n/a
-                  INT                 n/a
-                  UINT                n/a
-                  UNSIGNED            n/a
-                  UNSIGNED_INT        n/a
-__add__           __add__             done
-                  __array__           n/a
-__class__         __class__           inherited
-__contains__      __contains__        done
-__delattr__       __delattr__         inherited
-__delitem__       __delitem__         inherited
-__delslice__      __delslice__        inherited
-                  __dict__            n/a
-                  __div__             n/a
-__doc__           __doc__             please write
-__eq__            __eq__              done
-__ge__            __ge__              done
-__getattribute__  __getattribute__    inherited
-__getitem__       __getitem__         done
-__getslice__      __getslice__        done
-__gt__            __gt__              done
-__hash__          __hash__            inherited
-__iadd__          __iadd__            done
-__imul__          __imul__            please write
-__init__          __init__            done
-__iter__          __iter__            done
-__le__            __le__              done
-__len__           __len__             done
-__lt__            __lt__              done
-                  __module__          n/a
-__mul__           __mul__             done
-__ne__            __ne__              done
-__new__           __new__             inherited
-                  __radd__            n/a
-                  __rdiv__            n/a
-__reduce__        __reduce__          inherited - for pickling
-__reduce_ex__     __reduce_ex__       inherited - for pickling
-__repr__          __repr__            done
-__reversed__      __reversed__        done
-__rmul__          __rmul__            done
-                  __rsub__            n/a
-__setattr__       __setattr__         inherited
-__setitem__       __setitem__         done
-__setslice__      __setslice__        done
-__str__           __str__             done
-                  __sub__             n/a
-                  __type__            n/a
-                  __weakref__         n/a
-append            append              done
-count             count               done
-extend            extend              done
-index             index               done
-insert            insert              please write - insert before index
-pop               pop                 partial - needs opt index param
-remove            remove              please write - first occur of val
-reverse           reverse             please write - reverse in place
-sort              sort                please write - stable sort in place (cmp=None, key=None, reverse=False)
-"""
+# SNS-FIXME: Desparately needs documentation (and review of you)
 
 ##
 #\file bindings/nessi_list.py
@@ -707,7 +648,20 @@ class NessiList (list):
 # \return The resulting NessiList
 #
     def __idiv__(self,right):
-        raise NotImplementedError
+        try:
+            if len(self)!=len(right):
+                raise ValueError,"Cannot divide things of unequal length"
+
+            for i in range(len(self)):
+                self[i]=self[i]/right[i]
+            return self
+
+        except TypeError: # must be a scalar
+            for i in range(len(self)):
+                self[i]=self[i]/right
+            return self
+
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __contains__ NessiList
@@ -846,11 +800,13 @@ class NessiList (list):
 #
 # Function used to remove the last element of the NessiList
 #
-    def pop(self):
+    def pop(self,index=-1):
         if len(self.__array__)<=0:
             raise IndexError, "pop from empty Vector"
-        else:
-            return self.__array__.pop()
+
+        result=self[index]
+        del self[index]
+        return result
 
 ##
 # \ingroup __str__ NessiList
@@ -889,6 +845,30 @@ class NessiList (list):
             result.append(str(self.__array__[len(self)-1]))
 
         return "["+",".join(result)+"]"
+
+    def insert(self,index,object):
+        # insert before index
+        raise NotImplementedError,"This operation is not currently supported"
+
+    def __delitem__(self,index):
+        del self.__array__[index]
+
+    def __delslice__(self,i=0,j=-1):
+        del self.__array__[i:j]
+
+    def remove(self,value):
+        # remove first occurence of value
+        index=self.index(value)
+        del self[index]
+
+    def reverse(self):
+        # reverse in place
+        import axis_manip
+        axis_manip.reverse_array_nc(self)
+        return self
+
+    def sort(self,cmp=None,key=None,reverse=False):
+        raise NotImplementedError,"This function is not allowed"
 
 ##
 # \}
