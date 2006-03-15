@@ -105,10 +105,10 @@ def makeCheck(funcName, output, truth_output,
        mess += "........................."
    else:
        mess += "............................."
-       
+
    try:
        output.__type__()
-       
+
        if funcName.endswith("_d"):
            dataval = vector_is_equals_d(output, truth_output)
            if output_err2!=None and truth_output_err2!=None:
@@ -140,7 +140,7 @@ def makeCheck(funcName, output, truth_output,
    except AttributeError:
        dataval = compare(output, truth_output)
        err2val = compare(output_err2, truth_output_err2)
-       
+
        if dataval != 0 or err2val != 0:
 
            if dataval != 0:
@@ -153,7 +153,7 @@ def makeCheck(funcName, output, truth_output,
 
        else:
             mess += " Functionality OK"
-            
+
    return mess
 
 ##

@@ -26,7 +26,7 @@ NUM_VAL = 5
 
 # Set parameters for function
 polar_angle = 2.0
-polar_angle_err2 = 0.5 
+polar_angle_err2 = 0.5
 
 # Create input vectors
 Input_D = DoubleNessiVector()
