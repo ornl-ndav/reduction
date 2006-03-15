@@ -150,8 +150,40 @@ def weighted_average(a,ae2,start,fin):
 # \defgroup vector_is_equals utils::vector_is_equals
 # \{
 
+##
+# \brief This function compares to vectors for equality.
+#
+# This function takes two vectors and checks equality on an
+# element-by-element basis. One of the vectors contains the truth values
+# from a given calculation.
+#
+# \param value (INPUT) is a calculated vector
+# \param true_value (INPUT) is a truth vector corresponding to the
+# calculated vector
+#
+# \return A boolean that is true if the vector is equal element-by-element
+#
+   
 def vector_is_equals(output,true_output):
 
+    """
+    ---------------------------------------------------------------------------
+    This function takes two vectors and checks equality on an
+    element-by-element basis. One of the vectors contains the truth values
+    from a given calculation.
+
+    Parameters:
+    ----------
+    -> value is a calculated vector
+    -> true_value  is a truth vector corresponding to the calculated vector
+
+    Return:
+    ------
+    <- A boolean that is True if the vector is equal element-by-element,
+       if not, it returns False
+
+    """
+    
     if (output.__type__ == nessi_list.NessiList.DOUBLE):
         output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
         true_output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
@@ -177,8 +209,41 @@ def vector_is_equals(output,true_output):
 # \defgroup compare utils::compare
 # \{
 
+##
+# \brief This function compares two numbers and returns 0 (eq), 1 (gt) or
+# -1 (lt).
+#
+# This function takes two numbers on compares them. The function returns
+# 0 is the two numbers are equal, 1 if the first number is larger than the
+# second number, and -1 if the first number is smaller than the second
+# number.
+#
+# \param value1 (INPUT) is the first number to be compared
+# \param value2 (INPUT) is the second number to be compared
+#
+# \return 0 (eq), 1 (gt) or -1 (lt)
+#
+
 def compare(output,true_output):
 
+    """
+    ---------------------------------------------------------------------------
+    This function takes two numbers on compares them. The function returns 0
+    is the two numbers are equal, 1 if the first number is larger than the
+    second number, and -1 if the first number is smaller than the second
+    number.
+
+    Parameters:
+    ----------
+    -> value1 is the first number to be compared
+    -> value2 is the second number to be compared
+
+    Return:
+    ------
+    <- 0 (eq), 1 (gt) or -1 (lt)
+
+    """
+    
     result = utils_bind.compare(output,true_output)
     return result
    
