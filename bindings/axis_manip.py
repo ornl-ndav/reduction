@@ -27,6 +27,17 @@
 ##
 # \file bindings/axis_manip.py
 
+"""
+   This module gives the NessiList access to the various physical axis
+   conversions that are useful for time-on-flight neutron scattering which
+   are found in the C++ axis_manip library. All of the bases functions are
+   written in reference to SNS 107030214-TD0001-R00, \"Data Reduction Library
+   Software Requirements and Specifications\".
+
+   Once a function is called, according to the type of the NessiList calling
+   it, the module redirectes the call to the right function
+"""
+
 import nessi_list
 import axis_manip_bind
 import vpair_bind

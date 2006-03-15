@@ -28,9 +28,18 @@
 # \file bindings/utils.py
 #
 
+"""
+   This module gives the NessiList access to the various utility functions
+   provided by the C++ utils library. These functions are written in
+   references to SNS 107030214-TD0001-R00, \"Data Reduction Library Software
+   Requirements and Specifications\".
+
+   Once a function is called, according to the type of the NessiLists calling
+   it, the module redirects the call to the right function.
+"""
+
 import nessi_list
 import utils_bind
-
 
 ##
 # \namespace utils
