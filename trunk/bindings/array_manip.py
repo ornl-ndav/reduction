@@ -28,6 +28,17 @@
 # \file bindings/array_manip.py
 #
 
+"""
+   This module gives the NessiList access to the various simple
+   arithmetic operations on arrays provided by the C++ array_manip
+   library. These arithmetic operations are written in references to SNS
+   107030214-TD0001-R00, \"Data Reduction Library Software Requirements and
+   Specifications\".
+
+   Once a function is called, according to the type of the NessiLists calling
+   it, the module redirects the call to the right function.
+"""
+
 import nessi_list
 import array_manip_bind
 
