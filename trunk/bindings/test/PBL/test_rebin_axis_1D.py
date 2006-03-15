@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_rebin_axis_1D.py
+# \file bindings/test/PBL/test_rebin_axis_1D.py
 #
 
 from axis_manip_bind import rebin_axis_1D_d

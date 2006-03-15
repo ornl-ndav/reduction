@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_reverse_array_cp.py
+# \file bindings/test/PBL/test_reverse_array_cp.py
 #
 
 from axis_manip_bind import reverse_array_cp_d

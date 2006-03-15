@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_div_ncerr.py
+# \file bindings/test/PBL/test_div_ncerr.py
 #
 
 from array_manip_bind import div_ncerr_d

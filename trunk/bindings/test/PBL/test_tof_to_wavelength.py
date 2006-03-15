@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_tof_to_wavelength.py
+# \file bindings/test/PBL/test_tof_to_wavelength.py
 #
 
 from axis_manip_bind import tof_to_wavelength_d

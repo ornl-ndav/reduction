@@ -8,7 +8,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_tof_to_initial_wavelength_igs.py
+# \file bindings/test/PBL/test_tof_to_initial_wavelength_igs.py
 #
 
 from axis_manip_bind import tof_to_initial_wavelength_igs_d
