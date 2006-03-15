@@ -55,9 +55,9 @@ import utils_bind
 # Once a function is called, according to the type of the NessiLists calling
 # it, the module redirects the call to the right function.
 #
-# For example, when calling the function \f$weighted_average\f$ with two
-# NessiLists (data and error\f$^2\f$) of type <i>float</i>, the module
-# redirects the call to the function \f$weighted\_average\_f\f$.
+# For example, when calling the function \f$weighted\_average\f$ with two
+# NessiLists (data and error\f${}^2\f$) of type <i>double</i>, the module
+# redirects the call to the function \f$weighted\_average\_d\f$.
 #
 
 ##
