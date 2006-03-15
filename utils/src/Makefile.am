@@ -43,8 +43,6 @@ libUtils_la_SOURCES = \
 	matrix_multiplication.cpp \
 	peak_integration.hpp \
 	peak_integration.cpp \
-	vector_comparison.hpp \
-	vector_comparison.cpp \
 	vector_is_equals.hpp \
 	vector_is_equals.cpp \
 	weighted_average.hpp \

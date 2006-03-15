@@ -71,36 +71,6 @@ namespace Utils
    */ // end of compare group
 
   /**
-   * \defgroup vector_comparison Utils::vector_comparison
-   * \{
-   */
-
-  /**
-   * \brief This function compares to vectors for equality.
-   *
-   * This function takes two vectors and checks equality on an
-   * element-by-element basis. One of the vectors contains the truth values
-   * from a given calculation. The function also takes an error parameter that
-   * is used to add the provided error code if element-by-element equality is
-   * violated.
-   *
-   * \param value (INPUT) is a calculated vector
-   * \param true_value (INPUT) is a truth vector corresponding to the
-   * calculated vector
-   * \param error (INPUT/OUTPUT) is a holder for adding an error code
-   * \param add_error (INPUT) is the provided error code
-   */
-  template <typename NumT>
-  void
-  vector_comparison(const Nessi::Vector<NumT> & value,
-                    const Nessi::Vector<NumT> & true_value,
-                    int & error,
-                    const int add_error);
-  /**
-   * \}
-   */ // end of vector_comparison group
-
-  /**
    * \defgroup vector_is_equals Utils::vector_is_equals
    * \{
    */
