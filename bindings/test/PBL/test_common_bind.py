@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_common_bind.py
+# \file bindings/test/PBL/test_common_bind.py
 #
 
 from utils_bind import compare

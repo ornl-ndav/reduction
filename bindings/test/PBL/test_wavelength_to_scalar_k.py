@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_wavelength_to_scalar_k.py
+# \file bindings/test/PBL/test_wavelength_to_scalar_k.py
 #
 
 from axis_manip_bind import wavelength_to_scalar_k_d

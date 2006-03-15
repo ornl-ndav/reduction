@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_wavelength_to_energy.py
+# \file bindings/test/PBL/test_wavelength_to_energy.py
 #
 
 from axis_manip_bind import wavelength_to_energy_d

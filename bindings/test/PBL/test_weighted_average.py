@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_weighted_average.py
+# \file bindings/test/PBL/test_weighted_average.py
 #
 
 from nessi_vector_bind import *

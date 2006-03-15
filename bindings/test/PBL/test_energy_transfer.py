@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_energy_transfer.py
+# \file bindings/test/PBL/test_energy_transfer.py
 #
 
 from axis_manip_bind import energy_transfer_d

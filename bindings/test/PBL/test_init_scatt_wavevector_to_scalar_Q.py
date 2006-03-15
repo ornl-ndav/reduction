@@ -8,7 +8,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_init_scatt_wavevector_to_scalar_Q.py
+# \file bindings/test/PBL/test_init_scatt_wavevector_to_scalar_Q.py
 #
 
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_d

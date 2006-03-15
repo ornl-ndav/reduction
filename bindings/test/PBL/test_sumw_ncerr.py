@@ -7,7 +7,7 @@
 ###############################################################################
 
 ##
-# \file bindings/PBL/test_sumw_ncerr.py
+# \file bindings/test/PBL/test_sumw_ncerr.py
 #
 
 from array_manip_bind import sumw_ncerr_d
