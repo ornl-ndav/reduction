@@ -30,7 +30,7 @@
 
 """
    This module creates a NessiList class that provides an abstraction layer
-   for the PBL NessiVector class. 
+   for the PBL NessiVector class.
 
    There are also a few helper functions in this module that deal with finding
    the maximum or the minimum of a NessiList and print up to three NessiLists
@@ -41,10 +41,10 @@
 # \namespace nessi_list
 #
 # \brief The module provides an abstraction layer for the PBL NessiVector
-#        class that handles data and uncertainty storage. 
+#        class that handles data and uncertainty storage.
 #
 # This module creates a NessiList class that provides an abstraction layer
-# for the PBL NessiVector class. 
+# for the PBL NessiVector class.
 #
 # There are also a few helper functions in this module that deal with finding
 # the maximum or the minimum of a NessiList and print up to three NessiLists
@@ -153,9 +153,9 @@ class NessiList (list):
             not recognized
          <- IndexError is raised if the NessiList is instantiated with a
             negative length
-            
+
         """
-        
+
         import nessi_vector_bind
 
         # check the length argument
@@ -237,7 +237,7 @@ class NessiList (list):
         -> number is the number to append
 
         """
-        
+
         self.__array__.append(number)
 
 
@@ -324,9 +324,9 @@ class NessiList (list):
         Parameters:
         ----------
         -> *number is(are) the number(s) to append to the NessiList
-        
+
         """
-        
+
         for num in number:
             try:
                 for i in num:
@@ -369,7 +369,7 @@ class NessiList (list):
            function
 
         """
-        
+
         return self.__str__()
 
 ##
@@ -393,7 +393,7 @@ class NessiList (list):
         <- an iterator for the NessiList
 
         """
-        
+
         return iter(self.__array__)
 
 ##
@@ -407,7 +407,8 @@ class NessiList (list):
 #
 # \return a backwards iterator for the NessiList
 #
-# \exception StopError is raise if the index accessed is not in the NessiList
+# \exception StopIteration is raise if the index accessed is not in the
+#            NessiList
 
     def __reversed__(self):
         """
@@ -420,10 +421,10 @@ class NessiList (list):
 
         Exceptions:
         ----------
-        <- StopError is raise if the index accessed is not in the NessiList
+        <- StopIteration is raise if the index accessed is not in the NessiList
 
         """
-        
+
         i=len(self.__array__)-1
         while True:
             try:
@@ -473,7 +474,7 @@ class NessiList (list):
         <- IndexError is raised if m > len(self) - 1
 
         """
-        
+
         return self.__array__[m]
 
 ##
@@ -483,7 +484,7 @@ class NessiList (list):
 #
 # This function is used to a particular element of a NessiList to the provided
 # value.
-# 
+#
 # To set the \f$i^{th}\f$ value of the NessiList \f$MyNessiList\f$,
 # \code
 # >>> MyNessiList[i]=5
@@ -499,7 +500,7 @@ class NessiList (list):
         This function is used to a particular element of a NessiList to the
         provided value.
 
-        To set the ith value of the NessiList MyNessiList, 
+        To set the ith value of the NessiList MyNessiList,
         >>> MyNessiList[i]=5
 
         Parameters:
@@ -508,7 +509,7 @@ class NessiList (list):
         -> val is the value to replace the exisiting element with
 
         """
-        
+
         return self.__array__.__setitem__(m,val)
 
 ##
@@ -547,14 +548,14 @@ class NessiList (list):
         <- the elements defined by the slice
 
         """
-        
+
         return self.__array__[i:j]
 
 ##
 # \ingroup __setslice__ NessiList
 #
 # \brief Function used to get a range of values from a NessiList.
-# 
+#
 # This function is used to set a range of elements to the provided value.
 # Negative indices are not supported.
 #
@@ -576,7 +577,7 @@ class NessiList (list):
         -> val is the value to replace the NessiList's elements with
 
         """
-        
+
         return self.__array__.__setslice__(i,j,val)
 
 ##
@@ -605,7 +606,7 @@ class NessiList (list):
          <- the length of the NessiList
 
         """
-        
+
         return len(self.__array__)
 
 ##
@@ -652,7 +653,7 @@ class NessiList (list):
            length
 
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot add things of unequal length"
@@ -700,7 +701,7 @@ class NessiList (list):
         <- the resulting NessiList
 
         """
-        
+
         return self+left
 
 ##
@@ -728,7 +729,7 @@ class NessiList (list):
 
         To add each element of a NessiList with a scalar, use the following
         technique:
-        
+
         >>> NessiList_SV = Scalar + NessiList
 
         Return:
@@ -742,7 +743,7 @@ class NessiList (list):
            length
 
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot add things of unequal length"
@@ -766,7 +767,7 @@ class NessiList (list):
 #
 # This operation allows one to subtract two NessiLists or each member of a
 # NessiList by a scalar
-# 
+#
 # To substract one NessiList from another or each member of a NessiList
 # by a scalar, use the following technique:
 # \code
@@ -784,7 +785,7 @@ class NessiList (list):
         -----------------------------------------------------------------------
         This operation allows one to subtract two NessiLists or each member of
         a NessiList by a scalar
- 
+
         To substract one NessiList from another or each member of a NessiList
         by a scalar, use the following technique:
 
@@ -802,7 +803,7 @@ class NessiList (list):
            length
 
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot subtract things of unequal length"
@@ -859,7 +860,7 @@ class NessiList (list):
            length
 
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot subtract things of unequal length"
@@ -899,27 +900,27 @@ class NessiList (list):
         """
         -----------------------------------------------------------------------
         This operation allows one to subtract a NessiList in place
-        
+
         To substract each element of a NessiList from a scalar, use the
         following technique:
-        
+
         >>> NessiList_SV = Scalar - NessiList
-        
+
         Return:
         ------
         <- the resulting NessiList
-        
+
         Exceptions:
         ----------
         <- Exception is raised if everything goes wrong
         <- ValueError is raised if the two NessiLists are not of equal
            length
-           
+
         """
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot subtract things of unequal length"
-           
+
             for i in range(len(self)):
                 self[i]=self[i]-right[i]
             return self
@@ -966,7 +967,7 @@ class NessiList (list):
         Return:
         ------
         <- the resulting NessiList
-        
+
         Exceptions:
         ----------
         <- Exception is raised if everything goes wrong
@@ -974,7 +975,7 @@ class NessiList (list):
            length
 
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot multiply things of unequal length"
@@ -1022,7 +1023,7 @@ class NessiList (list):
         <- the resulting NessiList
 
         """
-        
+
         return self*left
 
 ##
@@ -1031,7 +1032,7 @@ class NessiList (list):
 # The operator \f$\times=\f$ allows to multiply a NessiList in place.
 #
 # This operation allows one to multiply a NessiList in place
-# 
+#
 # To multiply each element of a NessiList by a scalar, use the following
 # technique:
 # \code
@@ -1047,27 +1048,27 @@ class NessiList (list):
         """
         -----------------------------------------------------------------------
         This operation allows one to multiply a NessiList in place
-        
+
         To multiply each element of a NessiList by a scalar, use the following
         technique:
-        
+
         >>> NessiList_SV = scalar * NessiList
-        
+
         Return:
         ------
         <- the resulting NessiList
-        
+
         Exceptions:
         ----------
         <- Exception is raised if everything goes wrong
         <- ValueError is raised if the two NessiLists are not of equal
            length
-        
+
         """
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot multiply things of unequal length"
-            
+
             for i in range(len(self)):
                 self[i]=self[i]*right[i]
             return self
@@ -1105,17 +1106,17 @@ class NessiList (list):
         -----------------------------------------------------------------------
         This operation allows one to divide two NessiLists or each member of a
         NessiList with a scalar
-        
+
         To divide two NessiLists or each element of a NessiList by a scalar,
         use the following technique:
-        
+
         >>> NessiList_VV = NessiList_1 / NessiList_2
         >>> NessiList_VS = NessiList / Scalar
-        
+
         Return:
         ------
         <- the resulting NessiList
-        
+
         Exceptions:
         ----------
         <- Exception is raised if everything goes wrong
@@ -1123,7 +1124,7 @@ class NessiList (list):
            length
 
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot divide things of unequal length"
@@ -1147,7 +1148,7 @@ class NessiList (list):
 # \brief The operator \f$/\f$ allows to divide a scalar by a NessiList.
 #
 # This operation allows one to divide a scalar by a NessiList
-# 
+#
 # To divide a scalar by each element of a NessiList, use the following
 # technique:
 # \code
@@ -1167,7 +1168,7 @@ class NessiList (list):
         To divide a scalar by each element of a NessiList, instead of using
         the function div provided by the NessiListUtils module, you can simply
         use the following technique:
-        
+
         >>> NessiList_SV = scalar / NessiList
 
         Return:
@@ -1179,9 +1180,9 @@ class NessiList (list):
         <- Exception is raised if everything goes wrong
         <- ValueError is raised if the two NessiLists are not of equal
            length
-           
+
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot divide things of unequal length"
@@ -1236,7 +1237,7 @@ class NessiList (list):
            length
 
         """
-        
+
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot divide things of unequal length"
@@ -1280,7 +1281,7 @@ class NessiList (list):
            if not
 
         """
-        
+
         try:
             self.index(value)
             return True
@@ -1294,7 +1295,7 @@ class NessiList (list):
 #        another NessiList
 #
 # This function determines if all the elements of the NessiList are equal to
-# the given NessiList. 
+# the given NessiList.
 #
 # \param self <i>this</i>
 # \param other (INPUT) is the NessiList to compare
@@ -1306,7 +1307,7 @@ class NessiList (list):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are
-        equal to the given NessiList. 
+        equal to the given NessiList.
 
         Parameters:
         ----------
@@ -1318,7 +1319,7 @@ class NessiList (list):
            NessiList and False if not
 
         """
-        
+
         # check if they have the same length
         try:
             if len(self)!=len(other):
@@ -1346,7 +1347,7 @@ class NessiList (list):
 #        or equal to another NessiList
 #
 # This function determines if all the elements of the NessiList are greater
-# than or equal to the given NessiList. 
+# than or equal to the given NessiList.
 #
 # \param self <i>this</i>
 # \param other (INPUT) is the NessiList to compare
@@ -1358,7 +1359,7 @@ class NessiList (list):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are
-        greater than or equal to the given NessiList. 
+        greater than or equal to the given NessiList.
 
         Parameters:
         ----------
@@ -1370,7 +1371,7 @@ class NessiList (list):
            to the compared NessiList and False if not
 
         """
-        
+
         # deep comparison
         import utils
         try:
@@ -1390,7 +1391,7 @@ class NessiList (list):
 #        another NessiList
 #
 # This function determines if all the elements of the NessiList are greater
-# than the given NessiList. 
+# than the given NessiList.
 #
 # \param self <i>this</i>
 # \param other (INPUT) is the NessiList to compare
@@ -1402,7 +1403,7 @@ class NessiList (list):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are
-        greater than the given NessiList. 
+        greater than the given NessiList.
 
         Parameters:
         ----------
@@ -1412,9 +1413,9 @@ class NessiList (list):
         ------
         <- A boolean that is True if all the elements are greater than the
            compared NessiList and False if not
-           
+
         """
-        
+
         # deep comparison
         import utils
         try:
@@ -1430,10 +1431,10 @@ class NessiList (list):
 ##
 # \ingroup __ne__ NessiList
 #
-# \brief Function that determines if all elements of NessiList are not equal 
+# \brief Function that determines if all elements of NessiList are not equal
 #        to another NessiList
 #
-# This function determines if all the elements of the NessiList are not equal 
+# This function determines if all the elements of the NessiList are not equal
 # to the given NessiList. It uses the <i>__eq__</i> function to complete the
 # task.
 #
@@ -1460,7 +1461,7 @@ class NessiList (list):
            compared NessiList and False if not
 
         """
-        
+
         return not self.__eq__(other)
 
 ##
@@ -1495,7 +1496,7 @@ class NessiList (list):
            compared NessiList and False if not
 
         """
-        
+
         return not self.__ge__(other)
 
 ##
@@ -1531,7 +1532,7 @@ class NessiList (list):
            the compared NessiList and False if not
 
         """
-        
+
         return not self.__gt__(other)
 
 ##
@@ -1573,7 +1574,7 @@ class NessiList (list):
         <- ValueError is raised if the item in not found in the NessiList
 
         """
-        
+
         # fix the arguments
         if stop<start:
             stop=len(self.__array__)
@@ -1613,7 +1614,7 @@ class NessiList (list):
         <- the number of occurrences of the requested value
 
         """
-    
+
         start=0
         count=0
         try:
@@ -1622,7 +1623,7 @@ class NessiList (list):
                 count=count+1
         except ValueError:
             pass
-            
+
         return count
 
 ##
@@ -1663,7 +1664,7 @@ class NessiList (list):
         <- IndexError is raised is the NessiList is empty
 
         """
-        
+
         if len(self.__array__)<=0:
             raise IndexError, "Cannot pop from an empty NessiList"
 
@@ -1713,9 +1714,9 @@ class NessiList (list):
            NessiList, if the NessiList contains more than n elements
         <- a list of all the elements of the NessiList, if the NessiList is
            smaller than n.
-           
+
         """
-        
+
         result=[]
 
         if len(self)<last:
@@ -1764,11 +1765,11 @@ class NessiList (list):
         ----------
         <- NotImplementedError is raised when the function is called since the
            operation is not supported
-           
+
         """
         # insert before index
         raise NotImplementedError,"This operation is not currently supported"
-    
+
 ##
 # \ingroup __delitem__ NessiList
 #
@@ -1791,12 +1792,12 @@ class NessiList (list):
         -> index is the index of the element to be deleted
 
         """
-        
+
         del self.__array__[index]
 
 ##
 # \ingroup __delslice__ NessiList
-# 
+#
 # \brief Function that removes a slice from the NessiList
 #
 # This function removes a slice of the Nessiist based on the range provided.
@@ -1817,9 +1818,9 @@ class NessiList (list):
         ----------
         -> i is the starting position from which to remove elements
         -> j is the ending position at which to stop removing elements
-        
+
         """
-        
+
         del self.__array__[i:j]
 
 ##
@@ -1842,9 +1843,9 @@ class NessiList (list):
         Parameters:
         ----------
         -> value is the value of the element to be removed
-        
+
         """
-        
+
         # remove first occurence of value
         index=self.index(value)
         del self[index]
@@ -1860,7 +1861,7 @@ class NessiList (list):
 #
 # \param self <i>this</i>
 #
-# \return the list in reversed order 
+# \return the list in reversed order
 
     def reverse(self):
         """
@@ -1871,10 +1872,10 @@ class NessiList (list):
 
         Return:
         ------
-        <- the list in reversed order 
+        <- the list in reversed order
 
         """
-        
+
         # reverse in place
         import axis_manip
         axis_manip.reverse_array_nc(self)
@@ -1887,7 +1888,7 @@ class NessiList (list):
 #
 # This function sorts the elements of a NessiList according to the provided
 # specifications. This function, however, is not allowed in the current
-# scheme. 
+# scheme.
 #
 # \exception NotImplementedError is raised if the function is called since
 #            sort is not allowed on a NessiList
@@ -1897,15 +1898,15 @@ class NessiList (list):
         -----------------------------------------------------------------------
         This function sorts the elements of a NessiList according to the
         provided specifications. This function, however, is not allowed in the
-        current scheme. 
+        current scheme.
 
         Exceptions:
         ----------
         <- NotImplementedError is raised if the function is called since sort
            is not allowed on a NessiList
-           
+
         """
-        
+
         raise NotImplementedError,"This function is not allowed"
 
 ##
@@ -1934,9 +1935,9 @@ def max_vect(array):
     Return:
     ------
     <- the maximum value of the NessiList
-    
+
     """
-    
+
     max_value = array[0]
     for it in array:
         if it > max_value:
@@ -1969,9 +1970,9 @@ def min_vect(array):
     Return:
     ------
     <- the minimum value of the NessiList
-    
+
     """
-    
+
     min_value = array[0]
     for it in array:
         if it < min_value:
@@ -2006,7 +2007,7 @@ def print_multi(n,object1,object2,object3=NessiList()):
     -> object3 is the name of the third NessiList (optional)
 
     """
-    
+
     tab="\t\t"
     str_output = ""
 
