@@ -28,21 +28,27 @@
 #\file bindings/nessi_list.py
 #
 
+"""
+   This module creates a NessiList class that provides an abstraction layer
+   for the PBL NessiVector class. 
+
+   There are also a few helper functions in this module that deal with finding
+   the maximum or the minimum of a NessiList and print up to three NessiLists
+   side-by-side.
+"""
+
 ##
 # \namespace nessi_list
 #
-# \brief The purpose of this module is to provide an abstraction layer for
-# the PBL NessiVector class that handles data and uncertainty storage. 
+# \brief The module provides an abstraction layer for the PBL NessiVector
+#        class that handles data and uncertainty storage. 
 #
-# This class plays the role of a template for the function called
+# This module creates a NessiList class that provides an abstraction layer
+# for the PBL NessiVector class. 
 #
-# For example: let us add together two NessiLists of type float.
-# Once the two NessiList have been defined and fill with data, using the
-# function <i>add</i> is like using the function <i>add_f</i>
-# \code
-# >>> NessiList_result = add(NessiList_1, NessiList_2)
-# \endcode
-#
+# There are also a few helper functions in this module that deal with finding
+# the maximum or the minimum of a NessiList and print up to three NessiLists
+# side-by-side.
 
 ##
 # \defgroup NessiList nessi_list::NessiList
@@ -765,7 +771,7 @@ class NessiList (list):
 
         raise Exception,"This statement should never be reached"
 
-#
+##
 # \ingroup __sub__ NessiList
 #
 # \brief The operator \f$-\f$ allows to subtract two NessiLists or each member
