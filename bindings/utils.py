@@ -204,7 +204,7 @@ def vector_is_equals(value,true_value):
         result = utils_bind.vector_is_equals_i(value_i.__array__,
                                                true_value_i.__array__)
 
-  return result
+    return result
 
 ##
 # \}  // end of vector_is_equals group
