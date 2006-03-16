@@ -166,7 +166,7 @@ def weighted_average(a,ae2,start,fin):
 # \return A boolean that is true if the vector is equal element-by-element
 #
 
-def vector_is_equals(output,true_output):
+def vector_is_equals(value,true_value):
 
     """
     ---------------------------------------------------------------------------
@@ -186,21 +186,23 @@ def vector_is_equals(output,true_output):
 
     """
 
-    if (output.__type__ == nessi_list.NessiList.DOUBLE):
-        output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
-        true_output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
-        for i in range(len(output)):
-            output_d.append(output[i])
-            true_output_d.append(true_output[i])
+    if (value.__type__ == nessi_list.NessiList.DOUBLE):
+        value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
+        true_value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
+        for i in range(len(value)):
+            value_d.append(value[i])
+            true_value_d.append(true_value[i])
 
-        result = utils_bind.vector_is_equals_d(output_d.__array__, true_output_d.__array__)
+        result = utils_bind.vector_is_equals_d(value_d.__array__,
+                                               true_value_d.__array__)
     else:
-        output_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
-        true_output_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
-        for i in range(len(output)):
-            output_i.append(output[i])
-            true_output_i.append(true_output[i])
-        result = utils_bind.vector_is_equals_i(output_i.__array__, true_output_i.__array__)
+        value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
+        true_value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
+        for i in range(len(value)):
+            value_i.append(value[i])
+            true_value_i.append(true_value[i])
+        result = utils_bind.vector_is_equals_i(value_i.__array__,
+                                               true_value_i.__array__)
 
   return result
 
@@ -226,7 +228,7 @@ def vector_is_equals(output,true_output):
 # \return 0 (eq), 1 (gt) or -1 (lt)
 #
 
-def compare(output,true_output):
+def compare(value1,value2):
 
     """
     ---------------------------------------------------------------------------
@@ -246,7 +248,7 @@ def compare(output,true_output):
 
     """
 
-    result = utils_bind.compare(output,true_output)
+    result = utils_bind.compare(value1,value2)
     return result
 
 ##
