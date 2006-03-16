@@ -55,11 +55,7 @@
 # \{
 class NessiList (list):
 
-    FLOAT = "float"
     DOUBLE = "double"
-    UINT = "uint"
-    UNSIGNED = "unsigned"
-    UNSIGNED_INT = "unsigned int"
     INT = "int"
 
 ##
@@ -170,24 +166,15 @@ class NessiList (list):
         # get the type from the keyword arguments or set the default
         if(kwargs.has_key("type")):
             type=kwargs["type"].lower()
-            if(type.lower()==NessiList.UNSIGNED_INT):
-                type=NessiList.UINT
-            elif(type.lower()==NessiList.UNSIGNED):
-                type=NessiList.UINT
-            else:
-                type=type.lower() # lowercase everything else so code
-                                  # below works
+            type=type.lower() # lowercase everything else so code
+                              # below works
         else:
             type=NessiList.DOUBLE # set the default value
         self.__type__=type
 
         # call the correct instructor
-        if type==NessiList.UINT:
-            self.__array__ = nessi_vector_bind.UnsignedIntNessiVector(length)
-        elif type==NessiList.INT:
+        if type==NessiList.INT:
             self.__array__ = nessi_vector_bind.IntNessiVector(length)
-        elif type == NessiList.FLOAT:
-            self.__array__ = nessi_vector_bind.FloatNessiVector(length)
         elif type == NessiList.DOUBLE:
             self.__array__ = nessi_vector_bind.DoubleNessiVector(length)
         else:
@@ -908,41 +895,41 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-   def __isub__(self,right):
-       """
-       ------------------------------------------------------------------------
-       This operation allows one to subtract a NessiList in place
-
-       To substract each element of a NessiList from a scalar, use the
-       following technique:
-       
-       >>> NessiList_SV = Scalar - NessiList
-
-       Return:
-       ------
-       <- the resulting NessiList
-       
-       Exceptions:
-       ----------
-       <- Exception is raised if everything goes wrong
-       <- ValueError is raised if the two NessiLists are not of equal
-          length
-
-       """
-       try:
-           if len(self)!=len(right):
-               raise ValueError,"Cannot subtract things of unequal length"
+    def __isub__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to subtract a NessiList in place
+        
+        To substract each element of a NessiList from a scalar, use the
+        following technique:
+        
+        >>> NessiList_SV = Scalar - NessiList
+        
+        Return:
+        ------
+        <- the resulting NessiList
+        
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
            
-           for i in range(len(self)):
-               self[i]=self[i]-right[i]
-           return self
+        """
+        try:
+            if len(self)!=len(right):
+                raise ValueError,"Cannot subtract things of unequal length"
+           
+            for i in range(len(self)):
+                self[i]=self[i]-right[i]
+            return self
 
-       except TypeError: # must be a scalar
-           for i in range(len(self)):
-               self[i]=self[i]-right
-           return self
+        except TypeError: # must be a scalar
+            for i in range(len(self)):
+                self[i]=self[i]-right
+            return self
 
-       raise Exception,"This statement should never be reached"
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __mul__ NessiList
@@ -1056,41 +1043,41 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-   def __imul__(self,right):
-       """
-       ------------------------------------------------------------------------
-       This operation allows one to multiply a NessiList in place
-       
-       To multiply each element of a NessiList by a scalar, use the following
-       technique:
+    def __imul__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to multiply a NessiList in place
+        
+        To multiply each element of a NessiList by a scalar, use the following
+        technique:
+        
+        >>> NessiList_SV = scalar * NessiList
+        
+        Return:
+        ------
+        <- the resulting NessiList
+        
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+        
+        """
+        try:
+            if len(self)!=len(right):
+                raise ValueError,"Cannot multiply things of unequal length"
+            
+            for i in range(len(self)):
+                self[i]=self[i]*right[i]
+            return self
 
-       >>> NessiList_SV = scalar * NessiList
+        except TypeError: # must be a scalar
+            for i in range(len(self)):
+                self[i]=self[i]*right
+            return self
 
-       Return:
-       ------
-       <- the resulting NessiList
-       
-       Exceptions:
-       ----------
-       <- Exception is raised if everything goes wrong
-       <- ValueError is raised if the two NessiLists are not of equal
-          length
-
-       """
-       try:
-           if len(self)!=len(right):
-               raise ValueError,"Cannot multiply things of unequal length"
-           
-           for i in range(len(self)):
-               self[i]=self[i]*right[i]
-           return self
-
-       except TypeError: # must be a scalar
-           for i in range(len(self)):
-               self[i]=self[i]*right
-           return self
-
-       raise Exception,"This statement should never be reached"
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __div__ NessiList
