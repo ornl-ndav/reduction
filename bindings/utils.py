@@ -97,8 +97,7 @@ import utils_bind
 # - The square of the uncertainty in the weighted average
 #
 # \exception IndexError is raised if a and ae2 are not the same length
-# \exception NotImplementedError is raised since the PBL function signature is
-# not available
+# \exception TypeError is raised if a is not of type double
 # \exception TypeError is raised if a and ae2 are not the same type
 
 
@@ -117,7 +116,7 @@ def weighted_average(a,ae2,start,fin):
     -> start is the bin of the NessiList from which to start the calculation
     -> fin the bin of the NessiList at which to end the calculation
 
-    Returns 2 NessiLists:
+    Returns 2 doubles
     ______________________
 
     <- the weighted average of the NessiList slice
@@ -128,20 +127,23 @@ def weighted_average(a,ae2,start,fin):
     __________
 
     <- IndexError is raised if a and ae2 are not the same length
-    <- NotImplementedError is raised since the PBL function signature is
-       not available
+    <- TypeError is raised if a is found not to be of type double
     <- TypeError is raised if a and ae2 are not the same type
 
     """
 
+    if (a.__type__ != a.DOUBLE):
+        raise TypeError, "Function only useable for doubles"
+
     if (a.__type__ != ae2.__type__):
         raise TypeError, "Incompatible types passed to weighted_average"
 
-    if (a.__type__ == a.FLOAT):
-        raise NotImplementedError, "This function is not implemented yet."
+    import vpair_bind
 
-    elif (a.__type__ == a.DOUBLE):
-        raise NotImplementedError, "This function is not implemented yet."
+    weighted_ave = vpair_bind.DoubleVPair()
+    utils_bind.weighted_average_d(a, ae2, start, fin, weighted_ave)
+
+    return weighted_ave.val, weighted_ave.val_err2
 
 ##
 # \}
@@ -163,7 +165,7 @@ def weighted_average(a,ae2,start,fin):
 #
 # \return A boolean that is true if the vector is equal element-by-element
 #
-   
+
 def vector_is_equals(output,true_output):
 
     """
@@ -183,7 +185,7 @@ def vector_is_equals(output,true_output):
        if not, it returns False
 
     """
-    
+
     if (output.__type__ == nessi_list.NessiList.DOUBLE):
         output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
         true_output_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
@@ -200,7 +202,7 @@ def vector_is_equals(output,true_output):
             true_output_i.append(true_output[i])
         result = utils_bind.vector_is_equals_i(output_i.__array__, true_output_i.__array__)
 
-	return result
+  return result
 
 ##
 # \}  // end of vector_is_equals group
@@ -243,9 +245,9 @@ def compare(output,true_output):
     <- 0 (eq), 1 (gt) or -1 (lt)
 
     """
-    
+
     result = utils_bind.compare(output,true_output)
     return result
-   
+
 ##
 # \}  // end of compare group
