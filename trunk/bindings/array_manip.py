@@ -511,7 +511,7 @@ def sub_ncerr(a,ae2,b,be2):
                                          be2.__array__,\
                                          c.__array__,\
                                          ce2.__array__)
-            
+
         elif (a.__type__ == a.INT):
             c = nessi_list.NessiList(len(a),type=a.INT)
             ce2 = nessi_list.NessiList(len(a), type=a.INT)
@@ -546,7 +546,7 @@ def sub_ncerr(a,ae2,b,be2):
                                          float(scalar_e2),\
                                          c.__array__,\
                                          ce2.__array__)
-            
+
         elif (array.__type__ == array.INT):
             c = nessi_list.NessiList(len(array),type=array.INT)
             ce2 = nessi_list.NessiList(len(array), type=array.INT)
@@ -769,7 +769,7 @@ def mult_ncerr(a,ae2,b,be2):
                                           be2.__array__,\
                                           c.__array__,\
                                           ce2.__array__)
-            
+
         elif (a.__type__ == a.INT):
             c = nessi_list.NessiList(len(a),type=a.INT)
             ce2 = nessi_list.NessiList(len(a), type=a.INT)
@@ -1091,7 +1091,7 @@ def div_ncerr(a,ae2,b,be2):
                                          float(scalar_e2),\
                                          c.__array__,\
                                          ce2.__array__)
-            
+
         elif (array.__type__ == array.INT):
             c = nessi_list.NessiList(len(array),type=array.INT)
             ce2 = nessi_list.NessiList(len(array), type=array.INT)
@@ -1126,7 +1126,7 @@ def div_ncerr(a,ae2,b,be2):
                                          array_e2.__array__,\
                                          c.__array__,\
                                          ce2.__array__)
-            
+
         elif (array.__type__ == array.INT):
             c = nessi_list.NessiList(len(array),type=array.INT)
             ce2 = nessi_list.NessiList(len(array), type=array.INT)
@@ -1256,16 +1256,7 @@ def sumw_ncerr(a,ae2,b,be2):
     if(a.__type__!=b.__type__):
         raise RuntimeError,"Incompatible types passed to sumw_ncerr"
 
-    if (a.__type__ == a.FLOAT):
-        c = nessi_list.NessiList(len(a), type=a.FLOAT)
-        ce2 = nessi_list.NessiList(len(a), type=a.FLOAT)
-        array_manip_bind.sumw_ncerr_f(a.__array__,\
-                                      ae2.__array__,\
-                                      b.__array__,\
-                                      be2.__array__,\
-                                      c.__array__,\
-                                      ce2.__array__)
-    elif (a.__type__ == a.DOUBLE):
+    if (a.__type__ == a.DOUBLE):
         c = nessi_list.NessiList(len(a),type=a.DOUBLE)
         ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
         array_manip_bind.sumw_ncerr_d(a.__array__,\
@@ -1274,6 +1265,7 @@ def sumw_ncerr(a,ae2,b,be2):
                                       be2.__array__,\
                                       c.__array__,\
                                       ce2.__array__)
+
     elif (a.__type__ == a.INT):
         c = nessi_list.NessiList(len(a),type=a.INT)
         ce2 = nessi_list.NessiList(len(a), type=a.INT)
@@ -1283,15 +1275,7 @@ def sumw_ncerr(a,ae2,b,be2):
                                       be2.__array__,\
                                       c.__array__,\
                                       ce2.__array__)
-    elif (a.__type__ == a.UINT):
-        c = nessi_list.NessiList(len(a),type=a.UINT)
-        ce2 = nessi_list.NessiList(len(a), type=a.UINT)
-        array_manip_bind.sumw_ncerr_u(a.__array__,\
-                                      ae2.__array__,\
-                                      b.__array__,\
-                                      be2.__array__,\
-                                      c.__array__,\
-                                      ce2.__array__)
+
     else:
         raise TypeError,"Unknown primative type %s" % str(a.__type__)
 
