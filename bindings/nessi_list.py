@@ -31,10 +31,10 @@
 #
 
 ##
-# \namespace nessi_vector
+# \namespace nessi_list
 #
-# \brief The purpose of this module is to provide an abstraction layer that
-# hide the call to the functions according to the type of the instance.
+# \brief The purpose of this module is to provide an abstraction layer for
+# the PBL NessiVector class that handles data and uncertainty storage. 
 #
 # This class plays the role of a template for the function called
 #
@@ -47,7 +47,7 @@
 #
 
 ##
-# \defgroup NessiList nessi_vector::NessiList
+# \defgroup NessiList nessi_list::NessiList
 # \{
 class NessiList (list):
 
@@ -66,31 +66,31 @@ class NessiList (list):
 #
 # - Without any argument:
 # \code
-# >>> MyVector1 = NessiList()
+# >>> MyList1 = NessiList()
 # \endcode
 # in such case, the NessiList is empty and of type <i>double</i> by default.
 #
 # - By declaring its size:
 # \code
-# >>> MyVector2 = NessiList(2)
+# >>> MyList2 = NessiList(2)
 # \endcode
-# MyVector2 contains 2 elements, set to 0, of type <i>double</i> (by default)
+# MyList2 contains 2 elements, set to 0, of type <i>double</i> (by default)
 #
 # - By declaring its type:
 # \code
-# >>> MyVector3 = NessiList(type="float")
+# >>> MyList3 = NessiList(type="float")
 # \endcode
-# MyVector3 is an empty NessiList of type <i>float</i>
+# MyList3 is an empty NessiList of type <i>float</i>
 #
 # - By declaring its size and type:
 # \code
-# >>> MyVector4 = NessiList(4,"int")
+# >>> MyList4 = NessiList(4,"int")
 # \endcode
 # or
 # \code
-# >>> MyVector4 = NessiList(length=4,type="int")
+# >>> MyList4 = NessiList(length=4,type="int")
 # \endcode
-# \f$MyVector4\f$ is a 4 elements long, initialized to 0, NessiList of type
+# \f$MyList4\f$ is a 4 elements long, initialized to 0, NessiList of type
 # <i>int</i>
 #
 # \param self (INPUT) is the name of the NessiList
@@ -103,7 +103,7 @@ class NessiList (list):
         # check the length argument
         length=int(length)
         if length<0:
-            raise Exception, "Cannot instantiate Vector with negative length"
+            raise Exception, "Cannot instantiate List with negative length"
 
         # get the type from the keyword arguments or set the default
         if(kwargs.has_key("type")):
@@ -147,13 +147,13 @@ class NessiList (list):
 # process. For example, if a NessiList has been defined has a 5 elements
 # long of type <i>double</i>
 # \code
-# >>> MyVector = NessiList(5)
+# >>> MyList = NessiList(5)
 # \endcode
 # the <i>append</i> method will add the new element after the 5 first "0".
 # elements
 # \code
-# >>> MyVector.append(10.5)
-# >>> MyVector[5]
+# >>> MyList.append(10.5)
+# >>> MyList[5]
 # 10.5
 # \endcode
 #
@@ -181,13 +181,13 @@ class NessiList (list):
 # process. For example, if a NessiList has been defined has a 5 elements
 # long of type <i>double</i>
 # \code
-# >>> MyVector = NessiList(5)
+# >>> MyList = NessiList(5)
 # \endcode
 # the <i>extend</i> method will add the new element after the 5 first "0".
 # elements
 # \code
-# >>> MyVector.extend(10.5)
-# >>> MyVector[5]
+# >>> MyList.extend(10.5)
+# >>> MyList[5]
 # 10.5
 # \endcode
 # It is also possible to extend several values in the same time as
@@ -198,10 +198,10 @@ class NessiList (list):
 # This is the same as appending 1, then 2, then 3, and so on.... one after
 # the other.
 # \code
-# >>> MyVector.append(1)
-# >>> MyVector.append(2)
-# >>> MyVector.append(3)
-# >>> MyVector.append(4)
+# >>> MyList.append(1)
+# >>> MyList.append(2)
+# >>> MyList.append(3)
+# >>> MyList.append(4)
 # ...
 # \endcode
 #
@@ -221,9 +221,9 @@ class NessiList (list):
 #
 # Function that is used to get the real state of a NessiList
 # \code
-# >>> MyVector = NessiList()
-# >>> MyVector.append(1,2,3,4,5)
-# >>> MyVector
+# >>> MyList = NessiList()
+# >>> MyList.append(1,2,3,4,5)
+# >>> MyList
 # [1.0,2.0,3.0,4.0,5.0]
 # \endcode
 #
@@ -256,9 +256,9 @@ class NessiList (list):
 # \ingroup __getitem__ NessiList
 #
 # Function used to get an element of a NessiList.
-# To get the \f$i^{th}\f$ value of the NessiList \f$MyVectorA\f$,
+# To get the \f$i^{th}\f$ value of the NessiList \f$MyListA\f$,
 # \code
-# >>> MyVectorA[i]
+# >>> MyListA[i]
 # \endcode
 # The last index of the NessiList is displayed if one ask for an element
 # of the NessiList outside its range
@@ -270,9 +270,9 @@ class NessiList (list):
 # \ingroup __setitem__ NessiList
 #
 # Function used to set an element of a NessiList.
-# To set the \f$i^{th}\f$ value of the NessiList \f$MyVectorA\f$,
+# To set the \f$i^{th}\f$ value of the NessiList \f$MyListA\f$,
 # \code
-# >>> MyVectorA[i]=5
+# >>> MyListA[i]=5
 # \endcode
 #
     def __setitem__(self,m,val):
@@ -310,7 +310,7 @@ class NessiList (list):
 # Function used to get the length of a NessiList
 #
 # \code
-# >>> len(MyVectorA)
+# >>> len(MyListA)
 # \endcode
 #
 # \param self (INPUT) is the name of the NessiList
@@ -575,7 +575,7 @@ class NessiList (list):
 ##
 # \ingroup __div__ NessiList
 #
-# The operator \f$/\f$ allows to divide two NessiLists.
+# \brief The operator \f$/\f$ allows to divide two NessiLists.
 #
 # To divide two NessiLists or each element of a NessiList by a scalar,
 # instead of using the function <i>div</i> provided by the NessiListUtils
@@ -606,18 +606,43 @@ class NessiList (list):
 ##
 # \ingroup __rdiv__ NessiList
 #
-# The operator \f$/\f$ allows to divide a scalar by a NessiList.
+# \brief The operator \f$/\f$ allows to divide a scalar by a NessiList.
 #
 # To divide a scalar by each element of a NessiList, instead of using
 # the function <i>div</i> provided by the NessiListUtils module, you
 # can simply use the following technique:
 # \code
-# >>> NessiList_SV = scalar /  times NessiList
+# >>> NessiList_SV = scalar / NessiList
 # \endcode
 #
 # \return The resulting NessiList
 #
+# \exception Exception is raised if all goes bad
+# \exception ValueError is raised if the lists are not the same length
+
+
     def __rdiv__(self,left):
+        """
+        -----------------------------------------------------------------------
+        The operator / allows to divide a scalar by a NessiList.
+
+        To divide a scalar by each element of a NessiList, instead of using
+        the function div provided by the NessiListUtils module, you can simply
+        use the following technique:
+        
+        >>> NessiList_SV = scalar / NessiList
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        Exceptions:
+        ----------
+        <- Exception is raised if all goes bad
+        <- ValueError is raised if the lists are not the same length
+        
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot divide things of unequal length"
@@ -642,7 +667,7 @@ class NessiList (list):
 # the function <i>div</i> provided by the NessiListUtils module, you
 # can simply use the following technique:
 # \code
-# >>> NessiList_SV = scalar /  times NessiList
+# >>> NessiList_SV = scalar / NessiList
 # \endcode
 #
 # \return The resulting NessiList
@@ -764,9 +789,43 @@ class NessiList (list):
 ##
 # \ingroup index NessiList
 #
-# Function used to find index of a item by matching values.
+# \brief Function used to find index of a item by matching values.
 #
+# This function is used to return the index of a requested item from the
+# NessiList. Optional arguments to narrow the search range can be provided.
+#
+# \param self <i>this</i>
+# \param item (INPUT) is the item to search for in the NessiList
+# \param start (INPUT/OPTIONAL) is the index location to begin the search
+# \param stop (INPUT/OPTIONAL) is the index location to stop the search
+#
+# \return the index of the requested item
+#
+# \exception ValueError is raised if the item in not found in the NessiList
+
     def index(self,item,start=0,stop=-1):
+        """
+        -----------------------------------------------------------------------
+        This function is used to return the index of a requested item from the
+        NessiList. Optional arguments to narrow the search range can be
+        provided.
+
+        Parameters:
+        ----------
+        -> item is the item to search for in the NessiList
+        -> start is the index location to begin the search
+        -> stop is the index location to stop the search
+
+        Return:
+        ------
+        <- the index of the requested item
+
+        Exceptions:
+        ----------
+        <- ValueError is raised if the item in not found in the NessiList
+
+        """
+        
         # fix the arguments
         if stop<start:
             stop=len(self.__array__)
@@ -781,9 +840,32 @@ class NessiList (list):
 ##
 # \ingroup count NessiList
 #
-# Function used to count the number of occurences of a value
+# \brief Function used to count the number of occurrences of a value
 #
+# This function takes a given value and counts the number of occurrences of
+# that value in the NessiList.
+#
+# \param self <i>this</i>
+# \param value (INPUT) is the value to the number of occurrences for
+#
+# \return the number of occurrences of the requested value
+
     def count(self,value):
+        """
+        -----------------------------------------------------------------------
+        This function takes a given value and counts the number of occurrences
+        of that value in the NessiList.
+
+        Parameters:
+        ----------
+        -> value is the value to the number of occurrences for
+
+        Return:
+        ------
+        <- the number of occurrences of the requested value
+
+        """
+    
         start=0
         count=0
         try:
@@ -798,11 +880,44 @@ class NessiList (list):
 ##
 # \ingroup pop NessiList
 #
-# Function used to remove the last element of the NessiList
+# \brief Function used to remove an element from the NessiList and return it
+#        to the caller.
 #
+# This function is used to remove an element from the NessiList and return it
+# to the caller. By not providing an index, the default behavior is to pop
+# the last element from the NessiList.
+#
+# \param self <i>this</i>
+# \param index (INPUT/OPTIONAL) is the index of the element which to pop from
+#        the NessiList
+#
+# \return the object at the index requested
+#
+# \exception IndexError is raised is the NessiList is empty
+
     def pop(self,index=-1):
+        """
+        -----------------------------------------------------------------------
+        This function is used to remove an element from the NessiList and
+        return it to the caller. By not providing an index, the default
+        behavior is to pop the last element from the NessiList.
+
+        Parameters:
+        ----------
+        -> index is the index of the element which to pop from the NessiList
+
+        Return:
+        ------
+        <- the object at the index requested
+
+        Exceptions:
+        ----------
+        <- IndexError is raised is the NessiList is empty
+
+        """
+        
         if len(self.__array__)<=0:
-            raise IndexError, "pop from empty Vector"
+            raise IndexError, "Cannot pop from an empty NessiList"
 
         result=self[index]
         del self[index]
@@ -811,25 +926,48 @@ class NessiList (list):
 ##
 # \ingroup __str__ NessiList
 #
-# This method displays elements of a NessiList.
+# \brief Function that displays elements of a NessiList.
 #
-#  If the NessiList contains more than 10 elements, the 10 first elements,
-# follow by 3 dots ". . ." and the last element of the NessiList are
-# displayed.
+# This function displays the elements of a NessiList. If the NessiList
+# contains more than 10 elements, the 10 first elements, follow by 3 dots
+# ". . ." and the last element of the NessiList are displayed.
+#
 # The default number of elements displayed can be changed by giving this number
-# as second variable to the <i>print</i> method.
+# as parameter to the <i>__str__</i> method.
 #
-# \param self (INPUT) is the name of the NessiList
-# \param last (INPUT/OPTIONAL) is the number of element to display, 10 by
-# default
+# \param self <i>this</i>
+# \param last (INPUT/OPTIONAL) is the number of elements to display, 10 by
+#        default
 #
 # \return
 # - a list of the n first elements, 3 dots and last element of the NessiList,
 # if the NessiList contains more than n elements
 # - a list of all the elements of the NessiList, if the NessiList is
 # smaller than n.
-    def __str__(self,last=10):
 
+    def __str__(self,last=10):
+        """
+        -----------------------------------------------------------------------
+        This function displays the elements of a NessiList. If the NessiList
+        contains more than 10 elements, the 10 first elements, follow by 3 dots
+        \". . .\" and the last element of the NessiList are displayed.
+
+        The default number of elements displayed can be changed by giving this
+        number as parameter to the __str__ method.
+
+        Parameters:
+        ----------
+        -> last is the number of elements to display, 10 by default
+
+        Returns:
+        -------
+        <- a list of the n first elements, 3 dots and last element of the
+           NessiList, if the NessiList contains more than n elements
+        <- a list of all the elements of the NessiList, if the NessiList is
+           smaller than n.
+           
+        """
+        
         result=[]
 
         if len(self)<last:
@@ -846,46 +984,211 @@ class NessiList (list):
 
         return "["+",".join(result)+"]"
 
+##
+# \ingroup insert NessiList
+#
+# \brief Function that inserts an object in the NessiList at the specified
+#        index
+#
+# This function provides a method to insert an object into the NessiList at
+# the provided index location. Currently, this method is not supported.
+#
+# \param self <i>this</i>
+# \param index (INPUT) is the index location to place the incoming object
+# \param object (INPUT) is the object to be inserted
+#
+# \exception NotImplementedError is raised when the function is called since
+#            the operation is not supported
+
     def insert(self,index,object):
+        """
+        -----------------------------------------------------------------------
+        This function provides a method to insert an object into the NessiList
+        at the provided index location. Currently, this method is not
+        supported.
+
+        Parameters:
+        ----------
+        -> index (INPUT) is the index location to place the incoming object
+        -> object (INPUT) is the object to be inserted
+
+        Exceptions:
+        ----------
+        <- NotImplementedError is raised when the function is called since the
+           operation is not supported
+           
+        """
         # insert before index
         raise NotImplementedError,"This operation is not currently supported"
+    
+##
+# \ingroup __delitem__ NessiList
+#
+# \brief Function that deletes an element from the NessiList based on an index
+#
+# This function deletes an element from the NessiList based on the index
+# provided.
+#
+# \param self <i>this</i>
+# \param index (INPUT) is the index of the element to be deleted
 
     def __delitem__(self,index):
+        """
+        -----------------------------------------------------------------------
+        This function deletes an element from the NessiList based on the index
+        provided.
+
+        Parameters:
+        ----------
+        -> index is the index of the element to be deleted
+
+        """
+        
         del self.__array__[index]
 
+##
+# \ingroup __delslice__ NessiList
+# 
+# \brief Function that removes a slice from the NessiList
+#
+# This function removes a slice of the Nessiist based on the range provided.
+#
+# \param self <i>this</i>
+# \param i (INPUT/OPTIONAL) is the starting position from which to remove
+#        elements
+# \param j (INPUT/OPTIONAL) is the ending position at which to stop removing
+#        elements
+
     def __delslice__(self,i=0,j=-1):
+        """
+        -----------------------------------------------------------------------
+        This function removes a slice of the Nessiist based on the range
+        provided.
+
+        Parameters:
+        ----------
+        -> i is the starting position from which to remove elements
+        -> j is the ending position at which to stop removing elements
+        
+        """
+        
         del self.__array__[i:j]
 
+##
+# \ingroup remove NessiList
+#
+# \brief Function that removes an element based on the provided value
+#
+# This function removes an element from the NessiList based on the provided
+# value.
+#
+# \param self <i>this</i>
+# \param value (INPUT) is the value of the element to be removed
+
     def remove(self,value):
+        """
+        -----------------------------------------------------------------------
+        This function removes an element from the NessiList based on the
+        provided value.
+
+        Parameters:
+        ----------
+        -> value is the value of the element to be removed
+        
+        """
+        
         # remove first occurence of value
         index=self.index(value)
         del self[index]
 
+##
+# \ingroup reverse NessiList
+#
+# \brief Function that reverses the elements of the NessiList
+#
+# This function takes the elements of the NessiList and reverses their order.
+# It uses the <i>axis_manip</i> module function <i>reverse_array_nc</i> to
+# reverse the list in place.
+#
+# \param self <i>this</i>
+#
+# \return the list in reversed order 
+
     def reverse(self):
+        """
+        -----------------------------------------------------------------------
+        This function takes the elements of the NessiList and reverses their
+        order. It uses the axis_manip module function reverse_array_nc to
+        reverse the list in place.
+
+        Return:
+        ------
+        <- the list in reversed order 
+
+        """
+        
         # reverse in place
         import axis_manip
         axis_manip.reverse_array_nc(self)
         return self
 
+##
+# \ingroup sort NessiList
+#
+# \brief Function that sorts the elements of the NessiList
+#
+# This function sorts the elements of a NessiList according to the provided
+# specifications. This function, however, is not allowed in the current
+# scheme. 
+#
+# \exception NotImplementedError is raised if the function is called since
+#            sort is not allowed on a NessiList
+
     def sort(self,cmp=None,key=None,reverse=False):
+        """
+        -----------------------------------------------------------------------
+        This function sorts the elements of a NessiList according to the
+        provided specifications. This function, however, is not allowed in the
+        current scheme. 
+
+        Exceptions:
+        ----------
+        <- NotImplementedError is raised if the function is called since sort
+           is not allowed on a NessiList
+           
+        """
+        
         raise NotImplementedError,"This function is not allowed"
 
 ##
 # \}
 
-
 ##
-# \defgroup max_vect nessi_vector::max_vect
+# \defgroup max_vect nessi_list::max_vect
 # \{
 
 ##
 # Give the maximum value of the NessiList's elements
 #
-# \param array (INPUT) is the name of the NessiList
+# \param array (INPUT) is a NessiList
 #
-# \return The maximum value of the NessiList <i>object</i>
+# \return The maximum value of the NessiList
 #
 def max_vect(array):
+    """
+    ---------------------------------------------------------------------------
+    Give the maximum value of the NessiList's elements
+
+    Parameters:
+    ----------
+    -> array is a NessiList
+
+    Return:
+    ------
+    <- the maximum value of the NessiList
+    
+    """
+    
     max_value = array[0]
     for it in array:
         if it > max_value:
@@ -896,17 +1199,31 @@ def max_vect(array):
 # \}
 
 ##
-# \defgroup min_vect nessi_vector::min_vect
+# \defgroup min_vect nessi_list::min_vect
 # \{
 
 ##
 # Give the minimum value of the NessiList's elements
 #
-# \param array (INPUT) is the name of the NessiList
+# \param array (INPUT) is a NessiList
 #
-# \return The minimum value of the NessiList <i>object</i>.
+# \return The minimum value of the NessiList
 #
 def min_vect(array):
+    """
+    ---------------------------------------------------------------------------
+    Give the minimum value of the NessiList's elements
+
+    Parameters:
+    ----------
+    -> array is a NessiList
+
+    Return:
+    ------
+    <- the minimum value of the NessiList
+    
+    """
+    
     min_value = array[0]
     for it in array:
         if it < min_value:
@@ -917,7 +1234,7 @@ def min_vect(array):
 # \}
 
 ##
-# \defgroup print_multi nessi_vector::print_multi
+# \defgroup print_multi nessi_list::print_multi
 # \{
 
 ##
@@ -928,9 +1245,20 @@ def min_vect(array):
 # \param object2 (INPUT) is the name of the second NessiList
 # \param object3 (INPUT/OPTIONAL) is the name of the third NessiList
 #
-# \return display of the first n elements of the two, or three NessiLists.
 def print_multi(n,object1,object2,object3=NessiList()):
+    """
+    ---------------------------------------------------------------------------
+    Display side by side the first n elements of two, or three NessiLists.
 
+    Parameters:
+    ----------
+    -> n is number of element to display
+    -> object1 is the name of the first NessiList
+    -> object2 is the name of the second NessiList
+    -> object3 is the name of the third NessiList (optional)
+
+    """
+    
     tab="\t\t"
     str_output = ""
 
