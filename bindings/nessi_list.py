@@ -24,8 +24,6 @@
 
 # $Id$
 
-# SNS-FIXME: Desparately needs documentation (and review of you)
-
 ##
 #\file bindings/nessi_list.py
 #
@@ -620,19 +618,48 @@ class NessiList (list):
 ##
 # \ingroup __add__ NessiList
 #
-# The operator \f$+\f$ allows to add two NessiList together or each member
-# of a NessiList with a scalar
+# \brief The operator \f$+\f$ allows to add two NessiList together or each
+#        member of a NessiList with a scalar
 #
-# To add two NessiLists together or a NessiList with a scalar, instead of
-# using the function <i>add</i> provided by the NessiListUtils module,
-# you can simply use the following technique:
+# This operation allows one to add two NessiList together or each member of a
+# NessiList with a scalar
+#
+# To add two NessiLists together or a NessiList with a scalar, use the
+# following technique:
 # \code
 # >>> NessiList_VV = NessiList_1 + NessiList_2
 # >>> NessiList_VS = NessiList + Scalar
 # \endcode
+#
 # \return The resulting NessiList
 #
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
+
     def __add__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to add two NessiList together or each member
+        of a NessiList with a scalar
+
+        To add two NessiLists together or a NessiList with a scalar, use the
+        following technique:
+
+        >>> NessiList_VV = NessiList_1 + NessiList_2
+        >>> NessiList_VS = NessiList + Scalar
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot add things of unequal length"
@@ -653,17 +680,34 @@ class NessiList (list):
 ##
 # \ingroup __radd__ NessiList
 #
-# The operator \f$+\f$ allows to add a scalar with a NessiList.
+# \brief The operator \f$+\f$ allows to add a scalar with a NessiList.
 #
-# To add each element of a NessiList with a scalar, instead of using
-# the function <i>add</i> provided by the NessiListUtils module, you
-# can simply use the following technique:
+# This operation allows to add a scalar with a NessiList
+#
+# To add each element of a NessiList with a scalar, use the following
+# technique:
 # \code
 # >>> NessiList_SV = Scalar + NessiList
 # \endcode
-# \return The resulting NessiList
 #
+# \return The resulting NessiList
+
     def __radd__(self,left):
+        """
+        -----------------------------------------------------------------------
+        This operation allows to add a scalar with a NessiList
+
+        To add each element of a NessiList with a scalar, use the following
+        technique:
+
+        >>> NessiList_SV = Scalar + NessiList
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        """
+        
         return self+left
 
 ##
@@ -671,15 +715,41 @@ class NessiList (list):
 #
 # The operator \f$+=\f$ allows to add a NessiList in place
 #
-# To add each element of a NessiList with a scalar, instead of using
-# the function <i>add</i> provided by the NessiListUtils module, you
-# can simply use the following technique:
+# This operation allows one to add a NessiList in place
+#
+# To add each element of a NessiList with a scalar, use the following
+# technique:
 # \code
 # >>> NessiList_SV = Scalar + NessiList
 # \endcode
+#
 # \return The resulting NessiList
 #
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
+
     def __iadd__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to add a NessiList in place
+
+        To add each element of a NessiList with a scalar, use the following
+        technique:
+        
+        >>> NessiList_SV = Scalar + NessiList
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot add things of unequal length"
@@ -698,12 +768,14 @@ class NessiList (list):
 #
 # \ingroup __sub__ NessiList
 #
-# The operator \f$-\f$ allows to subtract two NessiLists or each member of
-# a NessiList by a scalar.
+# \brief The operator \f$-\f$ allows to subtract two NessiLists or each member
+#        of a NessiList by a scalar.
 #
+# This operation allows one to subtract two NessiLists or each member of a
+# NessiList by a scalar
+# 
 # To substract one NessiList from another or each member of a NessiList
-# by a scalar, instead of using the function <i>sub</i> provided by the
-# NessiListUtils module, you can simply use the following technique:
+# by a scalar, use the following technique:
 # \code
 # >>> NessiList_VV = NessiList_1 - NessiList_2
 # >>> NessiList_VS = NessiList - Scalar
@@ -711,7 +783,33 @@ class NessiList (list):
 #
 # \return the resulting NessiList
 #
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
+
     def __sub__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to subtract two NessiLists or each member of
+        a NessiList by a scalar
+ 
+        To substract one NessiList from another or each member of a NessiList
+        by a scalar, use the following technique:
+
+        >>> NessiList_VV = NessiList_1 - NessiList_2
+        >>> NessiList_VS = NessiList - Scalar
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot subtract things of unequal length"
@@ -732,18 +830,43 @@ class NessiList (list):
 ##
 # \ingroup __rsub__ NessiList
 #
-# The operator \f$-\f$ allows to subtract a scalar by a NessiList.
+# \brief The operator \f$-\f$ allows to subtract a scalar by a NessiList.
 #
-# To substract each element of a NessiList from a scalar, instead of
-# using the function <i>sub</i> provided by the NessiListUtils module,
-# you can simply use the following technique:
+# This operation allows one to subtract a scalar by a NessiList
+#
+# To substract each element of a NessiList from a scalar, use the following
+# technique:
 # \code
 # >>> NessiList_SV = Scalar - NessiList
 # \endcode
 #
 # \return the resulting NessiList
 #
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
+
     def __rsub__(self,left):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to subtract a scalar by a NessiList
+
+        To substract each element of a NessiList from a scalar, use the
+        following technique:
+
+        >>> NessiList_SV = Scalar - NessiList
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot subtract things of unequal length"
@@ -764,47 +887,101 @@ class NessiList (list):
 ##
 # \ingroup __isub__ NessiList
 #
-# The operator \f$-=\f$ allows to subtract a NessiList inplace
+# \brief The operator \f$-=\f$ allows to subtract a NessiList in place
 #
-# To substract each element of a NessiList from a scalar, instead of
-# using the function <i>sub</i> provided by the NessiListUtils module,
-# you can simply use the following technique:
+# This operation allows one to subtract a NessiList in place
+#
+# To substract each element of a NessiList from a scalar, use the following
+# technique:
 # \code
 # >>> NessiList_SV = Scalar - NessiList
 # \endcode
 #
 # \return the resulting NessiList
 #
-    def __isub__(self,right):
-        try:
-            if len(self)!=len(right):
-                raise ValueError,"Cannot subtract things of unequal length"
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
 
-            for i in range(len(self)):
-                self[i]=self[i]-right[i]
-            return self
+   def __isub__(self,right):
+       """
+       ------------------------------------------------------------------------
+       This operation allows one to subtract a NessiList in place
 
-        except TypeError: # must be a scalar
-            for i in range(len(self)):
-                self[i]=self[i]-right
-            return self
+       To substract each element of a NessiList from a scalar, use the
+       following technique:
+       
+       >>> NessiList_SV = Scalar - NessiList
 
-        raise Exception,"This statement should never be reached"
+       Return:
+       ------
+       <- the resulting NessiList
+       
+       Exceptions:
+       ----------
+       <- Exception is raised if everything goes wrong
+       <- ValueError is raised if the two NessiLists are not of equal
+          length
+
+       """
+       try:
+           if len(self)!=len(right):
+               raise ValueError,"Cannot subtract things of unequal length"
+           
+           for i in range(len(self)):
+               self[i]=self[i]-right[i]
+           return self
+
+       except TypeError: # must be a scalar
+           for i in range(len(self)):
+               self[i]=self[i]-right
+           return self
+
+       raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __mul__ NessiList
 #
-# The operator \f$\times\f$ allows to multiply two NessiLists.
+# \brief The operator \f$\times\f$ allows to multiply two NessiLists or each
+#        member of a NessiList by a scalar.
+#
+# This operation allows one to multiply two NessiLists or each member of a
+# NessiList by a scalar
 #
 # To multiply two NessiLists or each member of a NessiList by a scalar,
-# instead of using the function <i>mult</i> provided by the NessiListUtils
-# module, you can simply use the following technique:
+# use the following technique:
 # \code
 # >>> NessiList_VV = NessiList_1 * times NessiList_2
 # >>> NessiList_VS = NessiList * Scalar
 # \endcode
 #
+# \return the resulting NessiList
+#
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
+
     def __mul__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to multiply two NessiLists or each member of
+        a NessiList by a scalar
+
+        To multiply two NessiLists or each member of a NessiList by a scalar,
+        use the following technique:
+        >>> NessiList_VV = NessiList_1 * times NessiList_2
+        >>> NessiList_VS = NessiList * Scalar
+
+        Return:
+        ------
+        <- the resulting NessiList
+        
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot multiply things of unequal length"
@@ -827,16 +1004,32 @@ class NessiList (list):
 #
 # The operator \f$\times\f$ allows to multiply a scalar by a NessiList.
 #
-# To multiply each element of a NessiList by a scalar, instead of using
-# the function <i>mult</i> provided by the NessiListUtils module, you
-# can simply use the following technique:
+# This operation allows one to multiply a scalar by a NessiList
+#
+# To multiply each element of a NessiList by a scalar, use the following
+# technique:
 # \code
-# >>> NessiList_SV = scalar *  times NessiList
+# >>> NessiList_SV = scalar * NessiList
 # \endcode
 #
 # \return The resulting NessiList
-#
+
     def __rmul__(self,left):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to multiply a scalar by a NessiList
+
+        To multiply each element of a NessiList by a scalar, use the following
+        technique:
+
+        >>> NessiList_SV = scalar * NessiList
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        """
+        
         return self*left
 
 ##
@@ -844,45 +1037,100 @@ class NessiList (list):
 #
 # The operator \f$\times=\f$ allows to multiply a NessiList in place.
 #
-# To multiply each element of a NessiList by a scalar, instead of using
-# the function <i>mult</i> provided by the NessiListUtils module, you
-# can simply use the following technique:
+# This operation allows one to multiply a NessiList in place
+# 
+# To multiply each element of a NessiList by a scalar, use the following
+# technique:
 # \code
-# >>> NessiList_SV = scalar *  times NessiList
+# >>> NessiList_SV = scalar * NessiList
 # \endcode
 #
 # \return The resulting NessiList
 #
-    def __imul__(self,right):
-        try:
-            if len(self)!=len(right):
-                raise ValueError,"Cannot multiply things of unequal length"
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
 
-            for i in range(len(self)):
-                self[i]=self[i]*right[i]
-            return self
+   def __imul__(self,right):
+       """
+       ------------------------------------------------------------------------
+       This operation allows one to multiply a NessiList in place
+       
+       To multiply each element of a NessiList by a scalar, use the following
+       technique:
 
-        except TypeError: # must be a scalar
-            for i in range(len(self)):
-                self[i]=self[i]*right
-            return self
+       >>> NessiList_SV = scalar * NessiList
 
-        raise Exception,"This statement should never be reached"
+       Return:
+       ------
+       <- the resulting NessiList
+       
+       Exceptions:
+       ----------
+       <- Exception is raised if everything goes wrong
+       <- ValueError is raised if the two NessiLists are not of equal
+          length
+
+       """
+       try:
+           if len(self)!=len(right):
+               raise ValueError,"Cannot multiply things of unequal length"
+           
+           for i in range(len(self)):
+               self[i]=self[i]*right[i]
+           return self
+
+       except TypeError: # must be a scalar
+           for i in range(len(self)):
+               self[i]=self[i]*right
+           return self
+
+       raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __div__ NessiList
 #
-# \brief The operator \f$/\f$ allows to divide two NessiLists.
+# \brief The operator \f$/\f$ allows to divide two NessiLists or each member
+#        of a NessiList with a scalar.
+#
+# This operation allows one to divide two NessiLists or each member of a
+# NessiList with a scalar
 #
 # To divide two NessiLists or each element of a NessiList by a scalar,
-# instead of using the function <i>div</i> provided by the NessiListUtils
-# module, you can simply use the following technique:
+# use the following technique:
 # \code
 # >>> NessiList_VV = NessiList_1 / NessiList_2
 # >>> NessiList_VS = NessiList / Scalar
 # \endcode
 #
+# \return The resulting NessiList
+#
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
+
     def __div__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to divide two NessiLists or each member of a
+        NessiList with a scalar
+        
+        To divide two NessiLists or each element of a NessiList by a scalar,
+        use the following technique:
+        
+        >>> NessiList_VV = NessiList_1 / NessiList_2
+        >>> NessiList_VS = NessiList / Scalar
+        
+        Return:
+        ------
+        <- the resulting NessiList
+        
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot divide things of unequal length"
@@ -905,18 +1153,18 @@ class NessiList (list):
 #
 # \brief The operator \f$/\f$ allows to divide a scalar by a NessiList.
 #
-# To divide a scalar by each element of a NessiList, instead of using
-# the function <i>div</i> provided by the NessiListUtils module, you
-# can simply use the following technique:
+# This operation allows one to divide a scalar by a NessiList
+# 
+# To divide a scalar by each element of a NessiList, use the following
+# technique:
 # \code
 # >>> NessiList_SV = scalar / NessiList
 # \endcode
 #
 # \return The resulting NessiList
 #
-# \exception Exception is raised if all goes bad
-# \exception ValueError is raised if the lists are not the same length
-
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
 
     def __rdiv__(self,left):
         """
@@ -935,9 +1183,10 @@ class NessiList (list):
 
         Exceptions:
         ----------
-        <- Exception is raised if all goes bad
-        <- ValueError is raised if the lists are not the same length
-        
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+           
         """
         
         try:
@@ -960,16 +1209,41 @@ class NessiList (list):
 #
 # \brief The operator \f$/=\f$ allows to divide a NessiList in place
 #
-# To divide a scalar by each element of a NessiList, instead of using
-# the function <i>div</i> provided by the NessiListUtils module, you
-# can simply use the following technique:
+# This operation allows one to divide a NessiList in place
+#
+# To divide a scalar by each element of a NessiList, use the following
+# technique:
 # \code
 # >>> NessiList_SV = scalar / NessiList
 # \endcode
 #
 # \return The resulting NessiList
 #
+# \exception Exception is raised if everything goes wrong
+# \exception ValueError is raised if the two NessiLists are not of equal length
+
     def __idiv__(self,right):
+        """
+        -----------------------------------------------------------------------
+        This operation allows one to divide a NessiList in place
+
+        To divide a scalar by each element of a NessiList, use the following
+        technique:
+
+        >>> NessiList_SV = scalar / NessiList
+
+        Return:
+        ------
+        <- the resulting NessiList
+
+        Exceptions:
+        ----------
+        <- Exception is raised if everything goes wrong
+        <- ValueError is raised if the two NessiLists are not of equal
+           length
+
+        """
+        
         try:
             if len(self)!=len(right):
                 raise ValueError,"Cannot divide things of unequal length"
