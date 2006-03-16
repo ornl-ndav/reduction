@@ -61,49 +61,107 @@ class NessiList (list):
 ##
 # \ingroup __init__ NessiList
 #
-# \brief   Initialization of an instance.
+# \brief Initialization of an instance of NessiList.
+#
 # A NessiList can be defined in 4 ways.
 #
 # - Without any argument:
 # \code
-# >>> MyList1 = NessiList()
+# >>> MyNessiList1 = NessiList()
 # \endcode
 # in such case, the NessiList is empty and of type <i>double</i> by default.
 #
 # - By declaring its size:
 # \code
-# >>> MyList2 = NessiList(2)
+# >>> MyNessiList2 = NessiList(2)
 # \endcode
-# MyList2 contains 2 elements, set to 0, of type <i>double</i> (by default)
+# MyNessiList2 contains 2 elements, set to 0, of type <i>double</i> (by
+# default)
 #
 # - By declaring its type:
 # \code
-# >>> MyList3 = NessiList(type="float")
+# >>> MyNessiList3 = NessiList(type="int")
 # \endcode
-# MyList3 is an empty NessiList of type <i>float</i>
+# MyNessiList3 is an empty NessiList of type <i>int</i>
 #
 # - By declaring its size and type:
 # \code
-# >>> MyList4 = NessiList(4,"int")
+# >>> MyNessiList4 = NessiList(4,"int")
 # \endcode
 # or
 # \code
-# >>> MyList4 = NessiList(length=4,type="int")
+# >>> MyNessiList4 = NessiList(length=4,type="int")
 # \endcode
-# \f$MyList4\f$ is a 4 elements long, initialized to 0, NessiList of type
+# MyNessiList4 is a 4 elements long, initialized to 0, NessiList of type
 # <i>int</i>
 #
-# \param self (INPUT) is the name of the NessiList
+# \param self <i>this</i>
 # \param length (INPUT/OPTIONAL) is the length of the instance (0 by default)
-# \param type (INPUT/OPTIONAL) is the type of the instance (<i>double</i> by
-# default)
+# \param kwargs (INPUT/OPTIONAL) is a list of keywords for the class. The
+#        keyword <i>type</i> is used to specifiy the type of the instance
+#        (<i>double</i> by default)
+#
+# \exception Exception is raised if the type given to the instantiation is
+#            not recognized
+# \exception IndexError is raised if the NessiList is instantiated with a
+#            negative length
+
     def __init__(self, length=0, **kwargs):
+        """
+        -----------------------------------------------------------------------
+         A NessiList can be defined in 4 ways.
+
+         - Without any argument:
+
+         >>> MyNessiList1 = NessiList()
+
+         in such case, the NessiList is empty and of type double by default.
+
+         - By declaring its size:
+
+         >>> MyNessiList2 = NessiList(2)
+
+         MyNessiList2 contains 2 elements, set to 0, of type double (by
+         default)
+
+         - By declaring its type:
+
+         >>> MyNessiList3 = NessiList(type=\"int\")
+
+         MyNessiList3 is an empty NessiList of type int
+
+         - By declaring its size and type:
+
+         >>> MyNessiList4 = NessiList(4,\"int\")
+
+         or
+
+         >>> MyNessiList4 = NessiList(length=4,type=\"int\")
+
+         MyNessiList4 is a 4 elements long, initialized to 0, NessiList of type
+         int
+
+         Parameters:
+         ----------
+         -> length is the length of the instance (0 by default)
+         -> kwargs is a list of keywords for the class. The keyword \"type\"
+            is used to specifiy the type of the instance (double by default)
+
+         Exceptions:
+         ----------
+         <- Exception is raised if the type given to the instantiation is
+            not recognized
+         <- IndexError is raised if the NessiList is instantiated with a
+            negative length
+            
+        """
+        
         import nessi_vector_bind
 
         # check the length argument
         length=int(length)
         if length<0:
-            raise Exception, "Cannot instantiate List with negative length"
+            raise IndexError, "Cannot instantiate List with negative length"
 
         # get the type from the keyword arguments or set the default
         if(kwargs.has_key("type")):
@@ -134,7 +192,7 @@ class NessiList (list):
 ##
 # \ingroup append NessiList
 #
-# Function used to append elements to a NessiList
+# \brief Function used to append elements to a NessiList
 #
 # This function is used to append a value to an instance of the NessiList,
 # <i>MyNessiList</i>:
@@ -157,21 +215,48 @@ class NessiList (list):
 # 10.5
 # \endcode
 #
-# \param self (INPUT) is the name of the NessiList
+# \param self <i>this</i>
 # \param number (INPUT) is the number to append
-#
+
     def append(self,number):
+        """
+        -----------------------------------------------------------------------
+        This function is used to append a value to an instance of a NessiList,
+        MyNessiList:
+
+        >>> MyNessiList.append(10.5)
+
+        The size of the instance increases of 1 unit and the new element
+        appended is the new last element of the instance. That can be a
+        confusion in the case the size of the instance has already been
+        declared during the initialization process. For example, if a
+        NessiList has been defined has a 5 elements long of type double
+
+        >>> MyList = NessiList(5)
+
+        the append method will add the new element after the 5 first \"0\"
+        elements
+
+        >>> MyList.append(10.5)
+        >>> MyList[5]
+        10.5
+
+        Parameters:
+        ----------
+        -> number is the number to append
+
+        """
+        
         self.__array__.append(number)
 
 
 ##
 # \ingroup extend NessiList
 #
-# Function used to append elements to a NessiList
+# \brief Function used to append elements to a NessiList
 #
 # This function is used to append one or more values to an instance of
-# the NessiList,
-# <i>MyNessiList</i>:
+# the NessiList, <i>MyNessiList</i>:
 # \code
 # >>> MyNessiList.extend(10.5)
 # \endcode
@@ -198,17 +283,59 @@ class NessiList (list):
 # This is the same as appending 1, then 2, then 3, and so on.... one after
 # the other.
 # \code
-# >>> MyList.append(1)
-# >>> MyList.append(2)
-# >>> MyList.append(3)
-# >>> MyList.append(4)
+# >>> MyNessiList.append(1)
+# >>> MyNessiList.append(2)
+# >>> MyNessiList.append(3)
+# >>> MyNessiList.append(4)
 # ...
 # \endcode
 #
-# \param self (INPUT) is the name of the NessiList
-# \param *number (INPUT) is the number(s) to append
-#
+# \param self <i>this</i>
+# \param *number (INPUT) is(are) the number(s) to append to the NessiList
+
     def extend(self,*number):
+        """
+        -----------------------------------------------------------------------
+        This function is used to append one or more values to an instance of
+        the NessiList, MyNessiList:
+
+        >>> MyNessiList.extend(10.5)
+
+        The size of the instance increases of 1 unit and the new element
+        appended is the new last element of the instance. That can be a
+        confusion in the case the size of the instance has already been
+        declared during the initialization process. For example, if a
+        NessiList has been defined has a 5 elements long of type double
+
+        >>> MyList = NessiList(5)
+
+        the extend method will add the new element after the 5 first \"0\"
+        elements
+
+        >>> MyList.extend(10.5)
+        >>> MyList[5]
+        10.5
+
+        It is also possible to extend several values in the same time as
+        illustrated here:
+
+        >>> MyNessiList.extend(1,2,3,4,5,6,7,8)
+
+        This is the same as appending 1, then 2, then 3, and so on.... one
+        after the other.
+
+        >>> MyNessiList.append(1)
+        >>> MyNessiList.append(2)
+        >>> MyNessiList.append(3)
+        >>> MyNessiList.append(4)
+        ...
+
+        Parameters:
+        ----------
+        -> *number is(are) the number(s) to append to the NessiList
+        
+        """
+        
         for num in number:
             try:
                 for i in num:
@@ -219,31 +346,93 @@ class NessiList (list):
 ##
 # \ingroup __repr__ NessiList
 #
-# Function that is used to get the real state of a NessiList
+# \brief Function that is used to get the representation of a NessiList
+#
+# This function is used to return the representation of a NessiList
+#
 # \code
-# >>> MyList = NessiList()
-# >>> MyList.append(1,2,3,4,5)
-# >>> MyList
+# >>> MyNessiList = NessiList()
+# >>> MyNessiList.append(1,2,3,4,5)
+# >>> MyNessiList
 # [1.0,2.0,3.0,4.0,5.0]
 # \endcode
 #
+# \param self <i>this</i>
+#
+# \return The string representation of the NessiList. It uses the
+#         <i>__str__</i> function
+
     def __repr__(self):
+        """
+        -----------------------------------------------------------------------
+        This function is used to return the representation of a NessiList
+
+        >>> MyNessiList = NessiList()
+        >>> MyNessiList.append(1,2,3,4,5)
+        >>> MyNessiList
+        [1.0,2.0,3.0,4.0,5.0]
+
+        Return:
+        ------
+        <- The string representation of the NessiList. It uses the __str__
+           function
+
+        """
+        
         return self.__str__()
 
 ##
 # \ingroup __iter__ NessiList
 #
-# Function returns an iterator for a NessiList
+# \brief Function returns an iterator for a NessiList
 #
+# This function returns an iterator for a NessiList
+#
+# \param self <i>this</i>
+#
+# \return an iterator for the NessiList
+
     def __iter__(self):
+        """
+        -----------------------------------------------------------------------
+        This function returns an iterator for a NessiList
+
+        Return:
+        ------
+        <- an iterator for the NessiList
+
+        """
+        
         return iter(self.__array__)
 
 ##
 # \ingroup __reversed__ NessiList
 #
-# Function returns a backwards iterator for a NessiList
+# \brief Function returns a backwards iterator for a NessiList
 #
+# This function returns a backwards iterator for a NessiList
+#
+# \param self <i>this</i>
+#
+# \return a backwards iterator for the NessiList
+#
+# \exception StopError is raise if the index accessed is not in the NessiList
+
     def __reversed__(self):
+        """
+        -----------------------------------------------------------------------
+        This function returns a backwards iterator for a NessiList
+
+        Return:
+        ------
+        <- a backwards iterator for the NessiList
+
+        Exceptions:
+        ----------
+        <- StopError is raise if the index accessed is not in the NessiList
+
+        """
+        
         i=len(self.__array__)-1
         while True:
             try:
@@ -255,69 +444,177 @@ class NessiList (list):
 ##
 # \ingroup __getitem__ NessiList
 #
-# Function used to get an element of a NessiList.
-# To get the \f$i^{th}\f$ value of the NessiList \f$MyListA\f$,
-# \code
-# >>> MyListA[i]
-# \endcode
-# The last index of the NessiList is displayed if one ask for an element
-# of the NessiList outside its range
+# \brief Function used to get an element of a NessiList.
 #
-    def __getitem__(self,m):     # need to throw exception when m>len(self)
+# This function is used to retrieve a particular element of a NessiList
+#
+# To get the \f$i^{th}\f$ value of the NessiList \f$MyNessiList\f$,
+# \code
+# >>> MyNessiList[i]
+# \endcode
+#
+# \param self <i>this</i>
+# \param m (INPUT) is the index of the element to be retrieved
+#
+# \return the value at the given index
+#
+# \exception IndexError is raised if m > len(self) - 1
+
+    def __getitem__(self,m):
+        """
+        -----------------------------------------------------------------------
+        This function is used to retrieve a particular element of a NessiList
+
+        To get the ith value of the NessiList MyNessiList,
+
+        >>> MyNessiList[i]
+
+        Parameters:
+        ----------
+        -> m is the index of the element to be retrieved
+
+        Return:
+        ------
+        <- the value at the given index
+
+        Exceptions:
+        ---------
+        <- IndexError is raised if m > len(self) - 1
+
+        """
+        
         return self.__array__[m]
 
 ##
 # \ingroup __setitem__ NessiList
 #
-# Function used to set an element of a NessiList.
-# To set the \f$i^{th}\f$ value of the NessiList \f$MyListA\f$,
+# \brief Function used to set an element of a NessiList.
+#
+# This function is used to a particular element of a NessiList to the provided
+# value.
+# 
+# To set the \f$i^{th}\f$ value of the NessiList \f$MyNessiList\f$,
 # \code
-# >>> MyListA[i]=5
+# >>> MyNessiList[i]=5
 # \endcode
 #
+# \param self <i>this</i>
+# \param m (INPUT) is the index of the element to replace
+# \param val (INPUT) is the value to replace the exisiting element with
+
     def __setitem__(self,m,val):
+        """
+        -----------------------------------------------------------------------
+        This function is used to a particular element of a NessiList to the
+        provided value.
+
+        To set the ith value of the NessiList MyNessiList, 
+        >>> MyNessiList[i]=5
+
+        Parameters:
+        ----------
+        -> m is the index of the element to replace
+        -> val is the value to replace the exisiting element with
+
+        """
+        
         return self.__array__.__setitem__(m,val)
 
 ##
 # \ingroup __getslice__ NessiList
 #
-# Function used to get a range of values from a NessiList. Negative
-# indices are not supported.
+# \brief Function used to get a range of values from a NessiList.
 #
-# \param self (INPUT) is the name of the NessiList
+# This function is used to return a slice (range of values) from a NessiList.
+# Optional input parameters can be used to set the indicies of the slice.
+# Negative indices are not supported.
+#
+# \param self <i>this</i>
 # \param i (INPUT/OPTIONAL) is the index of the first element to get (0 by
 # default, i.e., first element of the NessiList)
 # \param j (INPUT/OPTIONAL) is the index + 1 of the last element to get (-1 by
-# default, i.e., last element of the NessiList)
-# \return
-# - The elements defined by the slice
+# default, i.e., last element of the NessiLst)
 #
+# \return The elements defined by the slice
+
     def __getslice__(self,i=0,j=-1):
+        """
+        -----------------------------------------------------------------------
+        This function is used to return a slice (range of values) from a
+        NessiList. Optional input parameters can be used to set the indicies
+        of the slice. Negative indices are not supported.
+
+        Parameters:
+        ----------
+        -> i is the index of the first element to get (0 by default, i.e.,
+           first element of the NessiList)
+        -> j is the index + 1 of the last element to get (-1 by default, i.e.,
+           last element of the NessiList)
+
+        Return:
+        ------
+        <- the elements defined by the slice
+
+        """
+        
         return self.__array__[i:j]
 
 ##
 # \ingroup __setslice__ NessiList
 #
-# Function used to get a range of values from a NessiList. Negative
-# indices are not supported.
+# \brief Function used to get a range of values from a NessiList.
+# 
+# This function is used to set a range of elements to the provided value.
+# Negative indices are not supported.
 #
+# \param self <i>this</i>
+# \param i (INPUT) is the index to start the element replacement
+# \param j (INPUT) is the index to end the element replacement
+# \param val (INPUT) is the value to replace the NessiList's elements with
+
     def __setslice__(self,i,j,val):
+        """
+        -----------------------------------------------------------------------
+        This function is used to set a range of elements to the provided value.
+        Negative indices are not supported.
+
+        Parameters:
+        ----------
+        -> i is the index to start the element replacement
+        -> j is the index to end the element replacement
+        -> val is the value to replace the NessiList's elements with
+
+        """
+        
         return self.__array__.__setslice__(i,j,val)
 
 ##
 # \ingroup __len__ NessiList
 #
-# Function used to get the length of a NessiList
+# \brief Function used to get the length of the NessiList
 #
+# This function is used to return the length of the NessiList
 # \code
-# >>> len(MyListA)
+# >>> len(MyNessiList)
 # \endcode
 #
-# \param self (INPUT) is the name of the NessiList
-# \return
-# - The length of the NessiList
+# \param self <i>this</i>
 #
+# \return The length of the NessiList
+
     def __len__(self):
+        """
+        -----------------------------------------------------------------------
+         This function is used to return the length of the NessiList
+
+         >>> len(MyNessiList)
+
+         Return:
+         ------
+         <- the length of the NessiList
+
+        """
+        
         return len(self.__array__)
 
 ##
@@ -661,7 +958,7 @@ class NessiList (list):
 ##
 # \ingroup __idiv__ NessiList
 #
-# The operator \f$/=\f$ allows to divide a NessiList in place
+# \brief The operator \f$/=\f$ allows to divide a NessiList in place
 #
 # To divide a scalar by each element of a NessiList, instead of using
 # the function <i>div</i> provided by the NessiListUtils module, you
@@ -691,9 +988,32 @@ class NessiList (list):
 ##
 # \ingroup __contains__ NessiList
 #
-# Function "__contains__" needs documentation
+# \brief Function that searches the NessiList for a particular value
 #
+# This function searches the NessiList looking for the value provided.
+#
+# \param self <i>this</i>
+# \param value (INPUT) is the value to search the NessiList for
+#
+# \return A boolean that is True if the value is in the NessiList and False
+#         if not
+
     def __contains__(self,value):
+        """
+        -----------------------------------------------------------------------
+        This function searches the NessiList looking for the value provided.
+
+        Parameters:
+        ----------
+        -> value is the value to search the NessiList for
+
+        Return:
+        ------
+        <- A boolean that is True if the value is in the NessiList and False
+           if not
+
+        """
+        
         try:
             self.index(value)
             return True
@@ -703,9 +1023,35 @@ class NessiList (list):
 ##
 # \ingroup __eq__ NessiList
 #
-# Function "__eq__" not implemented yet
+# \brief Function that determines if all elements of NessiList are equal to
+#        another NessiList
 #
+# This function determines if all the elements of the NessiList are equal to
+# the given NessiList. 
+#
+# \param self <i>this</i>
+# \param other (INPUT) is the NessiList to compare
+#
+# \return A boolean that is True if all the elements are equal to the compared
+#         NessiList and False if not
+
     def __eq__(self,other):
+        """
+        -----------------------------------------------------------------------
+        This function determines if all the elements of the NessiList are
+        equal to the given NessiList. 
+
+        Parameters:
+        ----------
+        -> other is the NessiList to compare
+
+        Return:
+        ------
+        <- A boolean that is True if all the elements are equal to the compared
+           NessiList and False if not
+
+        """
+        
         # check if they have the same length
         try:
             if len(self)!=len(other):
@@ -729,9 +1075,35 @@ class NessiList (list):
 ##
 # \ingroup __ge__ NessiList
 #
-# Function "__ge__" not implemented yet
+# \brief Function that determines if all elements of NessiList are greater than
+#        or equal to another NessiList
 #
+# This function determines if all the elements of the NessiList are greater
+# than or equal to the given NessiList. 
+#
+# \param self <i>this</i>
+# \param other (INPUT) is the NessiList to compare
+#
+# \return A boolean that is True if all the elements are greater than or equal
+#         to the compared NessiList and False if not
+
     def __ge__(self,other):
+        """
+        -----------------------------------------------------------------------
+        This function determines if all the elements of the NessiList are
+        greater than or equal to the given NessiList. 
+
+        Parameters:
+        ----------
+        -> other is the NessiList to compare
+
+        Return:
+        ------
+        <- A boolean that is True if all the elements are greater than or equal
+           to the compared NessiList and False if not
+
+        """
+        
         # deep comparison
         import utils
         try:
@@ -747,9 +1119,35 @@ class NessiList (list):
 ##
 # \ingroup __gt__ NessiList
 #
-# Function "__gt__" not implemented yet
+# \brief Function that determines if all elements of NessiList are greater than
+#        another NessiList
 #
+# This function determines if all the elements of the NessiList are greater
+# than the given NessiList. 
+#
+# \param self <i>this</i>
+# \param other (INPUT) is the NessiList to compare
+#
+# \return A boolean that is True if all the elements are greater than the
+#         compared NessiList and False if not
+
     def __gt__(self,other):
+        """
+        -----------------------------------------------------------------------
+        This function determines if all the elements of the NessiList are
+        greater than the given NessiList. 
+
+        Parameters:
+        ----------
+        -> other is the NessiList to compare
+
+        Return:
+        ------
+        <- A boolean that is True if all the elements are greater than the
+           compared NessiList and False if not
+           
+        """
+        
         # deep comparison
         import utils
         try:
@@ -765,25 +1163,108 @@ class NessiList (list):
 ##
 # \ingroup __ne__ NessiList
 #
-# Function "__ne__" not implemented yet
+# \brief Function that determines if all elements of NessiList are not equal 
+#        to another NessiList
 #
+# This function determines if all the elements of the NessiList are not equal 
+# to the given NessiList. It uses the <i>__eq__</i> function to complete the
+# task.
+#
+# \param self <i>this</i>
+# \param other (INPUT) is the NessiList to compare
+#
+# \return A boolean that is True if all the elements are not equal to the
+#         compared NessiList and False if not
+
     def __ne__(self,other):
+        """
+        -----------------------------------------------------------------------
+        This function determines if all the elements of the NessiList are not
+        equal to the given NessiList. It uses the __eq__ function to complete
+        the task.
+
+        Parameters:
+        ----------
+        -> other is the NessiList to compare
+
+        Return:
+        ------
+        <- A boolean that is True if all the elements are not equal to the
+           compared NessiList and False if not
+
+        """
+        
         return not self.__eq__(other)
 
 ##
 # \ingroup __lt__ NessiList
 #
-# Function "__lt__" not implemented yet
+# \brief Function that determines if all elements of NessiList are less than
+#        another NessiList
 #
+# This function determines if all the elements of the NessiList are less than
+# the given NessiList. It uses the <i>__ge__</i> function to complete the task.
+#
+# \param self <i>this</i>
+# \param other (INPUT) is the NessiList to compare
+#
+# \return A boolean that is True if all the elements are less than the compared
+#         NessiList and False if not
+
     def __lt__(self,other):
+        """
+        -----------------------------------------------------------------------
+        This function determines if all the elements of the NessiList are less
+        than the given NessiList. It uses the __ge__ function to complete the
+        task.
+
+        Parameters:
+        ----------
+        -> other is the NessiList to compare
+
+        Return:
+        ------
+        <- A boolean that is True if all the elements are less than the
+           compared NessiList and False if not
+
+        """
+        
         return not self.__ge__(other)
 
 ##
 # \ingroup __le__ NessiList
 #
-# Function "__le__" not implemented yet
+# \brief Function that determines if all elements of NessiList are less than
+#        or equal to another NessiList
 #
+# This function determines if all the elements of the NessiList are less than
+# or equal to the given NessiList. It uses the <i>__gt__</i> function to
+# complete the task.
+#
+# \param self <i>this</i>
+# \param other (INPUT) is the NessiList to compare
+#
+# \return A boolean that is True if all the elements are less than or equal to
+#         the compared NessiList and False if not
+
     def __le__(self,other):
+        """
+        -----------------------------------------------------------------------
+        This function determines if all the elements of the NessiList are less
+        than or equal to the given NessiList. It uses the __gt__ function to
+        complete the task.
+
+        Parameters:
+        ----------
+        -> other is the NessiList to compare
+
+        Return:
+        ------
+        <- A boolean that is True if all the elements are less than or equal to
+           the compared NessiList and False if not
+
+        """
+        
         return not self.__gt__(other)
 
 ##
