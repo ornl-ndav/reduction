@@ -25,7 +25,7 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/tof_to_wavelength_test.cpp
+# \file bindings/test/PAL/tof_to_wavelength_test.py
 #
 
 import axis_manip
