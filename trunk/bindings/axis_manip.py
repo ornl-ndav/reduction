@@ -700,6 +700,40 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # \}
 
 ##
+# \defgroup rebin_axis_2D axis_manip::rebin_axis_2D
+# \{
+
+##
+# \brief This function rebin data and its associated errors from two axes to
+#        two different axes.
+#
+# This function is described in section 3.13 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
+#
+# \exception NotImplementedError is raised when the function is called since
+#            it is not implemented.
+
+def rebin_axis_2D():
+    """
+    ---------------------------------------------------------------------------
+    This function rebin data and its associated errors from two axes to two
+    different axes
+
+    Exceptions:
+    ----------
+    <- NotImplementedError is raised when the function is called since it is
+       not implemented.
+
+    """
+
+    raise NotImplementedError, "This function is not implemented."
+
+##
+# \} // end of rebin_axis2D group
+
+##
 # \defgroup reverse_array_cp axis_manip::reverse_array_cp
 # \{
 
