@@ -1410,7 +1410,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     except AttributeError:
         wavevector_ss = vpair_bind.DoubleVPair()
-        axis_manip_bind.wavelength_to_scalar_k_d(\
+        axis_manip_bind.wavelength_to_scalar_k_ss_d(\
       float(wavelength),\
       float(wavelength_err2),\
       wavevector_ss)
