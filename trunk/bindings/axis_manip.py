@@ -755,7 +755,8 @@ def reverse_array_cp(input):
         axis_manip_bind.reverse_array_cp_d(input.__array__, output.__array__)
 
     elif (input.__type__ == nessi_list.NessiList.INT):
-        output = nessi_list.NessiList(len(input),type="int")
+        output = nessi_list.NessiList(len(input),\
+                                      type=nessi_list.NessiList.INT)
         axis_manip_bind.reverse_array_cp_i(input.__array__, output.__array__)
 
     else:
