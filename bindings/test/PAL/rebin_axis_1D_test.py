@@ -25,7 +25,7 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/rebin_axis_1D_test.cpp
+# \file bindings/test/PAL/rebin_axis_1D_test.py
 #
 
 import axis_manip

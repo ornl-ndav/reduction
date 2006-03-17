@@ -25,7 +25,7 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/init_scatt_wavevector_to_scalar_Q_test.cpp
+# \file bindings/test/PAL/init_scatt_wavevector_to_scalar_Q_test.py
 #
 
 import axis_manip

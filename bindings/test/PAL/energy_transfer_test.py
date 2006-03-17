@@ -25,7 +25,7 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/energy_transfer_test.cpp
+# \file bindings/test/PAL/energy_transfer_test.py
 #
 
 import axis_manip

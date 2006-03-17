@@ -25,7 +25,7 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/wavelength_to_energy_test.cpp
+# \file bindings/test/PAL/wavelength_to_energy_test.py
 #
 
 import axis_manip
