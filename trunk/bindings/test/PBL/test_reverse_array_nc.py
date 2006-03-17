@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_reverse_array_nc.py
 #
 
+##
+# \defgroup test_reverse_array_nc pbl::test_reverse_array_nc
+# \{
+#
+
 from axis_manip_bind import reverse_array_nc_d
 from axis_manip_bind import reverse_array_nc_i
 from nessi_vector_bind import *
@@ -68,3 +73,7 @@ mess = test_common_bind.makeCheck("reverse_array_nc_i",
                                   Input_I, TruthOutput_I)
 
 print mess
+
+##
+# \} // end of test_reverse_array_nc group
+#

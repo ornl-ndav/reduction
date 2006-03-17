@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_energy_transfer.py
 #
 
+##
+# \defgroup test_energy_transfer pbl::test_energy_transfer
+# \{
+#
+
 from axis_manip_bind import energy_transfer_d
 from axis_manip_bind import energy_transfer_ss_d
 from nessi_vector_bind import *
@@ -155,3 +160,7 @@ mess = test_common_bind.makeCheck("energy_transfer_ss_d",
                                   Output_SS_D.val_err2,
                                   TruthOutput_SS_D.val_err2)
 print mess
+
+##
+# \} // end of test_energy_transfer group
+#

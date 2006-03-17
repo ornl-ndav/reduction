@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_rebin_axis_1D.py
 #
 
+##
+# \defgroup test_rebin_axis_1D pbl::test_rebin_axis_1D
+# \{
+#
+
 from axis_manip_bind import rebin_axis_1D_d
 from nessi_vector_bind import *
 import test_common_bind
@@ -71,3 +76,7 @@ mess = test_common_bind.makeCheck("rebin_axis_1D_d",
                                   Output_Err2_D, TruthOutput_Err2_D)
 
 print mess
+
+##
+# \} // end of test_rebin_axis_1D group
+#

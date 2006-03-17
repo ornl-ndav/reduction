@@ -11,6 +11,12 @@
 # \file bindings/test/PBL/test_tof_to_initial_wavelength_igs.py
 #
 
+##
+# \defgroup test_tof_to_initial_wavelength_igs \
+# pbl::test_tof_to_initial_wavelength_igs
+# \{
+#
+
 from axis_manip_bind import tof_to_initial_wavelength_igs_d
 from axis_manip_bind import tof_to_initial_wavelength_igs_ss_d
 from nessi_vector_bind import *
@@ -119,4 +125,8 @@ mess = test_common_bind.makeCheck("tof_to_initial_wavelength_igs_ss_d",
                                   Output_SS_D.val_err2,
                                   TruthOutput_SS_D.val_err2)
 print mess
+
+##
+# \} // end of test_tof_to_initial_wavelength_igs group
+#
 

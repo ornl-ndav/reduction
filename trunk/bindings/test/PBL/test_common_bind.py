@@ -59,7 +59,7 @@ def printVector(object, last=10):
         print
 
 ##
-# \}
+# \} // end of printVector group
 #
 
 ##
@@ -157,5 +157,5 @@ def makeCheck(funcName, output, truth_output,
    return mess
 
 ##
-# \}  // end of test_common_bind::makeCheck group
+# \}  // end of makeCheck group
 #

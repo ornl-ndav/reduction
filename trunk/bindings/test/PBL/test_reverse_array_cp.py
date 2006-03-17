@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_reverse_array_cp.py
 #
 
+##
+# \defgroup test_reverse_array_cp pbl::test_reverse_array_cp
+# \{
+#
+
 from axis_manip_bind import reverse_array_cp_d
 from axis_manip_bind import reverse_array_cp_i
 from nessi_vector_bind import *
@@ -76,3 +81,7 @@ mess = test_common_bind.makeCheck("reverse_array_cp_i",
                                   Output_I, TruthOutput_I)
 
 print mess
+
+##
+# \} // end of test_reverse_array_cp group
+#

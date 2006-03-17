@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_weighted_average.py
 #
 
+##
+# \defgroup test_weighted_average pbl::test_weighted_average
+# \{
+#
+
 from nessi_vector_bind import *
 from utils_bind import weighted_average_d
 import test_common_bind
@@ -59,5 +64,7 @@ mess = test_common_bind.makeCheck("weighted_average_d",
 
 print mess
 
-
+##
+# \} // end of test_weighted_average group
+#
 

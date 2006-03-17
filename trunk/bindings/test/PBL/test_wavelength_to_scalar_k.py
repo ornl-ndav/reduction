@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_wavelength_to_scalar_k.py
 #
 
+##
+# \defgroup test_wavelength_to_scalar_k pbl::test_wavelength_to_scalar_k
+# \{
+#
+
 from axis_manip_bind import wavelength_to_scalar_k_d
 from axis_manip_bind import wavelength_to_scalar_k_ss_d
 from nessi_vector_bind import *
@@ -91,3 +96,7 @@ mess = test_common_bind.makeCheck("wavelength_to_scalar_k_d",
                                   TruthOutput_SS_D.val_err2)
 
 print mess
+
+##
+# \} // end of test_wavelength_to_scalar_k group
+#
