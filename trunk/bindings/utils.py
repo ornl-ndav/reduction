@@ -100,7 +100,6 @@ import utils_bind
 # \exception TypeError is raised if a is not of type double
 # \exception TypeError is raised if a and ae2 are not the same type
 
-
 def weighted_average(a,ae2,start,fin):
 
     """
@@ -146,7 +145,8 @@ def weighted_average(a,ae2,start,fin):
     return weighted_ave.val, weighted_ave.val_err2
 
 ##
-# \}
+# \} // end of weighted_average group
+#
 
 ##
 # \defgroup vector_is_equals utils::vector_is_equals
@@ -208,6 +208,7 @@ def vector_is_equals(value,true_value):
 
 ##
 # \}  // end of vector_is_equals group
+#
 
 ##
 # \defgroup compare utils::compare
@@ -253,3 +254,140 @@ def compare(value1,value2):
 
 ##
 # \}  // end of compare group
+#
+
+##
+# \defgroup fit_linear_background utils::fit_linear_background
+# \{
+#
+
+##
+# \brief This function fits a line to an array
+#
+# This function is described in section 3.43 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
+#
+# \exception NotImplementedError is raised when the function is called since
+#            it is not implemented.
+
+def fit_linear_background():
+    """
+    ---------------------------------------------------------------------------
+    This function fits a line to an array
+
+    Exceptions:
+    ----------
+    <- NotImplementedError is raised when the function is called since it is
+       not implemented.
+
+    """
+
+    raise NotImplementedError, "This function is not implemented."
+
+##
+# \}  // end of fit_linear_background group
+#
+
+##
+# \defgroup fit_reflectometer_background utils::fit_reflectometer_background
+# \{
+#
+
+##
+# \brief This function fits a plane to reflectometer 2D detector array data
+#
+# This function is described in section 3.42 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
+#
+# \exception NotImplementedError is raised when the function is called since
+#            it is not implemented.
+
+def fit_reflectometer_background():
+    """
+    ---------------------------------------------------------------------------
+    This function fits a plane to reflectometer 2D detector array data
+
+    Exceptions:
+    ----------
+    <- NotImplementedError is raised when the function is called since it is
+       not implemented.
+
+    """
+
+    raise NotImplementedError, "This function is not implemented."
+
+##
+# \}  // end of fit_reflectometer_background group
+#
+
+##
+# \defgroup matrix_multiplication utils::matrix_multiplication
+# \{
+#
+
+##
+# \brief This function multiplies data by a matrix
+#
+# This function is described in section 3.37 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
+#
+# \exception NotImplementedError is raised when the function is called since
+#            it is not implemented.
+
+def matrix_multiplication():
+    """
+    ---------------------------------------------------------------------------
+    This function multiplies data by a matrix
+
+    Exceptions:
+    ----------
+    <- NotImplementedError is raised when the function is called since it is
+       not implemented.
+
+    """
+
+    raise NotImplementedError, "This function is not implemented."
+
+##
+# \}  // end of matrix_multiplication group
+#
+
+##
+# \defgroup peak_integration utils::peak_integration
+# \{
+#
+
+##
+# \brief This function integrates intensity around Bragg peaks
+#
+# This function is described in section 3.35 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
+#
+# \exception NotImplementedError is raised when the function is called since
+#            it is not implemented.
+
+def peak_integration():
+    """
+    ---------------------------------------------------------------------------
+    This function integrates intensity around Bragg peaks
+
+    Exceptions:
+    ----------
+    <- NotImplementedError is raised when the function is called since it is
+       not implemented.
+
+    """
+
+    raise NotImplementedError, "This function is not implemented."
+
+##
+# \}  // end of peak_integration group
+#

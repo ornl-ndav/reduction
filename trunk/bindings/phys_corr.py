@@ -79,8 +79,9 @@ def absorption_mult_scatt():
     ----------
     <- NotImplementedError is raised when the function is called since it is
        not implemented.
-    
+
     """
+
     raise NotImplementedError, "This function is not implemented."
 ##
 # \} // end of absorption_mult_scatt group
@@ -90,7 +91,7 @@ def absorption_mult_scatt():
 # \defgroup dead_time_corr phys_corr::dead_time_corr
 # \{
 #
-   
+
 ##
 # \brief This function calculates the effect of dead time on the data
 #
@@ -111,9 +112,9 @@ def dead_time():
     ----------
     <- NotImplementedError is raised when the function is called since it is
        not implemented.
- 
+
     """
-    
+
     raise NotImplementedError, "This function is not implemented."
 
 ##
@@ -146,9 +147,9 @@ def incoherent_scatt_corr():
     ----------
     <- NotImplementedError is raised when the function is called since it is
        not implemented.
- 
+
     """
-    
+
     raise NotImplementedError, "This function is not implemented."
 
 ##
@@ -181,9 +182,9 @@ def inelastic_scatt_corr():
     ----------
     <- NotImplementedError is raised when the function is called since it is
        not implemented.
- 
+
     """
-    
+
     raise NotImplementedError, "This function is not implemented."
 
 ##
