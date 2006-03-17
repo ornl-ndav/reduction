@@ -1418,3 +1418,51 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
 ##
 # \}
+
+
+##
+# \defgroup wavelength_to_scalar_k axis_manip::wavelength_to_scalar_Q
+# \{
+
+##
+#
+def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
+
+    """"
+
+    """"
+
+    try:
+        if wavelength.__type__ != wavelength_err2.__type__:
+            raise TypeError, "Wavelength and Wavelength Err2 arrays are not \
+            the same type"
+
+        if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
+            Q = nessi_list.NessiList(len(wavelength))
+            Q_err2 = nessi_list.NessiList(len(wavelength))
+            axis_manip_bind.wavelength_to_scalar_Q_d(\
+                    wavelength.__array__,\
+                    wavelength_err2.__array__,\
+                    float(polar),\
+                    float(polar_err2),\
+                    Q.__array__,\
+                    Q_err2.__array__)
+
+        else:
+            raise TypeError
+
+        return Q, Q_err2
+
+    except AttributeError:
+        Q_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.wavelength_to_scalar_Q_ss_d(\
+      float(wavelength),\
+      float(wavelength_err2),\
+      float(polar),\
+      float(polar_err2),\
+      Q_ss)
+        return Q_ss.val, Q_ss.val_err2
+
+##
+# \}
+    
