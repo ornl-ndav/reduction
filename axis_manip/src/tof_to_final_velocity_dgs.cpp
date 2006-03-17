@@ -51,7 +51,7 @@ namespace AxisManip
                                    const float dist_sample_detector_err2,
                                    Nessi::Vector<float> & final_velocity,
                                    Nessi::Vector<float> & final_velocity_err2,
-                                   void *temp=NULL);
+                                   void *temp);
   /**
    * This is the float declaration of the function defined in 3.27.
    *
@@ -70,7 +70,7 @@ namespace AxisManip
                                    const float dist_sample_detector_err2,
                                    float & final_velocity,
                                    float & final_velocity_err2,
-                                   void *temp=NULL);
+                                   void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -92,7 +92,7 @@ namespace AxisManip
                                    const double dist_sample_detector_err2,
                                    Nessi::Vector<double> & final_velocity,
                                    Nessi::Vector<double> & final_velocity_err2,
-                                   void *temp=NULL);
+                                   void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -113,5 +113,5 @@ namespace AxisManip
                                     const double dist_sample_detector_err2,
                                     double & final_velocity,
                                     double & final_velocity_err2,
-                                    void *temp=NULL);
+                                    void *temp);
 } // AxisManip

@@ -54,7 +54,7 @@ namespace AxisManip
                           Nessi::Vector<float> & Qy_err2,
                           Nessi::Vector<float> & Qz,
                           Nessi::Vector<float> & Qz_err2,
-                          void *temp=NULL);
+                          void *temp);
 
   /**
    * This is the float declaration of the function defined in 3.32.
@@ -77,7 +77,7 @@ namespace AxisManip
                           Nessi::Vector<float> & Qy_err2,
                           Nessi::Vector<float> & Qz,
                           Nessi::Vector<float> & Qz_err2,
-                          void *temp=NULL);
+                          void *temp);
 
   /**
    * This is the float declaration of the function defined in 3.32.
@@ -100,7 +100,7 @@ namespace AxisManip
                           Nessi::Vector<float> & Qy_err2,
                           Nessi::Vector<float> & Qz,
                           Nessi::Vector<float> & Qz_err2,
-                          void *temp=NULL);
+                          void *temp);
 
   /**
    * This is the float declaration of the function defined in 3.32.
@@ -123,7 +123,7 @@ namespace AxisManip
                           float & Qy_err2,
                           float & Qz,
                           float & Qz_err2,
-                          void *temp=NULL);
+                          void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -147,7 +147,7 @@ namespace AxisManip
                          Nessi::Vector<double> & Qy_err2,
                          Nessi::Vector<double> & Qz,
                          Nessi::Vector<double> & Qz_err2,
-                         void *temp=NULL);
+                         void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -171,7 +171,7 @@ namespace AxisManip
                          Nessi::Vector<double> & Qy_err2,
                          Nessi::Vector<double> & Qz,
                          Nessi::Vector<double> & Qz_err2,
-                         void *temp=NULL);
+                         void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -195,7 +195,7 @@ namespace AxisManip
                          Nessi::Vector<double> & Qy_err2,
                          Nessi::Vector<double> & Qz,
                          Nessi::Vector<double> & Qz_err2,
-                         void *temp=NULL);
+                         void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -219,5 +219,5 @@ namespace AxisManip
                          double & Qy_err2,
                          double & Qz,
                          double & Qz_err2,
-                         void *temp=NULL);
+                         void *temp);
 } // AxisManip

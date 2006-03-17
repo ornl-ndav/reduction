@@ -47,7 +47,7 @@ namespace AxisManip
                          const float initial_velocity_err2,
                          float & time_offset,
                          float & time_offset_err2,
-                         void *temp=NULL);
+                         void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -64,5 +64,5 @@ namespace AxisManip
                           const double initial_velocity_err2,
                           double & time_offset,
                           double & time_offset_err2,
-                          void *temp=NULL);
+                          void *temp);
 } // AxisManip
