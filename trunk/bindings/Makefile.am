@@ -121,6 +121,7 @@ PAL_FILES = \
 	$(ARRAYMANIP_PAL) \
 	$(AXISMANIP_PAL) \
 	nessi_list.py \
+	$(PHYSCORR_PAL) \
 	$(UTILS_PAL)
 
 pkgpython_HEADERS = \
