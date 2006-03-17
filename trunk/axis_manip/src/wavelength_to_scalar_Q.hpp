@@ -165,7 +165,7 @@ namespace AxisManip
    * and direction of the scattered neutrons
    * \param sin2 (OUTPUT) the square of the sinus of the angle between positive
    * z axis and direction of the scattered neutrons
-   * \param cos (OUTPUT) the square of the cosinus of the angle between
+   * \param cos2 (OUTPUT) the square of the cosinus of the angle between
    * positive z axis and direction of the scattered neutrons
    */
   template <typename NumT>
