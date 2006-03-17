@@ -30,8 +30,6 @@
 #ifndef _CONSTANTS_HPP
 #define _CONSTANTS_HPP 1
 
-#include <string>
-
 /**
  * \namespace PhysConst
  *
@@ -54,7 +52,7 @@ namespace PhysConst
    */
 
   /**
-   * The value of Plank's constant, \f$h\f$, in units of \f$meV /
+   * The value of Planck's constant, \f$h\f$, in units of \f$meV /
    * THz\f$
    */
   static const double H = 4.13566743;
@@ -82,14 +80,14 @@ namespace PhysConst
   static const double PI = 3.14159265358979323846264338328;
 
   /**
-   * The value of \f$h/m_n\f$ where \f$h\f$ is Plank's constant and
+   * The value of \f$h/m_n\f$ where \f$h\f$ is Planck's constant and
    * \f$m_n\f$ is the mass of the neutron. The units of this constant
    * is \f$meters \times Angstroms / microseconds\f$
    */
   static const double H_OVER_MNEUT = 0.003956034;
 
   /**
-   * The value of \f$h^2/(2 m_n)\f$ where \f$h\f$ is Plank's constant
+   * The value of \f$h^2/(2 m_n)\f$ where \f$h\f$ is Planck's constant
    * and \f$m_n\f$ is the mass of the neutron. The units of this
    * constant is \f$ Angstroms^2 \times meV\f$
    */
