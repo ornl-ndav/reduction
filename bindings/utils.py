@@ -61,153 +61,40 @@ import utils_bind
 #
 
 ##
-# \defgroup weighted_average utils::weighted_average
+# \defgroup calibrate_reflectometer_area_det \
+# utils::calibrate_reflectometer_area_det
 # \{
+#
 
 ##
-# \brief This function takes the weighted average of a slice of a NessiList.
+# \brief This function calibrates a reflectometer 2D detector array for
+#        pixel variations
 #
-# This function accepts two NessiLists (data and associated square of
-# uncertainties), the starting element number and the ending element number in
-# order to calculate the weighted average.
+# This function is described in section 3.45 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
 #
-# \f[
-# \mu = \frac{\sum^{bin_{end}}_{i=bin_{start}} \frac{x_i}{\sigma_i^2}}
-# {\sum^{bin_{end}}_{i=bin_{start}} \frac{1}{\sigma_i^2}}
-# \f]
+# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
 #
-# and the square of the uncertainty is calculated according to the
-# following function
-#
-# \f[
-# \sigma_{\mu}^2 = \frac{1}{\sum^{bin_{end}}_{i=bin_{start}} \frac{1}
-# {\sigma_i^2}}
-# \f]
-#
-# \param a (INPUT) the NessiList from which to calculate the weighted average
-# \param ae2 (INPUT) the square of the uncertainty in the associated
-# NessiList from which calculate the weighted average
-# \param start (INPUT) the bin of the NessiList from which to start the
-# calculation
-# \param fin (INPUT) the bin of the NessiList at which to end the
-# calculation
-#
-# \return
-# - The weighted average
-# - The square of the uncertainty in the weighted average
-#
-# \exception IndexError is raised if a and ae2 are not the same length
-# \exception TypeError is raised if a is not of type double
-# \exception TypeError is raised if a and ae2 are not the same type
+# \exception NotImplementedError is raised when the function is called since
+#            it is not implemented.
 
-def weighted_average(a,ae2,start,fin):
-
+def calibrate_reflectometer_area_det():
     """
     ---------------------------------------------------------------------------
-    This function takes the weighted average of a slice of a NessiList.
-
-    Parameters:
-    __________
-
-    -> a is the NessiList from which to calculate the weighted average
-    -> ae2 is the square of the uncertainty in the associated NessiList
-       from which calculate the weighted average
-    -> start is the bin of the NessiList from which to start the calculation
-    -> fin the bin of the NessiList at which to end the calculation
-
-    Returns 2 doubles
-    ______________________
-
-    <- the weighted average of the NessiList slice
-    <- the square of the uncertainty associated with the weighted
-       average
+    This function calibrates a reflectometer 2D detector array for pixel
+    variations
 
     Exceptions:
-    __________
-
-    <- IndexError is raised if a and ae2 are not the same length
-    <- TypeError is raised if a is found not to be of type double
-    <- TypeError is raised if a and ae2 are not the same type
-
-    """
-
-    if (a.__type__ != a.DOUBLE):
-        raise TypeError, "Function only useable for doubles"
-
-    if (a.__type__ != ae2.__type__):
-        raise TypeError, "Incompatible types passed to weighted_average"
-
-    import vpair_bind
-
-    weighted_ave = vpair_bind.DoubleVPair()
-    utils_bind.weighted_average_d(a, ae2, start, fin, weighted_ave)
-
-    return weighted_ave.val, weighted_ave.val_err2
-
-##
-# \} // end of weighted_average group
-#
-
-##
-# \defgroup vector_is_equals utils::vector_is_equals
-# \{
-
-##
-# \brief This function compares to vectors for equality.
-#
-# This function takes two vectors and checks equality on an
-# element-by-element basis. One of the vectors contains the truth values
-# from a given calculation.
-#
-# \param value (INPUT) is a calculated vector
-# \param true_value (INPUT) is a truth vector corresponding to the
-# calculated vector
-#
-# \return A boolean that is true if the vector is equal element-by-element
-#
-
-def vector_is_equals(value,true_value):
-
-    """
-    ---------------------------------------------------------------------------
-    This function takes two vectors and checks equality on an
-    element-by-element basis. One of the vectors contains the truth values
-    from a given calculation.
-
-    Parameters:
     ----------
-    -> value is a calculated vector
-    -> true_value  is a truth vector corresponding to the calculated vector
-
-    Return:
-    ------
-    <- A boolean that is True if the vector is equal element-by-element,
-       if not, it returns False
+    <- NotImplementedError is raised when the function is called since it is
+       not implemented.
 
     """
 
-    if (value.__type__ == nessi_list.NessiList.DOUBLE):
-        value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
-        true_value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
-        for i in range(len(value)):
-            value_d.append(value[i])
-            true_value_d.append(true_value[i])
-
-        result = utils_bind.vector_is_equals_d(value_d.__array__,
-                                               true_value_d.__array__)
-    else:
-        value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
-        true_value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
-        for i in range(len(value)):
-            value_i.append(value[i])
-            true_value_i.append(true_value[i])
-        result = utils_bind.vector_is_equals_i(value_i.__array__,
-                                               true_value_i.__array__)
-
-    return result
+    raise NotImplementedError, "This function is not implemented."
 
 ##
-# \}  // end of vector_is_equals group
+# \}  // end of calibrate_reflectometer_area_det group
 #
 
 ##
@@ -391,3 +278,154 @@ def peak_integration():
 ##
 # \}  // end of peak_integration group
 #
+
+##
+# \defgroup vector_is_equals utils::vector_is_equals
+# \{
+
+##
+# \brief This function compares to vectors for equality.
+#
+# This function takes two vectors and checks equality on an
+# element-by-element basis. One of the vectors contains the truth values
+# from a given calculation.
+#
+# \param value (INPUT) is a calculated vector
+# \param true_value (INPUT) is a truth vector corresponding to the
+# calculated vector
+#
+# \return A boolean that is true if the vector is equal element-by-element
+#
+
+def vector_is_equals(value,true_value):
+
+    """
+    ---------------------------------------------------------------------------
+    This function takes two vectors and checks equality on an
+    element-by-element basis. One of the vectors contains the truth values
+    from a given calculation.
+
+    Parameters:
+    ----------
+    -> value is a calculated vector
+    -> true_value  is a truth vector corresponding to the calculated vector
+
+    Return:
+    ------
+    <- A boolean that is True if the vector is equal element-by-element,
+       if not, it returns False
+
+    """
+
+    if (value.__type__ == nessi_list.NessiList.DOUBLE):
+        value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
+        true_value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
+        for i in range(len(value)):
+            value_d.append(value[i])
+            true_value_d.append(true_value[i])
+
+        result = utils_bind.vector_is_equals_d(value_d.__array__,
+                                               true_value_d.__array__)
+    else:
+        value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
+        true_value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
+        for i in range(len(value)):
+            value_i.append(value[i])
+            true_value_i.append(true_value[i])
+        result = utils_bind.vector_is_equals_i(value_i.__array__,
+                                               true_value_i.__array__)
+
+    return result
+
+##
+# \}  // end of vector_is_equals group
+#
+
+##
+# \defgroup weighted_average utils::weighted_average
+# \{
+
+##
+# \brief This function takes the weighted average of a slice of a NessiList.
+#
+# This function accepts two NessiLists (data and associated square of
+# uncertainties), the starting element number and the ending element number in
+# order to calculate the weighted average.
+#
+# \f[
+# \mu = \frac{\sum^{bin_{end}}_{i=bin_{start}} \frac{x_i}{\sigma_i^2}}
+# {\sum^{bin_{end}}_{i=bin_{start}} \frac{1}{\sigma_i^2}}
+# \f]
+#
+# and the square of the uncertainty is calculated according to the
+# following function
+#
+# \f[
+# \sigma_{\mu}^2 = \frac{1}{\sum^{bin_{end}}_{i=bin_{start}} \frac{1}
+# {\sigma_i^2}}
+# \f]
+#
+# \param a (INPUT) the NessiList from which to calculate the weighted average
+# \param ae2 (INPUT) the square of the uncertainty in the associated
+# NessiList from which calculate the weighted average
+# \param start (INPUT) the bin of the NessiList from which to start the
+# calculation
+# \param fin (INPUT) the bin of the NessiList at which to end the
+# calculation
+#
+# \return
+# - The weighted average
+# - The square of the uncertainty in the weighted average
+#
+# \exception IndexError is raised if a and ae2 are not the same length
+# \exception TypeError is raised if a is not of type double
+# \exception TypeError is raised if a and ae2 are not the same type
+
+def weighted_average(a,ae2,start,fin):
+
+    """
+    ---------------------------------------------------------------------------
+    This function takes the weighted average of a slice of a NessiList.
+
+    Parameters:
+    __________
+
+    -> a is the NessiList from which to calculate the weighted average
+    -> ae2 is the square of the uncertainty in the associated NessiList
+       from which calculate the weighted average
+    -> start is the bin of the NessiList from which to start the calculation
+    -> fin the bin of the NessiList at which to end the calculation
+
+    Returns 2 doubles
+    ______________________
+
+    <- the weighted average of the NessiList slice
+    <- the square of the uncertainty associated with the weighted
+       average
+
+    Exceptions:
+    __________
+
+    <- IndexError is raised if a and ae2 are not the same length
+    <- TypeError is raised if a is found not to be of type double
+    <- TypeError is raised if a and ae2 are not the same type
+
+    """
+
+    if (a.__type__ != a.DOUBLE):
+        raise TypeError, "Function only useable for doubles"
+
+    if (a.__type__ != ae2.__type__):
+        raise TypeError, "Incompatible types passed to weighted_average"
+
+    import vpair_bind
+
+    weighted_ave = vpair_bind.DoubleVPair()
+    utils_bind.weighted_average_d(a, ae2, start, fin, weighted_ave)
+
+    return weighted_ave.val, weighted_ave.val_err2
+
+##
+# \}  // end of weighted_average group
+#
+
