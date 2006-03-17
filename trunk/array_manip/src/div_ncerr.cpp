@@ -93,7 +93,7 @@ namespace ArrayManip
   /**
    * This is the float declaration of the function defined in 3.5.
    *
-   * \ingroup div_ncerr()
+   * \ingroup div_ncerr
    */
   template std::string
   div_ncerr<float>(const Nessi::Vector<float> & array_in,
