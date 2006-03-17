@@ -25,7 +25,7 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/reverse_array_nc_test.cpp
+# \file bindings/test/PAL/reverse_array_nc_test.py
 #
 
 import axis_manip
@@ -62,6 +62,10 @@ def initialize_inputs(key):
         input=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
             input.append(float(1+i))         
+    elif (key == "int"):
+        input=nessi_list.NessiList(type="int")
+        for i in range(NUM_VAL):
+            input.append(int(1+i))
     else:
         raise TypeError
 	
@@ -82,12 +86,23 @@ def initialize_true_outputs(key):
 
         true_output = nessi_list.NessiList()
 
-	    # initialize the correct outputs for vector vector case
+        # initialize the correct outputs for vector vector case
         true_output.append(float(5))       
         true_output.append(float(4))	   
         true_output.append(float(3))
         true_output.append(float(2))
         true_output.append(float(1))	   
+
+    elif (key == "int"):
+
+        true_output = nessi_list.NessiList(type="int")
+
+        # initialize the correct outputs for vector vector case
+        true_output.append(int(5))       
+        true_output.append(int(4))	   
+        true_output.append(int(3))
+        true_output.append(int(2))
+        true_output.append(int(1))	   
 
     else:
 
@@ -116,3 +131,19 @@ if __name__ == "__main__":
 
     print mess
 
+    print "###############################################################"
+    print "#  Checking reverse_array_nc Python Abstraction layer for int #"
+    print "###############################################################"
+ 
+	# generate true_outputs
+    true_output = initialize_true_outputs("int")
+
+    input = initialize_inputs("int")
+
+    output = nessi_list.NessiList(type="int")
+    output = axis_manip.reverse_array_nc(input)
+
+    # Check values
+    mess = test_common.MakeCheck2("int",output, true_output)
+
+    print mess
