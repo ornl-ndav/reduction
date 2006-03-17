@@ -11,6 +11,12 @@
 # \file bindings/test/PBL/test_init_scatt_wavevector_to_scalar_Q.py
 #
 
+##
+# \defgroup test_init_scatt_wavevector_to_scalar_Q \
+# pbl::test_init_scatt_wavevector_to_scalar_Q
+# \{
+#
+
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_d
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_ss_d
 from nessi_vector_bind import *
@@ -180,3 +186,6 @@ mess = test_common_bind.makeCheck("init_scatt_wavevector_to_scalar_Q_ss_d",
                                   TruthOutput_SS_D.val_err2)
 print mess
 
+##
+# \} // end of test_init_scatt_wavevector_to_scalar_Q group
+#

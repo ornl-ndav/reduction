@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_sub_ncerr.py
 #
 
+##
+# \defgroup test_sub_ncerr pbl::test_sub_ncerr
+# \{
+#
+
 from array_manip_bind import sub_ncerr_d
 from array_manip_bind import sub_ncerr_i
 from nessi_vector_bind import *
@@ -220,4 +225,8 @@ mess = test_common_bind.makeCheck("sub_ncerr_i", Output_SV_I,
                                   Output_Err2_SV_I,
                                   TruthOutput_Err2_SV_I)
 print mess
+
+##
+# \} // end of test_sub_ncerr group
+#
 

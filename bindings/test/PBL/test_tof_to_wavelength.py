@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_tof_to_wavelength.py
 #
 
+##
+# \defgroup test_tof_to_wavelength pbl::test_tof_to_wavelength
+# \{
+#
+
 from axis_manip_bind import tof_to_wavelength_d
 from axis_manip_bind import tof_to_wavelength_ss_d
 from nessi_vector_bind import *
@@ -98,3 +103,7 @@ mess = test_common_bind.makeCheck("tof_to_wavelength_d",
                                   TruthOutput_SS_D.val_err2)
 
 print mess
+
+##
+# \} // end of test_tof_to_wavelength group
+#

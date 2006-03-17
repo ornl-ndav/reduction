@@ -10,6 +10,11 @@
 # \file bindings/test/PBL/test_add_ncerr.py
 #
 
+##
+# \defgroup test_add_ncerr pbl::test_add_ncerr
+# \{
+#
+
 from array_manip_bind import add_ncerr_d
 from array_manip_bind import add_ncerr_i
 from nessi_vector_bind import *
@@ -19,10 +24,6 @@ print "###########################################################"
 print "# Checking Add_Ncerr Swig Generated Python Binding Layer  #"
 print "###########################################################"
 print
-
-##
-# \defgroup test_add_ncerr pbl::add_ncerr_test
-# \{
 
 # Set standard size for vectors
 NUM_VAL = 5
@@ -169,5 +170,5 @@ mess = test_common_bind.makeCheck("add_ncerr_i", Output_VS_I,
 print mess
 
 ##
-# \}
+# \} // end of test_add_ncerr group
 #
