@@ -231,6 +231,58 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 ##
 # \}
 
+
+##
+# \defgroup frequency_to_energy axis_manip::frequency_to_energy
+# \{
+
+##
+#
+def frequency_to_energy(frequency, frequency_err2):
+
+    """
+
+    """
+
+    try:
+        if frequency.__type__ != frequency_err2.__type__:
+            raise TypeError, "Frequency and Frequency Err2 arrays are not \
+            the same type"
+
+        if (frequency.__type__ == nessi_list.NessiList.DOUBLE):
+            E = nessi_list.NessiList(len(frequency))
+            E_err2 = nessi_list.NessiList(len(frequency))
+            axis_manip_bind.frequency_to_energy_d(\
+                    frequency.__array__,\
+                    frequency_err2.__array__,\
+                    E.__array__,\
+                    E_err2.__array__)
+            
+        else:
+            raise TypeError
+
+        return E, E_err2
+
+    except AttributeError:
+        E_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.frequency_to_energy_d(\
+          float(frequency),\
+          float(frequency_err2),\
+          E_ss)
+        return E_ss.val, E_ss.val_err2
+
+##
+# \}
+   
+
+
+
+
+
+
+
+
+
 ##
 # \defgroup init_scatt_wavevector_to_scalar_Q \
 # axis_manip::init_scatt_wavevector_to_scalar_Q
@@ -1421,16 +1473,16 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
 
 ##
-# \defgroup wavelength_to_scalar_k axis_manip::wavelength_to_scalar_Q
+# \defgroup wavelength_to_scalar_Q axis_manip::wavelength_to_scalar_Q
 # \{
 
 ##
 #
 def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
 
-    """"
+    """
 
-    """"
+    """
 
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
