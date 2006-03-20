@@ -165,20 +165,29 @@ bool test_okay(Nessi::Vector<NumT> & output_vs,
                Nessi::Vector<NumT> & true_output_vv,
                Nessi::Vector<NumT> & true_output_vv_err2)
 {
+  bool value = true;
+
   // vector scalar
   if(!test_okay(output_vs,true_output_vs,VS))
-    return false;
+    {
+      value = false;
+    }
   if(!test_okay(output_vs_err2,true_output_vs_err2,VS,ERROR))
-    return false;
+    {
+      value = false;
+    }
 
   // vector vector
   if(!test_okay(output_vv,true_output_vv,VV))
-    return false;
+    {
+      value = false;
+    }
   if(!test_okay(output_vv_err2,true_output_vv_err2,VV,ERROR))
-    return false;
-
+    {
+      value = false;
+    }
   // everything okay
-  return true;
+  return value;
 }
 
 /**

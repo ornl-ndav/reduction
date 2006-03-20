@@ -132,14 +132,20 @@ bool test_okay(Nessi::Vector<NumT> & output_vv,
                Nessi::Vector<NumT> & true_output_vv,
                Nessi::Vector<NumT> & true_output_vv_err2)
 {
+  bool value = true;
+
   // vector vector
   if(!test_okay(output_vv,true_output_vv,VV))
-    return false;
+    {
+      value = false;
+    }
   if(!test_okay(output_vv_err2,true_output_vv_err2,VV,ERROR))
-    return false;
+    {
+      value = false;
+    }
 
   // everything okay
-  return true;
+  return value;
 }
 
 /**
