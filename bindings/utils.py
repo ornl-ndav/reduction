@@ -421,7 +421,7 @@ def weighted_average(a,ae2,start,fin):
     import vpair_bind
 
     weighted_ave = vpair_bind.DoubleVPair()
-    utils_bind.weighted_average_d(a, ae2, start, fin, weighted_ave)
+    utils_bind.weighted_average_d(a.__array__, ae2.__array__, start, fin, weighted_ave)
 
     return weighted_ave.val, weighted_ave.val_err2
 
