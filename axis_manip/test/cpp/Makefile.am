@@ -32,6 +32,7 @@ EXTRA_DIST=testsuite.at
 
 AXIS_MANIP_TARGETS = \
 	energy_transfer_test \
+	frequency_to_energy_test \
 	init_scatt_wavevector_to_scalar_Q_test \
 	rebin_axis_1D_test \
 	reverse_array_cp_test \
@@ -40,7 +41,7 @@ AXIS_MANIP_TARGETS = \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
 	wavelength_to_scalar_k_test \
-    wavelength_to_scalar_Q_test
+   	 wavelength_to_scalar_Q_test
 
 
 TESTSUITE	= $(srcdir)/testsuite
@@ -49,6 +50,8 @@ AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(AXIS_MANIP_TARGETS)
 
 energy_transfer_test_SOURCES = energy_transfer_test.cpp test_common.hpp
+
+frequency_to_energy_test_SOURCES = frequency_to_energy_test.cpp test_common.hpp
 
 init_scatt_wavevector_to_scalar_Q_test_SOURCES = \
         init_scatt_wavevector_to_scalar_Q_test.cpp \
