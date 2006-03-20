@@ -265,7 +265,7 @@ def frequency_to_energy(frequency, frequency_err2):
 
     except AttributeError:
         E_ss = vpair_bind.DoubleVPair()
-        axis_manip_bind.frequency_to_energy_d(\
+        axis_manip_bind.frequency_to_energy_ss_d(\
           float(frequency),\
           float(frequency_err2),\
           E_ss)
