@@ -257,7 +257,7 @@ def frequency_to_energy(frequency, frequency_err2):
                     frequency_err2.__array__,\
                     E.__array__,\
                     E_err2.__array__)
-            
+
         else:
             raise TypeError
 
@@ -273,7 +273,7 @@ def frequency_to_energy(frequency, frequency_err2):
 
 ##
 # \}
-   
+
 
 
 
@@ -762,6 +762,97 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # This function is described in section 3.13 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".
 #
+# This function rebins data and its associated errors from two axes to
+# two different axes. This function uses fractional overlap of bins to
+# perform the rebinning process. The function also assumes that the data
+# is represented by a histogram model. The fractional overlap is performed
+# on one axis at a time with the second declared axis going first.
+#
+# To show the effects of rebinning, an example will now be discussed. We
+# start with a histogram containing 9 bins, which runs from 0 to 3 on its
+# x and y axes. So, the histogram looks like:
+#
+# <CENTER>
+# <TABLE>
+# <TR>
+# <TH>X-Axis Value</TH>
+# <TH>Y-Axis Value</TH>
+# <TH>Counts</TH>
+# <TH>\f$\sigma^2\f$</TH>
+# </TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>1</TD><TD>20</TD><TD>4</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD>30</TD><TD>9</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>1</TD><TD>20</TD><TD>4</TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>2</TD><TD>30</TD><TD>9</TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>1</TD><TD>20</TD><TD>4</TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>2</TD><TD>30</TD><TD>9</TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD>  </TD><TD> </TD></TR>
+# </TABLE>
+# </CENTER>
+#
+# Our new histogram is still [0,3] on both the x and y axes, but now both
+# axes are two bins. The result of the rebinned histogram is shown in the
+# table below.
+#
+# <CENTER>
+# <TABLE>
+# <TR>
+# <TH>X-Axis Value</TH>
+# <TH>Y-Axis Value</TH>
+# <TH>Counts</TH>
+# <TH>\f$\sigma^2\f$</TH>
+# </TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>30</TD><TD>2.5</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>1.5</TD><TD>60</TD><TD>12.5</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1.5</TD><TD>0</TD><TD>30</TD><TD>2.5</TD></TR>
+# <TR ALIGN="CENTER"><TD>1.5</TD><TD>1.5</TD><TD>60</TD><TD>12.5</TD></TR>
+# <TR ALIGN="CENTER"><TD>1.5</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD> </TD><TD> </TD><TD> </TD></TR>
+# </TABLE>
+# </CENTER>
+#
+# The algorithm relies on the constructs used in the 1D rebinning algorithm
+# to perform the calculations.
+#
+# Now, we reverse the process starting with the newly rebinned histogram
+# with four total bins and revert back to the original axes layout in the
+# histogram with nine bins. The results of the rebinning are shown in the
+# table below.
+#
+# <CENTER>
+# <TABLE>
+# <TR>
+# <TH>X-Axis Value</TH>
+# <TH>Y-Axis Value</TH>
+# <TH>Counts</TH>
+# <TH>\f$\sigma^2\f$</TH>
+# </TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>13.33333</TD><TD>0.49383</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>1</TD><TD>20</TD><TD>0.74074</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD>26.66666</TD><TD>2.46914</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>0</TD><TD>13.33333</TD><TD>0.49383</TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>1</TD><TD>20</TD><TD>0.74074</TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>2</TD><TD>26.66666</TD><TD>2.46914</TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>0</TD><TD>13.33333</TD><TD>0.49383</TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>1</TD><TD>20</TD><TD>0.74074</TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>2</TD><TD>26.66666</TD><TD>2.46914</TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD>  </TD><TD> </TD></TR>
+# </TABLE>
+# </CENTER>
+#
+# As one can see, these values are different from the first table shown in
+# this example. This is due to the loss of information when performing a
+# rebin on data. Therefore, rebin your data thoughtfully and carefully!
 #
 # \param axis_in_1 (INPUT) is the 1st initial data axis
 # \param axis_in_2 (INPUT) is the 2nd initial data axis
@@ -785,8 +876,73 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
                   axis_out_1, axis_out_2):
     """
     ---------------------------------------------------------------------------
-    This function rebin data and its associated errors from two axes to two
-    different axes
+    This function rebins data and its associated errors from two axes to
+    two different axes. This function uses fractional overlap of bins to
+    perform the rebinning process. The function also assumes that the data
+    is represented by a histogram model. The fractional overlap is performed
+    on one axis at a time with the second declared axis going first.
+
+    To show the effects of rebinning, an example will now be discussed. We
+    start with a histogram containing 9 bins, which runs from 0 to 3 on its
+    x and y axes. So, the histogram looks like:
+
+             X-axis Value  | Y-axis Value  |  Counts   |  sigma^2
+             ______________|_______________|___________|___________
+                   0       |       0       |    10     |     1
+                   0       |       1       |    20     |     4
+                   0       |       2       |    30     |     9
+                   0       |       3       |           |
+                   1       |       0       |    10     |     1
+                   1       |       1       |    20     |     4
+                   1       |       2       |    30     |     9
+                   1       |       3       |           |
+                   2       |       0       |    10     |     1
+                   2       |       1       |    20     |     4
+                   2       |       2       |    30     |     9
+                   2       |       3       |           |
+                   3
+
+    Our new histogram is still [0,3] on both the x and y axes, but now both
+    axes are two bins. The result of the rebinned histogram is shown in the
+    table below.
+
+             X-axis Value  | Y-axis Value  |  Counts   |  sigma^2
+             ______________|_______________|___________|___________
+                   0       |       0       |    30     |    2.5
+                   0       |      1.5      |    60     |   12.5
+                   0       |       3       |           |
+                  1.5      |       0       |    30     |    2.5
+                  1.5      |      1.5      |    60     |   12.5
+                  1.5      |       3       |           |
+                   3
+
+    The algorithm relies on the constructs used in the 1D rebinning algorithm
+    to perform the calculations.
+
+    Now, we reverse the process starting with the newly rebinned histogram
+    with four total bins and revert back to the original axes layout in the
+    histogram with nine bins. The results of the rebinning are shown in the
+    table below.
+
+             X-axis Value  | Y-axis Value  |  Counts   |  sigma^2
+             ______________|_______________|___________|___________
+                   0       |       0       |  13.33333 |  0.49383
+                   0       |       1       |     20    |  0.74074
+                   0       |       2       |  26.66666 |  2.46914
+                   0       |       3       |           |
+                   1       |       0       |  13.33333 |  0.49383
+                   1       |       1       |     20    |  0.74074
+                   1       |       2       |  26.66666 |  2.46914
+                   1       |       3       |           |
+                   2       |       0       |  13.33333 |  0.49383
+                   2       |       1       |     20    |  0.74074
+                   2       |       2       |  26.66666 |  2.46914
+                   2       |       3       |           |
+                   3
+
+    As one can see, these values are different from the first table shown in
+    this example. This is due to the loss of information when performing a
+    rebin on data. Therefore, rebin your data thoughtfully and carefully!
 
     Parameters:
     __________
@@ -815,7 +971,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
 
     if axis_in_1.__type__ != axis_in_2.__type__:
         raise TypeError, "Input Axis 1 and Input Axis 2 are not the same type."
-    
+
     if axis_in_1.__type__ != input.__type__:
         raise TypeError, "Input Axis 1 and Input Data are not the same type."
 
@@ -826,7 +982,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
     if axis_out_1.__type__ != axis_out_2.__type__:
         raise TypeError, "Output Axis 1 and Output Axis 2 are not the same \
         type."
-    
+
     if input.__type__ != input_err2.__type__:
         raise TypeError, "Input Data and Input Data Err2 are not the same \
         type."
@@ -1584,4 +1740,4 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
 
 ##
 # \}
-    
+
