@@ -82,14 +82,13 @@ namespace AxisManip
     size_t nnew_input1 = axis_out_1.size() - 1;
     size_t nnew_input2 = axis_out_2.size() - 1;
 
-
     // Create space for series of rebinned 2nd axes
     Nessi::Vector<NumT> stage1;
     stage1.reserve(nnew_input2 * nold_input1);
 
     Nessi::Vector<NumT> stage1_err2;
     stage1_err2.reserve(nnew_input2 * nold_input1);
-
+    
     for(size_t i = 0; i < nold_input1; ++i)
       {
         // Create space and fill a 2nd axis for data and err2 for both
@@ -116,7 +115,7 @@ namespace AxisManip
           }
         catch(std::invalid_argument &e)
           {
-            throw std::invalid_argument(ra2_func_str+" rebin axis 1: "
+            throw std::invalid_argument(ra2_func_str+" rebin axis 2: "
                                         +e.what());
           }
 
@@ -156,7 +155,7 @@ namespace AxisManip
         t_iter = tmp_in.begin();
         t_iter_err2 = tmp_in_err2.begin();
 
-        while(iter <= stage1.end() && iter_err2 <= stage1_err2.end())
+        while(iter < stage1.end() && iter_err2 < stage1_err2.end())
           {
             *t_iter = *iter;
             *t_iter_err2 = *iter_err2;
@@ -178,7 +177,8 @@ namespace AxisManip
           }
         catch(std::invalid_argument &e)
           {
-            throw std::invalid_argument(ra2_func_str+" "+e.what());
+            throw std::invalid_argument(ra2_func_str+" rebin axis 1: "
+                                        +e.what());
           }
 
         if(!warn.empty())
@@ -192,7 +192,7 @@ namespace AxisManip
         t_iter = tmp_out.begin();
         t_iter_err2 = tmp_out_err2.begin();
 
-        while(iter <= output.end() && iter_err2 <= output_err2.end())
+        while(iter < output.end() && iter_err2 < output_err2.end())
           {
             *iter = *t_iter;
             *iter_err2 = *t_iter_err2;
