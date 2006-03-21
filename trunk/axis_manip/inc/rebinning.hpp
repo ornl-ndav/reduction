@@ -116,7 +116,7 @@ namespace AxisManip
    * Bin_2^{old}
    * \f]
    * \f[
-   * Bin_3^{new} = \frac{2}{3} \times Bin_3^{old}
+   * Bin_3^{new} = \frac{2}{3} \times Bin_2^{old}
    * \f]
    * and
    * \f[
@@ -127,7 +127,7 @@ namespace AxisManip
    * (\frac{1}{3})^2 \times \sigma^2_{Bin_2^{old}}
    * \f]
    * \f[
-   * \sigma^2_{Bin_3^{new}} = (\frac{2}{3})^2 \times \sigma^2_{Bin_3^{old}}
+   * \sigma^2_{Bin_3^{new}} = (\frac{2}{3})^2 \times \sigma^2_{Bin_2^{old}}
    * \f]
    *
    * The results of this operation are shown in the following table:
@@ -193,7 +193,117 @@ namespace AxisManip
   /**
    * \brief This function is described in section 3.13.
    *
-   * THIS FUNCTION IS NOT DEFINED
+   * This function rebins data and its associated errors from two axes to
+   * two different axes. This function uses fractional overlap of bins to
+   * perform the rebinning process. The function also assumes that the data
+   * is represented by a histogram model. The fractional overlap is performed
+   * on one axis at a time with the second declared axis going first.
+   *
+   * To show the effects of rebinning, an example will now be discussed. We
+   * start with a histogram containing 9 bins, which runs from 0 to 3 on its
+   * x and y axes. So, the histogram looks like:
+   *
+   * <CENTER>
+   * <TABLE>
+   * <TR>
+   * <TH>X-Axis Value</TH>
+   * <TH>Y-Axis Value</TH>
+   * <TH>Counts</TH>
+   * <TH>\f$\sigma^2\f$</TH>
+   * </TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>1</TD><TD>20</TD><TD>4</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD>30</TD><TD>9</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>1</TD><TD>20</TD><TD>4</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>2</TD><TD>30</TD><TD>9</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>1</TD><TD>20</TD><TD>4</TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>2</TD><TD>30</TD><TD>9</TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>3</TD><TD>  </TD><TD> </TD></TR>
+   * </TABLE>
+   * </CENTER>
+   *
+   * Our new histogram is still [0,3] on both the x and y axes, but now both
+   * axes are two bins. The result of the rebinned histogram is shown in the
+   * table below.
+   *
+   * <CENTER>
+   * <TABLE>
+   * <TR>
+   * <TH>X-Axis Value</TH>
+   * <TH>Y-Axis Value</TH>
+   * <TH>Counts</TH>
+   * <TH>\f$\sigma^2\f$</TH>
+   * </TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>30</TD><TD>2.5</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>1.5</TD><TD>60</TD><TD>12.5</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>1.5</TD><TD>0</TD><TD>30</TD><TD>2.5</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1.5</TD><TD>1.5</TD><TD>60</TD><TD>12.5</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1.5</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>3</TD><TD> </TD><TD> </TD><TD> </TD></TR>
+   * </TABLE>
+   * </CENTER>
+   *
+   * The algorithm relies on the constructs used in the 1D rebinning algorithm
+   * to perform the calculations.
+   *
+   * Now, we reverse the process starting with the newly rebinned histogram
+   * with four total bins and revert back to the original axes layout in the
+   * histogram with nine bins. The results of the rebinning are shown in the
+   * table below.
+   *
+   * <CENTER>
+   * <TABLE>
+   * <TR>
+   * <TH>X-Axis Value</TH>
+   * <TH>Y-Axis Value</TH>
+   * <TH>Counts</TH>
+   * <TH>\f$\sigma^2\f$</TH>
+   * </TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>13.33333</TD><TD>0.49383</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>1</TD><TD>20</TD><TD>0.74074</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD>26.66666</TD><TD>2.46914</TD></TR>
+   * <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>0</TD><TD>13.33333</TD><TD>0.49383</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>1</TD><TD>20</TD><TD>0.74074</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>2</TD><TD>26.66666</TD><TD>2.46914</TD></TR>
+   * <TR ALIGN="CENTER"><TD>1</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>0</TD><TD>13.33333</TD><TD>0.49383</TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>1</TD><TD>20</TD><TD>0.74074</TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>2</TD><TD>26.66666</TD><TD>2.46914</TD></TR>
+   * <TR ALIGN="CENTER"><TD>2</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+   * <TR ALIGN="CENTER"><TD>3</TD><TD>  </TD><TD> </TD></TR>
+   * </TABLE>
+   * </CENTER>
+   *
+   * As one can see, these values are different from the first table shown in
+   * this example. This is due to the loss of information when performing a
+   * rebin on data. Therefore, rebin your data thoughtfully and carefully!
+   *
+   * \param axis_in_1 (INPUT) is the 1st initial data axis
+   * \param axis_in_2 (INPUT) is the 2nd initial data axis
+   * \param input (INPUT) is the data associated with the initial axis
+   * \param input_err2 (INPUT) is the square of the uncertainty associated
+   * with the data
+   * \param axis_out_1 (INPUT) is the 1st target axis for rebinning
+   * \param axis_out_2 (INPUT) is the 2nd target axis for rebinning
+   * \param output (OUTPUT) is the rebinned data according to the target axis
+   * \param output_err2 (OUTPUT) is the square of the uncertainty associated
+   * with the rebinned data
+   *
+   * \param temp holds temporary memory to be passed to the function
+   *
+   * \return A set of warnings generated by the function
+   *
+   * \exception std::invalid_argument is thrown if the size of axis_in
+   * is not one more than the size of input and input_err2.
+   * \exception std::invalid_argument is thrown if the size of
+   * axis_out is not one more than the size of output and output_err2.
    */
   template <typename NumT>
   std::string
