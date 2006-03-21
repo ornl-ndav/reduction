@@ -73,12 +73,24 @@ def initialize_inputs(key):
         axis_out_2=nessi_list.NessiList(type="double")
         input=nessi_list.NessiList(type="double")
         input_err2=nessi_list.NessiList(type="double")
-        for i in range(NUM_VAL):
-            axis_in_1.append(float(i))
-            axis_in_2.append(float(i))
-        for i in range(NUM_VAL-1):
-            axis_out_1.append(float(i*1.5))
-            axis_out_2.append(float(i*1.5))
+
+        axis_in_1.append(0.)
+        axis_in_1.append(1.)
+        axis_in_1.append(2.)
+        axis_in_1.append(3.)
+
+        axis_in_2.append(0.)
+        axis_in_2.append(1.)
+        axis_in_2.append(2.)
+        axis_in_2.append(3.)
+
+        axis_out_1.append(0.)
+        axis_out_1.append(1.5)
+        axis_out_1.append(3.)
+
+        axis_out_2.append(0.)
+        axis_out_2.append(1.5)
+        axis_out_2.append(3.)
 
         input.append(10.)
         input.append(20.)
@@ -158,7 +170,7 @@ if __name__ == "__main__":
                                                          axis_in_2,\
                                                          input,\
                                                          input_err2,\
-                                                         axis_out_1,
+                                                         axis_out_1,\
                                                          axis_out_2)
     # Check values
     mess = test_common.MakeCheck("vv",\
