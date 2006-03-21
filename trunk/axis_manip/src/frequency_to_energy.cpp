@@ -25,7 +25,7 @@
 /**
  * $Id$
  *
- * \file axis_manip/src/frequency_energy.cpp
+ * \file axis_manip/src/frequency_to_energy.cpp
  */
 #include "frequency_to_energy.hpp"
 

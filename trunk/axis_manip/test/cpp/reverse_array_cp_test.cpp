@@ -87,7 +87,7 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output)
  * \f$true\_output\f$ match, and returns FALSE if they do not match.
  *
  * \param output (INPUT) is the array created by <i>reverse_array_cp</i>
- * \param output (INPUT) is the true array
+ * \param true_output (INPUT) is the true array
  */
 template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output,
