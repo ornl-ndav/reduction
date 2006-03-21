@@ -45,34 +45,34 @@ namespace AxisManip
   template <typename NumT>
   std::string
   frequency_to_energy(const Nessi::Vector<NumT> & frequency,
-		      const Nessi::Vector<NumT> & frequency_err2,
-		      Nessi::Vector<NumT> & energy,
-		      Nessi::Vector<NumT> & energy_err2,
-		      void *temp=NULL)
+          const Nessi::Vector<NumT> & frequency_err2,
+          Nessi::Vector<NumT> & energy,
+          Nessi::Vector<NumT> & energy_err2,
+          void *temp=NULL)
   {
     // check that the values are of proper size
     try
       {
-	Utils::check_sizes_square(frequency,energy);
+  Utils::check_sizes_square(frequency,energy);
       }
     catch(std::invalid_argument &e)
       {
-	throw std::invalid_argument(fte_func_str+" (v,v): data "+e.what());
+  throw std::invalid_argument(fte_func_str+" (v,v): data "+e.what());
       }
-    
+
     // check that the uncertainties are of proper size
     try
       {
-	Utils::check_sizes_square(frequency_err2, energy_err2);
+  Utils::check_sizes_square(frequency_err2, energy_err2);
       }
     catch(std::invalid_argument &e)
       {
-	throw std::invalid_argument(fte_func_str+" (v,v): err2 "+e.what());
+  throw std::invalid_argument(fte_func_str+" (v,v): err2 "+e.what());
       }
-    
+
     std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
-    
+
     NumT h;
     NumT h2;
 
@@ -80,23 +80,23 @@ namespace AxisManip
 
     if (!warn.empty())
       {
-	retstr += warn;
+  retstr += warn;
       }
 
     size_t sz = frequency.size();
     for (size_t i=0; i < sz; ++i)
       {
-	warn == __frequency_to_energy_dynamic(frequency[i],
-					      frequency_err2[i],
-					      energy[i],
-					      energy_err2[i],
-					      h,
-					      h2);
+  warn == __frequency_to_energy_dynamic(frequency[i],
+                frequency_err2[i],
+                energy[i],
+                energy_err2[i],
+                h,
+                h2);
 
-	if (!warn.empty())
-	  {
-	    retstr += warn;
-	  }
+  if (!warn.empty())
+    {
+      retstr += warn;
+    }
       }
 
     return retstr;
@@ -106,10 +106,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   frequency_to_energy(const NumT frequency,
-		      const NumT frequency_err2,
-		      NumT & energy,
-		      NumT & energy_err2,
-		      void *temp=NULL)
+          const NumT frequency_err2,
+          NumT & energy,
+          NumT & energy_err2,
+          void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
@@ -121,25 +121,25 @@ namespace AxisManip
 
     if (!warn.empty())
       {
-	retstr += warn;
+  retstr += warn;
       }
 
     warn = __frequency_to_energy_dynamic(frequency,
-					 frequency_err2,
-					 energy,
-					 energy_err2,
-					 h,
-					 h2);
+           frequency_err2,
+           energy,
+           energy_err2,
+           h,
+           h2);
 
     if (!warn.empty())
       {
-	retstr += warn;
+  retstr += warn;
       }
 
     return retstr;
   }
 
-  /** 
+  /**
    * \ingroup frequency_to_energy
    *
    * This is a PRIVATE helper function for frequency_to_energy that
@@ -151,11 +151,11 @@ namespace AxisManip
   template <typename NumT>
   std::string
   __frequency_to_energy_static(NumT & h,
-			       NumT & h2)
+             NumT & h2)
   {
     h = static_cast<NumT>(PhysConst::H);
     h2 = h*h;
-   
+
     return Nessi::EMPTY_WARN;
   }
 
@@ -175,11 +175,11 @@ namespace AxisManip
   template <typename NumT>
   std::string
   __frequency_to_energy_dynamic(const NumT frequency,
-				const NumT frequency_err2,
-				NumT & energy,
-				NumT & energy_err2,
-				const NumT h,
-				const NumT h2)
+        const NumT frequency_err2,
+        NumT & energy,
+        NumT & energy_err2,
+        const NumT h,
+        const NumT h2)
   {
     energy = frequency * h;
     energy_err2 = h2 * frequency_err2;
