@@ -1136,7 +1136,8 @@ namespace AxisManip
    * \f[
    * E[i]=\mu[i]h
    * \f]
-   * where \f$E\f$ is the energy in units of meV, \f$\mu\f$ is the frequency in units
+   * where \f$E\f$ is the energy in units of meV, \f$\mu\f$ is the frequency 
+   * in units
    * of THz, and \f$h\f$ is Planck's constant.
    * Assuming that the uncertainties are uncorrelated, the square of the 
    * uncertainty of the energy axis is given by
@@ -1145,7 +1146,8 @@ namespace AxisManip
    * \f]
    * 
    * \param frequency (INPUT) is the frequency axis in unit of THz
-   * \param frequency_err2 (INPUT) is the square of the uncertainty of the frequency axis
+   * \param frequency_err2 (INPUT) is the square of the uncertainty of the 
+   *        frequency axis
    * \param E (OUTPUT) is the energy axis in units of meV
    * \param E_err2 (OUTPUT) is the square of the uncertainty of the energy axis
    * 
@@ -1156,7 +1158,7 @@ namespace AxisManip
   template <typename NumT>
   std::string 
   frequency_to_energy(Nessi::Vector<NumT> const & frequency,
-		      Nessi::Vector<NumT> const & frequnecy_err2,
+		      Nessi::Vector<NumT> const & frequency_err2,
 		      Nessi::Vector<NumT> & E,
 		      Nessi::Vector<NumT> & E_err2,
 		      void *temp=NULL);
@@ -1169,7 +1171,8 @@ namespace AxisManip
    * \f[
    * E[i]=\mu[i]h
    * \f]
-   * where \f$E\f$ is the energy in units of meV, \f$\mu\f$ is the frequency in units
+   * where \f$E\f$ is the energy in units of meV, \f$\mu\f$ is the frequency 
+   * in units
    * of THz, and \f$h\f$ is Planck's constant.
    * Assuming that the uncertainties are uncorrelated, the square of the 
    * uncertainty of the energy axis is given by
@@ -1178,7 +1181,8 @@ namespace AxisManip
    * \f]
    * 
    * \param frequency (INPUT) is the frequency axis in unit of THz
-   * \param frequency_err2 (INPUT) is the square of the uncertainty of the frequency axis
+   * \param frequency_err2 (INPUT) is the square of the uncertainty of the 
+   *        frequency axis
    * \param E (OUTPUT) is the energy axis in units of meV
    * \param E_err2 (OUTPUT) is the square of the uncertainty of the energy axis
    * 
