@@ -762,25 +762,92 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # This function is described in section 3.13 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".
 #
-# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
 #
-# \exception NotImplementedError is raised when the function is called since
-#            it is not implemented.
+# \param axis_in_1 (INPUT) is the 1st initial data axis
+# \param axis_in_2 (INPUT) is the 2nd initial data axis
+# \param input (INPUT) is the data associated with the initial axis
+# \param input_err2 (INPUT) is the square of the uncertainty associated
+# with the data
+# \param axis_out_1 (INPUT) is the 1st target axis for rebinning
+# \param axis_out_2 (INPUT) is the 2nd target axis for rebinning
+#
+# \return
+# - The rebinned data according to the target axis
+# - The uncertainty associated with the rebinned  data
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
 
-def rebin_axis_2D():
+
+def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
+                  axis_out_1, axis_out_2):
     """
     ---------------------------------------------------------------------------
     This function rebin data and its associated errors from two axes to two
     different axes
 
+    Parameters:
+    __________
+
+    -> axis_in_1 is the 1st initial data axis
+    -> axis_in_2 is the 2nd initial data axis
+    -> input is the data associated with the initial axis
+    -> input_err2 is the square of the uncertainty associated with the data
+    -> axis_out_1 is the 1st target axis for rebinning
+    -> axis_out_2 is the 2nd target axis for rebinning
+
+    Returns - two NessiLists:
+    __________________________
+
+    <- the rebinned data according to the target axis
+    <- the square of the uncertainty associated with the rebinned data
+
     Exceptions:
-    ----------
-    <- NotImplementedError is raised when the function is called since it is
-       not implemented.
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
 
     """
 
-    raise NotImplementedError, "This function is not implemented."
+    if axis_in_1.__type__ != axis_in_2.__type__:
+        raise TypeError, "Input Axis 1 and Input Axis 2 are not the same type."
+    
+    if axis_in_1.__type__ != input.__type__:
+        raise TypeError, "Input Axis 1 and Input Data are not the same type."
+
+    if axis_in_1.__type__ != axis_out_1.__type__:
+        raise TypeError, "Input Axis 1 and Output Axis 1 are not the same \
+        type."
+
+    if axis_out_1.__type__ != axis_out_2.__type__:
+        raise TypeError, "Output Axis 1 and Output Axis 2 are not the same \
+        type."
+    
+    if input.__type__ != input_err2.__type__:
+        raise TypeError, "Input Data and Input Data Err2 are not the same \
+        type."
+
+    if (axis_in_1.__type__ == nessi_list.NessiList.DOUBLE):
+        output = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                      (len(axis_out_2)-1))
+        output_err2 = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                           (len(axis_out_2)-1))
+        axis_manip_bind.rebin_axis_2D_d(axis_in_1.__array__,\
+                                        axis_in_2.__array__,\
+                                        input.__array__,\
+                                        input_err2.__array__,\
+                                        axis_out_2.__array__,\
+                                        axis_out_2.__array__,\
+                                        output.__array__,\
+                                        output_err2.__array__)
+    else:
+        raise TypeError, "Unknown primitive type %s", str(input.__type__)
+
+    return output, output_err2
 
 ##
 # \} // end of rebin_axis2D group
