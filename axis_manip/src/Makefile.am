@@ -39,6 +39,8 @@ libAxisManip_la_SOURCES = \
 	final_velocity_igs.cpp \
 	frequency_to_angular_frequency.hpp \
 	frequency_to_angular_frequency.cpp \
+	frequency_to_energy.hpp \
+	frequency_to_energy.cpp \
 	init_scatt_wavevector_to_Q.hpp \
 	init_scatt_wavevector_to_Q.cpp \
 	init_scatt_wavevector_to_scalar_Q.hpp \
