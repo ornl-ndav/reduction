@@ -40,11 +40,11 @@ namespace AxisManip
    */
   template std::string
   frequency_to_energy<float>(
-			     const Nessi::Vector<float> & frequency,
-			     const Nessi::Vector<float> & frequency_err2,
-			     Nessi::Vector<float> & energy,
-			     Nessi::Vector<float> & energy_err2,
-			     void *temp);
+           const Nessi::Vector<float> & frequency,
+           const Nessi::Vector<float> & frequency_err2,
+           Nessi::Vector<float> & energy,
+           Nessi::Vector<float> & energy_err2,
+           void *temp);
 
   /**
    * This is the float declaration of the function defined in 3.47.
@@ -53,10 +53,10 @@ namespace AxisManip
    */
   template std::string
   frequency_to_energy<float>(const float frequency,
-			     const float frequency_err2,
-			     float & energy,
-			     float & energy_err2,
-			     void *temp);
+                             const float frequency_err2,
+                             float & energy,
+                             float & energy_err2,
+                             void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -66,11 +66,11 @@ namespace AxisManip
    */
   template std::string
   frequency_to_energy<double>(
-			      const Nessi::Vector<double> & frequency,
-			      const Nessi::Vector<double> & frequency_err2,
-			      Nessi::Vector<double> & energy,
-			      Nessi::Vector<double> & energy_err2,
-			      void *temp);
+            const Nessi::Vector<double> & frequency,
+            const Nessi::Vector<double> & frequency_err2,
+            Nessi::Vector<double> & energy,
+            Nessi::Vector<double> & energy_err2,
+            void *temp);
 
   /**
    * This is the double precision float declaration of the function
@@ -80,8 +80,8 @@ namespace AxisManip
    */
   template std::string
   frequency_to_energy<double>(const double frequency,
-			      const double frequency_err2,
-			      double & energy,
-			      double & energy_err2,
-			      void *temp);
+                              const double frequency_err2,
+                              double & energy,
+                              double & energy_err2,
+                              void *temp);
 } // AxisManip
