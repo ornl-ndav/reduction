@@ -97,7 +97,7 @@ namespace AxisManip
 
     std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
-    
+
     size_t nold_input1 = axis_in_1.size() - 1;
     size_t nold_input2 = axis_in_2.size() - 1;
     size_t nnew_input1 = axis_out_1.size() - 1;
@@ -110,10 +110,10 @@ namespace AxisManip
 
     Nessi::Vector<NumT> stage1_err2;
     stage1_err2.reserve(nnew_input2 * nold_input1);
-    
+
     for(size_t i = 0; i < nold_input1; ++i)
       {
-        // Create space and fill a 2nd axis for data and err2 for both 
+        // Create space and fill a 2nd axis for data and err2 for both
         // input and output
 
         Nessi::Vector<NumT> tmp_in;
@@ -123,16 +123,16 @@ namespace AxisManip
 
         Nessi::Vector<NumT> tmp_in_err2;
         tmp_in_err2.reserve(nold_input2);
-        tmp_in_err2.insert(tmp_in_err2.begin(), 
+        tmp_in_err2.insert(tmp_in_err2.begin(),
                            input_err2.begin()+(i * nold_input2),
                            input_err2.begin()+((i+1) * nold_input2));
-        
+
         Nessi::Vector<NumT> tmp_out(nnew_input2);
         Nessi::Vector<NumT> tmp_out_err2(nnew_input2);
 
-        try 
+        try
           {
-            warn = rebin_axis_1D(axis_in_2, tmp_in, tmp_in_err2, axis_out_2, 
+            warn = rebin_axis_1D(axis_in_2, tmp_in, tmp_in_err2, axis_out_2,
                                  tmp_out, tmp_out_err2);
           }
         catch(std::invalid_argument &e)
@@ -146,13 +146,13 @@ namespace AxisManip
             retstr += warn;
           }
 
-        // Fill returned information into temporary storage 
+        // Fill returned information into temporary storage
 
-        stage1.insert(stage1.begin()+(i*nnew_input2), tmp_out.begin(), 
+        stage1.insert(stage1.begin()+(i*nnew_input2), tmp_out.begin(),
                       tmp_out.end());
 
-        stage1_err2.insert(stage1_err2.begin()+(i*nnew_input2), 
-                           tmp_out_err2.begin(), 
+        stage1_err2.insert(stage1_err2.begin()+(i*nnew_input2),
+                           tmp_out_err2.begin(),
                            tmp_out_err2.end());
 
       }
@@ -173,7 +173,7 @@ namespace AxisManip
 
         iter = stage1.begin()+j;
         iter_err2 = stage1_err2.begin()+j;
-        
+
         t_iter = tmp_in.begin();
         t_iter_err2 = tmp_in_err2.begin();
 
@@ -188,13 +188,13 @@ namespace AxisManip
             ++t_iter;
             ++t_iter_err2;
           }
- 
+
         Nessi::Vector<NumT> tmp_out(nnew_input1);
         Nessi::Vector<NumT> tmp_out_err2(nnew_input1);
 
-        try 
+        try
           {
-            warn = rebin_axis_1D(axis_in_1, tmp_in, tmp_in_err2, axis_out_1, 
+            warn = rebin_axis_1D(axis_in_1, tmp_in, tmp_in_err2, axis_out_1,
                                  tmp_out, tmp_out_err2);
           }
         catch(std::invalid_argument &e)
@@ -206,7 +206,7 @@ namespace AxisManip
           {
             retstr += warn;
           }
-        
+
         iter = output.begin()+j;
         iter_err2 = output_err2.begin()+j;
 
