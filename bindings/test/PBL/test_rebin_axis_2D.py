@@ -93,8 +93,9 @@ TruthOutput_Err2_D.append(12.5)
 ###############################################################################
 
 # Output placeholders for reverse_array_cp
-Output_D = DoubleNessiVector(4)
-Output_Err2_D = DoubleNessiVector(4)
+Output_D = DoubleNessiVector((len(Axis_Out_1_D) - 1) * (len(Axis_Out_2_D) - 1))
+Output_Err2_D = DoubleNessiVector((len(Axis_Out_1_D) - 1) *
+                                  (len(Axis_Out_2_D) - 1))
 
 print "Checking Rebin Axis 2D Binding Function"
 
