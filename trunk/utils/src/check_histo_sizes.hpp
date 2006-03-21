@@ -59,6 +59,34 @@ namespace Utils
 
     return;
   }
+
+  template <typename NumT>
+  void
+  check_histo_sizes(const Nessi::Vector<NumT> & input,
+                    const Nessi::Vector<NumT> & input_err2,
+                    const Nessi::Vector<NumT> & axis_1,
+                    const Nessi::Vector<NumT> & axis_2)
+  {
+    size_t size = input.size();
+    size_t size_err2 = input_err2.size();
+    size_t size_axis_1 = axis_1.size();
+    size_t size_axis_2 = axis_2.size();
+    
+    if (size != size_err2)
+      {
+        std::string errstr = "input and input_err2 are not the same size";
+        throw std::invalid_argument(errstr);
+      }
+    
+    if(size_axis_1*size_axis_2 != size+size_axis_1+size_axis_2-1)
+      {
+        std::string errstr = "size(axis_1)*size(axis_2) is not ";
+        errstr += "size(input)+size(axis_1)+size(axis_2)-1";
+        throw std::invalid_argument(errstr);
+      }
+
+    return;
+  }
 } // Utils
 
 #endif // _CHECK_HISTO_SIZES_HPP
