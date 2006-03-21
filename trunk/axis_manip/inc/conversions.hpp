@@ -1124,7 +1124,7 @@ namespace AxisManip
    */ // end of init_scatt_wavevector_to_scalar_Q group
 
   /**
-   * \defgroup frequency_to_energy Axis_manip::frequency_to_energy
+   * \defgroup frequency_to_energy AxisManip::frequency_to_energy
    * \{
    */
 
