@@ -20,7 +20,7 @@ from nessi_vector_bind import *
 import test_common_bind
 
 print "###############################################################"
-print "# Checking Rbein_Axis_1D Swig Generated Python Binding Layer  #"
+print "# Checking Rebin_Axis_1D Swig Generated Python Binding Layer  #"
 print "###############################################################"
 print
 
