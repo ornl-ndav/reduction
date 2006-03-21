@@ -53,17 +53,6 @@ namespace AxisManip
                 Nessi::Vector<NumT> & output_err2,
                 void *temp=NULL)
   {
-    // check that the input axes are the same length
-    try
-      {
-        Utils::check_sizes_square(axis_in_1, axis_in_2);
-      }
-    catch(std::invalid_argument &e)
-      {
-        throw std::invalid_argument(ra2_func_str+": original histogram axes "
-                                    +e.what());
-      }
-
     // check that the original histogram is of the proper size
     try
       {
@@ -72,16 +61,6 @@ namespace AxisManip
     catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(ra2_func_str+": original histogram "
-                                    +e.what());
-      }
-    // check that the output axes are the same length
-    try
-      {
-        Utils::check_sizes_square(axis_out_1, axis_out_2);
-      }
-    catch(std::invalid_argument &e)
-      {
-        throw std::invalid_argument(ra2_func_str+": rebinned histogram axes "
                                     +e.what());
       }
     // check that the rebinned histogram is of the proper size
