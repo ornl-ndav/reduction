@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# Testing script for Swig bindings for rebin_axis_1D functions
+# Testing script for Swig bindings for rebin_axis_2D functions
 #
 # $Id$
 #
