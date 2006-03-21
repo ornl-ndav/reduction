@@ -88,7 +88,7 @@ namespace AxisManip
 
     Nessi::Vector<NumT> stage1_err2;
     stage1_err2.reserve(nnew_input2 * nold_input1);
-    
+
     for(size_t i = 0; i < nold_input1; ++i)
       {
         // Create space and fill a 2nd axis for data and err2 for both
