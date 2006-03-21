@@ -153,8 +153,7 @@ if __name__ == "__main__":
 
     # vv case
     axis_in_1,axis_in_2,axis_out_1,axis_out_2,input,input_err2=initialize_inputs("double")
-    output_vv=nessi_list.NessiList()
-    output_vv_err2=nessi_list.NessiList()
+
     output_vv, output_vv_err2 = axis_manip.rebin_axis_2D(axis_in_1,\
                                                          axis_in_2,\
                                                          input,\
