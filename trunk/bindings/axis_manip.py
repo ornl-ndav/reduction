@@ -840,7 +840,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
                                         axis_in_2.__array__,\
                                         input.__array__,\
                                         input_err2.__array__,\
-                                        axis_out_2.__array__,\
+                                        axis_out_1.__array__,\
                                         axis_out_2.__array__,\
                                         output.__array__,\
                                         output_err2.__array__)
