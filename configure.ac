@@ -84,6 +84,14 @@ if test $GXX = yes; then
 fi
 AC_PROG_LIBTOOL
 
+dnl Add OS define flags for smoke tests
+case "$host" in
+     *-*-darwin*) STOSFLAG="-DMAC";;
+     *-*-linux*) STOSFLAG="-DLINUX";;
+     *) STOSFLAG=;;
+esac
+AC_SUBST(STOSFLAG)
+
 SCL_SWIG_CHECK([1.3.24])
 SCL_DOXYGEN_CHECK([1.4.6])
 AC_CHECK_PROGS(DOT, [dot])
