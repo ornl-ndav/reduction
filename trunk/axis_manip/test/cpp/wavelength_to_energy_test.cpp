@@ -109,7 +109,12 @@ void initialize_true_outputs(float    & true_output_ss,
   true_output_vv.push_back(static_cast<float>(5.11276292));
   true_output_vv_err2.push_back(static_cast<float>(22.87280082));
   true_output_vv.push_back(static_cast<float>(3.27216815));
+#ifdef LINUX
   true_output_vv_err2.push_back(static_cast<float>(7.7091012));
+#endif
+#ifdef MAC
+  true_output_vv_err2.push_back(static_cast<float>(7.70910167));
+#endif
 }
 
 /**
