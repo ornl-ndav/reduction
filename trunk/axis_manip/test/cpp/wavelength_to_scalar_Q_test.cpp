@@ -109,7 +109,10 @@ void initialize_true_outputs(float                & true_output_ss,
   true_output_ss_err2=static_cast<float>(32.4255981);
 #endif
 #ifdef MAC
-  true_output_ss_err2=static_cast<float>(32.42559432);
+  true_output_ss_err2=static_cast<float>(32.4255943);
+#endif
+#ifdef LINUX64
+  true_output_ss_err2=static_cast<float>(32.4255943);
 #endif
 
   // vector vector
@@ -118,13 +121,19 @@ void initialize_true_outputs(float                & true_output_ss,
   true_output_vv_err2.push_back(static_cast<float>(32.4255981));
 #endif
 #ifdef MAC
-  true_output_vv_err2.push_back(static_cast<float>(32.42559432));
+  true_output_vv_err2.push_back(static_cast<float>(32.4255943));
+#endif
+#ifdef LINUX64
+  true_output_vv_err2.push_back(static_cast<float>(32.4255943));
 #endif
   true_output_vv.push_back(static_cast<float>(3.80885624));
 #ifdef LINUX
   true_output_vv_err2.push_back(static_cast<float>(-1.2329512));
 #endif
 #ifdef MAC
+  true_output_vv_err2.push_back(static_cast<float>(-1.23295164));
+#endif
+#ifdef LINUX64
   true_output_vv_err2.push_back(static_cast<float>(-1.23295164));
 #endif
   true_output_vv.push_back(static_cast<float>(2.28531360));
@@ -163,6 +172,9 @@ void initialize_true_outputs(double                & true_output_ss,
 #ifdef MAC
   true_output_ss_err2=static_cast<double>(32.42559623735466801);
 #endif
+#ifdef LINUX64
+  true_output_ss_err2=static_cast<double>(32.42559623735466801);
+#endif
 
   // vector vector
   true_output_vv.push_back(static_cast<double>(11.42656846417465566));
@@ -172,11 +184,17 @@ void initialize_true_outputs(double                & true_output_ss,
 #ifdef MAC
   true_output_vv_err2.push_back(static_cast<double>(32.42559623735466801));
 #endif
+#ifdef LINUX64
+  true_output_vv_err2.push_back(static_cast<double>(32.42559623735466801));
+#endif
   true_output_vv.push_back(static_cast<double>(3.80885615472488537));
 #ifdef LINUX
   true_output_vv_err2.push_back(static_cast<double>(-1.232951042755807));
 #endif
 #ifdef MAC
+  true_output_vv_err2.push_back(static_cast<double>(-1.23295104275580614));
+#endif
+#ifdef LINUX64
   true_output_vv_err2.push_back(static_cast<double>(-1.23295104275580614));
 #endif
   true_output_vv.push_back(static_cast<double>(2.28531369283493113));

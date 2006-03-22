@@ -87,6 +87,7 @@ AC_PROG_LIBTOOL
 dnl Add OS define flags for smoke tests
 case "$host" in
      *-*-darwin*) STOSFLAG="-DMAC";;
+     x86_64-*-linux*) STOSFLAG="-DLINUX64";;
      *-*-linux*) STOSFLAG="-DLINUX";;
      *) STOSFLAG=;;
 esac
