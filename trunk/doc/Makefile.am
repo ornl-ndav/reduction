@@ -39,7 +39,7 @@ RM_CPP_PDF =
 RM_PYTHON_PDF =
 endif
 
-EXTRA_DIST = html_cpp html_python images index.html install latex_cpp \
+EXTRA_DIST = html_cpp html_python images index.html instdoc latex_cpp \
 	     latex_python makepdf material scl_cpp.cfg scl_python.cfg tutorials
 
 nodist_EXTRA_DIST = latex_cpp/*.aux latex_cpp/*.dvi latex_cpp/*.log \
@@ -51,7 +51,7 @@ docs:
 	$(MAKEPDF)
 
 install:
-	./install $(DRLIBDOCDIR)
+	./instdoc $(DRLIBDOCDIR)
 	$(CP_CPP_PDF)
 	$(CP_PYTHON_PDF)
 
