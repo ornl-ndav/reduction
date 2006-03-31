@@ -112,7 +112,7 @@ void initialize_true_outputs(float    & true_output_ss,
 #ifdef LINUX
   true_output_vv_err2.push_back(static_cast<float>(7.7091012));
 #endif
-#ifdef MAC 
+#ifdef MAC
   true_output_vv_err2.push_back(static_cast<float>(7.70910167));
 #endif
 #ifdef LINUX64
