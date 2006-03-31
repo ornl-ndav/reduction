@@ -2545,7 +2545,7 @@ namespace AxisManip
    * \f[
    * Q[i]=\frac{4\pi}{\lambda[i]}\sin(polar)
    * \f]
-   * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$\lambda\f$
+   * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$\lambda[i]\f$
    * is the wavelength, and \f$polar\f$ is the angle between the
    * positive z-axis and the direction of the scattered neutron.
    *
@@ -2553,8 +2553,8 @@ namespace AxisManip
    * uncertainty of the scalar momentum transfer is given by
    * \f[
    * \sigma^2_Q[i]=\left(\frac{4\pi}{\lambda[i]}\right)^2
-   * \left(cos(\theta)^2\sigma_\theta^2+\left(\frac{sin(\theta)}
-   * {\lambda}\right)^2\sigma^2_\lambda\right)
+   * \left(cos(polar)^2\sigma_{polar}^2+\left(\frac{sin(polar)}
+   * {\lambda[i]}\right)^2\sigma^2_\lambda[i]\right)
    * \f]
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
@@ -2601,8 +2601,8 @@ namespace AxisManip
    * Using the assumption of uncorrelated uncertainties, the square of the
    * uncertainty of the scalar momentum transfer is given by
    * \f[
-   * \sigma^2_Q[i]=\left(\frac{4\pi}{\lambda[i]}\right)^2
-   * \left(cos(\theta)^2\sigma_\theta^2+\left(\frac{sin(\theta)}
+   * \sigma^2_Q=\left(\frac{4\pi}{\lambda}\right)^2
+   * \left(cos(polar)^2\sigma_{polar}^2+\left(\frac{sin(polar)}
    * {\lambda}\right)^2\sigma^2_\lambda\right)
    * \f]
    *
