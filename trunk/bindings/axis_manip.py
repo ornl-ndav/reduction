@@ -237,10 +237,65 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # \{
 
 ##
+# \brief This function converts the frequency to energy and its uncertainty.
 #
+# This function is described  in section 3.47 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function takes a histogram data set that has the principle axis
+# in units of THz and converts it to meV according to the equation
+# \f[
+# E[i]=h\nu[i]
+# \f]
+# where \f$E\f$ is the energy in units of meV, \f$\nu\f$ is the frequency
+# in units
+# of THz, and \f$h\f$ is Planck's constant.
+# Assuming that the uncertainties are uncorrelated, the square of the
+# uncertainty of the energy axis is given by
+# \f[
+# \sigma^2_E[i]=h^2\sigma^2_{\nu}[i]
+# \f]
+#
+# \param frequency (INPUT) is the frequency axis in unit of THz
+# \param frequency_err2 (INPUT) is the square of the uncertainty of the
+#        frequency axis
+#
+# \return
+# - the energy axis in units of meV
+# - the square of the uncertainty of the energy axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible  sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+
 def frequency_to_energy(frequency, frequency_err2):
 
     """
+    This function takes a histogram data set that has the principle axis in
+    units of THz and converts it to meV according to the equation
+
+    E[i] = h * nu[i]
+
+    where E is the energy in units of meV, nu is the frequency in units of
+    THz, and h is Planck's constant.
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the energy axis is given by
+
+    sigma^2_E[i] = h^2 * sigma^2_nu[i]
+
+    Parameters:
+    ----------
+    -> frequency is the frequency axis in unit of THz
+    -> frequency_err2 is the square of the uncertainty of the frequency axis
+
+    Returns - 2 NessiLists:
+    ----------------------
+    <- the energy axis in units of meV
+    <- the square of the uncertainty of the energy axis
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
 
     """
 
@@ -272,16 +327,7 @@ def frequency_to_energy(frequency, frequency_err2):
         return E_ss.val, E_ss.val_err2
 
 ##
-# \}
-
-
-
-
-
-
-
-
-
+# \}  // end of frequency_to_energy group
 
 ##
 # \defgroup init_scatt_wavevector_to_scalar_Q \
@@ -1700,10 +1746,78 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 # \{
 
 ##
+# \brief This function calculates the scalar momentum transfer from wavelength
 #
+# This function is described in section 3.18 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function converts the wavelength to scalar momentum transfer
+# according to the equation
+# \f[
+# Q[i]=\frac{4\pi}{\lambda[i]}\sin(polar)
+# \f]
+# Where \f$Q[i]\f$ is the scalar momentum transfer, \f$\lambda[i]\f$
+# is the wavelength, and \f$polar\f$ is the angle between the
+# positive z-axis and the direction of the scattered neutron.
+#
+# Using the assumption of uncorrelated uncertainties, the square of the
+# uncertainty of the scalar momentum transfer is given by
+# \f[
+# \sigma^2_Q[i]=\left(\frac{4\pi}{\lambda[i]}\right)^2
+# \left(cos(polar)^2\sigma_{polar}^2+\left(\frac{sin(polar)}
+# {\lambda[i]}\right)^2\sigma^2_\lambda[i]\right)
+# \f]
+#
+# \param wavelength (INPUT) is the wavelength axis in units of
+# angstroms
+# \param wavelength_err2 (INPUT) is the square of the uncertainty in the
+# wavelength axis
+# \param polar (INPUT) is the polar angle in the equation above in
+# units of radians
+# \param polar_err2 (INPUT) is the square of the uncertainty in
+# polar
+#
+# \return
+# - The scalar momentum transfer, Q, axis in units of reciprocal angstroms
+# - The square of the uncertainty in the scalar momentum transfer axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible  sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+
 def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
 
     """
+    This function converts the wavelength to scalar momentum transfer
+    according to the equation
+
+    Q[i] = 4 pi / lambda[i] * sin(polar)
+
+    Where Q[i] is the scalar momentum transfer, lambda[i] is the wavelength,
+    and polar is the angle between the positive z-axis and the direction of
+    the scattered neutron.
+
+    Using the assumption of uncorrelated uncertainties, the square of the
+    uncertainty of the scalar momentum transfer is given by
+
+    sigma^2_Q[i] = (4 pi / lambda[i])^2 * ((cos(polar)^2 * sigma_polar^2) +
+    (sin(polar) / lambda[i])^2* sigma^2_lambda[i])
+
+    Parameters:
+    ----------
+    -> wavelength is the wavelength axis in units of angstroms
+    -> wavelength_err2 is the square of the uncertainty in the wavelength axis
+    -> polar is the polar angle in the equation above in units of radians
+    -> polar_err2 is the square of the uncertainty in polar
+
+    Returns - 2 NessiLists:
+    ----------------------
+    <- The scalar momentum transfer, Q, axis in units of reciprocal angstroms
+    <- The square of the uncertainty in the scalar momentum transfer axis
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
 
     """
 
@@ -1739,5 +1853,5 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
         return Q_ss.val, Q_ss.val_err2
 
 ##
-# \}
+# \} // end of wavelength_to_scalar_Q group
 
