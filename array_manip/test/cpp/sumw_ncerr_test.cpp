@@ -191,7 +191,7 @@ bool test_func(NumT key, string debug){ // key forces correct test to happen
 }
 
 /**
- * Main function that tests <i>sub_ncerr</i> for
+ * Main function that tests <i>sumw_ncerr</i> for
  * float, double, int and unsigned int.
  *
  * \param argc The number of command-line arguments present
