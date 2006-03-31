@@ -77,7 +77,7 @@ Output_Err2_VV_D = DoubleNessiVector(len(Input_Err2_D))
 # Output placeholders for tof_to_wavelength scalar-scalar version
 Output_SS_D = DoubleVPair()
 
-print "Checking Vector-Vector TOF to Initial Wavelength IGS Binding Function"
+print "Checking Vector-Vector TOF to Wavelength Binding Function"
 
 tof_to_wavelength_d(Input_D, Input_Err2_D,
                     pathlength, pathlength_err2,
@@ -90,7 +90,7 @@ mess = test_common_bind.makeCheck("tof_to_wavelength_d",
                                   TruthOutput_Err2_VV_D)
 print mess
 print
-print "Checking Scalar-Scalar TOF to Initial Wavelength IGS Binding Function"
+print "Checking Scalar-Scalar TOF to Wavelength Binding Function"
 
 tof_to_wavelength_ss_d(Input_D[0], Input_Err2_D[0],
                        pathlength, pathlength_err2,
