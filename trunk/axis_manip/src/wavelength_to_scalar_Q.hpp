@@ -180,6 +180,7 @@ namespace AxisManip
     sin=static_cast<NumT>(std::sin(static_cast<double>(scatt_angle)));
     sin2=sin*sin;
     cos2=static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
+    cos2=cos2*cos2;
 
     return Nessi::EMPTY_WARN;
   }
