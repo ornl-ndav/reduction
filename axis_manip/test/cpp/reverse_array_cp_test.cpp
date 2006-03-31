@@ -112,7 +112,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
 {
   // allocate arrays
   Nessi::Vector<NumT>   input;
-  Nessi::Vector<NumT>   output(5);
+  Nessi::Vector<NumT>   output(NUM_VAL);
   Nessi::Vector<NumT>   true_output;
 
   // fill in values as appropriate

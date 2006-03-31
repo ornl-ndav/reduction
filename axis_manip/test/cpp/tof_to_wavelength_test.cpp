@@ -228,8 +228,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   NumT                  output_ss_err2;
   NumT                  true_output_ss;
   NumT                  true_output_ss_err2;
-  Nessi::Vector<NumT>   output_vv(5);
-  Nessi::Vector<NumT>   output_vv_err2(5);
+  Nessi::Vector<NumT>   output_vv(NUM_VAL);
+  Nessi::Vector<NumT>   output_vv_err2(NUM_VAL);
   Nessi::Vector<NumT>   true_output_vv;
   Nessi::Vector<NumT>   true_output_vv_err2;
 

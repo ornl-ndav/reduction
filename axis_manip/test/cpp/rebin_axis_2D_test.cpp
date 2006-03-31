@@ -189,8 +189,6 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   Nessi::Vector<NumT>   axis_out_2;
   Nessi::Vector<NumT>   input;
   Nessi::Vector<NumT>   input_err2;
-  Nessi::Vector<NumT>   output(4);
-  Nessi::Vector<NumT>   output_err2(4);
   Nessi::Vector<NumT>   true_output;
   Nessi::Vector<NumT>   true_output_err2;
 
@@ -198,6 +196,11 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   initialize_inputs(axis_in_1,axis_in_2,axis_out_1,axis_out_2,
                     input,input_err2);
   initialize_true_outputs(true_output,true_output_err2);
+
+  // allocate output arrays
+  Nessi::Vector<NumT>   output((axis_out_1.size()-1)*(axis_out_2.size()-1));
+  Nessi::Vector<NumT>   output_err2((axis_out_1.size()-1)*
+                                    (axis_out_2.size()-1));
 
   // run the code being tested
   AxisManip::rebin_axis_2D(axis_in_1,axis_in_2,input,input_err2,
