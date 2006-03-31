@@ -2,7 +2,7 @@
 #
 # File that contains common procedures for the tests
 #
-# $Id: test_common_bind.py 640 2006-02-22 15:36:45Z 2zr $
+# $Id$
 #
 ###############################################################################
 
