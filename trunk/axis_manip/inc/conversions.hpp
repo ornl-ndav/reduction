@@ -519,10 +519,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   frequency_to_energy(Nessi::Vector<NumT> const & frequency,
-          Nessi::Vector<NumT> const & frequency_err2,
-          Nessi::Vector<NumT> & E,
-          Nessi::Vector<NumT> & E_err2,
-          void *temp=NULL);
+                      Nessi::Vector<NumT> const & frequency_err2,
+                      Nessi::Vector<NumT> & E,
+                      Nessi::Vector<NumT> & E_err2,
+                      void *temp=NULL);
 
   /**
    * \brief This function is described in section 3.47
@@ -530,7 +530,7 @@ namespace AxisManip
    * This function takes a histogram data set that has the principle axis
    * in units of THz and converts it to meV according to the equation
    * \f[
-   * E=h\nu 
+   * E=h\nu
    * \f]
    * where \f$E\f$ is the energy in units of meV, \f$\nu\f$ is the frequency
    * in units
@@ -554,10 +554,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   frequency_to_energy(const NumT frequency,
-          const NumT frequency_err2,
-          NumT & E,
-          NumT & E_err2,
-          void *temp=NULL);
+                      const NumT frequency_err2,
+                      NumT & E,
+                      NumT & E_err2,
+                      void *temp=NULL);
   /**
    * \}
    */ // end of frequency_to_energy

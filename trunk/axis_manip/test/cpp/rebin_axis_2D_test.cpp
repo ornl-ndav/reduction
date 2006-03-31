@@ -49,7 +49,7 @@ using namespace std;
 
 /**
  * This function initializes the value of arrays, \f$axis\_in\_1\f$,
- * \f$axis\_in\_2\f$, \f$axis\_out\_1\f$, \f$axis\_out\_2\f$, \f$input\f$, 
+ * \f$axis\_in\_2\f$, \f$axis\_out\_1\f$, \f$axis\_out\_2\f$, \f$input\f$,
  * and \f$input\_err2\f$.
  *
  * \param axis_in_1 (OUTPUT) is the initial data 1st axis
@@ -109,7 +109,7 @@ void initialize_inputs(Nessi::Vector<NumT> & axis_in_1,
 
 /**
  * This function sets the true outputs based on values contained in
- * \f$axis\_in\_1\f$, \f$axis\_in\_2\f$, \f$axis\_out\_1\f$, 
+ * \f$axis\_in\_1\f$, \f$axis\_in\_2\f$, \f$axis\_out\_1\f$,
  * \f$axis\_out\_2\f$, \f$input\f$, and \f$input\_err2\f$.
  *
  * \param true_output (OUTPUT) is the true output

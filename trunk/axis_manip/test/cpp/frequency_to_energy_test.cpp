@@ -241,10 +241,10 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
 
   // run the code being tested
   AxisManip::frequency_to_energy(frequency[0], frequency_err2[0],
-                                  output_ss, output_ss_err2);
+                                 output_ss, output_ss_err2);
 
   AxisManip::frequency_to_energy(frequency, frequency_err2,
-                                  output_vv, output_vv_err2);
+                                 output_vv, output_vv_err2);
 
   if(!debug.empty())
     {

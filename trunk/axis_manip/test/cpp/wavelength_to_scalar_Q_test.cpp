@@ -38,8 +38,8 @@ const size_t NUM_VAL=5;
 /**
  * \defgroup wavelength_to_scalar_Q_test wavelength_to_scalar_Q_test
  * \{
- * 
- * This test compares the output data calculated by the library 
+ *
+ * This test compares the output data calculated by the library
  * function <i>wavelength_to_scalar_Q</i> and described in 3.18
  * of the <i>SNS 107030214-TD0001-R00, "Data Reduction Library Software
  * Requirements and Specifications"</i> with the true output data
@@ -62,7 +62,7 @@ const size_t NUM_VAL=5;
  * \f$wavelength\_err2\f$.
  *
  * \param wavelength (OUTPUT) is the wavelength axis in units of Angstroms
- * \param wavelength_err2 (OUTPUT) is the square of the uncertainty in the 
+ * \param wavelength_err2 (OUTPUT) is the square of the uncertainty in the
  * wavelength axis
  * \param scatt_angle (OUTPUT) is the scattering angle in units of radians
  * \param scatt_angle_err2 (OUTPUT) is the square of the uncertainty in the
