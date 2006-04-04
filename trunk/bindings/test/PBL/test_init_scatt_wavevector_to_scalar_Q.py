@@ -69,7 +69,10 @@ if(platform=="linux2" and uname()[4]=="x86_64"):
     TruthOutput_VV_D.append(0.93914148175842727)
 else:
     TruthOutput_VV_D.append(0.93914148175842626)
-TruthOutput_VV_D.append(1.15233845294826764)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_VV_D.append(1.15233845294826900)
+else:
+    TruthOutput_VV_D.append(1.15233845294826764)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 if(platform=="linux2" and uname()[4]=="x86_64"):
@@ -120,7 +123,10 @@ TruthOutput_SV_D = DoubleNessiVector()
 TruthOutput_SV_D.append(0.35036606096122696)
 TruthOutput_SV_D.append(1.29265675181475581)
 TruthOutput_SV_D.append(2.28454953532442894)
-TruthOutput_SV_D.append(3.28136734924480144)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_SV_D.append(3.28136734924480100)
+else:
+    TruthOutput_SV_D.append(3.28136734924480144)
 TruthOutput_SV_D.append(4.27967017210773370)
 
 TruthOutput_Err2_SV_D = DoubleNessiVector()
@@ -130,8 +136,14 @@ else:
     TruthOutput_Err2_SV_D.append(0.41659964378851194)
 TruthOutput_Err2_SV_D.append(1.65810190421910097)
 TruthOutput_Err2_SV_D.append(2.69188033991111108)
-TruthOutput_Err2_SV_D.append(3.70446789959436140)
-TruthOutput_Err2_SV_D.append(4.71099862050503759)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_SV_D.append(3.70446789959436200)
+else:
+    TruthOutput_Err2_SV_D.append(3.70446789959436140)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_SV_D.append(4.71099862050503670)
+else:
+    TruthOutput_Err2_SV_D.append(4.71099862050503759)
 
 # Truth values for init_scatt_wavevector_to_scalar_Q scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
