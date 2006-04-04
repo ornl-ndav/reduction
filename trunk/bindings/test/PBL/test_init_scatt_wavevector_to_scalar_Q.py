@@ -61,7 +61,7 @@ TruthOutput_VV_D.append(0.35036606096122696)
 TruthOutput_VV_D.append(0.52860472569260141)
 if(platform=="linux2" and uname()[4]=="x86_64"):
     TruthOutput_VV_D.append(0.72972579648330460)
-elif(platform=="linux2" and uname[4]=="i686"):
+elif(platform=="linux2" and uname()[4]=="i686"):
     TruthOutput_VV_D.append(0.72972579648330400)
 else:
     TruthOutput_VV_D.append(0.72972579648330349)
@@ -82,7 +82,7 @@ else:
     TruthOutput_Err2_VV_D.append(0.98320158587954031)
 if(platform=="linux2" and uname()[4]=="x86_64"):
     TruthOutput_Err2_VV_D.append(1.51250520438526981)
-elif(platform=="linux2" and uname[4]=="i686"):
+elif(platform=="linux2" and uname()[4]=="i686"):
     TruthOutput_Err2_VV_D.append(1.51250520438527300)
 else:
     TruthOutput_Err2_VV_D.append(1.51250520438527535)
@@ -92,7 +92,7 @@ else:
     TruthOutput_Err2_VV_D.append(2.24514211944373531)
 if(platform=="linux2" and uname()[4]=="x86_64"):
     TruthOutput_Err2_VV_D.append(3.20946303556517476)
-elif(platform=="linux2" and uname[4]=="i686"):
+elif(platform=="linux2" and uname()[4]=="i686"):
     TruthOutput_Err2_VV_D.append(3.20946303556516680)
 else:
     TruthOutput_Err2_VV_D.append(3.20946303556517609)
