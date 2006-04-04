@@ -20,6 +20,8 @@
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_d
 from axis_manip_bind import init_scatt_wavevector_to_scalar_Q_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -57,16 +59,43 @@ for counter in range(NUM_VAL):
 TruthOutput_VV_D = DoubleNessiVector()
 TruthOutput_VV_D.append(0.35036606096122696)
 TruthOutput_VV_D.append(0.52860472569260141)
-TruthOutput_VV_D.append(0.72972579648330349)
-TruthOutput_VV_D.append(0.93914148175842626)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_VV_D.append(0.72972579648330460)
+elif(platform=="linux2" and uname[4]=="i686"):
+    TruthOutput_VV_D.append(0.72972579648330400)
+else:
+    TruthOutput_VV_D.append(0.72972579648330349)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_VV_D.append(0.93914148175842727)
+else:
+    TruthOutput_VV_D.append(0.93914148175842626)
 TruthOutput_VV_D.append(1.15233845294826764)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(0.41659964378851194)
-TruthOutput_Err2_VV_D.append(0.98320158587954031)
-TruthOutput_Err2_VV_D.append(1.51250520438527535)
-TruthOutput_Err2_VV_D.append(2.24514211944373531)
-TruthOutput_Err2_VV_D.append(3.20946303556517609)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_VV_D.append(0.41659964378851260)
+else:
+    TruthOutput_Err2_VV_D.append(0.41659964378851194)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_VV_D.append(0.98320158587953999)
+else:
+    TruthOutput_Err2_VV_D.append(0.98320158587954031)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_VV_D.append(1.51250520438526981)
+elif(platform=="linux2" and uname[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(1.51250520438527300)
+else:
+    TruthOutput_Err2_VV_D.append(1.51250520438527535)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_VV_D.append(2.24514211944372999)
+else:
+    TruthOutput_Err2_VV_D.append(2.24514211944373531)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_VV_D.append(3.20946303556517476)
+elif(platform=="linux2" and uname[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(3.20946303556516680)
+else:
+    TruthOutput_Err2_VV_D.append(3.20946303556517609)
 
 # Truth values for init_scatt_wavevector_to_scalar_Q vector-scalar version
 TruthOutput_VS_D = DoubleNessiVector()
@@ -77,7 +106,10 @@ TruthOutput_VS_D.append(2.79347910439543900)
 TruthOutput_VS_D.append(3.78995803187415658)
 
 TruthOutput_Err2_VS_D = DoubleNessiVector()
-TruthOutput_Err2_VS_D.append(0.41659964378851194)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_VS_D.append(0.41659964378851260)
+else:
+    TruthOutput_Err2_VS_D.append(0.41659964378851194)
 TruthOutput_Err2_VS_D.append(1.56478867463881377)
 TruthOutput_Err2_VS_D.append(2.68231593112614863)
 TruthOutput_Err2_VS_D.append(3.70899611257809613)
@@ -92,7 +124,10 @@ TruthOutput_SV_D.append(3.28136734924480144)
 TruthOutput_SV_D.append(4.27967017210773370)
 
 TruthOutput_Err2_SV_D = DoubleNessiVector()
-TruthOutput_Err2_SV_D.append(0.41659964378851194)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_SV_D.append(0.41659964378851260)
+else:
+    TruthOutput_Err2_SV_D.append(0.41659964378851194)
 TruthOutput_Err2_SV_D.append(1.65810190421910097)
 TruthOutput_Err2_SV_D.append(2.69188033991111108)
 TruthOutput_Err2_SV_D.append(3.70446789959436140)
