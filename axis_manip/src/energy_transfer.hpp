@@ -74,6 +74,17 @@ namespace AxisManip
         throw std::invalid_argument(et_func_str+" (v,v): err2 "+e.what());
       }
 
+    // check that the initial_energy arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(initial_energy, initial_energy_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(et_func_str+" (v,v): initial_energy "
+                                    +e.what());
+      }
+
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables
@@ -129,6 +140,16 @@ namespace AxisManip
         throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
       }
 
+    // check that the initial_energy arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(initial_energy, initial_energy_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(et_func_str+" (v,s): initial_energy "
+                                    +e.what());
+      }
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables
@@ -184,6 +205,16 @@ namespace AxisManip
         throw std::invalid_argument(et_func_str+" (s,v): err2 "+e.what());
       }
 
+    // check that the final_energy arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(final_energy, final_energy_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(et_func_str+" (s,v): final_energy "
+                                    +e.what());
+      }
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables

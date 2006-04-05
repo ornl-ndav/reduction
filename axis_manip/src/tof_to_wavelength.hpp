@@ -72,6 +72,16 @@ namespace AxisManip
         throw std::invalid_argument(ttw_func_str+" (v,v): err2 "+e.what());
       }
 
+    // check that the tof arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(tof, tof_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(ttw_func_str+" (v,v): tof "+e.what());
+      }
+
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables

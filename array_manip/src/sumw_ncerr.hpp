@@ -70,6 +70,16 @@ namespace ArrayManip
       {
         throw std::invalid_argument(sumw_func_str+" (v,v): err2 "+e.what());
       }
+    // check that the input1 arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(input1,input1_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(sumw_func_str+" (v,v): input1 "+e.what());
+      }
+
 
     size_t sz = input1.size();
     for (size_t i = 0; i < sz; ++i)

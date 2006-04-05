@@ -77,6 +77,17 @@ namespace AxisManip
         throw std::invalid_argument(iswtsq_func_str+" (v,v): err2 "+e.what());
       }
 
+    // check that the initial_wavevector arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(initial_wavevector, initial_wavevector_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(iswtsq_func_str
+                                    +" (v,v): initial_wavevector "+e.what());
+      }
+
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables
@@ -139,6 +150,17 @@ namespace AxisManip
         throw std::invalid_argument(iswtsq_func_str+" (s,v): err2 "+e.what());
       }
 
+    // check that the final_wavevector arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(final_wavevector, final_wavevector_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(iswtsq_func_str
+                                    +" (s,v): final_wavevector "+e.what());
+      }
+
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables
@@ -199,6 +221,17 @@ namespace AxisManip
     catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(iswtsq_func_str+" (v,s): err2 "+e.what());
+      }
+
+    // check that the initial_wavevector arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(initial_wavevector, initial_wavevector_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(iswtsq_func_str
+                                    +" (v,s): initial_wavevector "+e.what());
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string

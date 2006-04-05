@@ -69,6 +69,16 @@ namespace ArrayManip
       {
         throw std::invalid_argument(div_func_str+" (s,v): data "+e.what());
       }
+    // check that the input arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(array_in,array_in_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(div_func_str+" (s,v): input "+e.what());
+      }
+
 
     NumT scalar2 = scalar * scalar;
 
@@ -113,6 +123,15 @@ namespace ArrayManip
       {
         throw std::invalid_argument(div_func_str+" (v,s): err2 "+e.what());
       }
+    // check that the input arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(array_in,array_in_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(div_func_str+" (v,s): input "+e.what());
+      }
 
     NumT scalar2 = scalar * scalar;
     NumT scalar4 = scalar2 * scalar2;
@@ -155,6 +174,15 @@ namespace ArrayManip
     catch (std::invalid_argument &e)
       {
         throw std::invalid_argument(div_func_str+" (v,v): err2 "+e.what());
+      }
+    // check that the input1 arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(input1,input1_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(div_func_str+" (v,v): input1 "+e.what());
       }
 
     std::transform(input1.begin(), input1.end(), input2.begin(),

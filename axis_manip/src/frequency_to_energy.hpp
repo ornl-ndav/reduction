@@ -70,6 +70,16 @@ namespace AxisManip
         throw std::invalid_argument(fte_func_str+" (v,v): err2 "+e.what());
       }
 
+    // check that the frequency arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(frequency,frequency_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(fte_func_str+" (v,v): frequency "
+                                    +e.what());
+      }
     std::string retstr(Nessi::EMPTY_WARN);
 
     NumT h;
