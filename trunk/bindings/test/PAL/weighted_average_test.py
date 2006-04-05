@@ -98,19 +98,22 @@ if __name__ == "__main__":
 
     mess = ""
 
-    print "###############################################################"
-    print "#Checking weighted_average Python Abstraction layer for double#"
-    print "###############################################################"
-
+    print "######################################################"
+    print "# Checking weighted_average Python Abstraction layer #"
+    print "######################################################"
+    print
+    
   # generate true_outputs
     true_output, true_output_err2 = initialize_true_outputs("double")
 
     input, input_err2 = initialize_inputs("double")
 
-    output, output_err2 = utils.weighted_average(input, input_err2, 0, NUM_VAL-1)
+    output, output_err2 = utils.weighted_average(input, input_err2, \
+                                                 0, NUM_VAL-1)
 
     # Check values
-    mess = test_common.MakeCheck1("double",output, true_output, output_err2, true_output_err2)
+    mess = test_common.MakeCheck1("double",output, true_output, \
+                                  output_err2, true_output_err2)
 
     print mess
 

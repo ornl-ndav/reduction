@@ -129,10 +129,11 @@ if __name__ == "__main__":
 
     mess =""
 
-    print "################################################################"
-    print "#Checking tof_to_wavelength Python Abstraction layer for double#"
-    print "################################################################"
-
+    print "#######################################################"
+    print "# Checking tof_to_wavelength Python Abstraction layer #"
+    print "#######################################################"
+    print
+    
     pathlength = float(5.)
     pathlength_err2 = float(2.5)
     
@@ -175,4 +176,4 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
     
     print mess
-    print
+

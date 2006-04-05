@@ -114,9 +114,10 @@ if __name__ == "__main__":
 
     mess = ""
 
-    print "###############################################################"
-    print "#Checking reverse_array_nc Python Abstraction layer for double#"
-    print "###############################################################"
+    print "######################################################"
+    print "# Checking reverse_array_nc Python Abstraction layer #"
+    print "######################################################"
+    print
 
     # generate true_outputs
     true_output = initialize_true_outputs("double")
@@ -129,10 +130,6 @@ if __name__ == "__main__":
     mess = test_common.MakeCheck2("double",output, true_output)
 
     print mess
-
-    print "###############################################################"
-    print "#  Checking reverse_array_nc Python Abstraction layer for int #"
-    print "###############################################################"
 
     # generate true_outputs
     true_output = initialize_true_outputs("int")
