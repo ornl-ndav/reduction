@@ -71,31 +71,20 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     NumT a;
     NumT a2;
 
-    warn = __wavelength_to_scalar_k_static(a, a2);
-
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
+    retstr += __wavelength_to_scalar_k_static(a, a2);
 
     size_t size_wavelength = wavelength.size();
     for (size_t i = 0 ; i < size_wavelength ; ++i)
       {
-        warn = __wavelength_to_scalar_k_dynamic(wavelength[i],
+        retstr += __wavelength_to_scalar_k_dynamic(wavelength[i],
                                                 wavelength_err2[i],
                                                 wavevector[i],
                                                 wavevector_err2[i],
                                                 a, a2);
-
-        if (!warn.empty())
-          {
-            retstr += warn;
-          }
       }
 
     return retstr;
@@ -111,26 +100,15 @@ namespace AxisManip
                          void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN);
-   std::string warn;
 
     NumT a;
     NumT a2;
 
-    warn = __wavelength_to_scalar_k_static(a, a2);
+    retstr += __wavelength_to_scalar_k_static(a, a2);
 
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
-
-    warn = __wavelength_to_scalar_k_dynamic(wavelength, wavelength_err2,
-                                            wavevector, wavevector_err2,
-                                            a, a2);
-
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
+    retstr += __wavelength_to_scalar_k_dynamic(wavelength, wavelength_err2,
+                                               wavevector, wavevector_err2,
+                                               a, a2);
 
     return retstr;
   }

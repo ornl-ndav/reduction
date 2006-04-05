@@ -73,7 +73,6 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -81,22 +80,17 @@ namespace AxisManip
     NumT a_err2;
 
     // fill the local variables
-    warn=__tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __tof_to_wavelength_static(pathlength, pathlength_err2, 
+                                         a, a2, a_err2);
 
     // do the calculation
     size_t size_tof = tof.size();
     for (size_t i = 0; i < size_tof; ++i)
       {
-        warn=__tof_to_wavelength_dynamic(tof[i], tof_err2[i], a, a2, a_err2,
-                                         wavelength[i], wavelength_err2[i]);
-        if(!(warn.empty()))
-          {
-            retstr+=warn;
-          }
+        retstr += __tof_to_wavelength_dynamic(tof[i], tof_err2[i], 
+                                              a, a2, a_err2,
+                                              wavelength[i], 
+                                              wavelength_err2[i]);
       }
 
     return retstr;
@@ -114,7 +108,6 @@ namespace AxisManip
                     void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -122,20 +115,12 @@ namespace AxisManip
     NumT a_err2;
 
     // fill the local variables
-    warn=__tof_to_wavelength_static(pathlength, pathlength_err2, a, a2, a_err2);
-
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __tof_to_wavelength_static(pathlength, pathlength_err2, 
+                                         a, a2, a_err2);
 
     // do the calculation
-    warn=__tof_to_wavelength_dynamic(tof, tof_err2, a, a2, a_err2,
-                                     wavelength, wavelength_err2);
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __tof_to_wavelength_dynamic(tof, tof_err2, a, a2, a_err2,
+                                          wavelength, wavelength_err2);
 
     return retstr;
   }

@@ -78,7 +78,6 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -86,24 +85,21 @@ namespace AxisManip
     NumT sang;
 
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
-                                                    sang);
-    if(!(warn.empty()))
-      retstr+=warn;
+    retstr += __init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
+                                                         sang);
 
     // do the calculation
     size_t size_wavevector=initial_wavevector.size();
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
-        warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
-                                                         initial_wavevector[i],
-                                                         initial_wavevector_err2[i],
-                                                         final_wavevector[i],
-                                                         final_wavevector_err2[i],
-                                                         polar_angle_err2, a, b,
-                                                         sang, Q[i], Q_err2[i]);
-        if(!(warn.empty()))
-          retstr+=warn;
+        retstr += 
+          __init_scatt_wavevector_to_scalar_Q_dynamic(
+                                                      initial_wavevector[i],
+                                                      initial_wavevector_err2[i],
+                                                      final_wavevector[i],
+                                                      final_wavevector_err2[i],
+                                                      polar_angle_err2, a, b,
+                                                      sang, Q[i], Q_err2[i]);
       }
 
     return retstr;
@@ -144,7 +140,6 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -152,24 +147,21 @@ namespace AxisManip
     NumT sang;
 
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
-                                                    sang);
-    if(!(warn.empty()))
-      retstr+=warn;
+    retstr += __init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
+                                                         sang);
 
     // do the calculation
     size_t size_wavevector=final_wavevector.size();
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
-        warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
-                                                         initial_wavevector,
-                                                         initial_wavevector_err2,
-                                                         final_wavevector[i],
-                                                         final_wavevector_err2[i],
-                                                         polar_angle_err2, a, b,
-                                                         sang, Q[i], Q_err2[i]);
-        if(!(warn.empty()))
-          retstr+=warn;
+        retstr += 
+          __init_scatt_wavevector_to_scalar_Q_dynamic(
+                                                      initial_wavevector,
+                                                      initial_wavevector_err2,
+                                                      final_wavevector[i],
+                                                      final_wavevector_err2[i],
+                                                      polar_angle_err2, a, b,
+                                                      sang, Q[i], Q_err2[i]);
       }
 
     return retstr;
@@ -210,7 +202,6 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -218,24 +209,20 @@ namespace AxisManip
     NumT c;
 
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
-                                                    c);
-    if(!(warn.empty()))
-      retstr+=warn;
-
+    retstr += __init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
+                                                         c);
     // do the calculation
     size_t size_wavevector=initial_wavevector.size();
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
-        warn=__init_scatt_wavevector_to_scalar_Q_dynamic(
-                                                         initial_wavevector[i],
-                                                         initial_wavevector_err2[i],
-                                                         final_wavevector,
-                                                         final_wavevector_err2,
-                                                         polar_angle_err2, a, b,
-                                                         c, Q[i], Q_err2[i]);
-        if(!(warn.empty()))
-          retstr+=warn;
+        retstr += 
+          __init_scatt_wavevector_to_scalar_Q_dynamic(
+                                                      initial_wavevector[i],
+                                                      initial_wavevector_err2[i],
+                                                      final_wavevector,
+                                                      final_wavevector_err2,
+                                                      polar_angle_err2, a, b,
+                                                      c, Q[i], Q_err2[i]);
       }
 
     return retstr;
@@ -256,7 +243,6 @@ namespace AxisManip
                                     void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT a;
@@ -264,20 +250,16 @@ namespace AxisManip
     NumT c;
 
     // fill the local variables
-    warn=__init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
-                                                    c);
-    if(!(warn.empty()))
-      retstr+=warn;
-
+    retstr += __init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
+                                                         c);
     // do the calculation
-    warn=__init_scatt_wavevector_to_scalar_Q_dynamic(initial_wavevector,
-                                                     initial_wavevector_err2,
-                                                     final_wavevector,
-                                                     final_wavevector_err2,
-                                                     polar_angle_err2, a, b,
-                                                     c, Q, Q_err2);
-    if(!(warn.empty()))
-      retstr+=warn;
+    retstr += 
+      __init_scatt_wavevector_to_scalar_Q_dynamic(initial_wavevector,
+                                                  initial_wavevector_err2,
+                                                  final_wavevector,
+                                                  final_wavevector_err2,
+                                                  polar_angle_err2, a, b,
+                                                  c, Q, Q_err2);
 
     return retstr;
   }

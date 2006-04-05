@@ -71,30 +71,19 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     NumT a2;
 
-    warn = __wavelength_to_energy_static(a2);
-
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
+    retstr += __wavelength_to_energy_static(a2);
 
     size_t sz = wavelength.size();
     for (size_t i = 0; i < sz; ++i)
       {
-        warn = __wavelength_to_energy_dynamic(wavelength[i],
+        retstr += __wavelength_to_energy_dynamic(wavelength[i],
                                               wavelength_err2[i],
                                               energy[i],
                                               energy_err2[i],
                                               a2);
-
-        if (!warn.empty())
-          {
-            retstr += warn;
-          }
       }
 
     return retstr;
@@ -110,24 +99,13 @@ namespace AxisManip
                        void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     NumT a2;
 
-    warn = __wavelength_to_energy_static(a2);
+    retstr += __wavelength_to_energy_static(a2);
 
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
-
-    warn = __wavelength_to_energy_dynamic(wavelength,wavelength_err2,
-                                          energy, energy_err2, a2);
-
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
+    retstr += __wavelength_to_energy_dynamic(wavelength,wavelength_err2,
+                                             energy, energy_err2, a2);
 
     return retstr;
   }

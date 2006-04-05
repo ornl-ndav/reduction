@@ -71,32 +71,21 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     NumT h;
     NumT h2;
 
-    warn = __frequency_to_energy_static(h,h2);
-
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
+    retstr += __frequency_to_energy_static(h,h2);
 
     size_t sz = frequency.size();
     for (size_t i=0; i < sz; ++i)
       {
-        warn == __frequency_to_energy_dynamic(frequency[i],
-                                              frequency_err2[i],
-                                              energy[i],
-                                              energy_err2[i],
-                                              h,
-                                              h2);
-
-        if (!warn.empty())
-          {
-            retstr += warn;
-          }
+        retstr += __frequency_to_energy_dynamic(frequency[i],
+                                                frequency_err2[i],
+                                                energy[i],
+                                                energy_err2[i],
+                                                h,
+                                                h2);
       }
 
     return retstr;
@@ -112,30 +101,19 @@ namespace AxisManip
                       void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     NumT h;
     NumT h2;
 
-    warn = __frequency_to_energy_static(h,h2);
+    retstr += __frequency_to_energy_static(h,h2);
 
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
-
-    warn = __frequency_to_energy_dynamic(frequency,
-                                         frequency_err2,
-                                         energy,
-                                         energy_err2,
-                                         h,
-                                         h2);
-
-    if (!warn.empty())
-      {
-        retstr += warn;
-      }
-
+    retstr += __frequency_to_energy_dynamic(frequency,
+                                            frequency_err2,
+                                            energy,
+                                            energy_err2,
+                                            h,
+                                            h2);
+    
     return retstr;
   }
 
