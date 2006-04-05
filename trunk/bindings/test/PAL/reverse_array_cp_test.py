@@ -1,17 +1,17 @@
 ##
 #                     SNS Common Libraries
 #            A part of the SNS Analysis Software Suite.
-# 
+#
 #                   Spallation Neutron Source
 #           Oak Ridge National Laboratory, Oak Ridge TN.
-# 
-# 
+#
+#
 #                              NOTICE
-# 
+#
 #  For this software and its associated documentation, permission is granted
 #  to reproduce, prepare derivative works, and distribute copies to the public
 #  for any purpose and without fee.
-# 
+#
 #  This material was prepared as an account of work sponsored by an agency of
 #  the United States Government.  Neither the United States Government nor the
 #  United States Department of Energy, nor any of their employees, makes any
@@ -45,7 +45,7 @@ NUM_VAL = 5
 # Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
 # will generate an error message that give details about the location and type
 # of the error
-# 
+#
 # <b>Notation used:</b>
 # - ERROR = "error "
 # - EMPTY = ""
@@ -61,14 +61,14 @@ def initialize_inputs(key):
     if (key == "double"):
         input=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
-            input.append(float(1+i))         
+            input.append(float(1+i))
     elif (key == "int"):
         input=nessi_list.NessiList(type="int")
         for i in range(NUM_VAL):
             input.append(int(1+i))
     else:
         raise TypeError
-	
+
     return input
 
 ##
@@ -87,22 +87,22 @@ def initialize_true_outputs(key):
         true_output = nessi_list.NessiList()
 
         # initialize the correct outputs for vector vector case
-        true_output.append(float(5))       
-        true_output.append(float(4))	   
+        true_output.append(float(5))
+        true_output.append(float(4))
         true_output.append(float(3))
         true_output.append(float(2))
-        true_output.append(float(1))	   
+        true_output.append(float(1))
 
     elif (key == "int"):
 
         true_output = nessi_list.NessiList(type="int")
 
         # initialize the correct outputs for vector vector case
-        true_output.append(int(5))       
-        true_output.append(int(4))	   
+        true_output.append(int(5))
+        true_output.append(int(4))
         true_output.append(int(3))
         true_output.append(int(2))
-        true_output.append(int(1))	   
+        true_output.append(int(1))
 
     else:
 
@@ -117,8 +117,8 @@ if __name__ == "__main__":
     print "###############################################################"
     print "#Checking reverse_array_cp Python Abstraction layer for double#"
     print "###############################################################"
- 
-	# generate true_outputs
+
+  # generate true_outputs
     true_output = initialize_true_outputs("double")
 
     input = initialize_inputs("double")
@@ -134,8 +134,8 @@ if __name__ == "__main__":
     print "###############################################################"
     print "#  Checking reverse_array_cp Python Abstraction layer for int #"
     print "###############################################################"
- 
-	# generate true_outputs
+
+  # generate true_outputs
     true_output = initialize_true_outputs("int")
 
     input = initialize_inputs("int")

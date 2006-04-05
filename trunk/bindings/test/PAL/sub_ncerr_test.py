@@ -1,17 +1,17 @@
 ##
 #                     SNS Common Libraries
 #            A part of the SNS Analysis Software Suite.
-# 
+#
 #                   Spallation Neutron Source
 #           Oak Ridge National Laboratory, Oak Ridge TN.
-# 
-# 
+#
+#
 #                              NOTICE
-# 
+#
 #  For this software and its associated documentation, permission is granted
 #  to reproduce, prepare derivative works, and distribute copies to the public
 #  for any purpose and without fee.
-# 
+#
 #  This material was prepared as an account of work sponsored by an agency of
 #  the United States Government.  Neither the United States Government nor the
 #  United States Department of Energy, nor any of their employees, makes any
@@ -46,7 +46,7 @@ NUM_VAL = 5
 # Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
 # will generate an error message that give details about the location and type
 # of the error
-# 
+#
 # <b>Notation used:</b>
 # - vv : vector-vector
 # - vs : vector-scalar
@@ -66,10 +66,10 @@ NUM_VAL = 5
 #
 # \returns
 # - input1 is the NessiList to be subtracted from
-# - input1_err2 is the square of the uncertainty in the 
+# - input1_err2 is the square of the uncertainty in the
 # NessiList to be subtracted from
 # - input2 is the second NessiList to subtract
-# -input2_err2 is the square of the uncertainty in the second 
+# -input2_err2 is the square of the uncertainty in the second
 # NessiList to subtract
 #
 def initialize_inputs(key):
@@ -124,40 +124,40 @@ def initialize_true_outputs(key):
         true_output_sv=nessi_list.NessiList()
         true_output_sv_err2=nessi_list.NessiList()
 
-	    # initialize the correct outputs for vector vector case
+      # initialize the correct outputs for vector vector case
         true_output_vv.append(float(6.))       # 6-0
-        true_output_vv_err2.append(float(2.))		
-        true_output_vv.append(float(4.))	   # 5-1	
         true_output_vv_err2.append(float(2.))
-        true_output_vv.append(float(2.))	   # 4-2
+        true_output_vv.append(float(4.))     # 5-1
         true_output_vv_err2.append(float(2.))
-        true_output_vv.append(float(0.))	   # 3-3
+        true_output_vv.append(float(2.))     # 4-2
         true_output_vv_err2.append(float(2.))
-        true_output_vv.append(float(-2.))	   # 4-2
+        true_output_vv.append(float(0.))     # 3-3
         true_output_vv_err2.append(float(2.))
-		
-	    # initialize the correct outputs for vector scalar case
+        true_output_vv.append(float(-2.))     # 4-2
+        true_output_vv_err2.append(float(2.))
+
+      # initialize the correct outputs for vector scalar case
         true_output_vs.append(float(2.))       # 6-4
-        true_output_vs_err2.append(float(2.))		
-        true_output_vs.append(float(1.))	   # 5-4
         true_output_vs_err2.append(float(2.))
-        true_output_vs.append(float(0.))	   # 4-4
+        true_output_vs.append(float(1.))     # 5-4
         true_output_vs_err2.append(float(2.))
-        true_output_vs.append(float(-1.))	   # 3-4
+        true_output_vs.append(float(0.))     # 4-4
         true_output_vs_err2.append(float(2.))
-        true_output_vs.append(float(-2.))	   # 2-4
+        true_output_vs.append(float(-1.))     # 3-4
+        true_output_vs_err2.append(float(2.))
+        true_output_vs.append(float(-2.))     # 2-4
         true_output_vs_err2.append(float(2.))
 
-	    # initialize the correct outputs for scalar vector case
+      # initialize the correct outputs for scalar vector case
         true_output_sv.append(float(-2.))       # 4-6
-        true_output_sv_err2.append(float(2.))		
-        true_output_sv.append(float(-1.))	   # 4-5
         true_output_sv_err2.append(float(2.))
-        true_output_sv.append(float(0.))	   # 4-4
+        true_output_sv.append(float(-1.))     # 4-5
         true_output_sv_err2.append(float(2.))
-        true_output_sv.append(float(1.))	   # 4-3
+        true_output_sv.append(float(0.))     # 4-4
         true_output_sv_err2.append(float(2.))
-        true_output_sv.append(float(2.))	   # 4-2
+        true_output_sv.append(float(1.))     # 4-3
+        true_output_sv_err2.append(float(2.))
+        true_output_sv.append(float(2.))     # 4-2
         true_output_sv_err2.append(float(2.))
 
     else:
@@ -169,48 +169,48 @@ def initialize_true_outputs(key):
         true_output_sv=nessi_list.NessiList(type="int")
         true_output_sv_err2=nessi_list.NessiList(type="int")
 
-	    # initialize the correct outputs for vector vector case
+      # initialize the correct outputs for vector vector case
         true_output_vv.append(int(6))      # 6-0
-        true_output_vv_err2.append(int(2))		
-        true_output_vv.append(int(4))	   # 5-1	
         true_output_vv_err2.append(int(2))
-        true_output_vv.append(int(2))	   # 4-2
+        true_output_vv.append(int(4))     # 5-1
         true_output_vv_err2.append(int(2))
-        true_output_vv.append(int(0))	   # 3-3
+        true_output_vv.append(int(2))     # 4-2
         true_output_vv_err2.append(int(2))
-        true_output_vv.append(int(-2))	   # 2-4
+        true_output_vv.append(int(0))     # 3-3
         true_output_vv_err2.append(int(2))
-		
-	    # initialize the correct outputs for vector scalar case
+        true_output_vv.append(int(-2))     # 2-4
+        true_output_vv_err2.append(int(2))
+
+      # initialize the correct outputs for vector scalar case
         true_output_vs.append(int(2))      # 6-4
-        true_output_vs_err2.append(int(2))		
-        true_output_vs.append(int(1))	   # 5-4
         true_output_vs_err2.append(int(2))
-        true_output_vs.append(int(0))	   # 4-4
+        true_output_vs.append(int(1))     # 5-4
         true_output_vs_err2.append(int(2))
-        true_output_vs.append(int(-1))	   # 3-4
+        true_output_vs.append(int(0))     # 4-4
         true_output_vs_err2.append(int(2))
-        true_output_vs.append(int(-2))	   # 2-4
+        true_output_vs.append(int(-1))     # 3-4
+        true_output_vs_err2.append(int(2))
+        true_output_vs.append(int(-2))     # 2-4
         true_output_vs_err2.append(int(2))
 
-	    # initialize the correct outputs for scalar vector case
+      # initialize the correct outputs for scalar vector case
         true_output_sv.append(int(-2))     # 4-6
-        true_output_sv_err2.append(int(2))		
-        true_output_sv.append(int(-1))	   # 4-5
         true_output_sv_err2.append(int(2))
-        true_output_sv.append(int(0))	   # 4-4
+        true_output_sv.append(int(-1))     # 4-5
         true_output_sv_err2.append(int(2))
-        true_output_sv.append(int(1))	   # 4-3
+        true_output_sv.append(int(0))     # 4-4
         true_output_sv_err2.append(int(2))
-        true_output_sv.append(int(2))	   # 4-2
+        true_output_sv.append(int(1))     # 4-3
+        true_output_sv_err2.append(int(2))
+        true_output_sv.append(int(2))     # 4-2
         true_output_sv_err2.append(int(2))
 
     return true_output_vv,\
-		   true_output_vv_err2,\
-		   true_output_vs,\
-		   true_output_vs_err2, \
-		   true_output_sv,\
-		   true_output_sv_err2
+       true_output_vv_err2,\
+       true_output_vs,\
+       true_output_vs_err2, \
+       true_output_sv,\
+       true_output_sv_err2
 
 if __name__ == "__main__":
 
@@ -220,51 +220,51 @@ if __name__ == "__main__":
     print "#   Checking sub_ncerr Python Abstraction layer   #"
     print "###################################################"
     print
- 
+
     true_output_vv_d, true_output_vv_err2_d,\
-	true_output_vs_d, true_output_vs_err2_d,\
-	true_output_sv_d, true_output_sv_err2_d = \
-					  initialize_true_outputs("double")    	
+  true_output_vs_d, true_output_vs_err2_d,\
+  true_output_sv_d, true_output_sv_err2_d = \
+            initialize_true_outputs("double")
 
     true_output_vv_i, true_output_vv_err2_i,\
-	true_output_vs_i, true_output_vs_err2_i,\
-	true_output_sv_i, true_output_sv_err2_i =\
-					  initialize_true_outputs("int")    	
+  true_output_vs_i, true_output_vs_err2_i,\
+  true_output_sv_i, true_output_sv_err2_i =\
+            initialize_true_outputs("int")
 
     # vv case
     print "Checking Vector-Vector Substraction Abstraction Layer Function"
 
-	# double case
+  # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
     output_vv=nessi_list.NessiList()
     output_vv_err2=nessi_list.NessiList()
     output_vv, output_vv_err2 = array_manip.sub_ncerr(input1,\
-													  input1_err2,\
-													  input2,\
-													  input2_err2)
+                            input1_err2,\
+                            input2,\
+                            input2_err2)
 
     mess = test_common.MakeCheck("double",\
-								 output_vv,\
-								 true_output_vv_d,\
-								 output_vv_err2,\
-								 true_output_vv_err2_d)
+                 output_vv,\
+                 true_output_vv_d,\
+                 output_vv_err2,\
+                 true_output_vv_err2_d)
 
     print mess
 
-	# int case
+  # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
     output_vv=nessi_list.NessiList(type="int")
     output_vv_err2=nessi_list.NessiList(type="int")
     output_vv, output_vv_err2 = array_manip.sub_ncerr(input1,\
-													  input1_err2,\
-													  input2,\
-													  input2_err2)
+                            input1_err2,\
+                            input2,\
+                            input2_err2)
 
     mess = test_common.MakeCheck("int",\
-								 output_vv,\
-								 true_output_vv_i,\
-								 output_vv_err2,\
-								 true_output_vv_err2_i)
+                 output_vv,\
+                 true_output_vv_i,\
+                 output_vv_err2,\
+                 true_output_vv_err2_i)
 
     print mess
 
@@ -273,37 +273,37 @@ if __name__ == "__main__":
     print
     print "Checking Vector-Scalar Substraction Abstraction Layer Function"
 
-	# double case
+  # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
     output_vs=nessi_list.NessiList()
     output_vs_err2=nessi_list.NessiList()
     output_vs, output_vs_err2 = array_manip.sub_ncerr(input1,\
-													  input1_err2,\
-													  input2[4],\
-													  input2_err2[4])
+                            input1_err2,\
+                            input2[4],\
+                            input2_err2[4])
 
     mess = test_common.MakeCheck("double",\
-								 output_vs,\
-								 true_output_vs_d,\
-								 output_vs_err2,\
-								 true_output_vs_err2_d)
+                 output_vs,\
+                 true_output_vs_d,\
+                 output_vs_err2,\
+                 true_output_vs_err2_d)
 
     print mess
 
-	# int case
+  # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
     output_vs=nessi_list.NessiList(type="int")
     output_vs_err2=nessi_list.NessiList(type="int")
     output_vs, output_vs_err2 = array_manip.sub_ncerr(input1,\
-													  input1_err2,\
-													  input2[4],\
-													  input2_err2[4])
+                            input1_err2,\
+                            input2[4],\
+                            input2_err2[4])
 
     mess = test_common.MakeCheck("int",\
-								 output_vs,\
-								 true_output_vs_i,\
-								 output_vs_err2,\
-								 true_output_vs_err2_i)
+                 output_vs,\
+                 true_output_vs_i,\
+                 output_vs_err2,\
+                 true_output_vs_err2_i)
 
     print mess
 
@@ -311,36 +311,36 @@ if __name__ == "__main__":
     print
     print "Checking Scalar-Vector Substraction Abstraction Layer Function"
 
-	# double case
+  # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
     output_sv=nessi_list.NessiList()
     output_sv_err2=nessi_list.NessiList()
     output_sv, output_sv_err2 = array_manip.sub_ncerr(input2[4],\
-													  input2_err2[4],\
-													  input1,\
-													  input1_err2)
+                            input2_err2[4],\
+                            input1,\
+                            input1_err2)
 
     mess = test_common.MakeCheck("double",\
-								 output_sv,\
-								 true_output_sv_d,\
-								 output_sv_err2,\
-								 true_output_sv_err2_d)
+                 output_sv,\
+                 true_output_sv_d,\
+                 output_sv_err2,\
+                 true_output_sv_err2_d)
 
     print mess
 
-	# int case
+  # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
     output_sv=nessi_list.NessiList(type="int")
     output_sv_err2=nessi_list.NessiList(type="int")
     output_sv, output_sv_err2 = array_manip.sub_ncerr(input2[4],\
-													  input2_err2[4],\
-													  input1,\
-													  input1_err2)
+                            input2_err2[4],\
+                            input1,\
+                            input1_err2)
 
     mess = test_common.MakeCheck("int",\
-								 output_sv,\
-								 true_output_sv_i,\
-								 output_sv_err2,\
-								 true_output_sv_err2_i)
+                 output_sv,\
+                 true_output_sv_i,\
+                 output_sv_err2,\
+                 true_output_sv_err2_i)
 
     print mess

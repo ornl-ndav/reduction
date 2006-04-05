@@ -1,17 +1,17 @@
 ##
 #                     SNS Common Libraries
 #            A part of the SNS Analysis Software Suite.
-# 
+#
 #                   Spallation Neutron Source
 #           Oak Ridge National Laboratory, Oak Ridge TN.
-# 
-# 
+#
+#
 #                              NOTICE
-# 
+#
 #  For this software and its associated documentation, permission is granted
 #  to reproduce, prepare derivative works, and distribute copies to the public
 #  for any purpose and without fee.
-# 
+#
 #  This material was prepared as an account of work sponsored by an agency of
 #  the United States Government.  Neither the United States Government nor the
 #  United States Department of Energy, nor any of their employees, makes any
@@ -47,7 +47,7 @@ NUM_VAL = 5
 # Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
 # will generate an error message that give details about the location and type
 # of the error
-# 
+#
 # <b>Notation used:</b>
 # - vv : vector-vector
 # - ss : scalar-scalar
@@ -73,11 +73,11 @@ def initialize_inputs(key):
         wavelength=nessi_list.NessiList(type="double")
         wavelength_err2=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
-            wavelength.append(float(2*i+1))         
-            wavelength_err2.append(float(i+0.5))          
+            wavelength.append(float(2*i+1))
+            wavelength_err2.append(float(i+0.5))
     else:
         raise TypeError
-	
+
     return wavelength, wavelength_err2, scatt_angle, scatt_angle_err2
 
 ##
@@ -105,18 +105,18 @@ def initialize_true_outputs(key):
         true_output_ss=DoubleVPair()
 
         # initialize the correct outputs for vector vector case
-        true_output_vv.append(float(11.42656846417465566))       
-        true_output_vv_err2.append(float(32.4255962373546538))		
-        true_output_vv.append(float(3.80885615472488537))	   
+        true_output_vv.append(float(11.42656846417465566))
+        true_output_vv_err2.append(float(32.4255962373546538))
+        true_output_vv.append(float(3.80885615472488537))
         true_output_vv_err2.append(float(-1.2329510427558070))
-        true_output_vv.append(float(2.28531369283493113))	  
+        true_output_vv.append(float(2.28531369283493113))
         true_output_vv_err2.append(float(-0.79203962036934561))
-        true_output_vv.append(float(1.63236692345352230))	   
+        true_output_vv.append(float(1.63236692345352230))
         true_output_vv_err2.append(float(-0.48023389777822056))
-        true_output_vv.append(float(1.26961871824162853))	   
+        true_output_vv.append(float(1.26961871824162853))
         true_output_vv_err2.append(float(-0.31609808138503581))
-		
-	# initialize the correct outputs for scalar scalar case
+
+  # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(11.42656846417465566)
         true_output_ss.val_err2 = float(32.42559623735466801)
 
@@ -125,9 +125,9 @@ def initialize_true_outputs(key):
         raise TypeError
 
     return true_output_vv,\
-		   true_output_vv_err2,\
+       true_output_vv_err2,\
            true_output_ss.val, \
-		   true_output_ss.val_err2
+       true_output_ss.val_err2
 
 if __name__ == "__main__":
 
@@ -136,13 +136,13 @@ if __name__ == "__main__":
     print "#####################################################################"
     print "#Checking wavelength_to_scalar_Q Python Abstraction layer for double#"
     print "#####################################################################"
- 
-	# generate true_outputs
-    true_output_vv_d, true_output_vv_err2_d,\
-	true_output_ss_d, true_output_ss_err2_d = \
-					  initialize_true_outputs("double")    	
 
-	# generate inputs
+  # generate true_outputs
+    true_output_vv_d, true_output_vv_err2_d,\
+  true_output_ss_d, true_output_ss_err2_d = \
+            initialize_true_outputs("double")
+
+  # generate inputs
     wavelength, wavelength_err2, scatt_angle, scatt_angle_err2=initialize_inputs("double")
 
     # vv case
@@ -150,11 +150,11 @@ if __name__ == "__main__":
     output_vv_err2=nessi_list.NessiList()
 
     output_vv, output_vv_err2 = \
-			   axis_manip.wavelength_to_scalar_Q(wavelength, \
+         axis_manip.wavelength_to_scalar_Q(wavelength, \
                                                              wavelength_err2,\
                                                              scatt_angle,\
                                                              scatt_angle_err2)
-	
+
     # Check values
     mess = test_common.MakeCheck("vv", output_vv, true_output_vv_d, output_vv_err2,\
                                  true_output_vv_err2_d)
@@ -164,7 +164,7 @@ if __name__ == "__main__":
 
     # ss case
     output_ss, output_ss_err2 = \
-			   axis_manip.wavelength_to_scalar_Q(wavelength[0],\
+         axis_manip.wavelength_to_scalar_Q(wavelength[0],\
                                                              wavelength_err2[0],\
                                                              scatt_angle,\
                                                              scatt_angle_err2)

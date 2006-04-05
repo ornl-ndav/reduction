@@ -1,17 +1,17 @@
 ##
 #                     SNS Common Libraries
 #            A part of the SNS Analysis Software Suite.
-# 
+#
 #                   Spallation Neutron Source
 #           Oak Ridge National Laboratory, Oak Ridge TN.
-# 
-# 
+#
+#
 #                              NOTICE
-# 
+#
 #  For this software and its associated documentation, permission is granted
 #  to reproduce, prepare derivative works, and distribute copies to the public
 #  for any purpose and without fee.
-# 
+#
 #  This material was prepared as an account of work sponsored by an agency of
 #  the United States Government.  Neither the United States Government nor the
 #  United States Department of Energy, nor any of their employees, makes any
@@ -45,7 +45,7 @@ NUM_VAL = 5
 # Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
 # will generate an error message that give details about the location and type
 # of the error
-# 
+#
 # <b>Notation used:</b>
 # - vv : vector-vector
 # - VV = "v,v"
@@ -106,37 +106,37 @@ def initialize_true_outputs(key):
         true_output_vv=nessi_vector.NessiVector()
         true_output_vv_err2=nessi_vector.NessiVector()
 
-	    # initialize the correct outputs for vector vector case
+      # initialize the correct outputs for vector vector case
         true_output_vv.append(float(6.))       # =(0/1+6/1)*(1+1)/2
-        true_output_vv_err2.append(float(4.))		
-        true_output_vv.append(float(6.))	   # =(1/1+5/1)*(1+1)/2
         true_output_vv_err2.append(float(4.))
-        true_output_vv.append(float(6.))	   # =(2/1+4/1)*(1+1)/2
+        true_output_vv.append(float(6.))     # =(1/1+5/1)*(1+1)/2
         true_output_vv_err2.append(float(4.))
-        true_output_vv.append(float(6.))	   # =(3/1+3/1)*(1+1)/2
+        true_output_vv.append(float(6.))     # =(2/1+4/1)*(1+1)/2
         true_output_vv_err2.append(float(4.))
-        true_output_vv.append(float(6.))	   # =(4/1+2/1)*(1+1)/2
+        true_output_vv.append(float(6.))     # =(3/1+3/1)*(1+1)/2
         true_output_vv_err2.append(float(4.))
-		
+        true_output_vv.append(float(6.))     # =(4/1+2/1)*(1+1)/2
+        true_output_vv_err2.append(float(4.))
+
     else:
 
         true_output_vv=nessi_vector.NessiVector(type="int")
         true_output_vv_err2=nessi_vector.NessiVector(type="int")
 
-	    # initialize the correct outputs for vector vector case
+      # initialize the correct outputs for vector vector case
         true_output_vv.append(int(6))      # =(0/1+6/1)*(1+1)/2
-        true_output_vv_err2.append(int(4))		
-        true_output_vv.append(int(6))	   # =(1/1+5/1)*(1+1)/2
         true_output_vv_err2.append(int(4))
-        true_output_vv.append(int(6))	   # =(2/1+4/1)*(1+1)/2
+        true_output_vv.append(int(6))     # =(1/1+5/1)*(1+1)/2
         true_output_vv_err2.append(int(4))
-        true_output_vv.append(int(6))	   # =(3/1+3/1)*(1+1)/2
+        true_output_vv.append(int(6))     # =(2/1+4/1)*(1+1)/2
         true_output_vv_err2.append(int(4))
-        true_output_vv.append(int(6))	   # =(4/1+2/1)*(1+1)/2
+        true_output_vv.append(int(6))     # =(3/1+3/1)*(1+1)/2
         true_output_vv_err2.append(int(4))
-		
+        true_output_vv.append(int(6))     # =(4/1+2/1)*(1+1)/2
+        true_output_vv_err2.append(int(4))
+
     return true_output_vv,\
-		   true_output_vv_err2,\
+       true_output_vv_err2,\
 
 
 if __name__ == "__main__":
@@ -147,47 +147,47 @@ if __name__ == "__main__":
     print "#   Checking sumw_ncerr Python Abstraction layer   #"
     print "####################################################"
     print
- 
+
     true_output_vv_d, true_output_vv_err2_d = \
-					  initialize_true_outputs("double")    	
+            initialize_true_outputs("double")
 
     true_output_vv_i, true_output_vv_err2_i = \
-					  initialize_true_outputs("int")    	
+            initialize_true_outputs("int")
 
     # vv case
     print "Checking Vector-Vector Addition Abstraction Layer Function"
 
-	# double case
+  # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
     output_vv=nessi_vector.NessiVector()
     output_vv_err2=nessi_vector.NessiVector()
     output_vv, output_vv_err2 = array_manip.sumw_ncerr(input1,\
-													  input1_err2,\
-													  input2,\
-													  input2_err2)
+                            input1_err2,\
+                            input2,\
+                            input2_err2)
 
     mess = test_common.MakeCheck("double",\
-								 output_vv,\
-								 true_output_vv_d,\
-								 output_vv_err2,\
-								 true_output_vv_err2_d)
+                 output_vv,\
+                 true_output_vv_d,\
+                 output_vv_err2,\
+                 true_output_vv_err2_d)
 
     print mess
 
-	# int case
+  # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
     output_vv=nessi_vector.NessiVector(type="int")
     output_vv_err2=nessi_vector.NessiVector(type="int")
     output_vv, output_vv_err2 = array_manip.sumw_ncerr(input1,\
-													  input1_err2,\
-													  input2,\
-													  input2_err2)
+                            input1_err2,\
+                            input2,\
+                            input2_err2)
 
     mess = test_common.MakeCheck("int",\
-								 output_vv,\
-								 true_output_vv_i,\
-								 output_vv_err2,\
-								 true_output_vv_err2_i)
+                 output_vv,\
+                 true_output_vv_i,\
+                 output_vv_err2,\
+                 true_output_vv_err2_i)
 
     print mess
 
