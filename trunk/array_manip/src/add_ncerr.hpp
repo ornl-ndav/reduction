@@ -70,6 +70,15 @@ namespace ArrayManip
       {
         throw std::invalid_argument(add_func_str+" (v,s): err2 "+e.what());
       }
+    // check that the input arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(array_in,array_in_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(add_func_str+" (v,s): input "+e.what());
+      }
 
     size_t size = array_in.size();
     for (size_t i = 0; i < size; ++i)
@@ -108,6 +117,15 @@ namespace ArrayManip
     catch (std::invalid_argument &e)
       {
         throw std::invalid_argument(add_func_str+" (v,v): err2 "+e.what());
+      }
+    // check that the input1 arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(input1,input1_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(add_func_str+" (v,v): input1 "+e.what());
       }
 
     std::transform(input1.begin(), input1.end(), input2.begin(),

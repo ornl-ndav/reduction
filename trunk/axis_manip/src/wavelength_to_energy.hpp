@@ -70,6 +70,17 @@ namespace AxisManip
         throw std::invalid_argument(wte_func_str+" (v,v): err2 "+e.what());
       }
 
+    // check that the wavelength arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength, wavelength_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(wte_func_str+" (v,v): wavelength "
+                                    +e.what());
+      }
+
     std::string retstr(Nessi::EMPTY_WARN);
 
     NumT a2;
