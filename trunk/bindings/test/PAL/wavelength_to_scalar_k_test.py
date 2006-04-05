@@ -136,32 +136,30 @@ if __name__ == "__main__":
 
   # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d,\
-  true_output_ss_d, true_output_ss_err2_d = \
-            initialize_true_outputs("double")
-
-  # generate inputs
+                      true_output_ss_d, true_output_ss_err2_d = \
+                      initialize_true_outputs("double")
+    
+    # generate inputs
     wavelength, wavelength_err2=initialize_inputs("double")
-
+    
     # vv case
-    output_vv=nessi_list.NessiList()
-    output_vv_err2=nessi_list.NessiList()
-
     output_vv, output_vv_err2 = \
-         axis_manip.wavelength_to_scalar_k(wavelength, wavelength_err2)
-
+               axis_manip.wavelength_to_scalar_k(wavelength, wavelength_err2)
+    
     # Check values
-    mess = test_common.MakeCheck("vv", output_vv, true_output_vv_d, output_vv_err2,\
+    mess = test_common.MakeCheck("vv", output_vv, true_output_vv_d, \
+                                 output_vv_err2,\
                                  true_output_vv_err2_d)
-
+    
     print mess
-
-
+    
     # ss case
     output_ss, output_ss_err2 = \
-         axis_manip.wavelength_to_scalar_k(wavelength[0],\
-                                                             wavelength_err2[0])
-
-    mess = test_common.MakeCheck1("ss", output_ss, true_output_ss_d, output_ss_err2,\
+               axis_manip.wavelength_to_scalar_k(wavelength[0],\
+                                                 wavelength_err2[0])
+    
+    mess = test_common.MakeCheck1("ss", output_ss, true_output_ss_d, \
+                                  output_ss_err2,\
                                   true_output_ss_err2_d)
-
+    
     print mess

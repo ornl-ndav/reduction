@@ -118,12 +118,11 @@ if __name__ == "__main__":
     print "#Checking reverse_array_nc Python Abstraction layer for double#"
     print "###############################################################"
 
-  # generate true_outputs
+    # generate true_outputs
     true_output = initialize_true_outputs("double")
 
     input = initialize_inputs("double")
 
-    output = nessi_list.NessiList()
     output = axis_manip.reverse_array_nc(input)
 
     # Check values
@@ -135,12 +134,11 @@ if __name__ == "__main__":
     print "#  Checking reverse_array_nc Python Abstraction layer for int #"
     print "###############################################################"
 
-  # generate true_outputs
+    # generate true_outputs
     true_output = initialize_true_outputs("int")
 
     input = initialize_inputs("int")
 
-    output = nessi_list.NessiList(type="int")
     output = axis_manip.reverse_array_nc(input)
 
     # Check values

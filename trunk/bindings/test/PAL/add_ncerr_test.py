@@ -188,85 +188,81 @@ if __name__ == "__main__":
     print
 
     true_output_vv_d, true_output_vv_err2_d, true_output_vs_d,\
-            true_output_vs_err2_d =\
-            initialize_true_outputs("double")
-
+                      true_output_vs_err2_d =\
+                      initialize_true_outputs("double")
+    
     true_output_vv_i, true_output_vv_err2_i, true_output_vs_i,\
-            true_output_vs_err2_i =\
-            initialize_true_outputs("int")
-
+                      true_output_vs_err2_i =\
+                      initialize_true_outputs("int")
+    
     # vv case
     print "Checking Vector-Vector Addition Abstraction Layer Function"
-
-  # double case
+    
+    # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
-    output_vv=nessi_list.NessiList()
-    output_vv_err2=nessi_list.NessiList()
+    
     output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
-                            input1_err2,\
-                            input2,\
-                            input2_err2)
-
+                                                      input1_err2,\
+                                                      input2,\
+                                                      input2_err2)
+    
     mess = test_common.MakeCheck("double",\
-                 output_vv,\
-                 true_output_vv_d,\
-                 output_vv_err2,\
-                 true_output_vv_err2_d)
-
+                                 output_vv,\
+                                 true_output_vv_d,\
+                                 output_vv_err2,\
+                                 true_output_vv_err2_d)
+    
     print mess
-
-  # int case
+    
+    # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
-    output_vv=nessi_list.NessiList(type="int")
-    output_vv_err2=nessi_list.NessiList(type="int")
+    
     output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
-                            input1_err2,\
-                            input2,\
-                            input2_err2)
-
+                                                      input1_err2,\
+                                                      input2,\
+                                                      input2_err2)
+    
     mess = test_common.MakeCheck("int",\
-                 output_vv,\
-                 true_output_vv_i,\
-                 output_vv_err2,\
-                 true_output_vv_err2_i)
-
+                                 output_vv,\
+                                 true_output_vv_i,\
+                                 output_vv_err2,\
+                                 true_output_vv_err2_i)
+    
     print mess
-
-
+    
+    
     # vs case
     print
     print "Checking Vector-Scalar Addition Abstraction Layer Function"
-
-  # double case
+    
+    # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
-    output_vs=nessi_list.NessiList()
-    output_vs_err2=nessi_list.NessiList()
+    
     output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
-                            input1_err2,\
-                            input2[4],\
-                            input2_err2[4])
-
+                                                      input1_err2,\
+                                                      input2[4],\
+                                                      input2_err2[4])
+    
     mess = test_common.MakeCheck("double",\
-                 output_vs,\
-                 true_output_vs_d,\
-                 output_vs_err2,\
-                 true_output_vs_err2_d)
-
+                                 output_vs,\
+                                 true_output_vs_d,\
+                                 output_vs_err2,\
+                                 true_output_vs_err2_d)
+    
     print mess
-
-  # int case
+    
+    # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
-    output_vs=nessi_list.NessiList(type="int")
-    output_vs_err2=nessi_list.NessiList(type="int")
+
     output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
-                            input1_err2,\
-                            input2[4],\
-                            input2_err2[4])
-
+                                                      input1_err2,\
+                                                      input2[4],\
+                                                      input2_err2[4])
+    
     mess = test_common.MakeCheck("int",\
-                 output_vs,\
-                 true_output_vs_i,\
-                 output_vs_err2,\
-                 true_output_vs_err2_i)
-
+                                 output_vs,\
+                                 true_output_vs_i,\
+                                 output_vs_err2,\
+                                 true_output_vs_err2_i)
+    
     print mess

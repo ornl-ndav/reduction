@@ -108,33 +108,32 @@ def initialize_true_outputs(key):
         raise TypeError
 
     return true_output_vv,\
-       true_output_vv_err2,\
-
+           true_output_vv_err2,\
+           
 if __name__ == "__main__":
 
     mess =""
-
+    
     print "##############################################################"
     print "#Checking energy_transfer Python Abstraction layer for double#"
     print "##############################################################"
-
-  # generate true_outputs
+    
+    # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d = initialize_true_outputs("double")
-
+    
     # vv case
     axis_in,axis_out,input,input_err2=initialize_inputs("double")
-    output_vv=nessi_list.NessiList()
-    output_vv_err2=nessi_list.NessiList()
+
     output_vv, output_vv_err2 = axis_manip.rebin_axis_1D(axis_in,\
-                             input,\
-                             input_err2,\
-                             axis_out)
+                                                         input,\
+                                                         input_err2,\
+                                                         axis_out)
     # Check values
     mess = test_common.MakeCheck("vv",\
-                 output_vv,\
-                 true_output_vv_d,\
-                 output_vv_err2,\
-                 true_output_vv_err2_d)
-
+                                 output_vv,\
+                                 true_output_vv_d,\
+                                 output_vv_err2,\
+                                 true_output_vv_err2_d)
+    
     print mess
-
+    
