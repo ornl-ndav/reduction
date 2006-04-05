@@ -29,13 +29,13 @@ def printVector(object, last=10):
 
 
 def MakeCheck(function_type,\
-			  output,\
-			  truth_output,\
-			  output_err2,\
-			  truth_output_err2):
+        output,\
+        truth_output,\
+        output_err2,\
+        truth_output_err2):
 
     """
-    
+
        This function checks output and truth vectors for both data and
        square of the uncertainty in the data (err2) arrays.
 
@@ -50,10 +50,10 @@ def MakeCheck(function_type,\
     err2val = ""
 
     if (function_type=="double" or \
-		function_type=="int" or \
-		function_type=="vv" or \
-		function_type=="vs" or \
-		function_type=="sv"):
+    function_type=="int" or \
+    function_type=="vv" or \
+    function_type=="vs" or \
+    function_type=="sv"):
         dataval = utils.vector_is_equals(output, truth_output)
         err2val = utils.vector_is_equals(output_err2, truth_output_err2)
     else:
@@ -89,13 +89,13 @@ def MakeCheck(function_type,\
     return mess
 
 def MakeCheck1(function_type,\
-			   output,\
-			   truth_output,\
-			   output_err2,\
-			   truth_output_err2):
+         output,\
+         truth_output,\
+         output_err2,\
+         truth_output_err2):
 
     """
-    
+
        This function checks output and truth vectors for both data and
        square of the uncertainty in the data (err2) arrays.
 
@@ -135,11 +135,11 @@ def MakeCheck1(function_type,\
     return mess
 
 def MakeCheck2(function_type,\
-			   output,\
-			   truth_output):
+         output,\
+         truth_output):
 
     """
-    
+
        This function checks output and truth vectors for data arrays.
 
        function_type     : this is the type of the Swig binding layer function
