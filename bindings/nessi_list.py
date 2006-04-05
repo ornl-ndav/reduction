@@ -280,6 +280,10 @@ class NessiList (list):
 # >>> MyNessiList.append(4)
 # ...
 # \endcode
+# It is also possible to extend the NessiList by passing it a Python list:
+# \code
+# >>> MyNessiList.extend([1,2,3,4,5,6,7,8])
+# \endcode
 #
 # \param self <i>this</i>
 # \param *number (INPUT) is(are) the number(s) to append to the NessiList
