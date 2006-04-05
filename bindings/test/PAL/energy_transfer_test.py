@@ -188,7 +188,7 @@ if __name__ == "__main__":
                       true_output_sv_d, true_output_sv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
-    
+
     # vv case
     E_i,E_i_err2,E_f,E_f_err2=initialize_inputs("double")
 
@@ -196,15 +196,15 @@ if __name__ == "__main__":
                                                            E_i_err2,\
                                                            E_f,\
                                                            E_f_err2)
-    
+
     mess = test_common.MakeCheck("vv",\
                                  output_vv,\
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
-    
+
     # vs case
     E_i,E_i_err2,input2,input2_err2=initialize_inputs("double")
 
@@ -212,15 +212,15 @@ if __name__ == "__main__":
                                                            E_i_err2,\
                                                            input2[0],\
                                                            input2_err2[0])
-    
+
     mess = test_common.MakeCheck("vs",\
                                  output_vs,\
                                  true_output_vs_d,\
                                  output_vs_err2,\
                                  true_output_vs_err2_d)
-    
+
     print mess
-    
+
     # sv case
     E_i,E_i_err2,E_f,E_f_err2=initialize_inputs("double")
 
@@ -228,27 +228,27 @@ if __name__ == "__main__":
                                                            E_i_err2[0],\
                                                            E_f,\
                                                            E_f_err2)
-    
+
     mess = test_common.MakeCheck("sv",\
                                  output_sv,\
                                  true_output_sv_d,\
                                  output_sv_err2,\
                                  true_output_sv_err2_d)
-    
+
     print mess
-    
+
     # ss case
     E_i,E_i_err2,E_f,E_f_err2=initialize_inputs("double")
     output_ss, output_ss_err2 = axis_manip.energy_transfer(E_i[0],\
                                                            E_i_err2[0],\
                                                            E_f[0],\
                                                            E_f_err2[0])
-    
+
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
                                   true_output_ss_d,\
                                   output_ss_err2,\
                                   true_output_ss_err2_d)
-    
+
     print mess
-    
+

@@ -190,14 +190,14 @@ if __name__ == "__main__":
     true_output_vv_d, true_output_vv_err2_d, true_output_vs_d,\
                       true_output_vs_err2_d =\
                       initialize_true_outputs("double")
-    
+
     true_output_vv_i, true_output_vv_err2_i, true_output_vs_i,\
                       true_output_vs_err2_i =\
                       initialize_true_outputs("int")
-    
+
     # vv case
     print "Checking Vector-Vector Multiplication Abstraction Layer Function"
-    
+
     # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
 
@@ -205,15 +205,15 @@ if __name__ == "__main__":
                                                        input1_err2,\
                                                        input2,\
                                                        input2_err2)
-    
+
     mess = test_common.MakeCheck("double",\
                                  output_vv,\
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
-    
+
     # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
 
@@ -221,20 +221,20 @@ if __name__ == "__main__":
                                                        input1_err2,\
                                                        input2,\
                                                        input2_err2)
-    
+
     mess = test_common.MakeCheck("int",\
                                  output_vv,\
                                  true_output_vv_i,\
                                  output_vv_err2,\
                                  true_output_vv_err2_i)
-    
+
     print mess
-    
-    
+
+
     # vs case
     print
     print "Checking Vector-Scalar Multiplication Abstraction Layer Function"
-    
+
     # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
 
@@ -242,27 +242,27 @@ if __name__ == "__main__":
                                                        input1_err2,\
                                                        input2[4],\
                                                        input2_err2[4])
-    
+
     mess = test_common.MakeCheck("double",\
                                  output_vs,\
                                  true_output_vs_d,\
                                  output_vs_err2,\
                                  true_output_vs_err2_d)
-    
+
     print mess
-    
+
     # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
-    
+
     output_vs, output_vs_err2 = array_manip.mult_ncerr(input1,\
                                                        input1_err2,\
                                                        input2[4],\
                                                        input2_err2[4])
-    
+
     mess = test_common.MakeCheck("int",\
                                  output_vs,\
                                  true_output_vs_i,\
                                  output_vs_err2,\
                                  true_output_vs_err2_i)
-    
+
     print mess

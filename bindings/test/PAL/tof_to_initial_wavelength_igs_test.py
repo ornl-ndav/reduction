@@ -147,7 +147,7 @@ if __name__ == "__main__":
     true_output_vv_d, true_output_vv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
-    
+
     # vv case
     tof,tof_err2=initialize_inputs("double")
 
@@ -164,16 +164,16 @@ if __name__ == "__main__":
         dist_sample_detector,\
         dist_sample_detector_err2,\
         )
-    
+
     # Check values
     mess = test_common.MakeCheck("vv",\
                                  output_vv,\
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
-    
+
     # ss case
     tof, tof_err2=initialize_inputs("double")
     output_ss, output_ss_err2 = \
@@ -189,13 +189,13 @@ if __name__ == "__main__":
         dist_sample_detector,\
         dist_sample_detector_err2,\
         )
-    
+
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
                                   true_output_ss_d,\
                                   output_ss_err2,\
                                   true_output_ss_err2_d)
-    
+
     print mess
 
-    
+

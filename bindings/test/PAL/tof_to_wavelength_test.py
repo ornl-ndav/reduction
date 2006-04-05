@@ -133,25 +133,25 @@ if __name__ == "__main__":
     print "# Checking tof_to_wavelength Python Abstraction layer #"
     print "#######################################################"
     print
-    
+
     pathlength = float(5.)
     pathlength_err2 = float(2.5)
-    
+
     # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
-    
+
     # generate inputs
     tof,tof_err2=initialize_inputs("double")
-    
+
     # vv case
     output_vv, output_vv_err2 = axis_manip.tof_to_wavelength(tof,\
                                                              tof_err2,\
                                                              pathlength,\
                                                              pathlength_err2)
-    
-    
+
+
 
     # Check values
     mess = test_common.MakeCheck("vv",\
@@ -159,21 +159,21 @@ if __name__ == "__main__":
                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
-    
-    
+
+
     # ss case
     output_ss, output_ss_err2 = axis_manip.tof_to_wavelength(tof[0],\
                                                              tof_err2[0],\
                                                              pathlength,\
                                                              pathlength_err2)
-    
+
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
                                   true_output_ss_d,\
                                   output_ss_err2,\
                                   true_output_ss_err2_d)
-    
+
     print mess
 

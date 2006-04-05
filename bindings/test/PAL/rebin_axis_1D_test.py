@@ -109,19 +109,19 @@ def initialize_true_outputs(key):
 
     return true_output_vv,\
            true_output_vv_err2,\
-           
+
 if __name__ == "__main__":
 
     mess =""
-    
+
     print "###################################################"
     print "# Checking rebin_axis_1D Python Abstraction layer #"
     print "###################################################"
     print
-    
+
     # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d = initialize_true_outputs("double")
-    
+
     # vv case
     axis_in,axis_out,input,input_err2=initialize_inputs("double")
 
@@ -135,6 +135,6 @@ if __name__ == "__main__":
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
-    
+

@@ -118,7 +118,7 @@ if __name__ == "__main__":
     print "# Checking reverse_array_cp Python Abstraction layer #"
     print "######################################################"
     print
-    
+
     # generate true_outputs
     true_output = initialize_true_outputs("double")
 

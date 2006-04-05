@@ -138,10 +138,10 @@ if __name__ == "__main__":
     true_output_vv_d, true_output_vv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
-    
+
     # generate inputs
     frequency,frequency_err2=initialize_inputs("double")
-    
+
     # vv case
     output_vv, output_vv_err2 = axis_manip.frequency_to_energy(frequency,\
                                                                frequency_err2)
@@ -152,7 +152,7 @@ if __name__ == "__main__":
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
 
     # ss case
@@ -164,5 +164,5 @@ if __name__ == "__main__":
                                   true_output_ss_d,\
                                   output_ss_err2,\
                                   true_output_ss_err2_d)
-    
+
     print mess
