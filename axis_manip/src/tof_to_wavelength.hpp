@@ -90,16 +90,16 @@ namespace AxisManip
     NumT a_err2;
 
     // fill the local variables
-    retstr += __tof_to_wavelength_static(pathlength, pathlength_err2, 
+    retstr += __tof_to_wavelength_static(pathlength, pathlength_err2,
                                          a, a2, a_err2);
 
     // do the calculation
     size_t size_tof = tof.size();
     for (size_t i = 0; i < size_tof; ++i)
       {
-        retstr += __tof_to_wavelength_dynamic(tof[i], tof_err2[i], 
+        retstr += __tof_to_wavelength_dynamic(tof[i], tof_err2[i],
                                               a, a2, a_err2,
-                                              wavelength[i], 
+                                              wavelength[i],
                                               wavelength_err2[i]);
       }
 
@@ -125,7 +125,7 @@ namespace AxisManip
     NumT a_err2;
 
     // fill the local variables
-    retstr += __tof_to_wavelength_static(pathlength, pathlength_err2, 
+    retstr += __tof_to_wavelength_static(pathlength, pathlength_err2,
                                          a, a2, a_err2);
 
     // do the calculation

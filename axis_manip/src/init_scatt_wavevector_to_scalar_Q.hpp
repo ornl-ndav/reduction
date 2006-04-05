@@ -103,7 +103,7 @@ namespace AxisManip
     size_t size_wavevector=initial_wavevector.size();
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
-        retstr += 
+        retstr +=
           __init_scatt_wavevector_to_scalar_Q_dynamic(
                                                       initial_wavevector[i],
                                                       initial_wavevector_err2[i],
@@ -176,7 +176,7 @@ namespace AxisManip
     size_t size_wavevector=final_wavevector.size();
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
-        retstr += 
+        retstr +=
           __init_scatt_wavevector_to_scalar_Q_dynamic(
                                                       initial_wavevector,
                                                       initial_wavevector_err2,
@@ -248,7 +248,7 @@ namespace AxisManip
     size_t size_wavevector=initial_wavevector.size();
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
-        retstr += 
+        retstr +=
           __init_scatt_wavevector_to_scalar_Q_dynamic(
                                                       initial_wavevector[i],
                                                       initial_wavevector_err2[i],
@@ -286,7 +286,7 @@ namespace AxisManip
     retstr += __init_scatt_wavevector_to_scalar_Q_static(polar_angle, a, b,
                                                          c);
     // do the calculation
-    retstr += 
+    retstr +=
       __init_scatt_wavevector_to_scalar_Q_dynamic(initial_wavevector,
                                                   initial_wavevector_err2,
                                                   final_wavevector,
