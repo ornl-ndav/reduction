@@ -74,7 +74,6 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT _4Pi;
@@ -83,30 +82,22 @@ namespace AxisManip
     NumT cos2;
 
     // fill the local variables
-    warn = __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin, sin2, cos2);
-    if (!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin, 
+                                              sin2, cos2);
 
     // do the calculation
     size_t size_wavelength = wavelength.size();
     for (size_t i=0; i < size_wavelength ; ++i)
       {
-        warn = __wavelength_to_scalar_Q_dynamic(wavelength[i],
-                                                wavelength_err2[i],
-                                                scatt_angle,
-                                                scatt_angle_err2,
-                                                _4Pi, sin, sin2, cos2,
-                                                Q[i],
-                                                Q_err2[i]);
-
-        if(!(warn.empty()))
-          {
-            retstr+=warn;
-          }
+        retstr += __wavelength_to_scalar_Q_dynamic(wavelength[i],
+                                                   wavelength_err2[i],
+                                                   scatt_angle,
+                                                   scatt_angle_err2,
+                                                   _4Pi, sin, sin2, cos2,
+                                                   Q[i],
+                                                   Q_err2[i]);
       }
-
+    
     return retstr;
   }
 
@@ -121,7 +112,6 @@ namespace AxisManip
                          void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT _4Pi;
@@ -130,25 +120,17 @@ namespace AxisManip
     NumT cos2;
 
     // fill the local variables
-    warn = __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin, sin2, cos2);
-    if (!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin, 
+                                              sin2, cos2);
 
     // do the calculation
-    warn = __wavelength_to_scalar_Q_dynamic(wavelength,
-                                            wavelength_err2,
-                                            scatt_angle,
-                                            scatt_angle_err2,
-                                            _4Pi, sin, sin2, cos2,
-                                            Q,
-                                            Q_err2);
-
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __wavelength_to_scalar_Q_dynamic(wavelength,
+                                               wavelength_err2,
+                                               scatt_angle,
+                                               scatt_angle_err2,
+                                               _4Pi, sin, sin2, cos2,
+                                               Q,
+                                               Q_err2);
 
     return retstr;
   }

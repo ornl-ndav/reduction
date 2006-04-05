@@ -80,7 +80,6 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN);    // the warning string
-    std::string warn;                         // the temporary warning string
 
     // alloacate local variables
     NumT a;
@@ -92,33 +91,28 @@ namespace AxisManip
     NumT wf2;
 
     // calculate static paramters
-    warn=__tof_to_initial_wavelength_igs_static(final_wavelength, time_offset,
-                                                dist_source_sample,
-                                                dist_sample_detector, a,
-                                                b, c, ls2, inv_ls2, ld2, wf2);
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr +=__tof_to_initial_wavelength_igs_static(final_wavelength, 
+                                                    time_offset,
+                                                    dist_source_sample,
+                                                    dist_sample_detector, a,
+                                                    b, c, ls2, inv_ls2, ld2, 
+                                                    wf2);
 
     // fill the results array
     size_t size_tof = tof.size();
     for (size_t i = 0 ; i < size_tof ; ++i)
       {
-        warn=__tof_to_initial_wavelength_igs_dynamic(
-                                                    tof[i], tof_err2[i],
-                                                    final_wavelength_err2,
-                                                    time_offset_err2,
-                                                    dist_source_sample_err2,
-                                                    dist_sample_detector_err2,
-                                                    initial_wavelength[i],
-                                                    initial_wavelength_err2[i],
-                                                    a, b, c, ls2, inv_ls2,
-                                                    ld2, wf2);
-        if(!(warn.empty()))
-          {
-            retstr+=warn;
-          }
+        retstr += 
+          __tof_to_initial_wavelength_igs_dynamic(
+                                                  tof[i], tof_err2[i],
+                                                  final_wavelength_err2,
+                                                  time_offset_err2,
+                                                  dist_source_sample_err2,
+                                                  dist_sample_detector_err2,
+                                                  initial_wavelength[i],
+                                                  initial_wavelength_err2[i],
+                                                  a, b, c, ls2, inv_ls2,
+                                                  ld2, wf2);
       }
 
     // send back all warnings
@@ -153,34 +147,27 @@ namespace AxisManip
 
     // some string parameters for dealing with warnings
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     // calculate static paramters
-    warn=__tof_to_initial_wavelength_igs_static(final_wavelength, time_offset,
-                                                dist_source_sample,
-                                                dist_sample_detector, a,
-                                                b, c, ls2, inv_ls2, ld2, wf2);
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
-
+    retstr +=__tof_to_initial_wavelength_igs_static(final_wavelength, 
+                                                    time_offset,
+                                                    dist_source_sample,
+                                                    dist_sample_detector, a,
+                                                    b, c, ls2, inv_ls2, ld2, 
+                                                    wf2);
+    
     // fill the results
-    warn=__tof_to_initial_wavelength_igs_dynamic(tof, tof_err2,
-                                                 final_wavelength_err2,
-                                                 time_offset_err2,
-                                                 dist_source_sample_err2,
-                                                 dist_sample_detector_err2,
-                                                 initial_wavelength,
-                                                 initial_wavelength_err2,
-                                                 a, b, c, ls2, inv_ls2, ld2,
-                                                 wf2);
-
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
-
+    retstr += 
+      __tof_to_initial_wavelength_igs_dynamic(tof, tof_err2,
+                                              final_wavelength_err2,
+                                              time_offset_err2,
+                                              dist_source_sample_err2,
+                                              dist_sample_detector_err2,
+                                              initial_wavelength,
+                                              initial_wavelength_err2,
+                                              a, b, c, ls2, inv_ls2, ld2,
+                                              wf2);
+    
     // send back all warnings
     return retstr;
   }

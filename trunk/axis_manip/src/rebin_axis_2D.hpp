@@ -75,7 +75,6 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     size_t nold_input1 = axis_in_1.size() - 1;
     size_t nold_input2 = axis_in_2.size() - 1;
@@ -110,18 +109,13 @@ namespace AxisManip
 
         try
           {
-            warn = rebin_axis_1D(axis_in_2, tmp_in, tmp_in_err2, axis_out_2,
-                                 tmp_out, tmp_out_err2);
+            retstr += rebin_axis_1D(axis_in_2, tmp_in, tmp_in_err2, axis_out_2,
+                                    tmp_out, tmp_out_err2);
           }
         catch(std::invalid_argument &e)
           {
             throw std::invalid_argument(ra2_func_str+" rebin axis 2: "
                                         +e.what());
-          }
-
-        if(!warn.empty())
-          {
-            retstr += warn;
           }
 
         // Fill returned information into temporary storage
@@ -172,18 +166,13 @@ namespace AxisManip
 
         try
           {
-            warn = rebin_axis_1D(axis_in_1, tmp_in, tmp_in_err2, axis_out_1,
-                                 tmp_out, tmp_out_err2);
+            retstr += rebin_axis_1D(axis_in_1, tmp_in, tmp_in_err2, axis_out_1,
+                                    tmp_out, tmp_out_err2);
           }
         catch(std::invalid_argument &e)
           {
             throw std::invalid_argument(ra2_func_str+" rebin axis 1: "
                                         +e.what());
-          }
-
-        if(!warn.empty())
-          {
-            retstr += warn;
           }
 
         iter = output.begin()+j;

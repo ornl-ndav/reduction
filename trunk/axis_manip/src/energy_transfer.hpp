@@ -75,32 +75,25 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
     NumT h2;
 
     // fill the local variables
-    warn=__energy_transfer_static(h,h2);
-    if(!(warn.empty())){
-      retstr+=warn;
-    }
+    retstr += __energy_transfer_static(h,h2);
 
     // do the calculation
     size_t size_energy = initial_energy.size();
     for (size_t i = 0; i < size_energy ; ++i )
       {
-        warn=__energy_transfer_dynamic(initial_energy[i],
+        retstr += __energy_transfer_dynamic(initial_energy[i],
                                        initial_energy_err2[i],
                                        final_energy[i],
                                        final_energy_err2[i],
                                        h, h2,
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
-        if(!(warn.empty())){
-          retstr+=warn;
-        }
       }
 
     return retstr;
@@ -137,32 +130,25 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
     NumT h2;
 
     // fill the local variables
-    warn=__energy_transfer_static(h,h2);
-    if(!(warn.empty())){
-      retstr+=warn;
-    }
+    retstr += __energy_transfer_static(h,h2);
 
     // do the calculation
     size_t size_energy = initial_energy.size();
     for (size_t i = 0; i < size_energy ; ++i )
       {
-        warn=__energy_transfer_dynamic(initial_energy[i],
-                                       initial_energy_err2[i],
-                                       final_energy,
-                                       final_energy_err2,
-                                       h, h2,
-                                       energy_transfer[i],
-                                       energy_transfer_err2[i]);
-        if(!(warn.empty())){
-          retstr+=warn;
-        }
+        retstr += __energy_transfer_dynamic(initial_energy[i],
+                                            initial_energy_err2[i],
+                                            final_energy,
+                                            final_energy_err2,
+                                            h, h2,
+                                            energy_transfer[i],
+                                            energy_transfer_err2[i]);
       }
 
     return retstr;
@@ -199,34 +185,25 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
     NumT h2;
 
     // fill the local variables
-    warn=__energy_transfer_static(h,h2);
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __energy_transfer_static(h,h2);
 
     // do the calculation
     size_t size_energy = final_energy.size();
     for (size_t i = 0; i < size_energy ; ++i )
       {
-        warn=__energy_transfer_dynamic(initial_energy,
-                                       initial_energy_err2,
-                                       final_energy[i],
-                                       final_energy_err2[i],
-                                       h, h2,
-                                       energy_transfer[i],
-                                       energy_transfer_err2[i]);
-        if(!(warn.empty()))
-          {
-            retstr+=warn;
-          }
+        retstr += __energy_transfer_dynamic(initial_energy,
+                                            initial_energy_err2,
+                                            final_energy[i],
+                                            final_energy_err2[i],
+                                            h, h2,
+                                            energy_transfer[i],
+                                            energy_transfer_err2[i]);
       }
 
     return retstr;
@@ -243,28 +220,19 @@ namespace AxisManip
                   void *temp=NULL)
   {
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
-    std::string warn;                      // the temporary warning string
 
     // allocate local variables
     NumT h;
     NumT h2;
 
     // fill the local variables
-    warn=__energy_transfer_static(h,h2);
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __energy_transfer_static(h,h2);
 
     // do the calculation
-    warn=__energy_transfer_dynamic(initial_energy, initial_energy_err2,
-                                   final_energy, final_energy_err2,
-                                   h, h2,
-                                   energy_transfer, energy_transfer_err2);
-    if(!(warn.empty()))
-      {
-        retstr+=warn;
-      }
+    retstr += __energy_transfer_dynamic(initial_energy, initial_energy_err2,
+                                        final_energy, final_energy_err2,
+                                        h, h2,
+                                        energy_transfer, energy_transfer_err2);
 
     return retstr;
   }
