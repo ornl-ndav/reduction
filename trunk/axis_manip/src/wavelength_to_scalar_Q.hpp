@@ -73,6 +73,17 @@ namespace AxisManip
         throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
       }
 
+    // check that the wavelength arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength, wavelength_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(et_func_str+" (v,s): wavelength "
+                                    +e.what());
+      }
+
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables
