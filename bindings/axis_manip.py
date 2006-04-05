@@ -146,12 +146,12 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 
     try:
         if initial_energy.__type__ != final_energy.__type__:
-            raise TypeError, "Initial Energy and Final Energy array types \
-            are not the same."
+            raise TypeError, "Initial Energy and Final Energy array types"\
+            +"are not the same."
 
         if initial_energy.__type__ != initial_energy_err2.__type__:
-            raise TypeError, "Initial Energy and Initial Energy Err2 array \
-            types are not the same."
+            raise TypeError, "Initial Energy and Initial Energy Err2 array"\
+            +"types are not the same."
 
         if (initial_energy.__type__ == nessi_list.NessiList.DOUBLE):
             energy_transfer = nessi_list.NessiList(len(initial_energy))
