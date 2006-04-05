@@ -106,19 +106,19 @@ def initialize_true_outputs(key):
 
         # initialize the correct outputs for vector vector case
         true_output_vv.append(float(11.42656846417465566))
-        true_output_vv_err2.append(float(32.4255962373546538))
+        true_output_vv_err2.append(float(78.956835208714863938))
         true_output_vv.append(float(3.80885615472488537))
-        true_output_vv_err2.append(float(-1.2329510427558070))
+        true_output_vv_err2.append(float(3.937186620728660547))
         true_output_vv.append(float(2.28531369283493113))
-        true_output_vv_err2.append(float(-0.79203962036934561))
+        true_output_vv_err2.append(float(1.069209938485062406))
         true_output_vv.append(float(1.63236692345352230))
-        true_output_vv_err2.append(float(-0.48023389777822056))
+        true_output_vv_err2.append(float(0.469383224086273310))
         true_output_vv.append(float(1.26961871824162853))
-        true_output_vv_err2.append(float(-0.31609808138503581))
+        true_output_vv_err2.append(float(0.258361659002127153))
 
   # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(11.42656846417465566)
-        true_output_ss.val_err2 = float(32.42559623735466801)
+        true_output_ss.val_err2 = float(78.956835208714863938)
 
     else:
 
