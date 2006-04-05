@@ -18,6 +18,8 @@
 from axis_manip_bind import wavelength_to_scalar_Q_d
 from axis_manip_bind import wavelength_to_scalar_Q_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -56,7 +58,10 @@ TruthOutput_VV_D.append(1.26961871824162853)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 TruthOutput_Err2_VV_D.append(78.956835208714863938)
-TruthOutput_Err2_VV_D.append(3.937186620728660547)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(3.937186620728660100)
+else:
+    TruthOutput_Err2_VV_D.append(3.937186620728660547)
 TruthOutput_Err2_VV_D.append(1.069209938485062406)
 TruthOutput_Err2_VV_D.append(0.469383224086273310)
 TruthOutput_Err2_VV_D.append(0.258361659002127153)

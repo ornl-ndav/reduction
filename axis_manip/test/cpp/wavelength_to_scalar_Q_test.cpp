@@ -106,7 +106,7 @@ void initialize_true_outputs(float                & true_output_ss,
   // scalar scalar
   true_output_ss=static_cast<float>(11.42656898);
 #ifdef LINUX
-  true_output_ss_err2=static_cast<float>(78.9568323);
+  true_output_ss_err2=static_cast<float>(78.9568405);
 #endif
 #ifdef MAC
   true_output_ss_err2=static_cast<float>(78.9568323);
@@ -118,7 +118,7 @@ void initialize_true_outputs(float                & true_output_ss,
   // vector vector
   true_output_vv.push_back(static_cast<float>(11.42656898));
 #ifdef LINUX
-  true_output_vv_err2.push_back(static_cast<float>(78.9568323));
+  true_output_vv_err2.push_back(static_cast<float>(78.9568405));
 #endif
 #ifdef MAC
   true_output_vv_err2.push_back(static_cast<float>(78.9568323));
@@ -128,7 +128,7 @@ void initialize_true_outputs(float                & true_output_ss,
 #endif
   true_output_vv.push_back(static_cast<float>(3.80885624));
 #ifdef LINUX
-  true_output_vv_err2.push_back(static_cast<float>(3.937186718));
+  true_output_vv_err2.push_back(static_cast<float>(3.937187000));
 #endif
 #ifdef MAC
   true_output_vv_err2.push_back(static_cast<float>(3.937186718));
@@ -166,30 +166,14 @@ void initialize_true_outputs(double                & true_output_ss,
 {
   // scalar scalar
   true_output_ss=static_cast<double>(11.42656846417465566);
-#ifdef LINUX
   true_output_ss_err2=static_cast<double>(78.956835208714863938);
-#endif
-#ifdef MAC
-  true_output_ss_err2=static_cast<double>(78.956835208714863938);
-#endif
-#ifdef LINUX64
-  true_output_ss_err2=static_cast<double>(78.956835208714863938);
-#endif
 
   // vector vector
   true_output_vv.push_back(static_cast<double>(11.42656846417465566));
-#ifdef LINUX
   true_output_vv_err2.push_back(static_cast<double>(78.956835208714863938));
-#endif
-#ifdef MAC
-  true_output_vv_err2.push_back(static_cast<double>(78.956835208714863938));
-#endif
-#ifdef LINUX64
-  true_output_vv_err2.push_back(static_cast<double>(78.956835208714863938));
-#endif
   true_output_vv.push_back(static_cast<double>(3.80885615472488537));
 #ifdef LINUX
-  true_output_vv_err2.push_back(static_cast<double>(3.937186620728660547));
+  true_output_vv_err2.push_back(static_cast<double>(3.937186620728660100));
 #endif
 #ifdef MAC
   true_output_vv_err2.push_back(static_cast<double>(3.937186620728660547));

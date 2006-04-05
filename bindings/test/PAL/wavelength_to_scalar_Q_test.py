@@ -30,6 +30,8 @@
 
 import axis_manip
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 from vpair_bind import *
 
@@ -108,7 +110,10 @@ def initialize_true_outputs(key):
         true_output_vv.append(float(11.42656846417465566))
         true_output_vv_err2.append(float(78.956835208714863938))
         true_output_vv.append(float(3.80885615472488537))
-        true_output_vv_err2.append(float(3.937186620728660547))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(3.937186620728660100))
+        else:
+            true_output_vv_err2.append(float(3.937186620728660547))
         true_output_vv.append(float(2.28531369283493113))
         true_output_vv_err2.append(float(1.069209938485062406))
         true_output_vv.append(float(1.63236692345352230))
