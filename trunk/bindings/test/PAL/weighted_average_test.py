@@ -102,7 +102,7 @@ if __name__ == "__main__":
     print "# Checking weighted_average Python Abstraction layer #"
     print "######################################################"
     print
-    
+
   # generate true_outputs
     true_output, true_output_err2 = initialize_true_outputs("double")
 

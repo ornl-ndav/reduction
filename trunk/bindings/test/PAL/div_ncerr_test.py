@@ -228,15 +228,15 @@ if __name__ == "__main__":
                       true_output_vs_d, true_output_vs_err2_d,\
                       true_output_sv_d, true_output_sv_err2_d = \
                       initialize_true_outputs("double")
-    
+
     true_output_vv_i, true_output_vv_err2_i,\
                       true_output_vs_i, true_output_vs_err2_i,\
                       true_output_sv_i, true_output_sv_err2_i =\
                       initialize_true_outputs("int")
-    
+
     # vv case
     print "Checking Vector-Vector Division Abstraction Layer Function"
-    
+
     # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
 
@@ -244,13 +244,13 @@ if __name__ == "__main__":
                                                       input1_err2,\
                                                       input2,\
                                                       input2_err2)
-    
+
     mess = test_common.MakeCheck("double",\
                                  output_vv,\
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
 
     # int case
@@ -260,16 +260,16 @@ if __name__ == "__main__":
                                                       input1_err2,\
                                                       input2,\
                                                       input2_err2)
-    
+
     mess = test_common.MakeCheck("int",\
                                  output_vv,\
                                  true_output_vv_i,\
                                  output_vv_err2,\
                                  true_output_vv_err2_i)
-    
+
     print mess
-    
-    
+
+
     # vs case
     print
     print "Checking Vector-Scalar Division Abstraction Layer Function"
@@ -281,15 +281,15 @@ if __name__ == "__main__":
                                                       input1_err2,\
                                                       input2[0],\
                                                       input2_err2[0])
-    
+
     mess = test_common.MakeCheck("double",\
                                  output_vs,\
                                  true_output_vs_d,\
                                  output_vs_err2,\
                                  true_output_vs_err2_d)
-    
+
     print mess
-    
+
     # int case
     input1,input1_err2,input2,input2_err2=initialize_inputs("int")
 
@@ -297,19 +297,19 @@ if __name__ == "__main__":
                                                       input1_err2,\
                                                       input2[0],\
                                                       input2_err2[0])
-    
+
     mess = test_common.MakeCheck("int",\
                                  output_vs,\
                                  true_output_vs_i,\
                                  output_vs_err2,\
                                  true_output_vs_err2_i)
-    
+
     print mess
-    
+
     # sv case
     print
     print "Checking Scalar-Vector Division Abstraction Layer Function"
-    
+
     # double case
     input1,input1_err2,input2,input2_err2=initialize_inputs("double")
 
@@ -317,13 +317,13 @@ if __name__ == "__main__":
                                                       input1_err2[0],\
                                                       input2,\
                                                       input2_err2)
-    
+
     mess = test_common.MakeCheck("double",\
                                  output_sv,\
                                  true_output_sv_d,\
                                  output_sv_err2,\
                                  true_output_sv_err2_d)
-    
+
     print mess
 
     # int case
@@ -333,12 +333,12 @@ if __name__ == "__main__":
                                                       input1_err2[0],\
                                                       input2,\
                                                       input2_err2)
-    
+
     mess = test_common.MakeCheck("int",\
                                  output_sv,\
                                  true_output_sv_i,\
                                  output_sv_err2,\
                                  true_output_sv_err2_i)
-    
+
     print mess
-    
+

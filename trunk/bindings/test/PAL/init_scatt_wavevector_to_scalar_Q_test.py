@@ -228,7 +228,7 @@ if __name__ == "__main__":
     print "#         Python Abstraction layer           #"
     print "##############################################"
     print
-    
+
     # generate global inputs
     polar = float(0.22)
     polar_err2 = float(0.11)
@@ -239,7 +239,7 @@ if __name__ == "__main__":
                       true_output_sv_d, true_output_sv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
-    
+
     # vv case
     k_i,k_i_err2,k_f,k_f_err2=initialize_inputs("double")
 
@@ -256,7 +256,7 @@ if __name__ == "__main__":
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
 
     # vs case
@@ -269,18 +269,18 @@ if __name__ == "__main__":
                                                             input2_err2[0],\
                                                             polar,\
                                                             polar_err2)
-    
+
     mess = test_common.MakeCheck("vs",\
                                  output_vs,\
                                  true_output_vs_d,\
                                  output_vs_err2,\
                                  true_output_vs_err2_d)
-    
+
     print mess
-    
+
     # sv case
     k_i,k_i_err2,k_f,k_f_err2=initialize_inputs("double")
-    
+
     output_sv, output_sv_err2 = \
                axis_manip.init_scatt_wavevector_to_scalar_Q(k_i[0],\
                                                             k_i_err2[0],\
@@ -288,15 +288,15 @@ if __name__ == "__main__":
                                                             k_f_err2,\
                                                             polar,\
                                                             polar_err2)
-    
+
     mess = test_common.MakeCheck("sv",\
                                  output_sv,\
                                  true_output_sv_d,\
                                  output_sv_err2,\
                                  true_output_sv_err2_d)
-    
+
     print mess
-    
+
     # ss case
     k_i,k_i_err2,k_f,k_f_err2=initialize_inputs("double")
     output_ss, output_ss_err2 = \
@@ -306,12 +306,12 @@ if __name__ == "__main__":
                                                             k_f_err2[0],\
                                                             polar,\
                                                             polar_err2)
-    
+
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
                                   true_output_ss_d,\
                                   output_ss_err2,\
                                   true_output_ss_err2_d)
-    
+
     print mess
 
