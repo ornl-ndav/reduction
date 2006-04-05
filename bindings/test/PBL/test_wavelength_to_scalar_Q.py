@@ -55,16 +55,16 @@ TruthOutput_VV_D.append(1.63236692345352230)
 TruthOutput_VV_D.append(1.26961871824162853)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(32.42559623735466801)
-TruthOutput_Err2_VV_D.append(-1.23295104275580614)
-TruthOutput_Err2_VV_D.append(-0.79203962036934561)
-TruthOutput_Err2_VV_D.append(-0.48023389777822056)
-TruthOutput_Err2_VV_D.append(-0.31609808138503581)
+TruthOutput_Err2_VV_D.append(78.956835208714863938)
+TruthOutput_Err2_VV_D.append(3.937186620728660547)
+TruthOutput_Err2_VV_D.append(1.069209938485062406)
+TruthOutput_Err2_VV_D.append(0.469383224086273310)
+TruthOutput_Err2_VV_D.append(0.258361659002127153)
 
 # Truth values for wavelength_to_scalar_Q scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
 TruthOutput_SS_D.val = 11.42656846417465566
-TruthOutput_SS_D.val_err2 = 32.42559623735466801
+TruthOutput_SS_D.val_err2 = 78.956835208714863938
 
 ###############################################################################
 # Create output placeholders for vectors
