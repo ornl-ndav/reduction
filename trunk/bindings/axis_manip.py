@@ -301,8 +301,8 @@ def frequency_to_energy(frequency, frequency_err2):
 
     try:
         if frequency.__type__ != frequency_err2.__type__:
-            raise TypeError, "Frequency and Frequency Err2 arrays are not \
-            the same type"
+            raise TypeError, "Frequency and Frequency Err2 arrays are not"\
+            +"the same type"
 
         if (frequency.__type__ == nessi_list.NessiList.DOUBLE):
             E = nessi_list.NessiList(len(frequency))
@@ -447,12 +447,12 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 
     try:
         if initial_wavevector.__type__ != final_wavevector.__type__:
-            raise TypeError, "Initial Wavevector and Scattered Wavevector \
-            array types are not the same."
+            raise TypeError, "Initial Wavevector and Scattered Wavevector"\
+            +"array types are not the same."
 
         if initial_wavevector.__type__ != initial_wavevector_err2.__type__:
-            raise TypeError, "Initial Wavevector and Initial Wavevector Err2 \
-            array types are not the same."
+            raise TypeError, "Initial Wavevector and Initial Wavevector Err2"\
+            +"array types are not the same."
 
         if (initial_wavevector.__type__ == nessi_list.NessiList.DOUBLE):
             Q = nessi_list.NessiList(len(initial_wavevector))
@@ -777,8 +777,8 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
         raise TypeError, "Input Axis and Output Axis are not the same type."
 
     if input.__type__ != input_err2.__type__:
-        raise TypeError, "Input Data and Input Data Err2 are not the same \
-        type."
+        raise TypeError, "Input Data and Input Data Err2 are not the same"\
+        +"type."
 
     if (axis_in.__type__ == nessi_list.NessiList.DOUBLE):
         output = nessi_list.NessiList(len(axis_out)-1)
@@ -1022,16 +1022,16 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
         raise TypeError, "Input Axis 1 and Input Data are not the same type."
 
     if axis_in_1.__type__ != axis_out_1.__type__:
-        raise TypeError, "Input Axis 1 and Output Axis 1 are not the same \
-        type."
+        raise TypeError, "Input Axis 1 and Output Axis 1 are not the same"\
+        +"type."
 
     if axis_out_1.__type__ != axis_out_2.__type__:
-        raise TypeError, "Output Axis 1 and Output Axis 2 are not the same \
-        type."
+        raise TypeError, "Output Axis 1 and Output Axis 2 are not the same"\
+        +"type."
 
     if input.__type__ != input_err2.__type__:
-        raise TypeError, "Input Data and Input Data Err2 are not the same \
-        type."
+        raise TypeError, "Input Data and Input Data Err2 are not the same"\
+        +"type."
 
     if (axis_in_1.__type__ == nessi_list.NessiList.DOUBLE):
         output = nessi_list.NessiList((len(axis_out_1)-1) * \
@@ -1602,8 +1602,8 @@ def wavelength_to_energy(wavelength, wavelength_err2):
     """
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
-            raise TypeError, "Wavelength and Wavelength Err2 arrays are not \
-            the same type"
+            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
+            +"the same type"
 
         if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
             energy = nessi_list.NessiList(len(wavelength))
@@ -1712,8 +1712,8 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
-            raise TypeError, "Wavelength and Wavelength Err2 arrays are not \
-            the same type"
+            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
+            +"the same type"
 
         if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
             wavevector = nessi_list.NessiList(len(wavelength))
@@ -1823,8 +1823,8 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
 
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
-            raise TypeError, "Wavelength and Wavelength Err2 arrays are not \
-            the same type"
+            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
+            +"the same type"
 
         if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
             Q = nessi_list.NessiList(len(wavelength))
