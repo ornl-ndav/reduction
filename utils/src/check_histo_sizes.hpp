@@ -71,13 +71,13 @@ namespace Utils
     size_t size_err2 = input_err2.size();
     size_t size_axis_1 = axis_1.size();
     size_t size_axis_2 = axis_2.size();
-    
+
     if (size != size_err2)
       {
         std::string errstr = "input and input_err2 are not the same size";
         throw std::invalid_argument(errstr);
       }
-    
+
     if(size_axis_1*size_axis_2 != size+size_axis_1+size_axis_2-1)
       {
         std::string errstr = "size(axis_1)*size(axis_2) is not ";
