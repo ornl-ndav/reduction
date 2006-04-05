@@ -129,9 +129,10 @@ if __name__ == "__main__":
 
     mess =""
 
-    print "##################################################################"
-    print "#Checking frequency_to_energy Python Abstraction layer for double#"
-    print "##################################################################"
+    print "#########################################################"
+    print "# Checking frequency_to_energy Python Abstraction layer #"
+    print "#########################################################"
+    print
 
     # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d,\
@@ -165,4 +166,3 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
     
     print mess
-    print

@@ -156,11 +156,12 @@ if __name__ == "__main__":
 
     mess =""
 
-    print "############################################################"
-    print "#Checking rebin_axis_2D Python Abstraction layer for double#"
-    print "############################################################"
-
-  # generate true_outputs
+    print "###################################################"
+    print "# Checking rebin_axis_2D Python Abstraction layer #"
+    print "###################################################"
+    print
+    
+    # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d = initialize_true_outputs("double")
 
     # vv case

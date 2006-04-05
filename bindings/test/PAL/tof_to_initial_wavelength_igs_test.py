@@ -129,9 +129,10 @@ if __name__ == "__main__":
 
     mess =""
 
-    print "########################################################################"
-    print "#Checking tof_to_initial_wavelength Python Abstraction layer for double#"
-    print "########################################################################"
+    print "###################################################################"
+    print "# Checking tof_to_initial_wavelength_igs Python Abstraction layer #"
+    print "###################################################################"
+    print
 
     final_wavelength = float(1.25)
     final_wavelength_err2 = float(0.25)
@@ -142,7 +143,7 @@ if __name__ == "__main__":
     dist_sample_detector = float(0.51)
     dist_sample_detector_err2 = float(0.05)
 
-  # generate true_outputs
+    # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
@@ -196,5 +197,5 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
     
     print mess
-    print
+
     

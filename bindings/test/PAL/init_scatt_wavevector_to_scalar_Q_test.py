@@ -223,10 +223,12 @@ if __name__ == "__main__":
 
     mess =""
 
-    print "################################################################################"
-    print "#Checking init_scatt_wavevector_to_scalar_Q Python Abstraction layer for double#"
-    print "################################################################################"
-
+    print "##############################################"
+    print "# Checking init_scatt_wavevector_to_scalar_Q #"
+    print "#         Python Abstraction layer           #"
+    print "##############################################"
+    print
+    
     # generate global inputs
     polar = float(0.22)
     polar_err2 = float(0.11)
@@ -271,7 +273,7 @@ if __name__ == "__main__":
     mess = test_common.MakeCheck("vs",\
                                  output_vs,\
                                  true_output_vs_d,\
-                 output_vs_err2,\
+                                 output_vs_err2,\
                                  true_output_vs_err2_d)
     
     print mess
@@ -312,4 +314,4 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
     
     print mess
-    print
+

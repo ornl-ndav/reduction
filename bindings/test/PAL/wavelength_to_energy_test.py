@@ -130,10 +130,11 @@ if __name__ == "__main__":
 
     mess =""
 
-    print "###################################################################"
-    print "#Checking wavelength_to_energy Python Abstraction layer for double#"
-    print "###################################################################"
-
+    print "##########################################################"
+    print "# Checking wavelength_to_energy Python Abstraction layer #"
+    print "##########################################################"
+    print
+    
     # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
