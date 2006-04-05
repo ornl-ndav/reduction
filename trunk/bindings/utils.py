@@ -61,8 +61,8 @@ import utils_bind
 #
 
 ##
-# \defgroup calibrate_reflectometer_area_det \
-# utils::calibrate_reflectometer_area_det
+# \defgroup calib_refl_areadet \
+# utils::calib_refl_areadet
 # \{
 #
 
@@ -78,7 +78,7 @@ import utils_bind
 # \exception NotImplementedError is raised when the function is called since
 #            it is not implemented.
 
-def calibrate_reflectometer_area_det():
+def calib_refl_areadet():
     """
     ---------------------------------------------------------------------------
     This function calibrates a reflectometer 2D detector array for pixel
@@ -94,7 +94,7 @@ def calibrate_reflectometer_area_det():
     raise NotImplementedError, "This function is not implemented."
 
 ##
-# \}  // end of calibrate_reflectometer_area_det group
+# \}  // end of calib_refl_areadet group
 #
 
 ##
