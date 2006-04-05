@@ -135,12 +135,18 @@ def initialize_true_outputs(key):
         if(platform=="linux2" and uname()[4]=="x86_64"):
             true_output_vv_err2.append(float(0.98320158587953999))
             true_output_vv.append(float(0.72972579648330460))
+        elif(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(0.98320158587954031))
+            true_output_vv.append(float(0.72972579648330400))
         else:
             true_output_vv_err2.append(float(0.98320158587954031))
             true_output_vv.append(float(0.72972579648330349))
         if(platform=="linux2" and uname()[4]=="x86_64"):
             true_output_vv_err2.append(float(1.51250520438526981))
             true_output_vv.append(float(0.93914148175842727))
+        elif(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(1.51250520438527300))
+            true_output_vv.append(float(0.93914148175842626))
         else:
             true_output_vv_err2.append(float(1.51250520438527535))
             true_output_vv.append(float(0.93914148175842626))
@@ -148,9 +154,14 @@ def initialize_true_outputs(key):
             true_output_vv_err2.append(float(2.24514211944372999))
         else:
             true_output_vv_err2.append(float(2.24514211944373531))
-        true_output_vv.append(float(1.15233845294826764))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv.append(float(1.15233845294826900))
+        else:
+            true_output_vv.append(float(1.15233845294826764))
         if(platform=="linux2" and uname()[4]=="x86_64"):
             true_output_vv_err2.append(float(3.20946303556517476))
+        elif(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(3.20946303556516680))
         else:
             true_output_vv_err2.append(float(3.20946303556517609))
 
@@ -179,10 +190,17 @@ def initialize_true_outputs(key):
         true_output_sv_err2.append(float(1.65810190421910097))
         true_output_sv.append(float(2.28454953532442894))
         true_output_sv_err2.append(float(2.69188033991111108))
-        true_output_sv.append(float(3.28136734924480144))
-        true_output_sv_err2.append(float(3.70446789959436140))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_sv.append(float(3.28136734924480100))
+            true_output_sv_err2.append(float(3.70446789959436200))
+        else:
+            true_output_sv.append(float(3.28136734924480144))
+            true_output_sv_err2.append(float(3.70446789959436140))
         true_output_sv.append(float(4.27967017210773370))
-        true_output_sv_err2.append(float(4.71099862050503759))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_sv_err2.append(float(4.71099862050503670))
+        else:
+            true_output_sv_err2.append(float(4.71099862050503759))
 
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(0.35036606096122696)
