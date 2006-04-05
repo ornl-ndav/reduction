@@ -30,6 +30,8 @@
 
 import axis_manip
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 from vpair_bind import *
 
@@ -123,20 +125,41 @@ def initialize_true_outputs(key):
         true_output_ss=DoubleVPair()
 
 	    # initialize the correct outputs for vector vector case
-        true_output_vv.append(float(0.35036606096122696))       
-        true_output_vv_err2.append(float(0.41659964378851194))		
+        true_output_vv.append(float(0.35036606096122696))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv_err2.append(float(0.41659964378851260))
+        else:
+            true_output_vv_err2.append(float(0.41659964378851194))
         true_output_vv.append(float(0.52860472569260141))	   
-        true_output_vv_err2.append(float(0.98320158587954031))
-        true_output_vv.append(float(0.72972579648330349))	  
-        true_output_vv_err2.append(float(1.51250520438527535))
-        true_output_vv.append(float(0.93914148175842626))	   
-        true_output_vv_err2.append(float(2.24514211944373531))
-        true_output_vv.append(float(1.15233845294826764))	   
-        true_output_vv_err2.append(float(3.20946303556517609))
+
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv_err2.append(float(0.98320158587953999))
+            true_output_vv.append(float(0.72972579648330460))
+        else:
+            true_output_vv_err2.append(float(0.98320158587954031))
+            true_output_vv.append(float(0.72972579648330349))	  
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv_err2.append(float(1.51250520438526981))
+            true_output_vv.append(float(0.93914148175842727))
+        else:
+            true_output_vv_err2.append(float(1.51250520438527535))
+            true_output_vv.append(float(0.93914148175842626))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv_err2.append(float(2.24514211944372999))
+        else:
+            true_output_vv_err2.append(float(2.24514211944373531))
+        true_output_vv.append(float(1.15233845294826764))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv_err2.append(float(3.20946303556517476))
+        else:
+            true_output_vv_err2.append(float(3.20946303556517609))
 		
 	    # initialize the correct outputs for vector scalar case
-        true_output_vs.append(float(0.35036606096122696))       
-        true_output_vs_err2.append(float(0.41659964378851194))		
+        true_output_vs.append(float(0.35036606096122696))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vs_err2.append(float(0.41659964378851260))
+        else:
+            true_output_vs_err2.append(float(0.41659964378851194))	
         true_output_vs.append(float(0.82644585627067690))	   
         true_output_vs_err2.append(float(1.56478867463881377))
         true_output_vs.append(float(1.80090786272381464))	  
@@ -147,8 +170,11 @@ def initialize_true_outputs(key):
         true_output_vs_err2.append(float(4.72021164820286465))
 
 	    # initialize the correct outputs for vector vector case
-        true_output_sv.append(float(0.35036606096122696))      
-        true_output_sv_err2.append(float(0.41659964378851194))		
+        true_output_sv.append(float(0.35036606096122696))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_sv_err2.append(float(0.41659964378851260))
+        else:
+            true_output_sv_err2.append(float(0.41659964378851194))	  
         true_output_sv.append(float(1.29265675181475581))	   
         true_output_sv_err2.append(float(1.65810190421910097))
         true_output_sv.append(float(2.28454953532442894))	   
