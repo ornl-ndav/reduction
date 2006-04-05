@@ -164,7 +164,7 @@ def energy_transfer(initial_energy, initial_energy_err2,\
                             energy_transfer.__array__,\
                             energy_transfer_err2.__array__)
         else:
-            raise TypeError, "Unknown primitive type %s", \
+            raise TypeError, "Unknown primitive type %s" % \
                   str(initial_energy.__type__)
 
         return energy_transfer, energy_transfer_err2
@@ -314,7 +314,8 @@ def frequency_to_energy(frequency, frequency_err2):
                     E_err2.__array__)
 
         else:
-            raise TypeError
+            raise TypeError,"Unknown primative type %s" \
+                      % str(frequency.__type__)
 
         return E, E_err2
 
@@ -466,7 +467,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
                                        float(polar_err2),\
                                        Q.__array__, Q_err2.__array__)
         else:
-            raise TypeError, "Unknown primitive type %s", \
+            raise TypeError, "Unknown primitive type %s" % \
                   str(initial_wavevector.__type__)
 
         return Q, Q_err2
@@ -790,7 +791,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
                                         output.__array__,\
                                         output_err2.__array__)
     else:
-        raise TypeError, "Unknown primitive type %s", str(input.__type__)
+        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
 
     return output, output_err2
 
@@ -1047,7 +1048,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
                                         output.__array__,\
                                         output_err2.__array__)
     else:
-        raise TypeError, "Unknown primitive type %s", str(input.__type__)
+        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
 
     return output, output_err2
 
@@ -1115,7 +1116,7 @@ def reverse_array_cp(input):
         axis_manip_bind.reverse_array_cp_i(input.__array__, output.__array__)
 
     else:
-        raise TypeError, "Unknown primitive type %s", str(input.__type__)
+        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
 
     return output
 
@@ -1181,7 +1182,7 @@ def reverse_array_nc(input):
         axis_manip_bind.reverse_array_nc_i(input.__array__)
 
     else:
-        raise TypeError, "Unknown primitive type %s", str(input.__type__)
+        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
 
     return input
 
@@ -1361,7 +1362,7 @@ def tof_to_initial_wavelength_igs(tof,\
                     initial_wavelength_err2.__array__)
 
         else:
-            raise TypeError, "Unknown primitive type %s", str(tof.__type__)
+            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
 
         return initial_wavelength, initial_wavelength_err2
 
@@ -1496,7 +1497,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
                                                 wavelength_err2.__array__)
 
         else:
-            raise TypeError, "Unknown primitive type %s", str(tof.__type__)
+            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
 
         return wavelength, wavelength_err2
 
@@ -1613,7 +1614,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
                                                    energy.__array__,\
                                                    energy_err2.__array__)
         else:
-            raise TypeError, "Unknown primitive type %s", \
+            raise TypeError, "Unknown primitive type %s" % \
                   str(wavelength.__type__)
 
         return energy, energy_err2
@@ -1725,7 +1726,8 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
                     wavevector_err2.__array__)
 
         else:
-            raise TypeError
+            raise TypeError,"Unknown primative type %s"\
+                  % str(wavelength.__type__)
 
         return wavevector, wavevector_err2
 
@@ -1838,7 +1840,8 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
                     Q_err2.__array__)
 
         else:
-            raise TypeError
+            raise TypeError,"Unknown primative type %s" \
+                      % str(wavelength.__type__)
 
         return Q, Q_err2
 
