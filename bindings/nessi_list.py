@@ -238,7 +238,10 @@ class NessiList (list):
 
         """
 
-        self.__array__.append(number)
+        if(self.__type__==self.DOUBLE):
+            self.__array__.append(float(number))
+        elif(self.__type==self.INT):
+            self.__array__.append(int(number))
 
 
 ##
@@ -334,9 +337,9 @@ class NessiList (list):
         for num in number:
             try:
                 for i in num:
-                    self.__array__.append(i)
+                    self.append(i)
             except TypeError:
-                    self.__array__.append(num)
+                    self.append(num)
 
 ##
 # \ingroup __repr__ NessiList
