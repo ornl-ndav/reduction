@@ -123,7 +123,7 @@ namespace AxisManip
                                             energy_err2,
                                             h,
                                             h2);
-    
+
     return retstr;
   }
 

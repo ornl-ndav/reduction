@@ -91,18 +91,18 @@ namespace AxisManip
     NumT wf2;
 
     // calculate static paramters
-    retstr +=__tof_to_initial_wavelength_igs_static(final_wavelength, 
+    retstr +=__tof_to_initial_wavelength_igs_static(final_wavelength,
                                                     time_offset,
                                                     dist_source_sample,
                                                     dist_sample_detector, a,
-                                                    b, c, ls2, inv_ls2, ld2, 
+                                                    b, c, ls2, inv_ls2, ld2,
                                                     wf2);
 
     // fill the results array
     size_t size_tof = tof.size();
     for (size_t i = 0 ; i < size_tof ; ++i)
       {
-        retstr += 
+        retstr +=
           __tof_to_initial_wavelength_igs_dynamic(
                                                   tof[i], tof_err2[i],
                                                   final_wavelength_err2,
@@ -149,15 +149,15 @@ namespace AxisManip
     std::string retstr(Nessi::EMPTY_WARN);
 
     // calculate static paramters
-    retstr +=__tof_to_initial_wavelength_igs_static(final_wavelength, 
+    retstr +=__tof_to_initial_wavelength_igs_static(final_wavelength,
                                                     time_offset,
                                                     dist_source_sample,
                                                     dist_sample_detector, a,
-                                                    b, c, ls2, inv_ls2, ld2, 
+                                                    b, c, ls2, inv_ls2, ld2,
                                                     wf2);
-    
+
     // fill the results
-    retstr += 
+    retstr +=
       __tof_to_initial_wavelength_igs_dynamic(tof, tof_err2,
                                               final_wavelength_err2,
                                               time_offset_err2,
@@ -167,7 +167,7 @@ namespace AxisManip
                                               initial_wavelength_err2,
                                               a, b, c, ls2, inv_ls2, ld2,
                                               wf2);
-    
+
     // send back all warnings
     return retstr;
   }

@@ -93,7 +93,7 @@ namespace AxisManip
     NumT cos2;
 
     // fill the local variables
-    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin, 
+    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin,
                                               sin2, cos2);
 
     // do the calculation
@@ -108,7 +108,7 @@ namespace AxisManip
                                                    Q[i],
                                                    Q_err2[i]);
       }
-    
+
     return retstr;
   }
 
@@ -131,7 +131,7 @@ namespace AxisManip
     NumT cos2;
 
     // fill the local variables
-    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin, 
+    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin,
                                               sin2, cos2);
 
     // do the calculation
