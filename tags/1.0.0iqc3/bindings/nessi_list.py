@@ -240,7 +240,7 @@ class NessiList (list):
 
         if(self.__type__==self.DOUBLE):
             self.__array__.append(float(number))
-        elif(self.__type==self.INT):
+        elif(self.__type__==self.INT):
             self.__array__.append(int(number))
 
 
