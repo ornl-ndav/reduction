@@ -45,10 +45,44 @@ namespace Nessi {
     std::string __type__() {
       return "double";
     }
+    PyObject * __set_from_NessiVector__(std::vector<double> *ptr, PyObject *other){
+        if(!PyCObject_Check(other)){
+          PyErr_SetString(PyExc_TypeError,"Can only handle c-objects");
+          return NULL;
+        }
+          
+        void * void_other=PyCObject_AsVoidPtr(other);
+        std::vector<double> *other_ptr=static_cast<std::vector<double> *>(void_other);
+
+        ptr->clear();
+        ptr->insert(ptr->end(),other_ptr->begin(),other_ptr->end());
+
+        delete other_ptr;
+
+        Py_INCREF(Py_None);
+        return Py_None;
+    }
   }
   %extend Vector<int> {
     std::string __type__() {
       return "int";
+    }
+    PyObject * __set_from_NessiVector__(std::vector<int> *ptr, PyObject *other){
+        if(!PyCObject_Check(other)){
+          PyErr_SetString(PyExc_TypeError,"Can only handle c-objects");
+          return NULL;
+        }
+          
+        void * void_other=PyCObject_AsVoidPtr(other);
+        std::vector<int> *other_ptr=static_cast<std::vector<int> *>(void_other);
+
+        ptr->clear();
+        ptr->insert(ptr->end(),other_ptr->begin(),other_ptr->end());
+
+        delete other_ptr;
+
+        Py_INCREF(Py_None);
+        return Py_None;
     }
   }
   %template(DoubleNessiVector) Vector<double>;
