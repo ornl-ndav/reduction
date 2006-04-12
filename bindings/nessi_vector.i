@@ -54,8 +54,7 @@ namespace Nessi {
         void * void_other=PyCObject_AsVoidPtr(other);
         std::vector<double> *other_ptr=static_cast<std::vector<double> *>(void_other);
 
-        ptr->clear();
-        ptr->insert(ptr->end(),other_ptr->begin(),other_ptr->end());
+        ptr->assign(other_ptr->begin(),other_ptr->end());
 
         delete other_ptr;
 
@@ -76,8 +75,7 @@ namespace Nessi {
         void * void_other=PyCObject_AsVoidPtr(other);
         std::vector<int> *other_ptr=static_cast<std::vector<int> *>(void_other);
 
-        ptr->clear();
-        ptr->insert(ptr->end(),other_ptr->begin(),other_ptr->end());
+        ptr->assign(other_ptr->begin(),other_ptr->end());
 
         delete other_ptr;
 
