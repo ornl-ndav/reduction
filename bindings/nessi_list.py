@@ -556,7 +556,10 @@ class NessiList (list):
 
         """
 
-        return self.__array__[i:j]
+        slice=self.__array__[i:j]
+        result=NessiList(type=self.__type__)
+        result.__array__=slice
+        return result
 
 ##
 # \ingroup __setslice__ NessiList
