@@ -278,19 +278,24 @@ int main(int argc, char *argv[])
       debug = argv[1];
     }
 
+  int value = 0;
+
   if(!test_func(static_cast<float>(1), debug))
     {
-      return -1;
+      value = -1;
     }
 
   if(!test_func(static_cast<double>(1), debug))
     {
-      return -1;
+      value = -1;
     }
 
-  cout << "Functionality OK" << endl;
+  if(value == 0)
+    {
+      cout << "Functionality OK" << endl;
+    }
 
-  return 0;
+  return value;
 }
 
 /**
