@@ -157,15 +157,24 @@ int main()
 {
   cout << "weighted_average_test.cpp..........";
 
+  int value = 0;
+
   if(!test_func(static_cast<float>(1)))
-    return -1;
+    {
+      value = -1;
+    }
 
   if(!test_func(static_cast<double>(1)))
-    return -1;
+    {
+      value = -1;
+    }
 
-  cout << "Functionality OK" << endl;
+  if(value == 0)
+    {
+      cout << "Functionality OK" << endl;
+    }
 
-  return 0;
+  return value;
 }
 
 /**
