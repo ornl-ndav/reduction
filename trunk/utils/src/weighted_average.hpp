@@ -31,8 +31,10 @@
 #define _WEIGHTED_AVERAGE_HPP 1
 
 #include "nessi_warn.hpp"
+#include "num_comparison.hpp"
 #include "size_checks.hpp"
 #include "utils.hpp"
+#include <sstream>
 #include <stdexcept>
 
 namespace Utils
@@ -61,19 +63,39 @@ namespace Utils
         throw std::invalid_argument(wa_func_str+" data & err "+e.what());
       }
 
+    std::string warn = Nessi::EMPTY_WARN;
+    bool do_once = true;
+
     weighted_ave = static_cast<NumT>(0.0);
     weighted_ave_err2 = static_cast<NumT>(0.0);
 
     for(std::size_t i = bin_start; i <= bin_end; ++i)
       {
-        weighted_ave += (input[i] / input_err2[i]);
-        weighted_ave_err2 += (static_cast<NumT>(1.) / input_err2[i]);
+        if(compare(input_err2[i], static_cast<NumT>(0.0)) != 0) 
+          {
+            weighted_ave += (input[i] / input_err2[i]);
+            weighted_ave_err2 += (static_cast<NumT>(1.) / input_err2[i]);
+          }
+        else
+          {
+            if(do_once && warn.find("Utils") == std::string::npos)
+              {
+                warn += wa_func_str + " Skipping index ";
+                do_once = false;
+              }
+            std::ostringstream os;
+            os << i << " ";
+            warn += os.str();
+          }
       }
 
-    weighted_ave /= weighted_ave_err2;
-    weighted_ave_err2 = (static_cast<NumT>(1.) / weighted_ave_err2);
+    if(compare(weighted_ave_err2, static_cast<NumT>(0.0)) != 0)                
+      {
+        weighted_ave /= weighted_ave_err2;
+        weighted_ave_err2 = (static_cast<NumT>(1.) / weighted_ave_err2);
+      }
 
-    return Nessi::EMPTY_WARN;
+    return warn;
   }
 
 } // Utils
