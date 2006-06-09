@@ -10,7 +10,7 @@ Prerequisites
 
 1) Checkout the code from the repository.
 
-   svn co https://flathead.sns.gov/snssv/reduction/trunk
+   svn co https://flathead.sns.gov/repos/reduction/trunk
    cd reduction/trunk
 
 2) At present it is necessary to run the autogen shell script to produce the
