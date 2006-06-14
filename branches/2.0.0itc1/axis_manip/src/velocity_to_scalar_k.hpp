@@ -31,10 +31,15 @@
 #define _VELOCITY_TO_SCALAR_K_HPP 1
 
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
+#include "size_checks.hpp"
 #include <stdexcept>
 
 namespace AxisManip
 {
+  /// String for holding the velocity_to_scalar_k function name
+  const std::string vtsk_func_str = "AxisManip::velocity_to_scalar_k";
+
   // 3.23
   template <typename NumT>
   std::string
@@ -44,7 +49,38 @@ namespace AxisManip
                        Nessi::Vector<NumT> & wavevector_err2,
                        void *temp=NULL)
   {
-    throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
+      // check that the values are of proper size
+    try
+      {
+        Utils::check_sizes_square(velocity,wavevector);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(vtsk_func_str+" (v,v): data "+e.what());
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        Utils::check_sizes_square(velocity_err2, wavevector_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(vtsk_func_str+" (v,v): err2 "+e.what());
+      }
+
+    // check that the velocity arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(velocity,velocity_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(vtsk_func_str+" (v,v): velocity "
+                                    +e.what());
+      }
+    std::string retstr(Nessi::EMPTY_WARN);
+
   }
 
   // 3.23
