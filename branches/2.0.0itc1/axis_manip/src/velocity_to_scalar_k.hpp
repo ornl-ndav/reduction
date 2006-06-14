@@ -30,6 +30,7 @@
 #ifndef _VELOCITY_TO_SCALAR_K_HPP
 #define _VELOCITY_TO_SCALAR_K_HPP 1
 
+#include "constants.hpp"
 #include "conversions.hpp"
 #include "nessi_warn.hpp"
 #include "size_checks.hpp"
@@ -81,6 +82,23 @@ namespace AxisManip
       }
     std::string retstr(Nessi::EMPTY_WARN);
 
+    NumT mh;
+    NumT mh2;
+
+    retstr += __velocity_to_scalar_k_static(mh,mh2);
+
+    size_t sz = velocity.size();
+    for (size_t i=0; i < sz; ++i)
+      {
+        retstr += __velocity_to_scalar_k_dynamic(velocity[i],
+                                                 velocity_err2[i],
+                                                 wavevector[i],
+                                                 wavevector_err2[i],
+                                                 mh,
+                                                 mh2);
+      }
+
+    return retstr;
   }
 
   // 3.23
@@ -92,7 +110,70 @@ namespace AxisManip
                        NumT & wavevector_err2,
                        void *temp=NULL)
   {
-    throw std::runtime_error("Function [velocity_to_scalar_k] not implemented");
+    std::string retstr(Nessi::EMPTY_WARN);
+
+    NumT mh;
+    NumT mh2;
+
+    retstr += __velocity_to_scalar_k_static(mh,mh2);
+
+    retstr += __velocity_to_scalar_k_dynamic(velocity,
+                                             velocity_err2,
+                                             wavevector,
+                                             wavevector_err2,
+                                             mh,
+                                             mh2);
+
+    return retstr;
+  }
+
+  /**
+   * \ingroup velocity_to_scalar_k
+   *
+   * This is a PRIVATE helper function for velocity_to_scalar_k that
+   * calculates the parameters invariant across the array calculation.
+   *
+   * \param mh (OUTPUT) Planck's constant divided by the mass of the neutron
+   * \param mh2 (OUTPUT) square of Planck's constant divided by the mass of 
+   *                     the neutron
+   */
+  template <typename NumT>
+  std::string
+  __velocity_to_scalar_k_static(NumT & mh,
+                                NumT & mh2)
+  {
+    mh = static_cast<NumT>(1.0/PhysConst::H_OVER_MNEUT);
+    mh2 = mh*mh;
+
+    return Nessi::EMPTY_WARN;
+  }
+
+  /**
+   * \ingroup velocity_to_scalar_k
+   *
+   * This is a PRIVATE helper function for velocity_to_scalar_k that
+   * calculates the scalar_k and its uncertainty
+   *
+   * \param velocity (INPUT) same as parameter in velocity_to_scalar_k()
+   * \param velocity_err2 (INPUT) same as parameter in velocity_to_scalar_k()
+   * \param wavevector (OUTPUT) same as parameter in velocity_to_scalar_k()
+   * \param wavevector_err2 (OUTPUT) same as parameter in velocity_to_scalar_k()
+   * \param mh (INPUT) same as parameter in __velocity_to_scalar_k_static()
+   * \param mh2 (INPUT) same as parameter in __velocity_to_scalar_k_static()
+   */
+  template <typename NumT>
+  std::string
+  __velocity_to_scalar_k_dynamic(const NumT velocity,
+                                 const NumT velocity_err2,
+                                 NumT & wavevector,
+                                 NumT & wavevector_err2,
+                                 const NumT mh,
+                                 const NumT mh2)
+  {
+    wavevector = velocity * mh;
+    wavevector_err2 = mh2 * velocity_err2;
+
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 
