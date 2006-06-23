@@ -31,10 +31,16 @@
 #define _WAVELENGTH_TO_D_SPACING_HPP 1
 
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
+#include "size_checks.hpp"
+#include <cmath>
 #include <stdexcept>
 
 namespace AxisManip
 {
+  /// String for holding the wavelength_to_d_spacing function name
+  const std::string wtds_func_str = "AxisManip::wavelength_to_d_spacing";
+
   // 3.25
   template <typename NumT>
   std::string
@@ -46,7 +52,61 @@ namespace AxisManip
                           Nessi::Vector<NumT> & d_spacing_err2,
                           void *temp=NULL)
   {
-    throw std::runtime_error("Function [wavelength_to_d_spacing] not implemented");
+    // check that the values are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength, d_spacing);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(wtds_func_str+" (v,s): data "+e.what());
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength_err2, d_spacing_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(wtds_func_str+" (v,s): err2 "+e.what());
+      }
+
+    // check that the wavelength arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength, wavelength_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(wtds_func_str+" (v,s): wavelength "
+                                    +e.what());
+      }
+
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+
+    // allocate local variables
+    NumT a;
+    NumT a2;
+    NumT b;
+    NumT b2;
+
+    // fill the local variables
+    retstr += __wavelength_to_d_spacing_static(scatt_angle, a, a2, b, b2);
+
+    // do the calculation
+    size_t size_wavelength = wavelength.size();
+    for (size_t i=0; i < size_wavelength ; ++i)
+      {
+        retstr += __wavelength_to_d_spacing_dynamic(wavelength[i],
+                                                   wavelength_err2[i],
+                                                   scatt_angle_err2,
+                                                   a, a2, b, b2,
+                                                   d_spacing[i],
+                                                   d_spacing_err2[i]);
+      }
+
+    return retstr;
   }
 
   // 3.25
@@ -60,7 +120,101 @@ namespace AxisManip
                           NumT & d_spacing_err2,
                           void *temp=NULL)
   {
-    throw std::runtime_error("Function [wavelength_to_d_spacing] not implemented");
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+
+    // allocate local variables
+    NumT a;
+    NumT a2;
+    NumT b;
+    NumT b2;
+
+    // fill the local variables
+    retstr += __wavelength_to_d_spacing_static(scatt_angle, a, a2, b, b2);
+
+    // do the calculation
+    retstr += __wavelength_to_d_spacing_dynamic(wavelength,
+                                                wavelength_err2,
+                                                scatt_angle_err2,
+                                                a, a2, b, b2,
+                                                d_spacing,
+                                                d_spacing_err2);
+
+    return retstr;
+  }
+
+ /**
+   * \ingroup wavelength_to_d_spacing
+   *
+   * This is a PRIVATE helper function for wavelength_to_d_spacing that
+   * calculates parameters invariant across array calculation
+   *
+   * \param scatt_angle (INPUT) same as parameter in wavelength_to_d_spacing()
+   * \param a (OUTPUT) the value of 2 times the sinus of the angle between 
+   * positive z axis and direction of the scattered neutrons
+   * \param a2 (OUTPUT) \f$=a^2\f$
+   * \param b (OUTPUT) the cotangent of the angle between the positive z axis
+   * and the direction of the scattered neutrons
+   * \param b2 (OUTPUT) \f$=b^2\f$
+   */
+  template <typename NumT>
+  std::string
+  __wavelength_to_d_spacing_static(const NumT scatt_angle,
+                                   NumT a,
+                                   NumT a2,
+                                   NumT b,
+                                   NumT b2) 
+                                 
+  {
+    a = static_cast<NumT>(2.0 * std::sin(static_cast<double>(scatt_angle)));
+    a2 = a*a;
+    b = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle))
+       /std::sin(static_cast<double>(scatt_angle)));
+    b2= b*b;
+
+    return Nessi::EMPTY_WARN;
+  }
+
+  /**
+   * \ingroup wavelength_to_d_spacing
+   *
+   * This is a PRIVATE helper function for wavelength_to_d_spacing that
+   * calculates the scalar momentum transfer and its uncertainty
+   *
+   * \param wavelength (INPUT) same as parameter in wavelength_to_d_spacing()
+   * \param wavelength_err2 (INPUT) same as parameter in
+   * wavelength_to_d_spacing()
+   * \param scatt_angle_err2 (INPUT) same as parameter in
+   * wavelength_to_d_spacing()
+   * \param a (INPUT) same as parameter in __wavelength_to_d_spacing_static()
+   * \param a2 (INPUT) same as parameter in __wavelength_to_d_spacing_static()
+   * \param b (INPUT) same as parameter in __wavelength_to_d_spacing_static()
+   * \param b2 (INPUT) same as parameter in __wavelength_to_d_spacing_static()
+   * \param d_spacing (OUTPUT) same as parameter in wavelength_to_d_spacing()
+   * \param d_spacing_err2 (OUTPUT) same as parameter
+   * in wavelength_to_d_spacing()
+   */
+  template <typename NumT>
+  std::string
+  __wavelength_to_d_spacing_dynamic(const NumT wavelength,
+                                    const NumT wavelength_err2,
+                                    const NumT scatt_angle_err2,
+                                    const NumT a,
+                                    const NumT a2,
+                                    const NumT b,
+                                    const NumT b2,
+                                    NumT & d_spacing,
+                                    NumT & d_spacing_err2)
+  {
+    NumT wl = wavelength;
+    NumT wl2 = static_cast<NumT>(wl*wl/4.0);
+
+    // the result
+    d_spacing = wl/a ;
+
+    // the uncertainty in the result
+    d_spacing_err2 = (wavelength_err2/a2) + (wl2*b2*scatt_angle_err2/a2);
+
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 
