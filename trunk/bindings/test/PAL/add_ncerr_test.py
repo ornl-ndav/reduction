@@ -33,6 +33,7 @@ import nessi_list
 import test_common
 
 NUM_VAL = 5
+SCALE = 2
 
 ##
 # \defgroup add_ncerr_test add_ncerr_test
@@ -75,23 +76,40 @@ def initialize_inputs(key):
         input1_err2=nessi_list.NessiList(type="double")
         input2=nessi_list.NessiList(type="double")
         input2_err2=nessi_list.NessiList(type="double")
+        input3=nessi_list.NessiList(type="double")
+        input3_err2=nessi_list.NessiList(type="double")
         for i in range(NUM_VAL):
             input1.append(float(NUM_VAL+1-i))  #6.,5.,4.,3.,2.
             input2.append(float(i))            #0.,1.,2.,3.,4.
+            input3.append(float(i))            #0.,1.,2.,3.,4.
             input1_err2.append(float(1.))      #1.,1.,1.,1.,1.
             input2_err2.append(float(1.))      #1.,1.,1.,1.,1.
+            input3_err2.append(float(1.))      #1.,1.,1.,1.,1.
+
+        for i in range(NUM_VAL, NUM_VAL*SCALE):
+            input3.append(float(i))            #5.,6.,7.,8.,9.
+            input3_err2.append(float(1.))      #1.,1.,1.,1.,1.
+            
     else:
         input1=nessi_list.NessiList(type="int")
         input1_err2=nessi_list.NessiList(type="int")
         input2=nessi_list.NessiList(type="int")
         input2_err2=nessi_list.NessiList(type="int")
+        input3=nessi_list.NessiList(type="int")
+        input3_err2=nessi_list.NessiList(type="int")        
         for i in range(NUM_VAL):
             input1.append(int(NUM_VAL+1-i))    #6,5,4,3,2
             input2.append(int(i))              #0,1,2,3,4
+            input3.append(int(i))              #0,1,2,3,4
             input1_err2.append(int(1))        #1,1,1,1,1
             input2_err2.append(int(1))        #1,1,1,1,1
+            input3_err2.append(int(1))        #1,1,1,1,1
 
-    return input1, input1_err2, input2, input2_err2
+        for i in range(NUM_VAL, NUM_VAL*SCALE):
+            input3.append(int(i))            #5,6,7,8,9
+            input3_err2.append(int(1.))      #1,1,1,1,1
+
+    return input1, input1_err2, input2, input2_err2, input3, input3_err2
 
 ##
 # Function that sets the true output based on values contained in
@@ -117,6 +135,9 @@ def initialize_true_outputs(key):
         true_output_vs=nessi_list.NessiList()
         true_output_vs_err2=nessi_list.NessiList()
 
+        true_output_mul_vv=nessi_list.NessiList()
+        true_output_mul_vv_err2=nessi_list.NessiList()
+
       # initialize the correct outputs for vector vector case
         true_output_vv.append(float(6.))       # 0+6
         true_output_vv_err2.append(float(2.))
@@ -141,12 +162,37 @@ def initialize_true_outputs(key):
         true_output_vs.append(float(6.))     # 4+2
         true_output_vs_err2.append(float(2.))
 
+      # initialize the correct outputs for multi-dimensonal vector vector case
+        true_output_mul_vv.append(float(0.))     # 0+0
+        true_output_mul_vv_err2.append(float(1.))
+        true_output_mul_vv.append(float(1.))     # 1+0
+        true_output_mul_vv_err2.append(float(1.))
+        true_output_mul_vv.append(float(2.))     # 2+0
+        true_output_mul_vv_err2.append(float(1.))
+        true_output_mul_vv.append(float(3.))     # 3+0
+        true_output_mul_vv_err2.append(float(1.))
+        true_output_mul_vv.append(float(4.))     # 4+0
+        true_output_mul_vv_err2.append(float(1.))
+        true_output_mul_vv.append(float(11.))     # 5+6
+        true_output_mul_vv_err2.append(float(2.))
+        true_output_mul_vv.append(float(11.))     # 6+5
+        true_output_mul_vv_err2.append(float(2.))
+        true_output_mul_vv.append(float(11.))     # 7+4
+        true_output_mul_vv_err2.append(float(2.))
+        true_output_mul_vv.append(float(11.))     # 8+3
+        true_output_mul_vv_err2.append(float(2.))
+        true_output_mul_vv.append(float(11.))     # 9+2
+        true_output_mul_vv_err2.append(float(2.))
+
     else:
 
         true_output_vv=nessi_list.NessiList(type="int")
         true_output_vv_err2=nessi_list.NessiList(type="int")
         true_output_vs=nessi_list.NessiList(type="int")
         true_output_vs_err2=nessi_list.NessiList(type="int")
+
+        true_output_mul_vv=nessi_list.NessiList(type="int")
+        true_output_mul_vv_err2=nessi_list.NessiList(type="int")        
 
       # initialize the correct outputs for vector vector case
         true_output_vv.append(int(6))      # 0+6
@@ -172,10 +218,35 @@ def initialize_true_outputs(key):
         true_output_vs.append(int(6))     # 4+2
         true_output_vs_err2.append(int(2))
 
+      # initialize the correct outputs for multi-dimensonal vector vector case
+        true_output_mul_vv.append(int(0))     # 0+0
+        true_output_mul_vv_err2.append(int(1))
+        true_output_mul_vv.append(int(1))     # 1+0
+        true_output_mul_vv_err2.append(int(1))
+        true_output_mul_vv.append(int(2))     # 2+0
+        true_output_mul_vv_err2.append(int(1))
+        true_output_mul_vv.append(int(3))     # 3+0
+        true_output_mul_vv_err2.append(int(1))
+        true_output_mul_vv.append(int(4))     # 4+0
+        true_output_mul_vv_err2.append(int(1))
+        true_output_mul_vv.append(int(11))     # 5+6
+        true_output_mul_vv_err2.append(int(2))
+        true_output_mul_vv.append(int(11))     # 6+5
+        true_output_mul_vv_err2.append(int(2))
+        true_output_mul_vv.append(int(11))     # 7+4
+        true_output_mul_vv_err2.append(int(2))
+        true_output_mul_vv.append(int(11))     # 8+3
+        true_output_mul_vv_err2.append(int(2))
+        true_output_mul_vv.append(int(11))     # 9+2
+        true_output_mul_vv_err2.append(int(2))
+
+
     return true_output_vv,\
        true_output_vv_err2,\
        true_output_vs,\
-       true_output_vs_err2
+       true_output_vs_err2,\
+       true_output_mul_vv,\
+       true_output_mul_vv_err2
 
 
 if __name__ == "__main__":
@@ -186,20 +257,23 @@ if __name__ == "__main__":
     print "#   Checking add_ncerr Python Abstraction layer   #"
     print "###################################################"
     print
-
+    
     true_output_vv_d, true_output_vv_err2_d, true_output_vs_d,\
-                      true_output_vs_err2_d =\
+                      true_output_vs_err2_d, true_output_mul_vv_d,\
+                      true_output_mul_vv_err2_d = \
                       initialize_true_outputs("double")
 
     true_output_vv_i, true_output_vv_err2_i, true_output_vs_i,\
-                      true_output_vs_err2_i =\
+                      true_output_vs_err2_i, true_output_mul_vv_i,\
+                      true_output_mul_vv_err2_i = \
                       initialize_true_outputs("int")
 
     # vv case
     print "Checking Vector-Vector Addition Abstraction Layer Function"
 
     # double case
-    input1,input1_err2,input2,input2_err2=initialize_inputs("double")
+    input1, input1_err2, input2, input2_err2,\
+            input3, input3_err2 = initialize_inputs("double")
 
     output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
                                                       input1_err2,\
@@ -215,7 +289,8 @@ if __name__ == "__main__":
     print mess
 
     # int case
-    input1,input1_err2,input2,input2_err2=initialize_inputs("int")
+    input1, input1_err2, input2, input2_err2, input3, input3_err2 \
+            = initialize_inputs("int")
 
     output_vv, output_vv_err2 = array_manip.add_ncerr(input1,\
                                                       input1_err2,\
@@ -236,7 +311,8 @@ if __name__ == "__main__":
     print "Checking Vector-Scalar Addition Abstraction Layer Function"
 
     # double case
-    input1,input1_err2,input2,input2_err2=initialize_inputs("double")
+    input1, input1_err2, input2, input2_err2, input3, input3_err2 \
+            = initialize_inputs("double")
 
     output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
                                                       input1_err2,\
@@ -252,7 +328,8 @@ if __name__ == "__main__":
     print mess
 
     # int case
-    input1,input1_err2,input2,input2_err2=initialize_inputs("int")
+    input1, input1_err2, input2, input2_err2, input3, input3_err2 \
+                = initialize_inputs("int")
 
     output_vs, output_vs_err2 = array_manip.add_ncerr(input1,\
                                                       input1_err2,\
@@ -264,5 +341,57 @@ if __name__ == "__main__":
                                  true_output_vs_i,\
                                  output_vs_err2,\
                                  true_output_vs_err2_i)
+
+    print mess
+
+    # multi-dimensional vv case
+    print 
+    print "Checking Multi-Dimensional Vector-Vector Addition Abstraction "\
+          +"Layer Function"
+
+    # double case
+    input1, input1_err2, input2, input2_err2,\
+            input3, input3_err2 = initialize_inputs("double")
+
+    output_mul_vv, output_mul_vv_err2 = \
+                   array_manip.add_ncerr(input3,\
+                                         input3_err2,\
+                                         input1,\
+                                         input1_err2,
+                                         a_start=5,
+                                         a_span=1,
+                                         b_start=0,
+                                         b_span=1,
+                                         b_size=len(input1))
+
+    mess = test_common.MakeCheck("double",\
+                                 output_mul_vv,\
+                                 true_output_mul_vv_d,\
+                                 output_mul_vv_err2,\
+                                 true_output_mul_vv_err2_d)
+
+    print mess
+
+
+    # int case
+    input1, input1_err2, input2, input2_err2,\
+            input3, input3_err2 = initialize_inputs("int")
+
+    output_mul_vv, output_mul_vv_err2 = \
+                   array_manip.add_ncerr(input3,\
+                                         input3_err2,\
+                                         input1,\
+                                         input1_err2,
+                                         a_start=5,
+                                         a_span=1,
+                                         b_start=0,
+                                         b_span=1,
+                                         b_size=len(input1))
+
+    mess = test_common.MakeCheck("int",\
+                                 output_mul_vv,\
+                                 true_output_mul_vv_i,\
+                                 output_mul_vv_err2,\
+                                 true_output_mul_vv_err2_i)
 
     print mess

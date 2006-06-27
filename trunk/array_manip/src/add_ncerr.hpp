@@ -136,6 +136,74 @@ namespace ArrayManip
 
     return Nessi::EMPTY_WARN;
   }
+
+  // 3.6 for multi-dimensional as 1D
+  template <typename NumT>
+  std::string
+  add_ncerr(const Nessi::Vector<NumT> & input1,
+            const Nessi::Vector<NumT> & input1_err2,
+            const size_t i1_start,
+            const size_t i1_span,
+            const Nessi::Vector<NumT> & input2,
+            const Nessi::Vector<NumT> & input2_err2,
+            const size_t i2_start,
+            const size_t i2_span,
+            const size_t i2_size,
+            Nessi::Vector<NumT> & output,
+            Nessi::Vector<NumT> & output_err2,
+            const size_t o_start,
+            const size_t o_span,
+            void *temp=NULL)
+  {
+    // check that the values are of proper size
+    try
+      {
+        Utils::check_sizes_square(input1,output);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(add_func_str+" (m:v,v): data "+e.what());
+      }
+    // check that the uncertainties are of proper size
+    try
+      {
+        Utils::check_sizes_square(input1_err2,output_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(add_func_str+" (m:v,v): err2 "+e.what());
+      }
+    // check that the input1 arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(input1,input1_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(add_func_str+" (m:v,v): input1 "+e.what());
+      }
+    // check that the input2 arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(input2,input2_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(add_func_str+" (m:v,v): input2 "+e.what());
+      }
+
+    size_t i;
+    size_t j;
+    size_t k;
+    for(i = i1_start, j = i2_start, k = o_start; j < i2_start + i2_size; 
+        i += i1_span, j += i2_span, k += o_span)
+      {
+        output[k] = input1[i] + input2[j];
+        output_err2[k] = input1_err2[i] + input2_err2[j];
+      }
+
+    return Nessi::EMPTY_WARN;
+  }
 } // ArrayManip
 
 #endif // _ADD_NCERR_HPP
