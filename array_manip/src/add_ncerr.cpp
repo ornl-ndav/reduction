@@ -148,4 +148,93 @@ namespace ArrayManip
                           Nessi::Vector<unsigned int> & output_err2,
                           void *temp);
 
+  /**
+   * This is the float declaration of the function defined in 3.6 for 
+   * multi-dimensional arrays treated as 1D
+   *
+   * \ingroup add_ncerr
+   */
+  template std::string
+  add_ncerr<float>(const Nessi::Vector<float> & input1,
+                   const Nessi::Vector<float> & input1_err2,
+                   const size_t i1_start,
+                   const size_t i1_span,
+                   const Nessi::Vector<float> & input2,
+                   const Nessi::Vector<float> & input2_err2,
+                   const size_t i2_start,
+                   const size_t i2_span,
+                   const size_t i2_size,
+                   Nessi::Vector<float> & output,
+                   Nessi::Vector<float> & output_err2,
+                   const size_t o_start,
+                   const size_t o_span,
+                   void *temp);
+
+  /**
+   * This is the double declaration of the function defined in 3.6 for 
+   * multi-dimensional arrays treated as 1D
+   *
+   * \ingroup add_ncerr
+   */
+  template std::string
+  add_ncerr<double>(const Nessi::Vector<double> & input1,
+                    const Nessi::Vector<double> & input1_err2,
+                    const size_t i1_start,
+                    const size_t i1_span,
+                    const Nessi::Vector<double> & input2,
+                    const Nessi::Vector<double> & input2_err2,
+                    const size_t i2_start,
+                    const size_t i2_span,
+                    const size_t i2_size,
+                    Nessi::Vector<double> & output,
+                    Nessi::Vector<double> & output_err2,
+                    const size_t o_start,
+                    const size_t o_span,
+                    void *temp);
+  
+  /**
+   * This is the int declaration of the function defined in 3.6 for 
+   * multi-dimensional arrays treated as 1D
+   *
+   * \ingroup add_ncerr
+   */
+  template std::string
+  add_ncerr<int>(const Nessi::Vector<int> & input1,
+                 const Nessi::Vector<int> & input1_err2,
+                 const size_t i1_start,
+                 const size_t i1_span,
+                 const Nessi::Vector<int> & input2,
+                 const Nessi::Vector<int> & input2_err2,
+                 const size_t i2_start,
+                 const size_t i2_span,
+                 const size_t i2_size,
+                 Nessi::Vector<int> & output,
+                 Nessi::Vector<int> & output_err2,
+                 const size_t o_start,
+                 const size_t o_span,
+                 void *temp);
+  
+  /**
+   * This is the unsigned int declaration of the function defined in 3.6 for 
+   * multi-dimensional arrays treated as 1D
+   *
+   * \ingroup add_ncerr
+   */
+  template std::string
+  add_ncerr<unsigned int>(const Nessi::Vector<unsigned int> & input1,
+                          const Nessi::Vector<unsigned int> & input1_err2,
+                          const size_t i1_start,
+                          const size_t i1_span,
+                          const Nessi::Vector<unsigned int> & input2,
+                          const Nessi::Vector<unsigned int> & input2_err2,
+                          const size_t i2_start,
+                          const size_t i2_span,
+                          const size_t i2_size,
+                          Nessi::Vector<unsigned int> & output,
+                          Nessi::Vector<unsigned int> & output_err2,
+                          const size_t o_start,
+                          const size_t o_span,
+                          void *temp);
+  
+
 } // ArrayManip
