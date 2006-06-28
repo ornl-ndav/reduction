@@ -124,12 +124,54 @@ import array_manip_bind
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
+# Multi-Dimensional Case
+# ======================
+#
+# This function adds the \f$i^{th}\f$ element from \f$data_1\f$, which is 
+# multi-dimensional vector being treated as a 1D vector, to the 
+# \f$j^{th}\f$ element from \f$data_2\f$ and places it in the \f$k^{th}\f$ 
+# element of \f$data_o\f$ according to the equation
+# \f[
+# data_o[k]=data_1[i]+data_2[j]
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2[k]=\sigma_1^2[i]+\sigma_2^2[j]
+# \f]
+# Where \f$data_o[k]\f$ is the \f$k^{th}\f$ component of the output
+# array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the first
+# array being added, \f$data_2[j]\f$ is the \f$j^{th}\f$ component
+# of the second array being added, \f$\sigma_o[k]\f$ is the
+# \f$k^{th}\f$ component of the uncertainty of the output array,
+# \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the
+# uncertainty in the first array, and \f$\sigma_2[j]\f$ is the
+# \f$j^{th}\f$ component of the uncertainty in the second array.
+#
+# The \f$i^{th}\f$, \f$j^{th}\f$ and \f$k^{th}\f$ elements of the 
+# corresponding arrays are calculated according to the following equations
+# \f[
+# i_{N+1}^{th}=i_{N}^{th}+i1\_span
+# \f]
+# \f[
+# j_{N+1}^{th}=j_{N}^{th}+i2\_span
+# \f]
+# \f[
+# k_{N+1}^{th}=k_{N}^{th}+o\_span
+# \f]
+#
+# The initial starting elements for all arrays are given by \f$i1\_start\f$ 
+# (\f$data_1\f$), \f$i2\_start\f$ (\f$data_2\f$) and \f$o\_start\f$ 
+# (\f$data_o\f$). The function runs until \f$i2\_size\f$ is reached.
+#
 # \param a (INPUT) is the first NessiList or scalar to be added
 # \param ae2 (INPUT) is the square of the uncertainty in the first
 # NessiList of in the scalar to be added
 # \param b (INPUT) is the second NessiList or scalar to be added
 # \param be2 (INPUT) is the square of the uncertainty in the second
 # NessiList or scalar to be added
+# \param kwargs (INPUT) is a list of keyword arguments that the function will
+# accept
 # \return
 # - The result NessiList
 # - The square of the uncertainty in the result NessiList
@@ -138,7 +180,7 @@ import array_manip_bind
 # \exception TypeError is thrown if any of the arrays are not recognized types
 # \exception RuntimeError is thrown if a and b are not the same type
 
-def add_ncerr(a,ae2,b,be2, **kwargs):
+def add_ncerr(a, ae2, b, be2, **kwargs):
 
     """
     ---------------------------------------------------------------------------
@@ -193,6 +235,47 @@ def add_ncerr(a,ae2,b,be2, **kwargs):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
+
+    >>> Multi-dimensional use <<<
+    -----------------------------
+
+    If kwargs are passed to the function, then the multi-dimensional version
+    of add_ncerr will be used. The name and function of those keyword
+    parameters are given in the Parameters section.
+
+    This function adds the i^th element from Vector_1, which is
+    multi-dimensional vector being treated as a 1D vector, to the j^th element
+    from Vector_2 and places it in the k^th element of Vector_o according to
+    the equation
+
+    Vector_o[k] = Vector_1[i] + Vector_2[j]
+
+    and the uncorrelated uncertainties will be processed according to
+    the equation
+
+    Vector_err2_o^2[k] = Vector_err2_1^2[i] + Vector_err2_2^2[j]
+
+    Where Vector_o[k] is the k^th component of the output array, Vector_1[i]
+    is the i^th component of the first array being added, Vector_2[j] is the
+    j^th component of the second array being added, Vector_err2_o[k] is the
+    k^th component of the uncertainty of the output array, Vector_err2_1[i] is
+    the i^th component of the uncertainty in the first array, and
+    Vector_err2_2[j] is the j^th component of the uncertainty in the second
+    array.
+
+    The i^th, j^th and k^th elements of the corresponding arrays are
+    calculated according to the following equations
+
+    i_N+1^th = i_N^th + i1_span
+
+    j_N+1^th = j_N^th + i2_span
+
+    k_N+1^th = k_N^th + o_span
+
+    The initial starting elements for all arrays are given by i1_start
+    (Vector_1), i2_start (Vector_2) and o_start (Vector_o). The function runs
+    until i2_size is reached.
+
 
     Parameters:
     __________

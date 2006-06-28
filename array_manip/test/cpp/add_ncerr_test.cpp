@@ -40,12 +40,13 @@ const int SCALE = 2;
  * \defgroup add_ncerr_test add_ncerr_test
  * \{
  *
- * This test compares the output data (\f$output\_vs\f$ and \f$output\_vv\f$)
+ * This test compares the output data (\f$output\_vs\f$, \f$output\_vv\f$ and 
+ * \f$output\_mul\_vv\f$)
  * calculated by the library function <i>add_ncerr</i> and described in
  * section 3.1 and 3.6 of the <i>SNS 107030214-TD0001-R00, "Data Reduction
  * Library Software Requirements and Specifications"</i> with the true output
- * data (\f$true\_output\_vs\f$ and \f$true\_output\_vv\f$) manually
- * calculated.
+ * data (\f$true\_output\_vs\f$, \f$true\_output\_vv\f$ and 
+ * \f$true\_output\_mul\_vv\f$) manually calculated.
  * Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
  * will generate in the testsuite.log file an error message that gives details
  * about the location and type of the error.
@@ -63,7 +64,7 @@ const int SCALE = 2;
 /**
  *
  * This function initializes the values of arrays, \f$input1\f$, \f$input2\f$,
- * \f$input1\_err2\f$, and \f$input2\_err2\f$.
+ * \f$input3\f$, \f$input1\_err2\f$, \f$input2\_err2\f$ and \f$input3\_err2\f$.
  *
  * \param input1 (OUTPUT) is the first array to be added
  * \param input1_err2 (OUTPUT) is the square of the uncertainty in the first
@@ -71,6 +72,9 @@ const int SCALE = 2;
  * \param input2 (OUTPUT) is the second array to be added
  * \param input2_err2 (OUTPUT) is the square of the uncertainty in the second
  * array to be added
+ * \param input3 (OUTPUT) is the multi-dimensional array to be added
+ * \param input3_err2 (OUTPUT) is the square of the uncertainty in the 
+ * multi-dimensional array to be added
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & input1,
@@ -147,20 +151,11 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output_vs,
 
 /**
  * Function that sets the true outputs based on values contained in
- * \f$input1\f$, \f$input2\f$, \f$input1\_err2\f$, and \f$input2\_err2\f$.
+ * \f$input3\f$, \f$input1\f$, \f$input3\_err2\f$, and \f$input1\_err2\f$.
  *
- * For the vs case, the scalar used is the last element
- * of the array \f$input2\f$, \f$input2[NUM\_VAL - 1]\f$
- *
- * where \f$NUM\_VAL\f$ is the number of element of the arrays.
- *
- * \param true_output_vs (OUTPUT) is the true array for the
- * vs case
- * \param true_output_vs_err2 (OUTPUT) is the square of the uncertainty
- * in the true array for the vs case
- * \param true_output_vv (OUTPUT) is the true array for the
+ * \param true_output_mul_vv (OUTPUT) is the true array for the
  * vv case
- * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty
+ * \param true_output_mul_vv_err2 (OUTPUT) is the square of the uncertainty
  * in the true array for the vv case
  */
 template <typename NumT>
@@ -210,6 +205,14 @@ void initialize_true_outputs_mul(Nessi::Vector<NumT> & true_output_mul_vv,
  * \param true_output_vv (INPUT) is the true array for the vv case
  * \param true_output_vv_err2 (INPUT) is the square of the uncertainty in the
  * true array for the vv case
+ * \param output_mul_vv (INPUT) is the array created by <i>add_ncerr</i>
+ * for the multi-dimensional vv case
+ * \param output_mul_vv_err2 (INPUT) is the square of the uncertainty in the
+ * array created by <i>add_ncerr</i> for the multi-dimensional vv case
+ * \param true_output_mul_vv (INPUT) is the true array for the 
+ * multi-dimensional vv case
+ * \param true_output_mul_vv_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for the multi-dimensional vv case
  */
 template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output_vs,

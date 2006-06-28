@@ -196,7 +196,7 @@ namespace ArrayManip
    *
    * This function adds the \f$i^{th}\f$ element from \f$data_1\f$, which is 
    * multi-dimensional vector being treated as a 1D vector, to the 
-   * \f$j^{th}\f$ element from \f$data_1\f$ and places it in the \f$k^{th}\f$ 
+   * \f$j^{th}\f$ element from \f$data_2\f$ and places it in the \f$k^{th}\f$ 
    * element of \f$data_o\f$ according to the equation
    * \f[
    * data_o[k]=data_1[i]+data_2[j]
@@ -206,14 +206,30 @@ namespace ArrayManip
    * \f[
    * \sigma_o^2[k]=\sigma_1^2[i]+\sigma_2^2[j]
    * \f]
-   * Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
+   * Where \f$data_o[k]\f$ is the \f$k^{th}\f$ component of the output
    * array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the first
-   * array being added, \f$data_2[i]\f$ is the \f$i^{th}\f$ component
-   * of the second array being added, \f$\sigma_o[i]\f$ is the
-   * \f$i^{th}\f$ component of the uncertainty of the output array,
+   * array being added, \f$data_2[j]\f$ is the \f$j^{th}\f$ component
+   * of the second array being added, \f$\sigma_o[k]\f$ is the
+   * \f$k^{th}\f$ component of the uncertainty of the output array,
    * \f$\sigma_1[i]\f$ is the \f$i^{th}\f$ component of the
-   * uncertainty in the first array, and \f$\sigma_2[i]\f$ is the
-   * \f$i^{th}\f$ component of the uncertainty in the second array.
+   * uncertainty in the first array, and \f$\sigma_2[j]\f$ is the
+   * \f$j^{th}\f$ component of the uncertainty in the second array.
+   *
+   * The \f$i^{th}\f$, \f$j^{th}\f$ and \f$k^{th}\f$ elements of the 
+   * corresponding arrays are calculated according to the following equations
+   * \f[
+   * i_{N+1}^{th}=i_{N}^{th}+i1\_span
+   * \f]
+   * \f[
+   * j_{N+1}^{th}=j_{N}^{th}+i2\_span
+   * \f]
+   * \f[
+   * k_{N+1}^{th}=k_{N}^{th}+o\_span
+   * \f]
+   *
+   * The initial starting elements for all arrays are given by \f$i1\_start\f$ 
+   * (\f$data_1\f$), \f$i2\_start\f$ (\f$data_2\f$) and \f$o\_start\f$ 
+   * (\f$data_o\f$). The function runs until \f$i2\_size\f$ is reached.
    *
    * \param input1 (INPUT) is the first array to be added
    * \param input1_err2 (INPUT) is the square of the uncertainty in
