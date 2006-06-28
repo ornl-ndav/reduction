@@ -83,6 +83,12 @@ AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Velocity to Scalar Wavevector Function.  ])
+AT_CHECK([velocity_to_scalar_k_test | sed -e 's/\r$//' ],[],
+[[velocity_to_scalar_k_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Wavelength to Energy Function.  ])
 AT_CHECK([wavelength_to_energy_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_energy_test.cpp..........Functionality OK
