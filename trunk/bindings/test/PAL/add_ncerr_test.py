@@ -39,11 +39,12 @@ SCALE = 2
 # \defgroup add_ncerr_test add_ncerr_test
 # \{
 #
-# This test compares the output data (\f$output\_vs\f$ and \f$output\_vv\f$)
+# This test compares the output data (\f$output\_vs\f$, \f$output\_vv\f$ and
+# \f$output\_mul\_vv\f$)
 # calculated by the binding module <i>add_ncerr.py</i> of the Python
 # Abstration Layer (PAL) <i>array_manip.py</i> with the true output
-# data calculated (\f$true\_output\_vs\f$ and \f$true\_output\_vv\f$) manually
-# calculated.
+# data calculated (\f$true\_output\_vs\f$, \f$true\_output\_vv\f$ and 
+# \f$true\_output\_mul\_vv\f$) manually calculated.
 # Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
 # will generate an error message that give details about the location and type
 # of the error
@@ -60,14 +61,17 @@ SCALE = 2
 ##
 #
 # This function initializes the values of arrays, \f$input1\f$, \f$input2\f$,
-# \f$input1\_err2\f$, and \f$input2\_err2\f$.
+# \f$input3\f$, \f$input1\_err2\f$, \f$input2\_err2\f$ and \f$input3\_err2\f$.
 #
 # \returns
 # - input1 is the first NessiList to be added
 # - input1_err2 is the square of the uncertainty in the first
 # NessiList to be added
 # - input2 is the second NessiList to be added
-# -input2_err2 is the square of the uncertainty in the second
+# - input2_err2 is the square of the uncertainty in the second
+# NessiList to be added
+# - input3 is the multi-dimensional NessiList to be added
+# - input3_err2 is the square of the uncertainty in the multi-dimensional
 # NessiList to be added
 #
 def initialize_inputs(key):
@@ -117,6 +121,10 @@ def initialize_inputs(key):
 #
 # For the vs case, the scalar used is the last element of the
 # NessiList \f$input2\f$, \f$input2[NUM\_VAL - 1]\f$
+#
+# Function sets the true output based on values contained in
+# \f$input3\f$, \f$input3\_err2\f$, \f$input1\f$, and \f$input1\_err2\f$ for
+# mul files.
 #
 # \param key (INPUT) forces correct test to happen
 #
