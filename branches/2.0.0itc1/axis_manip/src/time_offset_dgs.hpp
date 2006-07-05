@@ -146,8 +146,8 @@ namespace AxisManip
     time_offset = time_downstream_monitor - (a*b);
 
     // the uncertainty in the result
-    time_offset_err2 = a2 * dist_downstream_monitor_err2 
-      + (a2 * b2 * initial_velocity_err2);
+    time_offset_err2 = ((a2 * dist_downstream_monitor_err2) 
+      + (a2 * a2 * b2 * initial_velocity_err2));
 
     return Nessi::EMPTY_WARN;
   }
