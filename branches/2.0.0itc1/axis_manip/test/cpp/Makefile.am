@@ -43,6 +43,7 @@ AXIS_MANIP_TARGETS = \
 	rebin_axis_2D_test \
 	reverse_array_cp_test \
 	reverse_array_nc_test \
+	time_offset_dgs_test \
 	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
 	velocity_to_energy_test\
@@ -80,6 +81,8 @@ rebin_axis_2D_test_SOURCES = rebin_axis_2D_test.cpp test_common.hpp
 reverse_array_cp_test_SOURCES = reverse_array_cp_test.cpp test_common.hpp
 
 reverse_array_nc_test_SOURCES = reverse_array_nc_test.cpp test_common.hpp
+
+time_offset_dgs_test_SOURCES = time_offset_dgs_test.cpp test_common.hpp
 
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
 
