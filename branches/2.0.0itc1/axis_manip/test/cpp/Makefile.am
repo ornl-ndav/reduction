@@ -35,14 +35,17 @@ EXTRA_DIST=testsuite.at
 
 AXIS_MANIP_TARGETS = \
 	energy_transfer_test \
+	frequency_to_angular_frequency_test\
 	frequency_to_energy_test \
 	init_scatt_wavevector_to_scalar_Q_test \
+	initial_velocity_dgs_test \
 	rebin_axis_1D_test \
 	rebin_axis_2D_test \
 	reverse_array_cp_test \
 	reverse_array_nc_test \
 	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
+	velocity_to_energy_test\
 	velocity_to_scalar_k_test \
 	wavelength_to_energy_test \
 	wavelength_to_scalar_k_test \
@@ -56,11 +59,19 @@ check_PROGRAMS = $(AXIS_MANIP_TARGETS)
 
 energy_transfer_test_SOURCES = energy_transfer_test.cpp test_common.hpp
 
+frequency_to_angular_frequency_test_SOURCES = \
+	frequency_to_angular_frequency_test.cpp \
+	test_common.hpp
+
 frequency_to_energy_test_SOURCES = frequency_to_energy_test.cpp test_common.hpp
 
 init_scatt_wavevector_to_scalar_Q_test_SOURCES = \
         init_scatt_wavevector_to_scalar_Q_test.cpp \
         test_common.hpp
+
+initial_velocity_dgs_test_SOURCES = \
+	initial_velocity_dgs_test.cpp \
+	test_common.hpp
 
 rebin_axis_1D_test_SOURCES = rebin_axis_1D_test.cpp test_common.hpp
 
@@ -74,6 +85,9 @@ tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
 
 tof_to_initial_wavelength_igs_test_SOURCES = \
         tof_to_initial_wavelength_igs_test.cpp \
+        test_common.hpp
+
+velocity_to_energy_test_SOURCES = velocity_to_energy_test.cpp \
         test_common.hpp
 
 velocity_to_scalar_k_test_SOURCES = velocity_to_scalar_k_test.cpp \
