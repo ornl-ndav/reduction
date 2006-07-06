@@ -204,7 +204,7 @@ namespace AxisManip
   {
     a = static_cast<NumT>(1.0 / initial_velocity);
     a2 = a * a;
-    b = (dist_source_sample * a) - time_offset;
+    b = (dist_source_sample * a) + time_offset;
     c = (dist_source_sample / a2);
     c2 = c*c;
 
