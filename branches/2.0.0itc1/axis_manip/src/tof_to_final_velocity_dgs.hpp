@@ -234,7 +234,7 @@ namespace AxisManip
    * tof_to_final_velocity_dgs()
    * \param final_velocity (OUTPUT) same as parameter in
    * tof_to_final_velocity_dgs()
-   * \param final_err2 (OUTPUT) same as parameter in
+   * \param final_velocity_err2 (OUTPUT) same as parameter in
    * tof_to_final_velocity_dgs()
    * \param a (INPUT) same as parameter in
    * __tof_to_final_velocity_dgs_static()
