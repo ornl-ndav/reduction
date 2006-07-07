@@ -69,6 +69,12 @@ namespace PhysConst
   static const double MNEUT_EEQ = 9.39565360e+11;
 
   /**
+   * The value of the mass of the neutron, \f$m_n\f$, in units of 
+   * \f$(\mu sec^2 / meters^2) \times meV\f$
+   */
+  static const double MNEUT_VEQ = 1.04539866e+7;
+
+  /**
    * The value of the speed of light, \f$c\f$, in units of \f$Angstroms \times
    * THz\f$
    */
