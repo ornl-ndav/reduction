@@ -89,6 +89,12 @@ AT_CHECK([time_offset_dgs_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the TOF to Final Velocity for Direct Geometry Spectrometer Function .  ])
+AT_CHECK([tof_to_final_velocity_dgs_test | sed -e 's/\r$//' ],[],
+[[tof_to_final_velocity_dgs_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the TOF to Initial Wavelength for Inverse Geometry Spectrometer Function .  ])
 AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
 [[tof_to_initial_wavelength_igs_test.cpp..........Functionality OK

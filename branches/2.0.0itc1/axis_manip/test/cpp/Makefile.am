@@ -44,6 +44,7 @@ AXIS_MANIP_TARGETS = \
 	reverse_array_cp_test \
 	reverse_array_nc_test \
 	time_offset_dgs_test \
+	tof_to_final_velocity_dgs_test \
 	tof_to_initial_wavelength_igs_test \
 	tof_to_wavelength_test \
 	velocity_to_energy_test\
@@ -84,11 +85,15 @@ reverse_array_nc_test_SOURCES = reverse_array_nc_test.cpp test_common.hpp
 
 time_offset_dgs_test_SOURCES = time_offset_dgs_test.cpp test_common.hpp
 
-tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
+tof_to_final_velocity_dgs_test_SOURCES = \
+        tof_to_final_velocity_dgs_test.cpp \
+        test_common.hpp
 
 tof_to_initial_wavelength_igs_test_SOURCES = \
         tof_to_initial_wavelength_igs_test.cpp \
         test_common.hpp
+
+tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
 
 velocity_to_energy_test_SOURCES = velocity_to_energy_test.cpp \
         test_common.hpp
