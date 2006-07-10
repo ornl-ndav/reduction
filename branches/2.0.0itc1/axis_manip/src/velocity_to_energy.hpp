@@ -131,7 +131,7 @@ namespace AxisManip
    * calculates the parameters invariant across the array calculation.
    *
    * \param a (OUTPUT) the value of the mass of the neutron, \f$m_n\f$,
-   * in units of \f$grams\f$
+   * in units of \f$(\mu sec^2 / meters^2) \times meV\f$ 
    * \param a2 (OUTPUT) square of a 
    */
   template <typename NumT>
@@ -139,7 +139,7 @@ namespace AxisManip
   __velocity_to_energy_static(NumT & a,
                               NumT & a2)
   {
-    a = static_cast<NumT>(PhysConst::MNEUT);
+    a = static_cast<NumT>(PhysConst::MNEUT_VEQ);
     a2 = a * a;
     
     return Nessi::EMPTY_WARN;
