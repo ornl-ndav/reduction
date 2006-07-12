@@ -59,7 +59,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument &e)
       {
-        throw std::invalid_argument(wtds_func_str+" (v,s): data "+e.what());
+        throw std::invalid_argument(wtds_func_str+" (v,v): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -69,7 +69,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument &e)
       {
-        throw std::invalid_argument(wtds_func_str+" (v,s): err2 "+e.what());
+        throw std::invalid_argument(wtds_func_str+" (v,v): err2 "+e.what());
       }
 
     // check that the wavelength arrays are of proper size
@@ -79,7 +79,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument &e)
       {
-        throw std::invalid_argument(wtds_func_str+" (v,s): wavelength "
+        throw std::invalid_argument(wtds_func_str+" (v,v): wavelength "
                                     +e.what());
       }
 
