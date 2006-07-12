@@ -34,6 +34,7 @@ AM_LDFLAGS  = -static \
 EXTRA_DIST=testsuite.at
 
 AXIS_MANIP_TARGETS = \
+	d_spacing_to_tof_focused_det_test \
 	energy_transfer_test \
 	frequency_to_angular_frequency_test\
 	frequency_to_energy_test \
@@ -49,6 +50,7 @@ AXIS_MANIP_TARGETS = \
 	tof_to_wavelength_test \
 	velocity_to_energy_test\
 	velocity_to_scalar_k_test \
+	wavelength_to_d_spacing_test \
 	wavelength_to_energy_test \
 	wavelength_to_scalar_k_test \
 	wavelength_to_scalar_Q_test
@@ -58,6 +60,10 @@ TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(AXIS_MANIP_TARGETS)
+
+d_spacing_to_tof_focused_det_test_SOURCES = \
+	d_spacing_to_tof_focused_det_test.cpp \
+	test_common.hpp
 
 energy_transfer_test_SOURCES = energy_transfer_test.cpp test_common.hpp
 
@@ -99,6 +105,9 @@ velocity_to_energy_test_SOURCES = velocity_to_energy_test.cpp \
         test_common.hpp
 
 velocity_to_scalar_k_test_SOURCES = velocity_to_scalar_k_test.cpp \
+        test_common.hpp
+
+wavelength_to_d_spacing_test_SOURCES = wavelength_to_d_spacing_test.cpp \
         test_common.hpp
 
 wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp \
