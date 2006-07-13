@@ -137,6 +137,8 @@ AT_CHECK([wavelength_to_energy_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+
+
 AT_SETUP([Checking the Wavelength to Scalar Wavevector Function.  ])
 AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_scalar_k_test.cpp..........Functionality OK
