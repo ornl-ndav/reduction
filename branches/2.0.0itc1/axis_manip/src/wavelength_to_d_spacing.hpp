@@ -99,11 +99,12 @@ namespace AxisManip
     for (size_t i=0; i < size_wavelength ; ++i)
       {
         retstr += __wavelength_to_d_spacing_dynamic(wavelength[i],
-                                                   wavelength_err2[i],
-                                                   scatt_angle_err2,
-                                                   a, a2, b, b2,
-                                                   d_spacing[i],
-                                                   d_spacing_err2[i]);
+                                                    wavelength_err2[i],
+                                                    scatt_angle,
+                                                    scatt_angle_err2,
+                                                    a, a2, b, b2,
+                                                    d_spacing[i],
+                                                    d_spacing_err2[i]);
       }
 
     return retstr;
@@ -134,6 +135,7 @@ namespace AxisManip
     // do the calculation
     retstr += __wavelength_to_d_spacing_dynamic(wavelength,
                                                 wavelength_err2,
+                                                scatt_angle,
                                                 scatt_angle_err2,
                                                 a, a2, b, b2,
                                                 d_spacing,
@@ -159,10 +161,10 @@ namespace AxisManip
   template <typename NumT>
   std::string
   __wavelength_to_d_spacing_static(const NumT scatt_angle,
-                                   NumT a,
-                                   NumT a2,
-                                   NumT b,
-                                   NumT b2) 
+                                   NumT & a,
+                                   NumT & a2,
+                                   NumT & b,
+                                   NumT & b2) 
                                  
   {
     a = static_cast<NumT>(2.0 * std::sin(static_cast<double>(scatt_angle)));
@@ -170,7 +172,7 @@ namespace AxisManip
     b = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle))
        /std::sin(static_cast<double>(scatt_angle)));
     b2= b*b;
-
+    
     return Nessi::EMPTY_WARN;
   }
 
@@ -197,6 +199,7 @@ namespace AxisManip
   std::string
   __wavelength_to_d_spacing_dynamic(const NumT wavelength,
                                     const NumT wavelength_err2,
+                                    const NumT scatt_angle,
                                     const NumT scatt_angle_err2,
                                     const NumT a,
                                     const NumT a2,
@@ -209,7 +212,7 @@ namespace AxisManip
     NumT wl2 = static_cast<NumT>(wl*wl/4.0);
 
     // the result
-    d_spacing = wl/a ;
+    d_spacing = wl/a;
 
     // the uncertainty in the result
     d_spacing_err2 = (wavelength_err2/a2) + (wl2*b2*scatt_angle_err2/a2);
