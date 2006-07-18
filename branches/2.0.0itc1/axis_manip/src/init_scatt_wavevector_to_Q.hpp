@@ -64,8 +64,7 @@ namespace AxisManip
    // check that the values are of proper size
    try
      {
-       Utils::check_sizes_square(initial_wavevector, final_wavevector, 
-                                 Qx);
+       Utils::check_sizes_square(initial_wavevector, final_wavevector, Qx);
      }
    catch(std::invalid_argument &e)
      {
@@ -140,7 +139,9 @@ namespace AxisManip
                                               initial_wavevector_err2[i],
                                               final_wavevector[i],
                                               final_wavevector_err2[i],
+                                              azimuthal_angle,
                                               azimuthal_angle_err2,
+                                              polar_angle,
                                               polar_angle_err2, 
                                               a, a2, b, b2,
                                               c, c2, d, d2,
@@ -248,7 +249,9 @@ namespace AxisManip
                                                initial_wavevector_err2,
                                                final_wavevector[i],
                                                final_wavevector_err2[i],
+                                               azimuthal,
                                                azimuthal_err2,
+                                               polar,
                                                polar_err2, 
                                                a, a2, b, b2,
                                                c, c2, d, d2,
@@ -356,7 +359,9 @@ namespace AxisManip
                                                initial_wavevector_err2[i],
                                                final_wavevector,
                                                final_wavevector_err2,
+                                               azimuthal,
                                                azimuthal_err2,
+                                               polar,
                                                polar_err2, 
                                                a, a2, b, b2,
                                                c, c2, d, d2,
@@ -413,7 +418,9 @@ namespace AxisManip
                                            initial_wavevector_err2,
                                            final_wavevector,
                                            final_wavevector_err2,
+                                           azimuthal,
                                            azimuthal_err2,
+                                           polar,
                                            polar_err2, 
                                            a, a2, b, b2,
                                            c, c2, d, d2,
@@ -528,7 +535,9 @@ namespace AxisManip
                                        const NumT initial_wavevector_err2,
                                        const NumT final_wavevector,
                                        const NumT final_wavevector_err2,
+                                       const NumT azimuthal,
                                        const NumT azimuthal_err2,
+                                       const NumT polar,
                                        const NumT polar_err2,
                                        const NumT a,
                                        const NumT a2,
@@ -542,8 +551,8 @@ namespace AxisManip
                                        NumT & Qx_err2,
                                        NumT & Qy,
                                        NumT & Qy_err2,
-                                       NumT Qz,
-                                       NumT Qz_err2)
+                                       NumT & Qz,
+                                       NumT & Qz_err2)
   
   {
     NumT kf = final_wavevector;
