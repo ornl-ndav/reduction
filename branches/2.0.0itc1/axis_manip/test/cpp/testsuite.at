@@ -53,6 +53,12 @@ AT_CHECK([frequency_to_energy_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Initial and Scattering Wavevector to Momentum Transfer Function.  ])
+AT_CHECK([init_scatt_wavevector_to_Q_test | sed -e 's/\r$//' ],[],
+[[init_scatt_wavevector_to_Q_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Initial and Scattering Wavevector to Scalar Q Function.  ])
 AT_CHECK([init_scatt_wavevector_to_scalar_Q_test | sed -e 's/\r$//' ],[],
 [[init_scatt_wavevector_to_scalar_Q_test.cpp..........Functionality OK

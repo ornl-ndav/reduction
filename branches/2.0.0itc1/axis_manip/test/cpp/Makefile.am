@@ -38,6 +38,7 @@ AXIS_MANIP_TARGETS = \
 	energy_transfer_test \
 	frequency_to_angular_frequency_test\
 	frequency_to_energy_test \
+	init_scatt_wavevector_to_Q_test \
 	init_scatt_wavevector_to_scalar_Q_test \
 	initial_velocity_dgs_test \
 	rebin_axis_1D_test \
@@ -72,6 +73,10 @@ frequency_to_angular_frequency_test_SOURCES = \
 	test_common.hpp
 
 frequency_to_energy_test_SOURCES = frequency_to_energy_test.cpp test_common.hpp
+
+init_scatt_wavevector_to_Q_test_SOURCES = \
+        init_scatt_wavevector_to_Q_test.cpp \
+        test_common.hpp
 
 init_scatt_wavevector_to_scalar_Q_test_SOURCES = \
         init_scatt_wavevector_to_scalar_Q_test.cpp \
@@ -110,7 +115,8 @@ velocity_to_scalar_k_test_SOURCES = velocity_to_scalar_k_test.cpp \
 wavelength_to_d_spacing_test_SOURCES = wavelength_to_d_spacing_test.cpp \
         test_common.hpp
 
-wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp \
+wavelength_to_energy_test_SOURCES = \
+	wavelength_to_energy_test.cpp \
         test_common.hpp
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp \
