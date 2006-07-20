@@ -64,6 +64,15 @@
 
 %template(d_spacing_to_tof_focused_det_d) AxisManip::d_spacing_to_tof_focused_det<double>;
 
+%{
+std::string d_spacing_to_tof_focused_det_ss_d(const double d_spacing, const double d_spacing_err2, const double pathlength_focused, const double pathlength_focused_err2, const double polar_angle_focused, const double polar_angle_focused_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2, pathlength_focused, pathlength_focused_err2, polar_angle_focused, polar_angle_focused_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string d_spacing_to_tof_focused_det_ss_d(const double d_spacing, const double d_spacing_err2, const double pathlength_focused, const double pathlength_focused_err2, const double polar_angle_focused, const double polar_angle_focused_err2, VPair<double> & value, void *temp=NULL);
+
 %template(energy_transfer_d) AxisManip::energy_transfer<double>;
 
 %{
@@ -110,6 +119,9 @@ std::string init_scatt_wavevector_to_scalar_Q_ss_d(const double initial_wavevect
 %template(time_offset_dgs_d) AxisManip::time_offset_dgs<double>;
 
 %template(tof_to_final_velocity_dgs_d) AxisManip::tof_to_final_velocity_dgs<double>;
+
+%{
+std::string tof_to_final_velocity_dgs_ss_d(const double tof, const double tof_err2, const double initial_velocity, const double initial_velocity_err2, const double time_offset, const double time_offset_err2,const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL) { 
 
 %template(tof_to_initial_velocity_igs_d) AxisManip::tof_to_initial_velocity_igs<double>;
 
