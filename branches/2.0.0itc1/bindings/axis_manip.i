@@ -122,6 +122,13 @@ std::string init_scatt_wavevector_to_scalar_Q_ss_d(const double initial_wavevect
 
 %{
 std::string tof_to_final_velocity_dgs_ss_d(const double tof, const double tof_err2, const double initial_velocity, const double initial_velocity_err2, const double time_offset, const double time_offset_err2,const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL) { 
+  std::string ret = AxisManip::tof_to_final_velocity_dgs(tof, tof_err2, initial_velocity, initial_velocity_err2, time_offset, time_offset_err2, dist_source_sample, dist_source_sample_err2, dist_sample_detector, dist_sample_detector_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string tof_to_final_velocity_dgs_ss_d(const double tof, const double tof_err2, const double initial_velocity, const double initial_velocity_err2, const double time_offset, const double time_offset_err2,const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL);
+
 
 %template(tof_to_initial_velocity_igs_d) AxisManip::tof_to_initial_velocity_igs<double>;
 
