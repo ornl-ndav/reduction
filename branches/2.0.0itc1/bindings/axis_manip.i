@@ -159,12 +159,21 @@ std::string tof_to_wavelength_ss_d(const double tof, const double tof_err2, cons
 
 std::string tof_to_wavelength_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, VPair<double> & value, void *temp=NULL);
 
-
 %template(velocity_to_energy_d) AxisManip::velocity_to_energy<double>;
 
 %template(velocity_to_scalar_k_d) AxisManip::velocity_to_scalar_k<double>;
 
 %template(wavelength_to_d_spacing_d) AxisManip::wavelength_to_d_spacing<double>;
+
+%{
+std::string wavelength_to_d_spacing_ss_d(const double wavelength, const double wavelength_err2,const double scatt_angle, const double scatt_angle_err2, VPair<double> & value, void *temp=NULL) { 
+  std::string ret = AxisManip::wavelength_to_d_spacing(wavelength, wavelength_err2, scatt_angle, scatt_angle_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string wavelength_to_d_spacing_ss_d(const double wavelength, const double wavelength_err2,const double scatt_angle, const double scatt_angle_err2, VPair<double> & value, void *temp=NULL);
+
 %template(wavelength_to_energy_d) AxisManip::wavelength_to_energy<double>;
 
 %{
