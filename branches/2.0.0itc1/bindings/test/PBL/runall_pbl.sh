@@ -41,6 +41,8 @@ python test_tof_to_initial_wavelength_igs.py
 echo
 python test_tof_to_wavelength.py
 echo
+python test_velocity_to_energy.py
+echo
 python test_wavelength_to_d_spacing.py
 echo
 python test_wavelength_to_energy.py
