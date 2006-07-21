@@ -89,6 +89,15 @@ std::string energy_transfer_ss_d(const double initial_energy, const double initi
 
 %template(frequency_to_angular_frequency_d) AxisManip::frequency_to_angular_frequency<double>;
 
+%{
+std::string frequency_to_angular_frequency_ss_d(const double frequency, const double frequency_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::frequency_to_angular_frequency(frequency, frequency_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string frequency_to_angular_frequency_ss_d(const double frequency, const double frequency_err2, VPair<double> & value, void *temp=NULL);
+
 %template(frequency_to_energy_d) AxisManip::frequency_to_energy<double>;
 
 %{
