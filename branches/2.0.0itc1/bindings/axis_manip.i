@@ -172,6 +172,15 @@ std::string velocity_to_energy_ss_d(const double velocity, const double velocity
 
 %template(velocity_to_scalar_k_d) AxisManip::velocity_to_scalar_k<double>;
 
+%{
+std::string velocity_to_scalar_k_ss_d(const double velocity, const double velocity_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::velocity_to_scalar_k(velocity, velocity_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string velocity_to_scalar_k_ss_d(const double velocity, const double velocity_err2, VPair<double> & value, void *temp=NULL);
+
 %template(wavelength_to_d_spacing_d) AxisManip::wavelength_to_d_spacing<double>;
 
 %{
