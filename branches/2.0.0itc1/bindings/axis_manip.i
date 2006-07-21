@@ -161,6 +161,15 @@ std::string tof_to_wavelength_ss_d(const double tof, const double tof_err2, cons
 
 %template(velocity_to_energy_d) AxisManip::velocity_to_energy<double>;
 
+%{
+std::string velocity_to_energy_ss_d(const double velocity, const double velocity_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::velocity_to_energy(velocity, velocity_err2,value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string velocity_to_energy_ss_d(const double velocity, const double velocity_err2, VPair<double> & value, void *temp=NULL);  
+
 %template(velocity_to_scalar_k_d) AxisManip::velocity_to_scalar_k<double>;
 
 %template(wavelength_to_d_spacing_d) AxisManip::wavelength_to_d_spacing<double>;
