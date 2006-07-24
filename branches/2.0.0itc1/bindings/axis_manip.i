@@ -113,6 +113,15 @@ std::string frequency_to_energy_ss_d(const double frequency, const double freque
 
 %template(init_scatt_wavevector_to_Q_d) AxisManip::init_scatt_wavevector_to_Q<double>;
 
+%{
+std::string init_scatt_wavevector_to_Q_ss_d(const double initial_wavevector, const double initial_wavevector_err2, const double final_wavevector, const double final_wavevector_err2, const double azimuthal_angle, const double azimuthal_angle_err2, const double polar_angle, const double polar_angle_err2, VPair<double> & value_Qx, VPair<double> & value_Qy, VPair<double> & value_Qz, void *temp=NULL) {
+  std::string ret = AxisManip::init_scatt_wavevector_to_Q(initial_wavevector, initial_wavevector_err2, final_wavevector, final_wavevector_err2, azimuthal_angle, azimuthal_angle_err2, polar_angle, polar_angle_err2, value_Qx.val, value_Qx.val_err2, value_Qy.val, value_Qy.val_err2, value_Qz.val, value_Qz.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string init_scatt_wavevector_to_Q_ss_d(const double initial_wavevector, const double initial_wavevector_err2, const double final_wavevector, const double final_wavevector_err2, const double azimuthal_angle, const double azimuthal_angle_err2, const double polar_angle, const double polar_angle_err2, VPair<double> & value_Qx, VPair<double> & value_Qy, VPair<double> & value_Qz, void *temp=NULL);
+
 %template(init_scatt_wavevector_to_scalar_Q_d) AxisManip::init_scatt_wavevector_to_scalar_Q<double>;
 
 %{
