@@ -21,6 +21,8 @@ python test_frequency_to_angular_frequency.py
 echo
 python test_frequency_to_energy.py
 echo
+python test_init_scatt_wavevector_to_Q.py
+echo
 python test_init_scatt_wavevector_to_scalar_Q.py
 echo
 python test_initial_velocity_dgs.py
