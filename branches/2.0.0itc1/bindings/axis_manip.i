@@ -109,7 +109,7 @@ std::string frequency_to_energy_ss_d(const double frequency, const double freque
 
 std::string frequency_to_energy_ss_d(const double frequency, const double frequency_err2, VPair<double> & value, void *temp=NULL);
 
-%template(initial_velocity_dgs_d) AxisManip::initial_velocity_dgs<double>;
+
 
 %template(init_scatt_wavevector_to_Q_d) AxisManip::init_scatt_wavevector_to_Q<double>;
 
@@ -133,6 +133,14 @@ std::string init_scatt_wavevector_to_scalar_Q_ss_d(const double initial_wavevect
 
 std::string init_scatt_wavevector_to_scalar_Q_ss_d(const double initial_wavevector, const double initial_wavevector_err2, const double final_wavevector, const double final_wavevector_err2, const double polar_angle, const double polar_angle_err2, VPair<double> & value, void *temp=NULL);
 
+%{
+std::string initial_velocity_dgs_ss_d(const double dist_upsteam_mon, const double dist_upstream_mon_err2, const double time_upstream_mon, const double time_upstream_mon_err2, const double dist_downstream_mon, const double dist_downstream_mon_err2, const double time_downstream_mon, const double time_downstream_mon_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::initial_velocity_dgs(dist_upsteam_mon, dist_upstream_mon_err2, time_upstream_mon, time_upstream_mon_err2, dist_downstream_mon, dist_downstream_mon_err2, time_downstream_mon, time_downstream_mon_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string initial_velocity_dgs_ss_d(const double dist_upsteam_mon, const double dist_upstream_mon_err2, const double time_upstream_mon, const double time_upstream_mon_err2, const double dist_downstream_mon, const double dist_downstream_mon_err2, const double time_downstream_mon, const double time_downstream_mon_err2, VPair<double> & value, void *temp=NULL);
 
 %template(time_offset_dgs_d) AxisManip::time_offset_dgs<double>;
 
