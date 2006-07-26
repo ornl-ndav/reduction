@@ -61,6 +61,130 @@ import vpair_bind
 #
 
 ##
+# \defgroup d_spacing_to_tof_focused_det
+#           axis_manip::d_spacing_to_tof_focused_det
+# \{
+
+##
+# \brief This function is described in section  3.39.
+#
+# This function converts the d-spacing to time-of-flight at a
+# focused detector position according to the equation
+# \f[
+# TOF[i]=\frac{4\pi m_n}{h} L_{focused} d[i] \sin(polar_{focused})
+# \f]
+# Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
+# of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
+# is the focused total flight path, \f$d[i]\f$ is the d-spacing,
+# and \f$polar_{focused}\f$ is the angle between the z-axis and the
+# focused scattered neutron. The uncertainty is calculated using
+# the assumption of uncorrelated uncertainties.
+#
+# \param d_spacing (INPUT) is the d-spacing axis in units of
+# Angstrom
+# \param d_spacing_err2 (INPUT) is the square of the uncertainty in
+# the d-spacing axis
+# \param pathlength_focused (INPUT) is the total flight path of the
+# focused neutron in units of meter
+# \param pathlength_focused_err2 (INPUT) is the square of the
+# uncertainty in pathlength_focused
+# \param polar_focused (INPUT) is the polar angle of the focused
+# neutron in the equation above in units of radians
+# \param polar_focused_err2 (INPUT) is the square of the
+# uncertainty in polar_focused
+# \return
+# - The time-of-flight axis in units of micro-seconds
+# - The square of the uncertainty in the time-of-flight axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the lists are not
+# recognized types
+
+def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
+                                 pathlength_focused,
+                                 pathlength_focused_err2,
+                                 polar_focused,
+                                 polar_focused_err2):
+
+    """
+    This function converts the d-spacing to time-of-flight at a
+    focused detector position according to the equation
+    
+    TOF[i] = 4 pi m_n L_focused d[i] sin(polar_focused) / h
+ 
+    Where TOF[i] is the time-of-flight, m_n is the mass of the neutron,
+    h is Planck's constant, L_focused is the focused total flight path,
+    d[i] is the d-spacing, and polar_focused is the angle between the
+    z-axis and the focused scattered neutron. The uncertainty is
+    calculated using the assumption of uncorrelated uncertainties.
+    
+    Parameters:
+    __________
+    
+    -> d_spacing is the d-spacing axis in units of Angstrom
+    -> d_spacing_err2 is the square of the uncertainty in the d-spacing axis
+    -> pathlength_focused is the total flight path of the focused neutron
+    in units of meter
+    -> pathlength_focused_err2 is the square of the uncertainty in
+    pathlength_focused
+    -> polar_focused is the polar angle of the focused neutron in the
+    equation above in units of radians
+    -> polar_focused_err2 is the square of the uncertainty in polar_focused
+    
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- The time-of-flight axis in units of micro-seconds
+    <- The square of the uncertainty in the time-of-flight axis
+    
+    Exceptions:
+    __________
+    
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+    """
+
+    try:
+        if d_spacing.__type__ != d_spacing_err2.__type__:
+            raise TypeError, "D-Spacing and D-Spacing Err2 arrays are not"\
+            +"the same type"
+
+        if (d_spacing.__type__ == nessi_list.NessiList.DOUBLE):
+            tof = nessi_list.NessiList(len(d_spacing))
+            tof_err2 = nessi_list.NessiList(len(d_spacing))
+            axis_manip_bind.d_spacing_to_tof_focused_det_d(\
+                    d_spacing.__array__,\
+                    d_spacing_err2.__array__,\
+                    float(pathlength_focused),\
+                    float(pathlength_focused_err2),\
+                    float(polar_focused),\
+                    float(polar_focused_err2),\
+                    tof.__array__,\
+                    tof_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(d_spacing.__type__)
+
+        return tof, tof_err2
+
+    except AttributeError:
+        tof_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.d_spacing_to_tof_focused_det_ss_d(\
+          float(d_spacing),\
+          float(d_spacing_err2),\
+          float(pathlength_focused),\
+          float(pathlength_focused_err2),\
+          float(polar_focused),\
+          float(polar_focused_err2),\
+          tof_ss)
+        return tof_ss.val, tof_ss.val_err2
+
+##
+# \}
+
+##
 # \defgroup energy_transfer axis_manip::energy_transfer
 # \{
 
