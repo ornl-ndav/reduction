@@ -84,7 +84,6 @@ std::string energy_transfer_ss_d(const double initial_energy, const double initi
 
 std::string energy_transfer_ss_d(const double initial_energy, const double initial_energy_err2, const double final_energy, double final_energy_err2, VPair<double> & value, void *temp=NULL);
 
-
 %template(final_velocity_igs_d) AxisManip::final_velocity_igs<double>;
 
 %template(frequency_to_angular_frequency_d) AxisManip::frequency_to_angular_frequency<double>;
@@ -108,8 +107,6 @@ std::string frequency_to_energy_ss_d(const double frequency, const double freque
 %}	
 
 std::string frequency_to_energy_ss_d(const double frequency, const double frequency_err2, VPair<double> & value, void *temp=NULL);
-
-
 
 %template(init_scatt_wavevector_to_Q_d) AxisManip::init_scatt_wavevector_to_Q<double>;
 
@@ -142,7 +139,14 @@ std::string initial_velocity_dgs_ss_d(const double dist_upsteam_mon, const doubl
 
 std::string initial_velocity_dgs_ss_d(const double dist_upsteam_mon, const double dist_upstream_mon_err2, const double time_upstream_mon, const double time_upstream_mon_err2, const double dist_downstream_mon, const double dist_downstream_mon_err2, const double time_downstream_mon, const double time_downstream_mon_err2, VPair<double> & value, void *temp=NULL);
 
-%template(time_offset_dgs_d) AxisManip::time_offset_dgs<double>;
+%{
+std::string time_offset_dgs_ss_d(const double dist_downstream_monitor, const double dist_downstream_monitor_err2, const double time_downstream_monitor, const double time_downstream_monitor_err2, const double initial_velocity, const double initial_velocity_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::time_offset_dgs(dist_downstream_monitor, dist_downstream_monitor_err2, time_downstream_monitor, time_downstream_monitor_err2, initial_velocity, initial_velocity_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string time_offset_dgs_ss_d(const double dist_downstream_monitor, const double dist_downstream_monitor_err2, const double time_downstream_monitor, const double time_downstream_monitor_err2, const double initial_velocity, const double initial_velocity_err2, VPair<double> & value, void *temp=NULL);
 
 %template(tof_to_final_velocity_dgs_d) AxisManip::tof_to_final_velocity_dgs<double>;
 
