@@ -1732,6 +1732,100 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 ##
 # \}
 
+
+##
+# \defgroup velocity_to_energy axis_manip::velocity_to_energy
+# \{
+
+##
+# \brief This function is described in section 3.21.
+#
+# This function calculates the energy of a neutron given its velocity according
+# to the equation
+# \f[
+# E[i]=\frac{1}{2}m_n v[i]^2 =
+# 5.227\times 10^{-6} \left( \frac{v[i]}{m/\mu s} \right)^2 meV
+# \f]
+# Where \f$E[i]\f$ is the energy of the neutron, \f$m_n\f$ is the mass of the neutron,
+# and \f$v[i]\f$ is the velocity of the netron. The uncertainty is calculated using
+# the assumption of uncorrelated uncertainties.
+#
+# \param velocity (INPUT) is the velocity of the neutron in units of
+# meter/micro-seconds
+# \param velocity_err2 (INPUT) is the square of the uncertainty in the velocity of
+# the neutron
+#
+# \return
+# - The energy is the energy of the neutron in units of meV
+# - The energy_err2 is the square of the uncertainty in the energy
+#
+# \exception IndexError is thrown if the arrays are not of compatible  sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+
+def velocity_to_energy(velocity, velocity_err2):
+
+    """
+    This function takes a histogram data set that has the principle axis in
+    units of meter/micro-seconds and converts it to meV according to the equation
+
+    E[i] = m_n v[i]^2 / 2 = 5.227* 10^-6 * v[i]^2
+    
+    Where E is the energy of the neutron, m_n is the mass of the neutron, and v is
+    the velocity of the netron. 
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the energy axis is given by
+
+    sigma^2_E[i] = m_n_veq^2 * nu[i]^2 * sigma^2_nu[i]
+
+    Parameters:
+    ----------
+    -> velocity is the velocity of the neutron in units of meter/micro-seconds
+    -> velocity_err2 is the square of the uncertainty in the velocity of the neutron
+   
+    Returns - 2 NessiLists:
+    ----------------------
+    <- the energy of the neutron in units of meV
+    <- the square of the uncertainty in the energy 
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+
+    """
+
+    try:
+        if velocity.__type__ != velocity_err2.__type__:
+            raise TypeError, "Velocity and Velocity Err2 arrays are not"\
+            +"the same type"
+
+        if (velocity.__type__ == nessi_list.NessiList.DOUBLE):
+            E = nessi_list.NessiList(len(velocity))
+            E_err2 = nessi_list.NessiList(len(velocity))
+            axis_manip_bind.velocity_to_energy_d(\
+                    velocity.__array__,\
+                    velocity_err2.__array__,\
+                    E.__array__,\
+                    E_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(velocity.__type__)
+
+        return E, E_err2
+
+    except AttributeError:
+        E_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.velocity_to_energy_ss_d(\
+          float(velocity),\
+          float(velocity_err2),\
+          E_ss)
+        return E_ss.val, E_ss.val_err2
+
+##
+# \}  // end of velocity_to_energy group
+
+
 ##
 # \defgroup wavelength_to_energy axis_manip::wavelength_to_energy
 # \{
