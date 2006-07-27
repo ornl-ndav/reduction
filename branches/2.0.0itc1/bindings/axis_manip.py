@@ -1827,6 +1827,108 @@ def velocity_to_energy(velocity, velocity_err2):
 
 
 ##
+# \defgroup velocity_to_scalar_k AxisManip::velocity_to_scalar_k
+# \{
+#
+
+##
+# \brief This function is described in section 3.23.
+#
+# This function calculates the scalar wavevector given the velocity
+# according to the equation
+# \f[
+# k[i]=\frac{m_n}{h}v[i]
+# \f]
+# Where \f$k[i]\f$ is the scalar wavevector, \f$m_n\f$ is the mass
+# of the neutron, \f$h\f$ is Planck's constant, and \f$v[i]\f$ is
+# the velocity of the neutron. The uncertainty is calculated using
+# the assumption of uncorrelated uncertainties.
+#
+# \param velocity (INPUT) is the velocity of the neutron in units
+# of meter/micro-seconds
+# \param velocity_err2 (INPUT) is the square of the uncertainty in
+# the velocity of the neutron
+#
+# \return
+# - The wavevector is the scalar wavevector in units of reciprocal Angstroms
+# - The wavevector_err2 is the square of the uncertainty in the scalar wavevector
+#
+# \exception IndexError is thrown if the arrays are not of compatible sizes
+# \exception TypeError is thrown if any of the arrays are not recognized types
+
+def velocity_to_scalar_k(velocity, velocity_err2):
+
+    """
+    This function calculates the scalar wavevector given the velocity
+    according to the equation:
+
+    k[i] = m_n * v[i] / h
+
+    where k[i] is the scalar wavevector, m_n is the mass of the neutron,
+    v[i] is the velocity of the neutron, and h is Planck's constant.
+
+    Assuming that the uncertainties are uncorrelated, the uncertainty
+    in the scalar wavevector is given by:
+
+    k_err2[i]^2 = (m_n / h)^2 * v_err2[i]^2
+
+    where k_err2 is the uncertainty in the scalar wavevector, and
+    v_err2 is the uncertainty in the velocity of the neutron.
+
+    Parameters:
+    __________
+
+    -> veloctiy is the velocity of the neutron in units of
+       meter/micro-seconds
+    -> velocity_err2 is the square of the uncertainty in the velocity
+
+    Returns 2 NessiLists:
+    ______________________
+
+    <- the scalar wavevector in units of reciprocal Angstroms
+    <- the square of the uncertainty in the scalar wavevector
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+
+    try:
+        if velocity.__type__ != velocity_err2.__type__:
+            raise TypeError, "Velocity and Velocity Err2 arrays are not"\
+            +"the same type"
+
+        if (velocity.__type__ == nessi_list.NessiList.DOUBLE):
+            wavevector = nessi_list.NessiList(len(velocity))
+            wavevector_err2 = nessi_list.NessiList(len(velocity))
+            axis_manip_bind.velocity_to_scalar_k_d(\
+                    velocity.__array__,\
+                    velocity_err2.__array__,\
+                    wavevector.__array__,\
+                    wavevector_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s"\
+                  % str(velocity.__type__)
+
+        return wavevector, wavevector_err2
+
+    except AttributeError:
+        wavevector_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.velocity_to_scalar_k_ss_d(\
+            float(velocity),\
+            float(velocity_err2),\
+            wavevector_ss)
+        return wavevector_ss.val, wavevector_ss.val_err2
+
+##
+# \} // end of velocity_to_scalar_k_group
+
+##
 # \defgroup wavelength_to_energy axis_manip::wavelength_to_energy
 # \{
 
