@@ -17,6 +17,8 @@ python div_ncerr_test.py
 echo
 python energy_transfer_test.py
 echo
+python frequency_to_angular_frequency_test.py
+echo
 python frequency_to_energy_test.py
 echo
 python init_scatt_wavevector_to_scalar_Q_test.py
