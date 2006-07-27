@@ -357,6 +357,99 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 
 
 ##
+# \defgroup frequency_to_angular_frequency
+#           axis_manip::frequency_to_angular_frequency
+# \{
+
+##
+# \brief This function is described in section 3.31.
+#
+# This function calculates the angular frequency according to the equation
+# \f[
+# \omega[i] = 2\pi\nu[i] \times 10^{12}
+# \f]
+# Where \f$\omega[i]\f$ is the angular frequency, and \f$\nu[i]\f$
+# is the frequency. The uncertainty is calculated using the
+# assumption of uncorrelated uncertainties.
+#
+# \param frequency (INPUT) is the frequency axis in units of THz
+# \param frequency_err2 (INPUT) is the square of the uncertainty in
+# the frequency axis
+#
+# \return
+# -The angular_frequency is the angular frequency axis in units of rad/second
+# -The angular_frequency_err2 is the square of the uncertainty in the angular
+# frequency axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+   
+def frequency_to_angular_frequency(frequency, frequency_err2):
+
+    """
+    This function takes a histogram data set that has the principle axis in
+    units of THz and converts it to rad/second according to the equation
+
+    omega[i] = 2 * pi * nu[i] * 10^12
+
+    where omega is the angular frequency in units of rad/second, nu is the
+    frequency in units of THz.
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the angular frequency axis is given by
+
+    sigma^2_omega[i] = (2 * pi * 10^12)^2 * sigma^2_nu[i]
+
+    Parameters:
+    ----------
+    -> frequency is the frequency axis in unit of THz
+    -> frequency_err2 is the square of the uncertainty of the frequency axis
+
+    Returns - 2 NessiLists:
+    ----------------------
+    <- the angular_frequency axis in units of rad/second
+    <- the square of the uncertainty of the angular frequency axis
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+
+    """
+
+    try:
+        if frequency.__type__ != frequency_err2.__type__:
+            raise TypeError, "Frequency and Frequency Err2 arrays are not"\
+            +"the same type"
+
+        if (frequency.__type__ == nessi_list.NessiList.DOUBLE):
+            omega = nessi_list.NessiList(len(frequency))
+            omega_err2 = nessi_list.NessiList(len(frequency))
+            axis_manip_bind.frequency_to_angular_frequency_d(\
+                    frequency.__array__,\
+                    frequency_err2.__array__,\
+                    omega.__array__,\
+                    omega_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(frequency.__type__)
+
+        return omega, omega_err2
+
+    except AttributeError:
+        omega_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.frequency_to_angular_frequency_ss_d(\
+          float(frequency),\
+          float(frequency_err2),\
+          omega_ss)
+        return omega_ss.val, omega_ss.val_err2
+
+##
+# \}  // end of frequency_to_angular_frequency group
+
+
+
+##
 # \defgroup frequency_to_energy axis_manip::frequency_to_energy
 # \{
 
