@@ -43,6 +43,8 @@ python tof_to_wavelength_test.py
 echo
 python velocity_to_energy_test.py
 echo
+python velocity_to_scalar_k_test.py
+echo
 python wavelength_to_energy_test.py
 echo
 python wavelength_to_scalar_Q_test.py
