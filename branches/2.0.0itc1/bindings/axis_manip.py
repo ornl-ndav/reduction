@@ -154,14 +154,14 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
             tof = nessi_list.NessiList(len(d_spacing))
             tof_err2 = nessi_list.NessiList(len(d_spacing))
             axis_manip_bind.d_spacing_to_tof_focused_det_d(\
-                    d_spacing.__array__,\
-                    d_spacing_err2.__array__,\
-                    float(pathlength_focused),\
-                    float(pathlength_focused_err2),\
-                    float(polar_focused),\
-                    float(polar_focused_err2),\
-                    tof.__array__,\
-                    tof_err2.__array__)
+                d_spacing.__array__,\
+                d_spacing_err2.__array__,\
+                float(pathlength_focused),\
+                float(pathlength_focused_err2),\
+                float(polar_focused),\
+                float(polar_focused_err2),\
+                tof.__array__,\
+                tof_err2.__array__)
 
         else:
             raise TypeError,"Unknown primative type %s" \
@@ -172,17 +172,17 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
     except AttributeError:
         tof_ss = vpair_bind.DoubleVPair()
         axis_manip_bind.d_spacing_to_tof_focused_det_ss_d(\
-          float(d_spacing),\
-          float(d_spacing_err2),\
-          float(pathlength_focused),\
-          float(pathlength_focused_err2),\
-          float(polar_focused),\
-          float(polar_focused_err2),\
-          tof_ss)
+            float(d_spacing),\
+            float(d_spacing_err2),\
+            float(pathlength_focused),\
+            float(pathlength_focused_err2),\
+            float(polar_focused),\
+            float(polar_focused_err2),\
+            tof_ss)
         return tof_ss.val, tof_ss.val_err2
 
 ##
-# \}
+# \}// end of d_spacing_to_tof_focused_det group
 
 ##
 # \defgroup energy_transfer axis_manip::energy_transfer
@@ -425,10 +425,10 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
             omega = nessi_list.NessiList(len(frequency))
             omega_err2 = nessi_list.NessiList(len(frequency))
             axis_manip_bind.frequency_to_angular_frequency_d(\
-                    frequency.__array__,\
-                    frequency_err2.__array__,\
-                    omega.__array__,\
-                    omega_err2.__array__)
+                frequency.__array__,\
+                frequency_err2.__array__,\
+                omega.__array__,\
+                omega_err2.__array__)
 
         else:
             raise TypeError,"Unknown primative type %s" \
@@ -439,9 +439,9 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
     except AttributeError:
         omega_ss = vpair_bind.DoubleVPair()
         axis_manip_bind.frequency_to_angular_frequency_ss_d(\
-          float(frequency),\
-          float(frequency_err2),\
-          omega_ss)
+            float(frequency),\
+            float(frequency_err2),\
+            omega_ss)
         return omega_ss.val, omega_ss.val_err2
 
 ##
@@ -525,10 +525,10 @@ def frequency_to_energy(frequency, frequency_err2):
             E = nessi_list.NessiList(len(frequency))
             E_err2 = nessi_list.NessiList(len(frequency))
             axis_manip_bind.frequency_to_energy_d(\
-                    frequency.__array__,\
-                    frequency_err2.__array__,\
-                    E.__array__,\
-                    E_err2.__array__)
+                frequency.__array__,\
+                frequency_err2.__array__,\
+                E.__array__,\
+                E_err2.__array__)
 
         else:
             raise TypeError,"Unknown primative type %s" \
@@ -539,9 +539,9 @@ def frequency_to_energy(frequency, frequency_err2):
     except AttributeError:
         E_ss = vpair_bind.DoubleVPair()
         axis_manip_bind.frequency_to_energy_ss_d(\
-          float(frequency),\
-          float(frequency_err2),\
-          E_ss)
+            float(frequency),\
+            float(frequency_err2),\
+            E_ss)
         return E_ss.val, E_ss.val_err2
 
 ##
@@ -1406,6 +1406,166 @@ def reverse_array_nc(input):
 ##
 #\}
 
+
+##
+# \defgroup tof_to_final_velocity_dgs
+#           axis_manip::tof_to_final_velocity_dgs
+# \{
+   
+##
+# \brief This function is described in section 3.27 of the
+# SNS 107030214-TD0001-R00, "Data Reduction Library Software Requirements
+# and Specifications".
+#
+# This function calculates the final velocity of the neutron for a
+# direct geometry spectrometer according to the equation
+# \f[
+# v_f[i]=\frac{L_D}{t[i]-\frac{L_S}{v_i}-t_0}
+# \f]
+# Where \f$v_f[i]\f$ is the final velocity of the neutron,
+# \f$L_D\f$ is the distance from the sample to the detector,
+# \f$t[i]\f$ is the total time-of-flight, \f$L_S\f$ is the distance
+# from source to sample, \f$v_i\f$ is the initial velocity of the
+# neutron, and \f$t_0\f$ is the time-offset of the neutron. The uncertainty
+# is calculated using the assumption of uncorrelated uncertainties.
+#
+# \param tof (INPUT) is the time-of-flight axis in units of
+# micro-seconds
+# \param tof_err2 (INPUT) is the square of the uncertainty in the
+# time-of-flight axis
+# \param initial_velocity (INPUT) is the initial velocity of the
+# neutron in units of meter/seconds
+# \param initial_velocity_err2 (INPUT) is the square of the
+# uncertainty in initial_velocity
+# \param time_offset (INPUT) is the time offset of the neutron
+# emitting from the source assuming the velocity supplied in units
+# of micro-seconds
+# \param time_offset_err2 (INPUT) is the square of the uncertainty
+# in time_offset
+# \param dist_source_sample (INPUT) is the distance from source to
+# sample in units of meter
+# \param dist_source_sample_err2 (INPUT) is the square of the
+# uncertainty in dist_source_sample
+# \param dist_sample_detector (INPUT) is the distance from sample
+# to detector in units of meter
+# \param dist_sample_detector_err2 (INPUT) is the square of the
+# uncertainty in dist_sample_detector
+#
+# \return
+# - The final_velocity is the final velocity axis of the
+# neutron in units of meter/second
+# - The final_velocity_err2 is the square of the
+# uncertainty in the final velocity axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def tof_to_final_velocity_dgs(tof,\
+                              tof_err2,\
+                              initial_velocity,\
+                              initial_velocity_err2,\
+                              time_offset,\
+                              time_offset_err2,\
+                              dist_source_sample,\
+                              dist_source_sample_err2,\
+                              dist_sample_detector,\
+                              dist_sample_detector_err2):
+
+    """
+    This function calculates the final velocity of the neutron for a
+    direct geometry spectrometer according to the equation:
+
+    v_f[i] = L_D / (t[i]-(L_S/v_i)-t_0)
+    
+    Where v_f[i] is the final velocity of the neutron, L_D is the distance
+    from the sample to the detector, t[i] is the total time-of-flight,
+    L_S is the distance from source to sample, v_i is the initial velocity
+    of the neutron, and t_0 is the time-offset of the neutron. The uncertainty
+    is calculated using the assumption of uncorrelated uncertainties. The
+    uncertainty is calculated using the assumption of uncorrelated uncertainties.
+
+    Parameters:
+    __________
+
+    -> tof is the time-of-flight axis in units of micro-seconds
+    -> tof_err2 is the square of the uncertainty in the time-of-flight axis
+    -> initial_velocity is the initial velocity of the neutron in units of
+       meter/seconds
+    -> initial_velocity_err2 is the square of the uncertainty in initial_velocity  
+    -> time_offset is the time offset of the neutron emitting from the source
+       assuming the velocity supplied in units of micro-seconds
+    -> time_offset_err2 is the square of the uncertainty in time_offset
+    -> dist_source_sample is the distance from source to sample in units of
+       meter
+    -> dist_source_sample_err2 is the square of the uncertainty in
+       dist_source_sample
+    -> dist_sample_detector is the distance from sample to detector in units
+       of meter
+    -> dist_sample_detector_err2 is the square of the uncertainty in
+       dist_sample_detector
+
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- the final_velocity axis in units of meter/second
+    <- the square of the uncertainty of the final_velocity axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+    try:
+        if tof.__type__ != tof_err2.__type__:
+            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
+
+        if (tof.__type__ == nessi_list.NessiList.DOUBLE):
+            final_velocity = nessi_list.NessiList(len(tof))
+            final_velocity_err2 = nessi_list.NessiList(len(tof))
+            axis_manip_bind.tof_to_final_velocity_dgs_d(\
+                tof.__array__,\
+                tof_err2.__array__,\
+                float(initial_velocity),\
+                float(initial_velocity_err2),\
+                float(time_offset),\
+                float(time_offset_err2),\
+                float(dist_source_sample),\
+                float(dist_source_sample_err2),\
+                float(dist_sample_detector),\
+                float(dist_sample_detector_err2),\
+                final_velocity.__array__, \
+                final_velocity_err2.__array__)
+
+        else:
+            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
+
+        return final_velocity, final_velocity_err2
+
+    except AttributeError:
+        final_velocity_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.tof_to_final_velocity_dgs_ss_d(\
+            float(tof),\
+            float(tof_err2),\
+            float(initial_velocity),\
+            float(initial_velocity_err2),\
+            float(time_offset),\
+            float(time_offset_err2),\
+            float(dist_source_sample),\
+            float(dist_source_sample_err2),\
+            float(dist_sample_detector),\
+            float(dist_sample_detector_err2),\
+            final_velocity_ss)
+        return final_velocity_ss.val, final_velocity_ss.val_err2
+
+##
+# \}// end of tof_to_final_velocity_dgs group
+
+
 ##
 # \defgroup tof_to_initial_wavelength_igs \
 # axis_manip::tof_to_initial_wavelength_igs
@@ -1803,10 +1963,10 @@ def velocity_to_energy(velocity, velocity_err2):
             E = nessi_list.NessiList(len(velocity))
             E_err2 = nessi_list.NessiList(len(velocity))
             axis_manip_bind.velocity_to_energy_d(\
-                    velocity.__array__,\
-                    velocity_err2.__array__,\
-                    E.__array__,\
-                    E_err2.__array__)
+                velocity.__array__,\
+                velocity_err2.__array__,\
+                E.__array__,\
+                E_err2.__array__)
 
         else:
             raise TypeError,"Unknown primative type %s" \
@@ -1817,9 +1977,9 @@ def velocity_to_energy(velocity, velocity_err2):
     except AttributeError:
         E_ss = vpair_bind.DoubleVPair()
         axis_manip_bind.velocity_to_energy_ss_d(\
-          float(velocity),\
-          float(velocity_err2),\
-          E_ss)
+            float(velocity),\
+            float(velocity_err2),\
+            E_ss)
         return E_ss.val, E_ss.val_err2
 
 ##
@@ -1827,9 +1987,8 @@ def velocity_to_energy(velocity, velocity_err2):
 
 
 ##
-# \defgroup velocity_to_scalar_k AxisManip::velocity_to_scalar_k
+# \defgroup velocity_to_scalar_k axis_manip::velocity_to_scalar_k
 # \{
-#
 
 ##
 # \brief This function is described in section 3.23.
@@ -1906,10 +2065,10 @@ def velocity_to_scalar_k(velocity, velocity_err2):
             wavevector = nessi_list.NessiList(len(velocity))
             wavevector_err2 = nessi_list.NessiList(len(velocity))
             axis_manip_bind.velocity_to_scalar_k_d(\
-                    velocity.__array__,\
-                    velocity_err2.__array__,\
-                    wavevector.__array__,\
-                    wavevector_err2.__array__)
+                velocity.__array__,\
+                velocity_err2.__array__,\
+                wavevector.__array__,\
+                wavevector_err2.__array__)
 
         else:
             raise TypeError,"Unknown primative type %s"\
@@ -1930,7 +2089,8 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 
 
 ##
-# \defgroup wavelength_to_d_spacing AxisManip::wavelength_to_d_spacing
+# \defgroup wavelength_to_d_spacing
+#           axis_manip::wavelength_to_d_spacing
 # \{
 
 ##
