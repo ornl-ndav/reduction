@@ -1928,6 +1928,119 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 ##
 # \} // end of velocity_to_scalar_k_group
 
+
+##
+# \defgroup wavelength_to_d_spacing AxisManip::wavelength_to_d_spacing
+# \{
+
+##
+# \brief This function is described in section 3.25.
+#
+# This function calculates the d-spacing given the wavelength according
+# to the equation
+# \f[
+# d[i]=\frac{\lambda[i]}{2\sin(polar)}
+# \f]
+# Where \f$d\f$ is the d-spacing, \f$\lambda[i]\f$ is the wavelength,
+# and \f$polar\f$ is the angle between the positive z-axis and
+# the direction of the scattered neutron.
+#
+# Assuming that the uncertainties are uncorrelated, the square of the
+# uncertainty of the energy axis is given by
+# \f[
+# \sigma^2_d[i] = (sigma^2_lamda[i] / (4 * sin(polar)^2)) +
+# (lamda[i]^2 * (cos(polar)^2) * sigma^2_polar / 16 / (sin(polar)^4)
+# \f]
+#
+# \param wavelength (INPUT) is the wavelength axis in units of
+# Angstroms
+# \param wavelength_err2 (INPUT) is the square of the uncertainty
+# in the wavelength axis
+# \param polar (INPUT) is the polar angle in the equation above in
+# units of radians
+# \param polar_err2 (INPUT) is the square of the uncertainty in polar
+#
+# \return
+# - The d is the d-spacing axis in units of Angstrom
+# - The d_err2 is the square of the uncertainty
+# in the d-spacing axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible  sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+
+def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
+
+    """
+    This function converts the wavelength to scalar momentum transfer
+    according to the equation
+
+    d[i] = lambda[i] / (2 * sin(polar))
+
+    Where d[i] is the d-spacing axis, lambda[i] is the wavelength,
+    and polar is the angle between the positive z-axis and the direction of
+    the scattered neutron.
+
+    Using the assumption of uncorrelated uncertainties, the square of the
+    uncertainty of the scalar momentum transfer is given by
+
+    sigma^2_d[i] = (sigma^2_lamda[i] / (4 * sin(polar)^2)) +
+    (lamda[i]^2 * (cos(polar)^2) * sigma^2_polar / 16 / (sin(polar)^4)
+
+    Parameters:
+    ----------
+    -> wavelength is the wavelength axis in units of Angstroms
+    -> wavelength_err2 is the square of the uncertainty in the wavelength axis
+    -> polar is the polar angle in the equation above in units of radians
+    -> polar_err2 is the square of the uncertainty in polar
+
+    Returns - 2 NessiLists:
+    ----------------------
+    <- The d[i] is in units of Angstroms
+    <- The square of the uncertainty in the d_spacing axis
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+
+    """
+
+    try:
+        if wavelength.__type__ != wavelength_err2.__type__:
+            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
+            +"the same type"
+
+        if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
+            d_spacing = nessi_list.NessiList(len(wavelength))
+            d_spacing_err2 = nessi_list.NessiList(len(wavelength))
+            axis_manip_bind.wavelength_to_d_spacing_d(\
+                wavelength.__array__,\
+                wavelength_err2.__array__,\
+                float(polar),\
+                float(polar_err2),\
+                d_spacing.__array__,\
+                d_spacing_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(wavelength.__type__)
+
+        return d_spacing, d_spacing_err2
+
+    except AttributeError:
+        d_spacing_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.wavelength_to_d_spacing_ss_d(\
+            float(wavelength),\
+            float(wavelength_err2),\
+            float(polar),\
+            float(polar_err2),\
+            d_spacing_ss)
+        return d_spacing_ss.val, d_spacing_ss.val_err2
+
+##
+# \} // end of wavelength_to_d_spacing group
+
+
 ##
 # \defgroup wavelength_to_energy axis_manip::wavelength_to_energy
 # \{
