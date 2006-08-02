@@ -547,6 +547,8 @@ def frequency_to_energy(frequency, frequency_err2):
 ##
 # \}  // end of frequency_to_energy group
 
+
+
 ##
 # \defgroup init_scatt_wavevector_to_scalar_Q \
 # axis_manip::init_scatt_wavevector_to_scalar_Q
@@ -757,7 +759,161 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
                    init_scatt_wavevector_to_scalar_Q_ss.val_err2
 
 ##
-# \}
+# \} // end of init_scatt_wavevector_to_scalar_Q group
+
+
+##
+# \defgroup initial_velocity_dgs axis_manip::initial_velocity_dgs
+# \{
+
+##
+# \brief This function calculates the initial velocity of the neutron
+# for a direct geometry spectrometer according to the equation
+# \f[
+# v=\frac{L_d-L_u}{t_d-t_u}
+# \f]
+# Where \f$v\f$ is the initial velocity, \f$L_d\f$ is the distance
+# to the downstream monitor, \f$L_u\f$ is the distance to the
+# upstream monitor, \f$t_d\f$ is the time-of-flight to reach the
+# downstream monitor, and \f$t_u\f$ is the time-of-flight to reach
+# the upstream monitor. The uncertainty is calculated using the
+# assumption of uncorrelated uncertainties.
+#
+# \param dist_upstream_mon (INPUT) is the distance to the upstream
+# monitor in units of meters
+# \param dist_upstream_mon_err2 (INPUT) is the square of the
+# uncertainty in dist_upstream_mon
+# \param time_upstream_mon (INPUT) is the time-of-flight to reach
+# the upstream monitor in units of micro-seconds
+# \param time_upstream_mon_err2 (INPUT) is the square of the
+# uncertainty in time_upstream_mon
+# \param dist_downstream_mon (INPUT) is the distance to the
+# downstream monitor in units of meters
+# \param dist_downstream_mon_err2 (INPUT) is the square of the
+# uncertainty in dist_downstream_mon
+# \param time_downstream_mon (INPUT) is the time-of-flight to reach
+# the downstream monitor in units of micro-seconds
+# \param time_downstream_mon_err2 (INPUT) is the square of the
+# uncertainty in time_downstream_mon
+# \return
+# - The initial_velocity is the initial velocity of the
+# neutron in units of meter/mirco-seconds
+# - The initial_velocity_err2 is the square of the
+# uncertainty in initial_velocity
+#
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def initial_velocity_dgs(dist_upstream_mon,\
+                         dist_upstream_mon_err2,\
+                         time_upstream_mon,\
+                         time_upstream_mon_err2,\
+                         dist_downstream_mon,\
+                         dist_downstream_mon_err2,\
+                         time_downstream_mon,\
+                         time_downstream_mon_err2):
+
+    """
+    This function calculates the initial velocity of the neutron
+    for a direct geometry spectrometer according to the equation
+    
+    v = (L_d-L_u) / (t_d-t_u)
+    
+    Where v is the initial velocity, L_d is the distance to the
+    downstream monitor, L_u is the distance to the upstream
+    monitor, t_d is the time-of-flight to reach the downstream monitor,
+    and t_u is the time-of-flight to reach the upstream monitor. The
+    uncertainty is calculated using the assumption of uncorrelated
+    uncertainties.
+
+    Parameters:
+    __________
+    
+     -> dist_upstream_mon is the distance to the upstream
+    monitor in units of meters
+     -> dist_upstream_mon_err2 is the square of the
+    uncertainty in dist_upstream_mon
+     -> time_upstream_mon is the time-of-flight to reach
+    the upstream monitor in units of micro-seconds
+     -> time_upstream_mon_err2 is the square of the
+    uncertainty in time_upstream_mon
+     -> dist_downstream_mon is the distance to the
+    downstream monitor in units of meters
+    -> dist_downstream_mon_err2 is the square of the
+    uncertainty in dist_downstream_mon
+    -> time_downstream_mon is the time-of-flight to reach
+    the downstream monitor in units of micro-seconds
+     -> time_downstream_mon_err2 is the square of the
+    uncertainty in time_downstream_mon
+   
+    Returns - 2 NessiLists:
+    ________________________
+    <- The initial_velocity is the initial velocity of the
+    neutron in units of meter/mirco-seconds
+    <- The initial_velocity_err2 is the square of the
+    uncertainty in initial_velocity
+    
+    Exceptions:
+    __________
+
+    <- TypeError is thrown if any of the arrays are not
+    recognized types
+
+    """
+    try:
+        if dist_upstream_mon.__type__ != dist_upstream_mon_err2.__type__:
+            raise TypeError, "Distance Upstream Monitor and Distance "\
+                  +"Upstream Monitor Err2 array types are not the same."
+
+    except AttributeError:
+        pass
+
+    try:
+        if time_upstream_mon.__type__ != time_upstream_mon_err2.__type__:
+            raise TypeError, "Time Upstream Monitor and Time Upstream "\
+                  +"Monitor Err2 array types are not the same."
+
+    except AttributeError:
+        pass
+
+    try:  
+        if dist_downstream_mon.__type__ != dist_downstream_mon_err2.__type__:
+            raise TypeError, "Distance Downstream Monitor and Distance "\
+                  +"Downstream Monitor Err2 array types are not the same."
+
+    except AttributeError:
+        pass
+
+    try:
+        if time_downstream_mon.__type__ != time_downstream_mon_err2.__type__:
+            raise TypeError, "Time Downstream Monitor and Time Downstream "\
+                  +"Monitor Err2 array types are not the same."
+        
+    except AttributeError:
+        pass
+
+    try:
+        if dist_upstream_mon.__type__ != dist_downstream_mon.__type__:
+            raise TypeError, "Distance UPstreamMonitor and Distance Downstream "\
+                  +"Monitor array types are not the same."
+        
+    except AttributeError:
+        initial_velocity_dgs_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.initial_velocity_dgs_ss_d(\
+            float(dist_upstream_mon),\
+            float(dist_upstream_mon_err2),\
+            float(time_upstream_mon),\
+            float(time_upstream_mon_err2),\
+            float(dist_downstream_mon),\
+            float(dist_downstream_mon_err2),\
+            float(time_downstream_mon),\
+            float(time_downstream_mon_err2),\
+            initial_velocity_dgs_ss)
+        return initial_velocity_dgs_ss.val, initial_velocity_dgs_ss.val_err2
+                             
+##
+# \} // end of initial_velocity_dgs group
+
 
 ##
 # \defgroup rebin_axis_1D axis_manip::rebin_axis_1D
@@ -2459,7 +2615,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 # \param wavelength (INPUT) is the wavelength axis in units of
 # angstroms
 # \param wavelength_err2 (INPUT) is the square of the uncertainty in the
-# wavelength axis
+ # wavelength axis
 # \param polar (INPUT) is the polar angle in the equation above in
 # units of radians
 # \param polar_err2 (INPUT) is the square of the uncertainty in
