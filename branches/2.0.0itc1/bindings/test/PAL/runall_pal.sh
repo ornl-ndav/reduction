@@ -23,6 +23,8 @@ python frequency_to_energy_test.py
 echo
 python init_scatt_wavevector_to_scalar_Q_test.py
 echo
+python initial_velocity_dgs_test.py
+echo
 python mult_ncerr_test.py
 echo
 python rebin_axis_1D_test.py
