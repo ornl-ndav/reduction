@@ -62,7 +62,7 @@ import vpair_bind
 
 ##
 # \defgroup d_spacing_to_tof_focused_det
-#           axis_manip::d_spacing_to_tof_focused_det
+# axis_manip::d_spacing_to_tof_focused_det
 # \{
 
 ##
@@ -92,6 +92,7 @@ import vpair_bind
 # neutron in the equation above in units of radians
 # \param polar_focused_err2 (INPUT) is the square of the
 # uncertainty in polar_focused
+#
 # \return
 # - The time-of-flight axis in units of micro-seconds
 # - The square of the uncertainty in the time-of-flight axis
@@ -357,8 +358,8 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 
 
 ##
-# \defgroup frequency_to_angular_frequency
-#           axis_manip::frequency_to_angular_frequency
+# \defgroup frequency_to_angular_frequency \
+# axis_manip::frequency_to_angular_frequency
 # \{
 
 ##
@@ -446,7 +447,6 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
 
 ##
 # \}  // end of frequency_to_angular_frequency group
-
 
 
 ##
@@ -547,6 +547,275 @@ def frequency_to_energy(frequency, frequency_err2):
 ##
 # \}  // end of frequency_to_energy group
 
+
+##
+# \defgroup init_scatt_wavevector_to_Q \
+# axis_manip::init_scatt_wavevector_to_Q
+# \{
+
+##
+# \brief This function is described in section 3.32 of the
+# SNS 107030214-TD0001-R00, "Data Reduciton Library Software
+# Requirements and Specifications".
+#
+# This function calculates the momentum transfer from the
+# incident and scattered wavevectors according to the equation
+# \f[
+# Q_x=-k_f\cos(azimuthal)\sin(polar)
+# \f]
+# \f[
+# Q_y=-k_f\sin(azimuthal)\sin(polar)
+# \f]
+# \f[
+# Q_z=k_i-k_f\cos(polar)
+# \f]
+# Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
+# scattered wavevector, \f$Q_x\f$ is the x-component of the
+# momentum transfer, \f$Q_y\f$ is the y-component of the momentum
+# transfer, \f$Q_z\f$ is the z-component of the momentum transfer,
+# \f$azimuthal\f$ is the angle between the x-axis and the scattered
+# neutron, and \f$polar\f$ is the angle between the z-axis and the
+# scattered neutron. The uncertainty is calculated using assumption
+# of uncorrelated uncertainties.
+#
+# \param initial_wavevector (INPUT) is the incident wavevector axis in units
+# of reciprocal Angstroms
+# \param initial_wavevector_err2 (INPUT) is the square of the uncertainty of
+# the incident wavevector axis
+# \param final_wavevector (INPUT) is the final wavevector axis in units of
+# reciprocal Angstroms
+# \param final_wavevector_err2 (INPUT) is the square of the uncertainty of the
+# final wavevector axis
+# \param azimuthal (INPUT) is the azimuthal angle in the equation
+# above in units of radians
+# \param azimuthal_err2 (INPUT) is the square of the uncertainty in
+# azumuthal
+# \param polar (INPUT) is the polar angle in the equation above in units of
+# radians
+# \param polar_err2 (INPUT) is the square of the uncertainty in polar angle
+#
+# \return
+# - Qx is the x-component of the momentum transfer axis in units of
+# reciprocal angstroms
+# - Qx_err2 is the square of the uncertainty in the x-component of the
+# momentum transfer axis
+# - Qy is the y-component of the momentum transfer axis in units of
+# reciprocal angstroms
+# - Qy_err2 is the square of the uncertainty in the y-component of the
+# momentum transfer axis
+# - Qz is the y-component of the momentum transfer axis in units of
+# reciprocal angstroms
+# - Qz_err2 is the square of the uncertainty in the y-component of the
+# momentum transfer axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+
+def init_scatt_wavevector_to_Q(initial_wavevector,\
+                               initial_wavevector_err2,\
+                               final_wavevector,\
+                               final_wavevector_err2,\
+                               azimuthal,\
+                               azimuthal_err2,\
+                               polar,\
+                               polar_err2):
+
+    """
+    This function calculates the momentum transfer from the
+    incident and scattered wavevectors according to the equation
+    
+    Q_x = -k_f * cos(azimuthal) * sin(polar)
+   
+    Q_y = -k_f  * sin(azimuthal) * sin(polar)
+   
+    Q_z = k_i - k_f * cos(polar)
+   
+    Where k_i is the incident wavevector, k_f is the scattered wavevector,
+    Q_x is the x-component of the momentum transfer, Q_y is the y-component
+    of the momentum transfer, Q_z is the z-component of the momentum transfer,
+    azimuthal is the angle between the x-axis and the scattered neutron, and
+    polar is the angle between the z-axis and the scattered neutron. The
+    uncertainty is calculated using assumption of uncorrelated uncertainties.
+
+    Parameters:
+    __________
+    
+    -> initial_wavevector is the incident wavevector axis in units
+    of reciprocal Angstroms
+    -> initial_wavevector_err2 is the square of the uncertainty of
+    the incident wavevector axis
+    -> final_wavevector is the final wavevector axis in units of
+    reciprocal Angstroms
+    -> final_wavevector_err2 is the square of the uncertainty of the
+    final wavevector axis
+    -> azimuthal is the azimuthal angle in the equation
+    above in units of radians
+    -> azimuthal_err2 is the square of the uncertainty in
+    azumuthal
+    -> polar is the polar angle in the equation above in units of
+    radians
+    -> polar_err2 is the square of the uncertainty in polar angle
+
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- Qx is the x-component of the momentum transfer axis in units of
+    reciprocal angstroms
+    <- Qx_err2 is the square of the uncertainty in the x-component of the
+    momentum transfer axis
+    <- Qy is the y-component of the momentum transfer axis in units of
+    reciprocal angstroms
+    <- Qy_err2 is the square of the uncertainty in the y-component of the
+    momentum transfer axis
+    <- Qz is the y-component of the momentum transfer axis in units of
+    reciprocal angstroms
+    <- Qz_err2 is the square of the uncertainty in the y-component of the
+    momentum transfer axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible
+    sizes
+    <- TypeError is thrown if any of the arrays are not recognized types
+    """    
+
+    try:
+        if initial_wavevector.__type__ != final_wavevector.__type__:
+            raise TypeError, "Initial Wavevector and Scattered Wavevector"\
+                  +"array types are not the same."
+        
+        if initial_wavevector.__type__ != initial_wavevector_err2.__type__:
+            raise TypeError, "Initial Wavevector and Initial Wavevector Err2"\
+                  +"array types are not the same."
+        
+        if final_wavevector.__type__ != final_wavevector_err2.__type__:
+            raise TypeError, "Scattered Wavevector and Scattere Wavevector"\
+                  +"Err2 array types are not the same."
+        
+        if (initial_wavevector.__type__ == nessi_list.NessiList.DOUBLE):
+            Qx = nessi_list.NessiList(len(initial_wavevector))
+            Qx_err2 = nessi_list.NessiList(len(initial_wavevector))
+            Qy = nessi_list.NessiList(len(initial_wavevector))
+            Qy_err2 = nessi_list.NessiList(len(initial_wavevector))
+            Qz = nessi_list.NessiList(len(initial_wavevector))
+            Qz_err2 = nessi_list.NessiList(len(initial_wavevector))
+            axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+                initial_wavevector.__array__,\
+                initial_wavevector_err2.__array__,\
+                final_wavevector.__array__,\
+                final_wavevector_err2.__array__,\
+                float(azimuthal),\
+                float(azimuthal_err2),\
+                float(polar), \
+                float(polar_err2),\
+                Qx.__array__, Qx_err2.__array__,\
+                Qy.__array__, Qy_err2.__array__,\
+                Qz.__array__, Qz_err2.__array__)
+        else:
+            raise TypeError, "Unknown primitive type %s" % \
+                  str(initial_wavevector.__type__)
+        
+        return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+
+    except AttributeError:
+        pass
+    
+    try:
+        initial_wavevector.__type__
+        array = initial_wavevector
+        array_err2 = initial_wavevector_err2
+        scalar = final_wavevector
+        scalar_err2 = final_wavevector_err2
+        
+        if(array.__type__ == array.DOUBLE):
+            Qx = nessi_list.NessiList(len(array))
+            Qx_err2 = nessi_list.NessiList(len(array))
+            Qy = nessi_list.NessiList(len(array))
+            Qy_err2 = nessi_list.NessiList(len(array))
+            Qz = nessi_list.NessiList(len(array))
+            Qz_err2 = nessi_list.NessiList(len(array))
+            axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+                array.__array__,\
+                array_err2.__array__,\
+                float(scalar),\
+                float(scalar_err2),\
+                float(azimuthal),\
+                float(azimuthal_err2),\
+                float(polar), \
+                float(polar_err2),\
+                Qx.__array__, Qx_err2.__array__,\
+                Qy.__array__, Qy_err2.__array__,\
+                Qz.__array__, Qz_err2.__array__)
+            
+        else:
+            raise TypeError,"Unknown primative type %s" % str(array.__type__)
+        
+        return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+    
+    except AttributeError:
+        try:
+            final_wavevector.__type__
+            array = final_wavevector
+            array_err2 = final_wavevector_err2
+            scalar = initial_wavevector
+            scalar_err2 = initial_wavevector_err2
+
+            if (array.__type__ == nessi_list.NessiList.DOUBLE):
+                Qx = nessi_list.NessiList(len(array))
+                Qx_err2 = nessi_list.NessiList(len(array))
+                Qy = nessi_list.NessiList(len(array))
+                Qy_err2 = nessi_list.NessiList(len(array))
+                Qz = nessi_list.NessiList(len(array))
+                Qz_err2 = nessi_list.NessiList(len(array))
+                axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+                    float(scalar),\
+                    float(scalar_err2),\
+                    array.__array__,\
+                    array_err2.__array__,\
+                    float(azimuthal),\
+                    float(azimuthal_err2),\
+                    float(polar), \
+                    float(polar_err2),\
+                    Qx.__array__, Qx_err2.__array__,\
+                    Qy.__array__, Qy_err2.__array__,\
+                    Qz.__array__, Qz_err2.__array__)
+
+            else:
+                raise TypeError,"Unknown primative type %s" \
+                      % str(array.__type__)
+
+            return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+
+        except AttributeError:
+            init_scatt_wavevector_to_Qx_ss = vpair_bind.DoubleVPair()
+            init_scatt_wavevector_to_Qy_ss = vpair_bind.DoubleVPair()
+            init_scatt_wavevector_to_Qz_ss = vpair_bind.DoubleVPair()
+            axis_manip_bind.init_scatt_wavevector_to_Q_ss_d(\
+                float(initial_wavevector),\
+                float(initial_wavevector_err2),\
+                float(final_wavevector),\
+                float(final_wavevector_err2),\
+                float(azimuthal),\
+                float(azimuthal_err2),\
+                float(polar),\
+                float(polar_err2),\
+                init_scatt_wavevector_to_Qx_ss,\
+                init_scatt_wavevector_to_Qy_ss,\
+                init_scatt_wavevector_to_Qz_ss)
+
+            return init_scatt_wavevector_to_Qx_ss.val, \
+                   init_scatt_wavevector_to_Qx_ss.val_err2, \
+                   init_scatt_wavevector_to_Qy_ss.val, \
+                   init_scatt_wavevector_to_Qy_ss.val_err2, \
+                   init_scatt_wavevector_to_Qz_ss.val, \
+                   init_scatt_wavevector_to_Qz_ss.val_err2
+        
+##
+# \} // end of init_scatt_wavevector_to_Q group
 
 
 ##
@@ -795,6 +1064,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # the downstream monitor in units of micro-seconds
 # \param time_downstream_mon_err2 (INPUT) is the square of the
 # uncertainty in time_downstream_mon
+#
 # \return
 # - The initial_velocity is the initial velocity of the
 # neutron in units of meter/mirco-seconds
@@ -1428,6 +1698,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
 ##
 # \} // end of rebin_axis2D group
 
+
 ##
 # \defgroup reverse_array_cp axis_manip::reverse_array_cp
 # \{
@@ -1495,6 +1766,7 @@ def reverse_array_cp(input):
 
 ##
 # \}
+
 
 ##
 # \defgroup reverse_array_nc axis_manip::reverse_array_nc
@@ -1595,10 +1867,10 @@ def reverse_array_nc(input):
 # uncertainty in initial_velocity
 #
 # \return
-# - The time_offset (OUTPUT) is the time offset of the neutron
+# - The time_offset is the time offset of the neutron
 # emitting from the source assuming the velocity supplied in units
 # of micro-seconds
-# - The time_offset_err2 (OUTPUT) is the square of the uncertainty
+# - The time_offset_err2 is the square of the uncertainty
 # in time_offset
 #
 # \exception TypeError is thrown if any of the arrays are not
@@ -1698,9 +1970,10 @@ def time_offset_dgs(dist_downstream_monitor,\
 ##
 # \} // end of time_offset_dgs group
 
+
 ##
 # \defgroup tof_to_final_velocity_dgs
-#           axis_manip::tof_to_final_velocity_dgs
+# axis_manip::tof_to_final_velocity_dgs
 # \{
    
 ##
@@ -2053,6 +2326,7 @@ def tof_to_initial_wavelength_igs(tof,\
 ##
 # \}
 
+
 ##
 # \defgroup tof_to_wavelength axis_manip::tof_to_wavelength
 # \{
@@ -2191,8 +2465,8 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 ##
 # \brief This function is described in section 3.21.
 #
-# This function calculates the energy of a neutron given its velocity according
-# to the equation
+# This function calculates the energy of a neutron given its velocity
+# according to the equation
 # \f[
 # E[i]=\frac{1}{2}m_n v[i]^2 =
 # 5.227\times 10^{-6} \left( \frac{v[i]}{m/\mu s} \right)^2 meV
@@ -2381,7 +2655,7 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 
 ##
 # \defgroup wavelength_to_d_spacing
-#           axis_manip::wavelength_to_d_spacing
+# axis_manip::wavelength_to_d_spacing
 # \{
 
 ##
@@ -2606,6 +2880,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 
 ##
 # \}
+
 
 ##
 # \defgroup wavelength_to_scalar_k axis_manip::wavelength_to_scalar_k
