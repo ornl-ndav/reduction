@@ -39,6 +39,8 @@ python sub_ncerr_test.py
 echo
 python sumw_ncerr_test.py
 echo
+python time_offset_dgs_test.py
+echo
 python tof_to_final_velocity_dgs_test.py
 echo
 python tof_to_initial_wavelength_igs_test.py
