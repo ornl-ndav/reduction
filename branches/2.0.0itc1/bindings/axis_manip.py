@@ -1564,6 +1564,141 @@ def reverse_array_nc(input):
 
 
 ##
+# \defgroup time_offset_dgs axis_manip::time_offset_dgs
+# \{
+
+##
+# \brief This function is described in section 3.26.
+#
+# This function calculates the time offset for a direct geometry
+# spectrometer according to the equation
+# \f[
+# t_0 = t - \frac{L}{v}
+# \f]
+# Where \f$t_0\f$ is the time offset, \f$t\f$ is the time observed
+# at the downstream monitor, \f$L\f$ is the total flight path for
+# the downstream monitor, and \f$v\f$ is the velocity of the
+# incident neutrons. The uncertainty is calculated using the
+# assumption of uncorrelated uncertainties.
+#
+# \param dist_downstream_monitor (INPUT) is the total flight path
+# for the downstream monitor in units of meter
+# \param dist_downstream_monitor_err2 (INPUT) is the square of the
+# uncertainty in dist_downstream_monitor
+# \param time_downstream_monitor (INPUT) is the time observed at
+# the downstream monitor in units of micro-seconds
+# \param time_downstream_monitor_err2 (INPUT) is the square of the
+# uncertainty in time_downstream_monitor
+# \param initial_velocity (INPUT) is the velocity of the incident
+# neutrons in unites of meter/seconds
+# \param initial_velocity_err2 (INPUT) is the square of the
+# uncertainty in initial_velocity
+#
+# \return
+# - The time_offset (OUTPUT) is the time offset of the neutron
+# emitting from the source assuming the velocity supplied in units
+# of micro-seconds
+# - The time_offset_err2 (OUTPUT) is the square of the uncertainty
+# in time_offset
+#
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def time_offset_dgs(dist_downstream_monitor,\
+                    dist_downstream_monitor_err2,\
+                    time_downstream_monitor,\
+                    time_downstream_monitor_err2,\
+                    initial_velocity,\
+                    initial_velocity_err2):
+
+    """
+    This function calculates the time offset for a direct geometry
+    spectrometer according to the equation
+    
+    t_0 = t - (L / v)
+    
+    Where t_0 is the time offset, t is the time observed
+    at the downstream monitor, L is the total flight path for
+    the downstream monitor, and v is the velocity of the
+    incident neutrons. The uncertainty is calculated using the
+    assumption of uncorrelated uncertainties.
+
+    Parameters:
+    __________
+    
+    -> dist_downstream_monitor is the distance to the downstream monitor
+    in units of meters
+    -> dist_downstream_monitor_err2 is the square of the uncertainty in
+    dist_downstream_monitor
+    -> time_downstream_monitor is the time-of-flight to reach the
+    downstream monitor in units of micro-seconds
+    -> time_downstream_monitor_err2 is the square of the uncertainty in
+    time_downstream_monitor
+    -> initial_velocity is the velocity of the incident neutrons in
+    unites of meter/seconds
+    -> initial_velocity_err2 is the square of the uncertainty in
+    initial_velocity
+   
+    Returns - 2 NessiLists:
+    ________________________
+    <- The time_offset is the time offset of the neutron emitting from
+    the source assuming the velocity supplied in units of micro-seconds
+    <- The time_offset_err2 is the square of the uncertainty in
+    time_offset
+    
+    Exceptions:
+    __________
+
+    <- TypeError is thrown if any of the arrays are not
+    recognized types
+
+    """
+
+    try:  
+        if dist_downstream_monitor.__type__ != dist_downstream_monitor_err2.__type__:
+            raise TypeError, "Distance Downstream Monitor and Distance "\
+                  +"Downstream Monitor Err2 array types are not the same."
+
+    except AttributeError:
+        pass
+
+    try:
+        if time_downstream_monitor.__type__ != time_downstream_monitor_err2.__type__:
+            raise TypeError, "Time Downstream Monitor and Time Downstream "\
+                  +"Monitor Err2 array types are not the same."
+        
+    except AttributeError:
+        pass
+
+    try:
+        if initial_velocity.__type__ != initial_velocity_err2.__type__:
+            raise TypeError, "Initial Velocity and Initial Velocity Err2 "\
+                  +"array types are not the same."
+        
+    except AttributeError:
+        pass
+
+    try:
+        if dist_downstream_monitor.__type__ != initial_velocity.__type__:
+            raise TypeError, "Distance Downstream Monitor and Initial Velocity "\
+                  +"array types are not the same."
+        
+    except AttributeError:
+        time_offset_dgs_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.time_offset_dgs_ss_d(\
+            float(dist_downstream_monitor),\
+            float(dist_downstream_monitor_err2),\
+            float(time_downstream_monitor),\
+            float(time_downstream_monitor_err2),\
+            float(initial_velocity),\
+            float(initial_velocity_err2),\
+            time_offset_dgs_ss)
+        return time_offset_dgs_ss.val, time_offset_dgs_ss.val_err2
+                             
+##
+# \} // end of time_offset_dgs group
+
+##
 # \defgroup tof_to_final_velocity_dgs
 #           axis_manip::tof_to_final_velocity_dgs
 # \{
