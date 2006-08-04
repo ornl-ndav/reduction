@@ -43,13 +43,16 @@ const size_t NUM_VAL=5;
  * function <i>init_scatt_wavevector_to_Q</i> and described in 3.32
  * of the <i>SNS 107030214-TD0001-R00, "Data Reduction Library Software
  * Requirements and Specifications"</i> with the true output data
- * \f$true\_output\_ss\_Qx\f$,\f$true\_output\_ss\_Qy\f$,\f$true\_output\_ss\_Qz\f$,  
- * \f$true\_output\_sv\_Qx\f$,\f$true\_output\_sv\_Qy\f$,\f$true\_output\_sv\_Qz\f$, 
- * \f$true\_output\_vs\_Qx\f$,\f$true\_output\_vs\_Qy\f$,\f$true\_output\_vs\_Qz\f$,
- * \f$true\_output\_vv\_Qx\f$,\f$true\_output\_vv\_Qy\f$,\f$true\_output\_vv\_Qz\f$,
+ * \f$true\_output\_ss\_Qx\f$, \f$true\_output\_ss\_Qy\f$,
+ * \f$true\_output\_ss\_Qz\f$, \f$true\_output\_sv\_Qx\f$,
+ * \f$true\_output\_sv\_Qy\f$, \f$true\_output\_sv\_Qz\f$, 
+ * \f$true\_output\_vs\_Qx\f$, \f$true\_output\_vs\_Qy\f$,
+ * \f$true\_output\_vs\_Qz\f$, \f$true\_output\_vv\_Qx\f$,
+ * \f$true\_output\_vv\_Qy\f$, \f$true\_output\_vv\_Qz\f$,
  * manually calculated. Any discrepancy between the outputs 
- * (\f$output\f$ and \f$true\_output\f$) will generate in the testsuite.log file 
- * an error message that gives details about the location and type of the error.
+ * (\f$output\f$ and \f$true\_output\f$) will generate in the testsuite.log 
+ * file an error message that gives details about the location and type of 
+ * the error.
  *
  * <b>Notation used:</b>
  * - ss : scalar-scalar
@@ -102,41 +105,41 @@ void initialize_inputs(Nessi::Vector<NumT> & k_i,
  * \f$k\_f\_err2[0]\f$).
  *
  * \param true_output_ss_Qx (OUTPUT) is the true output for Qx for the ss case
- * \param true_output_ss_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the ss case
+ * \param true_output_ss_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the ss case
  * \param true_output_ss_Qy (OUTPUT) is the true output for Qy for the ss case
- * \param true_output_ss_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the ss case
+ * \param true_output_ss_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the ss case
  * \param true_output_ss_Qz (OUTPUT) is the true output for Qz for the ss case
- * \param true_output_ss_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the ss case
+ * \param true_output_ss_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the ss case
  * \param true_output_sv_Qx (OUTPUT) is the true array for Qx for the sv case
- * \param true_output_sv_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the sv case
+ * \param true_output_sv_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the sv case
  * \param true_output_sv_Qy (OUTPUT) is the true array for Qy for the sv case
- * \param true_output_sv_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the sv case
+ * \param true_output_sv_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the sv case
  * \param true_output_sv_Qz (OUTPUT) is the true array for Qz for the sv case
- * \param true_output_sv_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the sv case
+ * \param true_output_sv_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the sv case
  * \param true_output_vs_Qx (OUTPUT) is the true array for Qx for the vs case
- * \param true_output_vs_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the vs case
+ * \param true_output_vs_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the vs case
  * \param true_output_vs_Qy (OUTPUT) is the true array for Qy for the vs case
- * \param true_output_vs_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the vs case
+ * \param true_output_vs_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the vs case
  * \param true_output_vs_Qz (OUTPUT) is the true array for Qz for the vs case
- * \param true_output_vs_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the vs case
+ * \param true_output_vs_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the vs case
  * \param true_output_vv_Qx (OUTPUT) is the true array for Qx for the vv case
- * \param true_output_vv_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the vv case
+ * \param true_output_vv_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the vv case
  * \param true_output_vv_Qy (OUTPUT) is the true array for Qy for the vv case
- * \param true_output_vv_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the vv case
+ * \param true_output_vv_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the vv case
  * \param true_output_vv_Qz (OUTPUT) is the true array for Qz for the vv case
- * \param true_output_vv_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the vv case
+ * \param true_output_vv_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the vv case
  */
 void initialize_true_outputs(float                & true_output_ss_Qx,
                              float                & true_output_ss_Qx_err2,
@@ -290,41 +293,41 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
  * \f$k\_i[0]\f$, \f$k\_i\_err2[0]\f$, \f$k\_f[0]\f$, and \f$k\_f\_err2[0]\f$.
  *
  * \param true_output_ss_Qx (OUTPUT) is the true output for Qx for the ss case
- * \param true_output_ss_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the ss case
+ * \param true_output_ss_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the ss case
  * \param true_output_ss_Qy (OUTPUT) is the true output for Qy for the ss case
- * \param true_output_ss_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the ss case
+ * \param true_output_ss_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the ss case
  * \param true_output_ss_Qz (OUTPUT) is the true output for Qz for the ss case
- * \param true_output_ss_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the ss case
+ * \param true_output_ss_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the ss case
  * \param true_output_sv_Qx (OUTPUT) is the true array for Qx for the sv case
- * \param true_output_sv_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the sv case
+ * \param true_output_sv_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the sv case
  * \param true_output_sv_Qy (OUTPUT) is the true array for Qy for the sv case
- * \param true_output_sv_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the sv case
+ * \param true_output_sv_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the sv case
  * \param true_output_sv_Qz (OUTPUT) is the true array for Qz for the sv case
- * \param true_output_sv_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the sv case
+ * \param true_output_sv_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the sv case
  * \param true_output_vs_Qx (OUTPUT) is the true array for Qx for the vs case
- * \param true_output_vs_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the vs case
+ * \param true_output_vs_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the vs case
  * \param true_output_vs_Qy (OUTPUT) is the true array for Qy for the vs case
- * \param true_output_vs_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the vs case
+ * \param true_output_vs_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the vs case
  * \param true_output_vs_Qz (OUTPUT) is the true array for Qz for the vs case
- * \param true_output_vs_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the vs case
+ * \param true_output_vs_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the vs case
  * \param true_output_vv_Qx (OUTPUT) is the true array for Qx for the vv case
- * \param true_output_vv_Qx_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qx for the vv case
+ * \param true_output_vv_Qx_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qx for the vv case
  * \param true_output_vv_Qy (OUTPUT) is the true array for Qy for the vv case
- * \param true_output_vv_Qy_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qy for the vv case
+ * \param true_output_vv_Qy_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qy for the vv case
  * \param true_output_vv_Qz (OUTPUT) is the true array for Qz for the vv case
- * \param true_output_vv_Qz_err2 (OUTPUT) is the square of the uncertainty of the
- * true output for Qz for the vv case
+ * \param true_output_vv_Qz_err2 (OUTPUT) is the square of the uncertainty of 
+ * the true output for Qz for the vv case
  */
 void initialize_true_outputs(double                & true_output_ss_Qx,
                              double                & true_output_ss_Qx_err2,
@@ -478,88 +481,88 @@ void initialize_true_outputs(double                & true_output_ss_Qx,
  *
  * \param output_ss_Qx (INPUT) is the value created by
  * <i>init_scatt_wavevector_to_Q</i> for Qx for the ss case
- * \param output_ss_Qx_err2 (INPUT) is the square of the uncertainty of the value
- * created by <i>init_scatt_wavevector_to_Q</i> for Qx for the ss case
+ * \param output_ss_Qx_err2 (INPUT) is the square of the uncertainty of the 
+ * value created by <i>init_scatt_wavevector_to_Q</i> for Qx for the ss case
  * \param true_output_ss_Qx (INPUT)) is the true value for Qx for the ss case
- * \param true_output_ss_Qx_err2 (INPUT) is the square of the uncertainty of the
- * true value for Qx for the ss case
+ * \param true_output_ss_Qx_err2 (INPUT) is the square of the uncertainty of 
+ * the true value for Qx for the ss case
  * \param output_ss_Qy (INPUT) is the value created by
  * <i>init_scatt_wavevector_to_Q</i> for Qy for the ss case
- * \param output_ss_Qy_err2 (INPUT) is the square of the uncertainty of the value
- * created by <i>init_scatt_wavevector_to_Q</i> for Qy for the ss case
+ * \param output_ss_Qy_err2 (INPUT) is the square of the uncertainty of the 
+ * value created by <i>init_scatt_wavevector_to_Q</i> for Qy for the ss case
  * \param true_output_ss_Qy (INPUT)) is the true value for Qy for the ss case
- * \param true_output_ss_Qy_err2 (INPUT) is the square of the uncertainty of the
- * true value for Qy for the ss case
+ * \param true_output_ss_Qy_err2 (INPUT) is the square of the uncertainty of 
+ * the true value for Qy for the ss case
  * \param output_ss_Qz (INPUT) is the value created by
  * <i>init_scatt_wavevector_to_Q</i> for Qz for the ss case
- * \param output_ss_Qz_err2 (INPUT) is the square of the uncertainty of the value
- * created by <i>init_scatt_wavevector_to_Q</i> for Qz for the ss case
+ * \param output_ss_Qz_err2 (INPUT) is the square of the uncertainty of the 
+ * value created by <i>init_scatt_wavevector_to_Q</i> for Qz for the ss case
  * \param true_output_ss_Qz (INPUT)) is the true value for Qz for the ss case
- * \param true_output_ss_Qz_err2 (INPUT) is the square of the uncertainty of the
- * true value for Qz for the ss case
+ * \param true_output_ss_Qz_err2 (INPUT) is the square of the uncertainty of 
+ * the true value for Qz for the ss case
  * \param output_sv_Qx (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qx for the sv case
- * \param output_sv_Qx_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qx for the sv case
+ * \param output_sv_Qx_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qx for the sv case
  * \param true_output_sv_Qx (INPUT) is the true array for Qx for the sv case
- * \param true_output_sv_Qx_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qx for the sv case
+ * \param true_output_sv_Qx_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qx for the sv case
  * \param output_sv_Qy (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qy for the sv case
- * \param output_sv_Qy_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qy for the sv case
+ * \param output_sv_Qy_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qy for the sv case
  * \param true_output_sv_Qy (INPUT) is the true array for Qy for the sv case
- * \param true_output_sv_Qy_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qy for the sv case
+ * \param true_output_sv_Qy_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qy for the sv case
  * \param output_sv_Qz (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qz for the sv case
- * \param output_sv_Qz_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qz for the sv case
+ * \param output_sv_Qz_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qz for the sv case
  * \param true_output_sv_Qz (INPUT) is the true array for Qz for the sv case
- * \param true_output_sv_Qz_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qz for the sv case
+ * \param true_output_sv_Qz_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qz for the sv case
  * \param output_vs_Qx (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qx for the vs case
- * \param output_vs_Qx_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qx for the vs case
+ * \param output_vs_Qx_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qx for the vs case
  * \param true_output_vs_Qx (INPUT) is the true array for Qx for the vs case
- * \param true_output_vs_Qx_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qx for the vs case
+ * \param true_output_vs_Qx_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qx for the vs case
  * \param output_vs_Qy (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qy for the vs case
- * \param output_vs_Qy_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qy for the vs case
+ * \param output_vs_Qy_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qy for the vs case
  * \param true_output_vs_Qy (INPUT) is the true array for Qy for the vs case
- * \param true_output_vs_Qy_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qy for the vs case
+ * \param true_output_vs_Qy_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qy for the vs case
  * \param output_vs_Qz (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qz for the vs case
- * \param output_vs_Qz_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qz for the vs case
+ * \param output_vs_Qz_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qz for the vs case
  * \param true_output_vs_Qz (INPUT) is the true array for Qz for the vs case
- * \param true_output_vs_Qz_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qz for the vs case
+ * \param true_output_vs_Qz_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qz for the vs case
  * \param output_vv_Qx (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qx for the vv case
- * \param output_vv_Qx_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qx for the vv case
+ * \param output_vv_Qx_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qx for the vv case
  * \param true_output_vv_Qx (INPUT) is the true array for Qx for the vv case
- * \param true_output_vv_Qx_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qx for the vv case
+ * \param true_output_vv_Qx_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qx for the vv case
  * \param output_vv_Qy (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qy for the vv case
- * \param output_vv_Qy_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qy for the vv case
+ * \param output_vv_Qy_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qy for the vv case
  * \param true_output_vv_Qy (INPUT) is the true array for Qy for the vv case
- * \param true_output_vv_Qy_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qy for the vv case
+ * \param true_output_vv_Qy_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qy for the vv case
  * \param output_vv_Qz (INPUT) is the array created by
  * <i>init_scatt_wavevector_to_Q</i> for Qz for the vv case
- * \param output_vv_Qz_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>init_scatt_wavevector_to_Q</i> for Qz for the vv case
+ * \param output_vv_Qz_err2 (INPUT) is the square of the uncertainty in the 
+ * array created by <i>init_scatt_wavevector_to_Q</i> for Qz for the vv case
  * \param true_output_vv_Qz (INPUT) is the true array for Qz for the vv case
- * \param true_output_vv_Qz_err2 (INPUT) is the square of the uncertainty in the
- * true array for Qz for the vv case
+ * \param true_output_vv_Qz_err2 (INPUT) is the square of the uncertainty in 
+ * the true array for Qz for the vv case
  */
 template <typename NumT>
 bool test_okay(NumT                & output_ss_Qx,

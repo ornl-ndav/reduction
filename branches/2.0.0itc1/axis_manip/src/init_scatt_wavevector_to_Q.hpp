@@ -495,8 +495,10 @@ namespace AxisManip
    * init_scatt_wavevector_to_Q()
    * \param final_wavevector_err2 (INPUT) same as parameter in
    * init_scatt_wavevector_to_Q()
-   *  \param azimuthal_err2 (INPUT) same as parameter in
+   * \param azimuthal (INPUT) same as parameter in init_scatt_wavevector_to_Q()
+   * \param azimuthal_err2 (INPUT) same as parameter in
    * init_scatt_wavevector_to_Q()
+   * \param polar (INPUT) same as parameter in init_scatt_wavevector_to_Q()
    * \param polar_err2 (INPUT) same as parameter in
    * init_scatt_wavevector_to_Q()
    * \param a (INPUT) same as a parameter of
