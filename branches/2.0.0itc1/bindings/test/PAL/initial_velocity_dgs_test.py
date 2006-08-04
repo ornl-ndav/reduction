@@ -59,17 +59,14 @@ NUM_VAL = 5
 
 ##
 # Function that sets the true output based on values contained in
-# \f$tof\f$ and \f$tof\_err2\f$.
-#
-# For the ss case, the scalar used is the first element of the
-# NessiLists \f$tof\f$ and \f$tof_err2\f$ (\f$tof[0]\f$ and
-# \f$tof\_err2[0]\f$
+# \f$dist\_upsteam\_mon\f$, \f$dist\_upstream\_mon\_err2\f$,
+# \f$time\_upstream\_mon\f$, \f$time\_upstream\_mon\_err2\f$,
+# \f$dist\_downstream\_mon\f$, \f$dist\_downstream\_mon\_err2\f$,
+# \f$time\_upstream\_mon\f$, \f$time\_upstream\_mon\_err2\f$
 #
 # \param key (INPUT) forces correct test to happen
 #
 # \return
-# - The true NessiList for the vv case
-# - The square of the uncertainty in the true NessiList for the vv case
 # - The true value for the ss case
 # - The square of the uncertainty of the true value for the ss case
 #
@@ -131,5 +128,9 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+
+##
+# \}
+#
 
 

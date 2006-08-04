@@ -61,8 +61,7 @@ import vpair_bind
 #
 
 ##
-# \defgroup d_spacing_to_tof_focused_det
-# axis_manip::d_spacing_to_tof_focused_det
+# \defgroup d_spacing_to_tof_focused_det axis_manip::d_spacing_to_tof_focused_det
 # \{
 
 ##
@@ -1041,10 +1040,10 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # \f[
 # v=\frac{L_d-L_u}{t_d-t_u}
 # \f]
-# Where \f$v\f$ is the initial velocity, \f$L_d\f$ is the distance
-# to the downstream monitor, \f$L_u\f$ is the distance to the
-# upstream monitor, \f$t_d\f$ is the time-of-flight to reach the
-# downstream monitor, and \f$t_u\f$ is the time-of-flight to reach
+# Where \f$v\f$ is the initial velocity, \f$L\_d\f$ is the distance
+# to the downstream monitor, \f$L\_u\f$ is the distance to the
+# upstream monitor, \f$t\_d\f$ is the time-of-flight to reach the
+# downstream monitor, and \f$t\_u\f$ is the time-of-flight to reach
 # the upstream monitor. The uncertainty is calculated using the
 # assumption of uncorrelated uncertainties.
 #
@@ -1972,8 +1971,7 @@ def time_offset_dgs(dist_downstream_monitor,\
 
 
 ##
-# \defgroup tof_to_final_velocity_dgs
-# axis_manip::tof_to_final_velocity_dgs
+# \defgroup tof_to_final_velocity_dgs axis_manip::tof_to_final_velocity_dgs
 # \{
    
 ##
@@ -2654,8 +2652,7 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 
 
 ##
-# \defgroup wavelength_to_d_spacing
-# axis_manip::wavelength_to_d_spacing
+# \defgroup wavelength_to_d_spacing axis_manip::wavelength_to_d_spacing
 # \{
 
 ##
