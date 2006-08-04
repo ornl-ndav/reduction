@@ -58,8 +58,8 @@ NUM_VAL = 5
 
 ##
 #
-# This function initializes the values of arrays, \f$d_spacing\f$, and
-# \f$d_spacing_err2\f$.
+# This function initializes the values of arrays, \f$d\_spacing\f$, and
+# \f$d\_spacing\_err2\f$.
 #
 # \returns
 # - d_spacing is the d_spacing axis in units of Angstrom
@@ -79,11 +79,11 @@ def initialize_inputs(key):
 
 ##
 # Function that sets the true output based on values contained in
-# \f$d_spacing\f$ and \f$d_spacing\_err2\f$.
+# \f$d\_spacing\f$ and \f$d\_spacing\_err2\f$.
 #
 # For the ss case, the scalar used is the first element of the
-# NessiLists \f$d_spacing\f$ and \f$d_spacing_err2\f$ (\f$d_spacing[0]\f$ and
-# \f$d_spacing\_err2[0]\f$
+# NessiLists \f$d\_spacing\f$ and \f$d\_spacing\_err2\f$ (\f$d\_spacing[0]\f$ and
+# \f$d\_spacing\_err2[0]\f$
 #
 # \param key (INPUT) forces correct test to happen
 #
@@ -122,9 +122,9 @@ def initialize_true_outputs(key):
         raise TypeError
 
     return true_output_vv,\
-       true_output_vv_err2,\
+           true_output_vv_err2,\
            true_output_ss.val, \
-       true_output_ss.val_err2
+           true_output_ss.val_err2
 
 if __name__ == "__main__":
 
@@ -180,3 +180,7 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+
+##
+# \}
+#

@@ -59,11 +59,12 @@ const size_t NUM_VAL=5;
  */
 
 /**
- * This function initializes the value of arrays, \f$tof\f$, \f$tof\_err2\f$.
+ * This function initializes the value of arrays, \f$d\_spacing\f$, 
+ * \f$d\_spacing\_err2\f$.
  *
- * \param tof (OUTPUT) is the time-of-flight axis in units of micro-seconds
- * \param tof_err2 (OUTPUT) is the square of the uncertainty in the
- * time-of-flight axis
+ * \param d_spacing (OUTPUT) is the d-spacing axis in units of Angstrom
+ * \param d_spacing_err2 (OUTPUT) is the square of the uncertainty in the
+ * d_spacing axis
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & d_spacing,
@@ -81,7 +82,7 @@ void initialize_inputs(Nessi::Vector<NumT> & d_spacing,
  * \f$d\_spacing\f$ and \f$d\_spacing\_err2\f$ for the float case.
  *
  * For the scalar case, the scalar used is the first element of the arrays
- * (\f$d\_spacing[0]\f$ and \f$d_\spacing\_err2[0]\f$)
+ * (\f$d\_spacing[0]\f$ and \f$d\_spacing\_err2[0]\f$)
  *
  * \param true_output_ss (OUTPUT) is the true output for the ss case
  * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the

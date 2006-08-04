@@ -11,8 +11,7 @@
 #
 
 ##
-# \defgroup test_d_spacing_to_tof_focused_det
-#           pbl::test_d_spacing_to_tof_focused_det
+# \defgroup test_d_spacing_to_tof_focused_det pbl::test_d_spacing_to_tof_focused_det
 # \{
 #
 
