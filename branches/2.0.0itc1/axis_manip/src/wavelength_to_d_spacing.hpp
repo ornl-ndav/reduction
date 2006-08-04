@@ -185,6 +185,7 @@ namespace AxisManip
    * \param wavelength (INPUT) same as parameter in wavelength_to_d_spacing()
    * \param wavelength_err2 (INPUT) same as parameter in
    * wavelength_to_d_spacing()
+   * \param scatt_angle (INPUT) same as parameter in wavelength_to_d_spacing()
    * \param scatt_angle_err2 (INPUT) same as parameter in
    * wavelength_to_d_spacing()
    * \param a (INPUT) same as parameter in __wavelength_to_d_spacing_static()
