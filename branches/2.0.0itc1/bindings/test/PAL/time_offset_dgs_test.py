@@ -59,7 +59,7 @@ NUM_VAL = 5
 
 ##
 # Function that sets the true output based on values contained in
-# \f$dist\_downstream\_monitor\f$ and \f$dist\_downstream\_monitor\_err2\f$,
+# \f$dist\_downstream\_monitor\f$, \f$dist\_downstream\_monitor\_err2\f$,
 # \f$time\_downstream\_monitor\f$, \f$time\_downstream\_monitor\_err2\f$,
 # \f$initial\_velocity\f$, \f$initial\_velocity\_err2\f$
 #
@@ -94,10 +94,10 @@ if __name__ == "__main__":
     print "###################################################################"
     print
     
-    dist_downstream_mon = 1.1
-    dist_downstream_mon_err2 = 0.1
-    time_downstream_mon = 2.75
-    time_downstream_mon_err2 = 0.75
+    dist_downstream_monitor = 1.1
+    dist_downstream_monitor_err2 = 0.1
+    time_downstream_monitor = 2.75
+    time_downstream_monitor_err2 = 0.75
     initial_velocity = 0.51
     initial_velocity_err2 = 0.05
   
@@ -106,15 +106,14 @@ if __name__ == "__main__":
                       initialize_true_outputs("double")
 
     # ss case
-    
-    output_ss, output_ss_err2 = \
-               axis_manip.time_offset_dgs(\
-        dist_downstream_mon,\
-        dist_downstream_mon_err2,\
-        time_downstream_mon,\
-        time_downstream_mon_err2,\
-        initial_velocity,\
-        initial_velocity_err2)
+     output_ss, output_ss_err2 = \
+                axis_manip.time_offset_dgs(\
+         dist_downstream_monitor,\
+         dist_downstream_monitor_err2,\
+         time_downstream_monitor,\
+         time_downstream_monitor_err2,\
+         initial_velocity,\
+         initial_velocity_err2)
 
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
@@ -123,5 +122,10 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+
+##
+# \}
+#
+
 
 
