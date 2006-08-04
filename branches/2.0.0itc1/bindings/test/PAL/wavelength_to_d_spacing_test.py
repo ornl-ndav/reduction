@@ -40,7 +40,7 @@ NUM_VAL = 5
 # \{
 #
 # This test compares the output data (\f$output\_vv\f$, and \f$output\_ss\f$)
-# calculated by the binding module <i>wavelength_to_scalar_k.py</i> of the
+# calculated by the binding module <i>wavelength_to_d_spacing.py</i> of the
 # Python Abstration Layer (PAL)
 # <i>axis_manip.py</i> with the true output data calculated
 # (\f$true\_output\_vv\f$, and \f$true\_output\_ss\f$) manually calculated.
@@ -59,7 +59,7 @@ NUM_VAL = 5
 ##
 #
 # This function initializes the values of arrays, \f$wavelength\f$,
-# and f$wavelength_err2\f$.
+# and \f$wavelength\_err2\f$.
 #
 # \returns
 # - wavelength is the wavelength axis in units of Angstroms
@@ -173,3 +173,6 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+##
+# \}
+#
