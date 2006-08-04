@@ -57,8 +57,8 @@ NUM_VAL = 5
 # - EMPTY = ""
 
 ##
-#
-# This function initializes the values of arrays, \f$velocity\f$, and f$velocity_err2\f$.
+# This function initializes the values of arrays, \f$velocity\f$,
+# and \f$velocity_err2\f$.
 #
 # \returns
 # - velocity is the velocity axis in units of meter/micro-seconds
@@ -81,7 +81,7 @@ def initialize_inputs(key):
 # \f$velocity\f$ and \f$velocity\_err2\f$.
 #
 # For the ss case, the scalar used is the first element of the
-# NessiLists \f$velocity\f$ and \f$velocity_err2\f$ (\f$velocity[0]\f$ and
+# NessiLists \f$velocity\f$ and \f$velocity\_err2\f$ (\f$velocity[0]\f$ and
 # \f$velocity\_err2[0]\f$
 #
 # \param key (INPUT) forces correct test to happen
@@ -166,3 +166,7 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+
+##
+# \}
+#
