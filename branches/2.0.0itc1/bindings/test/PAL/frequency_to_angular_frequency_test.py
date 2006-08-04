@@ -36,8 +36,7 @@ from vpair_bind import *
 NUM_VAL = 5
 
 ##
-# \defgroup frequency_to_angular_frequency_test
-# frequency_to_angular_frequency_test
+# \defgroup frequency_to_angular_frequency_test frequency_to_angular_frequency_test
 # \{
 #
 # This test compares the output data (\f$output\_vv\f$, and \f$output\_ss\f$)
@@ -59,7 +58,8 @@ NUM_VAL = 5
 
 ##
 #
-# This function initializes the values of arrays, \f$frequency\f$, and f$frequency_err2\f$.
+# This function initializes the values of arrays, \f$frequency\f$,
+# and \f$frequency\_err2\f$.
 #
 # \returns
 # - frequency is the frequency axis in units of THz
@@ -82,7 +82,7 @@ def initialize_inputs(key):
 # \f$frequency\f$ and \f$frequency\_err2\f$.
 #
 # For the ss case, the scalar used is the first element of the
-# NessiLists \f$frequency\f$ and \f$frequency_err2\f$ (\f$frequency[0]\f$ and
+# NessiLists \f$frequency\f$ and \f$frequency\_err2\f$ (\f$frequency[0]\f$ and
 # \f$frequency\_err2[0]\f$
 #
 # \param key (INPUT) forces correct test to happen
@@ -122,9 +122,9 @@ def initialize_true_outputs(key):
         raise TypeError
 
     return true_output_vv,\
-       true_output_vv_err2,\
+           true_output_vv_err2,\
            true_output_ss.val, \
-       true_output_ss.val_err2
+           true_output_ss.val_err2
 
 if __name__ == "__main__":
 
@@ -167,3 +167,7 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+
+##
+# \}
+#
