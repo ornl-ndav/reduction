@@ -57,14 +57,15 @@ NUM_VAL = 5
 # - EMPTY = ""
 
 ##
-#
 # This function initializes the values of arrays, \f$velocity\f$,
-# and f$velocity_err2\f$.
+# and \f$velocity\_err2\f$.
 #
 # \returns
-# - velocity is the velocity axis in units meter/micro-seconds
-# - velocity_err2 is the square of the uncertainty in the velocity axis
-#
+# - velocity is the velocity of the neutron in units of meter/micro-seconds
+# - velocity_err2 is the square of the uncertainty in the velocity of the
+# neutron 
+
+
 def initialize_inputs(key):
     if (key == "double"):
         velocity = nessi_list.NessiList(type="double")
@@ -164,3 +165,6 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+##
+# \}
+#

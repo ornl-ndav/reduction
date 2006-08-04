@@ -61,9 +61,10 @@ const size_t NUM_VAL=5;
  * This function initializes the value of arrays, \f$velocity\f$ and
  * \f$velocity\_err2\f$.
  *
- * \param velocity (OUTPUT) is the velocity axis in units of Angstroms
+ * \param velocity (OUTPUT) is the velocity of the neutron in units of 
+ * meter/micro-seconds
  * \param velocity_err2 (OUTPUT) is the square of the uncertainty in the
- * velocity axis
+ * velocity of the neutron
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & velocity,
@@ -124,7 +125,8 @@ void initialize_true_outputs(float    & true_output_ss,
  * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the
  * true output for the ss case
  * \param true_output_vv (OUTPUT) is the true array for the vv case
- * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty of the * true output for the vv case
+ * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the vv case
  */
 void initialize_true_outputs(double    & true_output_ss,
                              double    & true_output_ss_err2,
