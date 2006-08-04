@@ -58,7 +58,8 @@ NUM_VAL = 5
 
 ##
 #
-# This function initializes the values of arrays, \f$tof\f$, and f$tof_err2\f$.
+# This function initializes the values of arrays, \f$tof\f$,
+# and \f$tof_err2\f$.
 #
 # \returns
 # - tof is the time-of-fligth axis in units of micro-seconds
@@ -197,5 +198,7 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
-
+##
+# \}
+#
 
