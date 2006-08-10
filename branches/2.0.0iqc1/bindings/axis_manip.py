@@ -1861,7 +1861,7 @@ def reverse_array_nc(input):
 # \param time_downstream_monitor_err2 (INPUT) is the square of the
 # uncertainty in time_downstream_monitor
 # \param initial_velocity (INPUT) is the velocity of the incident
-# neutrons in unites of meter/seconds
+# neutrons in unites of meter/micro-seconds
 # \param initial_velocity_err2 (INPUT) is the square of the
 # uncertainty in initial_velocity
 #
@@ -1906,7 +1906,7 @@ def time_offset_dgs(dist_downstream_monitor,\
     -> time_downstream_monitor_err2 is the square of the uncertainty in
     time_downstream_monitor
     -> initial_velocity is the velocity of the incident neutrons in
-    unites of meter/seconds
+    unites of meter/micro-seconds
     -> initial_velocity_err2 is the square of the uncertainty in
     initial_velocity
    
