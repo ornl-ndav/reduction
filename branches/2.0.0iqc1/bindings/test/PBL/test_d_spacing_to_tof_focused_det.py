@@ -22,7 +22,7 @@ import test_common_bind
 from vpair_bind import *
 
 print "##################################################################"
-print "# Checking D_spacing_to_tof_focused_det Swig Generated Python    #"
+print "# Checking D_Spacing_to_Tof_Focused_Det Swig Generated Python    #"
 print "# Binding Layer                                                  #"
 print "##################################################################"
 print

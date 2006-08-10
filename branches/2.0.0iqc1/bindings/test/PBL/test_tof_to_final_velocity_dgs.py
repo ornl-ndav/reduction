@@ -24,7 +24,7 @@ import test_common_bind
 from vpair_bind import *
 
 print "##########################################"
-print "# Checking Tof_to_final_velocity_dgs     #"
+print "# Checking Tof_to_Final_Velocity_Dgs     #"
 print "# Swig Generated Python Binding Layer    #"
 print "##########################################"
 print
