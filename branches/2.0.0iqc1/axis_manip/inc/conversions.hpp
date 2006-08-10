@@ -60,7 +60,7 @@ namespace AxisManip
    * This function converts the d-spacing to time-of-flight at a
    * focused detector position according to the equation
    * \f[
-   * TOF[i]=\frac{4\pi m_n}{h} L_{focused} d[i] \sin(polar_{focused})
+   * TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused})
    * \f]
    * Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
    * of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
@@ -108,7 +108,7 @@ namespace AxisManip
    * This function converts the d-spacing to time-of-flight at a
    * focused detector position according to the equation
    * \f[
-   * TOF=\frac{4\pi m_n}{h} L_{focused} d \sin(polar_{focused})
+   * TOF=\frac{2\ m_n}{h} L_{focused} d \sin(polar_{focused})
    * \f]
    * Where \f$TOF\f$ is the time-of-flight, \f$m_n\f$ is the mass of
    * the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$ is
