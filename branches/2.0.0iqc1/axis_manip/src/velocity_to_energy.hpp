@@ -132,7 +132,7 @@ namespace AxisManip
    *
    * \param a (OUTPUT) the value of the mass of the neutron, \f$m_n\f$,
    * in units of \f$(\mu sec^2 / meters^2) \times meV\f$ 
-   * \param a2 (OUTPUT) square of a 
+   * \param a2 (OUTPUT) square of a
    */
   template <typename NumT>
   std::string
@@ -141,6 +141,7 @@ namespace AxisManip
   {
     a = static_cast<NumT>(PhysConst::MNEUT_VEQ);
     a2 = a * a;
+   
     
     return Nessi::EMPTY_WARN;
   }
@@ -175,8 +176,8 @@ namespace AxisManip
   {
     NumT velocity2 = velocity * velocity;
 
-    energy = (1.0/2) * a * velocity2;
-    energy_err2 = (a2 * velocity2 * velocity_err2);
+    energy = static_cast<NumT>(0.5 * a * velocity2);
+    energy_err2 = a2 * velocity2 * velocity_err2;
 
     return Nessi::EMPTY_WARN;
   }
