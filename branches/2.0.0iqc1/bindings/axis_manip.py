@@ -70,7 +70,7 @@ import vpair_bind
 # This function converts the d-spacing to time-of-flight at a
 # focused detector position according to the equation
 # \f[
-# TOF[i]=\frac{4\pi m_n}{h} L_{focused} d[i] \sin(polar_{focused})
+# TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused})
 # \f]
 # Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
 # of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
@@ -111,7 +111,7 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
     This function converts the d-spacing to time-of-flight at a
     focused detector position according to the equation
     
-    TOF[i] = 4 pi m_n L_focused d[i] sin(polar_focused) / h
+    TOF[i] = 2 m_n L_focused d[i] sin(polar_focused) / h
  
     Where TOF[i] is the time-of-flight, m_n is the mass of the neutron,
     h is Planck's constant, L_focused is the focused total flight path,
@@ -2670,8 +2670,8 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 # Assuming that the uncertainties are uncorrelated, the square of the
 # uncertainty of the energy axis is given by
 # \f[
-# \sigma^2_d[i] = (sigma^2_lamda[i] / (4 * sin(polar)^2)) +
-# (lamda[i]^2 * (cos(polar)^2) * sigma^2_polar / 16 / (sin(polar)^4)
+# \sigma^2_d[i] = \frac{sigma^2_{\lamda}[i]} {4 \sin(polar)^2} +
+# \frac{\lamda[i]^2 \(cos(polar)^2 \ sigma^2_\polar} {16 \sin(polar)^4}
 # \f]
 #
 # \param wavelength (INPUT) is the wavelength axis in units of
