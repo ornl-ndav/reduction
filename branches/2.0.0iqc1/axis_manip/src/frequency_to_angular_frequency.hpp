@@ -34,7 +34,6 @@
 #include "conversions.hpp"
 #include "nessi_warn.hpp"
 #include "size_checks.hpp"
-#include <cmath>
 #include <stdexcept>
 
 namespace AxisManip
@@ -143,7 +142,7 @@ namespace AxisManip
   __frequency_to_angular_frequency_static(NumT & a,
                                           NumT & a2)
   {
-    a = 2.0 * static_cast<NumT>(PhysConst::PI) * pow(10,12);
+    a = static_cast<NumT>(2.0e12 * PhysConst::PI);
     a2 = a*a;
 
     return Nessi::EMPTY_WARN;
