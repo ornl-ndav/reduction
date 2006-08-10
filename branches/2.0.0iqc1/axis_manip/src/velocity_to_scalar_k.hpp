@@ -133,9 +133,10 @@ namespace AxisManip
    * This is a PRIVATE helper function for velocity_to_scalar_k that
    * calculates the parameters invariant across the array calculation.
    *
-   * \param mh (OUTPUT) Planck's constant divided by the mass of the neutron
-   * \param mh2 (OUTPUT) square of Planck's constant divided by the mass of 
-   *                     the neutron
+   * \param mh (OUTPUT) the mass of the neutron divided by the Planck's 
+   * constant 
+   * \param mh2 (OUTPUT) square of the mass of the neutron divided by the 
+   * Planck's constant
    */
   template <typename NumT>
   std::string
