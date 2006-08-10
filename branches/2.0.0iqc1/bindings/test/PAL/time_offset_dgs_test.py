@@ -70,25 +70,25 @@ NUM_VAL = 5
 # - The square of the uncertainty of the true value for the ss case
 #
 def initialize_true_outputs(key):
-
+    
     if (key == "double"):
-
+        
         true_output_ss=DoubleVPair()
-
-      # initialize the correct outputs for scalar scalar case
+        
+        # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(0.59313725490196078)
         true_output_ss.val_err2 = float(1.27874988488885991)
-
+        
     else:
-
+        
         raise TypeError
-
+    
     return true_output_ss.val, true_output_ss.val_err2
 
 if __name__ == "__main__":
-
+    
     mess =""
-
+    
     print "###################################################################"
     print "# Checking time_offset_dgs Python Abstraction layer               #"
     print "###################################################################"
@@ -100,32 +100,32 @@ if __name__ == "__main__":
     time_downstream_monitor_err2 = 0.75
     initial_velocity = 0.51
     initial_velocity_err2 = 0.05
-  
+    
     # generate true_outputs
     true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
-
+    
     # ss case
-     output_ss, output_ss_err2 = \
-                axis_manip.time_offset_dgs(\
+    output_ss, output_ss_err2 = \
+               axis_manip.time_offset_dgs(\
          dist_downstream_monitor,\
          dist_downstream_monitor_err2,\
          time_downstream_monitor,\
          time_downstream_monitor_err2,\
          initial_velocity,\
          initial_velocity_err2)
-
+    
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
                                   true_output_ss_d,\
                                   output_ss_err2,\
                                   true_output_ss_err2_d)
-
+    
     print mess
-
+    
 ##
 # \}
 #
 
-
+    
 
