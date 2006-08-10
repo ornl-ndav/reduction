@@ -58,7 +58,6 @@ TruthOutput_SS_D.val_err2 = 0.06666666666666667;
 # version
 Output_SS_D = DoubleVPair()
 
-print
 print "Checking Scalar-Scalar Initial Velocity DGS "
 print "Binding Function"
 

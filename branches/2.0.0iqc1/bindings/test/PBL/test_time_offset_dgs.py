@@ -53,7 +53,6 @@ TruthOutput_SS_D.val_err2 = 1.27874988488885991
 # version
 Output_SS_D = DoubleVPair()
 
-print
 print "Checking Scalar-Scalar Time Offset DGS "
 print "Binding Function"
 
