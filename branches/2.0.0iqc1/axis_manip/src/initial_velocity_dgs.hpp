@@ -55,20 +55,26 @@ namespace AxisManip
 
     // allocate local variables
     NumT ldlu;
+    NumT tdtu;
+    NumT tdtu2;
  
     // fill the local variables
     retstr += __initial_velocity_dgs_static(dist_upsteam_mon,
                                             dist_downstream_mon,
-                                            ldlu);
+                                            time_upstream_mon,
+                                            time_downstream_mon,
+                                            ldlu,
+                                            tdtu,
+                                            tdtu2);
 
     // do the calculation
     retstr += __initial_velocity_dgs_dynamic(dist_upstream_mon_err2,
-                                             time_upstream_mon,
                                              time_upstream_mon_err2,
                                              dist_downstream_mon_err2,
-                                             time_downstream_mon,
                                              time_downstream_mon_err2,
                                              ldlu,
+                                             tdtu,
+                                             tdtu2,
                                              initial_velocity, 
                                              initial_velocity_err2);
 
@@ -84,16 +90,28 @@ namespace AxisManip
    * \param dist_upsteam_mon (INPUT) is the distance to the upstream monitor.
    * \param dist_downstream_mon (INPUT) is the distance to the downstream 
    * monitor.
-   * \param ldlu (OUTPUT) the value of the distance to downstream monitor 
-   * subtract by the distance to upstream monitor.
+   * \param time_upstream_mon (INPUT) is the time of flight to reach the 
+   * upstream monitor
+   * \param time_downstream_mon (INPUT) is the time of flight to reach the
+   * downstream monitor
+   * \param ldlu (OUTPUT) \f$ = dist\_downstream\_mon - dist\_upsteam\_mon\f$
+   * \param tdtu (OUTPUT) \f$ =\frac{1}{time\_downstream\_mon - time\_upstream\
+   * \_mon}\f$
+   * \param tdtu2 (OUTPUT)\f$ = tdtu^2 \f$
    */
   template <typename NumT>
   std::string
   __initial_velocity_dgs_static(const NumT dist_upsteam_mon,
                                 const NumT dist_downstream_mon,
-                                NumT & ldlu)
+                                const NumT time_upstream_mon,
+                                const NumT time_downstream_mon,
+                                NumT & ldlu,
+                                NumT & tdtu,
+                                NumT & tdtu2)
   {
     ldlu = dist_downstream_mon - dist_upsteam_mon;
+    tdtu = static_cast<NumT>(1.0/(time_downstream_mon - time_upstream_mon));
+    tdtu2 = tdtu * tdtu;
 
     return Nessi::EMPTY_WARN;
   }
@@ -106,18 +124,18 @@ namespace AxisManip
    *
    * \param dist_upstream_mon_err2 (INPUT) same as parameter in 
    * initial_velocity_dgs()
-   * \param time_upstream_mon (INPUT) same as parameter in 
-   * initial_velocity_dgs()
    * \param time_upstream_mon_err2 (INPUT) same as parameter in 
    * initial_velocity_dgs()
    * \param dist_downstream_mon_err2 (INPUT) same as parameter in 
    * initial_velocity_dgs()
-   * \param time_downstream_mon (INPUT) same as parameter in 
-   * initial_velocity_dgs()
    * \param time_downstream_mon_err2 (INPUT) same as parameter in 
    * initial_velocity_dgs()
    * \param ldlu (INPUT) same as the parameter of 
-   * __initial_velocity_dgs_static()  
+   * __initial_velocity_dgs_static() 
+   * \param tdtu (INPUT)same as the parameter of 
+   * __initial_velocity_dgs_static() 
+   * \param tdtu2 (INPUT) same as the parameter of 
+   * __initial_velocity_dgs_static() 
    * \param initial_velocity (OUTPUT) same as parameter in 
    * initial_velocity_dgs()
    * \param initial_velocity_err2 (OUTPUT) same as parameter in
@@ -126,27 +144,22 @@ namespace AxisManip
   template <typename NumT>
   std::string
   __initial_velocity_dgs_dynamic(const NumT dist_upstream_mon_err2,
-                                 const NumT time_upstream_mon,
                                  const NumT time_upstream_mon_err2,
                                  const NumT dist_downstream_mon_err2,
-                                 const NumT time_downstream_mon,
                                  const NumT time_downstream_mon_err2,
                                  const NumT ldlu,
+                                 const NumT tdtu,
+                                 const NumT tdtu2,
                                  NumT & initial_velocity, 
                                  NumT & initial_velocity_err2)
                                  
   {
-    NumT tdtu = time_downstream_mon - time_upstream_mon;
-    NumT tdtu2 = tdtu * tdtu;
-    NumT inv_tdtu = static_cast<NumT>(1.0/tdtu);
-    NumT inv_tdtu2 = static_cast<NumT>(1.0/tdtu2);
-
     // the result
-    initial_velocity = ldlu * inv_tdtu;
+    initial_velocity = ldlu * tdtu;
 
     // the uncertainty in the result
-    initial_velocity_err2 = inv_tdtu2 
-      * (dist_downstream_mon_err2 + dist_upstream_mon_err2);
+    initial_velocity_err2 = tdtu2 * (dist_downstream_mon_err2 
+                                   + dist_upstream_mon_err2);
 
     return Nessi::EMPTY_WARN;
   }
