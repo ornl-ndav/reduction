@@ -1221,7 +1221,7 @@ namespace AxisManip
    * assumption of uncorrelated uncertainties.
    *
    * \param dist_downstream_monitor (INPUT) is the total flight path
-   * for the downstream monitor in units of meter/second
+   * for the downstream monitor in units of meter
    * \param dist_downstream_monitor_err2 (INPUT) is the square of the
    * uncertainty in dist_downstream_monitor
    * \param time_downstream_monitor (INPUT) is the time observed at
@@ -1229,7 +1229,7 @@ namespace AxisManip
    * \param time_downstream_monitor_err2 (INPUT) is the square of the
    * uncertainty in time_downstream_monitor
    * \param initial_velocity (INPUT) is the velocity of the incident
-   * neutrons in unites of meter/seconds
+   * neutrons in unites of meter/micro-seconds
    * \param initial_velocity_err2 (INPUT) is the square of the
    * uncertainty in initial_velocity
    * \param time_offset (OUTPUT) is the time offset of the neutron
