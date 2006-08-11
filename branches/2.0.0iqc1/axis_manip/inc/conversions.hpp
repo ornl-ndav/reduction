@@ -2197,6 +2197,10 @@ namespace AxisManip
    * the velocity of the neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_k[i] = \frac{(m_n)^2 \sigma^2_{v}[i]}{h^2}
+   * \f]
+   *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
    * \param velocity_err2 (INPUT) is the square of the uncertainty in
@@ -2230,6 +2234,10 @@ namespace AxisManip
    * the neutron, \f$h\f$ is Planck's constant, and \f$v\f$ is the
    * velocity of the neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   *b \f[
+   * \sigma^2_k[i] = \frac{(m_n)^2 \sigma^2_{v}[i]}{h^2}
+   * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
