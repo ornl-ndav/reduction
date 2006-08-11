@@ -95,12 +95,14 @@ namespace AxisManip
     NumT b;
     NumT c;
     NumT c2;
+    NumT ld2;
    
     // calculate static paramters
     retstr +=__tof_to_final_velocity_dgs_static(initial_velocity,
                                                 dist_source_sample,
                                                 time_offset,
-                                                a, a2, b, c, c2);
+                                                dist_sample_detector,
+                                                a, a2, b, c, c2, ld2);
 
     // fill the results array
     size_t size_tof = tof.size();
@@ -116,7 +118,7 @@ namespace AxisManip
                                               dist_sample_detector_err2,
                                               final_velocity[i],
                                               final_velocity_err2[i],
-                                              a, a2, b, c, c2);
+                                              a, a2, b, c, c2, ld2);
       }
 
     // send back all warnings
@@ -146,6 +148,7 @@ namespace AxisManip
     NumT b;
     NumT c;
     NumT c2;
+    NumT ld2;
 
     // some string parameters for dealing with warnings
     std::string retstr(Nessi::EMPTY_WARN);
@@ -154,7 +157,8 @@ namespace AxisManip
     retstr +=__tof_to_final_velocity_dgs_static(initial_velocity,
                                                 dist_source_sample,
                                                 time_offset,
-                                                a, a2, b, c, c2);       
+                                                dist_sample_detector,
+                                                a, a2, b, c, c2, ld2);       
 
     // fill the results
     retstr +=__tof_to_final_velocity_dgs_dynamic(tof, 
@@ -166,7 +170,7 @@ namespace AxisManip
                                                  dist_sample_detector_err2,
                                                  final_velocity,
                                                  final_velocity_err2,
-                                                 a, a2, b, c, c2);
+                                                 a, a2, b, c, c2, ld2);
 
     // send back all warnings
     return retstr;
@@ -190,16 +194,19 @@ namespace AxisManip
    * \param b (OUTPUT) \f$=dist\_source\_sample\times a + time\_offset\f$
    * \param c (OUTPUT) \f$=\frac{dist\_source\_sample}{a2}\f$
    * \param c2 (OUTPUT) \f$=c^2\f$
+   * \param ld2 (OUTPUT) \f$=dist\_sample\_detector\times dist\_sample\_detector\f$
    */
   template <typename NumT>
   std::string __tof_to_final_velocity_dgs_static(const NumT initial_velocity,
                                                  const NumT dist_source_sample,
                                                  const NumT time_offset,
+                                                 const NumT dist_sample_detector,
                                                  NumT & a, 
                                                  NumT & a2, 
                                                  NumT & b, 
                                                  NumT & c, 
-                                                 NumT & c2)
+                                                 NumT & c2,
+                                                 NumT & ld2)
                                               
   {
     a = static_cast<NumT>(1.0 / initial_velocity);
@@ -207,6 +214,7 @@ namespace AxisManip
     b = (dist_source_sample * a) + time_offset;
     c = (dist_source_sample / a2);
     c2 = c*c;
+    ld2 = dist_sample_detector * dist_sample_detector;
 
     return Nessi::EMPTY_WARN;
   }
@@ -261,12 +269,12 @@ namespace AxisManip
                                                   const NumT a2,
                                                   const NumT b,
                                                   const NumT c,
-                                                  const NumT c2)
+                                                  const NumT c2,
+                                                  const NumT ld2)
   {
     NumT tb = tof - b;
     NumT tb2 = tb * tb;
     NumT tb4 = tb2 * tb2;
-    NumT ld2 = dist_sample_detector * dist_sample_detector;
 
     // the result
     final_velocity = static_cast<NumT>(dist_sample_detector / tb);
