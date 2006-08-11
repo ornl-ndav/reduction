@@ -1129,56 +1129,19 @@ def initial_velocity_dgs(dist_upstream_mon,\
     recognized types
 
     """
-    try:
-        if dist_upstream_mon.__type__ != dist_upstream_mon_err2.__type__:
-            raise TypeError, "Distance Upstream Monitor and Distance "\
-                  +"Upstream Monitor Err2 array types are not the same."
 
-    except AttributeError:
-        pass
-
-    try:
-        if time_upstream_mon.__type__ != time_upstream_mon_err2.__type__:
-            raise TypeError, "Time Upstream Monitor and Time Upstream "\
-                  +"Monitor Err2 array types are not the same."
-
-    except AttributeError:
-        pass
-
-    try:  
-        if dist_downstream_mon.__type__ != dist_downstream_mon_err2.__type__:
-            raise TypeError, "Distance Downstream Monitor and Distance "\
-                  +"Downstream Monitor Err2 array types are not the same."
-
-    except AttributeError:
-        pass
-
-    try:
-        if time_downstream_mon.__type__ != time_downstream_mon_err2.__type__:
-            raise TypeError, "Time Downstream Monitor and Time Downstream "\
-                  +"Monitor Err2 array types are not the same."
-        
-    except AttributeError:
-        pass
-
-    try:
-        if dist_upstream_mon.__type__ != dist_downstream_mon.__type__:
-            raise TypeError, "Distance UPstreamMonitor and Distance Downstream "\
-                  +"Monitor array types are not the same."
-        
-    except AttributeError:
-        initial_velocity_dgs_ss = vpair_bind.DoubleVPair()
-        axis_manip_bind.initial_velocity_dgs_ss_d(\
-            float(dist_upstream_mon),\
-            float(dist_upstream_mon_err2),\
-            float(time_upstream_mon),\
-            float(time_upstream_mon_err2),\
-            float(dist_downstream_mon),\
-            float(dist_downstream_mon_err2),\
-            float(time_downstream_mon),\
-            float(time_downstream_mon_err2),\
-            initial_velocity_dgs_ss)
-        return initial_velocity_dgs_ss.val, initial_velocity_dgs_ss.val_err2
+    initial_velocity_dgs_ss = vpair_bind.DoubleVPair()
+    axis_manip_bind.initial_velocity_dgs_ss_d(\
+        float(dist_upstream_mon),\
+        float(dist_upstream_mon_err2),\
+        float(time_upstream_mon),\
+        float(time_upstream_mon_err2),\
+        float(dist_downstream_mon),\
+        float(dist_downstream_mon_err2),\
+        float(time_downstream_mon),\
+        float(time_downstream_mon_err2),\
+        initial_velocity_dgs_ss)
+    return initial_velocity_dgs_ss.val, initial_velocity_dgs_ss.val_err2
                              
 ##
 # \} // end of initial_velocity_dgs group
