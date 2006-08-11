@@ -86,7 +86,7 @@ namespace AxisManip
    * neutrons.
    * \param a (OUTPUT) \f$ = \frac {1} {initial\_velocity} \f$
    * \param a2 (OUTPUT) \f$ = a^2 \f$
-   * \param b (OUTPUT) \f$ = dist\_downstream\_monitor \ a \f$
+   * \param b (OUTPUT) \f$ = dist\_downstream\_monitor\f$
    * \param b2 (OUTPUT) \f$ = b^2 \f$
    */
   template <typename NumT>
