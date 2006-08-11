@@ -1287,6 +1287,13 @@ namespace AxisManip
    * uncertainty is calculated using the assumption of uncorrelated
    * uncertainties.
    *
+   * \f[
+   * \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+   * \frac{(L_D)^2 \sigma^2_{L_S}}{(v_i)^2 (t[i]-\frac{L_S}{v_i}-t_0}^4} +
+   * \frac{(L_S)^2 (L_D)^2 \sigma^2_{v_i}}{(v_i)^4 (t[i]-\frac{L_S}{v_i}-t_0)^4
+   * + \frac{(L_D)^2 \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
+   * \f]
+   *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
@@ -1348,6 +1355,13 @@ namespace AxisManip
    * \f$t_0\f$ is the time-offset of the neutron. The uncertainty is
    * calculated using the assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+   * \frac{(L_D)^2 \sigma^2_{L_S}}{(v_i)^2 (t[i]-\frac{L_S}{v_i}-t_0}^4} +
+   * \frac{(L_S)^2 (L_D)^2 \sigma^2_{v_i}}{(v_i)^4 (t[i]-\frac{L_S}{v_i}-t_0)^4
+   * + \frac{(L_D)^2 \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
+   * \f]
+   *  
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the

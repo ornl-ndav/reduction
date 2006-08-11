@@ -1937,6 +1937,13 @@ def time_offset_dgs(dist_downstream_monitor,\
 # neutron, and \f$t_0\f$ is the time-offset of the neutron. The uncertainty
 # is calculated using the assumption of uncorrelated uncertainties.
 #
+# \f[ 
+# \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+# \frac{(L_D)^2 \sigma^2_{L_S}}{(v_i)^2 (t[i]-\frac{L_S}{v_i}-t_0}^4} +
+# \frac{(L_S)^2 (L_D)^2 \sigma^2_{v_i}}{(v_i)^4 (t[i]-\frac{L_S}{v_i}-t_0)^4
+# + \frac{(L_D)^2 \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
+# \f]
+#
 # \param tof (INPUT) is the time-of-flight axis in units of
 # micro-seconds
 # \param tof_err2 (INPUT) is the square of the uncertainty in the
@@ -1992,8 +1999,12 @@ def tof_to_final_velocity_dgs(tof,\
     L_S is the distance from source to sample, v_i is the initial velocity
     of the neutron, and t_0 is the time-offset of the neutron. The uncertainty
     is calculated using the assumption of uncorrelated uncertainties. The
-    uncertainty is calculated using the assumption of uncorrelated uncertainties.
-
+    uncertainty is calculated using the assumption of uncorrelated uncertainties
+    v_f_err2[i] = (L_D_err2)/(t[i]-(L_S/v_i)-t_0)^2 +
+    ((L_D)^2 * L_S_err2)/((v_i)^2 * (t[i]-(L_S/v_i)-t_0)^4) +
+    ((L_S)^2 * (L_D)^2 * v_i_err2)/((v_i)^4 * (t[i]-(L_S/v_i)-t_0)^4) +
+    ((L_D)^2 * t_0_err2)/(t[i]-(L_S/v_i)-t_0)^4
+    
     Parameters:
     __________
 
