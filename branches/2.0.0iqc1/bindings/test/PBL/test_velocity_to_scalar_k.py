@@ -22,7 +22,7 @@ import test_common_bind
 from vpair_bind import *
 
 print "#######################################################################"
-print "# Checking Velocity_to_scalar_k Swig Generated Python Binding Layer   #"
+print "# Checking Velocity_to_Scalar_K Swig Generated Python Binding Layer   #"
 print "#######################################################################"
 print
 
