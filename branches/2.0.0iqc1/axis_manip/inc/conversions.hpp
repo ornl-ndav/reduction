@@ -581,6 +581,10 @@ namespace AxisManip
    * downstream monitor, and \f$t_u\f$ is the time-of-flight to reach
    * the upstream monitor. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   * \f[
+   * \sigma^2_v[i] = \frac{sigma^2_{dist\_downstream\_mon\_err2} +
+   *                 sigma^2_{dist\_upstream\_mon\_err2}}{(t_d - t_u)^2}
+   * \f]
    *
    * \param dist_upstream_mon (INPUT) is the distance to the upstream
    * monitor in units of meters
@@ -1301,7 +1305,7 @@ namespace AxisManip
    * \param dist_sample_detector_err2 (INPUT) is the square of the
    * uncertainty in dist_sample_detector
    * \param final_velocity (OUTPUT) is the final velocity axis of the
-   * neutron in units of meter/second
+   * neutron in units of meter/micro-second
    * \param final_velocity_err2 (OUTPUT) is the square of the
    * uncertainty in the final velocity axis
    *
@@ -1362,7 +1366,7 @@ namespace AxisManip
    * \param dist_sample_detector_err2 (INPUT) is the square of the
    * uncertainty in dist_sample_detector
    * \param final_velocity (OUTPUT) is the final velocity axis of the
-   * neutron in units of meter/second
+   * neutron in units of meter/micro-second
    * \param final_velocity_err2 (OUTPUT) is the square of the
    * uncertainty in the final velocity axis
    *

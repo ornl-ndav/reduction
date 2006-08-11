@@ -1046,6 +1046,12 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # downstream monitor, and \f$t\_u\f$ is the time-of-flight to reach
 # the upstream monitor. The uncertainty is calculated using the
 # assumption of uncorrelated uncertainties.
+# 
+# \f[
+# \sigma^2_v[i] = \frac{sigma^2_{dist\_downstream\_mon\_err2} +
+#                       sigma^2_{dist\_upstream\_mon\_err2}}
+#                      {(t_d - t_u)^2}
+# \f]
 #
 # \param dist_upstream_mon (INPUT) is the distance to the upstream
 # monitor in units of meters
@@ -1086,7 +1092,7 @@ def initial_velocity_dgs(dist_upstream_mon,\
     This function calculates the initial velocity of the neutron
     for a direct geometry spectrometer according to the equation
     
-    v = (L_d-L_u) / (t_d-t_u)
+    v[i] = (L_d-L_u) / (t_d-t_u)
     
     Where v is the initial velocity, L_d is the distance to the
     downstream monitor, L_u is the distance to the upstream
@@ -1094,6 +1100,9 @@ def initial_velocity_dgs(dist_upstream_mon,\
     and t_u is the time-of-flight to reach the upstream monitor. The
     uncertainty is calculated using the assumption of uncorrelated
     uncertainties.
+
+    v_err2[i] = (dist_downstream_mon_err2 + dist_upstream_mon_err2) /
+             (time_downstream_mon - time_upstream_mon)^2
 
     Parameters:
     __________
