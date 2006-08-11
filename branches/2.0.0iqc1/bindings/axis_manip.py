@@ -1888,46 +1888,16 @@ def time_offset_dgs(dist_downstream_monitor,\
 
     """
 
-    try:  
-        if dist_downstream_monitor.__type__ != dist_downstream_monitor_err2.__type__:
-            raise TypeError, "Distance Downstream Monitor and Distance "\
-                  +"Downstream Monitor Err2 array types are not the same."
-
-    except AttributeError:
-        pass
-
-    try:
-        if time_downstream_monitor.__type__ != time_downstream_monitor_err2.__type__:
-            raise TypeError, "Time Downstream Monitor and Time Downstream "\
-                  +"Monitor Err2 array types are not the same."
-        
-    except AttributeError:
-        pass
-
-    try:
-        if initial_velocity.__type__ != initial_velocity_err2.__type__:
-            raise TypeError, "Initial Velocity and Initial Velocity Err2 "\
-                  +"array types are not the same."
-        
-    except AttributeError:
-        pass
-
-    try:
-        if dist_downstream_monitor.__type__ != initial_velocity.__type__:
-            raise TypeError, "Distance Downstream Monitor and Initial Velocity "\
-                  +"array types are not the same."
-        
-    except AttributeError:
-        time_offset_dgs_ss = vpair_bind.DoubleVPair()
-        axis_manip_bind.time_offset_dgs_ss_d(\
-            float(dist_downstream_monitor),\
-            float(dist_downstream_monitor_err2),\
-            float(time_downstream_monitor),\
-            float(time_downstream_monitor_err2),\
-            float(initial_velocity),\
-            float(initial_velocity_err2),\
-            time_offset_dgs_ss)
-        return time_offset_dgs_ss.val, time_offset_dgs_ss.val_err2
+    time_offset_dgs_ss = vpair_bind.DoubleVPair()
+    axis_manip_bind.time_offset_dgs_ss_d(\
+        float(dist_downstream_monitor),\
+        float(dist_downstream_monitor_err2),\
+        float(time_downstream_monitor),\
+        float(time_downstream_monitor_err2),\
+        float(initial_velocity),\
+        float(initial_velocity_err2),\
+        time_offset_dgs_ss)
+    return time_offset_dgs_ss.val, time_offset_dgs_ss.val_err2
                              
 ##
 # \} // end of time_offset_dgs group
