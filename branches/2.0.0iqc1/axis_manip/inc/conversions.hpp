@@ -582,8 +582,8 @@ namespace AxisManip
    * the upstream monitor. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    * \f[
-   * \sigma^2_v[i] = \frac{sigma^2_{dist\_downstream\_mon\_err2} +
-   *                 sigma^2_{dist\_upstream\_mon\_err2}}{(t_d - t_u)^2}
+   * \sigma^2_v[i] = \frac{sigma^2_{dist\_downstream\_mon} +
+   *                 sigma^2_{dist\_upstream\_mon}}{(t_d - t_u)^2}
    * \f]
    *
    * \param dist_upstream_mon (INPUT) is the distance to the upstream

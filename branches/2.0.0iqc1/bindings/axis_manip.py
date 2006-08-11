@@ -1048,8 +1048,8 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # assumption of uncorrelated uncertainties.
 # 
 # \f[
-# \sigma^2_v[i] = \frac{sigma^2_{dist\_downstream\_mon\_err2} +
-#                       sigma^2_{dist\_upstream\_mon\_err2}}
+# \sigma^2_v[i] = \frac{sigma^2_{dist\_downstream\_mon} +
+#                       sigma^2_{dist\_upstream\_mon}}
 #                      {(t_d - t_u)^2}
 # \f]
 #
