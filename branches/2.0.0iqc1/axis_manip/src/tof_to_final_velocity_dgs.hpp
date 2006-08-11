@@ -95,7 +95,7 @@ namespace AxisManip
     NumT b;
     NumT c;
     NumT c2;
-
+   
     // calculate static paramters
     retstr +=__tof_to_final_velocity_dgs_static(initial_velocity,
                                                 dist_source_sample,
@@ -187,7 +187,7 @@ namespace AxisManip
    * tof_to_final_velocity_dgs() 
    * \param a (OUTPUT) \f$=\frac{1}{initial\_velocity}\f$
    * \param a2 (OUTPUT) \f$=a^2\f$
-   * \param b (OUTPUT) \f$=dist\_source\_sample\times a - time\_offset\f$
+   * \param b (OUTPUT) \f$=dist\_source\_sample\times a + time\_offset\f$
    * \param c (OUTPUT) \f$=\frac{dist\_source\_sample}{a2}\f$
    * \param c2 (OUTPUT) \f$=c^2\f$
    */
