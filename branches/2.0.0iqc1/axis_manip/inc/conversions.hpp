@@ -428,6 +428,10 @@ namespace AxisManip
    * is the frequency. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{\omega}[i] = 4 \pi^2 \times 10^{24} \sigma^2_{\nu}[i]
+   * \f]
+   *
    * \param frequency (INPUT) is the frequency axis in units of THz
    * \param frequency_err2 (INPUT) is the square of the uncertainty in
    * the frequency axis

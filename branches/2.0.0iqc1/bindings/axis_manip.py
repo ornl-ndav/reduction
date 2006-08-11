@@ -372,6 +372,10 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # is the frequency. The uncertainty is calculated using the
 # assumption of uncorrelated uncertainties.
 #
+# \f[
+# \sigma^2_{\omega}[i] = 4 \pi^2 \times 10 {24} \sigma^2_{\nu}[i]
+# \f]
+#
 # \param frequency (INPUT) is the frequency axis in units of THz
 # \param frequency_err2 (INPUT) is the square of the uncertainty in
 # the frequency axis
@@ -397,7 +401,7 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
     Assuming that the uncertainties are uncorrelated, the square of the
     uncertainty of the angular frequency axis is given by
 
-    sigma^2_omega[i] = (2 * pi * 10^12)^2 * sigma^2_nu[i]
+    sigma^2_omega[i] = 4 * pi^2 * 10^24 * sigma^2_nu[i]
 
     Parameters:
     ----------
