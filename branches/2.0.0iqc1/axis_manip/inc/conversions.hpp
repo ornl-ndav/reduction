@@ -69,6 +69,14 @@ namespace AxisManip
    * focused scattered neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{TOF}[i] = \left(\frac{2 m_n}{h}\right)^2 \times 
+   * \left((d[i] \sin(polar_{focused}))^2 \sigma^2_{L_{focused}} + 
+   * (L_{focused} \sin(polar_{focused}))^2 \sigma^2_d[i] + 
+   * (L_{focused} d[i] \cos(polar_{focused}))^2 \sigma^2_{polar_{focused}}
+   * \right)
+   * \f]
+   * 
    * \param d_spacing (INPUT) is the d-spacing axis in units of
    * Angstrom
    * \param d_spacing_err2 (INPUT) is the square of the uncertainty in
@@ -117,6 +125,14 @@ namespace AxisManip
    * focused scattered neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{TOF} = \left(\frac{2 m_n}{h}\right)^2 \times 
+   * \left((d \sin(polar_{focused}))^2 \sigma^2_{L_{focused}} + 
+   * (L_{focused} \sin(polar_{focused}))^2 \sigma^2_d + 
+   * (L_{focused} d \cos(polar_{focused}))^2 \sigma^2_{polar_{focused}}
+   * \right)
+   * \f]
+   * 
    * \param d_spacing (INPUT) is the d-spacing axis in units of
    * Angstrom
    * \param d_spacing_err2 (INPUT) is the square of the uncertainty in

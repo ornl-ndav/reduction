@@ -79,6 +79,14 @@ import vpair_bind
 # focused scattered neutron. The uncertainty is calculated using
 # the assumption of uncorrelated uncertainties.
 #
+# \f[
+# \sigma^2_{TOF}[i] = \left(\frac{2 m_n}{h}\right)^2 \times 
+# \left((d[i] \sin(polar_{focused}))^2 \sigma^2_{L_{focused}} + 
+# (L_{focused} \sin(polar_{focused}))^2 \sigma^2_d[i] + 
+# (L_{focused} d[i] \cos(polar_{focused}))^2 \sigma^2_{polar_{focused}}
+# \right)
+# \f]
+#
 # \param d_spacing (INPUT) is the d-spacing axis in units of
 # Angstrom
 # \param d_spacing_err2 (INPUT) is the square of the uncertainty in
@@ -118,6 +126,11 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
     d[i] is the d-spacing, and polar_focused is the angle between the
     z-axis and the focused scattered neutron. The uncertainty is
     calculated using the assumption of uncorrelated uncertainties.
+
+    TOF_err2[i] = (2 m_n / h)^2 x ((d[i] sin(polar_focused))^2
+    L_focused_err2 + (L_focused sin(polar_focused))^2 d_err2[i] + 
+    (L_focused d[i] cos(polar_focused))^2 polar_focused_err2)
+
     
     Parameters:
     __________
