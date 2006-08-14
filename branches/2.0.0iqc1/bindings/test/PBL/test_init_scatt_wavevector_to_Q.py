@@ -57,11 +57,11 @@ for counter in range(NUM_VAL):
 
 # Truth values for init_scatt_wavevector_to_Q vector-vector version
 TruthOutput_VV_D_Qx = DoubleNessiVector()
-TruthOutput_VV_D_Qx.append(0.17380656755500100)
-TruthOutput_VV_D_Qx.append(0.31285182159900200)
-TruthOutput_VV_D_Qx.append(0.45189707564300253)
-TruthOutput_VV_D_Qx.append(0.59094232968700300)
-TruthOutput_VV_D_Qx.append(0.72998758373100400)
+TruthOutput_VV_D_Qx.append(-0.17380656755500100)
+TruthOutput_VV_D_Qx.append(-0.31285182159900200)
+TruthOutput_VV_D_Qx.append(-0.45189707564300253)
+TruthOutput_VV_D_Qx.append(-0.59094232968700300)
+TruthOutput_VV_D_Qx.append(-0.72998758373100400)
 
 TruthOutput_Err2_VV_D_Qx = DoubleNessiVector()
 TruthOutput_Err2_VV_D_Qx.append(0.09073486048493280)
@@ -71,11 +71,11 @@ TruthOutput_Err2_VV_D_Qx.append(1.05585507696780088)
 TruthOutput_Err2_VV_D_Qx.append(1.59746956572666845)
 
 TruthOutput_VV_D_Qy = DoubleNessiVector()
-TruthOutput_VV_D_Qy.append(0.21024756879486733)
-TruthOutput_VV_D_Qy.append(0.37844562383076100)
-TruthOutput_VV_D_Qy.append(0.54664367886665500)
-TruthOutput_VV_D_Qy.append(0.71484173390254900)
-TruthOutput_VV_D_Qy.append(0.88303978893844267)
+TruthOutput_VV_D_Qy.append(-0.21024756879486733)
+TruthOutput_VV_D_Qy.append(-0.37844562383076100)
+TruthOutput_VV_D_Qy.append(-0.54664367886665500)
+TruthOutput_VV_D_Qy.append(-0.71484173390254900)
+TruthOutput_VV_D_Qy.append(-0.88303978893844267)
 
 TruthOutput_Err2_VV_D_Qy = DoubleNessiVector()
 TruthOutput_Err2_VV_D_Qy.append(0.11760239343867500)
@@ -100,11 +100,11 @@ TruthOutput_Err2_VV_D_Qz.append(8.69198780987991000)
 
 # Truth values for init_scatt_wavevector_to_Q vector-scalar version
 TruthOutput_VS_D_Qx = DoubleNessiVector()
-TruthOutput_VS_D_Qx.append(0.17380656755500100)
-TruthOutput_VS_D_Qx.append(0.17380656755500100)
-TruthOutput_VS_D_Qx.append(0.17380656755500100)
-TruthOutput_VS_D_Qx.append(0.17380656755500100)
-TruthOutput_VS_D_Qx.append(0.17380656755500100)
+TruthOutput_VS_D_Qx.append(-0.17380656755500100)
+TruthOutput_VS_D_Qx.append(-0.17380656755500100)
+TruthOutput_VS_D_Qx.append(-0.17380656755500100)
+TruthOutput_VS_D_Qx.append(-0.17380656755500100)
+TruthOutput_VS_D_Qx.append(-0.17380656755500100)
 
 TruthOutput_Err2_VS_D_Qx = DoubleNessiVector()
 TruthOutput_Err2_VS_D_Qx.append(0.09073486048493280)
@@ -114,11 +114,11 @@ TruthOutput_Err2_VS_D_Qx.append(0.09073486048493280)
 TruthOutput_Err2_VS_D_Qx.append(0.09073486048493280)
 
 TruthOutput_VS_D_Qy = DoubleNessiVector()
-TruthOutput_VS_D_Qy.append(0.21024756879486733)
-TruthOutput_VS_D_Qy.append(0.21024756879486733)
-TruthOutput_VS_D_Qy.append(0.21024756879486733)
-TruthOutput_VS_D_Qy.append(0.21024756879486733)
-TruthOutput_VS_D_Qy.append(0.21024756879486733)
+TruthOutput_VS_D_Qy.append(-0.21024756879486733)
+TruthOutput_VS_D_Qy.append(-0.21024756879486733)
+TruthOutput_VS_D_Qy.append(-0.21024756879486733)
+TruthOutput_VS_D_Qy.append(-0.21024756879486733)
+TruthOutput_VS_D_Qy.append(-0.21024756879486733)
 
 TruthOutput_Err2_VS_D_Qy = DoubleNessiVector()
 TruthOutput_Err2_VS_D_Qy.append(0.11760239343867500)
@@ -143,11 +143,11 @@ TruthOutput_Err2_VS_D_Qz.append(4.74627936184453000)
 
 # Truth values for init_scatt_wavevector_to_Q scalar-vector version
 TruthOutput_SV_D_Qx = DoubleNessiVector()
-TruthOutput_SV_D_Qx.append(0.17380656755500100)
-TruthOutput_SV_D_Qx.append(0.31285182159900200)
-TruthOutput_SV_D_Qx.append(0.45189707564300251)
-TruthOutput_SV_D_Qx.append(0.59094232968700300)
-TruthOutput_SV_D_Qx.append(0.72998758373100400)
+TruthOutput_SV_D_Qx.append(-0.17380656755500100)
+TruthOutput_SV_D_Qx.append(-0.31285182159900200)
+TruthOutput_SV_D_Qx.append(-0.45189707564300251)
+TruthOutput_SV_D_Qx.append(-0.59094232968700300)
+TruthOutput_SV_D_Qx.append(-0.72998758373100400)
 
 TruthOutput_Err2_SV_D_Qx = DoubleNessiVector()
 TruthOutput_Err2_SV_D_Qx.append(0.09073486048493280)
@@ -157,11 +157,11 @@ TruthOutput_Err2_SV_D_Qx.append(1.05585507696780088)
 TruthOutput_Err2_SV_D_Qx.append(1.59746956572666845)
 
 TruthOutput_SV_D_Qy = DoubleNessiVector()
-TruthOutput_SV_D_Qy.append(0.21024756879486733)
-TruthOutput_SV_D_Qy.append(0.37844562383076100)
-TruthOutput_SV_D_Qy.append(0.54664367886665500)
-TruthOutput_SV_D_Qy.append(0.71484173390254900)
-TruthOutput_SV_D_Qy.append(0.88303978893844267)
+TruthOutput_SV_D_Qy.append(-0.21024756879486733)
+TruthOutput_SV_D_Qy.append(-0.37844562383076100)
+TruthOutput_SV_D_Qy.append(-0.54664367886665500)
+TruthOutput_SV_D_Qy.append(-0.71484173390254900)
+TruthOutput_SV_D_Qy.append(-0.88303978893844267)
 
 TruthOutput_Err2_SV_D_Qy = DoubleNessiVector()
 TruthOutput_Err2_SV_D_Qy.append(0.11760239343867500)
@@ -186,11 +186,11 @@ TruthOutput_Err2_SV_D_Qz.append(4.69198780987990912)
 
 # Truth values for init_scatt_wavevector_to_Q scalar-scalar version
 TruthOutput_SS_D_Qx = DoubleVPair()
-TruthOutput_SS_D_Qx.val = 0.17380656755500100
+TruthOutput_SS_D_Qx.val = -0.17380656755500100
 TruthOutput_SS_D_Qx.val_err2 = 0.09073486048493280
 
 TruthOutput_SS_D_Qy = DoubleVPair()
-TruthOutput_SS_D_Qy.val = 0.21024756879486733
+TruthOutput_SS_D_Qy.val = -0.21024756879486733
 TruthOutput_SS_D_Qy.val_err2 = 0.11760239343867500
 
 TruthOutput_SS_D_Qz = DoubleVPair()

@@ -560,8 +560,8 @@ namespace AxisManip
     NumT kf = final_wavevector;
     NumT kf2 = kf * kf;
 
-    Qx = static_cast<NumT>(kf * a * d);
-    Qy = static_cast<NumT>(kf * b * d);
+    Qx = static_cast<NumT>(-kf * a * d);
+    Qy = static_cast<NumT>(-kf * b * d);
     Qz = static_cast<NumT>(initial_wavevector - (kf * c));
 
     Qx_err2 = static_cast<NumT>((a2 * d2 * final_wavevector_err2)
