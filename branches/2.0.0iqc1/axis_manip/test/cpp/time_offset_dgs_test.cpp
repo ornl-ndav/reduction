@@ -102,7 +102,7 @@ void initialize_true_outputs(float & true_output_ss,
 {
   // scalar scalar
   true_output_ss=static_cast<float>(0.59313725);
-  true_output_ss_err2=static_cast<float>(1.27874988);
+  true_output_ss_err2=static_cast<float>(2.02874988);
 
 }
 
@@ -118,8 +118,8 @@ void initialize_true_outputs(double & true_output_ss,
                              double & true_output_ss_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<double>(0.59313725490196078);
-  true_output_ss_err2=static_cast<double>(1.27874988488885991);
+  true_output_ss=static_cast<double>(0.59313725490196050);
+  true_output_ss_err2=static_cast<double>(2.02874988488886030);
 
 }
 

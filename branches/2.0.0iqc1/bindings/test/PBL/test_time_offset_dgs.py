@@ -43,7 +43,7 @@ initial_velocity_err2 = 0.05;
 # Truth values for time_offset_dgs scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
 TruthOutput_SS_D.val = 0.59313725490196078
-TruthOutput_SS_D.val_err2 = 1.27874988488885991
+TruthOutput_SS_D.val_err2 = 2.02874988488885991
 
 ###############################################################################
 # Create output placeholders for vectors

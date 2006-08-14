@@ -77,7 +77,7 @@ def initialize_true_outputs(key):
         
         # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(0.59313725490196078)
-        true_output_ss.val_err2 = float(1.27874988488885991)
+        true_output_ss.val_err2 = float(2.02874988488885991)
         
     else:
         

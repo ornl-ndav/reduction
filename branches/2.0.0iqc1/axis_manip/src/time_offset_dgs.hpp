@@ -49,10 +49,9 @@ namespace AxisManip
                   NumT & time_offset_err2,
                   void *temp=NULL)
   {
-  std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
     // allocate local variables
-    NumT a;
     NumT a2;
     NumT b;
     NumT b2;
@@ -60,21 +59,21 @@ namespace AxisManip
     // fill the local variables
     retstr += __time_offset_dgs_static(dist_downstream_monitor,
                                        initial_velocity,
-                                       a, a2, b, b2);
+                                       a2, b, b2);
 
     // do the calculation
     retstr += __time_offset_dgs_dynamic(dist_downstream_monitor_err2,
                                         time_downstream_monitor,
                                         time_downstream_monitor_err2,
                                         initial_velocity_err2,
-                                        a, a2, b, b2,
+                                        a2, b, b2,
                                         time_offset,
                                         time_offset_err2);
 
     return retstr; 
   }
 
-/**
+  /**
    * \ingroup time_offset_dgs
    *
    * This is a PRIVATE helper function for time_offset_dgs that
@@ -84,8 +83,7 @@ namespace AxisManip
    * for the downstream monitor.
    * \param initial_velocity (INPUT) is the velocity of the incident
    * neutrons.
-   * \param a (OUTPUT) \f$ = \frac {1} {initial\_velocity} \f$
-   * \param a2 (OUTPUT) \f$ = a^2 \f$
+   * \param a2 (OUTPUT) \f$ = (1/initial\_velocity)^2 \f$
    * \param b (OUTPUT) \f$ = dist\_downstream\_monitor\f$
    * \param b2 (OUTPUT) \f$ = b^2 \f$
    */
@@ -93,15 +91,14 @@ namespace AxisManip
   std::string
   __time_offset_dgs_static(const NumT dist_downstream_monitor,
                            const NumT initial_velocity,
-                           NumT & a,
                            NumT & a2,
                            NumT & b,
                            NumT & b2)
   {
     
-    a = static_cast<NumT>(1.0/initial_velocity);
+    NumT a = static_cast<NumT>(1.0/initial_velocity);
     a2 = a*a;
-    b = dist_downstream_monitor;
+    b = dist_downstream_monitor/initial_velocity;
     b2 = b*b;
 
     return Nessi::EMPTY_WARN;
@@ -121,7 +118,6 @@ namespace AxisManip
    * time_offset_dgs()
    * \param initial_velocity_err2 (INPUT) same as parameter in
    * time_offset_dgs()
-   * \param a (INPUT) same as parameter in __time_offset_dgs_static()
    * \param a2 (INPUT) same as parameter in __time_offset_dgs_static()
    * \param b (INPUT) same as parameter in __time_offset_dgs_static()
    * \param b2 (INPUT) same as parameter in __time_offset_dgs_static()
@@ -134,7 +130,6 @@ namespace AxisManip
                             const NumT time_downstream_monitor,
                             const NumT time_downstream_monitor_err2,
                             const NumT initial_velocity_err2,
-                            const NumT a,
                             const NumT a2,
                             const NumT b,
                             const NumT b2,
@@ -143,11 +138,12 @@ namespace AxisManip
   {
 
     // the result
-    time_offset = time_downstream_monitor - (a*b);
+    time_offset = time_downstream_monitor - b;
 
     // the uncertainty in the result
-    time_offset_err2 = ((a2 * dist_downstream_monitor_err2) 
-      + (a2 * a2 * b2 * initial_velocity_err2));
+    time_offset_err2 = time_downstream_monitor_err2 + 
+      (a2 * dist_downstream_monitor_err2) + 
+      (a2 * b2 * initial_velocity_err2);
 
     return Nessi::EMPTY_WARN;
   }
