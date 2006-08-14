@@ -2643,9 +2643,10 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 #
 # Assuming that the uncertainties are uncorrelated, the square of the
 # uncertainty of the energy axis is given by
+#
 # \f[
-# \sigma^2_d[i] = \frac{sigma^2_{\lambda}[i]} {4 \sin(polar)^2} +
-# \frac{{\lambda}[i]^2 \cos(polar)^2 \sigma^2_{polar}} {16 \sin(polar)^4}
+# \sigma^2_d[i] = \frac{\sigma^2_{\lambda}[i]} {4 \sin(polar)^2} +
+# \frac{\lambda^2[i] \cos(polar)^2 \sigma^2_{polar}} {16 \sin(polar)^4}
 # \f]
 #
 # \param wavelength (INPUT) is the wavelength axis in units of
