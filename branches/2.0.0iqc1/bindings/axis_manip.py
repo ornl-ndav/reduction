@@ -2524,7 +2524,7 @@ def velocity_to_energy(velocity, velocity_err2):
 # the assumption of uncorrelated uncertainties.
 #
 # \f[
-# \sigma^2_k[i] = \frac{(m_n)^2 \sigma^2_{v}[i]}{h^2}
+# \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{h^2}
 # \f]
 #
 # \param velocity (INPUT) is the velocity of the neutron in units

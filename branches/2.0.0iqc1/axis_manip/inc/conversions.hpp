@@ -2216,7 +2216,7 @@ namespace AxisManip
    * the assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_k[i] = \frac{(m_n)^2 \sigma^2_{v}[i]}{h^2}
+   * \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{h^2}
    * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
@@ -2253,8 +2253,8 @@ namespace AxisManip
    * velocity of the neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
-   *b \f[
-   * \sigma^2_k[i] = \frac{(m_n)^2 \sigma^2_{v}[i]}{h^2}
+   * \f[
+   * \sigma^2_k = \frac{m^2_n \sigma^2_{v}}{h^2}
    * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
