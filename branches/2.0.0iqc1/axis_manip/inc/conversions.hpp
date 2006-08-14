@@ -1288,10 +1288,10 @@ namespace AxisManip
    * uncertainties.
    *
    * \f[
-   * \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
-   * \frac{(L_D)^2 \sigma^2_{L_S}}{(v_i)^2 (t[i]-\frac{L_S}{v_i}-t_0}^4} +
-   * \frac{(L_S)^2 (L_D)^2 \sigma^2_{v_i}}{(v_i)^4 (t[i]-\frac{L_S}{v_i}-t_0)^4
-   * + \frac{(L_D)^2 \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
+   * \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+   * \frac{L^2_D \sigma^2_{L_S}}{v^2_i (t[i]-\frac{L_S}{v_i}-t_0)^4} +
+   * \frac{L^2_S L^2_D \sigma^2_{v_i}}{v^4_i (t[i]-\frac{L_S}{v_i}-t_0)^4}
+   * + \frac{L^2_D \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
    * \f]
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
@@ -1356,10 +1356,10 @@ namespace AxisManip
    * calculated using the assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
-   * \frac{(L_D)^2 \sigma^2_{L_S}}{(v_i)^2 (t[i]-\frac{L_S}{v_i}-t_0}^4} +
-   * \frac{(L_S)^2 (L_D)^2 \sigma^2_{v_i}}{(v_i)^4 (t[i]-\frac{L_S}{v_i}-t_0)^4
-   * + \frac{(L_D)^2 \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
+   * \sigma^2_{v_f} = \frac{\sigma^2_{L_D}}{(t-\frac{L_S}{v_i}-t_0)^2} +
+   * \frac{L^2_D \sigma^2_{L_S}}{v^2_i (t-\frac{L_S}{v_i}-t_0)^4} +
+   * \frac{L^2_S L^2_D \sigma^2_{v_i}}{v^4_i (t-\frac{L_S}{v_i}-t_0)^4}
+   * + \frac{L^2_D \sigma^2_{t_0}}{(t-\frac{L_S}{v_i}-t_0)^4}
    * \f]
    *  
    * \param tof (INPUT) is the time-of-flight axis in units of
