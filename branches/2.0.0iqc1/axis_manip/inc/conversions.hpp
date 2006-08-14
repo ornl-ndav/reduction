@@ -1308,6 +1308,11 @@ namespace AxisManip
    * incident neutrons. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{t_0} = \sigma^2_t + \left(\frac{1}{v}\right)^2 \sigma^2_L + 
+   * \left(\frac{L}{v^2}\right)^2 \sigma^2_v
+   * \f]
+   *
    * \param dist_downstream_monitor (INPUT) is the total flight path
    * for the downstream monitor in units of meter
    * \param dist_downstream_monitor_err2 (INPUT) is the square of the
