@@ -2222,6 +2222,10 @@ namespace AxisManip
    * netron. The uncertainty is calculated using the assumption of
    * uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_E[i] = (m_n v[i])^2 \sigma^2_v[i]
+   * \f]
+   *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
    * \param velocity_err2 (INPUT) is the square of the uncertainty in
@@ -2256,6 +2260,10 @@ namespace AxisManip
    * of the neutron, and \f$v\f$ is the velocity of the netron. The
    * uncertainty is calculated using the assumption of uncorrelated
    * uncertainties.
+   *
+   * \f[
+   * \sigma^2_E = (m_n v)^2 \sigma^2_v
+   * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds

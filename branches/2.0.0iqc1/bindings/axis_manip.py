@@ -2474,14 +2474,18 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 # E[i]=\frac{1}{2}m_n v[i]^2 =
 # 5.227\times 10^{-6} \left( \frac{v[i]}{m/\mu s} \right)^2 meV
 # \f]
-# Where \f$E[i]\f$ is the energy of the neutron, \f$m_n\f$ is the mass of the neutron,
-# and \f$v[i]\f$ is the velocity of the netron. The uncertainty is calculated using
-# the assumption of uncorrelated uncertainties.
+# Where \f$E[i]\f$ is the energy of the neutron, \f$m_n\f$ is the mass of the
+# neutron, and \f$v[i]\f$ is the velocity of the netron. The uncertainty is
+# calculated using the assumption of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_E[i] = (m_n v[i])^2 \sigma^2_v[i]
+# \f]
 #
 # \param velocity (INPUT) is the velocity of the neutron in units of
 # meter/micro-seconds
-# \param velocity_err2 (INPUT) is the square of the uncertainty in the velocity of
-# the neutron
+# \param velocity_err2 (INPUT) is the square of the uncertainty in the
+# velocity of the neutron
 #
 # \return
 # - The energy is the energy of the neutron in units of meV
@@ -2503,7 +2507,7 @@ def velocity_to_energy(velocity, velocity_err2):
     Assuming that the uncertainties are uncorrelated, the square of the
     uncertainty of the energy axis is given by
 
-    sigma^2_E[i] = m_n_veq^2 * nu[i]^2 * sigma^2_nu[i]
+    E_err2[i] = m_n^2 * velocity[i]^2 * velocity_err2[i]
 
     Parameters:
     ----------
