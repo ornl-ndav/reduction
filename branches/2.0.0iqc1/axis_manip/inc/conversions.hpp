@@ -664,13 +664,13 @@ namespace AxisManip
    * This function calculates the momentum transfrom from the incident
    * and scattered wavevectors according to the equations
    * \f[
-   * Q_x=-k_f\cos(azimuthal)\sin(polar)
+   * Q_x[i]=-k_f[i]\cos(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_y=-k_f\sin(azimuthal)\sin(polar)
+   * Q_y[i]=-k_f[i]\sin(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_z=k_i-k_f\cos(polar)
+   * Q_z[i]=k_i[i]-k_f[i]\cos(polar)
    * \f]
    * Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
    * scattered wavevector, \f$Q_x\f$ is the x-component of the
@@ -680,6 +680,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z}[i] = \sigma^2_{k_i}[i] + \cos^2(polar)\sigma^2_{k_f}[i] + 
+   * k^2_f[i] \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -739,13 +754,13 @@ namespace AxisManip
    * This function calculates the momentum transfrom from the incident
    * and scattered wavevectors according to the equations
    * \f[
-   * Q_x=-k_f\cos(azimuthal)\sin(polar)
+   * Q_x[i]=-k_f[i]\cos(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_y=-k_f\sin(azimuthal)\sin(polar)
+   * Q_y[i]=-k_f[i]\sin(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_z=k_i-k_f\cos(polar)
+   * Q_z[i]=k_i-k_f[i]\cos(polar)
    * \f]
    * Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
    * scattered wavevector, \f$Q_x\f$ is the x-component of the
@@ -755,6 +770,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z}[i] = \sigma^2_{k_i} + \cos^2(polar)\sigma^2_{k_f}[i] + 
+   * k^2_f[i] \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -820,7 +850,7 @@ namespace AxisManip
    * Q_y=-k_f\sin(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_z=k_i-k_f\cos(polar)
+   * Q_z[i]=k_i[i]-k_f\cos(polar)
    * \f]
    * Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
    * scattered wavevector, \f$Q_x\f$ is the x-component of the
@@ -830,6 +860,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z}[i] = \sigma^2_{k_i}[i] + \cos^2(polar)\sigma^2_{k_f} + 
+   * k^2_f \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -905,6 +950,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x} = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y} = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z} = \sigma^2_{k_i} + \cos^2(polar)\sigma^2_{k_f} + 
+   * k^2_f \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms

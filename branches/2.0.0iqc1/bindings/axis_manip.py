@@ -577,13 +577,13 @@ def frequency_to_energy(frequency, frequency_err2):
 # This function calculates the momentum transfer from the
 # incident and scattered wavevectors according to the equation
 # \f[
-# Q_x=-k_f\cos(azimuthal)\sin(polar)
+# Q_x[i]=-k_f[i]\cos(azimuthal)\sin(polar)
 # \f]
 # \f[
-# Q_y=-k_f\sin(azimuthal)\sin(polar)
+# Q_y[i]=-k_f[i]\sin(azimuthal)\sin(polar)
 # \f]
 # \f[
-# Q_z=k_i-k_f\cos(polar)
+# Q_z[i]=k_i[i]-k_f[i]\cos(polar)
 # \f]
 # Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
 # scattered wavevector, \f$Q_x\f$ is the x-component of the
@@ -593,6 +593,21 @@ def frequency_to_energy(frequency, frequency_err2):
 # neutron, and \f$polar\f$ is the angle between the z-axis and the
 # scattered neutron. The uncertainty is calculated using assumption
 # of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+# k^2_f[i] \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+# (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+# \f]
+# \f[
+# \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+# k^2_f[i] \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+# (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+# \f]
+# \f[
+# \sigma^2_{Q_z}[i] = \sigma^2_{k_i}[i] + \cos^2(polar)\sigma^2_{k_f}[i] + 
+# k^2_f[i] \sin^2(polar) \sigma^2_{polar}
+# \f]
 #
 # \param initial_wavevector (INPUT) is the incident wavevector axis in units
 # of reciprocal Angstroms
@@ -655,6 +670,19 @@ def init_scatt_wavevector_to_Q(initial_wavevector,\
     azimuthal is the angle between the x-axis and the scattered neutron, and
     polar is the angle between the z-axis and the scattered neutron. The
     uncertainty is calculated using assumption of uncorrelated uncertainties.
+
+    Q_x_err2[i] = (cos(azimuthal) sin(polar))^2 final_wavevector_err2[i] + 
+    final_wavevector^2[i] x ((sin(azimuthal) sin(polar))^2 azimuthal_err2 + 
+    (cos(azimuthal) cos(polar))^2 polar_err2)
+
+    Q_y_err2[i] = (sin(azimuthal) sin(polar))^2 final_wavevector_err2[i] + 
+    final_wavevector^2[i] x ((cos(azimuthal) sin(polar))^2 azimuthal_err2 + 
+    (sin(azimuthal) cos(polar))^2 polar_err2)
+
+    Q_z[i] = initial_wavevector_err2[i] +
+    cos^2(polar) final_wavevector_err2[i] + final_wavevector^2[i] sin^2(polar)
+    polar_err2
+
 
     Parameters:
     __________
