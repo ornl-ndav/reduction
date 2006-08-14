@@ -373,7 +373,7 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 # assumption of uncorrelated uncertainties.
 #
 # \f[
-# \sigma^2_{\omega}[i] = 4 \pi^2 \times 10 {24} \sigma^2_{\nu}[i]
+# \sigma^2_{\omega}[i] = 4 \pi^2 \times 10^{24} \sigma^2_{\nu}[i]
 # \f]
 #
 # \param frequency (INPUT) is the frequency axis in units of THz
