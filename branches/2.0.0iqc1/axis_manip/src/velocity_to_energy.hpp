@@ -84,9 +84,9 @@ namespace AxisManip
     std::string retstr(Nessi::EMPTY_WARN);
 
     NumT a;
-    NumT a2;
+    NumT b2;
 
-    retstr += __velocity_to_energy_static(a, a2);
+    retstr += __velocity_to_energy_static(a, b2);
 
     size_t sz = velocity.size();
     for (size_t i = 0; i < sz; ++i)
@@ -95,7 +95,7 @@ namespace AxisManip
                                                velocity_err2[i],
                                                energy[i],
                                                energy_err2[i],
-                                               a, a2);
+                                               a, b2);
       }
 
     return retstr;
@@ -113,13 +113,13 @@ namespace AxisManip
     std::string retstr(Nessi::EMPTY_WARN);
 
     NumT a;
-    NumT a2;
+    NumT b2;
 
-    retstr += __velocity_to_energy_static(a, a2);
+    retstr += __velocity_to_energy_static(a, b2);
 
     retstr += __velocity_to_energy_dynamic(velocity,velocity_err2,
                                            energy, energy_err2, 
-                                           a, a2);
+                                           a, b2);
 
     return retstr;
   }
@@ -131,16 +131,17 @@ namespace AxisManip
    * calculates the parameters invariant across the array calculation.
    *
    * \param a (OUTPUT) the value of the mass of the neutron, \f$m_n\f$,
-   * in units of \f$(\mu sec^2 / meters^2) \times meV\f$ 
-   * \param a2 (OUTPUT) square of a
+   * in units of \f$(\mu sec^2 / meters^2) \times meV\f$, multiplied by 0.5 
+   * \param b2 (OUTPUT) \f$m^2_n\f$
    */
   template <typename NumT>
   std::string
   __velocity_to_energy_static(NumT & a,
-                              NumT & a2)
+                              NumT & b2)
   {
-    a = static_cast<NumT>(PhysConst::MNEUT_VEQ);
-    a2 = a * a;
+    a = static_cast<NumT>(0.5 * PhysConst::MNEUT_VEQ);
+    NumT b = static_cast<NumT>(PhysConst::MNEUT_VEQ);
+    b2 = b * b;
    
     
     return Nessi::EMPTY_WARN;
@@ -162,7 +163,7 @@ namespace AxisManip
    * velocity_to_energy()
    * \param a (INPUT) same as the parameter in
    * __velocity_to_energy_static()
-   * \param a2 (INPUT) same as the parameter in
+   * \param b2 (INPUT) same as the parameter in
    * __velocity_to_energy_static()
    */
   template <typename NumT>
@@ -172,12 +173,12 @@ namespace AxisManip
                                NumT & energy,
                                NumT & energy_err2,
                                const NumT a,
-                               const NumT a2)
+                               const NumT b2)
   {
     NumT velocity2 = velocity * velocity;
 
-    energy = static_cast<NumT>(0.5 * a * velocity2);
-    energy_err2 = a2 * velocity2 * velocity_err2;
+    energy = static_cast<NumT>(a * velocity2);
+    energy_err2 = b2 * velocity2 * velocity_err2;
 
     return Nessi::EMPTY_WARN;
   }
