@@ -2385,6 +2385,12 @@ namespace AxisManip
    * the scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_d[i] = \left(\frac{1}{2 \sin(polar)}\right)^2 
+   * \sigma^2_{\lambda}[i] + \left(\frac{\lambda[i] 
+   * \cot(polar)}{4 \sin(polar)}\right)^2 \sigma^2_{polar}
+   * \f]
+   *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty
@@ -2424,6 +2430,12 @@ namespace AxisManip
    * wavelength, and \f$polar\f$ is the angle between the z-axis and
    * the scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_d = \left(\frac{1}{2 \sin(polar)}\right)^2 
+   * \sigma^2_{\lambda} + \left(\frac{\lambda 
+   * \cot(polar)}{4 \sin(polar)}\right)^2 \sigma^2_{polar}
+   * \f]
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
