@@ -188,6 +188,8 @@ namespace AxisManip
    * \param dist_source_sample (INPUT) same as parameter in
    * tof_to_final_velocity_dgs()
    * \param time_offset (INPUT) same as parameter in
+   * tof_to_final_velocity_dgs()
+   * \param dist_sample_detector (INPUT) same as parameter in
    * tof_to_final_velocity_dgs() 
    * \param a (OUTPUT) \f$=\frac{1}{initial\_velocity}\f$
    * \param a2 (OUTPUT) \f$=a^2\f$
@@ -253,6 +255,8 @@ namespace AxisManip
    * \param c (INPUT) same as parameter in
    * __tof_to_final_velocity_dgs_static()
    * \param c2 (INPUT) same as parameter in
+   * __tof_to_final_velocity_dgs_static()
+   * \param ld2 (INPUT) same as parameter in
    * __tof_to_final_velocity_dgs_static()
    */
   template <typename NumT>
