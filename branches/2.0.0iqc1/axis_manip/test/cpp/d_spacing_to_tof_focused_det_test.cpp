@@ -228,7 +228,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   Nessi::Vector<NumT>   d_spacing_err2;
   NumT                  pathlength_focused=static_cast<NumT>(2.75);
   NumT                  pathlength_focused_err2=static_cast<NumT>(0.75);
-  NumT                  polar_angle_focused=static_cast<NumT> (2.0);
+  NumT                  polar_angle_focused=static_cast<NumT> (4.0);
   NumT                  polar_angle_focused_err2=static_cast<NumT> (0.5);
   NumT                  output_ss;
   NumT                  output_ss_err2;

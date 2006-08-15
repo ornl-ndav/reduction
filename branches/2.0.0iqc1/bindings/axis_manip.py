@@ -70,7 +70,7 @@ import vpair_bind
 # This function converts the d-spacing to time-of-flight at a
 # focused detector position according to the equation
 # \f[
-# TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused})
+# TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused}/2)
 # \f]
 # Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
 # of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
@@ -80,10 +80,10 @@ import vpair_bind
 # the assumption of uncorrelated uncertainties.
 #
 # \f[
-# \sigma^2_{TOF}[i] = \left(\frac{2 m_n}{h}\right)^2 \times 
-# \left((d[i] \sin(polar_{focused}))^2 \sigma^2_{L_{focused}} + 
-# (L_{focused} \sin(polar_{focused}))^2 \sigma^2_d[i] + 
-# (L_{focused} d[i] \cos(polar_{focused}))^2 \sigma^2_{polar_{focused}}
+# \sigma^2_{TOF}[i] = \left(\frac{m_n}{h}\right)^2 \times 
+# \left((2 d[i] \sin(polar_{focused}/2))^2 \sigma^2_{L_{focused}} + 
+# (2 L_{focused} \sin(polar_{focused}/2))^2 \sigma^2_d[i] + 
+# (L_{focused} d[i] \cos(polar_{focused}/2))^2 \sigma^2_{polar_{focused}}
 # \right)
 # \f]
 #
@@ -119,7 +119,7 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
     This function converts the d-spacing to time-of-flight at a
     focused detector position according to the equation
     
-    TOF[i] = 2 m_n L_focused d[i] sin(polar_focused) / h
+    TOF[i] = 2 m_n L_focused d[i] sin(polar_focused / 2) / h
  
     Where TOF[i] is the time-of-flight, m_n is the mass of the neutron,
     h is Planck's constant, L_focused is the focused total flight path,
@@ -127,9 +127,9 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
     z-axis and the focused scattered neutron. The uncertainty is
     calculated using the assumption of uncorrelated uncertainties.
 
-    TOF_err2[i] = (2 m_n / h)^2 x ((d[i] sin(polar_focused))^2
-    L_focused_err2 + (L_focused sin(polar_focused))^2 d_err2[i] + 
-    (L_focused d[i] cos(polar_focused))^2 polar_focused_err2)
+    TOF_err2[i] = (m_n / h)^2 x ((2 d[i] sin(polar_focused / 2))^2 x
+    L_focused_err2 + (2 L_focused sin(polar_focused / 2))^2 x d_err2[i] + 
+    (L_focused d[i] cos(polar_focused / 2))^2 x polar_focused_err2)
 
     
     Parameters:

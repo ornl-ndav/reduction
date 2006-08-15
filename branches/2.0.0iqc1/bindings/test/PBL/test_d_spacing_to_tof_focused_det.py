@@ -33,7 +33,7 @@ NUM_VAL = 5
 # Set parameters for function
 pathlength_focused = 2.75;
 pathlength_focused_err2 = 0.75;
-polar_angle_focused = 2.0;
+polar_angle_focused = 4.0;
 polar_angle_focused_err2 = 0.5;
 
 # Create input vectors

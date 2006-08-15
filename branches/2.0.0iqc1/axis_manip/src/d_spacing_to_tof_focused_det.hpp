@@ -94,11 +94,13 @@ namespace AxisManip
     NumT sin2;
     NumT cos;
     NumT cos2;
+    NumT lf2;
 
     // fill the local variables
-    retstr += __d_spacing_to_tof_focused_det_static(polar_angle_focused,
-                                                    mh, mh2,sin, sin2, 
-                                                    cos, cos2);
+    retstr += __d_spacing_to_tof_focused_det_static(pathlength_focused, 
+                                                    polar_angle_focused,
+                                                    mh, mh2, sin, sin2, 
+                                                    cos, cos2, lf2);
 
     // do the calculation
     size_t size_d_spacing = d_spacing.size();
@@ -110,7 +112,7 @@ namespace AxisManip
                                                          pathlength_focused_err2,
                                                          polar_angle_focused_err2,
                                                          mh, mh2, sin, sin2,
-                                                         cos, cos2,
+                                                         cos, cos2, lf2,
                                                          tof[i],
                                                          tof_err2[i]);
       }
@@ -140,11 +142,13 @@ namespace AxisManip
     NumT sin2;
     NumT cos;
     NumT cos2;
+    NumT lf2;
 
     // fill the local variables
-    retstr += __d_spacing_to_tof_focused_det_static(polar_focused,
+    retstr += __d_spacing_to_tof_focused_det_static(pathlength_focused, 
+                                                    polar_focused,
                                                     mh, mh2, sin, sin2,
-                                                    cos, cos2);
+                                                    cos, cos2, lf2);
                                                    
     // do the calculation
     retstr += __d_spacing_to_tof_focused_det_dynamic(d_spacing, 
@@ -153,7 +157,7 @@ namespace AxisManip
                                                      pathlength_focused_err2,
                                                      polar_focused_err2,
                                                      mh, mh2, sin, sin2,
-                                                     cos, cos2,
+                                                     cos, cos2, lf2,
                                                      tof,
                                                      tof_err2);
     return retstr;
@@ -165,37 +169,45 @@ namespace AxisManip
    * This is a PRIVATE helper function for d_spacing_to_tof_focused_det 
    * that calculates parameters invariant across array calculation.
    *
-   * \param polar_focused (INPUT) same as the parameter in
-   * __d_spacing_to_tof_focused_det_static()
-   * \param mh (OUTPUT) Planck's constant divided by the mass of the neutron
-   * \param mh2 (OUTPUT) square of Planck's constant divided by the mass of 
-   * the neutron
-   * \param sin (OUTPUT) the sinus of the angle between positive z axis and
+   * \param pathlength_focused (INPUT) same as the parameter in 
+   * d_spacing_to_tof_focused_det()
+   * \param polar_focused (INPUT) same as the parameter in 
+   * d_spacing_to_tof_focused_det()
+   * \param mh (OUTPUT) the mass of the neutron divided by Planck's constant 
+   * \param mh2 (OUTPUT) square of the mass of the neutron divided by 
+   * Planck's constant 
+   * \param sin (OUTPUT) the sine of the angle between positive z axis and
    * direction of the scattered neutrons.
-   * \param sin2 (OUTPUT)the square of the sinus of the angle between 
+   * \param sin2 (OUTPUT) the square of the sine of the angle between 
    * positive z axis and direction of the scattered neutrons
-   * \param cos (OUTPUT) the cosinus of the angle between positive z axis and
+   * \param cos (OUTPUT) the cosine of the angle between positive z axis and
    * direction of the scattered neutrons.
-   * \param cos2 (OUTPUT) the square of the cosinus of the angle between 
+   * \param cos2 (OUTPUT) the square of the cosine of the angle between 
    * positive z axis and direction of the scattered neutrons
+   * \param lf2 (OUTPUT) the square of the total flight path of the
+   * focused neutron
    */
   template <typename NumT>
   std::string  
-  __d_spacing_to_tof_focused_det_static(const NumT polar_focused,
+  __d_spacing_to_tof_focused_det_static(const NumT pathlength_focused,
+                                        const NumT polar_focused,
                                         NumT & mh,
                                         NumT & mh2,
                                         NumT & sin,
                                         NumT & sin2,
                                         NumT & cos,
-                                        NumT & cos2)
+                                        NumT & cos2,
+                                        NumT & lf2)
   {
     // calculate the factor to multiply each element by
     mh = static_cast<NumT>(1.0 / PhysConst::H_OVER_MNEUT);
     mh2 = mh * mh;
-    sin = static_cast<NumT>(std::sin(static_cast<double>(polar_focused)));
+    sin = static_cast<NumT>(std::sin(static_cast<double>(polar_focused / 2.0)));
     sin2 = sin * sin;
-    cos = static_cast<NumT>(std::cos(static_cast<double>(polar_focused)));
+    cos = static_cast<NumT>(std::cos(static_cast<double>(polar_focused / 2.0)));
     cos2 = cos * cos;
+
+    lf2 = pathlength_focused * pathlength_focused;
 
     return Nessi::EMPTY_WARN;
   }
@@ -228,6 +240,8 @@ namespace AxisManip
    * __d_spacing_to_tof_focused_det_static()
    * \param cos2 (INPUT) same as the parameter in
    * __d_spacing_to_tof_focused_det_static()
+   * \param lf2 (INPUT) same as the parameter in
+   * __d_spacing_to_tof_focused_det_static()
    * \param  tof (OUTPUT) same as the parameter in
    * d_spacing_to_tof_focused_det()
    * \param  tof_err2 (OUTPUT) same as the parameter in
@@ -246,20 +260,21 @@ namespace AxisManip
                                          const NumT sin2, 
                                          const NumT cos, 
                                          const NumT cos2,
+                                         const NumT lf2,
                                          NumT & tof,
                                          NumT & tof_err2)
 
   {
-    NumT lf2 = pathlength_focused * pathlength_focused;
     NumT d2 = d_spacing * d_spacing;
 
     // calculate the value
     tof = static_cast<NumT>(2.0 * mh * pathlength_focused * sin * d_spacing);
 
     // calculate the uncertainty
-    tof_err2 = static_cast<NumT>((4.0 * mh2 * sin2 * d2 * pathlength_focused_err2)
-      + (mh2 * lf2 * cos2 * d2 * polar_focused_err2)
-      + (4.0 * mh2 * lf2 * sin2 * d_spacing_err2));
+    tof_err2 = static_cast<NumT>((4.0 * mh2 * sin2 * d2 * 
+                                  pathlength_focused_err2)
+                                 + (mh2 * lf2 * cos2 * d2 * polar_focused_err2)
+                                 + (4.0 * mh2 * lf2 * sin2 * d_spacing_err2));
 
     return Nessi::EMPTY_WARN;
   }

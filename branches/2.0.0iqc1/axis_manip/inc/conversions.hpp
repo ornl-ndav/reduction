@@ -60,7 +60,7 @@ namespace AxisManip
    * This function converts the d-spacing to time-of-flight at a
    * focused detector position according to the equation
    * \f[
-   * TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused})
+   * TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused}/2)
    * \f]
    * Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
    * of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
@@ -70,11 +70,11 @@ namespace AxisManip
    * the assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_{TOF}[i] = \left(\frac{2 m_n}{h}\right)^2 \times 
-   * \left((d[i] \sin(polar_{focused}))^2 \sigma^2_{L_{focused}} + 
-   * (L_{focused} \sin(polar_{focused}))^2 \sigma^2_d[i] + 
-   * (L_{focused} d[i] \cos(polar_{focused}))^2 \sigma^2_{polar_{focused}}
-   * \right)
+   * \sigma^2_{TOF}[i] = \left(\frac{m_n}{h}\right)^2 \times 
+   * \left((2 d[i] \sin(polar_{focused}/2))^2 \sigma^2_{L_{focused}} + 
+   * (2 L_{focused} \sin(polar_{focused}/2))^2 \sigma^2_d[i] + 
+   * (L_{focused} d[i] \cos(polar_{focused}/2))^2 
+   * \sigma^2_{polar_{focused}}\right)
    * \f]
    * 
    * \param d_spacing (INPUT) is the d-spacing axis in units of
@@ -116,7 +116,7 @@ namespace AxisManip
    * This function converts the d-spacing to time-of-flight at a
    * focused detector position according to the equation
    * \f[
-   * TOF=\frac{2\ m_n}{h} L_{focused} d \sin(polar_{focused})
+   * TOF=\frac{2\ m_n}{h} L_{focused} d \sin(polar_{focused}/2)
    * \f]
    * Where \f$TOF\f$ is the time-of-flight, \f$m_n\f$ is the mass of
    * the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$ is
@@ -126,10 +126,10 @@ namespace AxisManip
    * the assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_{TOF} = \left(\frac{2 m_n}{h}\right)^2 \times 
-   * \left((d \sin(polar_{focused}))^2 \sigma^2_{L_{focused}} + 
-   * (L_{focused} \sin(polar_{focused}))^2 \sigma^2_d + 
-   * (L_{focused} d \cos(polar_{focused}))^2 \sigma^2_{polar_{focused}}
+   * \sigma^2_{TOF} = \left(\frac{m_n}{h}\right)^2 \times 
+   * \left((2 d \sin(polar_{focused}/2))^2 \sigma^2_{L_{focused}} + 
+   * (2 L_{focused} \sin(polar_{focused}/2))^2 \sigma^2_d + 
+   * (L_{focused} d \cos(polar_{focused}/2))^2 \sigma^2_{polar_{focused}}
    * \right)
    * \f]
    * 

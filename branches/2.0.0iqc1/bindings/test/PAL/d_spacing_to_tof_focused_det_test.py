@@ -137,7 +137,7 @@ if __name__ == "__main__":
     
     pathlength_focused = float(2.75);
     pathlength_focused_err2 = float(0.75);
-    polar_angle_focused = float(2.0);
+    polar_angle_focused = float(4.0);
     polar_angle_focused_err2 = float(0.5);
   
     # generate true_outputs
