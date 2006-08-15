@@ -64,18 +64,18 @@ const size_t NUM_VAL=5;
  * \param wavelength (OUTPUT) is the wavelength axis in units of Angstroms
  * \param wavelength_err2 (OUTPUT) is the square of the uncertainty in the
  * wavelength axis
- * \param scatt_angle (OUTPUT) is the scattering angle in units of radians
- * \param scatt_angle_err2 (OUTPUT) is the square of the uncertainty in the
+ * \param polar_angle (OUTPUT) is the scattering angle in units of radians
+ * \param polar_angle_err2 (OUTPUT) is the square of the uncertainty in the
  * scattering angle
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & wavelength,
                        Nessi::Vector<NumT> & wavelength_err2,
-                       NumT & scatt_angle,
-                       NumT & scatt_angle_err2)
+                       NumT & polar_angle,
+                       NumT & polar_angle_err2)
 {
-  scatt_angle = static_cast<NumT>(2.0);
-  scatt_angle_err2 = static_cast<NumT>(0.5);
+  polar_angle = static_cast<NumT>(4.0);
+  polar_angle_err2 = static_cast<NumT>(0.5);
 
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
@@ -242,8 +242,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   // allocate arrays
   Nessi::Vector<NumT> wavelength;
   Nessi::Vector<NumT> wavelength_err2;
-  NumT                scatt_angle;
-  NumT                scatt_angle_err2;
+  NumT                polar_angle;
+  NumT                polar_angle_err2;
   NumT                output_ss;
   NumT                output_ss_err2;
   NumT                true_output_ss;
@@ -256,8 +256,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   // fill in values as appropriate
   initialize_inputs(wavelength,
                     wavelength_err2,
-                    scatt_angle,
-                    scatt_angle_err2);
+                    polar_angle,
+                    polar_angle_err2);
 
   initialize_true_outputs(true_output_ss, true_output_ss_err2,
                           true_output_vv, true_output_vv_err2);
@@ -265,15 +265,15 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   // run the code being tested
   AxisManip::wavelength_to_d_spacing(wavelength[0],
                                      wavelength_err2[0],
-                                     scatt_angle,
-                                     scatt_angle_err2,
+                                     polar_angle,
+                                     polar_angle_err2,
                                      output_ss,
                                      output_ss_err2);
 
   AxisManip::wavelength_to_d_spacing(wavelength,
                                      wavelength_err2,
-                                     scatt_angle,
-                                     scatt_angle_err2,
+                                     polar_angle,
+                                     polar_angle_err2,
                                      output_vv,
                                      output_vv_err2);
 

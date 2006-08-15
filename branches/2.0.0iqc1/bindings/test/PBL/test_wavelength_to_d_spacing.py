@@ -30,8 +30,8 @@ print
 NUM_VAL = 5
 
 # Set parameters for function
-scatt_angle = 2.0
-scatt_angle_err2 = 0.5
+polar_angle = 4.0
+polar_angle_err2 = 0.5
 
 # Create input vectors
 Input_D = DoubleNessiVector()
@@ -80,7 +80,7 @@ Output_SS_D = DoubleVPair()
 print "Checking Vector-Vector Wavelength to D Spacing Binding Function"
 
 wavelength_to_d_spacing_d(Input_D, Input_Err2_D,
-                         scatt_angle, scatt_angle_err2,
+                         polar_angle, polar_angle_err2,
                          Output_VV_D, Output_Err2_VV_D)
 
 mess = test_common_bind.makeCheck("wavelength_to_d_spacing_d",
@@ -93,7 +93,7 @@ print
 print "Checking Scalar-Scalar Wavelength to D Spacing Binding Function"
 
 wavelength_to_d_spacing_ss_d(Input_D[0], Input_Err2_D[0],
-                            scatt_angle, scatt_angle_err2,
+                            polar_angle, polar_angle_err2,
                             Output_SS_D)
 
 mess = test_common_bind.makeCheck("wavelength_to_d_spacing_ss_d",

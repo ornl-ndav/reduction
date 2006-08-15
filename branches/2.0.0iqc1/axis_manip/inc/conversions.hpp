@@ -2386,7 +2386,7 @@ namespace AxisManip
    * This function calculates the d-spacing given the wavelength
    * according to the equation
    * \f[
-   * d[i]=\frac{\lambda[i]}{2\sin(polar)}
+   * d[i]=\frac{\lambda[i]}{2\sin(polar/2)}
    * \f]
    * Where \f$d\f$ is the d-spacing, \f$\lambda[i]\f$ is the
    * wavelength, and \f$polar\f$ is the angle between the z-axis and
@@ -2394,9 +2394,9 @@ namespace AxisManip
    * assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_d[i] = \left(\frac{1}{2 \sin(polar)}\right)^2 
+   * \sigma^2_d[i] = \left(\frac{1}{2 \sin(polar/2)}\right)^2 
    * \sigma^2_{\lambda}[i] + \left(\frac{\lambda[i] 
-   * \cot(polar)}{4 \sin(polar)}\right)^2 \sigma^2_{polar}
+   * \cot(polar/2)}{4 \sin(polar/2)}\right)^2 \sigma^2_{polar}
    * \f]
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
@@ -2432,7 +2432,7 @@ namespace AxisManip
    * This function calculates the d-spacing given the wavelength
    * according to the equation
    * \f[
-   * d=\frac{\lambda}{2\sin(polar)}
+   * d=\frac{\lambda}{2\sin(polar/2)}
    * \f]
    * Where \f$d\f$ is the d-spacing, \f$\lambda\f$ is the
    * wavelength, and \f$polar\f$ is the angle between the z-axis and
@@ -2440,9 +2440,9 @@ namespace AxisManip
    * assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_d = \left(\frac{1}{2 \sin(polar)}\right)^2 
+   * \sigma^2_d = \left(\frac{1}{2 \sin(polar/2)}\right)^2 
    * \sigma^2_{\lambda} + \left(\frac{\lambda 
-   * \cot(polar)}{4 \sin(polar)}\right)^2 \sigma^2_{polar}
+   * \cot(polar/2)}{4 \sin(polar/2)}\right)^2 \sigma^2_{polar}
    * \f]
    *
    * \param wavelength (INPUT) is the wavelength axis in units of

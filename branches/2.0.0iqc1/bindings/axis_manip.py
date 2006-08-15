@@ -2674,7 +2674,7 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 # This function calculates the d-spacing given the wavelength according
 # to the equation
 # \f[
-# d[i]=\frac{\lambda[i]}{2\sin(polar)}
+# d[i]=\frac{\lambda[i]}{2\sin(polar/2)}
 # \f]
 # Where \f$d\f$ is the d-spacing, \f$\lambda[i]\f$ is the wavelength,
 # and \f$polar\f$ is the angle between the positive z-axis and
@@ -2684,9 +2684,9 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 # uncertainty of the energy axis is given by
 #
 # \f[
-# \sigma^2_d[i] = \left(\frac{1}{2 \sin(polar)}\right)^2 
+# \sigma^2_d[i] = \left(\frac{1}{2 \sin(polar/2)}\right)^2 
 # \sigma^2_{\lambda}[i] + \left(\frac{\lambda[i] 
-# \cot(polar)}{4 \sin(polar)}\right)^2 \sigma^2_{polar}
+# \cot(polar/2)}{4 \sin(polar/2)}\right)^2 \sigma^2_{polar}
 # \f]
 #
 # \param wavelength (INPUT) is the wavelength axis in units of
@@ -2711,7 +2711,7 @@ def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
     This function converts the wavelength to scalar momentum transfer
     according to the equation
 
-    d[i] = lambda[i] / (2 * sin(polar))
+    d[i] = lambda[i] / (2 * sin(polar / 2))
 
     Where d[i] is the d-spacing axis, lambda[i] is the wavelength,
     and polar is the angle between the positive z-axis and the direction of
@@ -2720,8 +2720,8 @@ def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
     Using the assumption of uncorrelated uncertainties, the square of the
     uncertainty of the scalar momentum transfer is given by
 
-    d_err2[i] = lambda_err2[i] / (2 * sin(polar))^2 +
-    polar_err2 * ((lambda[i] * cot(polar)) / (4 * sin(polar)))^2
+    d_err2[i] = lambda_err2[i] / (2 * sin(polar / 2))^2 +
+    polar_err2 * ((lambda[i] * cot(polar / 2)) / (4 * sin(polar / 2)))^2
 
     Parameters:
     ----------

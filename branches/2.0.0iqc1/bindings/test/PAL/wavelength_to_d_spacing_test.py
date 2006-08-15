@@ -68,7 +68,7 @@ NUM_VAL = 5
 # - polar_err2 is the square of the uncertainty in the scattering angle
 def initialize_inputs(key):
     if (key == "double"):
-        polar = float(2.)
+        polar = float(4.)
         polar_err2 = float(0.5)
         wavelength = nessi_list.NessiList(type="double")
         wavelength_err2 = nessi_list.NessiList(type="double")
