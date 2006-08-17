@@ -37,6 +37,8 @@
    side-by-side.
 """
 
+import nessi_vector_bind
+
 ##
 # \namespace nessi_list
 #
@@ -156,8 +158,6 @@ class NessiList (list):
 
         """
 
-        import nessi_vector_bind
-
         # check the length argument
         length=int(length)
         if length<0:
@@ -180,6 +180,53 @@ class NessiList (list):
         else:
             raise Exception,"type [%s] not supported by NessiList" % type
 
+##
+# \ingroup __deepcopy__ NessiList
+#
+# \brief Function used to provide a deep copy of a NessiList
+#
+# This function provides a mechanism for getting a deep copy of a NessiList
+# using the following convention:
+# \code
+# a = NessiList()
+# import copy
+# b = copy.deepcopy(a)
+# \endcode
+#
+# \param self <i>this</i>
+# \param memo (INPUT/OPTIONAL) is a dictionary
+#
+# \return A deeply copied NessiList
+
+    def __deepcopy__(self, memo = {}):
+        """
+        This function provides a mechanism for getting a deep copy of a
+        NessiList using the following convention:
+
+        a = NessiList()
+        import copy
+        b = copy.deepcopy(a)
+
+        Parameters:
+        ----------
+        -> memo (INPUT/OPTIONAL) is a dictionary
+
+        Returns:
+        -------
+        <- A deeply copied NessiList
+        """
+        
+        from copy import deepcopy
+        result = self.__class__()
+        memo[id(self)] = result
+        result.__init__()
+        result.__type__ = deepcopy(self.__type__)
+        if self.__type__ == NessiList.INT:
+            result.__array__ = nessi_vector_bind.IntNessiVector(self.__array__)
+        elif self.__type__ == NessiList.DOUBLE:
+            result.__array__ = nessi_vector_bind.DoubleNessiVector(self.__array__)
+        return result
+    
 ##
 # \ingroup append NessiList
 #

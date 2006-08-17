@@ -75,6 +75,15 @@ namespace Nessi
      * \param i is the size of the desired Vector
      */
     Vector(int i) : std::vector<T>(i) { }
+
+    /**
+     * \brief Copy Constructor for Vector
+     *
+     * This provides a copy constructor method for Vector
+     *
+     * \param a is the Vector to be copied 
+     */
+    Vector(const Vector<T> &a) : std::vector<T>(a.begin(), a.end()) { }
   };
 
   /**

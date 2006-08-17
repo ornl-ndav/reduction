@@ -57,8 +57,6 @@ namespace Nessi {
 
         target->assign(source_ptr->begin(),source_ptr->end());
 
-        delete source_ptr;
-
         Py_INCREF(Py_None);
         return Py_None;
     }
@@ -77,8 +75,6 @@ namespace Nessi {
         std::vector<int> *source_ptr=static_cast<std::vector<int> *>(void_source);
 
         target->assign(source_ptr->begin(),source_ptr->end());
-
-        delete source_ptr;
 
         Py_INCREF(Py_None);
         return Py_None;
