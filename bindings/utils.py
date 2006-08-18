@@ -316,6 +316,16 @@ def vector_is_equals(value,true_value):
        if not, it returns False
 
     """
+    if (value.__type__ == true_value.__type__ ):
+        if (value.__type__ == nessi_list.NessiList.DOUBLE):
+            return utils_bind.vector_is_equals_d(value.__array__,
+                                                 true_value.__array__)
+        elif (value.__type__ == nessi_list.NessiList.INT):
+            return utils_bind.vector_is_equals_i(value.__array__,
+                                                 true_value.__array__)
+        else:
+            raise TypeError,"Unknown type %s" % value.__type__
+            
 
     if (value.__type__ == nessi_list.NessiList.DOUBLE):
         value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
