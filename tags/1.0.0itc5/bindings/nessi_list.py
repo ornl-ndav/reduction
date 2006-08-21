@@ -1384,8 +1384,13 @@ class NessiList (list):
         except:
             return False
 
-        # deep comparison
         import utils
+
+        # do it in c if they are both NessiLists
+        if self.__class__ == other.__class__:
+            return utils.vector_is_equals(self,other)
+
+        # deep comparison
         try:
             for (mine,yours) in map(None,self,other):
                 if utils.compare(mine,yours)!=0:
