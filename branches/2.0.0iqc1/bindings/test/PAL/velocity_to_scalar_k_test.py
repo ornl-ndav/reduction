@@ -103,20 +103,20 @@ def initialize_true_outputs(key):
         true_output_ss=DoubleVPair()
 
       # initialize the correct outputs for vector vector case
-        true_output_vv.append(float(252.778413936786194))
-        true_output_vv_err2.append(float(31948.46327619861383145))
-        true_output_vv.append(float(505.55682787357237071))
-        true_output_vv_err2.append(float(95845.38982859584513236))
-        true_output_vv.append(float(758.33524181035866974))
-        true_output_vv_err2.append(float(159742.31638099305096742))
-        true_output_vv.append(float(1011.11365574714474142))
-        true_output_vv_err2.append(float(223639.24293339030418503))
-        true_output_vv.append(float(1263.89206968393092678))
-        true_output_vv_err2.append(float(287536.16948578749174136))
+        true_output_vv.append(float(1588.25361641977462574))
+        true_output_vv_err2.append(float(1261274.77503524611986224))
+        true_output_vv.append(float(3176.50723283954914285))
+        true_output_vv_err2.append(float(3783824.32510573780471771))
+        true_output_vv.append(float(4764.76084925932351903))
+        true_output_vv_err2.append(float(6306373.87517623011403620))
+        true_output_vv.append(float(6353.01446567909828570))
+        true_output_vv_err2.append(float(8828923.42524672289695893))
+        true_output_vv.append(float(7941.26808209887285716))
+        true_output_vv_err2.append(float(11351472.9753172140190008))
 
       # initialize the correct outputs for scalar scalar case
-        true_output_ss.val = float(252.778413936786194)
-        true_output_ss.val_err2 = float(31948.46327619861383145)
+        true_output_ss.val = float(1588.25361641977462574)
+        true_output_ss.val_err2 = float(1261274.77503524611986224)
 
     else:
 

@@ -143,7 +143,7 @@ namespace AxisManip
   __velocity_to_scalar_k_static(NumT & mh,
                                 NumT & mh2)
   {
-    mh = static_cast<NumT>(1.0/PhysConst::H_OVER_MNEUT);
+    mh = static_cast<NumT>((2.0 * PhysConst::PI)/PhysConst::H_OVER_MNEUT);
     mh2 = mh*mh;
 
     return Nessi::EMPTY_WARN;

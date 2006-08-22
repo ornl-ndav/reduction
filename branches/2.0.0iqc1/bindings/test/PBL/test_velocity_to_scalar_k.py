@@ -44,23 +44,23 @@ for counter in range(NUM_VAL):
 
 # Truth values for velocity_to_scalar_k vector-vector version
 TruthOutput_VV_D = DoubleNessiVector()
-TruthOutput_VV_D.append(252.778413936786194)
-TruthOutput_VV_D.append(505.55682787357237071)
-TruthOutput_VV_D.append(758.33524181035866974)
-TruthOutput_VV_D.append(1011.11365574714474142)
-TruthOutput_VV_D.append(1263.89206968393092678)
+TruthOutput_VV_D.append(1588.25361641977462574)
+TruthOutput_VV_D.append(3176.50723283954914285)
+TruthOutput_VV_D.append(4764.76084925932351903)
+TruthOutput_VV_D.append(6353.01446567909828570)
+TruthOutput_VV_D.append(7941.26808209887285716)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(31948.46327619861383145)
-TruthOutput_Err2_VV_D.append(95845.38982859584513236)
-TruthOutput_Err2_VV_D.append(159742.31638099305096742)
-TruthOutput_Err2_VV_D.append(223639.24293339030418503)
-TruthOutput_Err2_VV_D.append(287536.16948578749174136)
+TruthOutput_Err2_VV_D.append(1261274.77503524611986224)
+TruthOutput_Err2_VV_D.append(3783824.32510573780471771)
+TruthOutput_Err2_VV_D.append(6306373.87517623011403620)
+TruthOutput_Err2_VV_D.append(8828923.42524672289695893)
+TruthOutput_Err2_VV_D.append(11351472.9753172140190008)
 
 # Truth values for velocity_to_scalar_k scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
-TruthOutput_SS_D.val = 252.778413936786194
-TruthOutput_SS_D.val_err2 = 31948.46327619861383145
+TruthOutput_SS_D.val = 1588.25361641977462574
+TruthOutput_SS_D.val_err2 = 1261274.77503524611986224
 
 ###############################################################################
 # Create output placeholders for vectors

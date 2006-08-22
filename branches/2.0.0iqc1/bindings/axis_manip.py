@@ -2568,15 +2568,16 @@ def velocity_to_energy(velocity, velocity_err2):
 # This function calculates the scalar wavevector given the velocity
 # according to the equation
 # \f[
-# k[i]=\frac{m_n}{h}v[i]
+# k[i]=\frac{m_n}{\hbar}v[i]
 # \f]
 # Where \f$k[i]\f$ is the scalar wavevector, \f$m_n\f$ is the mass
-# of the neutron, \f$h\f$ is Planck's constant, and \f$v[i]\f$ is
+# of the neutron, \f$\hbar\f$ is Planck's constant divided by \f$2\pi\f$,
+# and \f$v[i]\f$ is
 # the velocity of the neutron. The uncertainty is calculated using
 # the assumption of uncorrelated uncertainties.
 #
 # \f[
-# \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{h^2}
+# \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{\hbar^2}
 # \f]
 #
 # \param velocity (INPUT) is the velocity of the neutron in units
@@ -2597,15 +2598,16 @@ def velocity_to_scalar_k(velocity, velocity_err2):
     This function calculates the scalar wavevector given the velocity
     according to the equation:
 
-    k[i] = m_n * v[i] / h
+    k[i] = m_n * v[i] / hbar
 
     where k[i] is the scalar wavevector, m_n is the mass of the neutron,
-    v[i] is the velocity of the neutron, and h is Planck's constant.
+    v[i] is the velocity of the neutron, and hbar is Planck's constant divide
+    by 2pi.
 
     Assuming that the uncertainties are uncorrelated, the uncertainty
     in the scalar wavevector is given by:
 
-    k_err2[i]^2 = (m_n / h)^2 * v_err2[i]^2
+    k_err2[i]^2 = (m_n / hbar)^2 * v_err2[i]^2
 
     where k_err2 is the uncertainty in the scalar wavevector, and
     v_err2 is the uncertainty in the velocity of the neutron.
@@ -2613,7 +2615,7 @@ def velocity_to_scalar_k(velocity, velocity_err2):
     Parameters:
     __________
 
-    -> veloctiy is the velocity of the neutron in units of
+    -> velocity is the velocity of the neutron in units of
        meter/micro-seconds
     -> velocity_err2 is the square of the uncertainty in the velocity
 

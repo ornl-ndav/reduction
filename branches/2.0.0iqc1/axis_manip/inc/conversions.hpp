@@ -2301,15 +2301,16 @@ namespace AxisManip
    * This function calculates the scalar wavevector given the velocity
    * according to the equation
    * \f[
-   * k[i]=\frac{m_n}{h}v[i]
+   * k[i]=\frac{m_n}{\hbar}v[i]
    * \f]
    * Where \f$k[i]\f$ is the scalar wavevector, \f$m_n\f$ is the mass
-   * of the neutron, \f$h\f$ is Planck's constant, and \f$v[i]\f$ is
+   * of the neutron, \f$\hbar\f$ is Planck's constant divided by \f$2\pi\f$, 
+   * and \f$v[i]\f$ is
    * the velocity of the neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{h^2}
+   * \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{\hbar^2}
    * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
@@ -2339,15 +2340,16 @@ namespace AxisManip
    * This function calculates the scalar wavevector given the velocity
    * according to the equation
    * \f[
-   * k=\frac{m_n}{h}v
+   * k=\frac{m_n}{\hbar}v
    * \f]
    * Where \f$k\f$ is the scalar wavevector, \f$m_n\f$ is the mass of
-   * the neutron, \f$h\f$ is Planck's constant, and \f$v\f$ is the
+   * the neutron, \f$\hbar\f$ is Planck's constant divided by \f$2\pi\f$, 
+   * and \f$v\f$ is the
    * velocity of the neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
    * \f[
-   * \sigma^2_k = \frac{m^2_n \sigma^2_{v}}{h^2}
+   * \sigma^2_k = \frac{m^2_n \sigma^2_{v}}{\hbar^2}
    * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
