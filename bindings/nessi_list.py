@@ -2082,8 +2082,7 @@ def print_multi(n,object1,object2,object3=NessiList()):
 
     for i in range(0,n):
 
-        if (object1.__type__ == NessiList.FLOAT or
-            object1.__type__ == NessiList.DOUBLE):
+        if object1.__type__ == NessiList.DOUBLE:
 
                 str_output = str_output + "%7.16f " \
                     %object1[i] + tab + \
