@@ -1,208 +1,310 @@
-#include "constants.hpp"
+/*
+ *                     SNS Common Libraries
+ *           A part of the SNS Analysis Software Suite.
+ *
+ *                  Spallation Neutron Source
+ *          Oak Ridge National Laboratory, Oak Ridge TN.
+ *
+ *
+ *                             NOTICE
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
+ * for any purpose and without fee.
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
+ * its use would not infringe privately owned rights.
+ *
+ */
+
+/**
+ * $Id$
+ *
+ * \file axis_manip/test/cpp/tof_to_scalar_Q_test.cpp
+ */
+
 #include "conversions.hpp"
-#include "nessi.hpp"
-#include "num_comparison.hpp"
-#include <cmath>
-#include <iostream>
+#include "test_common.hpp"
 
 using namespace std;
 
-int main()
+const size_t NUM_VAL=5;
+
+/**
+ * \defgroup tof_to_scalar_Q_test tof_to_scalar_Q_test
+ * \{
+ *
+ * This test compares the output data calculated by the library
+ * function <i>tof_to_scalar_Q</i> and described in 3.17
+ * of the <i>SNS 107030214-TD0001-R00, "Data Reduction Library Software
+ * Requirements and Specifications"</i> with the true output data
+ * \f$true\_output\_ss\f$ and \f$true\_output\_vv\f$ manually calculated.
+ * Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
+ * will generate in the testsuite.log file an error message that gives details
+ * about the location and type of the error.
+ *
+ * <b>Notation used:</b>
+ * - ss : scalar-scalar
+ * - vv : vector-vector
+ * - SS : "s,s"
+ * - VV = "v,v"
+ * - ERROR = "Error"
+ * - EMPTY = ""
+ */
+
+/**
+ * This function initializes the value of arrays, \f$tof\f$ and \f$tof\_err2\f$. *
+ * \param tof (OUTPUT) is the time-of-flight axis in units of micro-seconds
+ * \param tof_err2 (OUTPUT) is the square of the uncertainty in the
+ * time-of-flight axis.
+ */
+template <typename NumT>
+void initialize_inputs(Nessi::Vector<NumT> & tof,
+                       Nessi::Vector<NumT> & tof_err2)
 {
-  // SNS-FIXME
-
-  int num_val = 20;
-
-  //float
-  Nessi::Vector<float> f_tof;
-  Nessi::Vector<float> f_tof_err2;
-  float f_pathlength;
-  float f_pathlength_err2;
-  float f_scatt_angle;
-  float f_scatt_angle_err2;
-  Nessi::Vector<float> f_Q(num_val);
-  Nessi::Vector<float> f_Q_err2(num_val);
-  Nessi::Vector<float> f_true_Q(num_val);
-  Nessi::Vector<float> f_true_Q_err2(num_val);
-  float f_a;
-  float f_a2;
-  float f_cang;
-  float f_cang2;
-  float f_sang;
-  float f_sang2;
-  float f_term1;
-  float f_term2;
-  float f_term3;
-
-  //double
-  Nessi::Vector<double> d_tof;
-  Nessi::Vector<double> d_tof_err2;
-  double d_pathlength;
-  double d_pathlength_err2;
-  double d_scatt_angle;
-  double d_scatt_angle_err2;
-  Nessi::Vector<double> d_Q(num_val);
-  Nessi::Vector<double> d_Q_err2(num_val);
-  Nessi::Vector<double> d_true_Q(num_val);
-  Nessi::Vector<double> d_true_Q_err2(num_val);
-  double d_a;
-  double d_a2;
-  double d_cang;
-  double d_cang2;
-  double d_sang;
-  double d_sang2;
-  double d_term1;
-  double d_term2;
-  double d_term3;
-
-  int error=0;                      //==0,Pass  !=0,Fail
-
-  //initialization
-  double pathlength = 43.43;
-  double pathlength_err2 = 3.33;
-  double scatt_angle = 1.22;
-  double scatt_angle_err2 = 0.55;
-
-  f_pathlength = static_cast<float>(pathlength);
-  f_pathlength_err2 = static_cast<float>(pathlength_err2);
-  d_pathlength = static_cast<double>(pathlength);
-  d_pathlength_err2 = static_cast<double>(pathlength_err2);
-
-  f_scatt_angle = static_cast<float>(scatt_angle);
-  f_scatt_angle_err2 = static_cast<float>(scatt_angle_err2);
-  d_scatt_angle = static_cast<double>(scatt_angle);
-  d_scatt_angle_err2 = static_cast<double>(scatt_angle_err2);
-
-  for (int i = 0 ; i < num_val ; i++)            //create the arrays
+  for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
-      f_tof.push_back(2.*static_cast<float>(i+1));
-      f_tof_err2.push_back(static_cast<float>(i)+0.5);
+      tof.push_back(static_cast<NumT>(i+1));         //1,2,3,4,5
+      tof_err2.push_back(static_cast<NumT>(i+0.5));  //0.5,1.5,2.5,3.5,4.5
+    }
+}
 
-      d_tof.push_back(2.*static_cast<double>(i+1));
-      d_tof_err2.push_back(static_cast<double>(i)+0.5);
+/**
+ * This function sets the true outputs based on values contained in
+ * \f$tof\f$ and \f$tof\_err2\f$ for the float case.
+ *
+ * For the scalar case, the scalar used is the first element of the arrays
+ * (\f$tof\_i[0]\f$ and \f$tof\_err2[0]\f$).
+ *
+ * \param true_output_ss (OUTPUT) is the true output for the ss case
+ * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the ss case
+ * \param true_output_vv (OUTPUT) is the true array for the vv case
+ * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the vv case
+ */
+void initialize_true_outputs(float    & true_output_ss,
+                             float    & true_output_ss_err2,
+                             Nessi::Vector<float> & true_output_vv,
+                             Nessi::Vector<float> & true_output_vv_err2)
+{
+  // scalar scalar
+  true_output_ss=static_cast<float>(13938.23730469);
+  true_output_ss_err2=static_cast<float>(109279376.0);
+
+  // vector vector
+  true_output_vv.push_back(static_cast<float>(13938.23730469));
+  true_output_vv_err2.push_back(static_cast<float>(109279376.0));
+  true_output_vv.push_back(static_cast<float>(6969.11865234));
+  true_output_vv_err2.push_back(static_cast<float>(42497536.0));
+  true_output_vv.push_back(static_cast<float>(4646.07910156));
+  true_output_vv_err2.push_back(static_cast<float>(21735954.0));
+  true_output_vv.push_back(static_cast<float>(3484.55932617));
+  true_output_vv_err2.push_back(static_cast<float>(13090760.0));
+  true_output_vv.push_back(static_cast<float>(2787.64746094));
+  true_output_vv_err2.push_back(static_cast<float>(8722923.0));
+}
+
+/**
+ * This function sets the true outputs based on values contained in
+ * \f$tof\f$ and \f$tof\_err2\f$ for the double case.
+ *
+ * For the scalar case, the scalar used is the first element of the arrays
+ * (\f$tof\_i[0]\f$ and \f$tof\_err2[0]\f$).
+ *
+ * \param true_output_ss (OUTPUT) is the true output for the ss case
+ * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the ss case
+ * \param true_output_vv (OUTPUT) is the true array for the vv case
+ * \param true_output_vv_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the vv case
+ */
+void initialize_true_outputs(double    & true_output_ss,
+                             double    & true_output_ss_err2,
+                             Nessi::Vector<double> & true_output_vv,
+                             Nessi::Vector<double> & true_output_vv_err2)
+{
+  // scalar scalar
+  true_output_ss=static_cast<double>(13938.23677629315170634);
+  true_output_ss_err2=static_cast<double>(109279374.99300612509250641);
+
+  // vector vector
+  true_output_vv.push_back(static_cast<double>(13938.23677629315170634));
+  true_output_vv_err2.push_back(static_cast<double>(109279374.99300612509250640));
+  true_output_vv.push_back(static_cast<double>(6969.11838814657585317));
+  true_output_vv_err2.push_back(static_cast<double>(42497534.71950238198041915));
+  true_output_vv.push_back(static_cast<double>(4646.07892543105026561));
+  true_output_vv_err2.push_back(static_cast<double>(21735952.50203825533390045));
+  true_output_vv.push_back(static_cast<double>(3484.55919407328792658));
+  true_output_vv_err2.push_back(static_cast<double>(13090758.46270385757088661));
+  true_output_vv.push_back(static_cast<double>(2787.64735525863034127));
+  true_output_vv_err2.push_back(static_cast<double>(8722922.55499728955328465));
+}
+
+/**
+ * Function that tests the discrepancies between the true outputs and the
+ * outputs generated by the <i>tof_to_scalar_Q</i> function for the ss and
+ * vv cases.
+ *
+ * The function returns TRUE if the two arrays compared \f$output\f$ and
+ * \f$true\_output\f$ match, and returns FALSE if they do not match.
+ *
+ * \param output_ss (INPUT) is the value created by <i>tof_to_scalar_Q</i>
+ * for the ss case
+ * \param output_ss_err2 (INPUT) is the square of the uncertainty of the value
+ * created by <i>tof_to_scalar_Q</i> for the ss case
+ * \param true_output_ss (INPUT)) is the true value for the ss case
+ * \param true_output_ss_err2 (INPUT) is the square of the uncertainty of the
+ * true value for the ss case
+ * \param output_vv (INPUT) is the array created by <i>tof_to_scalar_Q</i>
+ * for the vv case
+ * \param output_vv_err2 (INPUT) is the square of the uncertainty of the value
+ * created by <i>tof_to_scalar_Q</i> for the vv case
+ * \param true_output_vv (INPUT)) is the true value for the vv case
+ * \param true_output_vv_err2 (INPUT) is the square of the uncertainty of the
+ * true value for the vv case
+ */
+template <typename NumT>
+bool test_okay(NumT    & output_ss,
+               NumT    & output_ss_err2,
+               NumT    & true_output_ss,
+               NumT    & true_output_ss_err2,
+               Nessi::Vector<NumT> & output_vv,
+               Nessi::Vector<NumT> & output_vv_err2,
+               Nessi::Vector<NumT> & true_output_vv,
+               Nessi::Vector<NumT> & true_output_vv_err2)
+{
+  bool value = true;
+
+  // scalar scalar
+  if(!test_okay(output_ss,true_output_ss))
+    {
+      value = false;
+    }
+  if(!test_okay(output_ss_err2,true_output_ss_err2))
+    {
+      value = false;
     }
 
-  AxisManip::tof_to_scalar_Q(f_tof,
-                             f_tof_err2,
-                             f_pathlength,
-                             f_pathlength_err2,
-                             f_scatt_angle,
-                             f_scatt_angle_err2,
-                             f_Q,
-                             f_Q_err2);
-
-  AxisManip::tof_to_scalar_Q(d_tof,
-                             d_tof_err2,
-                             d_pathlength,
-                             d_pathlength_err2,
-                             d_scatt_angle,
-                             d_scatt_angle_err2,
-                             d_Q,
-                             d_Q_err2);
-
-  f_a = static_cast<float>(1)/static_cast<float>(PhysConst::H_OVER_MNEUT);
-  f_a *= static_cast<float>(4)*static_cast<float>(PhysConst::PI);
-  f_a2 = f_a * f_a;
-
-  f_cang = static_cast<float>(std::cos(static_cast<double>(f_scatt_angle)));
-  f_cang2 = f_cang * f_cang;
-  f_sang = static_cast<float>(std::cos(static_cast<double>(f_scatt_angle)));
-  f_sang2 = f_sang * f_sang;
-
-  f_term1 = f_sang2 * f_pathlength_err2 * f_pathlength_err2;
-  f_term2 = f_cang2 * f_pathlength * f_pathlength;
-  f_term2 *= (f_scatt_angle_err2 * f_scatt_angle_err2);
-
-  f_term3 = f_sang2 * f_pathlength * f_pathlength;
-
-  d_a = static_cast<double>(1)/PhysConst::H_OVER_MNEUT;
-  d_a *= static_cast<double>(4)*PhysConst::PI;
-  d_a2 = d_a * d_a;
-
-  d_cang = static_cast<double>(std::cos(static_cast<double>(d_scatt_angle)));
-  d_cang2 = d_cang * d_cang;
-  d_sang = static_cast<double>(std::cos(static_cast<double>(d_scatt_angle)));
-  d_sang2 = d_sang * d_sang;
-
-  d_term1 = d_sang2 * d_pathlength_err2 * d_pathlength_err2;
-  d_term2 = d_cang2 * d_pathlength * d_pathlength;
-  d_term2 *= (d_scatt_angle_err2 * d_scatt_angle_err2);
-
-  d_term3 = d_sang2 * d_pathlength * d_pathlength;
-
-    for (int i = 0 ; i < num_val ; ++i)
-      {
-  f_true_Q[i] = f_sang / f_tof[i];
-  f_true_Q[i] *= (f_a * f_pathlength);
-  f_true_Q_err2[i] = f_tof_err2[i] * f_tof_err2[i];
-  f_true_Q_err2[i] /= f_tof[i] * f_tof[i];
-  f_true_Q_err2[i] *= f_term3;
-  f_true_Q_err2[i] += f_term1 + f_term2;
-  f_true_Q_err2[i] *= f_a2 / (f_tof[i] * f_tof[i]);
-
-  d_true_Q[i] = d_sang / d_tof[i];
-  d_true_Q[i] *= (d_a * d_pathlength);
-  d_true_Q_err2[i] = d_tof_err2[i] * d_tof_err2[i];
-  d_true_Q_err2[i] /= d_tof[i] * d_tof[i];
-  d_true_Q_err2[i] *= d_term3;
-  d_true_Q_err2[i] += d_term1 + d_term2;
-  d_true_Q_err2[i] *= d_a2 / (d_tof[i] * d_tof[i]);
-      }
-
-  //check first if the size are in good agreement
-  if ((f_tof.size() != f_Q.size())||(d_tof.size() != d_Q.size()) )
+  // vector vector
+  if(!test_okay(output_vv,true_output_vv,VV))
     {
-      cout << "Input and output vectors do not have the same size"  << endl;
-      ++error;
+      value = false;
     }
-  else
+  if(!test_okay(output_vv_err2,true_output_vv_err2,VV))
     {
-      while(1)
-        {
-          Utils::vector_comparison(f_Q, f_true_Q, error, 10);
-          if (error != 0) break;
-
-          Utils::vector_comparison(f_Q_err2, f_true_Q_err2, error, 20);
-          if (error != 0) break;
-
-          Utils::vector_comparison(d_Q, d_true_Q, error, 110);
-          if (error != 0) break;
-
-          Utils::vector_comparison(d_Q_err2, d_true_Q_err2, error, 120);
-          break;
-        }
+      value = false;
     }
 
+  // everything okay
+  return value;
+}
+
+/**
+ * Function that generates the data using the <i>tof_to_scalar_Q</i> function
+ * (as described in the documentation of the <i>tof_to_scalar_Q</i> function)
+ * and launches the comparison of the data.
+ *
+ * \param key (INPUT) is a key that permits to launch the correct test
+ * \param debug (INPUT) is any sting that launches the debug mode (print all
+ * the array created and calculated)
+ *
+ * \return Result of the function (TRUE/FALSE)
+ */
+template <typename NumT>
+bool test_func(NumT key, string debug) // key forces correct test to happen
+{
+// allocate arrays
+  Nessi::Vector<NumT>   tof;
+  Nessi::Vector<NumT>   tof_err2;
+  NumT                  pathlength=static_cast<NumT>(5.);
+  NumT                  pathlength_err2=static_cast<NumT>(2.5);
+  NumT                  scatt_angle=static_cast<NumT>(.5);
+  NumT                  scatt_angle_err2=static_cast<NumT>(.25);
+  NumT                  output_ss;
+  NumT                  output_ss_err2;
+  NumT                  true_output_ss;
+  NumT                  true_output_ss_err2;
+  Nessi::Vector<NumT>   output_vv(NUM_VAL);
+  Nessi::Vector<NumT>   output_vv_err2(NUM_VAL);
+  Nessi::Vector<NumT>   true_output_vv;
+  Nessi::Vector<NumT>   true_output_vv_err2;
+
+  // fill in values as appropriate
+  initialize_inputs(tof,tof_err2);
+  initialize_true_outputs(true_output_ss, true_output_ss_err2,
+                          true_output_vv, true_output_vv_err2);
+
+  // run the code being tested
+
+  AxisManip::tof_to_scalar_Q(tof[0], tof_err2[0],
+                             pathlength, pathlength_err2,
+                             scatt_angle, scatt_angle_err2,
+                             output_ss,
+                             output_ss_err2);
+
+  AxisManip::tof_to_scalar_Q(tof, tof_err2,
+                             pathlength, pathlength_err2,
+                             scatt_angle, scatt_angle_err2,
+                             output_vv,
+                             output_vv_err2);
+
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(output_vv, true_output_vv, VV, debug);
+      print(output_vv_err2, true_output_vv_err2, ERROR+VV, debug);
+      print(output_ss, true_output_ss, SS, debug);
+      print(output_ss_err2, true_output_ss_err2, ERROR+SS, debug);
+    }
+
+  return test_okay(output_ss, output_ss_err2,
+                   true_output_ss, true_output_ss_err2,
+                   output_vv, output_vv_err2,
+                   true_output_vv, true_output_vv_err2);
+}
+
+/**
+ * Main function that test tof_to_scalar_Q for float and double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
+ */
+int main(int argc, char *argv[])
+{
   cout << "tof_to_scalar_Q_test.cpp..........";
 
-  switch (error)
+  string debug;
+  if(argc > 1)
     {
-    case 0:
-      cout << "Functionality OK" << endl;
-      break;
-    case 1:
-      cout << "FAILED....Output and input vectors have different sizes" << endl;
-      break;
-    case 10:
-      cout << "(float) FAILED....Output vector different from vector expected"
-           << endl;
-      break;
-    case 20:
-      cout << "(float) FAILED....Output error vector different from vector "
-           << "expected" << endl;
-      break;
-    case 110:
-      cout << "(double) FAILED....Output vector different from vector "
-           << "expected" << endl;
-      break;
-    case 120:
-      cout << "(double) FAILED....Output error vector different from vector "
-           << "expected" << endl;
-      break;
-    default:
-      cout << "FAILED" << endl;
-      break;
+      debug = argv[1];
     }
 
-  return 0;
+  int value = 0;
+
+  if(!test_func(static_cast<float>(1), debug))
+    {
+      value = -1;
+    }
+
+  if(!test_func(static_cast<double>(1), debug))
+    {
+      value = -1;
+    }
+
+  if(value == 0)
+    {
+      cout << "Functionality OK" << endl;
+    }
+
+  return value;
 }
+
+/**
+ * \}
+ */  // end of tof_to_scalar_Q_test.cpp group
