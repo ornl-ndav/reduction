@@ -2475,7 +2475,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 # 5.227\times 10^{-6} \left( \frac{v[i]}{m/\mu s} \right)^2 meV
 # \f]
 # Where \f$E[i]\f$ is the energy of the neutron, \f$m_n\f$ is the mass of the
-# neutron, and \f$v[i]\f$ is the velocity of the netron. The uncertainty is
+# neutron, and \f$v[i]\f$ is the velocity of the neutron. The uncertainty is
 # calculated using the assumption of uncorrelated uncertainties.
 #
 # \f[
@@ -2498,12 +2498,13 @@ def velocity_to_energy(velocity, velocity_err2):
 
     """
     This function takes a histogram data set that has the principle axis in
-    units of meter/micro-seconds and converts it to meV according to the equation
+    units of meter/micro-seconds and converts it to meV according to the
+    equation
 
     E[i] = m_n v[i]^2 / 2 = 5.227* 10^-6 * v[i]^2
     
-    Where E is the energy of the neutron, m_n is the mass of the neutron, and v is
-    the velocity of the netron. 
+    Where E is the energy of the neutron, m_n is the mass of the neutron, and
+    v is the velocity of the neutron. 
     Assuming that the uncertainties are uncorrelated, the square of the
     uncertainty of the energy axis is given by
 
@@ -2512,7 +2513,8 @@ def velocity_to_energy(velocity, velocity_err2):
     Parameters:
     ----------
     -> velocity is the velocity of the neutron in units of meter/micro-seconds
-    -> velocity_err2 is the square of the uncertainty in the velocity of the neutron
+    -> velocity_err2 is the square of the uncertainty in the velocity of the
+       neutron
    
     Returns - 2 NessiLists:
     ----------------------
