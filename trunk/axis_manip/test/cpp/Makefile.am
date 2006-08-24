@@ -42,6 +42,7 @@ AXIS_MANIP_TARGETS = \
 	reverse_array_cp_test \
 	reverse_array_nc_test \
 	tof_to_initial_wavelength_igs_test \
+	tof_to_scalar_Q_test \
 	tof_to_wavelength_test \
 	wavelength_to_energy_test \
 	wavelength_to_scalar_k_test \
@@ -70,6 +71,8 @@ reverse_array_cp_test_SOURCES = reverse_array_cp_test.cpp test_common.hpp
 reverse_array_nc_test_SOURCES = reverse_array_nc_test.cpp test_common.hpp
 
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
+
+tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp test_common.hpp
 
 tof_to_initial_wavelength_igs_test_SOURCES = \
         tof_to_initial_wavelength_igs_test.cpp \
