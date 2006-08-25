@@ -11,13 +11,21 @@ export PYTHONPATH="$PAL_MODULES:$PBL_LIBS:$PYTHONPATH"
 
 python add_ncerr_test.py
 echo
+python d_spacing_to_tof_focused_det_test.py
+echo
 python div_ncerr_test.py
 echo
 python energy_transfer_test.py
 echo
+python frequency_to_angular_frequency_test.py
+echo
 python frequency_to_energy_test.py
 echo
+python init_scatt_wavevector_to_Q_test.py
+echo
 python init_scatt_wavevector_to_scalar_Q_test.py
+echo
+python initial_velocity_dgs_test.py
 echo
 python mult_ncerr_test.py
 echo
@@ -33,9 +41,19 @@ python sub_ncerr_test.py
 echo
 python sumw_ncerr_test.py
 echo
+python time_offset_dgs_test.py
+echo
+python tof_to_final_velocity_dgs_test.py
+echo
 python tof_to_initial_wavelength_igs_test.py
 echo
 python tof_to_wavelength_test.py
+echo
+python velocity_to_energy_test.py
+echo
+python velocity_to_scalar_k_test.py
+echo
+python wavelength_to_d_spacing_test.py
 echo
 python wavelength_to_energy_test.py
 echo

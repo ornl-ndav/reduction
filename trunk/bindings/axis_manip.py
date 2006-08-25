@@ -61,6 +61,143 @@ import vpair_bind
 #
 
 ##
+# \defgroup d_spacing_to_tof_focused_det axis_manip::d_spacing_to_tof_focused_det
+# \{
+
+##
+# \brief This function is described in section  3.39.
+#
+# This function converts the d-spacing to time-of-flight at a
+# focused detector position according to the equation
+# \f[
+# TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused}/2)
+# \f]
+# Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
+# of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
+# is the focused total flight path, \f$d[i]\f$ is the d-spacing,
+# and \f$polar_{focused}\f$ is the angle between the z-axis and the
+# focused scattered neutron. The uncertainty is calculated using
+# the assumption of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_{TOF}[i] = \left(\frac{m_n}{h}\right)^2 \times 
+# \left((2 d[i] \sin(polar_{focused}/2))^2 \sigma^2_{L_{focused}} + 
+# (2 L_{focused} \sin(polar_{focused}/2))^2 \sigma^2_d[i] + 
+# (L_{focused} d[i] \cos(polar_{focused}/2))^2 \sigma^2_{polar_{focused}}
+# \right)
+# \f]
+#
+# \param d_spacing (INPUT) is the d-spacing axis in units of
+# Angstrom
+# \param d_spacing_err2 (INPUT) is the square of the uncertainty in
+# the d-spacing axis
+# \param pathlength_focused (INPUT) is the total flight path of the
+# focused neutron in units of meter
+# \param pathlength_focused_err2 (INPUT) is the square of the
+# uncertainty in pathlength_focused
+# \param polar_focused (INPUT) is the polar angle of the focused
+# neutron in the equation above in units of radians
+# \param polar_focused_err2 (INPUT) is the square of the
+# uncertainty in polar_focused
+#
+# \return
+# - The time-of-flight axis in units of micro-seconds
+# - The square of the uncertainty in the time-of-flight axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the lists are not
+# recognized types
+
+def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
+                                 pathlength_focused,
+                                 pathlength_focused_err2,
+                                 polar_focused,
+                                 polar_focused_err2):
+
+    """
+    This function converts the d-spacing to time-of-flight at a
+    focused detector position according to the equation
+    
+    TOF[i] = 2 m_n L_focused d[i] sin(polar_focused / 2) / h
+ 
+    Where TOF[i] is the time-of-flight, m_n is the mass of the neutron,
+    h is Planck's constant, L_focused is the focused total flight path,
+    d[i] is the d-spacing, and polar_focused is the angle between the
+    z-axis and the focused scattered neutron. The uncertainty is
+    calculated using the assumption of uncorrelated uncertainties.
+
+    TOF_err2[i] = (m_n / h)^2 x ((2 d[i] sin(polar_focused / 2))^2 x
+    L_focused_err2 + (2 L_focused sin(polar_focused / 2))^2 x d_err2[i] + 
+    (L_focused d[i] cos(polar_focused / 2))^2 x polar_focused_err2)
+
+    
+    Parameters:
+    __________
+    
+    -> d_spacing is the d-spacing axis in units of Angstrom
+    -> d_spacing_err2 is the square of the uncertainty in the d-spacing axis
+    -> pathlength_focused is the total flight path of the focused neutron
+    in units of meter
+    -> pathlength_focused_err2 is the square of the uncertainty in
+    pathlength_focused
+    -> polar_focused is the polar angle of the focused neutron in the
+    equation above in units of radians
+    -> polar_focused_err2 is the square of the uncertainty in polar_focused
+    
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- The time-of-flight axis in units of micro-seconds
+    <- The square of the uncertainty in the time-of-flight axis
+    
+    Exceptions:
+    __________
+    
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+    """
+
+    try:
+        if d_spacing.__type__ != d_spacing_err2.__type__:
+            raise TypeError, "D-Spacing and D-Spacing Err2 arrays are not"\
+            +"the same type"
+
+        if (d_spacing.__type__ == nessi_list.NessiList.DOUBLE):
+            tof = nessi_list.NessiList(len(d_spacing))
+            tof_err2 = nessi_list.NessiList(len(d_spacing))
+            axis_manip_bind.d_spacing_to_tof_focused_det_d(\
+                d_spacing.__array__,\
+                d_spacing_err2.__array__,\
+                float(pathlength_focused),\
+                float(pathlength_focused_err2),\
+                float(polar_focused),\
+                float(polar_focused_err2),\
+                tof.__array__,\
+                tof_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(d_spacing.__type__)
+
+        return tof, tof_err2
+
+    except AttributeError:
+        tof_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.d_spacing_to_tof_focused_det_ss_d(\
+            float(d_spacing),\
+            float(d_spacing_err2),\
+            float(pathlength_focused),\
+            float(pathlength_focused_err2),\
+            float(polar_focused),\
+            float(polar_focused_err2),\
+            tof_ss)
+        return tof_ss.val, tof_ss.val_err2
+
+##
+# \}// end of d_spacing_to_tof_focused_det group
+
+##
 # \defgroup energy_transfer axis_manip::energy_transfer
 # \{
 
@@ -233,6 +370,102 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 
 
 ##
+# \defgroup frequency_to_angular_frequency \
+# axis_manip::frequency_to_angular_frequency
+# \{
+
+##
+# \brief This function is described in section 3.31.
+#
+# This function calculates the angular frequency according to the equation
+# \f[
+# \omega[i] = 2\pi\nu[i] \times 10^{12}
+# \f]
+# Where \f$\omega[i]\f$ is the angular frequency, and \f$\nu[i]\f$
+# is the frequency. The uncertainty is calculated using the
+# assumption of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_{\omega}[i] = 4 \pi^2 \times 10^{24} \sigma^2_{\nu}[i]
+# \f]
+#
+# \param frequency (INPUT) is the frequency axis in units of THz
+# \param frequency_err2 (INPUT) is the square of the uncertainty in
+# the frequency axis
+#
+# \return
+# -The angular_frequency is the angular frequency axis in units of rad/second
+# -The angular_frequency_err2 is the square of the uncertainty in the angular
+# frequency axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+   
+def frequency_to_angular_frequency(frequency, frequency_err2):
+
+    """
+    This function takes a histogram data set that has the principle axis in
+    units of THz and converts it to rad/second according to the equation
+
+    omega[i] = 2 * pi * nu[i] * 10^12
+
+    where omega is the angular frequency in units of rad/second, nu is the
+    frequency in units of THz.
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the angular frequency axis is given by
+
+    sigma^2_omega[i] = 4 * pi^2 * 10^24 * sigma^2_nu[i]
+
+    Parameters:
+    ----------
+    -> frequency is the frequency axis in unit of THz
+    -> frequency_err2 is the square of the uncertainty of the frequency axis
+
+    Returns - 2 NessiLists:
+    ----------------------
+    <- the angular_frequency axis in units of rad/second
+    <- the square of the uncertainty of the angular frequency axis
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+
+    """
+
+    try:
+        if frequency.__type__ != frequency_err2.__type__:
+            raise TypeError, "Frequency and Frequency Err2 arrays are not"\
+            +"the same type"
+
+        if (frequency.__type__ == nessi_list.NessiList.DOUBLE):
+            omega = nessi_list.NessiList(len(frequency))
+            omega_err2 = nessi_list.NessiList(len(frequency))
+            axis_manip_bind.frequency_to_angular_frequency_d(\
+                frequency.__array__,\
+                frequency_err2.__array__,\
+                omega.__array__,\
+                omega_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(frequency.__type__)
+
+        return omega, omega_err2
+
+    except AttributeError:
+        omega_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.frequency_to_angular_frequency_ss_d(\
+            float(frequency),\
+            float(frequency_err2),\
+            omega_ss)
+        return omega_ss.val, omega_ss.val_err2
+
+##
+# \}  // end of frequency_to_angular_frequency group
+
+
+##
 # \defgroup frequency_to_energy axis_manip::frequency_to_energy
 # \{
 
@@ -308,10 +541,10 @@ def frequency_to_energy(frequency, frequency_err2):
             E = nessi_list.NessiList(len(frequency))
             E_err2 = nessi_list.NessiList(len(frequency))
             axis_manip_bind.frequency_to_energy_d(\
-                    frequency.__array__,\
-                    frequency_err2.__array__,\
-                    E.__array__,\
-                    E_err2.__array__)
+                frequency.__array__,\
+                frequency_err2.__array__,\
+                E.__array__,\
+                E_err2.__array__)
 
         else:
             raise TypeError,"Unknown primative type %s" \
@@ -322,13 +555,312 @@ def frequency_to_energy(frequency, frequency_err2):
     except AttributeError:
         E_ss = vpair_bind.DoubleVPair()
         axis_manip_bind.frequency_to_energy_ss_d(\
-          float(frequency),\
-          float(frequency_err2),\
-          E_ss)
+            float(frequency),\
+            float(frequency_err2),\
+            E_ss)
         return E_ss.val, E_ss.val_err2
 
 ##
 # \}  // end of frequency_to_energy group
+
+
+##
+# \defgroup init_scatt_wavevector_to_Q \
+# axis_manip::init_scatt_wavevector_to_Q
+# \{
+
+##
+# \brief This function is described in section 3.32 of the
+# SNS 107030214-TD0001-R00, "Data Reduciton Library Software
+# Requirements and Specifications".
+#
+# This function calculates the momentum transfer from the
+# incident and scattered wavevectors according to the equation
+# \f[
+# Q_x[i]=-k_f[i]\cos(azimuthal)\sin(polar)
+# \f]
+# \f[
+# Q_y[i]=-k_f[i]\sin(azimuthal)\sin(polar)
+# \f]
+# \f[
+# Q_z[i]=k_i[i]-k_f[i]\cos(polar)
+# \f]
+# Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
+# scattered wavevector, \f$Q_x\f$ is the x-component of the
+# momentum transfer, \f$Q_y\f$ is the y-component of the momentum
+# transfer, \f$Q_z\f$ is the z-component of the momentum transfer,
+# \f$azimuthal\f$ is the angle between the x-axis and the scattered
+# neutron, and \f$polar\f$ is the angle between the z-axis and the
+# scattered neutron. The uncertainty is calculated using assumption
+# of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+# k^2_f[i] \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+# (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+# \f]
+# \f[
+# \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+# k^2_f[i] \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+# (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+# \f]
+# \f[
+# \sigma^2_{Q_z}[i] = \sigma^2_{k_i}[i] + \cos^2(polar)\sigma^2_{k_f}[i] + 
+# k^2_f[i] \sin^2(polar) \sigma^2_{polar}
+# \f]
+#
+# \param initial_wavevector (INPUT) is the incident wavevector axis in units
+# of reciprocal Angstroms
+# \param initial_wavevector_err2 (INPUT) is the square of the uncertainty of
+# the incident wavevector axis
+# \param final_wavevector (INPUT) is the final wavevector axis in units of
+# reciprocal Angstroms
+# \param final_wavevector_err2 (INPUT) is the square of the uncertainty of the
+# final wavevector axis
+# \param azimuthal (INPUT) is the azimuthal angle in the equation
+# above in units of radians
+# \param azimuthal_err2 (INPUT) is the square of the uncertainty in
+# azumuthal
+# \param polar (INPUT) is the polar angle in the equation above in units of
+# radians
+# \param polar_err2 (INPUT) is the square of the uncertainty in polar angle
+#
+# \return
+# - Qx is the x-component of the momentum transfer axis in units of
+# reciprocal angstroms
+# - Qx_err2 is the square of the uncertainty in the x-component of the
+# momentum transfer axis
+# - Qy is the y-component of the momentum transfer axis in units of
+# reciprocal angstroms
+# - Qy_err2 is the square of the uncertainty in the y-component of the
+# momentum transfer axis
+# - Qz is the y-component of the momentum transfer axis in units of
+# reciprocal angstroms
+# - Qz_err2 is the square of the uncertainty in the y-component of the
+# momentum transfer axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+
+def init_scatt_wavevector_to_Q(initial_wavevector,\
+                               initial_wavevector_err2,\
+                               final_wavevector,\
+                               final_wavevector_err2,\
+                               azimuthal,\
+                               azimuthal_err2,\
+                               polar,\
+                               polar_err2):
+
+    """
+    This function calculates the momentum transfer from the
+    incident and scattered wavevectors according to the equation
+    
+    Q_x = -k_f * cos(azimuthal) * sin(polar)
+   
+    Q_y = -k_f  * sin(azimuthal) * sin(polar)
+   
+    Q_z = k_i - k_f * cos(polar)
+   
+    Where k_i is the incident wavevector, k_f is the scattered wavevector,
+    Q_x is the x-component of the momentum transfer, Q_y is the y-component
+    of the momentum transfer, Q_z is the z-component of the momentum transfer,
+    azimuthal is the angle between the x-axis and the scattered neutron, and
+    polar is the angle between the z-axis and the scattered neutron. The
+    uncertainty is calculated using assumption of uncorrelated uncertainties.
+
+    Q_x_err2[i] = (cos(azimuthal) sin(polar))^2 final_wavevector_err2[i] + 
+    final_wavevector^2[i] x ((sin(azimuthal) sin(polar))^2 azimuthal_err2 + 
+    (cos(azimuthal) cos(polar))^2 polar_err2)
+
+    Q_y_err2[i] = (sin(azimuthal) sin(polar))^2 final_wavevector_err2[i] + 
+    final_wavevector^2[i] x ((cos(azimuthal) sin(polar))^2 azimuthal_err2 + 
+    (sin(azimuthal) cos(polar))^2 polar_err2)
+
+    Q_z[i] = initial_wavevector_err2[i] +
+    cos^2(polar) final_wavevector_err2[i] + final_wavevector^2[i] sin^2(polar)
+    polar_err2
+
+
+    Parameters:
+    __________
+    
+    -> initial_wavevector is the incident wavevector axis in units
+    of reciprocal Angstroms
+    -> initial_wavevector_err2 is the square of the uncertainty of
+    the incident wavevector axis
+    -> final_wavevector is the final wavevector axis in units of
+    reciprocal Angstroms
+    -> final_wavevector_err2 is the square of the uncertainty of the
+    final wavevector axis
+    -> azimuthal is the azimuthal angle in the equation
+    above in units of radians
+    -> azimuthal_err2 is the square of the uncertainty in
+    azumuthal
+    -> polar is the polar angle in the equation above in units of
+    radians
+    -> polar_err2 is the square of the uncertainty in polar angle
+
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- Qx is the x-component of the momentum transfer axis in units of
+    reciprocal angstroms
+    <- Qx_err2 is the square of the uncertainty in the x-component of the
+    momentum transfer axis
+    <- Qy is the y-component of the momentum transfer axis in units of
+    reciprocal angstroms
+    <- Qy_err2 is the square of the uncertainty in the y-component of the
+    momentum transfer axis
+    <- Qz is the y-component of the momentum transfer axis in units of
+    reciprocal angstroms
+    <- Qz_err2 is the square of the uncertainty in the y-component of the
+    momentum transfer axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible
+    sizes
+    <- TypeError is thrown if any of the arrays are not recognized types
+    """    
+
+    try:
+        if initial_wavevector.__type__ != final_wavevector.__type__:
+            raise TypeError, "Initial Wavevector and Scattered Wavevector"\
+                  +"array types are not the same."
+        
+        if initial_wavevector.__type__ != initial_wavevector_err2.__type__:
+            raise TypeError, "Initial Wavevector and Initial Wavevector Err2"\
+                  +"array types are not the same."
+        
+        if final_wavevector.__type__ != final_wavevector_err2.__type__:
+            raise TypeError, "Scattered Wavevector and Scattere Wavevector"\
+                  +"Err2 array types are not the same."
+        
+        if (initial_wavevector.__type__ == nessi_list.NessiList.DOUBLE):
+            Qx = nessi_list.NessiList(len(initial_wavevector))
+            Qx_err2 = nessi_list.NessiList(len(initial_wavevector))
+            Qy = nessi_list.NessiList(len(initial_wavevector))
+            Qy_err2 = nessi_list.NessiList(len(initial_wavevector))
+            Qz = nessi_list.NessiList(len(initial_wavevector))
+            Qz_err2 = nessi_list.NessiList(len(initial_wavevector))
+            axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+                initial_wavevector.__array__,\
+                initial_wavevector_err2.__array__,\
+                final_wavevector.__array__,\
+                final_wavevector_err2.__array__,\
+                float(azimuthal),\
+                float(azimuthal_err2),\
+                float(polar), \
+                float(polar_err2),\
+                Qx.__array__, Qx_err2.__array__,\
+                Qy.__array__, Qy_err2.__array__,\
+                Qz.__array__, Qz_err2.__array__)
+        else:
+            raise TypeError, "Unknown primitive type %s" % \
+                  str(initial_wavevector.__type__)
+        
+        return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+
+    except AttributeError:
+        pass
+    
+    try:
+        initial_wavevector.__type__
+        array = initial_wavevector
+        array_err2 = initial_wavevector_err2
+        scalar = final_wavevector
+        scalar_err2 = final_wavevector_err2
+        
+        if(array.__type__ == array.DOUBLE):
+            Qx = nessi_list.NessiList(len(array))
+            Qx_err2 = nessi_list.NessiList(len(array))
+            Qy = nessi_list.NessiList(len(array))
+            Qy_err2 = nessi_list.NessiList(len(array))
+            Qz = nessi_list.NessiList(len(array))
+            Qz_err2 = nessi_list.NessiList(len(array))
+            axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+                array.__array__,\
+                array_err2.__array__,\
+                float(scalar),\
+                float(scalar_err2),\
+                float(azimuthal),\
+                float(azimuthal_err2),\
+                float(polar), \
+                float(polar_err2),\
+                Qx.__array__, Qx_err2.__array__,\
+                Qy.__array__, Qy_err2.__array__,\
+                Qz.__array__, Qz_err2.__array__)
+            
+        else:
+            raise TypeError,"Unknown primative type %s" % str(array.__type__)
+        
+        return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+    
+    except AttributeError:
+        try:
+            final_wavevector.__type__
+            array = final_wavevector
+            array_err2 = final_wavevector_err2
+            scalar = initial_wavevector
+            scalar_err2 = initial_wavevector_err2
+
+            if (array.__type__ == nessi_list.NessiList.DOUBLE):
+                Qx = nessi_list.NessiList(len(array))
+                Qx_err2 = nessi_list.NessiList(len(array))
+                Qy = nessi_list.NessiList(len(array))
+                Qy_err2 = nessi_list.NessiList(len(array))
+                Qz = nessi_list.NessiList(len(array))
+                Qz_err2 = nessi_list.NessiList(len(array))
+                axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+                    float(scalar),\
+                    float(scalar_err2),\
+                    array.__array__,\
+                    array_err2.__array__,\
+                    float(azimuthal),\
+                    float(azimuthal_err2),\
+                    float(polar), \
+                    float(polar_err2),\
+                    Qx.__array__, Qx_err2.__array__,\
+                    Qy.__array__, Qy_err2.__array__,\
+                    Qz.__array__, Qz_err2.__array__)
+
+            else:
+                raise TypeError,"Unknown primative type %s" \
+                      % str(array.__type__)
+
+            return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+
+        except AttributeError:
+            init_scatt_wavevector_to_Qx_ss = vpair_bind.DoubleVPair()
+            init_scatt_wavevector_to_Qy_ss = vpair_bind.DoubleVPair()
+            init_scatt_wavevector_to_Qz_ss = vpair_bind.DoubleVPair()
+            axis_manip_bind.init_scatt_wavevector_to_Q_ss_d(\
+                float(initial_wavevector),\
+                float(initial_wavevector_err2),\
+                float(final_wavevector),\
+                float(final_wavevector_err2),\
+                float(azimuthal),\
+                float(azimuthal_err2),\
+                float(polar),\
+                float(polar_err2),\
+                init_scatt_wavevector_to_Qx_ss,\
+                init_scatt_wavevector_to_Qy_ss,\
+                init_scatt_wavevector_to_Qz_ss)
+
+            return init_scatt_wavevector_to_Qx_ss.val, \
+                   init_scatt_wavevector_to_Qx_ss.val_err2, \
+                   init_scatt_wavevector_to_Qy_ss.val, \
+                   init_scatt_wavevector_to_Qy_ss.val_err2, \
+                   init_scatt_wavevector_to_Qz_ss.val, \
+                   init_scatt_wavevector_to_Qz_ss.val_err2
+        
+##
+# \} // end of init_scatt_wavevector_to_Q group
+
 
 ##
 # \defgroup init_scatt_wavevector_to_scalar_Q \
@@ -540,7 +1072,134 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
                    init_scatt_wavevector_to_scalar_Q_ss.val_err2
 
 ##
-# \}
+# \} // end of init_scatt_wavevector_to_scalar_Q group
+
+
+##
+# \defgroup initial_velocity_dgs axis_manip::initial_velocity_dgs
+# \{
+
+##
+# \brief This function calculates the initial velocity of the neutron
+# for a direct geometry spectrometer according to the equation
+# \f[
+# v=\frac{L_d-L_u}{t_d-t_u}
+# \f]
+# Where \f$v\f$ is the initial velocity, \f$L\_d\f$ is the distance
+# to the downstream monitor, \f$L\_u\f$ is the distance to the
+# upstream monitor, \f$t\_d\f$ is the time-of-flight to reach the
+# downstream monitor, and \f$t\_u\f$ is the time-of-flight to reach
+# the upstream monitor. The uncertainty is calculated using the
+# assumption of uncorrelated uncertainties.
+# 
+# \f[
+# \sigma^2_v = \frac{\sigma^2_{dist\_downstream\_mon} +
+#                    \sigma^2_{dist\_upstream\_mon}}
+#                      {(t_d - t_u)^2}
+# \f]
+#
+# \param dist_upstream_mon (INPUT) is the distance to the upstream
+# monitor in units of meters
+# \param dist_upstream_mon_err2 (INPUT) is the square of the
+# uncertainty in dist_upstream_mon
+# \param time_upstream_mon (INPUT) is the time-of-flight to reach
+# the upstream monitor in units of micro-seconds
+# \param time_upstream_mon_err2 (INPUT) is the square of the
+# uncertainty in time_upstream_mon
+# \param dist_downstream_mon (INPUT) is the distance to the
+# downstream monitor in units of meters
+# \param dist_downstream_mon_err2 (INPUT) is the square of the
+# uncertainty in dist_downstream_mon
+# \param time_downstream_mon (INPUT) is the time-of-flight to reach
+# the downstream monitor in units of micro-seconds
+# \param time_downstream_mon_err2 (INPUT) is the square of the
+# uncertainty in time_downstream_mon
+#
+# \return
+# - The initial_velocity is the initial velocity of the
+# neutron in units of meter/mirco-seconds
+# - The initial_velocity_err2 is the square of the
+# uncertainty in initial_velocity
+#
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def initial_velocity_dgs(dist_upstream_mon,\
+                         dist_upstream_mon_err2,\
+                         time_upstream_mon,\
+                         time_upstream_mon_err2,\
+                         dist_downstream_mon,\
+                         dist_downstream_mon_err2,\
+                         time_downstream_mon,\
+                         time_downstream_mon_err2):
+
+    """
+    This function calculates the initial velocity of the neutron
+    for a direct geometry spectrometer according to the equation
+    
+    v[i] = (L_d-L_u) / (t_d-t_u)
+    
+    Where v is the initial velocity, L_d is the distance to the
+    downstream monitor, L_u is the distance to the upstream
+    monitor, t_d is the time-of-flight to reach the downstream monitor,
+    and t_u is the time-of-flight to reach the upstream monitor. The
+    uncertainty is calculated using the assumption of uncorrelated
+    uncertainties.
+
+    v_err2[i] = (dist_downstream_mon_err2 + dist_upstream_mon_err2) /
+             (time_downstream_mon - time_upstream_mon)^2
+
+    Parameters:
+    __________
+    
+     -> dist_upstream_mon is the distance to the upstream
+    monitor in units of meters
+     -> dist_upstream_mon_err2 is the square of the
+    uncertainty in dist_upstream_mon
+     -> time_upstream_mon is the time-of-flight to reach
+    the upstream monitor in units of micro-seconds
+     -> time_upstream_mon_err2 is the square of the
+    uncertainty in time_upstream_mon
+     -> dist_downstream_mon is the distance to the
+    downstream monitor in units of meters
+    -> dist_downstream_mon_err2 is the square of the
+    uncertainty in dist_downstream_mon
+    -> time_downstream_mon is the time-of-flight to reach
+    the downstream monitor in units of micro-seconds
+     -> time_downstream_mon_err2 is the square of the
+    uncertainty in time_downstream_mon
+   
+    Returns - 2 NessiLists:
+    ________________________
+    <- The initial_velocity is the initial velocity of the
+    neutron in units of meter/mirco-seconds
+    <- The initial_velocity_err2 is the square of the
+    uncertainty in initial_velocity
+    
+    Exceptions:
+    __________
+
+    <- TypeError is thrown if any of the arrays are not
+    recognized types
+
+    """
+
+    initial_velocity_dgs_ss = vpair_bind.DoubleVPair()
+    axis_manip_bind.initial_velocity_dgs_ss_d(\
+        float(dist_upstream_mon),\
+        float(dist_upstream_mon_err2),\
+        float(time_upstream_mon),\
+        float(time_upstream_mon_err2),\
+        float(dist_downstream_mon),\
+        float(dist_downstream_mon_err2),\
+        float(time_downstream_mon),\
+        float(time_downstream_mon_err2),\
+        initial_velocity_dgs_ss)
+    return initial_velocity_dgs_ss.val, initial_velocity_dgs_ss.val_err2
+                             
+##
+# \} // end of initial_velocity_dgs group
+
 
 ##
 # \defgroup rebin_axis_1D axis_manip::rebin_axis_1D
@@ -1055,6 +1714,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
 ##
 # \} // end of rebin_axis2D group
 
+
 ##
 # \defgroup reverse_array_cp axis_manip::reverse_array_cp
 # \{
@@ -1123,6 +1783,7 @@ def reverse_array_cp(input):
 ##
 # \}
 
+
 ##
 # \defgroup reverse_array_nc axis_manip::reverse_array_nc
 # \{
@@ -1188,6 +1849,289 @@ def reverse_array_nc(input):
 
 ##
 #\}
+
+
+##
+# \defgroup time_offset_dgs axis_manip::time_offset_dgs
+# \{
+
+##
+# \brief This function is described in section 3.26.
+#
+# This function calculates the time offset for a direct geometry
+# spectrometer according to the equation
+# \f[
+# t_0 = t - \frac{L}{v}
+# \f]
+# Where \f$t_0\f$ is the time offset, \f$t\f$ is the time observed
+# at the downstream monitor, \f$L\f$ is the total flight path for
+# the downstream monitor, and \f$v\f$ is the velocity of the
+# incident neutrons. The uncertainty is calculated using the
+# assumption of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_{t_0} = \sigma^2_t + \left(\frac{1}{v}\right)^2 \sigma^2_L + 
+# \left(\frac{L}{v^2}\right)^2 \sigma^2_v
+# \f]
+#
+# \param dist_downstream_monitor (INPUT) is the total flight path
+# for the downstream monitor in units of meter
+# \param dist_downstream_monitor_err2 (INPUT) is the square of the
+# uncertainty in dist_downstream_monitor
+# \param time_downstream_monitor (INPUT) is the time observed at
+# the downstream monitor in units of micro-seconds
+# \param time_downstream_monitor_err2 (INPUT) is the square of the
+# uncertainty in time_downstream_monitor
+# \param initial_velocity (INPUT) is the velocity of the incident
+# neutrons in unites of meter/micro-seconds
+# \param initial_velocity_err2 (INPUT) is the square of the
+# uncertainty in initial_velocity
+#
+# \return
+# - The time_offset is the time offset of the neutron
+# emitting from the source assuming the velocity supplied in units
+# of micro-seconds
+# - The time_offset_err2 is the square of the uncertainty
+# in time_offset
+#
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def time_offset_dgs(dist_downstream_monitor,\
+                    dist_downstream_monitor_err2,\
+                    time_downstream_monitor,\
+                    time_downstream_monitor_err2,\
+                    initial_velocity,\
+                    initial_velocity_err2):
+
+    """
+    This function calculates the time offset for a direct geometry
+    spectrometer according to the equation
+    
+    t_0 = t - (L / v)
+    
+    Where t_0 is the time offset, t is the time observed
+    at the downstream monitor, L is the total flight path for
+    the downstream monitor, and v is the velocity of the
+    incident neutrons. The uncertainty is calculated using the
+    assumption of uncorrelated uncertainties.
+
+    t_0_err2 = t_err2 + (1 / v)^2 L_err2 + (L / v^2)^2 v_err2
+
+    Parameters:
+    __________
+    
+    -> dist_downstream_monitor is the distance to the downstream monitor
+    in units of meters
+    -> dist_downstream_monitor_err2 is the square of the uncertainty in
+    dist_downstream_monitor
+    -> time_downstream_monitor is the time-of-flight to reach the
+    downstream monitor in units of micro-seconds
+    -> time_downstream_monitor_err2 is the square of the uncertainty in
+    time_downstream_monitor
+    -> initial_velocity is the velocity of the incident neutrons in
+    unites of meter/micro-seconds
+    -> initial_velocity_err2 is the square of the uncertainty in
+    initial_velocity
+   
+    Returns - 2 NessiLists:
+    ________________________
+    <- The time_offset is the time offset of the neutron emitting from
+    the source assuming the velocity supplied in units of micro-seconds
+    <- The time_offset_err2 is the square of the uncertainty in
+    time_offset
+    
+    Exceptions:
+    __________
+
+    <- TypeError is thrown if any of the arrays are not
+    recognized types
+
+    """
+
+    time_offset_dgs_ss = vpair_bind.DoubleVPair()
+    axis_manip_bind.time_offset_dgs_ss_d(\
+        float(dist_downstream_monitor),\
+        float(dist_downstream_monitor_err2),\
+        float(time_downstream_monitor),\
+        float(time_downstream_monitor_err2),\
+        float(initial_velocity),\
+        float(initial_velocity_err2),\
+        time_offset_dgs_ss)
+    return time_offset_dgs_ss.val, time_offset_dgs_ss.val_err2
+                             
+##
+# \} // end of time_offset_dgs group
+
+
+##
+# \defgroup tof_to_final_velocity_dgs axis_manip::tof_to_final_velocity_dgs
+# \{
+   
+##
+# \brief This function is described in section 3.27 of the
+# SNS 107030214-TD0001-R00, "Data Reduction Library Software Requirements
+# and Specifications".
+#
+# This function calculates the final velocity of the neutron for a
+# direct geometry spectrometer according to the equation
+# \f[
+# v_f[i]=\frac{L_D}{t[i]-\frac{L_S}{v_i}-t_0}
+# \f]
+# Where \f$v_f[i]\f$ is the final velocity of the neutron,
+# \f$L_D\f$ is the distance from the sample to the detector,
+# \f$t[i]\f$ is the total time-of-flight, \f$L_S\f$ is the distance
+# from source to sample, \f$v_i\f$ is the initial velocity of the
+# neutron, and \f$t_0\f$ is the time-offset of the neutron. The uncertainty
+# is calculated using the assumption of uncorrelated uncertainties.
+#
+# \f[ 
+# \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+# \frac{L^2_D \sigma^2_{L_S}}{v^2_i (t[i]-\frac{L_S}{v_i}-t_0)^4} +
+# \frac{L^2_S L^2_D \sigma^2_{v_i}}{v^4_i (t[i]-\frac{L_S}{v_i}-t_0)^4}
+# + \frac{L^2_D \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
+# \f]
+#
+# \param tof (INPUT) is the time-of-flight axis in units of
+# micro-seconds
+# \param tof_err2 (INPUT) is the square of the uncertainty in the
+# time-of-flight axis
+# \param initial_velocity (INPUT) is the initial velocity of the
+# neutron in units of meter/seconds
+# \param initial_velocity_err2 (INPUT) is the square of the
+# uncertainty in initial_velocity
+# \param time_offset (INPUT) is the time offset of the neutron
+# emitting from the source assuming the velocity supplied in units
+# of micro-seconds
+# \param time_offset_err2 (INPUT) is the square of the uncertainty
+# in time_offset
+# \param dist_source_sample (INPUT) is the distance from source to
+# sample in units of meter
+# \param dist_source_sample_err2 (INPUT) is the square of the
+# uncertainty in dist_source_sample
+# \param dist_sample_detector (INPUT) is the distance from sample
+# to detector in units of meter
+# \param dist_sample_detector_err2 (INPUT) is the square of the
+# uncertainty in dist_sample_detector
+#
+# \return
+# - The final_velocity is the final velocity axis of the
+# neutron in units of meter/second
+# - The final_velocity_err2 is the square of the
+# uncertainty in the final velocity axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def tof_to_final_velocity_dgs(tof,\
+                              tof_err2,\
+                              initial_velocity,\
+                              initial_velocity_err2,\
+                              time_offset,\
+                              time_offset_err2,\
+                              dist_source_sample,\
+                              dist_source_sample_err2,\
+                              dist_sample_detector,\
+                              dist_sample_detector_err2):
+
+    """
+    This function calculates the final velocity of the neutron for a
+    direct geometry spectrometer according to the equation:
+
+    v_f[i] = L_D / (t[i]-(L_S/v_i)-t_0)
+    
+    Where v_f[i] is the final velocity of the neutron, L_D is the distance
+    from the sample to the detector, t[i] is the total time-of-flight,
+    L_S is the distance from source to sample, v_i is the initial velocity
+    of the neutron, and t_0 is the time-offset of the neutron. The uncertainty
+    is calculated using the assumption of uncorrelated uncertainties. The
+    uncertainty is calculated using the assumption of uncorrelated uncertainties
+    v_f_err2[i] = (L_D_err2)/(t[i]-(L_S/v_i)-t_0)^2 +
+    ((L_D)^2 * L_S_err2)/((v_i)^2 * (t[i]-(L_S/v_i)-t_0)^4) +
+    ((L_S)^2 * (L_D)^2 * v_i_err2)/((v_i)^4 * (t[i]-(L_S/v_i)-t_0)^4) +
+    ((L_D)^2 * t_0_err2)/(t[i]-(L_S/v_i)-t_0)^4
+    
+    Parameters:
+    __________
+
+    -> tof is the time-of-flight axis in units of micro-seconds
+    -> tof_err2 is the square of the uncertainty in the time-of-flight axis
+    -> initial_velocity is the initial velocity of the neutron in units of
+       meter/seconds
+    -> initial_velocity_err2 is the square of the uncertainty in initial_velocity  
+    -> time_offset is the time offset of the neutron emitting from the source
+       assuming the velocity supplied in units of micro-seconds
+    -> time_offset_err2 is the square of the uncertainty in time_offset
+    -> dist_source_sample is the distance from source to sample in units of
+       meter
+    -> dist_source_sample_err2 is the square of the uncertainty in
+       dist_source_sample
+    -> dist_sample_detector is the distance from sample to detector in units
+       of meter
+    -> dist_sample_detector_err2 is the square of the uncertainty in
+       dist_sample_detector
+
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- the final_velocity axis in units of meter/second
+    <- the square of the uncertainty of the final_velocity axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+    try:
+        if tof.__type__ != tof_err2.__type__:
+            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
+
+        if (tof.__type__ == nessi_list.NessiList.DOUBLE):
+            final_velocity = nessi_list.NessiList(len(tof))
+            final_velocity_err2 = nessi_list.NessiList(len(tof))
+            axis_manip_bind.tof_to_final_velocity_dgs_d(\
+                tof.__array__,\
+                tof_err2.__array__,\
+                float(initial_velocity),\
+                float(initial_velocity_err2),\
+                float(time_offset),\
+                float(time_offset_err2),\
+                float(dist_source_sample),\
+                float(dist_source_sample_err2),\
+                float(dist_sample_detector),\
+                float(dist_sample_detector_err2),\
+                final_velocity.__array__, \
+                final_velocity_err2.__array__)
+
+        else:
+            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
+
+        return final_velocity, final_velocity_err2
+
+    except AttributeError:
+        final_velocity_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.tof_to_final_velocity_dgs_ss_d(\
+            float(tof),\
+            float(tof_err2),\
+            float(initial_velocity),\
+            float(initial_velocity_err2),\
+            float(time_offset),\
+            float(time_offset_err2),\
+            float(dist_source_sample),\
+            float(dist_source_sample_err2),\
+            float(dist_sample_detector),\
+            float(dist_sample_detector_err2),\
+            final_velocity_ss)
+        return final_velocity_ss.val, final_velocity_ss.val_err2
+
+##
+# \}// end of tof_to_final_velocity_dgs group
+
 
 ##
 # \defgroup tof_to_initial_wavelength_igs \
@@ -1385,6 +2329,7 @@ def tof_to_initial_wavelength_igs(tof,\
 ##
 # \}
 
+
 ##
 # \defgroup tof_to_wavelength axis_manip::tof_to_wavelength
 # \{
@@ -1515,6 +2460,328 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 ##
 # \}
 
+
+##
+# \defgroup velocity_to_energy axis_manip::velocity_to_energy
+# \{
+
+##
+# \brief This function is described in section 3.21.
+#
+# This function calculates the energy of a neutron given its velocity
+# according to the equation
+# \f[
+# E[i]=\frac{1}{2}m_n v[i]^2 =
+# 5.227\times 10^{-6} \left( \frac{v[i]}{m/\mu s} \right)^2 meV
+# \f]
+# Where \f$E[i]\f$ is the energy of the neutron, \f$m_n\f$ is the mass of the
+# neutron, and \f$v[i]\f$ is the velocity of the neutron. The uncertainty is
+# calculated using the assumption of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_E[i] = (m_n v[i])^2 \sigma^2_v[i]
+# \f]
+#
+# \param velocity (INPUT) is the velocity of the neutron in units of
+# meter/micro-seconds
+# \param velocity_err2 (INPUT) is the square of the uncertainty in the
+# velocity of the neutron
+#
+# \return
+# - The energy is the energy of the neutron in units of meV
+# - The energy_err2 is the square of the uncertainty in the energy
+#
+# \exception IndexError is thrown if the arrays are not of compatible  sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+
+def velocity_to_energy(velocity, velocity_err2):
+
+    """
+    This function takes a histogram data set that has the principle axis in
+    units of meter/micro-seconds and converts it to meV according to the
+    equation
+
+    E[i] = m_n v[i]^2 / 2 = 5.227* 10^-6 * v[i]^2
+    
+    Where E is the energy of the neutron, m_n is the mass of the neutron, and
+    v is the velocity of the neutron. 
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the energy axis is given by
+
+    E_err2[i] = m_n^2 * velocity[i]^2 * velocity_err2[i]
+
+    Parameters:
+    ----------
+    -> velocity is the velocity of the neutron in units of meter/micro-seconds
+    -> velocity_err2 is the square of the uncertainty in the velocity of the
+       neutron
+   
+    Returns - 2 NessiLists:
+    ----------------------
+    <- the energy of the neutron in units of meV
+    <- the square of the uncertainty in the energy 
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+
+    """
+
+    try:
+        if velocity.__type__ != velocity_err2.__type__:
+            raise TypeError, "Velocity and Velocity Err2 arrays are not"\
+            +"the same type"
+
+        if (velocity.__type__ == nessi_list.NessiList.DOUBLE):
+            E = nessi_list.NessiList(len(velocity))
+            E_err2 = nessi_list.NessiList(len(velocity))
+            axis_manip_bind.velocity_to_energy_d(\
+                velocity.__array__,\
+                velocity_err2.__array__,\
+                E.__array__,\
+                E_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(velocity.__type__)
+
+        return E, E_err2
+
+    except AttributeError:
+        E_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.velocity_to_energy_ss_d(\
+            float(velocity),\
+            float(velocity_err2),\
+            E_ss)
+        return E_ss.val, E_ss.val_err2
+
+##
+# \}  // end of velocity_to_energy group
+
+
+##
+# \defgroup velocity_to_scalar_k axis_manip::velocity_to_scalar_k
+# \{
+
+##
+# \brief This function is described in section 3.23.
+#
+# This function calculates the scalar wavevector given the velocity
+# according to the equation
+# \f[
+# k[i]=\frac{m_n}{\hbar}v[i]
+# \f]
+# Where \f$k[i]\f$ is the scalar wavevector, \f$m_n\f$ is the mass
+# of the neutron, \f$\hbar\f$ is Planck's constant divided by \f$2\pi\f$,
+# and \f$v[i]\f$ is
+# the velocity of the neutron. The uncertainty is calculated using
+# the assumption of uncorrelated uncertainties.
+#
+# \f[
+# \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{\hbar^2}
+# \f]
+#
+# \param velocity (INPUT) is the velocity of the neutron in units
+# of meter/micro-seconds
+# \param velocity_err2 (INPUT) is the square of the uncertainty in
+# the velocity of the neutron
+#
+# \return
+# - The wavevector is the scalar wavevector in units of reciprocal Angstroms
+# - The wavevector_err2 is the square of the uncertainty in the scalar wavevector
+#
+# \exception IndexError is thrown if the arrays are not of compatible sizes
+# \exception TypeError is thrown if any of the arrays are not recognized types
+
+def velocity_to_scalar_k(velocity, velocity_err2):
+
+    """
+    This function calculates the scalar wavevector given the velocity
+    according to the equation:
+
+    k[i] = m_n * v[i] / hbar
+
+    where k[i] is the scalar wavevector, m_n is the mass of the neutron,
+    v[i] is the velocity of the neutron, and hbar is Planck's constant divide
+    by 2pi.
+
+    Assuming that the uncertainties are uncorrelated, the uncertainty
+    in the scalar wavevector is given by:
+
+    k_err2[i]^2 = (m_n / hbar)^2 * v_err2[i]^2
+
+    where k_err2 is the uncertainty in the scalar wavevector, and
+    v_err2 is the uncertainty in the velocity of the neutron.
+
+    Parameters:
+    __________
+
+    -> velocity is the velocity of the neutron in units of
+       meter/micro-seconds
+    -> velocity_err2 is the square of the uncertainty in the velocity
+
+    Returns 2 NessiLists:
+    ______________________
+
+    <- the scalar wavevector in units of reciprocal Angstroms
+    <- the square of the uncertainty in the scalar wavevector
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+
+    try:
+        if velocity.__type__ != velocity_err2.__type__:
+            raise TypeError, "Velocity and Velocity Err2 arrays are not"\
+            +"the same type"
+
+        if (velocity.__type__ == nessi_list.NessiList.DOUBLE):
+            wavevector = nessi_list.NessiList(len(velocity))
+            wavevector_err2 = nessi_list.NessiList(len(velocity))
+            axis_manip_bind.velocity_to_scalar_k_d(\
+                velocity.__array__,\
+                velocity_err2.__array__,\
+                wavevector.__array__,\
+                wavevector_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s"\
+                  % str(velocity.__type__)
+
+        return wavevector, wavevector_err2
+
+    except AttributeError:
+        wavevector_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.velocity_to_scalar_k_ss_d(\
+            float(velocity),\
+            float(velocity_err2),\
+            wavevector_ss)
+        return wavevector_ss.val, wavevector_ss.val_err2
+
+##
+# \} // end of velocity_to_scalar_k_group
+
+
+##
+# \defgroup wavelength_to_d_spacing axis_manip::wavelength_to_d_spacing
+# \{
+
+##
+# \brief This function is described in section 3.25.
+#
+# This function calculates the d-spacing given the wavelength according
+# to the equation
+# \f[
+# d[i]=\frac{\lambda[i]}{2\sin(polar/2)}
+# \f]
+# Where \f$d\f$ is the d-spacing, \f$\lambda[i]\f$ is the wavelength,
+# and \f$polar\f$ is the angle between the positive z-axis and
+# the direction of the scattered neutron.
+#
+# Assuming that the uncertainties are uncorrelated, the square of the
+# uncertainty of the energy axis is given by
+#
+# \f[
+# \sigma^2_d[i] = \left(\frac{1}{2 \sin(polar/2)}\right)^2 
+# \sigma^2_{\lambda}[i] + \left(\frac{\lambda[i] 
+# \cot(polar/2)}{4 \sin(polar/2)}\right)^2 \sigma^2_{polar}
+# \f]
+#
+# \param wavelength (INPUT) is the wavelength axis in units of
+# Angstroms
+# \param wavelength_err2 (INPUT) is the square of the uncertainty
+# in the wavelength axis
+# \param polar (INPUT) is the polar angle in the equation above in
+# units of radians
+# \param polar_err2 (INPUT) is the square of the uncertainty in polar
+#
+# \return
+# - The d is the d-spacing axis in units of Angstrom
+# - The d_err2 is the square of the uncertainty
+# in the d-spacing axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible  sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+
+def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
+
+    """
+    This function converts the wavelength to scalar momentum transfer
+    according to the equation
+
+    d[i] = lambda[i] / (2 * sin(polar / 2))
+
+    Where d[i] is the d-spacing axis, lambda[i] is the wavelength,
+    and polar is the angle between the positive z-axis and the direction of
+    the scattered neutron.
+
+    Using the assumption of uncorrelated uncertainties, the square of the
+    uncertainty of the scalar momentum transfer is given by
+
+    d_err2[i] = lambda_err2[i] / (2 * sin(polar / 2))^2 +
+    polar_err2 * ((lambda[i] * cot(polar / 2)) / (4 * sin(polar / 2)))^2
+
+    Parameters:
+    ----------
+    -> wavelength is the wavelength axis in units of Angstroms
+    -> wavelength_err2 is the square of the uncertainty in the wavelength axis
+    -> polar is the polar angle in the equation above in units of radians
+    -> polar_err2 is the square of the uncertainty in polar
+
+    Returns - 2 NessiLists:
+    ----------------------
+    <- The d[i] is in units of Angstroms
+    <- The square of the uncertainty in the d_spacing axis
+
+    Exceptions:
+    ----------
+    <- IndexError is thrown if the arrays are not of compatible  sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+
+    """
+
+    try:
+        if wavelength.__type__ != wavelength_err2.__type__:
+            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
+            +"the same type"
+
+        if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
+            d_spacing = nessi_list.NessiList(len(wavelength))
+            d_spacing_err2 = nessi_list.NessiList(len(wavelength))
+            axis_manip_bind.wavelength_to_d_spacing_d(\
+                wavelength.__array__,\
+                wavelength_err2.__array__,\
+                float(polar),\
+                float(polar_err2),\
+                d_spacing.__array__,\
+                d_spacing_err2.__array__)
+
+        else:
+            raise TypeError,"Unknown primative type %s" \
+                      % str(wavelength.__type__)
+
+        return d_spacing, d_spacing_err2
+
+    except AttributeError:
+        d_spacing_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.wavelength_to_d_spacing_ss_d(\
+            float(wavelength),\
+            float(wavelength_err2),\
+            float(polar),\
+            float(polar_err2),\
+            d_spacing_ss)
+        return d_spacing_ss.val, d_spacing_ss.val_err2
+
+##
+# \} // end of wavelength_to_d_spacing group
+
+
 ##
 # \defgroup wavelength_to_energy axis_manip::wavelength_to_energy
 # \{
@@ -1629,6 +2896,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
 
 ##
 # \}
+
 
 ##
 # \defgroup wavelength_to_scalar_k axis_manip::wavelength_to_scalar_k
@@ -1773,7 +3041,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 # \param wavelength (INPUT) is the wavelength axis in units of
 # angstroms
 # \param wavelength_err2 (INPUT) is the square of the uncertainty in the
-# wavelength axis
+ # wavelength axis
 # \param polar (INPUT) is the polar angle in the equation above in
 # units of radians
 # \param polar_err2 (INPUT) is the square of the uncertainty in
