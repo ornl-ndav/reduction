@@ -37,6 +37,8 @@
    side-by-side.
 """
 
+import nessi_vector_bind
+
 ##
 # \namespace nessi_list
 #
@@ -156,8 +158,6 @@ class NessiList (list):
 
         """
 
-        import nessi_vector_bind
-
         # check the length argument
         length=int(length)
         if length<0:
@@ -180,6 +180,53 @@ class NessiList (list):
         else:
             raise Exception,"type [%s] not supported by NessiList" % type
 
+##
+# \ingroup __deepcopy__ NessiList
+#
+# \brief Function used to provide a deep copy of a NessiList
+#
+# This function provides a mechanism for getting a deep copy of a NessiList
+# using the following convention:
+# \code
+# a = NessiList()
+# import copy
+# b = copy.deepcopy(a)
+# \endcode
+#
+# \param self <i>this</i>
+# \param memo (INPUT/OPTIONAL) is a dictionary
+#
+# \return A deeply copied NessiList
+
+    def __deepcopy__(self, memo = {}):
+        """
+        This function provides a mechanism for getting a deep copy of a
+        NessiList using the following convention:
+
+        a = NessiList()
+        import copy
+        b = copy.deepcopy(a)
+
+        Parameters:
+        ----------
+        -> memo (INPUT/OPTIONAL) is a dictionary
+
+        Returns:
+        -------
+        <- A deeply copied NessiList
+        """
+        
+        from copy import deepcopy
+        result = self.__class__()
+        memo[id(self)] = result
+        result.__init__()
+        result.__type__ = deepcopy(self.__type__)
+        if self.__type__ == NessiList.INT:
+            result.__array__ = nessi_vector_bind.IntNessiVector(self.__array__)
+        elif self.__type__ == NessiList.DOUBLE:
+            result.__array__ = nessi_vector_bind.DoubleNessiVector(self.__array__)
+        return result
+    
 ##
 # \ingroup append NessiList
 #
@@ -1337,8 +1384,13 @@ class NessiList (list):
         except:
             return False
 
-        # deep comparison
         import utils
+
+        # do it in c if they are both NessiLists
+        if self.__class__ == other.__class__:
+            return utils.vector_is_equals(self,other)
+
+        # deep comparison
         try:
             for (mine,yours) in map(None,self,other):
                 if utils.compare(mine,yours)!=0:
@@ -2030,8 +2082,7 @@ def print_multi(n,object1,object2,object3=NessiList()):
 
     for i in range(0,n):
 
-        if (object1.__type__ == NessiList.FLOAT or
-            object1.__type__ == NessiList.DOUBLE):
+        if object1.__type__ == NessiList.DOUBLE:
 
                 str_output = str_output + "%7.16f " \
                     %object1[i] + tab + \

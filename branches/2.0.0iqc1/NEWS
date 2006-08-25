@@ -1,7 +1,62 @@
-Initial Release 1.0.0
-=====================
+Changes in Version 1.0.0
+========================
 
-- SNS Common Libraries provide the data reduction functions tailored towards
-  the Backscattering Spectrometer and the Liquid and Magnetic Reflectometers.
+- Provide the data reduction functions tailored towards the Backscattering 
+  Spectrometer, the Liquid and Magnetic Reflectometers, ARCS, CNCS, POWGEN3 
+  and EQ-SANS. This includes the following functions:
+
+  - Array Manipulations (1.0.0)
+    * add_ncerr
+    * div_ncerr
+    * mult_ncerr
+    * sub_ncerr
+    * sumw_ncerr
+
+  - Axis Manipulations (1.0.0)
+    * d_spacing_to_tof_focused_det
+    * energy_transfer
+    * frequency_to_angular_frequency
+    * frequency_to_energy
+    * initial_velocity_dgs
+    * init_scatt_wavevector_to_Q
+    * init_scatt_wavevector_to_scalar_Q
+    * rebin_axis_1D
+    * rebin_axis_2D
+    * reverse_array_cp
+    * reverse_array_nc
+    * time_offset_dgs
+    * tof_to_final_velocity_dgs
+    * tof_to_initial_wavelength_igs
+    * tof_to_scalar_Q
+    * tof_to_wavelength
+    * velocity_to_energy
+    * velocity_to_scalar_k
+    * wavelength_to_d_spacing
+    * wavelength_to_energy
+    * wavelength_to_scalar_k
+    * wavelength_to_scalar_Q
+
+  - Utilities (1.0.0)
+    * check_histo_sizes
+    * check_sizes_square
+    * compare
+    * vector_is_equals
+    * weighted_average
+
+- All other functions are stubbed out, but are not implemented.
+
+- Provide Python bindings and Python Abstraction Layer (PAL) for all 
+  functions. The PAL makes the function calls feel more like Python. 
+
+- Provide a data object, Nessi::Vector, which all functions use in their 
+  invocations. Currently, Nessi::Vector is just a wrapper for std::vector. 
+  This wrapper allows the underlying container to easily be swapped out in 
+  favor of another container. 
+
+- Provide a build system for compiling and deploying code: Autotools
+
+- Provide documentation system for provided code
+
+
 
 $Id$
