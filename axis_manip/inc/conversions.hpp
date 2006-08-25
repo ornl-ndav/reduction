@@ -60,7 +60,7 @@ namespace AxisManip
    * This function converts the d-spacing to time-of-flight at a
    * focused detector position according to the equation
    * \f[
-   * TOF[i]=\frac{4\pi m_n}{h} L_{focused} d[i] \sin(polar_{focused})
+   * TOF[i]=\frac{2\ m_n}{h} L_{focused} d[i] \sin(polar_{focused}/2)
    * \f]
    * Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
    * of the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$
@@ -69,6 +69,14 @@ namespace AxisManip
    * focused scattered neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{TOF}[i] = \left(\frac{m_n}{h}\right)^2 \times 
+   * \left((2 d[i] \sin(polar_{focused}/2))^2 \sigma^2_{L_{focused}} + 
+   * (2 L_{focused} \sin(polar_{focused}/2))^2 \sigma^2_d[i] + 
+   * (L_{focused} d[i] \cos(polar_{focused}/2))^2 
+   * \sigma^2_{polar_{focused}}\right)
+   * \f]
+   * 
    * \param d_spacing (INPUT) is the d-spacing axis in units of
    * Angstrom
    * \param d_spacing_err2 (INPUT) is the square of the uncertainty in
@@ -108,7 +116,7 @@ namespace AxisManip
    * This function converts the d-spacing to time-of-flight at a
    * focused detector position according to the equation
    * \f[
-   * TOF=\frac{4\pi m_n}{h} L_{focused} d \sin(polar_{focused})
+   * TOF=\frac{2\ m_n}{h} L_{focused} d \sin(polar_{focused}/2)
    * \f]
    * Where \f$TOF\f$ is the time-of-flight, \f$m_n\f$ is the mass of
    * the neutron, \f$h\f$ is Planck's constant, \f$L_{focused}\f$ is
@@ -117,6 +125,14 @@ namespace AxisManip
    * focused scattered neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{TOF} = \left(\frac{m_n}{h}\right)^2 \times 
+   * \left((2 d \sin(polar_{focused}/2))^2 \sigma^2_{L_{focused}} + 
+   * (2 L_{focused} \sin(polar_{focused}/2))^2 \sigma^2_d + 
+   * (L_{focused} d \cos(polar_{focused}/2))^2 \sigma^2_{polar_{focused}}
+   * \right)
+   * \f]
+   * 
    * \param d_spacing (INPUT) is the d-spacing axis in units of
    * Angstrom
    * \param d_spacing_err2 (INPUT) is the square of the uncertainty in
@@ -428,6 +444,10 @@ namespace AxisManip
    * is the frequency. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{\omega}[i] = 4 \pi^2 \times 10^{24} \sigma^2_{\nu}[i]
+   * \f]
+   *
    * \param frequency (INPUT) is the frequency axis in units of THz
    * \param frequency_err2 (INPUT) is the square of the uncertainty in
    * the frequency axis
@@ -459,6 +479,10 @@ namespace AxisManip
    * Where \f$\omega\f$ is the angular frequency, and \f$\nu\f$
    * is the frequency. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{\omega} = 4 \pi^2 \times 10^{24} \sigma^2_{\nu}
+   * \f]
    *
    * \param frequency (INPUT) is the frequency axis in units of THz
    * \param frequency_err2 (INPUT) is the square of the uncertainty in
@@ -581,6 +605,10 @@ namespace AxisManip
    * downstream monitor, and \f$t_u\f$ is the time-of-flight to reach
    * the upstream monitor. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   * \f[
+   * \sigma^2_v = \frac{\sigma^2_{dist\_downstream\_mon} +
+   *              \sigma^2_{dist\_upstream\_mon}}{(t_d - t_u)^2}
+   * \f]
    *
    * \param dist_upstream_mon (INPUT) is the distance to the upstream
    * monitor in units of meters
@@ -636,13 +664,13 @@ namespace AxisManip
    * This function calculates the momentum transfrom from the incident
    * and scattered wavevectors according to the equations
    * \f[
-   * Q_x=-k_f\cos(azimuthal)\sin(polar)
+   * Q_x[i]=-k_f[i]\cos(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_y=-k_f\sin(azimuthal)\sin(polar)
+   * Q_y[i]=-k_f[i]\sin(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_z=k_i-k_f\cos(polar)
+   * Q_z[i]=k_i[i]-k_f[i]\cos(polar)
    * \f]
    * Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
    * scattered wavevector, \f$Q_x\f$ is the x-component of the
@@ -652,6 +680,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z}[i] = \sigma^2_{k_i}[i] + \cos^2(polar)\sigma^2_{k_f}[i] + 
+   * k^2_f[i] \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -711,13 +754,13 @@ namespace AxisManip
    * This function calculates the momentum transfrom from the incident
    * and scattered wavevectors according to the equations
    * \f[
-   * Q_x=-k_f\cos(azimuthal)\sin(polar)
+   * Q_x[i]=-k_f[i]\cos(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_y=-k_f\sin(azimuthal)\sin(polar)
+   * Q_y[i]=-k_f[i]\sin(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_z=k_i-k_f\cos(polar)
+   * Q_z[i]=k_i-k_f[i]\cos(polar)
    * \f]
    * Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
    * scattered wavevector, \f$Q_x\f$ is the x-component of the
@@ -727,6 +770,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f}[i] + 
+   * k^2_f[i] \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z}[i] = \sigma^2_{k_i} + \cos^2(polar)\sigma^2_{k_f}[i] + 
+   * k^2_f[i] \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -792,7 +850,7 @@ namespace AxisManip
    * Q_y=-k_f\sin(azimuthal)\sin(polar)
    * \f]
    * \f[
-   * Q_z=k_i-k_f\cos(polar)
+   * Q_z[i]=k_i[i]-k_f\cos(polar)
    * \f]
    * Where \f$k_i\f$ is the incident wavevector, \f$k_f\f$ is the
    * scattered wavevector, \f$Q_x\f$ is the x-component of the
@@ -802,6 +860,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x}[i] = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y}[i] = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z}[i] = \sigma^2_{k_i}[i] + \cos^2(polar)\sigma^2_{k_f} + 
+   * k^2_f \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -877,6 +950,21 @@ namespace AxisManip
    * neturon, and \f$polar\f$ is the angle between the z-axis and the
    * scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_{Q_x} = (\cos(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\sin(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\cos(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_y} = (\sin(azimuthal) \sin(polar))^2 \sigma^2_{k_f} + 
+   * k^2_f \times ((\cos(azimuthal) \sin(polar))^2 \sigma^2_{azimuthal} + 
+   * (\sin(azimuthal) \cos(polar))^2 \sigma^2_{polar})
+   * \f]
+   * \f[
+   * \sigma^2_{Q_z} = \sigma^2_{k_i} + \cos^2(polar)\sigma^2_{k_f} + 
+   * k^2_f \sin^2(polar) \sigma^2_{polar}
+   * \f]
    *
    * \param initial_wavevector (INPUT) is the incident wavevector axis
    * in units of reciprocal Angstroms
@@ -1220,8 +1308,13 @@ namespace AxisManip
    * incident neutrons. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{t_0} = \sigma^2_t + \left(\frac{1}{v}\right)^2 \sigma^2_L + 
+   * \left(\frac{L}{v^2}\right)^2 \sigma^2_v
+   * \f]
+   *
    * \param dist_downstream_monitor (INPUT) is the total flight path
-   * for the downstream monitor in units of meter/second
+   * for the downstream monitor in units of meter
    * \param dist_downstream_monitor_err2 (INPUT) is the square of the
    * uncertainty in dist_downstream_monitor
    * \param time_downstream_monitor (INPUT) is the time observed at
@@ -1229,7 +1322,7 @@ namespace AxisManip
    * \param time_downstream_monitor_err2 (INPUT) is the square of the
    * uncertainty in time_downstream_monitor
    * \param initial_velocity (INPUT) is the velocity of the incident
-   * neutrons in unites of meter/seconds
+   * neutrons in unites of meter/micro-seconds
    * \param initial_velocity_err2 (INPUT) is the square of the
    * uncertainty in initial_velocity
    * \param time_offset (OUTPUT) is the time offset of the neutron
@@ -1279,6 +1372,13 @@ namespace AxisManip
    * uncertainty is calculated using the assumption of uncorrelated
    * uncertainties.
    *
+   * \f[
+   * \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+   * \frac{L^2_D \sigma^2_{L_S}}{v^2_i (t[i]-\frac{L_S}{v_i}-t_0)^4} +
+   * \frac{L^2_S L^2_D \sigma^2_{v_i}}{v^4_i (t[i]-\frac{L_S}{v_i}-t_0)^4}
+   * + \frac{L^2_D \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
+   * \f]
+   *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
@@ -1301,7 +1401,7 @@ namespace AxisManip
    * \param dist_sample_detector_err2 (INPUT) is the square of the
    * uncertainty in dist_sample_detector
    * \param final_velocity (OUTPUT) is the final velocity axis of the
-   * neutron in units of meter/second
+   * neutron in units of meter/micro-second
    * \param final_velocity_err2 (OUTPUT) is the square of the
    * uncertainty in the final velocity axis
    *
@@ -1340,6 +1440,13 @@ namespace AxisManip
    * \f$t_0\f$ is the time-offset of the neutron. The uncertainty is
    * calculated using the assumption of uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_{v_f} = \frac{\sigma^2_{L_D}}{(t-\frac{L_S}{v_i}-t_0)^2} +
+   * \frac{L^2_D \sigma^2_{L_S}}{v^2_i (t-\frac{L_S}{v_i}-t_0)^4} +
+   * \frac{L^2_S L^2_D \sigma^2_{v_i}}{v^4_i (t-\frac{L_S}{v_i}-t_0)^4}
+   * + \frac{L^2_D \sigma^2_{t_0}}{(t-\frac{L_S}{v_i}-t_0)^4}
+   * \f]
+   *  
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
    * \param tof_err2 (INPUT) is the square of the uncertainty in the
@@ -1362,7 +1469,7 @@ namespace AxisManip
    * \param dist_sample_detector_err2 (INPUT) is the square of the
    * uncertainty in dist_sample_detector
    * \param final_velocity (OUTPUT) is the final velocity axis of the
-   * neutron in units of meter/second
+   * neutron in units of meter/micro-second
    * \param final_velocity_err2 (OUTPUT) is the square of the
    * uncertainty in the final velocity axis
    *
@@ -2115,6 +2222,10 @@ namespace AxisManip
    * netron. The uncertainty is calculated using the assumption of
    * uncorrelated uncertainties.
    *
+   * \f[
+   * \sigma^2_E[i] = (m_n v[i])^2 \sigma^2_v[i]
+   * \f]
+   *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
    * \param velocity_err2 (INPUT) is the square of the uncertainty in
@@ -2149,6 +2260,10 @@ namespace AxisManip
    * of the neutron, and \f$v\f$ is the velocity of the netron. The
    * uncertainty is calculated using the assumption of uncorrelated
    * uncertainties.
+   *
+   * \f[
+   * \sigma^2_E = (m_n v)^2 \sigma^2_v
+   * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
@@ -2186,12 +2301,17 @@ namespace AxisManip
    * This function calculates the scalar wavevector given the velocity
    * according to the equation
    * \f[
-   * k[i]=\frac{m_n}{h}v[i]
+   * k[i]=\frac{m_n}{\hbar}v[i]
    * \f]
    * Where \f$k[i]\f$ is the scalar wavevector, \f$m_n\f$ is the mass
-   * of the neutron, \f$h\f$ is Planck's constant, and \f$v[i]\f$ is
+   * of the neutron, \f$\hbar\f$ is Planck's constant divided by \f$2\pi\f$, 
+   * and \f$v[i]\f$ is
    * the velocity of the neutron. The uncertainty is calculated using
    * the assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_k[i] = \frac{m^2_n \sigma^2_{v}[i]}{\hbar^2}
+   * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
@@ -2220,12 +2340,17 @@ namespace AxisManip
    * This function calculates the scalar wavevector given the velocity
    * according to the equation
    * \f[
-   * k=\frac{m_n}{h}v
+   * k=\frac{m_n}{\hbar}v
    * \f]
    * Where \f$k\f$ is the scalar wavevector, \f$m_n\f$ is the mass of
-   * the neutron, \f$h\f$ is Planck's constant, and \f$v\f$ is the
+   * the neutron, \f$\hbar\f$ is Planck's constant divided by \f$2\pi\f$, 
+   * and \f$v\f$ is the
    * velocity of the neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_k = \frac{m^2_n \sigma^2_{v}}{\hbar^2}
+   * \f]
    *
    * \param velocity (INPUT) is the velocity of the neutron in units
    * of meter/micro-seconds
@@ -2263,12 +2388,18 @@ namespace AxisManip
    * This function calculates the d-spacing given the wavelength
    * according to the equation
    * \f[
-   * d[i]=\frac{\lambda[i]}{2\sin(polar)}
+   * d[i]=\frac{\lambda[i]}{2\sin(polar/2)}
    * \f]
    * Where \f$d\f$ is the d-spacing, \f$\lambda[i]\f$ is the
    * wavelength, and \f$polar\f$ is the angle between the z-axis and
    * the scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_d[i] = \left(\frac{1}{2 \sin(polar/2)}\right)^2 
+   * \sigma^2_{\lambda}[i] + \left(\frac{\lambda[i] 
+   * \cot(polar/2)}{4 \sin(polar/2)}\right)^2 \sigma^2_{polar}
+   * \f]
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
@@ -2303,12 +2434,18 @@ namespace AxisManip
    * This function calculates the d-spacing given the wavelength
    * according to the equation
    * \f[
-   * d=\frac{\lambda}{2\sin(polar)}
+   * d=\frac{\lambda}{2\sin(polar/2)}
    * \f]
    * Where \f$d\f$ is the d-spacing, \f$\lambda\f$ is the
    * wavelength, and \f$polar\f$ is the angle between the z-axis and
    * the scattered neutron. The uncertainty is calculated using the
    * assumption of uncorrelated uncertainties.
+   *
+   * \f[
+   * \sigma^2_d = \left(\frac{1}{2 \sin(polar/2)}\right)^2 
+   * \sigma^2_{\lambda} + \left(\frac{\lambda 
+   * \cot(polar/2)}{4 \sin(polar/2)}\right)^2 \sigma^2_{polar}
+   * \f]
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms

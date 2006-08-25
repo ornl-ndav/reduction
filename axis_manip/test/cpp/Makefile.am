@@ -34,16 +34,25 @@ AM_LDFLAGS  = -static \
 EXTRA_DIST=testsuite.at
 
 AXIS_MANIP_TARGETS = \
+	d_spacing_to_tof_focused_det_test \
 	energy_transfer_test \
+	frequency_to_angular_frequency_test\
 	frequency_to_energy_test \
+	init_scatt_wavevector_to_Q_test \
 	init_scatt_wavevector_to_scalar_Q_test \
+	initial_velocity_dgs_test \
 	rebin_axis_1D_test \
 	rebin_axis_2D_test \
 	reverse_array_cp_test \
 	reverse_array_nc_test \
+	time_offset_dgs_test \
+	tof_to_final_velocity_dgs_test \
 	tof_to_initial_wavelength_igs_test \
 	tof_to_scalar_Q_test \
 	tof_to_wavelength_test \
+	velocity_to_energy_test\
+	velocity_to_scalar_k_test \
+	wavelength_to_d_spacing_test \
 	wavelength_to_energy_test \
 	wavelength_to_scalar_k_test \
 	wavelength_to_scalar_Q_test
@@ -54,13 +63,29 @@ TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(AXIS_MANIP_TARGETS)
 
+d_spacing_to_tof_focused_det_test_SOURCES = \
+	d_spacing_to_tof_focused_det_test.cpp \
+	test_common.hpp
+
 energy_transfer_test_SOURCES = energy_transfer_test.cpp test_common.hpp
 
+frequency_to_angular_frequency_test_SOURCES = \
+	frequency_to_angular_frequency_test.cpp \
+	test_common.hpp
+
 frequency_to_energy_test_SOURCES = frequency_to_energy_test.cpp test_common.hpp
+
+init_scatt_wavevector_to_Q_test_SOURCES = \
+        init_scatt_wavevector_to_Q_test.cpp \
+        test_common.hpp
 
 init_scatt_wavevector_to_scalar_Q_test_SOURCES = \
         init_scatt_wavevector_to_scalar_Q_test.cpp \
         test_common.hpp
+
+initial_velocity_dgs_test_SOURCES = \
+	initial_velocity_dgs_test.cpp \
+	test_common.hpp
 
 rebin_axis_1D_test_SOURCES = rebin_axis_1D_test.cpp test_common.hpp
 
@@ -70,15 +95,31 @@ reverse_array_cp_test_SOURCES = reverse_array_cp_test.cpp test_common.hpp
 
 reverse_array_nc_test_SOURCES = reverse_array_nc_test.cpp test_common.hpp
 
-tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
+time_offset_dgs_test_SOURCES = time_offset_dgs_test.cpp test_common.hpp
 
-tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp test_common.hpp
+tof_to_final_velocity_dgs_test_SOURCES = \
+        tof_to_final_velocity_dgs_test.cpp \
+        test_common.hpp
 
 tof_to_initial_wavelength_igs_test_SOURCES = \
         tof_to_initial_wavelength_igs_test.cpp \
         test_common.hpp
 
-wavelength_to_energy_test_SOURCES = wavelength_to_energy_test.cpp \
+tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp test_common.hpp
+
+tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
+
+velocity_to_energy_test_SOURCES = velocity_to_energy_test.cpp \
+        test_common.hpp
+
+velocity_to_scalar_k_test_SOURCES = velocity_to_scalar_k_test.cpp \
+        test_common.hpp
+
+wavelength_to_d_spacing_test_SOURCES = wavelength_to_d_spacing_test.cpp \
+        test_common.hpp
+
+wavelength_to_energy_test_SOURCES = \
+	wavelength_to_energy_test.cpp \
         test_common.hpp
 
 wavelength_to_scalar_k_test_SOURCES = wavelength_to_scalar_k_test.cpp \

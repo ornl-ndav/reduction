@@ -29,9 +29,21 @@ AT_INIT
 AT_BANNER([[Checking Functionality of the Axis Manipulation Functions
                   axis_manip/test/cpp]])
 
+AT_SETUP([Checking the D Spacing to TOF Focused Detector Function.  ])
+AT_CHECK([d_spacing_to_tof_focused_det_test | sed -e 's/\r$//' ],[],
+[[d_spacing_to_tof_focused_det_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Energy Transfer Function.  ])
 AT_CHECK([energy_transfer_test | sed -e 's/\r$//' ],[],
 [[energy_transfer_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Frequency to Angular Frequency Function.  ])
+AT_CHECK([frequency_to_angular_frequency_test | sed -e 's/\r$//' ],[],
+[[frequency_to_angular_frequency_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
@@ -41,9 +53,21 @@ AT_CHECK([frequency_to_energy_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Initial and Scattering Wavevector to Momentum Transfer Function.  ])
+AT_CHECK([init_scatt_wavevector_to_Q_test | sed -e 's/\r$//' ],[],
+[[init_scatt_wavevector_to_Q_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Initial and Scattering Wavevector to Scalar Q Function.  ])
 AT_CHECK([init_scatt_wavevector_to_scalar_Q_test | sed -e 's/\r$//' ],[],
 [[init_scatt_wavevector_to_scalar_Q_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Initial Velocity for Direct Geometry Spectrometer Function.  ])
+AT_CHECK([initial_velocity_dgs_test | sed -e 's/\r$//' ],[],
+[[initial_velocity_dgs_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
@@ -71,6 +95,18 @@ AT_CHECK([reverse_array_nc_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Time Offset for Direct Geometry Spectrometer Function .  ])
+AT_CHECK([time_offset_dgs_test | sed -e 's/\r$//' ],[],
+[[time_offset_dgs_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the TOF to Final Velocity for Direct Geometry Spectrometer Function .  ])
+AT_CHECK([tof_to_final_velocity_dgs_test | sed -e 's/\r$//' ],[],
+[[tof_to_final_velocity_dgs_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the TOF to Initial Wavelength for Inverse Geometry Spectrometer Function .  ])
 AT_CHECK([tof_to_initial_wavelength_igs_test | sed -e 's/\r$//' ],[],
 [[tof_to_initial_wavelength_igs_test.cpp..........Functionality OK
@@ -89,11 +125,31 @@ AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Velocity to Energy Function.  ])
+AT_CHECK([velocity_to_energy_test | sed -e 's/\r$//' ],[],
+[[velocity_to_energy_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Velocity to Scalar Wavevector Function.  ])
+AT_CHECK([velocity_to_scalar_k_test | sed -e 's/\r$//' ],[],
+[[velocity_to_scalar_k_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Wavelength to d Spacing Function.  ])
+AT_CHECK([wavelength_to_d_spacing_test | sed -e 's/\r$//' ],[],
+[[wavelength_to_d_spacing_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Wavelength to Energy Function.  ])
 AT_CHECK([wavelength_to_energy_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_energy_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
+
+
 
 AT_SETUP([Checking the Wavelength to Scalar Wavevector Function.  ])
 AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],
