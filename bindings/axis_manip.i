@@ -178,6 +178,15 @@ std::string tof_to_initial_wavelength_igs_ss_d(const double tof, const double to
 
 %template(tof_to_scalar_Q_d) AxisManip::tof_to_scalar_Q<double>;
 
+%{
+std::string tof_to_scalar_Q_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, const double polar, const double polar_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::tof_to_scalar_Q(tof, tof_err2, pathlength, pathlength_err2, polar, polar_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string tof_to_scalar_Q_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, const double polar, const double polar_err2, VPair<double> & value, void *temp=NULL);
+
 %template(tof_to_wavelength_d) AxisManip::tof_to_wavelength<double>;
 
 %{
