@@ -50,23 +50,23 @@ for counter in range(NUM_VAL):
 
 # Truth values for tof_to_scalar_Q vector-vector version
 TruthOutput_VV_D = DoubleNessiVector()
-TruthOutput_VV_D.append(13938.23677629315170634)
-TruthOutput_VV_D.append(6969.11838814657585317)
-TruthOutput_VV_D.append(4646.07892543105026561)
-TruthOutput_VV_D.append(3484.55919407328792658)
-TruthOutput_VV_D.append(2787.64735525863034127)
+TruthOutput_VV_D.append(7614.49345492123666190)
+TruthOutput_VV_D.append(3807.24672746061833095)
+TruthOutput_VV_D.append(2538.16448497374540238)
+TruthOutput_VV_D.append(1903.6233637303091654)
+TruthOutput_VV_D.append(1522.89869098424742333)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(109279374.99300612509250640)
-TruthOutput_Err2_VV_D.append(42497534.71950238198041915)
-TruthOutput_Err2_VV_D.append(21735952.50203825533390045)
-TruthOutput_Err2_VV_D.append(13090758.46270385757088661)
-TruthOutput_Err2_VV_D.append(8722922.55499728955328465)
+TruthOutput_Err2_VV_D.append(92053994.03928148746490478)
+TruthOutput_Err2_VV_D.append(21201607.55435042083263397)
+TruthOutput_Err2_VV_D.append(8796604.01485748961567878)
+TruthOutput_Err2_VV_D.append(4734185.96500324644148349)
+TruthOutput_Err2_VV_D.append(2940009.22621076833456754)
 
 # Truth values for tof_to_scalar_Q scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
-TruthOutput_SS_D.val = 13938.23677629315170634
-TruthOutput_SS_D.val_err2 = 109279374.99300612509250640
+TruthOutput_SS_D.val = 7614.49345492123666190
+TruthOutput_SS_D.val_err2 = 92053994.03928148746490478
 
 ###############################################################################
 # Create output placeholders for vectors

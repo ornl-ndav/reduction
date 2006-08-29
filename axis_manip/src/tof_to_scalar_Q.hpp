@@ -166,12 +166,12 @@ namespace AxisManip
     // SNS-FIXME: Should one of these be sign? Change docs as well if so.
     NumT cang = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
     NumT cang2 = cang * cang;
-    sang = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
+    sang = static_cast<NumT>(std::sin(static_cast<double>(scatt_angle)));
     NumT sang2 = sang * sang;
 
     term1 = sang2 * pathlength_err2 * pathlength_err2;
     term2 = cang2 * pathlength * pathlength;
-    term2 *= (scatt_angle_err2 * scatt_angle_err2);
+    term2 *= scatt_angle_err2;
 
     term3 = sang2 * pathlength * pathlength;
 
@@ -213,7 +213,7 @@ namespace AxisManip
     Q = sang / tof;
     Q *= (a * pathlength);
 
-    Q_err2 = tof_err2 * tof_err2;
+    Q_err2 = tof_err2;
     Q_err2 /= tof * tof;
     Q_err2 *= term3;
     Q_err2 += term1 + term2;
