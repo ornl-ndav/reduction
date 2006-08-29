@@ -2004,8 +2004,23 @@ namespace AxisManip
    * the mass of the neutron, \f$L\f$ is the total flight path of the
    * neutron, \f$polar\f$ is the angle between the positive z-axis and
    * the direction of the scattered neutron, \f$h\f$ is Planck's
-   * constant, and \f$TOF[i]\f$ is the time-of-flight. The uncertainty
-   * is calculated using the assumption of uncorrelated uncertainties.
+   * constant, and \f$TOF[i]\f$ is the time-of-flight.
+   *
+   * Assuming that the uncertainties are uncorrelated, the square of the
+   * uncertainty of scalar momentum is given by
+   *
+   * \f[
+   * \sigma^2_Q[i]=\left(\frac{4\Pi m_n}{hTOF[i]}\right)^2
+   * \left(sin^2(polar)\sigma^2_L+
+   * L^2cos^2(polar)\sigma^2_{polar}+
+   * \left(\frac{Lsin(polar)}{TOF[i]}\right)^2\sigma^2_{TOF}[i]\right)
+   * \f]
+   *
+   * where \f$\sigma_Q\f$ is the uncertainty in the momentum transfer,
+   * \f$\sigma_L\f$ is the uncertainty in the total flight path of the neutron
+   * \f$\sigma_{polar}\f$ is the uncertainty in the angle between the positive
+   * z-axis and the direction of the scattered neutron and \f$\sigma_{TOF}\f$
+   * is the uncertainty in the time-of-flight.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
@@ -2054,6 +2069,22 @@ namespace AxisManip
    * the direction of the scattered neutron, \f$h\f$ is Planck's
    * constant, and \f$TOF\f$ is the time-of-flight. The uncertainty
    * is calculated using the assumption of uncorrelated uncertainties.
+   *
+   * Assuming that the uncertainties are uncorrelated, the square of the
+   * uncertainty of scalar momentum is given by
+   *
+   * \f[
+   * \sigma^2_Q=\left(\frac{4\Pi m_n}{hTOF}\right)^2
+   * \left(sin^2(polar)\sigma^2_L+
+   * L^2cos^2(polar)\sigma^2_{polar}+
+   * \left(\frac{Lsin(polar)}{TOF}\right)^2\sigma^2_{TOF}\right)
+   * \f]
+   *
+   * where \f$\sigma_Q\f$ is the uncertainty in the momentum transfer,
+   * \f$\sigma_L\f$ is the uncertainty in the total flight path of the neutron
+   * \f$\sigma_{polar}\f$ is the uncertainty in the angle between the positive
+   * z-axis and the direction of the scattered neutron and \f$\sigma_{TOF}\f$
+   * is the uncertainty in the time-of-flight.
    *
    * \param tof (INPUT) is the time-of-flight axis in units of
    * micro-seconds
