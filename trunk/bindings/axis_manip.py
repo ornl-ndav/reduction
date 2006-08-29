@@ -2331,6 +2331,138 @@ def tof_to_initial_wavelength_igs(tof,\
 
 
 ##
+# \defgroup tof_to_scalar_Q axis_manip::tof_to_scalar_Q
+#
+
+##
+# \brief This function is described in section 3.17.
+#
+# This function converts time-of-flight to scalar momentum transfer
+# according to the equation
+# \f[
+# Q[i]=\frac{4\pi m_n L \sin(polar)}{h TOF[i]}
+# \f]
+# Where \f$Q[i]\f$ is the scalar momentum transfer, \f$m_n\f$ is
+# the mass of the neutron, \f$L\f$ is the total flight path of the
+# neutron, \f$polar\f$ is the angle between the positive z-axis and
+# the direction of the scattered neutron, \f$h\f$ is Planck's
+# constant, and \f$TOF[i]\f$ is the time-of-flight. The uncertainty
+# is calculated using the assumption of uncorrelated uncertainties.
+#
+# \param tof (INPUT) is the time-of-flight axis in units of
+# micro-seconds
+# \param tof_err2 (INPUT) is the square of the uncertainty in the
+# time-of-flight axis
+# \param pathlength (INPUT) is the total flight path of the neutron
+# in units of meter
+# \param pathlength_err2 (INPUT) is the square of the uncertainty
+# in pathlength
+# \param polar (INPUT) is the polar angle in the equation above in
+# units of radians
+# \param polar_err2 (INPUT) is the square of the uncertainty in
+# polar
+# /return
+# - The scalar momentum transfer, Q, in units of reciprocal Angstroms
+# - The square of the uncertainty in the scalar momentum transfer axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+def tof_to_scalar_Q(tof, tof_err2,\
+					pathlength, pathlength_err2,\
+					polar, polar_err2):
+
+    """
+    ---------------------------------------------------------------------------
+
+    This function converts the time-of-flight to scalar momentum transfer
+	according to the equation:
+
+	Q[i] = (4.PI.m_n.L.sin(polar))/(h.TOF[i])
+
+    where PI is the Pi constant, m_n is the mass of the neutron,
+	polar is the angle between the positive z-axis and the direction
+	of the scattered neutron, h is Planck's constant and TOF is the
+	time-of-flight. 
+
+	Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the wavelength axis is given by:
+
+    Q_err2[i]^2 = ({4.PI.m_n}/{h.TOF[i]})^2.[(sin(polar).L_err2)^2 +
+	                                         (L.cos(polar).polar_err2)^2 +
+								             ({L.sin(polar).TOF_err2}/{TOF[i]})^2
+
+	where Q_err2 is the uncertainty in the momentum transfer, L_err2 is
+	the uncertainty in the pathlength, polar_err2 is the uncertainty in the
+	angle between the positive z-axis and the direction of the scattered neutron
+	and TOF_err2 is the uncertainty in the time-of-flight axis.
+	
+    Parameters:
+    __________
+
+    -> tof is the time-of-flight axis in units of micro-seconds
+    -> tof_err2 is the square of the uncertainty in the time-of-flight axis
+    -> pathlength is the total flight path of the neutron in units of meter
+    -> pathlength_err2 is the square of the uncertainty in pathlength
+	-> polar is the angle between the positive z-axis and the direction of the
+	scattered neutron
+	-> polar_err2 is the uncertainty in the polar angle
+
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- the scalar momentum transfer, Q, in units of reciprocal Angstroms
+    <- the square of the uncertainty in the scalar momentum transfer axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+
+    try:
+        if tof.__type__ != tof_err2.__type__:
+            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
+
+        if (tof.__type__ == nessi_list.NessiList.DOUBLE):
+
+            Q = nessi_list.NessiList(len(tof))
+            Q_err2 = nessi_list.NessiList(len(tof))
+            axis_manip_bind.tof_to_scalar_Q_d(tof.__array__,\
+											  tof_err2.__array__,\
+											  float(pathlength),\
+											  float(pathlength_err2),\
+											  float(polar),\
+											  float(polar_err2),\
+											  Q.__array__,\
+											  Q_err2.__array__)
+
+        else:
+            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
+
+        return Q, Q_err2
+
+    except AttributeError:
+
+        Q_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.tof_to_scalar_Q_ss_d(\
+      float(tof),\
+      float(tof_err2),\
+      float(pathlength),\
+      float(pathlength_err2),\
+	  float(polar),\
+	  float(polar_err2),\
+      Q_ss)
+        return Q_ss.val, Q_ss.val_err2
+
+##
+# \}
+
+##
 # \defgroup tof_to_wavelength axis_manip::tof_to_wavelength
 # \{
 
