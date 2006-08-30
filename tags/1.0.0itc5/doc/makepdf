@@ -1,0 +1,24 @@
+#!/bin/sh
+
+###############################################################################
+#
+# This script creates PDF files from the SNS Common Library documentation.
+#
+# $Id$
+#
+###############################################################################
+
+if [[ $# -ne 2 ]] ; then
+  echo "Usage: $0 <C++ PDF filename> <Python PDF filename>"
+  exit -1
+fi
+
+cd latex_cpp
+make all
+mv refman.pdf $1
+cd ../
+cd latex_python
+make all
+mv refman.pdf $2
+
+
