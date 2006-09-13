@@ -30,6 +30,8 @@
 
 import axis_manip
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 from vpair_bind import *
 
@@ -103,16 +105,27 @@ def initialize_true_outputs(key):
 
       # initialize the correct outputs for vector vector case
         true_output_vv.append(float(-0.19391634980988590))
-        true_output_vv_err2.append(float(0.01838717382611049))
         true_output_vv.append(float(-0.31288343558282200))
-        true_output_vv_err2.append(float(0.13129216784667819))
-        true_output_vv.append(float(-0.80952380952380909))
-        true_output_vv_err2.append(float(6.81717458769535600))
-        true_output_vv.append(float(1.37837837837837962))
-        true_output_vv_err2.append(float(70.48523868021837302))
-        true_output_vv.append(float(0.37226277372262784))
-        true_output_vv_err2.append(float(0.47352356672528229))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv.append(float(-0.8095238095238096))
+            true_output_vv.append(float(1.3783783783783781))
+            true_output_vv.append(float(0.37226277372262783))
+        else:
+            true_output_vv.append(float(-0.80952380952380909))
+            true_output_vv.append(float(1.37837837837837962))
+            true_output_vv.append(float(0.37226277372262784))
 
+        true_output_vv_err2.append(float(0.01838717382611049))
+        true_output_vv_err2.append(float(0.13129216784667819))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv_err2.append(float(6.817174587695375))
+            true_output_vv_err2.append(float(70.4852386802180320))
+            true_output_vv_err2.append(float(0.4735235667252817))
+        else:
+            true_output_vv_err2.append(float(6.81717458769535600))
+            true_output_vv_err2.append(float(70.48523868021837302))
+            true_output_vv_err2.append(float(0.47352356672528229))
+            
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(-0.19391634980988590)
         true_output_ss.val_err2 = float(0.01838717382611049)
