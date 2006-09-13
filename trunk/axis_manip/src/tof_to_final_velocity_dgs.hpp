@@ -288,6 +288,7 @@ namespace AxisManip
     final_velocity_err2 += (a2 * ld2 * dist_source_sample_err2 / tb4);
     final_velocity_err2 += (c2 * ld2 * initial_velocity_err2 / tb4);
     final_velocity_err2 += (ld2 * time_offset_err2 / tb4);
+    final_velocity_err2 += (ld2 * tof_err2 / tb4);
 
     return Nessi::EMPTY_WARN;
   }
