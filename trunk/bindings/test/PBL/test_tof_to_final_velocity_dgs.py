@@ -20,6 +20,8 @@
 from axis_manip_bind import tof_to_final_velocity_dgs_d
 from axis_manip_bind import tof_to_final_velocity_dgs_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -59,17 +61,27 @@ for counter in range(NUM_VAL):
 TruthOutput_VV_D = DoubleNessiVector()
 TruthOutput_VV_D.append(-0.19391634980988590)
 TruthOutput_VV_D.append(-0.31288343558282200)
-TruthOutput_VV_D.append(-0.80952380952380909)
-TruthOutput_VV_D.append(1.37837837837837962)
-TruthOutput_VV_D.append(0.37226277372262784)
-
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_VV_D.append(-0.8095238095238096)
+    TruthOutput_VV_D.append(1.3783783783783781)
+    TruthOutput_VV_D.append(0.37226277372262783)
+else:
+    TruthOutput_VV_D.append(-0.80952380952380909)
+    TruthOutput_VV_D.append(1.37837837837837962)
+    TruthOutput_VV_D.append(0.37226277372262784)
+    
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 TruthOutput_Err2_VV_D.append(0.01838717382611049)
 TruthOutput_Err2_VV_D.append(0.13129216784667819)
-TruthOutput_Err2_VV_D.append(6.81717458769535600)
-TruthOutput_Err2_VV_D.append(70.48523868021837302)
-TruthOutput_Err2_VV_D.append(0.47352356672528229)
-
+if(platform=="linux2" and uname()[4]=="x86_64"):
+    TruthOutput_Err2_VV_D.append(6.817174587695375)
+    TruthOutput_Err2_VV_D.append(70.4852386802180320)
+    TruthOutput_Err2_VV_D.append(0.4735235667252817)
+else:
+    TruthOutput_Err2_VV_D.append(6.81717458769535600)
+    TruthOutput_Err2_VV_D.append(70.48523868021837302)
+    TruthOutput_Err2_VV_D.append(0.47352356672528229)
+    
 # Truth values for tof_to_final_velocity_dgs scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
 TruthOutput_SS_D.val = -0.19391634980988590
