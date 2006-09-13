@@ -105,7 +105,7 @@ void initialize_true_outputs(float    & true_output_ss,
   true_output_vv.push_back(static_cast<float>(2538.16479492));
   true_output_vv_err2.push_back(static_cast<float>(8796605.0));
   true_output_vv.push_back(static_cast<float>(1903.62353515));
-  true_output_vv_err2.push_back(static_cast<float>(4734186.50));
+  true_output_vv_err2.push_back(static_cast<float>(4734186.00));
   true_output_vv.push_back(static_cast<float>(1522.89880371));
   true_output_vv_err2.push_back(static_cast<float>(2940009.50));
 }
