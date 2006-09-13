@@ -57,23 +57,23 @@ for counter in range(NUM_VAL):
 
 # Truth values for tof_to_final_velocity_dgs vector-vector version
 TruthOutput_VV_D = DoubleNessiVector()
-TruthOutput_VV_D.append(-0.19391634980988600)
+TruthOutput_VV_D.append(-0.19391634980988590)
 TruthOutput_VV_D.append(-0.31288343558282200)
-TruthOutput_VV_D.append(-0.80952380952380965)
-TruthOutput_VV_D.append(1.37837837837837801)
-TruthOutput_VV_D.append(0.37226277372262773)
+TruthOutput_VV_D.append(-0.80952380952380909)
+TruthOutput_VV_D.append(1.37837837837837962)
+TruthOutput_VV_D.append(0.37226277372262784)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(0.01566893655771060)
-TruthOutput_Err2_VV_D.append(0.07602322042932540)
-TruthOutput_Err2_VV_D.append(2.68937918465971399)
-TruthOutput_Err2_VV_D.append(21.91150355287310000)
-TruthOutput_Err2_VV_D.append(0.14126927659342100)
+TruthOutput_Err2_VV_D.append(0.01838717382611049)
+TruthOutput_Err2_VV_D.append(0.13129216784667819)
+TruthOutput_Err2_VV_D.append(6.81717458769535600)
+TruthOutput_Err2_VV_D.append(70.48523868021837302)
+TruthOutput_Err2_VV_D.append(0.47352356672528229)
 
 # Truth values for tof_to_final_velocity_dgs scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
-TruthOutput_SS_D.val = -0.19391634980988600
-TruthOutput_SS_D.val_err2 = 0.01566893655771060
+TruthOutput_SS_D.val = -0.19391634980988590
+TruthOutput_SS_D.val_err2 = 0.01838717382611049
 
 ###############################################################################
 # Create output placeholders for vectors
