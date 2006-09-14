@@ -20,6 +20,8 @@
 from axis_manip_bind import init_scatt_wavevector_to_Q_d
 from axis_manip_bind import init_scatt_wavevector_to_Q_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -88,8 +90,12 @@ TruthOutput_VV_D_Qz = DoubleNessiVector()
 TruthOutput_VV_D_Qz.append(-0.21987181166325700)
 TruthOutput_VV_D_Qz.append(-0.19576926099386238)
 TruthOutput_VV_D_Qz.append(-0.17166671032446800)
-TruthOutput_VV_D_Qz.append(-0.14756415965507300)
-TruthOutput_VV_D_Qz.append(-0.12346160898567860)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+	TruthOutput_VV_D_Qz.append(-0.14756415965507300)
+	TruthOutput_VV_D_Qz.append(-0.12346160898567860)
+else:
+	TruthOutput_VV_D_Qz.append(-0.1475641596550734)
+	TruthOutput_VV_D_Qz.append(-0.1234616089856790)
 
 TruthOutput_Err2_VV_D_Qz = DoubleNessiVector()
 TruthOutput_Err2_VV_D_Qz.append(0.74627936184453000)
@@ -174,7 +180,11 @@ TruthOutput_SV_D_Qz = DoubleNessiVector()
 TruthOutput_SV_D_Qz.append(-0.21987181166325700)
 TruthOutput_SV_D_Qz.append(-1.19576926099386244)
 TruthOutput_SV_D_Qz.append(-2.17166671032446778)
-TruthOutput_SV_D_Qz.append(-3.14756415965507310)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+	TruthOutput_SV_D_Qz.append(-3.14756415965507310)
+else:
+	TruthOutput_SV_D_Qz.append(-3.1475641596550736)
+		
 TruthOutput_SV_D_Qz.append(-4.12346160898567823)
 
 TruthOutput_Err2_SV_D_Qz = DoubleNessiVector()

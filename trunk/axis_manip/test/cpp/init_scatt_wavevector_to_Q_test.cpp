@@ -197,19 +197,37 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_sv_Qz.push_back(static_cast<float>(-2.17166671));
   true_output_sv_Qz_err2.push_back(static_cast<float>(2.69817872));
 
+#ifdef LINUX64
   true_output_sv_Qx.push_back(static_cast<float>(-0.59094232));
   true_output_sv_Qx_err2.push_back(static_cast<float>(1.05585507));
   true_output_sv_Qy.push_back(static_cast<float>(-0.71484173));
   true_output_sv_Qy_err2.push_back(static_cast<float>(1.36966827));
   true_output_sv_Qz.push_back(static_cast<float>(-3.14756392));
   true_output_sv_Qz_err2.push_back(static_cast<float>(3.68984472));
+#else
+  true_output_sv_Qx.push_back(static_cast<float>(-0.59094232));
+  true_output_sv_Qx_err2.push_back(static_cast<float>(1.05585507));
+  true_output_sv_Qy.push_back(static_cast<float>(-0.71484173));
+  true_output_sv_Qy_err2.push_back(static_cast<float>(1.36966827));
+  true_output_sv_Qz.push_back(static_cast<float>(-3.1475642));
+  true_output_sv_Qz_err2.push_back(static_cast<float>(3.68984472));
+#endif
 
+#ifdef LINUX64
   true_output_sv_Qx.push_back(static_cast<float>(-0.72998758));
   true_output_sv_Qx_err2.push_back(static_cast<float>(1.59746921));
   true_output_sv_Qy.push_back(static_cast<float>(-0.88303978));
   true_output_sv_Qy_err2.push_back(static_cast<float>(2.06997925));
   true_output_sv_Qz.push_back(static_cast<float>(-4.12346160));
   true_output_sv_Qz_err2.push_back(static_cast<float>(4.69198733));
+#else
+  true_output_sv_Qx.push_back(static_cast<float>(-0.72998758));
+  true_output_sv_Qx_err2.push_back(static_cast<float>(1.59746921));
+  true_output_sv_Qy.push_back(static_cast<float>(-0.88303978));
+  true_output_sv_Qy_err2.push_back(static_cast<float>(2.0699797));
+  true_output_sv_Qz.push_back(static_cast<float>(-4.12346160));
+  true_output_sv_Qz_err2.push_back(static_cast<float>(4.69198733));
+#endif
 
   // vector scalar
   true_output_vs_Qx.push_back(static_cast<float>(-0.17380656));
@@ -262,26 +280,54 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_vv_Qz.push_back(static_cast<float>(-0.19576926));
   true_output_vv_Qz_err2.push_back(static_cast<float>(2.71699049));
 
+#ifdef LINUX64
   true_output_vv_Qx.push_back(static_cast<float>(-0.45189707));
   true_output_vv_Qx_err2.push_back(static_cast<float>(0.62419446));
   true_output_vv_Qy.push_back(static_cast<float>(-0.54664367));
   true_output_vv_Qy_err2.push_back(static_cast<float>(0.81083490));
   true_output_vv_Qz.push_back(static_cast<float>(-0.17166671));
   true_output_vv_Qz_err2.push_back(static_cast<float>(4.69817848));
+#else
+  true_output_vv_Qx.push_back(static_cast<float>(-0.45189707));
+  true_output_vv_Qx_err2.push_back(static_cast<float>(0.62419446));
+  true_output_vv_Qy.push_back(static_cast<float>(-0.54664367));
+  true_output_vv_Qy_err2.push_back(static_cast<float>(0.81083490));
+  true_output_vv_Qz.push_back(static_cast<float>(-0.17166671));
+  true_output_vv_Qz_err2.push_back(static_cast<float>(4.6981788));
+#endif
 
+#ifdef LINUX64
   true_output_vv_Qx.push_back(static_cast<float>(-0.59094232));
   true_output_vv_Qx_err2.push_back(static_cast<float>(1.05585507));
   true_output_vv_Qy.push_back(static_cast<float>(-0.71484173));
   true_output_vv_Qy_err2.push_back(static_cast<float>(1.36966827));
   true_output_vv_Qz.push_back(static_cast<float>(-0.14756394));
   true_output_vv_Qz_err2.push_back(static_cast<float>(6.68984472));
+#else
+  true_output_vv_Qx.push_back(static_cast<float>(-0.59094232));
+  true_output_vv_Qx_err2.push_back(static_cast<float>(1.05585507));
+  true_output_vv_Qy.push_back(static_cast<float>(-0.71484173));
+  true_output_vv_Qy_err2.push_back(static_cast<float>(1.36966827));
+  true_output_vv_Qz.push_back(static_cast<float>(-0.1475641));
+  true_output_vv_Qz_err2.push_back(static_cast<float>(6.6898441));
+#endif
 
+#ifdef LINUX64
   true_output_vv_Qx.push_back(static_cast<float>(-0.72998758));
   true_output_vv_Qx_err2.push_back(static_cast<float>(1.59746921));
   true_output_vv_Qy.push_back(static_cast<float>(-0.88303978));
   true_output_vv_Qy_err2.push_back(static_cast<float>(2.06997925));
   true_output_vv_Qz.push_back(static_cast<float>(-0.12346172));
   true_output_vv_Qz_err2.push_back(static_cast<float>(8.69198685));
+#else
+  true_output_vv_Qx.push_back(static_cast<float>(-0.72998758));
+  true_output_vv_Qx_err2.push_back(static_cast<float>(1.59746921));
+  true_output_vv_Qy.push_back(static_cast<float>(-0.88303978));
+  true_output_vv_Qy_err2.push_back(static_cast<float>(2.0699797));
+  true_output_vv_Qz.push_back(static_cast<float>(-0.1234615));
+  true_output_vv_Qz_err2.push_back(static_cast<float>(8.69198685));
+#endif
+
 }
 
 /**
@@ -384,12 +430,21 @@ void initialize_true_outputs(double                & true_output_ss_Qx,
   true_output_sv_Qz.push_back(static_cast<double>(-2.17166671032446778));
   true_output_sv_Qz_err2.push_back(static_cast<double>(2.69817895177061133));
     
+#ifdef LINUX64
   true_output_sv_Qx.push_back(static_cast<double>(-0.59094232968700300));
   true_output_sv_Qx_err2.push_back(static_cast<double>(1.05585507696780088));
   true_output_sv_Qy.push_back(static_cast<double>(-0.71484173390254900));
   true_output_sv_Qy_err2.push_back(static_cast<double>(1.36966827900951199));
   true_output_sv_Qz.push_back(static_cast<double>(-3.14756415965507310));
   true_output_sv_Qz_err2.push_back(static_cast<double>(3.68984472230235778));
+#else
+  true_output_sv_Qx.push_back(static_cast<double>(-0.59094232968700300));
+  true_output_sv_Qx_err2.push_back(static_cast<double>(1.05585507696780088));
+  true_output_sv_Qy.push_back(static_cast<double>(-0.71484173390254900));
+  true_output_sv_Qy_err2.push_back(static_cast<double>(1.36966827900951199));
+  true_output_sv_Qz.push_back(static_cast<double>(-3.1475641596550736));
+  true_output_sv_Qz_err2.push_back(static_cast<double>(3.68984472230235778));
+#endif
 
   true_output_sv_Qx.push_back(static_cast<double>(-0.72998758373100400));
   true_output_sv_Qx_err2.push_back(static_cast<double>(1.59746956572666845));
@@ -456,19 +511,38 @@ void initialize_true_outputs(double                & true_output_ss_Qx,
   true_output_vv_Qz.push_back(static_cast<double>(-0.17166671032446800));
   true_output_vv_Qz_err2.push_back(static_cast<double>(4.69817895177061088));
 
+#ifdef LINUX64
   true_output_vv_Qx.push_back(static_cast<double>(-0.59094232968700300));
   true_output_vv_Qx_err2.push_back(static_cast<double>(1.05585507696780088));
   true_output_vv_Qy.push_back(static_cast<double>(-0.71484173390254900));
   true_output_vv_Qy_err2.push_back(static_cast<double>(1.36966827900951199));
   true_output_vv_Qz.push_back(static_cast<double>(-0.14756415965507300));
   true_output_vv_Qz_err2.push_back(static_cast<double>(6.68984472230235823));
+#else
+  true_output_vv_Qx.push_back(static_cast<double>(-0.59094232968700300));
+  true_output_vv_Qx_err2.push_back(static_cast<double>(1.05585507696780088));
+  true_output_vv_Qy.push_back(static_cast<double>(-0.71484173390254900));
+  true_output_vv_Qy_err2.push_back(static_cast<double>(1.36966827900951199));
+  true_output_vv_Qz.push_back(static_cast<double>(-0.1475641596550734));
+  true_output_vv_Qz_err2.push_back(static_cast<double>(6.68984472230235823));
+#endif
 
+#ifdef LINUX64
   true_output_vv_Qx.push_back(static_cast<double>(-0.72998758373100400));
   true_output_vv_Qx_err2.push_back(static_cast<double>(1.59746956572666845));
   true_output_vv_Qy.push_back(static_cast<double>(-0.88303978893844267));
   true_output_vv_Qy_err2.push_back(static_cast<double>(2.06997972654337000));
   true_output_vv_Qz.push_back(static_cast<double>(-0.12346160898567860));
   true_output_vv_Qz_err2.push_back(static_cast<double>(8.69198780987991000));
+#else
+  true_output_vv_Qx.push_back(static_cast<double>(-0.72998758373100400));
+  true_output_vv_Qx_err2.push_back(static_cast<double>(1.59746956572666845));
+  true_output_vv_Qy.push_back(static_cast<double>(-0.88303978893844267));
+  true_output_vv_Qy_err2.push_back(static_cast<double>(2.06997972654337000));
+  true_output_vv_Qz.push_back(static_cast<double>(-0.1234616089856790));
+  true_output_vv_Qz_err2.push_back(static_cast<double>(8.69198780987991000));
+#endif
+
 }
 
 /**
