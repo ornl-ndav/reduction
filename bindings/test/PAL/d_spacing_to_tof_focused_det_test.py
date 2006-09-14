@@ -30,6 +30,8 @@
 
 import axis_manip
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 from vpair_bind import *
 
@@ -102,12 +104,23 @@ def initialize_true_outputs(key):
         true_output_ss=DoubleVPair()
 
       # initialize the correct outputs for vector vector case
-        true_output_vv.append(float(1264.17918742388204636))
-        true_output_vv_err2.append(float(999410.25272388576716936))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+             true_output_vv.append(float(1264.17918742388204636))
+             true_output_vv_err2.append(float(999410.25272388576716936))
+        else:
+             true_output_vv.append(float(1264.17918742388204636))
+             true_output_vv_err2.append(float(999410.2527238857001066))
+
         true_output_vv.append(float(2528.35837484776409272))
         true_output_vv_err2.append(float(3198566.5019376895343388))
-        true_output_vv.append(float(3792.53756227164590728))
-        true_output_vv_err2.append(float(5798394.23868355906867743))
+
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+             true_output_vv.append(float(3792.53756227164590728))
+             true_output_vv_err2.append(float(5798394.23868355906867743))
+        else:
+             true_output_vv.append(float(3792.53756227164590728))
+             true_output_vv_err2.append(float(5798394.2386835580691695))
+            
         true_output_vv.append(float(5056.71674969552818102))
         true_output_vv_err2.append(float(8798893.46296149186264514))
         true_output_vv.append(float(6320.8959371194108650))

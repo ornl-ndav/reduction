@@ -18,6 +18,8 @@
 from axis_manip_bind import d_spacing_to_tof_focused_det_d
 from axis_manip_bind import d_spacing_to_tof_focused_det_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -58,9 +60,17 @@ TruthOutput_VV_D.append(5056.71674969552818102)
 TruthOutput_VV_D.append(6320.8959371194108650)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(999410.25272388576716936)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+	TruthOutput_Err2_VV_D.append(999410.25272388576716936)
+else:
+	TruthOutput_Err2_VV_D.append(999410.2527238857001066)
+	
 TruthOutput_Err2_VV_D.append(3198566.5019376895343388)
-TruthOutput_Err2_VV_D.append(5798394.23868355906867743)
+if(platform=="linux2" and uname()[4]=="x86_64"):
+	TruthOutput_Err2_VV_D.append(5798394.23868355906867743)
+else:
+	TruthOutput_Err2_VV_D.append(5798394.2386835580691695)
+		
 TruthOutput_Err2_VV_D.append(8798893.46296149186264514)
 TruthOutput_Err2_VV_D.append(12200064.17477148882412910)
 

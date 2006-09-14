@@ -30,6 +30,8 @@
 
 import axis_manip
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 from vpair_bind import *
 
@@ -189,19 +191,37 @@ def initialize_true_outputs(key):
         true_output_vv_Qz.append(float(-0.17166671032446800))
         true_output_vv_Qz_err2.append(float(4.69817895177061088))
 
-        true_output_vv_Qx.append(float(-0.59094232968700300))
-        true_output_vv_Qx_err2.append(float(1.05585507696780088))
-        true_output_vv_Qy.append(float(-0.71484173390254900))
-        true_output_vv_Qy_err2.append(float(1.36966827900951199))
-        true_output_vv_Qz.append(float(-0.14756415965507300))
-        true_output_vv_Qz_err2.append(float(6.68984472230235823))
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+			true_output_vv_Qx.append(float(-0.59094232968700300))
+			true_output_vv_Qx_err2.append(float(1.05585507696780088))
+			true_output_vv_Qy.append(float(-0.71484173390254900))
+			true_output_vv_Qy_err2.append(float(1.36966827900951199))
+			true_output_vv_Qz.append(float(-0.14756415965507300))
+			true_output_vv_Qz_err2.append(float(6.68984472230235823))
+        else:
+			true_output_vv_Qx.append(float(-0.59094232968700300))
+			true_output_vv_Qx_err2.append(float(1.05585507696780088))
+			true_output_vv_Qy.append(float(-0.71484173390254900))
+			true_output_vv_Qy_err2.append(float(1.36966827900951199))
+			true_output_vv_Qz.append(float(-0.1475641596550734))
+			true_output_vv_Qz_err2.append(float(6.68984472230235823))
+			
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_vv_Qx.append(float(-0.72998758373100400))
+            true_output_vv_Qx_err2.append(float(1.59746956572666845))
+            true_output_vv_Qy.append(float(-0.88303978893844267))
+            true_output_vv_Qy_err2.append(float(2.06997972654337000))
+            true_output_vv_Qz.append(float(-0.12346160898567860))
+            true_output_vv_Qz_err2.append(float(8.69198780987991000))
+        else:
+            true_output_vv_Qx.append(float(-0.72998758373100400))
+            true_output_vv_Qx_err2.append(float(1.59746956572666845))
+            true_output_vv_Qy.append(float(-0.88303978893844267))
+            true_output_vv_Qy_err2.append(float(2.06997972654337000))
+            true_output_vv_Qz.append(float(-0.1234616089856790))
+            true_output_vv_Qz_err2.append(float(8.69198780987991000))
+                    
 
-        true_output_vv_Qx.append(float(-0.72998758373100400))
-        true_output_vv_Qx_err2.append(float(1.59746956572666845))
-        true_output_vv_Qy.append(float(-0.88303978893844267))
-        true_output_vv_Qy_err2.append(float(2.06997972654337000))
-        true_output_vv_Qz.append(float(-0.12346160898567860))
-        true_output_vv_Qz_err2.append(float(8.69198780987991000))
         
       # initialize the correct outputs for vector scalar case
         true_output_vs_Qx.append(float(-0.17380656755500100))
@@ -261,13 +281,21 @@ def initialize_true_outputs(key):
         true_output_sv_Qz.append(float(-2.17166671032446778))
         true_output_sv_Qz_err2.append(float(2.69817895177061133))
         
-        true_output_sv_Qx.append(float(-0.59094232968700300))
-        true_output_sv_Qx_err2.append(float(1.05585507696780088))
-        true_output_sv_Qy.append(float(-0.71484173390254900))
-        true_output_sv_Qy_err2.append(float(1.36966827900951199))
-        true_output_sv_Qz.append(float(-3.14756415965507310))
-        true_output_sv_Qz_err2.append(float(3.68984472230235778))
-
+        if(platform=="linux2" and uname()[4]=="x86_64"):
+            true_output_sv_Qx.append(float(-0.59094232968700300))
+            true_output_sv_Qx_err2.append(float(1.05585507696780088))
+            true_output_sv_Qy.append(float(-0.71484173390254900))
+            true_output_sv_Qy_err2.append(float(1.36966827900951199))
+            true_output_sv_Qz.append(float(-3.14756415965507310))
+            true_output_sv_Qz_err2.append(float(3.68984472230235778))
+        else:
+            true_output_sv_Qx.append(float(-0.59094232968700300))
+            true_output_sv_Qx_err2.append(float(1.05585507696780088))
+            true_output_sv_Qy.append(float(-0.71484173390254900))
+            true_output_sv_Qy_err2.append(float(1.36966827900951199))
+            true_output_sv_Qz.append(float(-3.1475641596550736))
+            true_output_sv_Qz_err2.append(float(3.68984472230235778))
+			
         true_output_sv_Qx.append(float(-0.72998758373100400))
         true_output_sv_Qx_err2.append(float(1.59746956572666845))
         true_output_sv_Qy.append(float(-0.88303978893844267))
