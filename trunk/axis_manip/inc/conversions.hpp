@@ -1373,7 +1373,7 @@ namespace AxisManip
    * uncertainties.
    *
    * \f[
-   * \sigma^2_{v_f}[i] = 
+   * \sigma^2_{v_f[i]}[i] = 
    * \frac{\sigma^2_{L_D}}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
    * \frac{L_D^2 \sigma^2_t}{(t[i]-\frac{L_S}{v_i}-t_0)^4} +
    * \frac{L^2_D \sigma^2_{L_S}}{v^2_i (t[i]-\frac{L_S}{v_i}-t_0)^4} +
