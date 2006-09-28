@@ -1986,7 +1986,9 @@ def time_offset_dgs(dist_downstream_monitor,\
 # is calculated using the assumption of uncorrelated uncertainties.
 #
 # \f[ 
-# \sigma^2_{v_f}[i] = \frac{\sigma^2_{L_D}}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+# \sigma^2_{v_f[i]}[i] =
+# \frac{\sigma^2_{L_D}}{(t[i]-\frac{L_S}{v_i}-t_0)^2} +
+# \frac{L_D^2 \sigma^2_t}{(t[i]-\frac{L_S}{v_i}-t_0)^4} +
 # \frac{L^2_D \sigma^2_{L_S}}{v^2_i (t[i]-\frac{L_S}{v_i}-t_0)^4} +
 # \frac{L^2_S L^2_D \sigma^2_{v_i}}{v^4_i (t[i]-\frac{L_S}{v_i}-t_0)^4}
 # + \frac{L^2_D \sigma^2_{t_0}}{(t[i]-\frac{L_S}{v_i}-t_0)^4}
@@ -2049,6 +2051,7 @@ def tof_to_final_velocity_dgs(tof,\
     is calculated using the assumption of uncorrelated uncertainties. The
     uncertainty is calculated using the assumption of uncorrelated uncertainties
     v_f_err2[i] = (L_D_err2)/(t[i]-(L_S/v_i)-t_0)^2 +
+    ((L_D)^2 * t_err2 / ((t[i]-(L_S/v_i)-t_0)^4)) +
     ((L_D)^2 * L_S_err2)/((v_i)^2 * (t[i]-(L_S/v_i)-t_0)^4) +
     ((L_S)^2 * (L_D)^2 * v_i_err2)/((v_i)^4 * (t[i]-(L_S/v_i)-t_0)^4) +
     ((L_D)^2 * t_0_err2)/(t[i]-(L_S/v_i)-t_0)^4
