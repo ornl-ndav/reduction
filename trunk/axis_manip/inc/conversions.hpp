@@ -2014,7 +2014,7 @@ namespace AxisManip
    * uncertainty of scalar momentum is given by
    *
    * \f[
-   * \sigma^2_Q[i]=\left(\frac{4\Pi m_n}{hTOF[i]}\right)^2
+   * \sigma^2_Q[i]=\left(\frac{4\pi m_n}{hTOF[i]}\right)^2
    * \left(sin^2(polar)\sigma^2_L+
    * L^2cos^2(polar)\sigma^2_{polar}+
    * \left(\frac{Lsin(polar)}{TOF[i]}\right)^2\sigma^2_{TOF}[i]\right)
@@ -2078,7 +2078,7 @@ namespace AxisManip
    * uncertainty of scalar momentum is given by
    *
    * \f[
-   * \sigma^2_Q=\left(\frac{4\Pi m_n}{hTOF}\right)^2
+   * \sigma^2_Q=\left(\frac{4\pi m_n}{hTOF}\right)^2
    * \left(sin^2(polar)\sigma^2_L+
    * L^2cos^2(polar)\sigma^2_{polar}+
    * \left(\frac{Lsin(polar)}{TOF}\right)^2\sigma^2_{TOF}\right)
