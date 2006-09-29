@@ -2335,7 +2335,7 @@ def tof_to_initial_wavelength_igs(tof,\
 
 ##
 # \defgroup tof_to_scalar_Q axis_manip::tof_to_scalar_Q
-#
+# \{
 
 ##
 # \brief This function is described in section 3.17.
