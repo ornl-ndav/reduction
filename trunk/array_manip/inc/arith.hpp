@@ -245,8 +245,7 @@ namespace ArrayManip
    *        input2 and input2_err2
    * \param i2_span (INPUT) is the number of spots to jump in the vector to 
    *        retrieve the next index for information from input2 and input2_err2
-   * \param i2_size (INPUT) is the number of elements from input2 (input2_err2)
-   *        that get added to input1 (input1_err2)
+   * \param size (INPUT) is the number of elements being added 
    * \param output (OUTPUT) the result array
    * \param output_err2 (OUTPUT) the square of the uncertainty in the
    *        result array
@@ -290,7 +289,7 @@ namespace ArrayManip
             const Nessi::Vector<NumT> & input2_err2,
             const size_t i2_start,
             const size_t i2_span,
-            const size_t i2_size,
+            const size_t size,
             Nessi::Vector<NumT> & output,
             Nessi::Vector<NumT> & output_err2,
             const size_t o_start,
