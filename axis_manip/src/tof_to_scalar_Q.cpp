@@ -43,8 +43,8 @@ namespace AxisManip
                          const Nessi::Vector<float> & tof_err2,
                          const float pathlength,
                          const float pathlength_err2,
-                         const float scatt_angle,
-                         const float scatt_angle_err2,
+                         const float polar,
+                         const float polar_err2,
                          Nessi::Vector<float> & Q,
                          Nessi::Vector<float> & Q_err2,
                          void *temp);
@@ -59,8 +59,8 @@ namespace AxisManip
                          const float tof_err2,
                          const float pathlength,
                          const float pathlength_err2,
-                         const float scatt_angle,
-                         const float scatt_angle_err2,
+                         const float polar,
+                         const float polar_err2,
                          float & Q,
                          float & Q_err2,
                          void *temp);
@@ -76,8 +76,8 @@ namespace AxisManip
                           const Nessi::Vector<double> & tof_err2,
                           const double pathlength,
                           const double pathlength_err2,
-                          const double scatt_angle,
-                          const double scatt_angle_err2,
+                          const double polar,
+                          const double polar_err2,
                           Nessi::Vector<double> & Q,
                           Nessi::Vector<double> & Q_err2,
                           void *temp);
@@ -93,8 +93,8 @@ namespace AxisManip
                           const double tof_err2,
                           const double pathlength,
                           const double pathlength_err2,
-                          const double scatt_angle,
-                          const double scatt_angle_err2,
+                          const double polar,
+                          const double polar_err2,
                           double & Q,
                           double & Q_err2,
                           void *temp);

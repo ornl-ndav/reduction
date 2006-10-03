@@ -45,8 +45,8 @@ namespace AxisManip
                   const Nessi::Vector<NumT> & tof_err2,
                   const NumT pathlength,
                   const NumT pathlength_err2,
-                  const NumT scatt_angle,
-                  const NumT scatt_angle_err2,
+                  const NumT polar,
+                  const NumT polar_err2,
                   Nessi::Vector<NumT> & Q,
                   Nessi::Vector<NumT> & Q_err2,
                   void *temp=NULL)
@@ -59,8 +59,8 @@ namespace AxisManip
     NumT term1;
     NumT term2;
 
-    warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, scatt_angle,
-                                    scatt_angle_err2, a2, b, term1, term2);
+    warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, polar,
+                                    polar_err2, a2, b, term1, term2);
     if (!warn.empty())
       {
         retstr += warn;
@@ -90,8 +90,8 @@ namespace AxisManip
                   const NumT tof_err2,
                   const NumT pathlength,
                   const NumT pathlength_err2,
-                  const NumT scatt_angle,
-                  const NumT scatt_angle_err2,
+                  const NumT polar,
+                  const NumT polar_err2,
                   NumT & Q,
                   NumT & Q_err2,
                   void *temp=NULL)
@@ -104,8 +104,8 @@ namespace AxisManip
     NumT term1;
     NumT term2;
 
-    warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, scatt_angle,
-                                    scatt_angle_err2, a2, b, term1, term2);
+    warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, polar,
+                                    polar_err2, a2, b, term1, term2);
     if (!warn.empty())
       {
         retstr += warn;
@@ -130,22 +130,22 @@ namespace AxisManip
    *
    * \param pathlength (INPUT) same as the parameter in tof_to_scalar_Q()
    * \param pathlength_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
-   * \param scatt_angle (INPUT) same as the parameter in tof_to_scalar_Q()
-   * \param scatt_angle_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param polar (INPUT) same as the parameter in tof_to_scalar_Q()
+   * \param polar_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
    * \param a2 (OUTPUT) \f$=(4\pi m_n/h)^2\f$
    * \param b (OUTPUT) \f$=4\pi m_n\times pathlength\times 
-   *                   sin(scatt\_angle)/h\f$
-   * \param term1 (OUTPUT) \f$=\sin^2(scatt\_angle)\times pathlength\_err2 + 
-   *                       \cos^2(scatt\_angle)\times pathlength^2\times 
-   *                       scatt\_angle\_err2\f$
-   * \param term2 (OUTPUT) \f$\sin^2(scatt\_angle)\times pathlength^2\f$
+   *                   sin(polar/2)/h\f$
+   * \param term1 (OUTPUT) \f$=\sin^2(polar/2)\times pathlength\_err2 + 
+   *                       \cos^2(polar/2)\times pathlength^2\times 
+   *                       polar\_err2/4\f$
+   * \param term2 (OUTPUT) \f$\sin^2(polar/2)\times pathlength^2\f$
    */
   template <typename NumT>
   std::string
   __tof_to_scalar_Q_static(const NumT pathlength,
                            const NumT pathlength_err2,
-                           const NumT scatt_angle,
-                           const NumT scatt_angle_err2,
+                           const NumT polar,
+                           const NumT polar_err2,
                            NumT & a2,
                            NumT & b,
                            NumT & term1,
@@ -155,9 +155,9 @@ namespace AxisManip
     a *= static_cast<NumT>(4. * PhysConst::PI);
     a2 = a * a;
 
-    NumT cang = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
+    NumT cang = static_cast<NumT>(std::cos(static_cast<double>(polar / 2.0)));
     NumT cang2 = cang * cang;
-    NumT sang = static_cast<NumT>(std::sin(static_cast<double>(scatt_angle)));
+    NumT sang = static_cast<NumT>(std::sin(static_cast<double>(polar / 2.0)));
     NumT sang2 = sang * sang;
 
     b = a * pathlength * sang;
@@ -165,7 +165,7 @@ namespace AxisManip
     NumT pathlength2 = pathlength * pathlength;
 
     term1 = (sang2 * pathlength_err2) + 
-      (cang2 * pathlength2 * scatt_angle_err2);
+      (cang2 * pathlength2 * polar_err2 / static_cast<NumT>(4.0));
 
     term2 = sang2 * pathlength2;
 
