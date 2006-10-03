@@ -162,7 +162,7 @@ import array_manip_bind
 #
 # The initial starting elements for all arrays are given by \f$a\_start\f$ 
 # (\f$data_1\f$), \f$b\_start\f$ (\f$data_2\f$) and \f$c\_start\f$ 
-# (\f$data_o\f$). The function runs until \f$i2\_size\f$ is reached.
+# (\f$data_o\f$). The function runs until \f$size\f$ is reached.
 #
 # \param a (INPUT) is the first NessiList or scalar to be added
 # \param ae2 (INPUT) is the square of the uncertainty in the first
@@ -274,7 +274,7 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 
     The initial starting elements for all arrays are given by a_start
     (Vector_1), b_start (Vector_2) and c_start (Vector_o). The function runs
-    until i2_size is reached.
+    until size is reached.
 
 
     Parameters:
