@@ -299,7 +299,7 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                         values will be added to NessiList a (ae2) 
           b_span=<int> is the number of spots to jump in the array to retrieve
                        the next index for information from b and be2
-          b_size=<int> is the block size of the array that will be added. This
+          size=<int> is the number of elements will be added. This
                        may possbily be shorter than length of b. Default is
                        the length of b
           c_start=<int> is the starting index in NessiList a (ae2) where the
@@ -348,9 +348,9 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                 b_span = 1
                 
             try:
-                b_size = int(kwargs["b_size"])
+                size = int(kwargs["size"])
             except KeyError:
-                b_size = len(b)
+                size = len(b)
                 
             try:
                 c_start = int(kwargs["c_start"])
@@ -383,7 +383,7 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                                              be2.__array__,\
                                              b_start,
                                              b_span,
-                                             b_size,
+                                             size,
                                              a.__array__,\
                                              ae2.__array__,
                                              c_start,
@@ -410,7 +410,7 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                                              be2.__array__,\
                                              b_start,
                                              b_span,
-                                             b_size,
+                                             size,
                                              a.__array__,\
                                              ae2.__array__,
                                              c_start,
