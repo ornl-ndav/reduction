@@ -151,17 +151,17 @@ import array_manip_bind
 # The \f$i^{th}\f$, \f$j^{th}\f$ and \f$k^{th}\f$ elements of the 
 # corresponding arrays are calculated according to the following equations
 # \f[
-# i_{N+1}^{th}=i_{N}^{th}+i1\_span
+# i_{N}^{th}=a\_start+a\_span\times N
 # \f]
 # \f[
-# j_{N+1}^{th}=j_{N}^{th}+i2\_span
+# j_{N}^{th}=b\_start+b\_span\times N
 # \f]
 # \f[
-# k_{N+1}^{th}=k_{N}^{th}+o\_span
+# k_{N}^{th}=c\_start+c\_span\times N
 # \f]
 #
-# The initial starting elements for all arrays are given by \f$i1\_start\f$ 
-# (\f$data_1\f$), \f$i2\_start\f$ (\f$data_2\f$) and \f$o\_start\f$ 
+# The initial starting elements for all arrays are given by \f$a\_start\f$ 
+# (\f$data_1\f$), \f$b\_start\f$ (\f$data_2\f$) and \f$c\_start\f$ 
 # (\f$data_o\f$). The function runs until \f$i2\_size\f$ is reached.
 #
 # \param a (INPUT) is the first NessiList or scalar to be added
@@ -266,14 +266,14 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     The i^th, j^th and k^th elements of the corresponding arrays are
     calculated according to the following equations
 
-    i_N+1^th = i_N^th + i1_span
+    i_N^th = a_start + a_span x N
 
-    j_N+1^th = j_N^th + i2_span
+    j_N^th = b_start + b_span x N
 
-    k_N+1^th = k_N^th + o_span
+    k_N^th = c_start + c_span x N
 
-    The initial starting elements for all arrays are given by i1_start
-    (Vector_1), i2_start (Vector_2) and o_start (Vector_o). The function runs
+    The initial starting elements for all arrays are given by a_start
+    (Vector_1), b_start (Vector_2) and c_start (Vector_o). The function runs
     until i2_size is reached.
 
 
