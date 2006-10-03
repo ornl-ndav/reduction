@@ -32,8 +32,8 @@ NUM_VAL = 5
 # Set parameters for function
 pathlength = 5.0
 pathlength_err2 = 2.5
-polar = .5
-polar_err2 = .25 
+polar = 1.0
+polar_err2 = 1.0 
 
 # Create input vectors
 Input_D = DoubleNessiVector()
@@ -82,9 +82,9 @@ Output_SS_D = DoubleVPair()
 print "Checking Vector-Vector TOF to Scalar Q Binding Function"
 
 tof_to_scalar_Q_d(Input_D, Input_Err2_D,
-				  pathlength, pathlength_err2,
-				  polar, polar_err2,
-				  Output_VV_D, Output_Err2_VV_D)
+                  pathlength, pathlength_err2,
+                  polar, polar_err2,
+                  Output_VV_D, Output_Err2_VV_D)
 
 mess = test_common_bind.makeCheck("tof_to_scalar_Q_d",
                                   Output_VV_D,
@@ -96,9 +96,9 @@ print
 print "Checking Scalar-Scalar TOF to Scalar Q Binding Function"
 
 tof_to_scalar_Q_ss_d(Input_D[0], Input_Err2_D[0],
-                       pathlength, pathlength_err2,
-					   polar, polar_err2,
-                       Output_SS_D)
+                     pathlength, pathlength_err2,
+                     polar, polar_err2,
+                     Output_SS_D)
 
 mess = test_common_bind.makeCheck("tof_to_scalar_Q_d",
                                   Output_SS_D.val,

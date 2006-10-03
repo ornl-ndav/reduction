@@ -239,8 +239,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   Nessi::Vector<NumT>   tof_err2;
   NumT                  pathlength=static_cast<NumT>(5.);
   NumT                  pathlength_err2=static_cast<NumT>(2.5);
-  NumT                  scatt_angle=static_cast<NumT>(.5);
-  NumT                  scatt_angle_err2=static_cast<NumT>(.25);
+  NumT                  scatt_angle=static_cast<NumT>(1.0);
+  NumT                  scatt_angle_err2=static_cast<NumT>(1.0);
   NumT                  output_ss;
   NumT                  output_ss_err2;
   NumT                  true_output_ss;

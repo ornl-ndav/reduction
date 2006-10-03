@@ -114,7 +114,7 @@ def initialize_true_outputs(key):
 
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(7614.49345492123666190)
-        true_output_ss.val_err2 = float(983356917.45302573292922070)
+        true_output_ss.val_err2 = float(83356917.45302573292922070)
 
     else:
 
@@ -134,8 +134,8 @@ if __name__ == "__main__":
     print "#######################################################"
     print
 
-    polar = float(0.5)
-    polar_err2 = float(0.25)
+    polar = float(1.0)
+    polar_err2 = float(1.0)
     pathlength = float(5.)
     pathlength_err2 = float(2.5)
 
