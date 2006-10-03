@@ -102,19 +102,19 @@ def initialize_true_outputs(key):
 
       # initialize the correct outputs for vector vector case
         true_output_vv.append(float(7614.49345492123666190))
-        true_output_vv_err2.append(float(92053994.03928148746490478))
+        true_output_vv_err2.append(float(83356917.45302573292922070))
         true_output_vv.append(float(3807.24672746061833095))
-        true_output_vv_err2.append(float(21201607.55435042083263397))
+        true_output_vv_err2.append(float(19027338.40778648107169063))
         true_output_vv.append(float(2538.16448497374540238))
-        true_output_vv_err2.append(float(8796604.01485748961567878))
+        true_output_vv_err2.append(float(7830262.17194018297611242))
         true_output_vv.append(float(1903.6233637303091654))
-        true_output_vv_err2.append(float(4734185.96500324644148349))
+        true_output_vv_err2.append(float(4190618.67836226184754512))
         true_output_vv.append(float(1522.89869098424742333))
-        true_output_vv_err2.append(float(2940009.22621076833456754))
+        true_output_vv_err2.append(float(2592126.16276053843806002))
 
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(7614.49345492123666190)
-        true_output_ss.val_err2 = float(92053994.03928148746490478)
+        true_output_ss.val_err2 = float(983356917.45302573292922070)
 
     else:
 
@@ -149,30 +149,30 @@ if __name__ == "__main__":
 
     # vv case
     output_vv, output_vv_err2 = axis_manip.tof_to_scalar_Q(tof,\
-														   tof_err2,\
-														   pathlength,\
-														   pathlength_err2,\
-														   polar,\
-														   polar_err2)
-
+                                                           tof_err2,\
+                                                           pathlength,\
+                                                           pathlength_err2,\
+                                                           polar,\
+                                                           polar_err2)
+    
     # Check values
     mess = test_common.MakeCheck("vv",\
                                  output_vv,\
-								 true_output_vv_d,\
+                                 true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-
+    
     print mess
 
-
+    
     # ss case
     output_ss, output_ss_err2 = axis_manip.tof_to_scalar_Q(tof[0],\
-														   tof_err2[0],\
-														   pathlength,\
-														   pathlength_err2,\
-														   polar,\
-														   polar_err2)
-
+                                                           tof_err2[0],\
+                                                           pathlength,\
+                                                           pathlength_err2,\
+                                                           polar,\
+                                                           polar_err2)
+    
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
                                   true_output_ss_d,\
