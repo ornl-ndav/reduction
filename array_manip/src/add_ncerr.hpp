@@ -155,24 +155,6 @@ namespace ArrayManip
             const size_t o_span,
             void *temp=NULL)
   {
-    // check that the values are of proper size
-    try
-      {
-        Utils::check_sizes_square(input1,output);
-      }
-    catch (std::invalid_argument &e)
-      {
-        throw std::invalid_argument(add_func_str+" (m:v,v): data "+e.what());
-      }
-    // check that the uncertainties are of proper size
-    try
-      {
-        Utils::check_sizes_square(input1_err2,output_err2);
-      }
-    catch (std::invalid_argument &e)
-      {
-        throw std::invalid_argument(add_func_str+" (m:v,v): err2 "+e.what());
-      }
     // check that the input1 arrays are of proper size
     try
       {
@@ -190,6 +172,33 @@ namespace ArrayManip
     catch (std::invalid_argument &e)
       {
         throw std::invalid_argument(add_func_str+" (m:v,v): input2 "+e.what());
+      }
+    // check that the output arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(output,output_err2);
+      }
+    catch (std::invalid_argument &e)
+      {
+        throw std::invalid_argument(add_func_str+" (m:v,v): output "+e.what());
+      }
+
+    if((i1_start + size) > input1.size()) 
+      {
+        throw std::invalid_argument(add_func_str+" i1_start + size will "+\
+                                    "overrun input1");
+      }
+
+    if((i2_start + size) > input2.size()) 
+      {
+        throw std::invalid_argument(add_func_str+" i2_start + size will "+\
+                                    "overrun input2");
+      }
+
+    if((o_start + size) > output.size()) 
+      {
+        throw std::invalid_argument(add_func_str+" o_start + size will "+\
+                                    "overrun output");
       }
 
     size_t i;
