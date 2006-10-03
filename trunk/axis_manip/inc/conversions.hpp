@@ -2002,7 +2002,7 @@ namespace AxisManip
    * This function converts time-of-flight to scalar momentum transfer
    * according to the equation
    * \f[
-   * Q[i]=\frac{4\pi m_n L \sin(polar)}{h TOF[i]}
+   * Q[i]=\frac{4\pi m_n L \sin(polar/2)}{h TOF[i]}
    * \f]
    * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$m_n\f$ is
    * the mass of the neutron, \f$L\f$ is the total flight path of the
@@ -2015,9 +2015,9 @@ namespace AxisManip
    *
    * \f[
    * \sigma^2_Q[i]=\left(\frac{4\pi m_n}{hTOF[i]}\right)^2
-   * \left(sin^2(polar)\sigma^2_L+
-   * L^2cos^2(polar)\sigma^2_{polar}+
-   * \left(\frac{Lsin(polar)}{TOF[i]}\right)^2\sigma^2_{TOF}[i]\right)
+   * \left(sin^2(polar/2)\sigma^2_L+
+   * \frac{L^2cos^2(polar/2)}{4}\sigma^2_{polar}+
+   * \left(\frac{Lsin(polar/2)}{TOF[i]}\right)^2\sigma^2_{TOF}[i]\right)
    * \f]
    *
    * where \f$\sigma_Q\f$ is the uncertainty in the momentum transfer,
@@ -2065,7 +2065,7 @@ namespace AxisManip
    * This function converts time-of-flight to scalar momentum transfer
    * according to the equation
    * \f[
-   * Q=\frac{4\pi m_n L \sin(polar)}{h TOF}
+   * Q=\frac{4\pi m_n L \sin(polar/2)}{h TOF}
    * \f]
    * Where \f$Q\f$ is the scalar momentum transfer, \f$m_n\f$ is
    * the mass of the neutron, \f$L\f$ is the total flight path of the
@@ -2079,9 +2079,9 @@ namespace AxisManip
    *
    * \f[
    * \sigma^2_Q=\left(\frac{4\pi m_n}{hTOF}\right)^2
-   * \left(sin^2(polar)\sigma^2_L+
-   * L^2cos^2(polar)\sigma^2_{polar}+
-   * \left(\frac{Lsin(polar)}{TOF}\right)^2\sigma^2_{TOF}\right)
+   * \left(sin^2(polar/2)\sigma^2_L+
+   * \frac{L^2cos^2(polar/2)}{4}\sigma^2_{polar}+
+   * \left(\frac{Lsin(polar/2)}{TOF}\right)^2\sigma^2_{TOF}\right)
    * \f]
    *
    * where \f$\sigma_Q\f$ is the uncertainty in the momentum transfer,

@@ -2343,7 +2343,7 @@ def tof_to_initial_wavelength_igs(tof,\
 # This function converts time-of-flight to scalar momentum transfer
 # according to the equation
 # \f[
-# Q[i]=\frac{4\pi m_n L \sin(polar)}{h TOF[i]}
+# Q[i]=\frac{4\pi m_n L \sin(polar/2)}{h TOF[i]}
 # \f]
 # Where \f$Q[i]\f$ is the scalar momentum transfer, \f$m_n\f$ is
 # the mass of the neutron, \f$L\f$ is the total flight path of the
@@ -2354,9 +2354,9 @@ def tof_to_initial_wavelength_igs(tof,\
 #
 # \f[
 # \sigma^2_Q[i]=\left(\frac{4\pi m_n}{hTOF[i]}\right)^2
-# \left(sin^2(polar)\sigma^2_L+
-# L^2cos^2(polar)\sigma^2_{polar}+
-# \left(\frac{Lsin(polar)}{TOF[i]}\right)^2\sigma^2_{TOF}[i]\right)
+# \left(sin^2(polar/2)\sigma^2_L+
+# \frac{L^2cos^2(polar/2)}{4}\sigma^2_{polar}+
+# \left(\frac{Lsin(polar/2)}{TOF[i]}\right)^2\sigma^2_{TOF}[i]\right)
 # \f]
 #
 # where \f$\sigma_Q\f$ is the uncertainty in the momentum transfer,
@@ -2395,7 +2395,7 @@ def tof_to_scalar_Q(tof, tof_err2,\
     This function converts the time-of-flight to scalar momentum transfer
     according to the equation:
         
-    Q[i] = (4.PI.m_n.L.sin(polar))/(h.TOF[i])
+    Q[i] = (4.PI.m_n.L.sin(polar/2))/(h.TOF[i])
     
     where PI is the Pi constant, m_n is the mass of the neutron,
     polar is the angle between the positive z-axis and the direction
@@ -2405,9 +2405,9 @@ def tof_to_scalar_Q(tof, tof_err2,\
     Assuming that the uncertainties are uncorrelated, the square of the
     uncertainty of the wavelength axis is given by:
     
-    Q_err2[i]^2 = ({4.PI.m_n}/{h.TOF[i]})^2.[(sin(polar).L_err2)^2 +
-                  (L.cos(polar).polar_err2)^2 +
-                  ({L.sin(polar).TOF_err2}/{TOF[i]})^2
+    Q_err2[i]^2 = ({4.PI.m_n}/{h.TOF[i]})^2.[sin(polar/2)^2.L_err2 +
+                  (L.cos(polar/2)/2)^2.polar_err2 +
+                  ({L.sin(polar/2)}/{TOF[i]})^2.TOF_err2]
     
     where Q_err2 is the uncertainty in the momentum transfer, L_err2 is
     the uncertainty in the pathlength, polar_err2 is the uncertainty in the
