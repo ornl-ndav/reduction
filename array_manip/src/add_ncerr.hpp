@@ -148,7 +148,7 @@ namespace ArrayManip
             const Nessi::Vector<NumT> & input2_err2,
             const size_t i2_start,
             const size_t i2_span,
-            const size_t i2_size,
+            const size_t size,
             Nessi::Vector<NumT> & output,
             Nessi::Vector<NumT> & output_err2,
             const size_t o_start,
@@ -195,7 +195,10 @@ namespace ArrayManip
     size_t i;
     size_t j;
     size_t k;
-    for(i = i1_start, j = i2_start, k = o_start; j < i2_start + i2_size; 
+
+    std::size_t stopping_criteria = i2_start + i2_span * size;
+
+    for(i = i1_start, j = i2_start, k = o_start; j < stopping_criteria;
         i += i1_span, j += i2_span, k += o_span)
       {
         output[k] = input1[i] + input2[j];
