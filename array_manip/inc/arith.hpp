@@ -218,13 +218,13 @@ namespace ArrayManip
    * The \f$i^{th}\f$, \f$j^{th}\f$ and \f$k^{th}\f$ elements of the 
    * corresponding arrays are calculated according to the following equations
    * \f[
-   * i_{N+1}^{th}=i_{N}^{th}+i1\_span
+   * i_{N}^{th}=i1_{start}+i1\_span\times N
    * \f]
    * \f[
-   * j_{N+1}^{th}=j_{N}^{th}+i2\_span
+   * j_{N}^{th}=i2_{start}+i2\_span\times N
    * \f]
    * \f[
-   * k_{N+1}^{th}=k_{N}^{th}+o\_span
+   * k_{N}^{th}=o_{start}+o\_span\times N
    * \f]
    *
    * The initial starting elements for all arrays are given by \f$i1\_start\f$ 
