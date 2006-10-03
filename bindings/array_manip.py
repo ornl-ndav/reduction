@@ -302,10 +302,10 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
           size=<int> is the number of elements will be added. This
                        may possbily be shorter than length of b. Default is
                        the length of b
-          c_start=<int> is the starting index in NessiList a (ae2) where the
+          c_start=<int> is the starting index in NessiList c (ce2) where the
                         values in NessiList b (be2) will be added
           c_span=<int> is the number of spots to jump in the array to retrieve
-                       the next index for information from a and ae2                       
+                       the next index for information from c and ce2                       
 
     Returns 2 Nessivectors:
     ______________________
