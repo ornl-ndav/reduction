@@ -54,16 +54,13 @@ namespace AxisManip
     std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
-    NumT a;
     NumT a2;
-    NumT sang;
+    NumT b;
     NumT term1;
     NumT term2;
-    NumT term3;
 
     warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, scatt_angle,
-                                    scatt_angle_err2, a, a2, sang,
-                                    term1, term2, term3);
+                                    scatt_angle_err2, a2, b, term1, term2);
     if (!warn.empty())
       {
         retstr += warn;
@@ -72,9 +69,8 @@ namespace AxisManip
     size_t size_tof = tof.size();
     for (size_t i = 0; i < size_tof; ++i)
       {
-        warn = __tof_to_scalar_Q_dynamic(tof[i], tof_err2[i], pathlength,
-                                         Q[i], Q_err2[i], a, a2, sang,
-                                         term1, term2, term3);
+        warn = __tof_to_scalar_Q_dynamic(tof[i], tof_err2[i], Q[i], Q_err2[i], 
+                                         a2, b, term1, term2);
 
         if (!warn.empty())
           {
@@ -103,23 +99,20 @@ namespace AxisManip
     std::string retstr(Nessi::EMPTY_WARN);
     std::string warn;
 
-    NumT a;
     NumT a2;
-    NumT sang;
+    NumT b;
     NumT term1;
     NumT term2;
-    NumT term3;
 
     warn = __tof_to_scalar_Q_static(pathlength, pathlength_err2, scatt_angle,
-                                    scatt_angle_err2, a, a2, sang,
-                                    term1, term2, term3);
+                                    scatt_angle_err2, a2, b, term1, term2);
     if (!warn.empty())
       {
         retstr += warn;
       }
 
-    warn = __tof_to_scalar_Q_dynamic(tof, tof_err2, pathlength, Q, Q_err2,
-                                     a, a2, sang, term1, term2, term3);
+    warn = __tof_to_scalar_Q_dynamic(tof, tof_err2, Q, Q_err2, a2, b, 
+                                     term1, term2);
 
     if (!warn.empty())
       {
@@ -139,12 +132,13 @@ namespace AxisManip
    * \param pathlength_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
    * \param scatt_angle (INPUT) same as the parameter in tof_to_scalar_Q()
    * \param scatt_angle_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
-   * \param a (OUTPUT) \f$=4\pi m_n/h\f$
-   * \param a2 (OUTPUT) \f$=a^2\f$
-   * \param sang (OUTPUT) \f$=cos(scatt\_angle)\f$
-   * \param term1 (OUTPUT) \f$=\cos^2(scatt\_angle)\times pathlength\_err2^2\f$
-   * \param term2 (OUTPUT) \f$=\cos^2(scatt\_angle)\times pathlength^2\times scatt\_angle\_err2^2\f$
-   * \param term3 (OUTPUT) \f$\cos^2(scatt\_angle)\times pathlength^2\f$
+   * \param a2 (OUTPUT) \f$=(4\pi m_n/h)^2\f$
+   * \param b (OUTPUT) \f$=4\pi m_n\times pathlength\times 
+   *                   sin(scatt\_angle)/h\f$
+   * \param term1 (OUTPUT) \f$=\sin^2(scatt\_angle)\times pathlength\_err2 + 
+   *                       \cos^2(scatt\_angle)\times pathlength^2\times 
+   *                       scatt\_angle\_err2\f$
+   * \param term2 (OUTPUT) \f$\sin^2(scatt\_angle)\times pathlength^2\f$
    */
   template <typename NumT>
   std::string
@@ -152,28 +146,28 @@ namespace AxisManip
                            const NumT pathlength_err2,
                            const NumT scatt_angle,
                            const NumT scatt_angle_err2,
-                           NumT & a,
                            NumT & a2,
-                           NumT & sang,
+                           NumT & b,
                            NumT & term1,
-                           NumT & term2,
-                           NumT & term3)
+                           NumT & term2)
   {
-    a = static_cast<NumT>(1./ PhysConst::H_OVER_MNEUT);
+    NumT a = static_cast<NumT>(1./ PhysConst::H_OVER_MNEUT);
     a *= static_cast<NumT>(4. * PhysConst::PI);
     a2 = a * a;
 
-    // SNS-FIXME: Should one of these be sign? Change docs as well if so.
     NumT cang = static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
     NumT cang2 = cang * cang;
-    sang = static_cast<NumT>(std::sin(static_cast<double>(scatt_angle)));
+    NumT sang = static_cast<NumT>(std::sin(static_cast<double>(scatt_angle)));
     NumT sang2 = sang * sang;
 
-    term1 = sang2 * pathlength_err2 * pathlength_err2;
-    term2 = cang2 * pathlength * pathlength;
-    term2 *= scatt_angle_err2;
+    b = a * pathlength * sang;
 
-    term3 = sang2 * pathlength * pathlength;
+    NumT pathlength2 = pathlength * pathlength;
+
+    term1 = (sang2 * pathlength_err2) + 
+      (cang2 * pathlength2 * scatt_angle_err2);
+
+    term2 = sang2 * pathlength2;
 
     return std::string(Nessi::EMPTY_WARN);
   }
@@ -186,38 +180,31 @@ namespace AxisManip
    *
    * \param tof (INPUT) same as the parameter in tof_to_scalar_Q()
    * \param tof_err2 (INPUT) same as the parameter in tof_to_scalar_Q()
-   * \param pathlength (INPUT) same as the parameter in tof_to_scalar_Q()
    * \param Q (OUTPUT) same as the parameter in tof_to_scalar_Q()
    * \param Q_err2 (OUTPUT) same as the parameter in tof_to_scalar_Q()
-   * \param a (INPUT) same as the parameter in __tof_to_scalar_Q_static()
    * \param a2 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
-   * \param sang (INPUT) same as the parameter in __tof_to_scalar_Q_static()
+   * \param b (INPUT) same as the parameter in __tof_to_scalar_Q_static()
    * \param term1 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
    * \param term2 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
-   * \param term3 (INPUT) same as the parameter in __tof_to_scalar_Q_static()
    */
   template <typename NumT>
   std::string
   __tof_to_scalar_Q_dynamic(const NumT tof,
                             const NumT tof_err2,
-                            const NumT pathlength,
                             NumT & Q,
                             NumT & Q_err2,
-                            const NumT a,
                             const NumT a2,
-                            const NumT sang,
+                            const NumT b,
                             const NumT term1,
-                            const NumT term2,
-                            const NumT term3)
+                            const NumT term2)
   {
-    Q = sang / tof;
-    Q *= (a * pathlength);
+    Q = b / tof;
 
-    Q_err2 = tof_err2;
-    Q_err2 /= tof * tof;
-    Q_err2 *= term3;
-    Q_err2 += term1 + term2;
-    Q_err2 *= a2 / (tof * tof);
+    NumT tof2 = tof * tof;
+
+    Q_err2 = (term2 * tof_err2) / tof2;
+    Q_err2 += term1;
+    Q_err2 *= (a2 / tof2);
 
     return Nessi::EMPTY_WARN;
   }
