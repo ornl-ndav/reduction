@@ -183,19 +183,19 @@ namespace ArrayManip
         throw std::invalid_argument(add_func_str+" (m:v,v): output "+e.what());
       }
 
-    if((i1_start + size) > input1.size()) 
+    if((i1_start + size * i1_span) > input1.size()) 
       {
         throw std::invalid_argument(add_func_str+" i1_start + size will "+\
                                     "overrun input1");
       }
 
-    if((i2_start + size) > input2.size()) 
+    if((i2_start + size * i2_span) > input2.size()) 
       {
         throw std::invalid_argument(add_func_str+" i2_start + size will "+\
                                     "overrun input2");
       }
 
-    if((o_start + size) > output.size()) 
+    if((o_start + size * o_span) > output.size()) 
       {
         throw std::invalid_argument(add_func_str+" o_start + size will "+\
                                     "overrun output");
