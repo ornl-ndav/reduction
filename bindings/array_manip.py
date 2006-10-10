@@ -296,16 +296,20 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                        the next index for information from a and ae2. Default
                        is 1
           b_start=<int> is the starting index in NessiList b (be2) where the
-                        values will be added to NessiList a (ae2) 
+                        values will be added to NessiList a (ae2). Default is
+                        0 
           b_span=<int> is the number of spots to jump in the array to retrieve
-                       the next index for information from b and be2
+                       the next index for information from b and be2. Default
+                       is 1
           size=<int> is the number of elements will be added. This
-                       may possbily be shorter than length of b. Default is
-                       the length of b
+                     may possbily be shorter than length of b. Default is
+                     the length of b
           c_start=<int> is the starting index in NessiList c (ce2) where the
-                        values in NessiList b (be2) will be added
+                        values in NessiList b (be2) will be added. Default is
+                        a_start
           c_span=<int> is the number of spots to jump in the array to retrieve
-                       the next index for information from c and ce2
+                       the next index for information from c and ce2. Default
+                       is a_span.
           acc=<boolean> is a flag to turn on accumulation mode for add. This
                         will cause the existing arrays (a and ae2) to be used
                         as the add target instead of a new set of arrays.
@@ -371,14 +375,14 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
         except KeyError:
             acc = True
 
-        if (a.__type__ == a.DOUBLE):
+        if kwargs and acc:
+            c = a
+            ce2 = ae2
+        else:
+            c = nessi_list.NessiList(len(a),type=a.__type__)
+            ce2 = nessi_list.NessiList(len(a), type=a.__type__)
 
-            if not kwargs or not acc:
-                c = nessi_list.NessiList(len(a),type=a.DOUBLE)
-                ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
-            else:
-                c = a
-                ce2 = ae2
+        if (a.__type__ == a.DOUBLE):
 
             if not kwargs:
                 array_manip_bind.add_ncerr_d(a.__array__,\
@@ -403,13 +407,6 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                                              c_span)
 
         elif (a.__type__ == a.INT):
-
-            if not kwargs or not acc:
-                c = nessi_list.NessiList(len(a),type=a.INT)
-                ce2 = nessi_list.NessiList(len(a), type=a.INT)
-            else:
-                c = a
-                ce2 = ae2
                 
             if not kwargs:
                 array_manip_bind.add_ncerr_i(a.__array__,\
