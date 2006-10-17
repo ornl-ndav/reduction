@@ -64,18 +64,18 @@ const size_t NUM_VAL=5;
  * \param wavelength (OUTPUT) is the wavelength axis in units of Angstroms
  * \param wavelength_err2 (OUTPUT) is the square of the uncertainty in the
  * wavelength axis
- * \param scatt_angle (OUTPUT) is the scattering angle in units of radians
- * \param scatt_angle_err2 (OUTPUT) is the square of the uncertainty in the
- * scattering angle
+ * \param polar_angle (OUTPUT) is the polar angle in units of radians
+ * \param polar_angle_err2 (OUTPUT) is the square of the uncertainty in the
+ * polar angle
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & wavelength,
                        Nessi::Vector<NumT> & wavelength_err2,
-                       NumT & scatt_angle,
-                       NumT & scatt_angle_err2)
+                       NumT & polar_angle,
+                       NumT & polar_angle_err2)
 {
-  scatt_angle = static_cast<NumT>(2.);
-  scatt_angle_err2 = static_cast<NumT>(0.5);
+  polar_angle = static_cast<NumT>(4.);
+  polar_angle_err2 = static_cast<NumT>(0.5);
 
   for( size_t i=0 ; i<NUM_VAL ; i++ )
     {
@@ -106,42 +106,42 @@ void initialize_true_outputs(float                & true_output_ss,
   // scalar scalar
   true_output_ss=static_cast<float>(11.42656898);
 #ifdef LINUX
-  true_output_ss_err2=static_cast<float>(78.9568405);
+  true_output_ss_err2=static_cast<float>(68.70162625);
 #endif
 #ifdef MAC
-  true_output_ss_err2=static_cast<float>(78.9568323);
+  true_output_ss_err2=static_cast<float>(68.70162625);
 #endif
 #ifdef LINUX64
-  true_output_ss_err2=static_cast<float>(78.9568323);
+  true_output_ss_err2=static_cast<float>(68.70162625);
 #endif
 
   // vector vector
   true_output_vv.push_back(static_cast<float>(11.42656898));
 #ifdef LINUX
-  true_output_vv_err2.push_back(static_cast<float>(78.9568405));
+  true_output_vv_err2.push_back(static_cast<float>(68.70162625));
 #endif
 #ifdef MAC
-  true_output_vv_err2.push_back(static_cast<float>(78.9568323));
+  true_output_vv_err2.push_back(static_cast<float>(68.70162625));
 #endif
 #ifdef LINUX64
-  true_output_vv_err2.push_back(static_cast<float>(78.9568323));
+  true_output_vv_err2.push_back(static_cast<float>(68.70162625));
 #endif
   true_output_vv.push_back(static_cast<float>(3.80885624));
 #ifdef LINUX
-  true_output_vv_err2.push_back(static_cast<float>(3.937187000));
+  true_output_vv_err2.push_back(static_cast<float>(2.79771981));
 #endif
 #ifdef MAC
-  true_output_vv_err2.push_back(static_cast<float>(3.937186718));
+  true_output_vv_err2.push_back(static_cast<float>(2.79771981));
 #endif
 #ifdef LINUX64
-  true_output_vv_err2.push_back(static_cast<float>(3.937186718));
+  true_output_vv_err2.push_back(static_cast<float>(2.79771981));
 #endif
   true_output_vv.push_back(static_cast<float>(2.28531360));
-  true_output_vv_err2.push_back(static_cast<float>(1.069209933));
+  true_output_vv_err2.push_back(static_cast<float>(0.65900189));
   true_output_vv.push_back(static_cast<float>(1.63236689));
-  true_output_vv_err2.push_back(static_cast<float>(0.469383240));
+  true_output_vv_err2.push_back(static_cast<float>(0.26009340));
   true_output_vv.push_back(static_cast<float>(1.26961874));
-  true_output_vv_err2.push_back(static_cast<float>(0.258361697));
+  true_output_vv_err2.push_back(static_cast<float>(0.13175424));
 
 }
 
@@ -166,27 +166,27 @@ void initialize_true_outputs(double                & true_output_ss,
 {
   // scalar scalar
   true_output_ss=static_cast<double>(11.42656846417465566);
-  true_output_ss_err2=static_cast<double>(78.956835208714863938);
+  true_output_ss_err2=static_cast<double>(68.701633877105272099);
 
   // vector vector
   true_output_vv.push_back(static_cast<double>(11.42656846417465566));
-  true_output_vv_err2.push_back(static_cast<double>(78.956835208714863938));
+  true_output_vv_err2.push_back(static_cast<double>(68.701633877105272099));
   true_output_vv.push_back(static_cast<double>(3.80885615472488537));
 #ifdef LINUX
-  true_output_vv_err2.push_back(static_cast<double>(3.937186620728660100));
+  true_output_vv_err2.push_back(static_cast<double>(2.79771980610537032));
 #endif
 #ifdef MAC
-  true_output_vv_err2.push_back(static_cast<double>(3.937186620728660547));
+  true_output_vv_err2.push_back(static_cast<double>(2.79771980610537032));
 #endif
 #ifdef LINUX64
-  true_output_vv_err2.push_back(static_cast<double>(3.937186620728660547));
+  true_output_vv_err2.push_back(static_cast<double>(2.79771980610537032));
 #endif
   true_output_vv.push_back(static_cast<double>(2.28531369283493113));
-  true_output_vv_err2.push_back(static_cast<double>(1.069209938485062406));
+  true_output_vv_err2.push_back(static_cast<double>(0.65900188522067791));
   true_output_vv.push_back(static_cast<double>(1.63236692345352230));
-  true_output_vv_err2.push_back(static_cast<double>(0.469383224086273310));
+  true_output_vv_err2.push_back(static_cast<double>(0.26009340099219965));
   true_output_vv.push_back(static_cast<double>(1.26961871824162853));
-  true_output_vv_err2.push_back(static_cast<double>(0.258361659002127153));
+  true_output_vv_err2.push_back(static_cast<double>(0.13175423515509495));
 }
 
 /**
@@ -266,8 +266,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   // allocate arrays
   Nessi::Vector<NumT> wavelength;
   Nessi::Vector<NumT> wavelength_err2;
-  NumT                scatt_angle;
-  NumT                scatt_angle_err2;
+  NumT                polar_angle;
+  NumT                polar_angle_err2;
   NumT                output_ss;
   NumT                output_ss_err2;
   NumT                true_output_ss;
@@ -280,8 +280,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   // fill in values as appropriate
   initialize_inputs(wavelength,
                     wavelength_err2,
-                    scatt_angle,
-                    scatt_angle_err2);
+                    polar_angle,
+                    polar_angle_err2);
 
   initialize_true_outputs(true_output_ss, true_output_ss_err2,
                           true_output_vv, true_output_vv_err2);
@@ -289,15 +289,15 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   // run the code being tested
   AxisManip::wavelength_to_scalar_Q(wavelength[0],
                                     wavelength_err2[0],
-                                    scatt_angle,
-                                    scatt_angle_err2,
+                                    polar_angle,
+                                    polar_angle_err2,
                                     output_ss,
                                     output_ss_err2);
 
   AxisManip::wavelength_to_scalar_Q(wavelength,
                                     wavelength_err2,
-                                    scatt_angle,
-                                    scatt_angle_err2,
+                                    polar_angle,
+                                    polar_angle_err2,
                                     output_vv,
                                     output_vv_err2);
 
