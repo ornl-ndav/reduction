@@ -70,7 +70,7 @@ NUM_VAL = 5
 # - scatt_angle_err2 is the square of the uncertainty in the scattering angle
 def initialize_inputs(key):
     if (key == "double"):
-        scatt_angle = float(2.)
+        scatt_angle = float(4.)
         scatt_angle_err2 = float(0.5)
         wavelength=nessi_list.NessiList(type="double")
         wavelength_err2=nessi_list.NessiList(type="double")
@@ -108,22 +108,22 @@ def initialize_true_outputs(key):
 
         # initialize the correct outputs for vector vector case
         true_output_vv.append(float(11.42656846417465566))
-        true_output_vv_err2.append(float(78.956835208714863938))
+        true_output_vv_err2.append(float(68.701633877105272099))
         true_output_vv.append(float(3.80885615472488537))
         if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(3.937186620728660100))
+            true_output_vv_err2.append(float(2.79771980610537032))
         else:
-            true_output_vv_err2.append(float(3.937186620728660547))
+            true_output_vv_err2.append(float(2.79771980610537032))
         true_output_vv.append(float(2.28531369283493113))
-        true_output_vv_err2.append(float(1.069209938485062406))
+        true_output_vv_err2.append(float(0.65900188522067791))
         true_output_vv.append(float(1.63236692345352230))
-        true_output_vv_err2.append(float(0.469383224086273310))
+        true_output_vv_err2.append(float(0.26009340099219965))
         true_output_vv.append(float(1.26961871824162853))
-        true_output_vv_err2.append(float(0.258361659002127153))
+        true_output_vv_err2.append(float(0.13175423515509495))
 
   # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(11.42656846417465566)
-        true_output_ss.val_err2 = float(78.956835208714863938)
+        true_output_ss.val_err2 = float(68.701633877105272099)
 
     else:
 
