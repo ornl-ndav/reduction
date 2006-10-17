@@ -3172,7 +3172,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 # This function converts the wavelength to scalar momentum transfer
 # according to the equation
 # \f[
-# Q[i]=\frac{4\pi}{\lambda[i]}\sin(polar)
+# Q[i]=\frac{4\pi}{\lambda[i]}\sin(polar/2)
 # \f]
 # Where \f$Q[i]\f$ is the scalar momentum transfer, \f$\lambda[i]\f$
 # is the wavelength, and \f$polar\f$ is the angle between the
@@ -3182,7 +3182,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 # uncertainty of the scalar momentum transfer is given by
 # \f[
 # \sigma^2_Q[i]=\left(\frac{4\pi}{\lambda[i]}\right)^2
-# \left(cos(polar)^2\sigma_{polar}^2+\left(\frac{sin(polar)}
+# \left(\frac{cos(polar/2)^2}{4}\sigma_{polar}^2+\left(\frac{sin(polar/2)}
 # {\lambda[i]}\right)^2\sigma^2_\lambda[i]\right)
 # \f]
 #
@@ -3208,7 +3208,7 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
     This function converts the wavelength to scalar momentum transfer
     according to the equation
 
-    Q[i] = 4 pi / lambda[i] * sin(polar)
+    Q[i] = 4 pi / lambda[i] * sin(polar/2)
 
     Where Q[i] is the scalar momentum transfer, lambda[i] is the wavelength,
     and polar is the angle between the positive z-axis and the direction of
@@ -3217,8 +3217,8 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
     Using the assumption of uncorrelated uncertainties, the square of the
     uncertainty of the scalar momentum transfer is given by
 
-    sigma^2_Q[i] = (4 pi / lambda[i])^2 * ((cos(polar)^2 * sigma_polar^2) +
-    (sin(polar) / lambda[i])^2* sigma^2_lambda[i])
+    sigma^2_Q[i] = (4 pi / lambda[i])^2 * ((cos(polar/2) / 2)^2 *
+    sigma_polar^2) + ((sin(polar/2) / lambda[i])^2 * sigma^2_lambda[i])
 
     Parameters:
     ----------
