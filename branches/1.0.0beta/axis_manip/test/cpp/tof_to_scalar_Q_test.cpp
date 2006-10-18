@@ -104,18 +104,15 @@ void initialize_true_outputs(float    & true_output_ss,
   true_output_vv_err2.push_back(static_cast<float>(19027340.0));
   true_output_vv.push_back(static_cast<float>(2538.16479492));
   true_output_vv_err2.push_back(static_cast<float>(7830263.0));
-
-#ifdef  LINUX64
   true_output_vv.push_back(static_cast<float>(1903.62353515));
+
+#ifdef LINUX64
   true_output_vv_err2.push_back(static_cast<float>(4190619.25000000));
 #elif LINUX
-  true_output_vv.push_back(static_cast<float>(1903.62353515));
   true_output_vv_err2.push_back(static_cast<float>(4190619.5000000));
 #elif MAC
-  true_output_vv.push_back(static_cast<float>(1903.62353515));
   true_output_vv_err2.push_back(static_cast<float>(4190619.2500000));
 #endif
-
 
   true_output_vv.push_back(static_cast<float>(1522.89880371));
   true_output_vv_err2.push_back(static_cast<float>(2592126.50000000));
@@ -151,15 +148,13 @@ void initialize_true_outputs(double    & true_output_ss,
   true_output_vv_err2.push_back(static_cast<double>(19027338.40778648107169063));
   true_output_vv.push_back(static_cast<double>(2538.16448497374540238));
   true_output_vv_err2.push_back(static_cast<double>(7830262.17194018297611242));
+  true_output_vv.push_back(static_cast<double>(1903.6233637303091654));
  
 #ifdef LINUX64
-  true_output_vv.push_back(static_cast<double>(1903.6233637303091654));
   true_output_vv_err2.push_back(static_cast<double>(4190618.67836226184754512));
 #elif LINUX
-  true_output_vv.push_back(static_cast<double>(1903.6233637303091654));
   true_output_vv_err2.push_back(static_cast<double>(4190618.67836226231320641));
 #elif MAC
-  true_output_vv.push_back(static_cast<double>(1903.6233637303091654));
   true_output_vv_err2.push_back(static_cast<double>(4190618.6783622619695961));
 #endif
 
