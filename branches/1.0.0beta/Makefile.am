@@ -31,3 +31,5 @@ test: check
 docs:
 	cd doc && make docs
 
+clean-local:
+	rm -- $(top_builddir)/-V-bank1.
