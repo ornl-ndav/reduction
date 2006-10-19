@@ -78,11 +78,33 @@ AC_SUBST(PYLIB_UTILS_VERSION)
 PYLIB_VPAIR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_VPAIR_VERSION)
 
+# Checks for programs.
 AC_PROG_CXX
 if test $GXX = yes; then
 	CXXFLAGS="$CXXFLAGS -Wall"
 fi
 AC_PROG_LIBTOOL
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([float.h limits.h string.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_HEADER_STDBOOL
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIZE_T
+AC_CHECK_TYPES([ptrdiff_t])
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([floor memset pow sqrt strstr])
 
 dnl Add OS define flags for smoke tests
 case "$host" in
