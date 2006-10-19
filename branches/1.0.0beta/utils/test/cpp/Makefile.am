@@ -24,9 +24,9 @@
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/utils/inc -I$(top_srcdir)/nessi/inc
 AM_LDFLAGS  = -static \
-              -L$(top_srcdir)/utils/src/ -lUtils
+              -L$(top_builddir)/utils/src/.libs -lUtils
 
-EXTRA_DIST=testsuite.at
+EXTRA_DIST=testsuite.at testsuite
 
 UTILS_TARGETS = \
 	weighted_average_test

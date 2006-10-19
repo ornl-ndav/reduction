@@ -28,10 +28,10 @@ AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc \
 AM_CXXFLAGS = $(STOSFLAG)
 
 AM_LDFLAGS  = -static \
-              -L$(top_srcdir)/axis_manip/src/.libs -lAxisManip \
-              -L$(top_srcdir)/utils/src/.libs -lUtils
+              -L$(top_builddir)/axis_manip/src/.libs -lAxisManip \
+              -L$(top_builddir)/utils/src/.libs -lUtils
 
-EXTRA_DIST=testsuite.at
+EXTRA_DIST=testsuite.at testsuite
 
 AXIS_MANIP_TARGETS = \
 	d_spacing_to_tof_focused_det_test \
