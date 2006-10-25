@@ -108,10 +108,13 @@ def initialize_true_outputs(key):
 
         # initialize the correct outputs for vector vector case
         true_output_vv.append(float(11.42656846417465566))
-        true_output_vv_err2.append(float(68.701633877105272099))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(68.701633877105257888))
+        else:
+            true_output_vv_err2.append(float(68.701633877105272099))
         true_output_vv.append(float(3.80885615472488537))
         if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(2.79771980610537032))
+            true_output_vv_err2.append(float(2.79771980610536988))
         else:
             true_output_vv_err2.append(float(2.79771980610537032))
         true_output_vv.append(float(2.28531369283493113))

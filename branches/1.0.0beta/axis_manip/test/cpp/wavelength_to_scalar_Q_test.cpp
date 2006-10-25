@@ -154,14 +154,22 @@ void initialize_true_outputs(double                & true_output_ss,
 {
   // scalar scalar
   true_output_ss=static_cast<double>(11.42656846417465566);
+#ifdef LINUX
+  true_output_ss_err2=static_cast<double>(68.701633877105257888);
+#else
   true_output_ss_err2=static_cast<double>(68.701633877105272099);
+#endif
 
   // vector vector
   true_output_vv.push_back(static_cast<double>(11.42656846417465566));
+#ifdef LINUX
+  true_output_vv_err2.push_back(static_cast<double>(68.701633877105257888));
+#else
   true_output_vv_err2.push_back(static_cast<double>(68.701633877105272099));
+#endif
   true_output_vv.push_back(static_cast<double>(3.80885615472488537));
 #ifdef LINUX
-  true_output_vv_err2.push_back(static_cast<double>(2.79771980610537032));
+  true_output_vv_err2.push_back(static_cast<double>(2.79771980610536988));
 #else
   true_output_vv_err2.push_back(static_cast<double>(2.79771980610537032));
 #endif

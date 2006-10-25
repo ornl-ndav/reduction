@@ -57,10 +57,12 @@ TruthOutput_VV_D.append(1.63236692345352230)
 TruthOutput_VV_D.append(1.26961871824162853)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(68.701633877105272099)
+
 if(platform=="linux2" and uname()[4]=="i686"):
-    TruthOutput_Err2_VV_D.append(2.79771980610537032)
+    TruthOutput_Err2_VV_D.append(68.701633877105257888)
+    TruthOutput_Err2_VV_D.append(2.79771980610536988)
 else:
+    TruthOutput_Err2_VV_D.append(68.701633877105272099)
     TruthOutput_Err2_VV_D.append(2.79771980610537032)
 TruthOutput_Err2_VV_D.append(0.65900188522067791)
 TruthOutput_Err2_VV_D.append(0.26009340099219965)
