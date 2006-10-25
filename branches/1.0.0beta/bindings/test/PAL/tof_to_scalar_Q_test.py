@@ -30,6 +30,8 @@
 
 import axis_manip
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 from vpair_bind import *
 
@@ -104,13 +106,19 @@ def initialize_true_outputs(key):
         true_output_vv.append(float(7614.49345492123666190))
         true_output_vv_err2.append(float(83356917.45302573292922070))
         true_output_vv.append(float(3807.24672746061833095))
-        true_output_vv_err2.append(float(19027338.40778648107169063))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(19027338.40778648479698093))
+        else:
+            true_output_vv_err2.append(float(19027338.40778648107169063))
         true_output_vv.append(float(2538.16448497374540238))
         true_output_vv_err2.append(float(7830262.17194018297611242))
         true_output_vv.append(float(1903.6233637303091654))
         true_output_vv_err2.append(float(4190618.67836226184754512))
         true_output_vv.append(float(1522.89869098424742333))
-        true_output_vv_err2.append(float(2592126.16276053843806002))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(2592126.16276053797239873))
+        else:
+            true_output_vv_err2.append(float(2592126.16276053843806002))
 
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(7614.49345492123666190)
