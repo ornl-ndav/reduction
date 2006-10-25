@@ -91,7 +91,7 @@ def calib_refl_areadet():
 
     """
 
-    raise NotImplementedError, "This function is not implemented."
+    raise NotImplementedError("This function is not implemented.")
 
 ##
 # \}  // end of calib_refl_areadet group
@@ -116,7 +116,7 @@ def calib_refl_areadet():
 # \return 0 (eq), 1 (gt) or -1 (lt)
 #
 
-def compare(value1,value2):
+def compare(value1, value2):
 
     """
     ---------------------------------------------------------------------------
@@ -136,7 +136,7 @@ def compare(value1,value2):
 
     """
 
-    result = utils_bind.compare(value1,value2)
+    result = utils_bind.compare(value1, value2)
     return result
 
 ##
@@ -171,7 +171,7 @@ def fit_linear_background():
 
     """
 
-    raise NotImplementedError, "This function is not implemented."
+    raise NotImplementedError("This function is not implemented.")
 
 ##
 # \}  // end of fit_linear_background group
@@ -205,7 +205,7 @@ def fit_reflectometer_background():
 
     """
 
-    raise NotImplementedError, "This function is not implemented."
+    raise NotImplementedError("This function is not implemented.")
 
 ##
 # \}  // end of fit_reflectometer_background group
@@ -239,7 +239,7 @@ def matrix_multiplication():
 
     """
 
-    raise NotImplementedError, "This function is not implemented."
+    raise NotImplementedError("This function is not implemented.")
 
 ##
 # \}  // end of matrix_multiplication group
@@ -273,7 +273,7 @@ def peak_integration():
 
     """
 
-    raise NotImplementedError, "This function is not implemented."
+    raise NotImplementedError("This function is not implemented.")
 
 ##
 # \}  // end of peak_integration group
@@ -297,7 +297,7 @@ def peak_integration():
 # \return A boolean that is true if the vector is equal element-by-element
 #
 
-def vector_is_equals(value,true_value):
+def vector_is_equals(value, true_value):
 
     """
     ---------------------------------------------------------------------------
@@ -324,12 +324,13 @@ def vector_is_equals(value,true_value):
             return utils_bind.vector_is_equals_i(value.__array__,
                                                  true_value.__array__)
         else:
-            raise TypeError,"Unknown type %s" % value.__type__
+            raise TypeError("Unknown type %s" % value.__type__)
             
 
     if (value.__type__ == nessi_list.NessiList.DOUBLE):
-        value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
-        true_value_d = nessi_list.NessiList(0,type=nessi_list.NessiList.DOUBLE)
+        value_d = nessi_list.NessiList(0, type=nessi_list.NessiList.DOUBLE)
+        true_value_d = nessi_list.NessiList(0,
+                                            type=nessi_list.NessiList.DOUBLE)
         for i in range(len(value)):
             value_d.append(value[i])
             true_value_d.append(true_value[i])
@@ -337,8 +338,8 @@ def vector_is_equals(value,true_value):
         result = utils_bind.vector_is_equals_d(value_d.__array__,
                                                true_value_d.__array__)
     else:
-        value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
-        true_value_i = nessi_list.NessiList(0,type=nessi_list.NessiList.INT)
+        value_i = nessi_list.NessiList(0, type=nessi_list.NessiList.INT)
+        true_value_i = nessi_list.NessiList(0, type=nessi_list.NessiList.INT)
         for i in range(len(value)):
             value_i.append(value[i])
             true_value_i.append(true_value[i])
@@ -391,7 +392,7 @@ def vector_is_equals(value,true_value):
 # \exception TypeError is raised if a is not of type double
 # \exception TypeError is raised if a and ae2 are not the same type
 
-def weighted_average(a,ae2,start,fin):
+def weighted_average(a, ae2, start, fin):
 
     """
     ---------------------------------------------------------------------------
@@ -423,17 +424,18 @@ def weighted_average(a,ae2,start,fin):
     """
 
     if (a.__type__ != a.DOUBLE):
-        raise TypeError, "Function only useable for doubles"
+        raise TypeError("Function only useable for doubles")
 
     if (a.__type__ != ae2.__type__):
-        raise TypeError, "Incompatible types passed to weighted_average"
+        raise TypeError("Incompatible types passed to weighted_average")
 
     import vpair_bind
 
     weighted_ave = vpair_bind.DoubleVPair()
-    utils_bind.weighted_average_d(a.__array__, ae2.__array__, start, fin, weighted_ave)
+    utils_bind.weighted_average_d(a.__array__, ae2.__array__,
+                                  start, fin, weighted_ave)
 
-    return weighted_ave.val, weighted_ave.val_err2
+    return (weighted_ave.val, weighted_ave.val_err2)
 
 ##
 # \}  // end of weighted_average group
