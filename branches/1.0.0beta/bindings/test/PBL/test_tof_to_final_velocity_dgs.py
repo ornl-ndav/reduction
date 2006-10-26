@@ -77,6 +77,10 @@ if(platform=="linux2" and uname()[4]=="x86_64"):
     TruthOutput_Err2_VV_D.append(6.817174587695375)
     TruthOutput_Err2_VV_D.append(70.4852386802180320)
     TruthOutput_Err2_VV_D.append(0.4735235667252817)
+elif(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(6.81717458769535637)
+    TruthOutput_Err2_VV_D.append(70.48523868021835880)
+    TruthOutput_Err2_VV_D.append(0.47352356672528231)
 else:
     TruthOutput_Err2_VV_D.append(6.81717458769535600)
     TruthOutput_Err2_VV_D.append(70.48523868021837302)
