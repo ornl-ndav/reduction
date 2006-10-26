@@ -62,7 +62,10 @@ TruthOutput_VV_D_Qx = DoubleNessiVector()
 TruthOutput_VV_D_Qx.append(-0.17380656755500100)
 TruthOutput_VV_D_Qx.append(-0.31285182159900200)
 TruthOutput_VV_D_Qx.append(-0.45189707564300253)
-TruthOutput_VV_D_Qx.append(-0.59094232968700300)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_VV_D_Qx.append(-0.59094232968700333)
+else:
+    TruthOutput_VV_D_Qx.append(-0.59094232968700300)
 TruthOutput_VV_D_Qx.append(-0.72998758373100400)
 
 TruthOutput_Err2_VV_D_Qx = DoubleNessiVector()
@@ -99,7 +102,10 @@ else:
 
 TruthOutput_Err2_VV_D_Qz = DoubleNessiVector()
 TruthOutput_Err2_VV_D_Qz.append(0.74627936184453000)
-TruthOutput_Err2_VV_D_Qz.append(2.71699049828466823)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D_Qz.append(2.71699049828466867)
+else:
+    TruthOutput_Err2_VV_D_Qz.append(2.71699049828466823)
 TruthOutput_Err2_VV_D_Qz.append(4.69817895177061088)
 TruthOutput_Err2_VV_D_Qz.append(6.68984472230235823)
 TruthOutput_Err2_VV_D_Qz.append(8.69198780987991000)
@@ -152,7 +158,10 @@ TruthOutput_SV_D_Qx = DoubleNessiVector()
 TruthOutput_SV_D_Qx.append(-0.17380656755500100)
 TruthOutput_SV_D_Qx.append(-0.31285182159900200)
 TruthOutput_SV_D_Qx.append(-0.45189707564300251)
-TruthOutput_SV_D_Qx.append(-0.59094232968700300)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_SV_D_Qx.append(-0.59094232968700333)
+else:
+    TruthOutput_SV_D_Qx.append(-0.59094232968700300)
 TruthOutput_SV_D_Qx.append(-0.72998758373100400)
 
 TruthOutput_Err2_SV_D_Qx = DoubleNessiVector()
@@ -190,8 +199,13 @@ TruthOutput_SV_D_Qz.append(-4.12346160898567823)
 TruthOutput_Err2_SV_D_Qz = DoubleNessiVector()
 TruthOutput_Err2_SV_D_Qz.append(0.74627936184453000)
 TruthOutput_Err2_SV_D_Qz.append(1.71699049828466867)
-TruthOutput_Err2_SV_D_Qz.append(2.69817895177061133)
-TruthOutput_Err2_SV_D_Qz.append(3.68984472230235778)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_SV_D_Qz.append(2.69817895177061177)
+    TruthOutput_Err2_SV_D_Qz.append(3.68984472230235822)
+else:
+    TruthOutput_Err2_SV_D_Qz.append(2.69817895177061133)
+    TruthOutput_Err2_SV_D_Qz.append(3.68984472230235778)
+
 TruthOutput_Err2_SV_D_Qz.append(4.69198780987990912)
 
 # Truth values for init_scatt_wavevector_to_Q scalar-scalar version
