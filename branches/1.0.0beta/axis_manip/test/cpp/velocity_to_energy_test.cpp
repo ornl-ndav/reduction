@@ -139,14 +139,28 @@ void initialize_true_outputs(double    & true_output_ss,
   // vector vector
   true_output_vv.push_back(static_cast<double>(0.00000000000000000));
   true_output_vv_err2.push_back(static_cast<double>(0.00000000000000000));
+
+#ifdef LINUX
+  true_output_vv.push_back(static_cast<double>(5.22699330000000001));
+  true_output_vv_err2.push_back(static_cast<double>(109285.83583297956344255));
+  true_output_vv.push_back(static_cast<double>(20.90797320000000003));
+  true_output_vv_err2.push_back(static_cast<double>(874286.68666383646566129));
+#else
   true_output_vv.push_back(static_cast<double>(5.22699329999999912));
   true_output_vv_err2.push_back(static_cast<double>(109285.83583297954889063));
   true_output_vv.push_back(static_cast<double>(20.90797319999999645));
   true_output_vv_err2.push_back(static_cast<double>(874286.68666383634924597));
+#endif
+
   true_output_vv.push_back(static_cast<double>(47.04293970000000000));
   true_output_vv_err2.push_back(static_cast<double>(2950717.56749044767169357));
+#ifdef LINUX
+  true_output_vv.push_back(static_cast<double>(83.63189280000000000));
+  true_output_vv_err2.push_back(static_cast<double>(6994293.49331069186264514));
+#else
   true_output_vv.push_back(static_cast<double>(83.63189279999998579));
   true_output_vv_err2.push_back(static_cast<double>(6994293.49331069093132257));
+#endif
 }
 
 /**
