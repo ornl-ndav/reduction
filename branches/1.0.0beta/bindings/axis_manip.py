@@ -61,7 +61,8 @@ import vpair_bind
 #
 
 ##
-# \defgroup d_spacing_to_tof_focused_det axis_manip::d_spacing_to_tof_focused_det
+# \defgroup d_spacing_to_tof_focused_det \
+# axis_manip::d_spacing_to_tof_focused_det
 # \{
 
 ##
@@ -160,8 +161,8 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
 
     try:
         if d_spacing.__type__ != d_spacing_err2.__type__:
-            raise TypeError, "D-Spacing and D-Spacing Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("D-Spacing and D-Spacing Err2 arrays are not " \
+                            +"the same type")
 
         if (d_spacing.__type__ == nessi_list.NessiList.DOUBLE):
             tof = nessi_list.NessiList(len(d_spacing))
@@ -177,10 +178,10 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
                 tof_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" \
-                      % str(d_spacing.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(d_spacing.__type__))
 
-        return tof, tof_err2
+        return (tof, tof_err2)
 
     except AttributeError:
         tof_ss = vpair_bind.DoubleVPair()
@@ -192,7 +193,7 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
             float(polar_focused),\
             float(polar_focused_err2),\
             tof_ss)
-        return tof_ss.val, tof_ss.val_err2
+        return (tof_ss.val, tof_ss.val_err2)
 
 ##
 # \}// end of d_spacing_to_tof_focused_det group
@@ -237,7 +238,7 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
 # \exception TypeError is thrown if any of the lists are not
 # recognized types
 
-def energy_transfer(initial_energy, initial_energy_err2,\
+def energy_transfer(initial_energy, initial_energy_err2, 
                     final_energy, final_energy_err2):
     """
     ---------------------------------------------------------------------------
@@ -283,88 +284,88 @@ def energy_transfer(initial_energy, initial_energy_err2,\
 
     try:
         if initial_energy.__type__ != final_energy.__type__:
-            raise TypeError, "Initial Energy and Final Energy array types"\
-            +"are not the same."
+            raise TypeError("Initial Energy and Final Energy array types " \
+                            +"are not the same.")
 
         if initial_energy.__type__ != initial_energy_err2.__type__:
-            raise TypeError, "Initial Energy and Initial Energy Err2 array"\
-            +"types are not the same."
+            raise TypeError("Initial Energy and Initial Energy Err2 array " \
+                            +"types are not the same.")
 
         if (initial_energy.__type__ == nessi_list.NessiList.DOUBLE):
-            energy_transfer = nessi_list.NessiList(len(initial_energy))
-            energy_transfer_err2 = nessi_list.NessiList(len(initial_energy))
+            e_transfer = nessi_list.NessiList(len(initial_energy))
+            e_transfer_err2 = nessi_list.NessiList(len(initial_energy))
             axis_manip_bind.energy_transfer_d(\
                             initial_energy.__array__,\
                             initial_energy_err2.__array__,\
                             final_energy.__array__,\
                             final_energy_err2.__array__,\
-                            energy_transfer.__array__,\
-                            energy_transfer_err2.__array__)
+                            e_transfer.__array__,\
+                            e_transfer_err2.__array__)
         else:
-            raise TypeError, "Unknown primitive type %s" % \
-                  str(initial_energy.__type__)
+            raise TypeError("Unknown primitive type %s" % \
+                            str(initial_energy.__type__))
 
-        return energy_transfer, energy_transfer_err2
-
-    except AttributeError:
-        pass
-
-    try:
-        initial_energy.__type__
-        array = initial_energy
-        array_err2 = initial_energy_err2
-        scalar = final_energy
-        scalar_err2 = final_energy_err2
-
-        if(array.__type__ == array.DOUBLE):
-            energy_transfer = nessi_list.NessiList(len(array))
-            energy_transfer_err2 = nessi_list.NessiList(len(array))
-            axis_manip_bind.energy_transfer_d(\
-                        array.__array__,\
-                        array_err2.__array__,\
-                        float(scalar),\
-                        float(scalar_err2),\
-                        energy_transfer.__array__,\
-                        energy_transfer_err2.__array__)
-
-        else:
-            raise TypeError,"Unknown primative type %s" % str(array.__type__)
-
-        return energy_transfer, energy_transfer_err2
+        return (e_transfer, e_transfer_err2)
 
     except AttributeError:
         try:
-            final_energy.__type__
-            array = final_energy
-            array_err2 = final_energy_err2
-            scalar = initial_energy
-            scalar_err2 = initial_energy_err2
-
-            if (array.__type__ == nessi_list.NessiList.DOUBLE):
-                energy_transfer = nessi_list.NessiList(len(array))
-                energy_transfer_err2 = nessi_list.NessiList(len(array))
+            initial_energy.__type__
+            array = initial_energy
+            array_err2 = initial_energy_err2
+            scalar = final_energy
+            scalar_err2 = final_energy_err2
+            
+            if(array.__type__ == array.DOUBLE):
+                e_transfer = nessi_list.NessiList(len(array))
+                e_transfer_err2 = nessi_list.NessiList(len(array))
                 axis_manip_bind.energy_transfer_d(\
+                        array.__array__,\
+                        array_err2.__array__,\
+                        float(scalar),\
+                        float(scalar_err2),\
+                        e_transfer.__array__,\
+                        e_transfer_err2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" \
+                                % str(array.__type__))
+
+            return (e_transfer, e_transfer_err2)
+
+        except AttributeError:
+            try:
+                final_energy.__type__
+                array = final_energy
+                array_err2 = final_energy_err2
+                scalar = initial_energy
+                scalar_err2 = initial_energy_err2
+                
+                if (array.__type__ == nessi_list.NessiList.DOUBLE):
+                    e_transfer = nessi_list.NessiList(len(array))
+                    e_transfer_err2 = nessi_list.NessiList(len(array))
+                    axis_manip_bind.energy_transfer_d(\
                         float(scalar),\
                         float(scalar_err2),\
                         array.__array__,\
                         array_err2.__array__,\
-                        energy_transfer.__array__,\
-                        energy_transfer_err2.__array__)
-            else:
-                raise TypeError,"Unknown primative type %s" \
-                      % str(array.__type__)
+                        e_transfer.__array__,\
+                        e_transfer_err2.__array__)
+                else:
+                    raise TypeError("Unknown primative type %s" \
+                                    % str(array.__type__))
 
-            return energy_transfer, energy_transfer_err2
+                return (e_transfer, e_transfer_err2)
 
-        except AttributeError:
-            energy_transfer_ss = vpair_bind.DoubleVPair()
-            axis_manip_bind.energy_transfer_ss_d(float(initial_energy),\
-                                                 float(initial_energy_err2),\
-                                                 float(final_energy),\
-                                                 float(final_energy_err2),\
-                                                 energy_transfer_ss)
-
-            return energy_transfer_ss.val, energy_transfer_ss.val_err2
+            except AttributeError:
+                e_transfer_ss = vpair_bind.DoubleVPair()
+                axis_manip_bind.energy_transfer_ss_d(\
+                    float(initial_energy), \
+                    float(initial_energy_err2),\
+                    float(final_energy),\
+                    float(final_energy_err2),\
+                    e_transfer_ss)
+                
+                return (e_transfer_ss.val, e_transfer_ss.val_err2)
 ##
 # \}
 
@@ -435,8 +436,8 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
 
     try:
         if frequency.__type__ != frequency_err2.__type__:
-            raise TypeError, "Frequency and Frequency Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Frequency and Frequency Err2 arrays are not " \
+                            +"the same type")
 
         if (frequency.__type__ == nessi_list.NessiList.DOUBLE):
             omega = nessi_list.NessiList(len(frequency))
@@ -448,10 +449,10 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
                 omega_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" \
-                      % str(frequency.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(frequency.__type__))
 
-        return omega, omega_err2
+        return (omega, omega_err2)
 
     except AttributeError:
         omega_ss = vpair_bind.DoubleVPair()
@@ -459,10 +460,10 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
             float(frequency),\
             float(frequency_err2),\
             omega_ss)
-        return omega_ss.val, omega_ss.val_err2
+        return (omega_ss.val, omega_ss.val_err2)
 
 ##
-# \}  // end of frequency_to_angular_frequency group
+# \} // end of frequency_to_angular_frequency group
 
 
 ##
@@ -534,8 +535,8 @@ def frequency_to_energy(frequency, frequency_err2):
 
     try:
         if frequency.__type__ != frequency_err2.__type__:
-            raise TypeError, "Frequency and Frequency Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Frequency and Frequency Err2 arrays are not " \
+                            +"the same type")
 
         if (frequency.__type__ == nessi_list.NessiList.DOUBLE):
             E = nessi_list.NessiList(len(frequency))
@@ -547,10 +548,10 @@ def frequency_to_energy(frequency, frequency_err2):
                 E_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" \
-                      % str(frequency.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(frequency.__type__))
 
-        return E, E_err2
+        return (E, E_err2)
 
     except AttributeError:
         E_ss = vpair_bind.DoubleVPair()
@@ -558,7 +559,7 @@ def frequency_to_energy(frequency, frequency_err2):
             float(frequency),\
             float(frequency_err2),\
             E_ss)
-        return E_ss.val, E_ss.val_err2
+        return (E_ss.val, E_ss.val_err2)
 
 ##
 # \}  // end of frequency_to_energy group
@@ -644,14 +645,13 @@ def frequency_to_energy(frequency, frequency_err2):
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-
-def init_scatt_wavevector_to_Q(initial_wavevector,\
-                               initial_wavevector_err2,\
-                               final_wavevector,\
-                               final_wavevector_err2,\
-                               azimuthal,\
-                               azimuthal_err2,\
-                               polar,\
+def init_scatt_wavevector_to_Q(initial_wavevector,
+                               initial_wavevector_err2,
+                               final_wavevector,
+                               final_wavevector_err2,
+                               azimuthal,
+                               azimuthal_err2,
+                               polar,
                                polar_err2):
 
     """
@@ -729,16 +729,16 @@ def init_scatt_wavevector_to_Q(initial_wavevector,\
 
     try:
         if initial_wavevector.__type__ != final_wavevector.__type__:
-            raise TypeError, "Initial Wavevector and Scattered Wavevector"\
-                  +"array types are not the same."
+            raise TypeError("Initial Wavevector and Scattered Wavevector " \
+                            +"array types are not the same.")
         
         if initial_wavevector.__type__ != initial_wavevector_err2.__type__:
-            raise TypeError, "Initial Wavevector and Initial Wavevector Err2"\
-                  +"array types are not the same."
+            raise TypeError("Initial Wavevector and Initial Wavevector Err2 " \
+                            +"array types are not the same.")
         
         if final_wavevector.__type__ != final_wavevector_err2.__type__:
-            raise TypeError, "Scattered Wavevector and Scattere Wavevector"\
-                  +"Err2 array types are not the same."
+            raise TypeError("Scattered Wavevector and Scattere Wavevector " \
+                            +"Err2 array types are not the same.")
         
         if (initial_wavevector.__type__ == nessi_list.NessiList.DOUBLE):
             Qx = nessi_list.NessiList(len(initial_wavevector))
@@ -760,29 +760,27 @@ def init_scatt_wavevector_to_Q(initial_wavevector,\
                 Qy.__array__, Qy_err2.__array__,\
                 Qz.__array__, Qz_err2.__array__)
         else:
-            raise TypeError, "Unknown primitive type %s" % \
-                  str(initial_wavevector.__type__)
+            raise TypeError("Unknown primitive type %s" % \
+                            str(initial_wavevector.__type__))
         
-        return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+        return (Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2)
 
     except AttributeError:
-        pass
-    
-    try:
-        initial_wavevector.__type__
-        array = initial_wavevector
-        array_err2 = initial_wavevector_err2
-        scalar = final_wavevector
-        scalar_err2 = final_wavevector_err2
-        
-        if(array.__type__ == array.DOUBLE):
-            Qx = nessi_list.NessiList(len(array))
-            Qx_err2 = nessi_list.NessiList(len(array))
-            Qy = nessi_list.NessiList(len(array))
-            Qy_err2 = nessi_list.NessiList(len(array))
-            Qz = nessi_list.NessiList(len(array))
-            Qz_err2 = nessi_list.NessiList(len(array))
-            axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+        try:
+            initial_wavevector.__type__
+            array = initial_wavevector
+            array_err2 = initial_wavevector_err2
+            scalar = final_wavevector
+            scalar_err2 = final_wavevector_err2
+            
+            if(array.__type__ == array.DOUBLE):
+                Qx = nessi_list.NessiList(len(array))
+                Qx_err2 = nessi_list.NessiList(len(array))
+                Qy = nessi_list.NessiList(len(array))
+                Qy_err2 = nessi_list.NessiList(len(array))
+                Qz = nessi_list.NessiList(len(array))
+                Qz_err2 = nessi_list.NessiList(len(array))
+                axis_manip_bind.init_scatt_wavevector_to_Q_d(\
                 array.__array__,\
                 array_err2.__array__,\
                 float(scalar),\
@@ -794,51 +792,52 @@ def init_scatt_wavevector_to_Q(initial_wavevector,\
                 Qx.__array__, Qx_err2.__array__,\
                 Qy.__array__, Qy_err2.__array__,\
                 Qz.__array__, Qz_err2.__array__)
-            
-        else:
-            raise TypeError,"Unknown primative type %s" % str(array.__type__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" \
+                                % str(array.__type__))
         
-        return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
+            return (Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2)
     
-    except AttributeError:
-        try:
-            final_wavevector.__type__
-            array = final_wavevector
-            array_err2 = final_wavevector_err2
-            scalar = initial_wavevector
-            scalar_err2 = initial_wavevector_err2
-
-            if (array.__type__ == nessi_list.NessiList.DOUBLE):
-                Qx = nessi_list.NessiList(len(array))
-                Qx_err2 = nessi_list.NessiList(len(array))
-                Qy = nessi_list.NessiList(len(array))
-                Qy_err2 = nessi_list.NessiList(len(array))
-                Qz = nessi_list.NessiList(len(array))
-                Qz_err2 = nessi_list.NessiList(len(array))
-                axis_manip_bind.init_scatt_wavevector_to_Q_d(\
+        except AttributeError:
+            try:
+                final_wavevector.__type__
+                array = final_wavevector
+                array_err2 = final_wavevector_err2
+                scalar = initial_wavevector
+                scalar_err2 = initial_wavevector_err2
+                
+                if (array.__type__ == nessi_list.NessiList.DOUBLE):
+                    Qx = nessi_list.NessiList(len(array))
+                    Qx_err2 = nessi_list.NessiList(len(array))
+                    Qy = nessi_list.NessiList(len(array))
+                    Qy_err2 = nessi_list.NessiList(len(array))
+                    Qz = nessi_list.NessiList(len(array))
+                    Qz_err2 = nessi_list.NessiList(len(array))
+                    axis_manip_bind.init_scatt_wavevector_to_Q_d(\
                     float(scalar),\
                     float(scalar_err2),\
                     array.__array__,\
                     array_err2.__array__,\
                     float(azimuthal),\
                     float(azimuthal_err2),\
-                    float(polar), \
+                    float(polar),\
                     float(polar_err2),\
                     Qx.__array__, Qx_err2.__array__,\
                     Qy.__array__, Qy_err2.__array__,\
                     Qz.__array__, Qz_err2.__array__)
+                    
+                else:
+                    raise TypeError("Unknown primative type %s" \
+                                    % str(array.__type__))
 
-            else:
-                raise TypeError,"Unknown primative type %s" \
-                      % str(array.__type__)
-
-            return Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2
-
-        except AttributeError:
-            init_scatt_wavevector_to_Qx_ss = vpair_bind.DoubleVPair()
-            init_scatt_wavevector_to_Qy_ss = vpair_bind.DoubleVPair()
-            init_scatt_wavevector_to_Qz_ss = vpair_bind.DoubleVPair()
-            axis_manip_bind.init_scatt_wavevector_to_Q_ss_d(\
+                return (Qx, Qx_err2, Qy, Qy_err2, Qz, Qz_err2)
+            
+            except AttributeError:
+                init_scatt_wavevector_to_Qx_ss = vpair_bind.DoubleVPair()
+                init_scatt_wavevector_to_Qy_ss = vpair_bind.DoubleVPair()
+                init_scatt_wavevector_to_Qz_ss = vpair_bind.DoubleVPair()
+                axis_manip_bind.init_scatt_wavevector_to_Q_ss_d(\
                 float(initial_wavevector),\
                 float(initial_wavevector_err2),\
                 float(final_wavevector),\
@@ -850,14 +849,14 @@ def init_scatt_wavevector_to_Q(initial_wavevector,\
                 init_scatt_wavevector_to_Qx_ss,\
                 init_scatt_wavevector_to_Qy_ss,\
                 init_scatt_wavevector_to_Qz_ss)
-
-            return init_scatt_wavevector_to_Qx_ss.val, \
-                   init_scatt_wavevector_to_Qx_ss.val_err2, \
-                   init_scatt_wavevector_to_Qy_ss.val, \
-                   init_scatt_wavevector_to_Qy_ss.val_err2, \
-                   init_scatt_wavevector_to_Qz_ss.val, \
-                   init_scatt_wavevector_to_Qz_ss.val_err2
-        
+                
+                return init_scatt_wavevector_to_Qx_ss.val, \
+                       init_scatt_wavevector_to_Qx_ss.val_err2, \
+                       init_scatt_wavevector_to_Qy_ss.val, \
+                       init_scatt_wavevector_to_Qy_ss.val_err2, \
+                       init_scatt_wavevector_to_Qz_ss.val, \
+                       init_scatt_wavevector_to_Qz_ss.val_err2
+            
 ##
 # \} // end of init_scatt_wavevector_to_Q group
 
@@ -919,11 +918,10 @@ def init_scatt_wavevector_to_Q(initial_wavevector,\
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-
-def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
-                                      initial_wavevector_err2,\
-                                      final_wavevector,\
-                                      final_wavevector_err2,\
+def init_scatt_wavevector_to_scalar_Q(initial_wavevector,
+                                      initial_wavevector_err2,
+                                      final_wavevector,
+                                      final_wavevector_err2,
                                       polar, polar_err2):
 
     """
@@ -980,12 +978,12 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 
     try:
         if initial_wavevector.__type__ != final_wavevector.__type__:
-            raise TypeError, "Initial Wavevector and Scattered Wavevector"\
-            +"array types are not the same."
+            raise TypeError("Initial Wavevector and Scattered Wavevector " \
+                            +"array types are not the same.")
 
         if initial_wavevector.__type__ != initial_wavevector_err2.__type__:
-            raise TypeError, "Initial Wavevector and Initial Wavevector Err2"\
-            +"array types are not the same."
+            raise TypeError("Initial Wavevector and Initial Wavevector Err2 " \
+                            +"array types are not the same.")
 
         if (initial_wavevector.__type__ == nessi_list.NessiList.DOUBLE):
             Q = nessi_list.NessiList(len(initial_wavevector))
@@ -999,67 +997,66 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
                                        float(polar_err2),\
                                        Q.__array__, Q_err2.__array__)
         else:
-            raise TypeError, "Unknown primitive type %s" % \
-                  str(initial_wavevector.__type__)
+            raise TypeError("Unknown primitive type %s" % \
+                            str(initial_wavevector.__type__))
 
-        return Q, Q_err2
-
-    except AttributeError:
-        pass
-
-    try:
-        initial_wavevector.__type__
-        array = initial_wavevector
-        array_err2 = initial_wavevector_err2
-        scalar = final_wavevector
-        scalar_err2 = final_wavevector_err2
-
-        if(array.__type__ == array.DOUBLE):
-            Q = nessi_list.NessiList(len(array))
-            Q_err2 = nessi_list.NessiList(len(array))
-            axis_manip_bind.init_scatt_wavevector_to_scalar_Q_d(\
-                                       array.__array__,\
-                                       array_err2.__array__,\
-                                       float(scalar),\
-                                       float(scalar_err2),\
-                                       float(polar), \
-                                       float(polar_err2),\
-                                       Q.__array__, Q_err2.__array__)
-
-        else:
-            raise TypeError,"Unknown primative type %s" % str(array.__type__)
-
-        return Q, Q_err2
+        return (Q, Q_err2)
 
     except AttributeError:
         try:
-            final_wavevector.__type__
-            array = final_wavevector
-            array_err2 = final_wavevector_err2
-            scalar = initial_wavevector
-            scalar_err2 = initial_wavevector_err2
-
-            if (array.__type__ == nessi_list.NessiList.DOUBLE):
+            initial_wavevector.__type__
+            array = initial_wavevector
+            array_err2 = initial_wavevector_err2
+            scalar = final_wavevector
+            scalar_err2 = final_wavevector_err2
+            
+            if(array.__type__ == array.DOUBLE):
                 Q = nessi_list.NessiList(len(array))
                 Q_err2 = nessi_list.NessiList(len(array))
                 axis_manip_bind.init_scatt_wavevector_to_scalar_Q_d(\
-                                       float(scalar),\
-                                       float(scalar_err2),\
                                        array.__array__,\
                                        array_err2.__array__,\
+                                       float(scalar),\
+                                       float(scalar_err2),\
                                        float(polar), \
                                        float(polar_err2),\
                                        Q.__array__, Q_err2.__array__)
 
             else:
-                raise TypeError,"Unknown primative type %s" \
-                      % str(array.__type__)
+                raise TypeError("Unknown primative type %s" \
+                                % str(array.__type__))
 
-            return Q, Q_err2
+            return (Q, Q_err2)
 
         except AttributeError:
-            init_scatt_wavevector_to_scalar_Q_ss = vpair_bind.DoubleVPair()
-            axis_manip_bind.init_scatt_wavevector_to_scalar_Q_ss_d(\
+            try:
+                final_wavevector.__type__
+                array = final_wavevector
+                array_err2 = final_wavevector_err2
+                scalar = initial_wavevector
+                scalar_err2 = initial_wavevector_err2
+                
+                if (array.__type__ == nessi_list.NessiList.DOUBLE):
+                    Q = nessi_list.NessiList(len(array))
+                    Q_err2 = nessi_list.NessiList(len(array))
+                    axis_manip_bind.init_scatt_wavevector_to_scalar_Q_d(\
+                                       float(scalar),\
+                                       float(scalar_err2),\
+                                       array.__array__,\
+                                       array_err2.__array__,\
+                                       float(polar), \
+                                       float(polar_err2),\
+                                       Q.__array__, Q_err2.__array__)
+                    
+                else:
+                    raise TypeError("Unknown primative type %s" \
+                                    % str(array.__type__))
+
+                return (Q, Q_err2)
+            
+            except AttributeError:
+                init_scatt_wavevector_to_scalar_Q_ss = vpair_bind.DoubleVPair()
+                axis_manip_bind.init_scatt_wavevector_to_scalar_Q_ss_d(\
         float(initial_wavevector),\
         float(initial_wavevector_err2),\
         float(final_wavevector),\
@@ -1067,10 +1064,10 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
         float(polar),\
         float(polar_err2),\
         init_scatt_wavevector_to_scalar_Q_ss)
-
-            return init_scatt_wavevector_to_scalar_Q_ss.val, \
-                   init_scatt_wavevector_to_scalar_Q_ss.val_err2
-
+                
+                return init_scatt_wavevector_to_scalar_Q_ss.val, \
+                       init_scatt_wavevector_to_scalar_Q_ss.val_err2
+            
 ##
 # \} // end of init_scatt_wavevector_to_scalar_Q group
 
@@ -1124,13 +1121,13 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,\
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-def initial_velocity_dgs(dist_upstream_mon,\
-                         dist_upstream_mon_err2,\
-                         time_upstream_mon,\
-                         time_upstream_mon_err2,\
-                         dist_downstream_mon,\
-                         dist_downstream_mon_err2,\
-                         time_downstream_mon,\
+def initial_velocity_dgs(dist_upstream_mon,
+                         dist_upstream_mon_err2,
+                         time_upstream_mon,
+                         time_upstream_mon_err2,
+                         dist_downstream_mon,
+                         dist_downstream_mon_err2,
+                         time_downstream_mon,
                          time_downstream_mon_err2):
 
     """
@@ -1195,7 +1192,7 @@ def initial_velocity_dgs(dist_upstream_mon,\
         float(time_downstream_mon),\
         float(time_downstream_mon_err2),\
         initial_velocity_dgs_ss)
-    return initial_velocity_dgs_ss.val, initial_velocity_dgs_ss.val_err2
+    return (initial_velocity_dgs_ss.val, initial_velocity_dgs_ss.val_err2)
                              
 ##
 # \} // end of initial_velocity_dgs group
@@ -1323,20 +1320,20 @@ def initial_velocity_dgs(dist_upstream_mon,\
 # OpenGenie routine.
 #
 # \param axis_in (INPUT) is the initial data axis
-# \param input (INPUT) is the data associated with the initial axis
-# \param input_err2 (INPUT) is the square of the uncertainty associated
+# \param data_in (INPUT) is the data associated with the initial axis
+# \param data_in_err2 (INPUT) is the square of the uncertainty associated
 # with the data
 # \param axis_out (INPUT) is the target axis for rebinning
 # \return
 # - The rebinned data according to the target axis
-# - The uncertainty associated with the rebinned  data
+# - The uncertainty associated with the rebinned data
 #
 # \exception IndexError is thrown if the arrays are not of compatible
 # sizes
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-def rebin_axis_1D(axis_in, input, input_err2, axis_out):
+def rebin_axis_1D(axis_in, data_in, data_in_err2, axis_out):
 
     """
     ---------------------------------------------------------------------------
@@ -1411,8 +1408,8 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
     __________
 
     -> axis_in is the initial data axis
-    -> input is the data associated with the initial axis
-    -> input_err2 is the square of the uncertainty associated with the data
+    -> data_in is the data associated with the initial axis
+    -> data_in_err2 is the square of the uncertainty associated with the data
     -> axis_out is the target axis for rebinning
 
     Returns - two NessiLists:
@@ -1430,29 +1427,29 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 
     """
 
-    if axis_in.__type__ != input.__type__:
-        raise TypeError, "Input Axis and Input Data are not the same type."
+    if axis_in.__type__ != data_in.__type__:
+        raise TypeError("Input Axis and Input Data are not the same type.")
 
     if axis_in.__type__ != axis_out.__type__:
-        raise TypeError, "Input Axis and Output Axis are not the same type."
+        raise TypeError("Input Axis and Output Axis are not the same type.")
 
-    if input.__type__ != input_err2.__type__:
-        raise TypeError, "Input Data and Input Data Err2 are not the same"\
-        +"type."
+    if data_in.__type__ != data_in_err2.__type__:
+        raise TypeError("Input Data and Input Data Err2 are not the same " \
+                        +"type.")
 
     if (axis_in.__type__ == nessi_list.NessiList.DOUBLE):
         output = nessi_list.NessiList(len(axis_out)-1)
         output_err2 = nessi_list.NessiList(len(axis_out)-1)
-        axis_manip_bind.rebin_axis_1D_d(axis_in.__array__,\
-                                        input.__array__,\
-                                        input_err2.__array__,\
-                                        axis_out.__array__,\
-                                        output.__array__,\
+        axis_manip_bind.rebin_axis_1D_d(axis_in.__array__,
+                                        data_in.__array__,
+                                        data_in_err2.__array__,
+                                        axis_out.__array__,
+                                        output.__array__,
                                         output_err2.__array__)
     else:
-        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
+        raise TypeError("Unknown primitive type %s" % str(data_in.__type__))
 
-    return output, output_err2
+    return (output, output_err2)
 
 ##
 # \}
@@ -1562,8 +1559,8 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 #
 # \param axis_in_1 (INPUT) is the 1st initial data axis
 # \param axis_in_2 (INPUT) is the 2nd initial data axis
-# \param input (INPUT) is the data associated with the initial axis
-# \param input_err2 (INPUT) is the square of the uncertainty associated
+# \param data_in (INPUT) is the data associated with the initial axis
+# \param data_in_err2 (INPUT) is the square of the uncertainty associated
 # with the data
 # \param axis_out_1 (INPUT) is the 1st target axis for rebinning
 # \param axis_out_2 (INPUT) is the 2nd target axis for rebinning
@@ -1577,8 +1574,7 @@ def rebin_axis_1D(axis_in, input, input_err2, axis_out):
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-
-def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
+def rebin_axis_2D(axis_in_1, axis_in_2, data_in, data_in_err2,
                   axis_out_1, axis_out_2):
     """
     ---------------------------------------------------------------------------
@@ -1655,8 +1651,8 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
 
     -> axis_in_1 is the 1st initial data axis
     -> axis_in_2 is the 2nd initial data axis
-    -> input is the data associated with the initial axis
-    -> input_err2 is the square of the uncertainty associated with the data
+    -> data_in is the data associated with the initial axis
+    -> data_in_err2 is the square of the uncertainty associated with the data
     -> axis_out_1 is the 1st target axis for rebinning
     -> axis_out_2 is the 2nd target axis for rebinning
 
@@ -1676,40 +1672,40 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
     """
 
     if axis_in_1.__type__ != axis_in_2.__type__:
-        raise TypeError, "Input Axis 1 and Input Axis 2 are not the same type."
+        raise TypeError("Input Axis 1 and Input Axis 2 are not the same type.")
 
-    if axis_in_1.__type__ != input.__type__:
-        raise TypeError, "Input Axis 1 and Input Data are not the same type."
+    if axis_in_1.__type__ != data_in.__type__:
+        raise TypeError("Input Axis 1 and Input Data are not the same type.")
 
     if axis_in_1.__type__ != axis_out_1.__type__:
-        raise TypeError, "Input Axis 1 and Output Axis 1 are not the same"\
-        +"type."
+        raise TypeError("Input Axis 1 and Output Axis 1 are not the same " \
+                        +"type.")
 
     if axis_out_1.__type__ != axis_out_2.__type__:
-        raise TypeError, "Output Axis 1 and Output Axis 2 are not the same"\
-        +"type."
+        raise TypeError("Output Axis 1 and Output Axis 2 are not the same " \
+                        +"type.")
 
-    if input.__type__ != input_err2.__type__:
-        raise TypeError, "Input Data and Input Data Err2 are not the same"\
-        +"type."
+    if data_in.__type__ != data_in_err2.__type__:
+        raise TypeError("Input Data and Input Data Err2 are not the same " \
+                        +"type.")
 
     if (axis_in_1.__type__ == nessi_list.NessiList.DOUBLE):
         output = nessi_list.NessiList((len(axis_out_1)-1) * \
                                       (len(axis_out_2)-1))
         output_err2 = nessi_list.NessiList((len(axis_out_1)-1) * \
                                            (len(axis_out_2)-1))
-        axis_manip_bind.rebin_axis_2D_d(axis_in_1.__array__,\
-                                        axis_in_2.__array__,\
-                                        input.__array__,\
-                                        input_err2.__array__,\
-                                        axis_out_1.__array__,\
-                                        axis_out_2.__array__,\
-                                        output.__array__,\
+        axis_manip_bind.rebin_axis_2D_d(axis_in_1.__array__,
+                                        axis_in_2.__array__,
+                                        data_in.__array__,
+                                        data_in_err2.__array__,
+                                        axis_out_1.__array__,
+                                        axis_out_2.__array__,
+                                        output.__array__,
                                         output_err2.__array__)
     else:
-        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
+        raise TypeError("Unknown primitive type %s" % str(data_in.__type__))
 
-    return output, output_err2
+    return (output, output_err2)
 
 ##
 # \} // end of rebin_axis2D group
@@ -1729,14 +1725,14 @@ def rebin_axis_2D(axis_in_1, axis_in_2, input, input_err2,
 # This function will reorder a NessiList so the last element of the
 # supplied NessiList is the first element of the result NessiList.
 #
-# \param input (INPUT) is the NessiList to be reversed
+# \param data_in (INPUT) is the NessiList to be reversed
 #
 # \return
 # - The reversed NessiList
 #
 # \exception TypeError is thrown if the array is not a recognized type
 
-def reverse_array_cp(input):
+def reverse_array_cp(data_in):
 
     """
     ---------------------------------------------------------------------------
@@ -1747,7 +1743,7 @@ def reverse_array_cp(input):
     Parameter:
     _________
 
-    -> input is the NessiList to be reversed
+    -> data_in is the NessiList to be reversed
 
     Return - 1 NessiList:
     ______________________
@@ -1762,21 +1758,21 @@ def reverse_array_cp(input):
     """
 
     try:
-        output = nessi_list.NessiList(len(input), type=input.__type__)
+        output = nessi_list.NessiList(len(data_in), type=data_in.__type__)
     except AttributeError:
-        raise TypeError, "Function must be supplied a NessiList"
+        raise TypeError("Function must be supplied a NessiList")
 
-    if (input.__type__ == nessi_list.NessiList.DOUBLE):
-        output = nessi_list.NessiList(len(input))
-        axis_manip_bind.reverse_array_cp_d(input.__array__, output.__array__)
+    if (data_in.__type__ == nessi_list.NessiList.DOUBLE):
+        output = nessi_list.NessiList(len(data_in))
+        axis_manip_bind.reverse_array_cp_d(data_in.__array__, output.__array__)
 
-    elif (input.__type__ == nessi_list.NessiList.INT):
-        output = nessi_list.NessiList(len(input),\
+    elif (data_in.__type__ == nessi_list.NessiList.INT):
+        output = nessi_list.NessiList(len(data_in),
                                       type=nessi_list.NessiList.INT)
-        axis_manip_bind.reverse_array_cp_i(input.__array__, output.__array__)
+        axis_manip_bind.reverse_array_cp_i(data_in.__array__, output.__array__)
 
     else:
-        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
+        raise TypeError("Unknown primitive type %s" % str(data_in.__type__))
 
     return output
 
@@ -1801,7 +1797,7 @@ def reverse_array_cp(input):
 # NessiList reversal is done in place on the supplied NessiList
 # (i.e. no copy).
 #
-# \param input (INPUT/OUTPUT) is the NessiList to be reversed. It also is the
+# \param data_in (INPUT/OUTPUT) is the NessiList to be reversed. It also is the
 # place holder for the reversed NessiList.
 #
 # \return reference to the input array
@@ -1809,7 +1805,7 @@ def reverse_array_cp(input):
 # \exception TypeError is thrown if the array is not a recognized
 # type
 
-def reverse_array_nc(input):
+def reverse_array_nc(data_in):
 
     """
     ---------------------------------------------------------------------------
@@ -1821,13 +1817,13 @@ def reverse_array_nc(input):
     Parameter:
     ________________
 
-    -> input is the NessiList to be reversed. It is also the place holder
+    -> data_in is the NessiList to be reversed. It is also the place holder
        for the reversed NessiList.
 
     Return - one NessiList:
     ______________________
 
-    <- reference to the input array
+    <- reference to the data_in array
 
     Exception:
     _________
@@ -1836,16 +1832,16 @@ def reverse_array_nc(input):
 
     """
 
-    if (input.__type__ == nessi_list.NessiList.DOUBLE):
-        axis_manip_bind.reverse_array_nc_d(input.__array__)
+    if (data_in.__type__ == nessi_list.NessiList.DOUBLE):
+        axis_manip_bind.reverse_array_nc_d(data_in.__array__)
 
-    elif (input.__type__ == nessi_list.NessiList.INT):
-        axis_manip_bind.reverse_array_nc_i(input.__array__)
+    elif (data_in.__type__ == nessi_list.NessiList.INT):
+        axis_manip_bind.reverse_array_nc_i(data_in.__array__)
 
     else:
-        raise TypeError, "Unknown primitive type %s" % str(input.__type__)
+        raise TypeError("Unknown primitive type %s" % str(data_in.__type__))
 
-    return input
+    return data_in
 
 ##
 #\}
@@ -1897,11 +1893,11 @@ def reverse_array_nc(input):
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-def time_offset_dgs(dist_downstream_monitor,\
-                    dist_downstream_monitor_err2,\
-                    time_downstream_monitor,\
-                    time_downstream_monitor_err2,\
-                    initial_velocity,\
+def time_offset_dgs(dist_downstream_monitor,
+                    dist_downstream_monitor_err2,
+                    time_downstream_monitor,
+                    time_downstream_monitor_err2,
+                    initial_velocity,
                     initial_velocity_err2):
 
     """
@@ -1958,7 +1954,7 @@ def time_offset_dgs(dist_downstream_monitor,\
         float(initial_velocity),\
         float(initial_velocity_err2),\
         time_offset_dgs_ss)
-    return time_offset_dgs_ss.val, time_offset_dgs_ss.val_err2
+    return (time_offset_dgs_ss.val, time_offset_dgs_ss.val_err2)
                              
 ##
 # \} // end of time_offset_dgs group
@@ -2027,15 +2023,15 @@ def time_offset_dgs(dist_downstream_monitor,\
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-def tof_to_final_velocity_dgs(tof,\
-                              tof_err2,\
-                              initial_velocity,\
-                              initial_velocity_err2,\
-                              time_offset,\
-                              time_offset_err2,\
-                              dist_source_sample,\
-                              dist_source_sample_err2,\
-                              dist_sample_detector,\
+def tof_to_final_velocity_dgs(tof,
+                              tof_err2,
+                              initial_velocity,
+                              initial_velocity_err2,
+                              time_offset,
+                              time_offset_err2,
+                              dist_source_sample,
+                              dist_source_sample_err2,
+                              dist_sample_detector,
                               dist_sample_detector_err2):
 
     """
@@ -2092,7 +2088,7 @@ def tof_to_final_velocity_dgs(tof,\
     """
     try:
         if tof.__type__ != tof_err2.__type__:
-            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
+            raise TypeError("Tof and Tof Err2 arrays are not the same type.")
 
         if (tof.__type__ == nessi_list.NessiList.DOUBLE):
             final_velocity = nessi_list.NessiList(len(tof))
@@ -2112,9 +2108,9 @@ def tof_to_final_velocity_dgs(tof,\
                 final_velocity_err2.__array__)
 
         else:
-            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
+            raise TypeError("Unknown primitive type %s" % str(tof.__type__))
 
-        return final_velocity, final_velocity_err2
+        return (final_velocity, final_velocity_err2)
 
     except AttributeError:
         final_velocity_ss = vpair_bind.DoubleVPair()
@@ -2130,7 +2126,7 @@ def tof_to_final_velocity_dgs(tof,\
             float(dist_sample_detector),\
             float(dist_sample_detector_err2),\
             final_velocity_ss)
-        return final_velocity_ss.val, final_velocity_ss.val_err2
+        return (final_velocity_ss.val, final_velocity_ss.val_err2)
 
 ##
 # \}// end of tof_to_final_velocity_dgs group
@@ -2211,15 +2207,15 @@ def tof_to_final_velocity_dgs(tof,\
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
 
-def tof_to_initial_wavelength_igs(tof,\
-                                  tof_err2,\
-                                  final_wavelength,\
-                                  final_wavelength_err2,\
-                                  time_offset,\
-                                  time_offset_err2,\
-                                  dist_source_sample,\
-                                  dist_source_sample_err2,\
-                                  dist_sample_detector,\
+def tof_to_initial_wavelength_igs(tof,
+                                  tof_err2,
+                                  final_wavelength,
+                                  final_wavelength_err2,
+                                  time_offset,
+                                  time_offset_err2,
+                                  dist_source_sample,
+                                  dist_source_sample_err2,
+                                  dist_sample_detector,
                                   dist_sample_detector_err2):
 
     """
@@ -2289,7 +2285,7 @@ def tof_to_initial_wavelength_igs(tof,\
     """
     try:
         if tof.__type__ != tof_err2.__type__:
-            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
+            raise TypeError("Tof and Tof Err2 arrays are not the same type.")
 
         if (tof.__type__ == nessi_list.NessiList.DOUBLE):
             initial_wavelength = nessi_list.NessiList(len(tof))
@@ -2309,9 +2305,9 @@ def tof_to_initial_wavelength_igs(tof,\
                     initial_wavelength_err2.__array__)
 
         else:
-            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
+            raise TypeError("Unknown primitive type %s" % str(tof.__type__))
 
-        return initial_wavelength, initial_wavelength_err2
+        return (initial_wavelength, initial_wavelength_err2)
 
     except AttributeError:
         initial_wavelength_ss = vpair_bind.DoubleVPair()
@@ -2327,7 +2323,7 @@ def tof_to_initial_wavelength_igs(tof,\
       float(dist_sample_detector),\
       float(dist_sample_detector_err2),\
       initial_wavelength_ss)
-        return initial_wavelength_ss.val, initial_wavelength_ss.val_err2
+        return (initial_wavelength_ss.val, initial_wavelength_ss.val_err2)
 
 ##
 # \}
@@ -2385,8 +2381,9 @@ def tof_to_initial_wavelength_igs(tof,\
 # sizes
 # \exception TypeError is thrown if any of the arrays are not
 # recognized types
-def tof_to_scalar_Q(tof, tof_err2,\
-                    pathlength, pathlength_err2,\
+
+def tof_to_scalar_Q(tof, tof_err2,
+                    pathlength, pathlength_err2,
                     polar, polar_err2):
     
     """
@@ -2442,25 +2439,25 @@ def tof_to_scalar_Q(tof, tof_err2,\
 
     try:
         if tof.__type__ != tof_err2.__type__:
-            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
+            raise TypeError("Tof and Tof Err2 arrays are not the same type.")
 
         if (tof.__type__ == nessi_list.NessiList.DOUBLE):
 
             Q = nessi_list.NessiList(len(tof))
             Q_err2 = nessi_list.NessiList(len(tof))
-            axis_manip_bind.tof_to_scalar_Q_d(tof.__array__,\
-                                              tof_err2.__array__,\
-                                              float(pathlength),\
-                                              float(pathlength_err2),\
-                                              float(polar),\
-                                              float(polar_err2),\
-                                              Q.__array__,\
+            axis_manip_bind.tof_to_scalar_Q_d(tof.__array__,
+                                              tof_err2.__array__,
+                                              float(pathlength),
+                                              float(pathlength_err2),
+                                              float(polar),
+                                              float(polar_err2),
+                                              Q.__array__,
                                               Q_err2.__array__)
             
         else:
-            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
+            raise TypeError("Unknown primitive type %s" % str(tof.__type__))
         
-        return Q, Q_err2
+        return (Q, Q_err2)
     
     except AttributeError:
         
@@ -2473,7 +2470,7 @@ def tof_to_scalar_Q(tof, tof_err2,\
       float(polar),\
       float(polar_err2),\
       Q_ss)
-        return Q_ss.val, Q_ss.val_err2
+        return (Q_ss.val, Q_ss.val_err2)
     
 ##
 # \}
@@ -2576,26 +2573,25 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 
     try:
         if tof.__type__ != tof_err2.__type__:
-            raise TypeError, "Tof and Tof Err2 arrays are not the same type."
+            raise TypeError("Tof and Tof Err2 arrays are not the same type.")
 
         if (tof.__type__ == nessi_list.NessiList.DOUBLE):
 
             wavelength = nessi_list.NessiList(len(tof))
             wavelength_err2 = nessi_list.NessiList(len(tof))
-            axis_manip_bind.tof_to_wavelength_d(tof.__array__,\
-                                                tof_err2.__array__,\
-                                                float(pathlength),\
-                                                float(pathlength_err2),\
-                                                wavelength.__array__,\
+            axis_manip_bind.tof_to_wavelength_d(tof.__array__,
+                                                tof_err2.__array__,
+                                                float(pathlength),
+                                                float(pathlength_err2),
+                                                wavelength.__array__,
                                                 wavelength_err2.__array__)
 
         else:
-            raise TypeError, "Unknown primitive type %s" % str(tof.__type__)
+            raise TypeError("Unknown primitive type %s" % str(tof.__type__))
 
-        return wavelength, wavelength_err2
+        return (wavelength, wavelength_err2)
 
     except AttributeError:
-
         wavelength_ss = vpair_bind.DoubleVPair()
         axis_manip_bind.tof_to_wavelength_ss_d(\
       float(tof),\
@@ -2603,7 +2599,7 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
       float(pathlength),\
       float(pathlength_err2),\
       wavelength_ss)
-        return wavelength_ss.val, wavelength_ss.val_err2
+        return (wavelength_ss.val, wavelength_ss.val_err2)
 
 ##
 # \}
@@ -2678,8 +2674,8 @@ def velocity_to_energy(velocity, velocity_err2):
 
     try:
         if velocity.__type__ != velocity_err2.__type__:
-            raise TypeError, "Velocity and Velocity Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Velocity and Velocity Err2 arrays are not " \
+                            +"the same type")
 
         if (velocity.__type__ == nessi_list.NessiList.DOUBLE):
             E = nessi_list.NessiList(len(velocity))
@@ -2691,10 +2687,10 @@ def velocity_to_energy(velocity, velocity_err2):
                 E_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" \
-                      % str(velocity.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(velocity.__type__))
 
-        return E, E_err2
+        return (E, E_err2)
 
     except AttributeError:
         E_ss = vpair_bind.DoubleVPair()
@@ -2702,7 +2698,7 @@ def velocity_to_energy(velocity, velocity_err2):
             float(velocity),\
             float(velocity_err2),\
             E_ss)
-        return E_ss.val, E_ss.val_err2
+        return (E_ss.val, E_ss.val_err2)
 
 ##
 # \}  // end of velocity_to_energy group
@@ -2737,7 +2733,8 @@ def velocity_to_energy(velocity, velocity_err2):
 #
 # \return
 # - The wavevector is the scalar wavevector in units of reciprocal Angstroms
-# - The wavevector_err2 is the square of the uncertainty in the scalar wavevector
+# - The wavevector_err2 is the square of the uncertainty in the scalar
+#   wavevector
 #
 # \exception IndexError is thrown if the arrays are not of compatible sizes
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -2786,8 +2783,8 @@ def velocity_to_scalar_k(velocity, velocity_err2):
 
     try:
         if velocity.__type__ != velocity_err2.__type__:
-            raise TypeError, "Velocity and Velocity Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Velocity and Velocity Err2 arrays are not " \
+                            +"the same type")
 
         if (velocity.__type__ == nessi_list.NessiList.DOUBLE):
             wavevector = nessi_list.NessiList(len(velocity))
@@ -2799,10 +2796,10 @@ def velocity_to_scalar_k(velocity, velocity_err2):
                 wavevector_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s"\
-                  % str(velocity.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(velocity.__type__))
 
-        return wavevector, wavevector_err2
+        return (wavevector, wavevector_err2)
 
     except AttributeError:
         wavevector_ss = vpair_bind.DoubleVPair()
@@ -2810,7 +2807,7 @@ def velocity_to_scalar_k(velocity, velocity_err2):
             float(velocity),\
             float(velocity_err2),\
             wavevector_ss)
-        return wavevector_ss.val, wavevector_ss.val_err2
+        return (wavevector_ss.val, wavevector_ss.val_err2)
 
 ##
 # \} // end of velocity_to_scalar_k_group
@@ -2896,8 +2893,8 @@ def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
 
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
-            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Wavelength and Wavelength Err2 arrays are not " \
+                            +"the same type")
 
         if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
             d_spacing = nessi_list.NessiList(len(wavelength))
@@ -2911,10 +2908,10 @@ def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
                 d_spacing_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" \
-                      % str(wavelength.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(wavelength.__type__))
 
-        return d_spacing, d_spacing_err2
+        return (d_spacing, d_spacing_err2)
 
     except AttributeError:
         d_spacing_ss = vpair_bind.DoubleVPair()
@@ -2924,7 +2921,7 @@ def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
             float(polar),\
             float(polar_err2),\
             d_spacing_ss)
-        return d_spacing_ss.val, d_spacing_ss.val_err2
+        return (d_spacing_ss.val, d_spacing_ss.val_err2)
 
 ##
 # \} // end of wavelength_to_d_spacing group
@@ -3018,8 +3015,8 @@ def wavelength_to_energy(wavelength, wavelength_err2):
     """
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
-            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Wavelength and Wavelength Err2 arrays are not " \
+                            +"the same type")
 
         if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
             energy = nessi_list.NessiList(len(wavelength))
@@ -3029,10 +3026,10 @@ def wavelength_to_energy(wavelength, wavelength_err2):
                                                    energy.__array__,\
                                                    energy_err2.__array__)
         else:
-            raise TypeError, "Unknown primitive type %s" % \
-                  str(wavelength.__type__)
+            raise TypeError("Unknown primitive type %s" % \
+                            str(wavelength.__type__))
 
-        return energy, energy_err2
+        return (energy, energy_err2)
 
     except AttributeError:
         energy_ss = vpair_bind.DoubleVPair()
@@ -3040,7 +3037,7 @@ def wavelength_to_energy(wavelength, wavelength_err2):
       float(wavelength),\
       float(wavelength_err2),\
       energy_ss)
-        return energy_ss.val, energy_ss.val_err2
+        return (energy_ss.val, energy_ss.val_err2)
 
 ##
 # \}
@@ -3129,8 +3126,8 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
 
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
-            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Wavelength and Wavelength Err2 arrays are not " \
+                            +"the same type")
 
         if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
             wavevector = nessi_list.NessiList(len(wavelength))
@@ -3142,10 +3139,10 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
                     wavevector_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s"\
-                  % str(wavelength.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(wavelength.__type__))
 
-        return wavevector, wavevector_err2
+        return (wavevector, wavevector_err2)
 
     except AttributeError:
         wavevector_ss = vpair_bind.DoubleVPair()
@@ -3153,7 +3150,7 @@ def wavelength_to_scalar_k(wavelength, wavelength_err2):
       float(wavelength),\
       float(wavelength_err2),\
       wavevector_ss)
-        return wavevector_ss.val, wavevector_ss.val_err2
+        return (wavevector_ss.val, wavevector_ss.val_err2)
 
 ##
 # \}
@@ -3241,8 +3238,8 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
 
     try:
         if wavelength.__type__ != wavelength_err2.__type__:
-            raise TypeError, "Wavelength and Wavelength Err2 arrays are not"\
-            +"the same type"
+            raise TypeError("Wavelength and Wavelength Err2 arrays are not " \
+                            +"the same type")
 
         if (wavelength.__type__ == nessi_list.NessiList.DOUBLE):
             Q = nessi_list.NessiList(len(wavelength))
@@ -3256,10 +3253,10 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
                     Q_err2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" \
-                      % str(wavelength.__type__)
+            raise TypeError("Unknown primative type %s" \
+                            % str(wavelength.__type__))
 
-        return Q, Q_err2
+        return (Q, Q_err2)
 
     except AttributeError:
         Q_ss = vpair_bind.DoubleVPair()
@@ -3269,7 +3266,7 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
       float(polar),\
       float(polar_err2),\
       Q_ss)
-        return Q_ss.val, Q_ss.val_err2
+        return (Q_ss.val, Q_ss.val_err2)
 
 ##
 # \} // end of wavelength_to_scalar_Q group
