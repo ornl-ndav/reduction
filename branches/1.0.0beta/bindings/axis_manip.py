@@ -196,7 +196,7 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
         return (tof_ss.val, tof_ss.val_err2)
 
 ##
-# \}// end of d_spacing_to_tof_focused_det group
+# \}
 
 ##
 # \defgroup energy_transfer axis_manip::energy_transfer
@@ -463,8 +463,7 @@ def frequency_to_angular_frequency(frequency, frequency_err2):
         return (omega_ss.val, omega_ss.val_err2)
 
 ##
-# \} // end of frequency_to_angular_frequency group
-
+# \}
 
 ##
 # \defgroup frequency_to_energy axis_manip::frequency_to_energy
@@ -562,8 +561,7 @@ def frequency_to_energy(frequency, frequency_err2):
         return (E_ss.val, E_ss.val_err2)
 
 ##
-# \}  // end of frequency_to_energy group
-
+# \}
 
 ##
 # \defgroup init_scatt_wavevector_to_Q \
@@ -858,8 +856,7 @@ def init_scatt_wavevector_to_Q(initial_wavevector,
                        init_scatt_wavevector_to_Qz_ss.val_err2
             
 ##
-# \} // end of init_scatt_wavevector_to_Q group
-
+# \}
 
 ##
 # \defgroup init_scatt_wavevector_to_scalar_Q \
@@ -1069,8 +1066,7 @@ def init_scatt_wavevector_to_scalar_Q(initial_wavevector,
                        init_scatt_wavevector_to_scalar_Q_ss.val_err2
             
 ##
-# \} // end of init_scatt_wavevector_to_scalar_Q group
-
+# \}
 
 ##
 # \defgroup initial_velocity_dgs axis_manip::initial_velocity_dgs
@@ -1195,8 +1191,7 @@ def initial_velocity_dgs(dist_upstream_mon,
     return (initial_velocity_dgs_ss.val, initial_velocity_dgs_ss.val_err2)
                              
 ##
-# \} // end of initial_velocity_dgs group
-
+# \}
 
 ##
 # \defgroup rebin_axis_1D axis_manip::rebin_axis_1D
@@ -1708,8 +1703,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, data_in, data_in_err2,
     return (output, output_err2)
 
 ##
-# \} // end of rebin_axis2D group
-
+# \}
 
 ##
 # \defgroup reverse_array_cp axis_manip::reverse_array_cp
@@ -1957,8 +1951,7 @@ def time_offset_dgs(dist_downstream_monitor,
     return (time_offset_dgs_ss.val, time_offset_dgs_ss.val_err2)
                              
 ##
-# \} // end of time_offset_dgs group
-
+# \}
 
 ##
 # \defgroup tof_to_final_velocity_dgs axis_manip::tof_to_final_velocity_dgs
@@ -2129,8 +2122,7 @@ def tof_to_final_velocity_dgs(tof,
         return (final_velocity_ss.val, final_velocity_ss.val_err2)
 
 ##
-# \}// end of tof_to_final_velocity_dgs group
-
+# \}
 
 ##
 # \defgroup tof_to_initial_wavelength_igs \
@@ -2701,8 +2693,7 @@ def velocity_to_energy(velocity, velocity_err2):
         return (E_ss.val, E_ss.val_err2)
 
 ##
-# \}  // end of velocity_to_energy group
-
+# \}
 
 ##
 # \defgroup velocity_to_scalar_k axis_manip::velocity_to_scalar_k
@@ -2810,8 +2801,7 @@ def velocity_to_scalar_k(velocity, velocity_err2):
         return (wavevector_ss.val, wavevector_ss.val_err2)
 
 ##
-# \} // end of velocity_to_scalar_k_group
-
+# \}
 
 ##
 # \defgroup wavelength_to_d_spacing axis_manip::wavelength_to_d_spacing
@@ -2924,8 +2914,7 @@ def wavelength_to_d_spacing(wavelength, wavelength_err2, polar, polar_err2):
         return (d_spacing_ss.val, d_spacing_ss.val_err2)
 
 ##
-# \} // end of wavelength_to_d_spacing group
-
+# \}
 
 ##
 # \defgroup wavelength_to_energy axis_manip::wavelength_to_energy
@@ -3269,5 +3258,5 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
         return (Q_ss.val, Q_ss.val_err2)
 
 ##
-# \} // end of wavelength_to_scalar_Q group
+# \}
 

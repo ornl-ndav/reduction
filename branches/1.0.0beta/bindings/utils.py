@@ -94,8 +94,7 @@ def calib_refl_areadet():
     raise NotImplementedError("This function is not implemented.")
 
 ##
-# \}  // end of calib_refl_areadet group
-#
+# \}
 
 ##
 # \defgroup compare utils::compare
@@ -140,13 +139,11 @@ def compare(value1, value2):
     return result
 
 ##
-# \}  // end of compare group
-#
+# \}
 
 ##
 # \defgroup fit_linear_background utils::fit_linear_background
 # \{
-#
 
 ##
 # \brief This function fits a line to an array
@@ -174,13 +171,11 @@ def fit_linear_background():
     raise NotImplementedError("This function is not implemented.")
 
 ##
-# \}  // end of fit_linear_background group
-#
+# \}
 
 ##
 # \defgroup fit_reflectometer_background utils::fit_reflectometer_background
 # \{
-#
 
 ##
 # \brief This function fits a plane to reflectometer 2D detector array data
@@ -208,13 +203,11 @@ def fit_reflectometer_background():
     raise NotImplementedError("This function is not implemented.")
 
 ##
-# \}  // end of fit_reflectometer_background group
-#
+# \}
 
 ##
 # \defgroup matrix_multiplication utils::matrix_multiplication
 # \{
-#
 
 ##
 # \brief This function multiplies data by a matrix
@@ -242,13 +235,11 @@ def matrix_multiplication():
     raise NotImplementedError("This function is not implemented.")
 
 ##
-# \}  // end of matrix_multiplication group
-#
+# \}
 
 ##
 # \defgroup peak_integration utils::peak_integration
 # \{
-#
 
 ##
 # \brief This function integrates intensity around Bragg peaks
@@ -276,8 +267,7 @@ def peak_integration():
     raise NotImplementedError("This function is not implemented.")
 
 ##
-# \}  // end of peak_integration group
-#
+# \}
 
 ##
 # \defgroup vector_is_equals utils::vector_is_equals
@@ -349,8 +339,7 @@ def vector_is_equals(value, true_value):
     return result
 
 ##
-# \}  // end of vector_is_equals group
-#
+# \}
 
 ##
 # \defgroup weighted_average utils::weighted_average
@@ -438,6 +427,5 @@ def weighted_average(a, ae2, start, fin):
     return (weighted_ave.val, weighted_ave.val_err2)
 
 ##
-# \}  // end of weighted_average group
-#
+# \}
 
