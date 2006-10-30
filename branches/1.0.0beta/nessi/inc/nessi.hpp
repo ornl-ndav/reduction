@@ -72,13 +72,13 @@ namespace Nessi
    * \code
    * forward_iterator begin();
    * \endcode
-   * Returns a read/write iterator that points to the first eleent in
+   * Returns a read/write iterator that points to the first element in
    * the Nessi::Vector. Iteration is done in ordinary element order.
    *
    * \code
    * forward_iterator end();
    * \endcode
-   * Retruns a read/write iterator that points one past the last
+   * Returns a read/write iterator that points one past the last
    * element in the Nessi::Vector. Iteration is done in ordinary
    * element order.
    *
