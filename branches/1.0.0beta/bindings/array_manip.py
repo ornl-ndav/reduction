@@ -73,16 +73,19 @@ import array_manip_bind
 #
 # - With four NessiLists:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1,
+# Vector_2, Vector_err2_2)
 # \endcode
 #
 # - With 2 NessiLists and 2 scalars:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1, Scalar, Scalar_err2)
+# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1, Vector_err2_1,
+# Scalar, Scalar_err2)
 # \endcode
 # or
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Scalar, Scalar_err2, Vector_1, Vector_err2_1)
+# >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Scalar, Scalar_err2,
+# Vector_1, Vector_err2_1)
 # \endcode
 #
 #     ========================================================================
@@ -331,9 +334,10 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     """
 
     try:
-        if(a.__type__!=b.__type__):
-            raise RuntimeError,"Incompatible types passed to add_ncerr"
-
+        if a.__type__ != b.__type__:
+            raise RuntimeError("Incompatible types passed to add_ncerr")
+        else:
+            pass
 
         try:
             a_start = int(kwargs["a_start"])
@@ -379,109 +383,104 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
             c = a
             ce2 = ae2
         else:
-            c = nessi_list.NessiList(len(a),type=a.__type__)
+            c = nessi_list.NessiList(len(a), type=a.__type__)
             ce2 = nessi_list.NessiList(len(a), type=a.__type__)
 
-        if (a.__type__ == a.DOUBLE):
-
+        if a.__type__ == a.DOUBLE:
             if not kwargs:
-                array_manip_bind.add_ncerr_d(a.__array__,\
-                                             ae2.__array__,\
-                                             b.__array__,\
-                                             be2.__array__,\
-                                             c.__array__,\
+                array_manip_bind.add_ncerr_d(a.__array__,
+                                             ae2.__array__,
+                                             b.__array__,
+                                             be2.__array__,
+                                             c.__array__,
                                              ce2.__array__)
             else:
-                array_manip_bind.add_ncerr_d(a.__array__,\
-                                             ae2.__array__,\
+                array_manip_bind.add_ncerr_d(a.__array__,
+                                             ae2.__array__,
                                              a_start,
                                              a_span,
-                                             b.__array__,\
-                                             be2.__array__,\
+                                             b.__array__,
+                                             be2.__array__,
                                              b_start,
                                              b_span,
                                              size,
-                                             c.__array__,\
+                                             c.__array__,
                                              ce2.__array__,
                                              c_start,
                                              c_span)
 
-        elif (a.__type__ == a.INT):
-                
+        elif a.__type__ == a.INT:
             if not kwargs:
-                array_manip_bind.add_ncerr_i(a.__array__,\
-                                             ae2.__array__,\
-                                             b.__array__,\
-                                             be2.__array__,\
-                                             c.__array__,\
+                array_manip_bind.add_ncerr_i(a.__array__,
+                                             ae2.__array__,
+                                             b.__array__,
+                                             be2.__array__,
+                                             c.__array__,
                                              ce2.__array__)
             else:
-                array_manip_bind.add_ncerr_i(a.__array__,\
-                                             ae2.__array__,\
+                array_manip_bind.add_ncerr_i(a.__array__,
+                                             ae2.__array__,
                                              a_start,
                                              a_span,
-                                             b.__array__,\
-                                             be2.__array__,\
+                                             b.__array__,
+                                             be2.__array__,
                                              b_start,
                                              b_span,
                                              size,
-                                             c.__array__,\
+                                             c.__array__,
                                              ce2.__array__,
                                              c_start,
                                              c_span)
 
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError("Unknown primative type %s" % str(a.__type__))
 
-        return c,ce2
+        return (c, ce2)
 
-    except AttributeError:
-        pass
-
-    try:
-        a.__type__
-        scalar=b
-        scalar_e2=be2
-        array=a
-        array_e2=ae2
     except AttributeError:
         try:
-            b.__type__
-            scalar=a
-            scalar_e2=ae2
-            array=b
-            array_e2=be2
+            a.__type__
+            scalar = b
+            scalar_e2 = be2
+            array = a
+            array_e2 = ae2
         except AttributeError:
-            raise TypeError,"add_ncerr does not understand types given to it"
+            try:
+                b.__type__
+                scalar = a
+                scalar_e2 = ae2
+                array = b
+                array_e2 = be2
+            except AttributeError:
+                raise TypeError("add_ncerr does not understand types given "\
+                                +"to it")
 
-    if (array.__type__ == array.DOUBLE):
-        
-        c = nessi_list.NessiList(len(array),type=array.DOUBLE)
-        ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+        if array.__type__ == array.DOUBLE:
+            c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
             
-        array_manip_bind.add_ncerr_d(array.__array__,\
-                                     array_e2.__array__,\
-                                     float(scalar),\
-                                     float(scalar_e2),\
-                                     c.__array__,\
-                                     ce2.__array__)
-
-    elif (array.__type__ == array.INT):
-        
-        c = nessi_list.NessiList(len(array),type=array.INT)
-        ce2 = nessi_list.NessiList(len(array), type=array.INT)
+            array_manip_bind.add_ncerr_d(array.__array__,
+                                         array_e2.__array__,
+                                         float(scalar),
+                                         float(scalar_e2),
+                                         c.__array__,
+                                         ce2.__array__)
             
-        array_manip_bind.add_ncerr_i(array.__array__,\
-                                     array_e2.__array__,\
-                                     int(scalar),\
-                                     int(scalar_e2),\
-                                     c.__array__,\
-                                     ce2.__array__)
-
-    else:
-        raise TypeError,"Unknown primative type %s" % str(array.__type__)
-
-    return c,ce2
+        elif array.__type__ == array.INT:
+            c = nessi_list.NessiList(len(array), type=array.INT)
+            ce2 = nessi_list.NessiList(len(array), type=array.INT)
+            
+            array_manip_bind.add_ncerr_i(array.__array__,
+                                         array_e2.__array__,
+                                         int(scalar),
+                                         int(scalar_e2),
+                                         c.__array__,
+                                         ce2.__array__)
+            
+        else:
+            raise TypeError("Unknown primative type %s" % str(array.__type__))
+        
+        return (c, ce2)
 
 ##
 # \}
@@ -498,17 +497,20 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 #
 # - With four NessiLists:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1,
+# Vector_2, Vector_err2_2)
 # \endcode
 #
 # - With 2 NessiLists and 2 scalars:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1, Scalar, Scalar_err2)
+# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Vector_1, Vector_err2_1,
+# Scalar, Scalar_err2)
 # \endcode
 #
 # - With 2 scalars and 2 NessiLists:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Scalar, Scalar_err2, Vector_1, Vector_err2_1)
+# >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Scalar, Scalar_err2,
+# Vector_1, Vector_err2_1)
 # \endcode
 #
 #     ========================================================================
@@ -586,7 +588,7 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # \exception TypeError is thrown if any of the arrays are not recognized types
 # \exception RuntimeError is thrown if a and b are not the same type
 
-def sub_ncerr(a,ae2,b,be2):
+def sub_ncerr(a, ae2, b, be2):
 
     """
     ---------------------------------------------------------------------------
@@ -692,104 +694,113 @@ def sub_ncerr(a,ae2,b,be2):
     """
 
     try:
-        if(a.__type__!=b.__type__):
-            raise RuntimeError,"Incompatible types passed to sub_ncerr"
+        if a.__type__ != b.__type__:
+            raise RuntimeError("Incompatible types passed to sub_ncerr")
+        else:
+            pass
 
-        if (a.__type__ == a.DOUBLE):
-            c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+        if a.__type__ == a.DOUBLE:
+            c = nessi_list.NessiList(len(a), type=a.DOUBLE)
             ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
-            array_manip_bind.sub_ncerr_d(a.__array__,\
-                                         ae2.__array__,\
-                                         b.__array__,\
-                                         be2.__array__,\
-                                         c.__array__,\
+            
+            array_manip_bind.sub_ncerr_d(a.__array__,
+                                         ae2.__array__,
+                                         b.__array__,
+                                         be2.__array__,
+                                         c.__array__,
                                          ce2.__array__)
 
-        elif (a.__type__ == a.INT):
-            c = nessi_list.NessiList(len(a),type=a.INT)
+        elif a.__type__ == a.INT:
+            c = nessi_list.NessiList(len(a), type=a.INT)
             ce2 = nessi_list.NessiList(len(a), type=a.INT)
-            array_manip_bind.sub_ncerr_i(a.__array__,\
-                                         ae2.__array__,\
-                                         b.__array__,\
-                                         be2.__array__,\
-                                         c.__array__,\
+            
+            array_manip_bind.sub_ncerr_i(a.__array__,
+                                         ae2.__array__,
+                                         b.__array__,
+                                         be2.__array__,
+                                         c.__array__,
                                          ce2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError("Unknown primative type %s" % str(a.__type__))
 
-        return c,ce2
-
-    except AttributeError:
-        pass
-
-    try:
-        a.__type__
-        scalar=b
-        scalar_e2=be2
-        array=a
-        array_e2=ae2
-
-        if (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            array_manip_bind.sub_ncerr_d(array.__array__,\
-                                         array_e2.__array__,\
-                                         float(scalar),\
-                                         float(scalar_e2),\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),type=array.INT)
-            ce2 = nessi_list.NessiList(len(array), type=array.INT)
-            array_manip_bind.sub_ncerr_i(array.__array__,\
-                                         array_e2.__array__,\
-                                         int(scalar),\
-                                         int(scalar_e2),\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        else:
-            raise TypeError,"Unknown primative type %s" % str(array.__type__)
-
-        return c,ce2
+        return (c, ce2)
 
     except AttributeError:
         try:
-            b.__type__
-            scalar=a
-            scalar_e2=ae2
-            array=b
-            array_e2=be2
+            a.__type__
+            scalar = b
+            scalar_e2 = be2
+            array = a
+            array_e2 = ae2
+            
+            if array.__type__ == array.DOUBLE:
+                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                
+                array_manip_bind.sub_ncerr_d(array.__array__,
+                                             array_e2.__array__,
+                                             float(scalar),
+                                             float(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            elif array.__type__ == array.INT:
+                c = nessi_list.NessiList(len(array), type=array.INT)
+                ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                
+                array_manip_bind.sub_ncerr_i(array.__array__,
+                                             array_e2.__array__,
+                                             int(scalar),
+                                             int(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" \
+                                % str(array.__type__))
+            
+            return (c, ce2)
+
         except AttributeError:
-            raise TypeError,"sub_ncerr does not understand types given to it"
-
-        if (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            array_manip_bind.sub_ncerr_d(float(scalar),\
-                                         float(scalar_e2),\
-                                         array.__array__,\
-                                         array_e2.__array__,\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),type=array.INT)
-            ce2 = nessi_list.NessiList(len(array), type=array.INT)
-            array_manip_bind.sub_ncerr_i(int(scalar),\
-                                         int(scalar_e2),\
-                                         array.__array__,\
-                                         array_e2.__array__,\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        else:
-            raise TypeError,"Unknown primative type %s" % str(array.__type__)
-
-        return c,ce2
-
+            try:
+                b.__type__
+                scalar = a
+                scalar_e2 = ae2
+                array = b
+                array_e2 = be2
+            except AttributeError:
+                raise TypeError("sub_ncerr does not understand types given "\
+                                +"to it")
+            
+            if array.__type__ == array.DOUBLE:
+                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                
+                array_manip_bind.sub_ncerr_d(float(scalar),
+                                             float(scalar_e2),
+                                             array.__array__,
+                                             array_e2.__array__,
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            elif array.__type__ == array.INT:
+                c = nessi_list.NessiList(len(array), type=array.INT)
+                ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                
+                array_manip_bind.sub_ncerr_i(int(scalar),
+                                             int(scalar_e2),
+                                             array.__array__,
+                                             array_e2.__array__,
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" \
+                                % str(array.__type__))
+            
+            return (c, ce2)
+        
 ##
 # \}
 
@@ -805,12 +816,14 @@ def sub_ncerr(a,ae2,b,be2):
 #
 # - With four NessiLists:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,Vector_err2_1, Vector_2,Vector_err2_2)
+# >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,Vector_err2_1,
+# Vector_2,Vector_err2_2)
 # \endcode
 #
 # - With 2 NessiLists and 2 scalars:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector,Vector_err2, Scalar, Scalar_err2)
+# >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector,Vector_err2,
+# Scalar, Scalar_err2)
 # \endcode
 #
 #     ========================================================================
@@ -867,7 +880,7 @@ def sub_ncerr(a,ae2,b,be2):
 # \exception TypeError is thrown if any of the arrays are not recognized types
 # \exception RuntimeError is thrown if a and b are not the same type
 
-def mult_ncerr(a,ae2,b,be2):
+def mult_ncerr(a, ae2, b, be2):
 
     """
     ---------------------------------------------------------------------------
@@ -950,78 +963,83 @@ def mult_ncerr(a,ae2,b,be2):
     """
 
     try:
-        if(a.__type__!=b.__type__):
-            raise RuntimeError,"Incompatible types passed to mult_ncerr"
+        if a.__type__ != b.__type__:
+            raise RuntimeError("Incompatible types passed to mult_ncerr")
+        else:
+            pass
 
-        if (a.__type__ == a.DOUBLE):
-            c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+        if a.__type__ == a.DOUBLE:
+            c = nessi_list.NessiList(len(a), type=a.DOUBLE)
             ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
-            array_manip_bind.mult_ncerr_d(a.__array__,\
-                                          ae2.__array__,\
-                                          b.__array__,\
-                                          be2.__array__,\
-                                          c.__array__,\
+            
+            array_manip_bind.mult_ncerr_d(a.__array__,
+                                          ae2.__array__,
+                                          b.__array__,
+                                          be2.__array__,
+                                          c.__array__,
                                           ce2.__array__)
 
-        elif (a.__type__ == a.INT):
-            c = nessi_list.NessiList(len(a),type=a.INT)
+        elif a.__type__ == a.INT:
+            c = nessi_list.NessiList(len(a), type=a.INT)
             ce2 = nessi_list.NessiList(len(a), type=a.INT)
-            array_manip_bind.mult_ncerr_i(a.__array__,\
-                                          ae2.__array__,\
-                                          b.__array__,\
-                                          be2.__array__,\
-                                          c.__array__,\
+            
+            array_manip_bind.mult_ncerr_i(a.__array__,
+                                          ae2.__array__,
+                                          b.__array__,
+                                          be2.__array__,
+                                          c.__array__,
                                           ce2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError("Unknown primative type %s" % str(a.__type__))
 
-        return c,ce2
+        return (c, ce2)
 
-    except AttributeError:
-        pass
-
-    try:
-        a.__type__
-        scalar=b
-        scalar_e2=be2
-        array=a
-        array_e2=ae2
     except AttributeError:
         try:
-            b.__type__
-            scalar=a
-            scalar_e2=ae2
-            array=b
-            array_e2=be2
+            a.__type__
+            scalar = b
+            scalar_e2 = be2
+            array = a
+            array_e2 = ae2
         except AttributeError:
-            raise TypeError,"mult_ncerr does not understand types given to it"
-
-    if (array.__type__ == array.DOUBLE):
-        c = nessi_list.NessiList(len(array),type=array.DOUBLE)
-        ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-        array_manip_bind.mult_ncerr_d(array.__array__,\
-                                      array_e2.__array__,\
-                                      float(scalar),\
-                                      float(scalar_e2),\
-                                      c.__array__,\
-                                      ce2.__array__)
-
-    elif (array.__type__ == array.INT):
-        c = nessi_list.NessiList(len(array),type=array.INT)
-        ce2 = nessi_list.NessiList(len(array), type=array.INT)
-        array_manip_bind.mult_ncerr_i(array.__array__,\
-                                      array_e2.__array__,\
-                                      int(scalar),\
-                                      int(scalar_e2),\
-                                      c.__array__,\
-                                      ce2.__array__)
-
-    else:
-        raise TypeError,"Unknown primative type %s" % str(a.__type__)
-
-    return c,ce2
-
+            try:
+                b.__type__
+                scalar = a
+                scalar_e2 = ae2
+                array = b
+                array_e2 = be2
+            except AttributeError:
+                raise TypeError("mult_ncerr does not understand types given "\
+                                +"to it")
+            
+        if array.__type__ == array.DOUBLE:
+            c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+            
+            array_manip_bind.mult_ncerr_d(array.__array__,
+                                          array_e2.__array__,
+                                          float(scalar),
+                                          float(scalar_e2),
+                                          c.__array__,
+                                          ce2.__array__)
+            
+        elif array.__type__ == array.INT:
+            c = nessi_list.NessiList(len(array), type=array.INT)
+            ce2 = nessi_list.NessiList(len(array), type=array.INT)
+            
+            array_manip_bind.mult_ncerr_i(array.__array__,
+                                          array_e2.__array__,
+                                          int(scalar),
+                                          int(scalar_e2),
+                                          c.__array__,
+                                          ce2.__array__)
+            
+        else:
+            raise TypeError("Unknown primative type %s" % str(a.__type__))
+        
+        return (c, ce2)
+        
 ##
 # \}
 
@@ -1037,17 +1055,20 @@ def mult_ncerr(a,ae2,b,be2):
 #
 # - With 4 NessiLists:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector_1, Vector_err2_1, Vector_2, Vector_err2_2)
+# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector_1,
+# Vector_err2_1,\# Vector_2, Vector_err2_2)
 # \endcode
 #
 # - With 2 NessiLists and 2 scalars:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector, Vector_err2, Scalar, Scalar_err2)
+# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Vector, Vector_err2,
+# Scalar, Scalar_err2)
 # \endcode
 #
 # - With 2 scalars and 2 NessiLists:
 # \code
-# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Scalar, Scalar_err2, Vector, Vector_err2)
+# >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Scalar, Scalar_err2,
+# Vector, Vector_err2)
 # \endcode
 #
 #     ========================================================================
@@ -1126,7 +1147,7 @@ def mult_ncerr(a,ae2,b,be2):
 # \exception TypeError is thrown if any of the arrays are not recognized types
 # \exception RuntimeError is thrown if a and b are not the same type
 
-def div_ncerr(a,ae2,b,be2):
+def div_ncerr(a, ae2, b, be2):
 
     """
     ---------------------------------------------------------------------------
@@ -1237,103 +1258,112 @@ def div_ncerr(a,ae2,b,be2):
     """
 
     try:
-        if(a.__type__!=b.__type__):
-            raise RuntimeError,"Incompatible types passed to div_ncerr"
+        if a.__type__ != b.__type__:
+            raise RuntimeError("Incompatible types passed to div_ncerr")
+        else:
+            pass
 
-        if (a.__type__ == a.DOUBLE):
-            c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+        if a.__type__ == a.DOUBLE:
+            c = nessi_list.NessiList(len(a), type=a.DOUBLE)
             ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
-            array_manip_bind.div_ncerr_d(a.__array__,\
-                                         ae2.__array__,\
-                                         b.__array__,\
-                                         be2.__array__,\
-                                         c.__array__,\
+            
+            array_manip_bind.div_ncerr_d(a.__array__,
+                                         ae2.__array__,
+                                         b.__array__,
+                                         be2.__array__,
+                                         c.__array__,
                                          ce2.__array__)
 
-        elif (a.__type__ == a.INT):
-            c = nessi_list.NessiList(len(a),type=a.INT)
+        elif a.__type__ == a.INT:
+            c = nessi_list.NessiList(len(a), type=a.INT)
             ce2 = nessi_list.NessiList(len(a), type=a.INT)
-            array_manip_bind.div_ncerr_i(a.__array__,\
-                                         ae2.__array__,\
-                                         b.__array__,\
-                                         be2.__array__,\
-                                         c.__array__,\
+            
+            array_manip_bind.div_ncerr_i(a.__array__,
+                                         ae2.__array__,
+                                         b.__array__,
+                                         be2.__array__,
+                                         c.__array__,
                                          ce2.__array__)
 
         else:
-            raise TypeError,"Unknown primative type %s" % str(a.__type__)
+            raise TypeError("Unknown primative type %s" % str(a.__type__))
 
-        return c,ce2
-
-    except AttributeError:
-        pass
-
-    try:
-        a.__type__
-        scalar=b
-        scalar_e2=be2
-        array=a
-        array_e2=ae2
-
-        if (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            array_manip_bind.div_ncerr_d(array.__array__,\
-                                         array_e2.__array__,\
-                                         float(scalar),\
-                                         float(scalar_e2),\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),type=array.INT)
-            ce2 = nessi_list.NessiList(len(array), type=array.INT)
-            array_manip_bind.div_ncerr_i(array.__array__,\
-                                         array_e2.__array__,\
-                                         int(scalar),\
-                                         int(scalar_e2),\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        else:
-            raise TypeError,"Unknown primative type %s" % str(array.__type__)
-
-        return c,ce2
+        return (c, ce2)
 
     except AttributeError:
         try:
-            b.__type__
-            scalar=a
-            scalar_e2=ae2
-            array=b
-            array_e2=be2
+            a.__type__
+            scalar = b
+            scalar_e2 = be2
+            array = a
+            array_e2 = ae2
+            
+            if array.__type__ == array.DOUBLE:
+                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                
+                array_manip_bind.div_ncerr_d(array.__array__,
+                                             array_e2.__array__,
+                                             float(scalar),
+                                             float(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            elif array.__type__ == array.INT:
+                c = nessi_list.NessiList(len(array), type=array.INT)
+                ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                
+                array_manip_bind.div_ncerr_i(array.__array__,
+                                             array_e2.__array__,
+                                             int(scalar),
+                                             int(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" \
+                                % str(array.__type__))
+            
+            return (c, ce2)
+        
         except AttributeError:
-            raise TypeError,"div_ncerr does not understand types given to it"
-
-        if (array.__type__ == array.DOUBLE):
-            c = nessi_list.NessiList(len(array),type=array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            array_manip_bind.div_ncerr_d(float(scalar),\
-                                         float(scalar_e2),\
-                                         array.__array__,\
-                                         array_e2.__array__,\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        elif (array.__type__ == array.INT):
-            c = nessi_list.NessiList(len(array),type=array.INT)
-            ce2 = nessi_list.NessiList(len(array), type=array.INT)
-            array_manip_bind.div_ncerr_i(int(scalar),\
-                                         int(scalar_e2),\
-                                         array.__array__,\
-                                         array_e2.__array__,\
-                                         c.__array__,\
-                                         ce2.__array__)
-
-        else:
-            raise TypeError,"Unknown primative type %s" % str(array.__type__)
-
-        return c,ce2
+            try:
+                b.__type__
+                scalar = a
+                scalar_e2 = ae2
+                array = b
+                array_e2 = be2
+            except AttributeError:
+                raise TypeError("div_ncerr does not understand types given "\
+                                +"to it")
+            
+            if array.__type__ == array.DOUBLE:
+                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                
+                array_manip_bind.div_ncerr_d(float(scalar),
+                                             float(scalar_e2),
+                                             array.__array__,
+                                             array_e2.__array__,
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            elif array.__type__ == array.INT:
+                c = nessi_list.NessiList(len(array), type=array.INT)
+                ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                
+                array_manip_bind.div_ncerr_i(int(scalar),
+                                             int(scalar_e2),
+                                             array.__array__,
+                                             array_e2.__array__,
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" \
+                                % str(array.__type__))
+            
+            return (c, ce2)
 
 ##
 # \}
@@ -1381,7 +1411,7 @@ def div_ncerr(a,ae2,b,be2):
 # \exception TypeError is thrown if any of the arrays are not recognized types
 # \exception RuntimeError is thrown if a and b are not the same type
 
-def sumw_ncerr(a,ae2,b,be2):
+def sumw_ncerr(a, ae2, b, be2):
 
     """
     ---------------------------------------------------------------------------
@@ -1446,33 +1476,37 @@ def sumw_ncerr(a,ae2,b,be2):
 
     """
 
-    if(a.__type__!=b.__type__):
-        raise RuntimeError,"Incompatible types passed to sumw_ncerr"
+    if a.__type__ != b.__type__:
+        raise RuntimeError("Incompatible types passed to sumw_ncerr")
+    else:
+        pass
 
-    if (a.__type__ == a.DOUBLE):
-        c = nessi_list.NessiList(len(a),type=a.DOUBLE)
+    if a.__type__ == a.DOUBLE:
+        c = nessi_list.NessiList(len(a), type=a.DOUBLE)
         ce2 = nessi_list.NessiList(len(a), type=a.DOUBLE)
-        array_manip_bind.sumw_ncerr_d(a.__array__,\
-                                      ae2.__array__,\
-                                      b.__array__,\
-                                      be2.__array__,\
-                                      c.__array__,\
+        
+        array_manip_bind.sumw_ncerr_d(a.__array__,
+                                      ae2.__array__,
+                                      b.__array__,
+                                      be2.__array__,
+                                      c.__array__,
                                       ce2.__array__)
 
-    elif (a.__type__ == a.INT):
-        c = nessi_list.NessiList(len(a),type=a.INT)
+    elif a.__type__ == a.INT:
+        c = nessi_list.NessiList(len(a), type=a.INT)
         ce2 = nessi_list.NessiList(len(a), type=a.INT)
-        array_manip_bind.sumw_ncerr_i(a.__array__,\
-                                      ae2.__array__,\
-                                      b.__array__,\
-                                      be2.__array__,\
-                                      c.__array__,\
+        
+        array_manip_bind.sumw_ncerr_i(a.__array__,
+                                      ae2.__array__,
+                                      b.__array__,
+                                      be2.__array__,
+                                      c.__array__,
                                       ce2.__array__)
 
     else:
-        raise TypeError,"Unknown primative type %s" % str(a.__type__)
+        raise TypeError("Unknown primative type %s" % str(a.__type__))
 
-    return c,ce2
+    return (c, ce2)
 
 ##
 # \}
