@@ -32,4 +32,4 @@ docs:
 	cd doc && make docs
 
 clean-local:
-	rm -- $(top_builddir)/-V-bank1.
+	rm -f -- $(top_builddir)/-V-bank1.
