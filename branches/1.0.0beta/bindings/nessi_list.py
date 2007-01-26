@@ -603,10 +603,10 @@ class NessiList (list):
         <- the elements defined by the slice
 
         """
-
         slice = self.__array__[i:j]
         result = NessiList(type=self.__type__)
-        result.__array__ = slice
+        result.__array__.__set_from_Vector__(slice)
+        del slice
         return result
 
 ##
