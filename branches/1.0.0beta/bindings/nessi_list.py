@@ -148,6 +148,9 @@ class NessiList (list):
          -> length is the length of the instance (0 by default)
          -> kwargs is a list of keywords for the class. The keyword \"type\"
             is used to specifiy the type of the instance (double by default)
+            array=<<Type>NessiVector or None> is used to pass a
+                  <Type>NessiVector to the instance and avoid a duplicate
+                  constructor call
 
          Exceptions:
          ----------
@@ -172,11 +175,23 @@ class NessiList (list):
             type = NessiList.DOUBLE # set the default value
         self.__type__ = type
 
+        try:
+            array = kwargs["array"]
+            use_array = True
+        except KeyError:
+            use_array = False
+
         # call the correct instructor
         if type == NessiList.INT:
-            self.__array__ = nessi_vector_bind.IntNessiVector(length)
+            if not use_array:
+                self.__array__ = nessi_vector_bind.IntNessiVector(length)
+            else:
+                self.__array__ = array
         elif type == NessiList.DOUBLE:
-            self.__array__ = nessi_vector_bind.DoubleNessiVector(length)
+            if not use_array:
+                self.__array__ = nessi_vector_bind.DoubleNessiVector(length)
+            else:
+                self.__array__ = array
         else:
             raise Exception("type [%s] not supported by NessiList" % type)
 
@@ -217,10 +232,9 @@ class NessiList (list):
         """
         
         from copy import deepcopy
-        result = self.__class__()
+        result = self.__class__(array=None)
         memo[id(self)] = result
-        result.__init__()
-        result.__type__ = deepcopy(self.__type__)
+        result.__type__ = self.__type__
         if self.__type__ == NessiList.INT:
             result.__array__ = nessi_vector_bind.IntNessiVector(self.__array__)
         elif self.__type__ == NessiList.DOUBLE:
