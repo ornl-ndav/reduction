@@ -50,6 +50,15 @@ AC_ARG_ENABLE(pdfdoc,
 esac],[pdfdoc=false])
 AM_CONDITIONAL(PDFDOC, test x$pdfdoc = xtrue)
 
+AC_ARG_ENABLE(optswig,
+[  --enable-optswig   Optimize SWIG bindings],
+[case "${enableval}" in
+  yes) optswig=true ;;
+  no)  optswig=false ;;
+  *) AC_MSG_ERROR(bad value ${enableval} for --enable-optswig) ;;
+esac],[optswig=false])
+AM_CONDITIONAL(OPTSWIG, test x$optswig = xtrue)
+
 AM_PATH_PYTHON(2.3, :)
 AC_CHECK_ROOT([python],[PYTHONROOT],[/usr /usr/local],[include/python$PYTHON_VERSION/Python.h])
 
@@ -115,7 +124,7 @@ case "$host" in
 esac
 AC_SUBST(STOSFLAG)
 
-SCL_SWIG_CHECK([1.3.24])
+SCL_SWIG_CHECK([1.3.28])
 SCL_DOXYGEN_CHECK([1.4.6])
 AC_CHECK_PROGS(DOT, [dot])
 
@@ -178,6 +187,12 @@ else
    MAKEPDF="no"
 fi
 
+if test $optswig == "true" ; then
+   SWIGOPT="on"
+else
+   SWIGOPT="off"
+fi
+
 if test -n "$DOXYGEN_VERSION_REQ" ; then
    DOXYGEN_WARNING="If you wish to remake documentation, you need to get \
 $DOXYGEN_VERSION_REQ. Otherwise 
@@ -203,6 +218,7 @@ documentation:
 build:
         bindings:
                 SWIG:          ${SWIGBINDING}
+                Optimize:      ${SWIGOPT}
 
 Please check whether the configuration I detected matches what you
 would like to have.
