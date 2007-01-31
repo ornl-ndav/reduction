@@ -161,24 +161,24 @@ class NessiList (list):
         # check the length argument
         length=int(length)
         if length<0:
-            raise IndexError("Cannot instantiate List with negative length")
+            raise IndexError, "Cannot instantiate List with negative length"
 
         # get the type from the keyword arguments or set the default
         if(kwargs.has_key("type")):
-            type = kwargs["type"].lower()
-            type = type.lower() # lowercase everything else so code
-                                # below works
+            type=kwargs["type"].lower()
+            type=type.lower() # lowercase everything else so code
+                              # below works
         else:
-            type = NessiList.DOUBLE # set the default value
-        self.__type__ = type
+            type=NessiList.DOUBLE # set the default value
+        self.__type__=type
 
         # call the correct instructor
-        if type == NessiList.INT:
+        if type==NessiList.INT:
             self.__array__ = nessi_vector_bind.IntNessiVector(length)
         elif type == NessiList.DOUBLE:
             self.__array__ = nessi_vector_bind.DoubleNessiVector(length)
         else:
-            raise Exception("type [%s] not supported by NessiList" % type)
+            raise Exception,"type [%s] not supported by NessiList" % type
 
 ##
 # \ingroup __deepcopy__ NessiList
@@ -224,8 +224,7 @@ class NessiList (list):
         if self.__type__ == NessiList.INT:
             result.__array__ = nessi_vector_bind.IntNessiVector(self.__array__)
         elif self.__type__ == NessiList.DOUBLE:
-            result.__array__ = nessi_vector_bind.DoubleNessiVector(\
-                self.__array__)
+            result.__array__ = nessi_vector_bind.DoubleNessiVector(self.__array__)
         return result
     
 ##
@@ -257,7 +256,7 @@ class NessiList (list):
 # \param self <i>this</i>
 # \param number (INPUT) is the number to append
 
-    def append(self, number):
+    def append(self,number):
         """
         -----------------------------------------------------------------------
         This function is used to append a value to an instance of a NessiList,
@@ -286,9 +285,9 @@ class NessiList (list):
 
         """
 
-        if(self.__type__ == self.DOUBLE):
+        if(self.__type__==self.DOUBLE):
             self.__array__.append(float(number))
-        elif(self.__type__ == self.INT):
+        elif(self.__type__==self.INT):
             self.__array__.append(int(number))
 
 
@@ -339,7 +338,7 @@ class NessiList (list):
 # \param self <i>this</i>
 # \param *number (INPUT) is(are) the number(s) to append to the NessiList
 
-    def extend(self, *number):
+    def extend(self,*number):
         """
         -----------------------------------------------------------------------
         This function is used to append one or more values to an instance of
@@ -387,7 +386,7 @@ class NessiList (list):
                 for i in num:
                     self.append(i)
             except TypeError:
-                self.append(num)
+                    self.append(num)
 
 ##
 # \ingroup __repr__ NessiList
@@ -480,13 +479,13 @@ class NessiList (list):
 
         """
 
-        i = len(self.__array__) - 1
+        i=len(self.__array__)-1
         while True:
             try:
                 yield self.__array__[i]
             except IndexError:
                 raise StopIteration
-            i = i - 1
+            i=i-1
 
 ##
 # \ingroup __getitem__ NessiList
@@ -507,7 +506,7 @@ class NessiList (list):
 #
 # \exception IndexError is raised if m > len(self) - 1
 
-    def __getitem__(self, m):
+    def __getitem__(self,m):
         """
         -----------------------------------------------------------------------
         This function is used to retrieve a particular element of a NessiList
@@ -549,7 +548,7 @@ class NessiList (list):
 # \param m (INPUT) is the index of the element to replace
 # \param val (INPUT) is the value to replace the exisiting element with
 
-    def __setitem__(self, m, val):
+    def __setitem__(self,m,val):
         """
         -----------------------------------------------------------------------
         This function is used to a particular element of a NessiList to the
@@ -565,7 +564,7 @@ class NessiList (list):
 
         """
 
-        return self.__array__.__setitem__(m, val)
+        return self.__array__.__setitem__(m,val)
 
 ##
 # \ingroup __getslice__ NessiList
@@ -584,7 +583,7 @@ class NessiList (list):
 #
 # \return The elements defined by the slice
 
-    def __getslice__(self, i=0, j=-1):
+    def __getslice__(self,i=0,j=-1):
         """
         -----------------------------------------------------------------------
         This function is used to return a slice (range of values) from a
@@ -603,10 +602,10 @@ class NessiList (list):
         <- the elements defined by the slice
 
         """
-        slice = self.__array__[i:j]
-        result = NessiList(type=self.__type__)
-        result.__array__.__set_from_Vector__(slice)
-        del slice
+
+        slice=self.__array__[i:j]
+        result=NessiList(type=self.__type__)
+        result.__array__=slice
         return result
 
 ##
@@ -622,7 +621,7 @@ class NessiList (list):
 # \param j (INPUT) is the index to end the element replacement
 # \param val (INPUT) is the value to replace the NessiList's elements with
 
-    def __setslice__(self, i, j, val):
+    def __setslice__(self,i,j,val):
         """
         -----------------------------------------------------------------------
         This function is used to set a range of elements to the provided value.
@@ -636,7 +635,7 @@ class NessiList (list):
 
         """
 
-        return self.__array__.__setslice__(i, j, val)
+        return self.__array__.__setslice__(i,j,val)
 
 ##
 # \ingroup __len__ NessiList
@@ -688,7 +687,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __add__(self, right):
+    def __add__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to add two NessiList together or each member
@@ -713,21 +712,21 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot add things of unequal length")
-            result = NessiList(type=self.__type__)
+            if len(self)!=len(right):
+                raise ValueError,"Cannot add things of unequal length"
+            result=NessiList(type=self.__type__)
 
-            for (a, b) in map(None, self, right):
+            for (a,b) in map(None,self,right):
                 result.append(a+b)
             return result
 
         except TypeError: # must be a scalar
-            result = NessiList(type=self.__type__)
+            result=NessiList(type=self.__type__)
             for a in self:
                 result.append(a+right)
             return result
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __radd__ NessiList
@@ -744,7 +743,7 @@ class NessiList (list):
 #
 # \return The resulting NessiList
 
-    def __radd__(self, left):
+    def __radd__(self,left):
         """
         -----------------------------------------------------------------------
         This operation allows to add a scalar with a NessiList
@@ -780,7 +779,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __iadd__(self, right):
+    def __iadd__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to add a NessiList in place
@@ -803,11 +802,11 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot add things of unequal length")
+            if len(self)!=len(right):
+                raise ValueError,"Cannot add things of unequal length"
 
             for i in range(len(self)):
-                self[i] = self[i] + right[i]
+                self[i]=self[i]+right[i]
             return self
 
         except TypeError: # must be a scalar
@@ -815,7 +814,7 @@ class NessiList (list):
                 self[i]=self[i]+right
             return self
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __sub__ NessiList
@@ -838,7 +837,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __sub__(self, right):
+    def __sub__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to subtract two NessiLists or each member of
@@ -863,21 +862,21 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot subtract things of unequal length")
-            result = NessiList(type=self.__type__)
+            if len(self)!=len(right):
+                raise ValueError,"Cannot subtract things of unequal length"
+            result=NessiList(type=self.__type__)
 
-            for (a, b) in map(None, self, right):
+            for (a,b) in map(None,self,right):
                 result.append(a-b)
             return result
 
         except TypeError: # must be a scalar
-            result = NessiList(type=self.__type__)
+            result=NessiList(type=self.__type__)
             for a in self:
                 result.append(a-right)
             return result
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __rsub__ NessiList
@@ -897,7 +896,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __rsub__(self, left):
+    def __rsub__(self,left):
         """
         -----------------------------------------------------------------------
         This operation allows one to subtract a scalar by a NessiList
@@ -920,21 +919,21 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot subtract things of unequal length")
-            result = NessiList(type=self.__type__)
+            if len(self)!=len(right):
+                raise ValueError,"Cannot subtract things of unequal length"
+            result=NessiList(type=self.__type__)
 
-            for (a, b) in map(None, self, right):
+            for (a,b) in map(None,self,right):
                 result.append(b-a)
             return result
 
         except TypeError: # must be a scalar
-            result = NessiList(type=self.__type__)
+            result=NessiList(type=self.__type__)
             for a in self:
                 result.append(left-a)
             return result
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __isub__ NessiList
@@ -954,7 +953,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __isub__(self, right):
+    def __isub__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to subtract a NessiList in place
@@ -976,19 +975,19 @@ class NessiList (list):
 
         """
         try:
-            if len(self) !=len (right):
-                raise ValueError("Cannot subtract things of unequal length")
+            if len(self)!=len(right):
+                raise ValueError,"Cannot subtract things of unequal length"
 
             for i in range(len(self)):
-                self[i] = self[i] - right[i]
+                self[i]=self[i]-right[i]
             return self
 
         except TypeError: # must be a scalar
             for i in range(len(self)):
-                self[i] = self[i] - right
+                self[i]=self[i]-right
             return self
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __mul__ NessiList
@@ -1011,7 +1010,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __mul__(self, right):
+    def __mul__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to multiply two NessiLists or each member of
@@ -1035,21 +1034,21 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot multiply things of unequal length")
-            result = NessiList(type=self.__type__)
+            if len(self)!=len(right):
+                raise ValueError,"Cannot multiply things of unequal length"
+            result=NessiList(type=self.__type__)
 
-            for (a, b) in map(None, self, right):
+            for (a,b) in map(None,self,right):
                 result.append(a*b)
             return result
 
         except TypeError: # must be a scalar
-            result = NessiList(type=self.__type__)
+            result=NessiList(type=self.__type__)
             for a in self:
                 result.append(a*right)
             return result
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __rmul__ NessiList
@@ -1066,7 +1065,7 @@ class NessiList (list):
 #
 # \return The resulting NessiList
 
-    def __rmul__(self, left):
+    def __rmul__(self,left):
         """
         -----------------------------------------------------------------------
         This operation allows one to multiply a scalar by a NessiList
@@ -1102,7 +1101,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __imul__(self, right):
+    def __imul__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to multiply a NessiList in place
@@ -1124,19 +1123,19 @@ class NessiList (list):
 
         """
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot multiply things of unequal length")
+            if len(self)!=len(right):
+                raise ValueError,"Cannot multiply things of unequal length"
 
             for i in range(len(self)):
-                self[i] = self[i] * right[i]
+                self[i]=self[i]*right[i]
             return self
 
         except TypeError: # must be a scalar
             for i in range(len(self)):
-                self[i] = self[i] * right
+                self[i]=self[i]*right
             return self
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __div__ NessiList
@@ -1159,7 +1158,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __div__(self, right):
+    def __div__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to divide two NessiLists or each member of a
@@ -1184,21 +1183,21 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot divide things of unequal length")
-            result = NessiList(type=self.__type__)
+            if len(self)!=len(right):
+                raise ValueError,"Cannot divide things of unequal length"
+            result=NessiList(type=self.__type__)
 
-            for (a, b) in map(None, self, right):
+            for (a,b) in map(None,self,right):
                 result.append(a/b)
             return result
 
         except TypeError: # must be a scalar
-            result = NessiList(type=self.__type__)
+            result=NessiList(type=self.__type__)
             for a in self:
                 result.append(a/right)
             return result
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __rdiv__ NessiList
@@ -1218,7 +1217,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __rdiv__(self, left):
+    def __rdiv__(self,left):
         """
         -----------------------------------------------------------------------
         The operator / allows to divide a scalar by a NessiList.
@@ -1242,19 +1241,19 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot divide things of unequal length")
+            if len(self)!=len(right):
+                raise ValueError,"Cannot divide things of unequal length"
 
             for i in range(len(self)):
-                self[i] = self[i] / right[i]
+                self[i]=self[i]/right[i]
             return self
 
         except TypeError: # must be a scalar
             for i in range(len(self)):
-                self[i] = self[i] / right
+                self[i]=self[i]/right
             return self
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __idiv__ NessiList
@@ -1274,7 +1273,7 @@ class NessiList (list):
 # \exception Exception is raised if everything goes wrong
 # \exception ValueError is raised if the two NessiLists are not of equal length
 
-    def __idiv__(self, right):
+    def __idiv__(self,right):
         """
         -----------------------------------------------------------------------
         This operation allows one to divide a NessiList in place
@@ -1297,19 +1296,19 @@ class NessiList (list):
         """
 
         try:
-            if len(self) != len(right):
-                raise ValueError("Cannot divide things of unequal length")
+            if len(self)!=len(right):
+                raise ValueError,"Cannot divide things of unequal length"
 
             for i in range(len(self)):
-                self[i] = self[i] / right[i]
+                self[i]=self[i]/right[i]
             return self
 
         except TypeError: # must be a scalar
             for i in range(len(self)):
-                self[i] = self[i] / right
+                self[i]=self[i]/right
             return self
 
-        raise Exception("This statement should never be reached")
+        raise Exception,"This statement should never be reached"
 
 ##
 # \ingroup __contains__ NessiList
@@ -1324,7 +1323,7 @@ class NessiList (list):
 # \return A boolean that is True if the value is in the NessiList and False
 #         if not
 
-    def __contains__(self, value):
+    def __contains__(self,value):
         """
         -----------------------------------------------------------------------
         This function searches the NessiList looking for the value provided.
@@ -1361,7 +1360,7 @@ class NessiList (list):
 # \return A boolean that is True if all the elements are equal to the compared
 #         NessiList and False if not
 
-    def __eq__(self, other):
+    def __eq__(self,other):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are
@@ -1380,7 +1379,7 @@ class NessiList (list):
 
         # check if they have the same length
         try:
-            if len(self) != len(other):
+            if len(self)!=len(other):
                 return False
         except:
             return False
@@ -1389,12 +1388,12 @@ class NessiList (list):
 
         # do it in c if they are both NessiLists
         if self.__class__ == other.__class__:
-            return utils.vector_is_equals(self, other)
+            return utils.vector_is_equals(self,other)
 
         # deep comparison
         try:
-            for (mine, yours) in map(None, self, other):
-                if utils.compare(mine, yours) != 0:
+            for (mine,yours) in map(None,self,other):
+                if utils.compare(mine,yours)!=0:
                     return False
         except:
             return False
@@ -1418,7 +1417,7 @@ class NessiList (list):
 # \return A boolean that is True if all the elements are greater than or equal
 #         to the compared NessiList and False if not
 
-    def __ge__(self, other):
+    def __ge__(self,other):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are
@@ -1438,8 +1437,8 @@ class NessiList (list):
         # deep comparison
         import utils
         try:
-            for (mine, yours) in map(None, self, other):
-                if(utils.compare(mine, yours) < 0):
+            for (mine,yours) in map(None,self,other):
+                if(utils.compare(mine,yours)<0):
                     return False
         except:
             return False
@@ -1462,7 +1461,7 @@ class NessiList (list):
 # \return A boolean that is True if all the elements are greater than the
 #         compared NessiList and False if not
 
-    def __gt__(self, other):
+    def __gt__(self,other):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are
@@ -1482,8 +1481,8 @@ class NessiList (list):
         # deep comparison
         import utils
         try:
-            for (mine, yours) in map(None, self, other):
-                if(utils.compare(mine,yours) != 1):
+            for (mine,yours) in map(None,self,other):
+                if(utils.compare(mine,yours)!=1):
                     return False
         except:
             return False
@@ -1507,7 +1506,7 @@ class NessiList (list):
 # \return A boolean that is True if all the elements are not equal to the
 #         compared NessiList and False if not
 
-    def __ne__(self, other):
+    def __ne__(self,other):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are not
@@ -1542,7 +1541,7 @@ class NessiList (list):
 # \return A boolean that is True if all the elements are less than the compared
 #         NessiList and False if not
 
-    def __lt__(self, other):
+    def __lt__(self,other):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are less
@@ -1578,7 +1577,7 @@ class NessiList (list):
 # \return A boolean that is True if all the elements are less than or equal to
 #         the compared NessiList and False if not
 
-    def __le__(self, other):
+    def __le__(self,other):
         """
         -----------------------------------------------------------------------
         This function determines if all the elements of the NessiList are less
@@ -1615,7 +1614,7 @@ class NessiList (list):
 #
 # \exception ValueError is raised if the item in not found in the NessiList
 
-    def index(self, item, start=0, stop=-1):
+    def index(self,item,start=0,stop=-1):
         """
         -----------------------------------------------------------------------
         This function is used to return the index of a requested item from the
@@ -1639,15 +1638,15 @@ class NessiList (list):
         """
 
         # fix the arguments
-        if stop < start:
-            stop = len(self.__array__)
+        if stop<start:
+            stop=len(self.__array__)
 
         # search for the next occurence
         import utils
-        for i in range(start, stop):
-            if utils.compare(self.__array__[i], item) == 0:
+        for i in range(start,stop):
+            if utils.compare(self.__array__[i],item)==0:
                 return i
-        raise ValueError("NessiList.index(x): x not in list")
+        raise ValueError,"NessiList.index(x): x not in list"
 
 ##
 # \ingroup count NessiList
@@ -1662,7 +1661,7 @@ class NessiList (list):
 #
 # \return the number of occurrences of the requested value
 
-    def count(self, value):
+    def count(self,value):
         """
         -----------------------------------------------------------------------
         This function takes a given value and counts the number of occurrences
@@ -1678,12 +1677,12 @@ class NessiList (list):
 
         """
 
-        start = 0
-        count = 0
+        start=0
+        count=0
         try:
             while True:
-                start = self.index(value, start) + 1
-                count = count + 1
+                start=self.index(value,start)+1
+                count=count+1
         except ValueError:
             pass
 
@@ -1707,7 +1706,7 @@ class NessiList (list):
 #
 # \exception IndexError is raised is the NessiList is empty
 
-    def pop(self, index=-1):
+    def pop(self,index=-1):
         """
         -----------------------------------------------------------------------
         This function is used to remove an element from the NessiList and
@@ -1728,10 +1727,10 @@ class NessiList (list):
 
         """
 
-        if len(self.__array__) <= 0:
-            raise IndexError("Cannot pop from an empty NessiList")
+        if len(self.__array__)<=0:
+            raise IndexError, "Cannot pop from an empty NessiList"
 
-        result = self[index]
+        result=self[index]
         del self[index]
         return result
 
@@ -1757,7 +1756,7 @@ class NessiList (list):
 # - a list of all the elements of the NessiList, if the NessiList is
 # smaller than n.
 
-    def __str__(self, last=10):
+    def __str__(self,last=10):
         """
         -----------------------------------------------------------------------
         This function displays the elements of a NessiList. If the NessiList
@@ -1780,19 +1779,19 @@ class NessiList (list):
 
         """
 
-        result = []
+        result=[]
 
-        if len(self) < last:
-            last = len(self)
+        if len(self)<last:
+            last=len(self)
 
         # print the first n elements
-        for i in range(0, last):
+        for i in range(0,last):
             result.append(str(self.__array__[i]))
 
         # print elipses and the last element
         if len(self) > last:
             result.append("...")
-            result.append(str(self.__array__[len(self) - 1]))
+            result.append(str(self.__array__[len(self)-1]))
 
         return "["+",".join(result)+"]"
 
@@ -1812,7 +1811,7 @@ class NessiList (list):
 # \exception NotImplementedError is raised when the function is called since
 #            the operation is not supported
 
-    def insert(self, index, object):
+    def insert(self,index,object):
         """
         -----------------------------------------------------------------------
         This function provides a method to insert an object into the NessiList
@@ -1831,7 +1830,7 @@ class NessiList (list):
 
         """
         # insert before index
-        raise NotImplementedError("This operation is not currently supported")
+        raise NotImplementedError,"This operation is not currently supported"
 
 ##
 # \ingroup __delitem__ NessiList
@@ -1844,7 +1843,7 @@ class NessiList (list):
 # \param self <i>this</i>
 # \param index (INPUT) is the index of the element to be deleted
 
-    def __delitem__(self, index):
+    def __delitem__(self,index):
         """
         -----------------------------------------------------------------------
         This function deletes an element from the NessiList based on the index
@@ -1871,7 +1870,7 @@ class NessiList (list):
 # \param j (INPUT/OPTIONAL) is the ending position at which to stop removing
 #        elements
 
-    def __delslice__(self, i=0, j=-1):
+    def __delslice__(self,i=0,j=-1):
         """
         -----------------------------------------------------------------------
         This function removes a slice of the Nessiist based on the range
@@ -1897,7 +1896,7 @@ class NessiList (list):
 # \param self <i>this</i>
 # \param value (INPUT) is the value of the element to be removed
 
-    def remove(self, value):
+    def remove(self,value):
         """
         -----------------------------------------------------------------------
         This function removes an element from the NessiList based on the
@@ -1910,7 +1909,7 @@ class NessiList (list):
         """
 
         # remove first occurence of value
-        index = self.index(value)
+        index=self.index(value)
         del self[index]
 
 ##
@@ -1956,7 +1955,7 @@ class NessiList (list):
 # \exception NotImplementedError is raised if the function is called since
 #            sort is not allowed on a NessiList
 
-    def sort(self, cmp=None, key=None, reverse=False):
+    def sort(self,cmp=None,key=None,reverse=False):
         """
         -----------------------------------------------------------------------
         This function sorts the elements of a NessiList according to the
@@ -1970,7 +1969,7 @@ class NessiList (list):
 
         """
 
-        raise NotImplementedError("This function is not allowed")
+        raise NotImplementedError,"This function is not allowed"
 
 ##
 # \}
@@ -2057,7 +2056,7 @@ def min_vect(array):
 # \param object2 (INPUT) is the name of the second NessiList
 # \param object3 (INPUT/OPTIONAL) is the name of the third NessiList
 #
-def print_multi(n, object1, object2, object3=NessiList()):
+def print_multi(n,object1,object2,object3=NessiList()):
     """
     ---------------------------------------------------------------------------
     Display side by side the first n elements of two, or three NessiLists.
@@ -2071,7 +2070,7 @@ def print_multi(n, object1, object2, object3=NessiList()):
 
     """
 
-    tab = "\t\t"
+    tab="\t\t"
     str_output = ""
 
     # find maximum value and then set the tab
@@ -2081,25 +2080,25 @@ def print_multi(n, object1, object2, object3=NessiList()):
     else:
         tab = tab + "\t"
 
-    for i in range(0, n):
+    for i in range(0,n):
 
         if object1.__type__ == NessiList.DOUBLE:
 
-            str_output = str_output + "%7.16f " \
-                         % object1[i] + tab + \
-                         "%7.16f " % object2[i]
-            
-            if len(object3) != 0:
-                str_output = str_output + \
-                             tab + "%7.16f \n" % object3[i]
+                str_output = str_output + "%7.16f " \
+                    %object1[i] + tab + \
+                    "%7.16f " %object2[i]
+
+                if len(object3) !=0:
+                    str_output = str_output + \
+                    tab + "%7.16f \n" %object3[i]
 
         else:
-            for i in range(0, n):
-                str_output = str_output + "%d " % object1[i] \
-                             + tab + "%d " % object2[i]
-                
-                if len(object3) != 0:
-                    print str_output + tab + "%d \n" % object3[i]
+            for i in range(0,n):
+                str_output = str_output + "%d " %object1[i] \
+                    + tab + "%d " %object2[i]
+
+                if len(object3) !=0:
+                    print str_output + tab + "%d \n" %object3[i]
 
         str_output = str_output
 
