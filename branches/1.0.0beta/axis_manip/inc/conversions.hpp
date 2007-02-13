@@ -1895,22 +1895,23 @@ namespace AxisManip
    */
   template <typename NumT>
   std::string
-  tof_to_init_wavelength_igs_lin_time_zero(const Nessi::Vector<NumT> & tof,
-                                           const Nessi::Vector<NumT> & tof_err2,
-                                           const NumT final_wavelength,
-                                           const NumT final_wavelength_err2,
-                                           const NumT time_0_slope,
-                                           const NumT time_0_slope_err2,
-                                           const NumT time_0_offset,
-                                           const NumT time_0_offset_err2,
-                                           const NumT dist_source_sample,
-                                           const NumT dist_source_sample_err2,
-                                           const NumT dist_sample_detector,
-                                           const NumT dist_sample_detector_err2,
-                                           Nessi::Vector<NumT> & initial_wavelength,
-                                           Nessi::Vector<NumT> & initial_wavelength_err2,
-                                           void *temp=NULL);
-
+  tof_to_init_wavelength_igs_lin_time_zero(
+                                const Nessi::Vector<NumT> & tof,
+                                const Nessi::Vector<NumT> & tof_err2,
+                                const NumT final_wavelength,
+                                const NumT final_wavelength_err2,
+                                const NumT time_0_slope,
+                                const NumT time_0_slope_err2,
+                                const NumT time_0_offset,
+                                const NumT time_0_offset_err2,
+                                const NumT dist_source_sample,
+                                const NumT dist_source_sample_err2,
+                                const NumT dist_sample_detector,
+                                const NumT dist_sample_detector_err2,
+                                Nessi::Vector<NumT> & initial_wavelength,
+                                Nessi::Vector<NumT> & initial_wavelength_err2,
+                                void *temp=NULL);
+  
   /**
    * \brief This function is described in section 3.48.
    *
@@ -1987,21 +1988,22 @@ namespace AxisManip
    */
   template <typename NumT>
   std::string
-  tof_to_init_wavelength_igs_lin_time_zero(const NumT tof,
-                                           const NumT tof_err2,
-                                           const NumT final_wavelength,
-                                           const NumT final_wavelength_err2,
-                                           const NumT time_0_slope,
-                                           const NumT time_0_slope_err2,
-                                           const NumT time_0_offset,
-                                           const NumT time_0_offset_err2,
-                                           const NumT dist_source_sample,
-                                           const NumT dist_source_sample_err2,
-                                           const NumT dist_sample_detector,
-                                           const NumT dist_sample_detector_err2,
-                                           NumT & initial_wavelength,
-                                           NumT & initial_wavelength_err2,
-                                           void *temp=NULL);
+  tof_to_init_wavelength_igs_lin_time_zero(
+                                     const NumT tof,
+                                     const NumT tof_err2,
+                                     const NumT final_wavelength,
+                                     const NumT final_wavelength_err2,
+                                     const NumT time_0_slope,
+                                     const NumT time_0_slope_err2,
+                                     const NumT time_0_offset,
+                                     const NumT time_0_offset_err2,
+                                     const NumT dist_source_sample,
+                                     const NumT dist_source_sample_err2,
+                                     const NumT dist_sample_detector,
+                                     const NumT dist_sample_detector_err2,
+                                     NumT & initial_wavelength,
+                                     NumT & initial_wavelength_err2,
+                                     void *temp=NULL);
   
   /**
    * \}
