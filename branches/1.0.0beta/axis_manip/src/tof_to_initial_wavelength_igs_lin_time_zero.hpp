@@ -42,7 +42,7 @@ namespace AxisManip
   const std::string ttiwiltz_func_str = \
   "AxisManip::tof_to_initial_wavelength_igs_lin_time_zero";
 
-  // 3.29
+  // 3.48
   template <typename NumT>
   std::string
   tof_to_initial_wavelength_igs_lin_time_zero(const Nessi::Vector<NumT> & tof,
@@ -125,7 +125,7 @@ namespace AxisManip
     return retstr;
   }
 
-  // 3.29
+  // 3.48
   template <typename NumT>
   std::string
   tof_to_initial_wavelength_igs_lin_time_zero(const NumT tof,
