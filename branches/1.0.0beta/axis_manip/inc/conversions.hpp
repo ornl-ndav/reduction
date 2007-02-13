@@ -1811,7 +1811,7 @@ namespace AxisManip
    */ // end of tof_to_initial_wavelength_igs group
 
   /**
-   * \defgroup tof_to_init_wavelength_igs_lin_time_zero AxisManip::tof_to_init_wavelength_igs_lin_time_zero
+   * \defgroup tof_to_initial_wavelength_igs_lin_time_zero AxisManip::tof_to_initial_wavelength_igs_lin_time_zero
    * \{
    */
 
@@ -1895,7 +1895,7 @@ namespace AxisManip
    */
   template <typename NumT>
   std::string
-  tof_to_init_wavelength_igs_lin_time_zero(
+  tof_to_initial_wavelength_igs_lin_time_zero(
                                 const Nessi::Vector<NumT> & tof,
                                 const Nessi::Vector<NumT> & tof_err2,
                                 const NumT final_wavelength,
@@ -1988,7 +1988,7 @@ namespace AxisManip
    */
   template <typename NumT>
   std::string
-  tof_to_init_wavelength_igs_lin_time_zero(
+  tof_to_initial_wavelength_igs_lin_time_zero(
                                      const NumT tof,
                                      const NumT tof_err2,
                                      const NumT final_wavelength,
@@ -2007,7 +2007,7 @@ namespace AxisManip
   
   /**
    * \}
-   */ // end of tof_to_init_wavelength_igs_lin_time_zero group
+   */ // end of tof_to_initial_wavelength_igs_lin_time_zero group
 
   /**
    * \defgroup tof_to_Q AxisManip::tof_to_Q
