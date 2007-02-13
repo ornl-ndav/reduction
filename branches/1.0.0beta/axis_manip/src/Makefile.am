@@ -67,6 +67,8 @@ libAxisManip_la_SOURCES = \
 	tof_to_initial_velocity_igs.cpp \
 	tof_to_initial_wavelength_igs.hpp \
 	tof_to_initial_wavelength_igs.cpp \
+	tof_to_initial_wavelength_igs_lin_time_zero.hpp \
+	tof_to_initial_wavelength_igs_lin_time_zero.cpp \
 	tof_to_scalar_Q.hpp \
 	tof_to_scalar_Q.cpp \
 	tof_to_wavelength.hpp \
