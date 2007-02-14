@@ -38,7 +38,8 @@
 
 namespace AxisManip
 {
-  /// String for holding the tof_to_initial_wavelength_igs function name
+  /// String for holding the tof_to_initial_wavelength_igs_lin_time_zero 
+  /// function name
   const std::string ttiwiltz_func_str = \
   "AxisManip::tof_to_initial_wavelength_igs_lin_time_zero";
 
@@ -88,21 +89,25 @@ namespace AxisManip
 
     // alloacate local variables
     NumT a;
+    NumT a2;
     NumT b;
     NumT c;
-    NumT ls2;
-    NumT inv_ls2;
-    NumT ld2;
-    NumT wf2;
+    NumT d;
 
     // calculate static paramters
     retstr += 
-      __tof_to_initial_wavelength_igs_lin_time_zero_static(final_wavelength,
-                                                        time_0_offset,
-                                                        dist_source_sample,
-                                                        dist_sample_detector, 
-                                                        a, b, c, ls2, inv_ls2, 
-                                                        ld2, wf2);
+      __tof_to_initial_wavelength_igs_lin_time_zero_static(
+                                                    final_wavelength,
+                                                    final_wavelength_err2,
+                                                    time_0_slope,
+                                                    time_0_slope_err2,
+                                                    time_0_offset,
+                                                    time_0_offset_err2,
+                                                    dist_source_sample,
+                                                    dist_source_sample_err2,
+                                                    dist_sample_detector, 
+                                                    dist_sample_detector_err2, 
+                                                    a, a2, b, c, d);
 
     // fill the results array
     size_t size_tof = tof.size();
@@ -110,15 +115,11 @@ namespace AxisManip
       {
         retstr +=
           __tof_to_initial_wavelength_igs_lin_time_zero_dynamic(
-                                                  tof[i], tof_err2[i],
-                                                  final_wavelength_err2,
-                                                  time_0_offset_err2,
-                                                  dist_source_sample_err2,
-                                                  dist_sample_detector_err2,
+                                                  tof[i], 
+                                                  tof_err2[i],
                                                   initial_wavelength[i],
                                                   initial_wavelength_err2[i],
-                                                  a, b, c, ls2, inv_ls2,
-                                                  ld2, wf2);
+                                                  a, a2, b, c, d);
       }
 
     // send back all warnings
@@ -146,36 +147,37 @@ namespace AxisManip
   {
     // define some parameters that are static across the array calculation
     NumT a;
+    NumT a2;
     NumT b;
     NumT c;
-    NumT ls2;
-    NumT inv_ls2;
-    NumT ld2;
-    NumT wf2;
+    NumT d;
 
     // some string parameters for dealing with warnings
     std::string retstr(Nessi::EMPTY_WARN);
 
     // calculate static paramters
     retstr += 
-      __tof_to_initial_wavelength_igs_lin_time_zero_static(final_wavelength,
-                                                        time_0_offset,
-                                                        dist_source_sample,
-                                                        dist_sample_detector, 
-                                                        a, b, c, ls2, inv_ls2, 
-                                                        ld2, wf2);
+      __tof_to_initial_wavelength_igs_lin_time_zero_static(
+                                                    final_wavelength,
+                                                    final_wavelength_err2,
+                                                    time_0_slope,
+                                                    time_0_slope_err2,
+                                                    time_0_offset,
+                                                    time_0_offset_err2,
+                                                    dist_source_sample,
+                                                    dist_source_sample_err2,
+                                                    dist_sample_detector, 
+                                                    dist_sample_detector_err2, 
+                                                    a, a2, b, c, d);
 
     // fill the results
     retstr +=
-      __tof_to_initial_wavelength_igs_lin_time_zero_dynamic(tof, tof_err2,
-                                              final_wavelength_err2,
-                                              time_0_offset_err2,
-                                              dist_source_sample_err2,
-                                              dist_sample_detector_err2,
-                                              initial_wavelength,
-                                              initial_wavelength_err2,
-                                              a, b, c, ls2, inv_ls2, ld2,
-                                              wf2);
+      __tof_to_initial_wavelength_igs_lin_time_zero_dynamic(
+                                                       tof, 
+                                                       tof_err2,
+                                                       initial_wavelength,
+                                                       initial_wavelength_err2,
+                                                       a, a2, b, c, d);
 
     // send back all warnings
     return retstr;
@@ -190,48 +192,68 @@ namespace AxisManip
    *
    * \param final_wavelength (INPUT) same as parameter in
    * tof_to_initial_wavelength_igs_lin_time_zero()
+   * \param final_wavelength_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs_lin_time_zero()
+   * \param time_0_slope (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs_lin_time_zero()
+   * \param time_0_slope_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs_lin_time_zero()
    * \param time_0_offset (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs_lin_time_zero()
+   * \param time_0_offset_err2 (INPUT) same as parameter in
    * tof_to_initial_wavelength_igs_lin_time_zero()
    * \param dist_source_sample (INPUT) same as parameter in
    * tof_to_initial_wavelength_igs_lin_time_zero()
+   * \param dist_source_sample_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs_lin_time_zero()
    * \param dist_sample_detector (INPUT) same as parameter in
    * tof_to_initial_wavelength_igs_lin_time_zero()
-   * \param a (OUTPUT) \f$=h/(m_n \times dist\_source\_sample)\f$
-   * \param b (OUTPUT) \f$=\frac{dist\_sample\_detector\times final\_wavelength}{dist\_source\_sample}+a\times time\_offset\f$
-   * \param c (OUTPUT) \f$=\left(\frac{h}{m_n}\right)^2\f$
-   * \param ls2 (OUTPUT) \f$=dist\_source\_sample^2\f$
-   * \param inv_ls2 (OUTPUT) \f$=dist\_source\_sample^{-1}\f$
-   * \param ld2 (OUTPUT) \f$=dist\_sample\_detector^2\f$
-   * \param wf2 (OUTPUT) \f$=final\_wavelength^2\f$
+   * \param dist_sample_detector_err2 (INPUT) same as parameter in
+   * tof_to_initial_wavelength_igs_lin_time_zero()
+   * \param a (OUTPUT) \f$=\frac{1}{\frac{m_n}{h} dist\_source\_sample + 
+   * time\_0\_slope}\f$
+   * \param a2 (OUTPUT) \f$=a^2\f$
+   * \param b (OUTPUT) \f$=\frac{m_n}{h}(dist\_sample\_detector \times 
+   * final\_wavelength) + time\_0\_offset\f$
+   * \param c (OUTPUT) \f$=\left(\frac{m_n}{h}\right)^2 \times 
+   * dist\_source\_sample\_err2 + time\_0\_slope\_err2\f$
+   * \param d (OUTPUT) \f$=(dist\_sample\_detector^2 \times 
+   * final\_wavelength\_err2) + (final\_wavelength^2 \times 
+   * dist\_sample\_detector\_err2) + time\_0\_offset\_err2\f$
    */
   template <typename NumT>
   std::string __tof_to_initial_wavelength_igs_lin_time_zero_static(
-                                               const NumT final_wavelength,
-                                               const NumT time_0_offset,
-                                               const NumT dist_source_sample,
-                                               const NumT dist_sample_detector,
-                                               NumT & a,
-                                               NumT & b,
-                                               NumT & c,
-                                               NumT & ls2,
-                                               NumT & inv_ls2,
-                                               NumT & ld2,
-                                               NumT & wf2)
+                                         const NumT final_wavelength,
+                                         const NumT final_wavelength_err2,
+                                         const NumT time_0_slope,
+                                         const NumT time_0_slope_err2,
+                                         const NumT time_0_offset,
+                                         const NumT time_0_offset_err2,
+                                         const NumT dist_source_sample,
+                                         const NumT dist_source_sample_err2,
+                                         const NumT dist_sample_detector,
+                                         const NumT dist_sample_detector_err2,
+                                         NumT & a,
+                                         NumT & a2,
+                                         NumT & b,
+                                         NumT & c,
+                                         NumT & d)
   {
-    a = static_cast<NumT>(PhysConst::H_OVER_MNEUT) / dist_source_sample;
+    NumT k = static_cast<NumT>(PhysConst::H_OVER_MNEUT);
 
-    b = (dist_sample_detector * final_wavelength) / dist_source_sample;
-    b += (a * time_0_offset);
+    a = static_cast<NumT>(1.) / ((dist_source_sample / k) + time_0_slope);
 
-    c = static_cast<NumT>(PhysConst::H_OVER_MNEUT);
-    c = c*c;
+    a2 = a * a;
 
-    ls2 = dist_source_sample * dist_source_sample;
-    inv_ls2=static_cast<NumT>(1.)/ls2;
+    b = ((dist_sample_detector * final_wavelength) / k) + time_0_offset;
 
-    ld2 = dist_sample_detector*dist_sample_detector;
-
-    wf2 = final_wavelength*final_wavelength;
+    c = (dist_source_sample_err2 / (k * k)) + time_0_slope_err2;
+    
+    NumT ld2 = dist_sample_detector * dist_sample_detector;
+    NumT lf2 = final_wavelength * final_wavelength;
+    
+    d = (ld2 * final_wavelength_err2) + (lf2 * dist_sample_detector_err2) + 
+      time_0_offset_err2;
 
     return Nessi::EMPTY_WARN;
   }
@@ -247,61 +269,40 @@ namespace AxisManip
    * tof_to_initial_wavelength_igs_lin_time_zero()
    * \param tof_err2 (INPUT) same as parameter in
    * tof_to_initial_wavelength_igs_lin_time_zero()
-   * \param final_wavelength_err2 (INPUT) same as parameter in
-   * tof_to_initial_wavelength_igs_lin_time_zero()
-   * \param time_0_offset_err2 (INPUT) same as parameter in
-   * tof_to_initial_wavelength_igs_lin_time_zero()
-   * \param dist_source_sample_err2 (INPUT) same as parameter in
-   * tof_to_initial_wavelength_igs_lin_time_zero()
-   * \param dist_sample_detector_err2 (INPUT) same as parameter in
-   * tof_to_initial_wavelength_igs_lin_time_zero()
    * \param initial_wavelength (OUTPUT) same as parameter in
    * tof_to_initial_wavelength_igs_lin_time_zero()
    * \param initial_wavelength_err2 (OUTPUT) same as parameter in
    * tof_to_initial_wavelength_igs_lin_time_zero()
    * \param a (INPUT) same as parameter in
    * __tof_to_initial_wavelength_igs_lin_time_zero_static()
+   * \param a2 (INPUT) same as parameter in
+   * __tof_to_initial_wavelength_igs_lin_time_zero_static()
    * \param b (INPUT) same as parameter in
    * __tof_to_initial_wavelength_igs_lin_time_zero_static()
    * \param c (INPUT) same as parameter in
    * __tof_to_initial_wavelength_igs_lin_time_zero_static()
-   * \param ls2 (INPUT) same as parameter in
-   * __tof_to_initial_wavelength_igs_lin_time_zero_static()
-   * \param inv_ls2 (INPUT) same as parameter in
-   * __tof_to_initial_wavelength_igs_lin_time_zero_static()
-   * \param ld2 (INPUT) same as parameter in
-   * __tof_to_initial_wavelength_igs_lin_time_zero_static()
-   * \param wf2 (INPUT) same as parameter in
+   * \param d (INPUT) same as parameter in
    * __tof_to_initial_wavelength_igs_lin_time_zero_static()
    */
   template <typename NumT>
   std::string __tof_to_initial_wavelength_igs_lin_time_zero_dynamic(
                                          const NumT tof,
                                          const NumT tof_err2,
-                                         const NumT final_wavelength_err2,
-                                         const NumT time_0_offset_err2,
-                                         const NumT dist_source_sample_err2,
-                                         const NumT dist_sample_detector_err2,
                                          NumT & initial_wavelength,
                                          NumT & initial_wavelength_err2,
                                          const NumT a,
+                                         const NumT a2,
                                          const NumT b,
                                          const NumT c,
-                                         const NumT ls2,
-                                         const NumT inv_ls2,
-                                         const NumT ld2,
-                                         const NumT wf2)
+                                         const NumT d)
   {
     // the result
     initial_wavelength = a * tof - b;
 
     // the uncertainty in the result
-    initial_wavelength_err2 = initial_wavelength*initial_wavelength
-      *dist_source_sample_err2;
-    initial_wavelength_err2 += ld2*final_wavelength_err2;
-    initial_wavelength_err2 += c*(tof_err2+time_0_offset_err2);
-    initial_wavelength_err2 += wf2*dist_sample_detector_err2;
-    initial_wavelength_err2 *= inv_ls2;
+    initial_wavelength_err2 = initial_wavelength * initial_wavelength * c;
+    initial_wavelength_err2 += tof_err2 + d;
+    initial_wavelength_err2 *= a2;
 
     return Nessi::EMPTY_WARN;
   }
