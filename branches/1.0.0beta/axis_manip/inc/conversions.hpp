@@ -1824,14 +1824,14 @@ namespace AxisManip
    * \lambda_i[i]=\frac{1}{\frac{m_n}{h} L_S + t_{0,slope}}
    *              \left(t[i]-\frac{m_n \lambda_f L_D}{h} - t_{0,offset} \right)
    * \f]
-   * Where \f$\lambda_i[i]\f$ is the incident wavelength, \f$h\f$ is
+   * where \f$\lambda_i[i]\f$ is the incident wavelength, \f$h\f$ is
    * Planck's constant, \f$m_n\f$ is the mass of the neutron,
    * \f$L_S\f$ is the distance from the source to the sample,
    * \f$t[i]\f$ is the total time-of-flight, \f$\lambda_f\f$ is the
    * final wavelength, \f$L_D\f$ is the distance from the sample to
-   * the detector, and \f$t_{0,offset}}\f$ is the time zero offset and 
-   * \f$t_{0,slope}}\f$ determined from a linear fit to data of time zero 
-   * versus initial wavelength.
+   * the detector, and \f$t_{0,offset}\f$ is the time zero offset and 
+   * \f$t_{0,slope}\f$ is the time zero slope determined from a linear fit to 
+   * data of time zero versus initial wavelength.
    *
    * Assuming that the uncertainties are uncorrelated, the square of
    * the uncertainty of the initial wavelength for an inverse geometry
@@ -1840,7 +1840,7 @@ namespace AxisManip
    * \f[
    * \sigma^2_{\lambda_i}[i]=
    * \left(\frac{1}{\frac{m_n}{h}L_S + t_{0,slope}}\right)^2*\left(
-   * \left(\lambda_i[i]\right)^2*\left(\left(\frac{h}{m_n}\right)^2
+   * \left(\lambda_i[i]\right)^2*\left(\left(\frac{m_n}{h}\right)^2
    * \sigma^2_{L_S}+ \sigma^2_{t_{0,slope}}\right)+(\sigma^2_t[i]+
    * \sigma^2_{t_{0,offset}})+ \left(\lambda_f\right)^2\sigma^2_{L_D} + 
    * \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
@@ -1920,14 +1920,14 @@ namespace AxisManip
    * \lambda_i=\frac{1}{\frac{m_n}{h} L_S + t_{0,slope}}
    *              \left(t-\frac{m_n \lambda_f L_D}{h} -t_{0,offset}} \right)
    * \f]
-   * Where \f$\lambda_i\f$ is the incident wavelength, \f$h\f$ is
+   * where \f$\lambda_i\f$ is the incident wavelength, \f$h\f$ is
    * Planck's constant, \f$m_n\f$ is the mass of the neutron,
    * \f$L_S\f$ is the distance from the source to the sample, \f$t\f$
    * is the total time-of-flight, \f$\lambda_f\f$ is the final
    * wavelength, \f$L_D\f$ is the distance from the sample to the
-   * detector, and \f$t_{0,offset}}\f$ is the time zero offset and 
-   * \f$t_{0,slope}}\f$ determined from a linear fit to data of time zero 
-   * versus initial wavelength.
+   * detector, and \f$t_{0,offset}\f$ is the time zero offset and 
+   * \f$t_{0,slope}\f$ is the time zero slope determined from a linear fit to 
+   * data of time zero versus initial wavelength.
    *
    * Assuming that the uncertainties are uncorrelated, the square of
    * the uncertainty of the initial wavelength for an inverse geometry
@@ -1936,7 +1936,7 @@ namespace AxisManip
    * \f[
    * \sigma^2_{\lambda_i}=
    * \left(\frac{1}{\frac{m_n}{h}L_S + t_{0,slope}}\right)^2*\left(
-   * \left(\lambda_i\right)^2*\left(\left(\frac{h}{m_n}\right)^2\sigma^2_{L_S}+
+   * \left(\lambda_i\right)^2*\left(\left(\frac{m_n}{h}\right)^2\sigma^2_{L_S}+
    * \sigma^2_{t_{0,slope}}\right)+(\sigma^2_t+\sigma^2_{t_{0,offset}})+
    * \left(\lambda_f\right)^2\sigma^2_{L_D} + 
    * \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
