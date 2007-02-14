@@ -2320,6 +2320,222 @@ def tof_to_initial_wavelength_igs(tof,
 ##
 # \}
 
+##
+# \defgroup tof_to_initial_wavelength_igs_lin_time_zero \
+# axis_manip::tof_to_initial_wavelength_igs_lin_time_zero
+# \{
+
+##
+# \brief This function calculates the initial wavelength for an inverse
+# geometry spectrometer
+#
+# This function is described in section 3.48 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function calculates the initial wavelength for an inverse
+# geometry spectrometer according to the equation
+# \f[
+# \lambda_i[i]=\frac{1}{\frac{m_n}{h} L_S + t_{0,slope}}
+#              \left(t[i]-\frac{m_n \lambda_f L_D}{h} - t_{0,offset} \right)
+# \f]
+# Where \f$\lambda_i[i]\f$ is the incident wavelength, \f$h\f$ is
+# Planck's constant, \f$m_n\f$ is the mass of the neutron,
+# \f$L_S\f$ is the distance from the source to the sample,
+# \f$t[i]\f$ is the total time-of-flight, \f$\lambda_f\f$ is the
+# final wavelength, \f$L_D\f$ is the distance from the sample to
+# the detector, and \f$t_{0,offset}\f$ is the time zero offset and
+# \f$t_{0,slope}\f$ is the time zero slope determined from a linear fit to
+# data of time zero versus initial wavelength.
+#
+# Assuming that the uncertainties are uncorrelated, the square of
+# the uncertainty of the initial wavelength for an inverse geometry
+# spectromer is defined by
+# \f[
+# \sigma^2_{\lambda_i}[i]=
+# \left(\frac{1}{\frac{m_n}{h}L_S + t_{0,slope}}\right)^2*\left(
+# \left(\lambda_i[i]\right)^2*\left(\left(\frac{m_n}{h}\right)^2
+# \sigma^2_{L_S}+ \sigma^2_{t_{0,slope}}\right)+(\sigma^2_t[i]+
+# \sigma^2_{t_{0,offset}})+ \left(\lambda_f\right)^2\sigma^2_{L_D} + 
+# \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
+# \f]
+#
+# where \f$\sigma_{\lambda_i}\f$ is the uncertainty of the initial
+# wavelength axis, \f$\sigma_{L_S}\f$ is the uncertainty of the
+# distance from the source to the sample, \f$\sigma_t\f$ is the
+# uncertainty of the time-of-flight, \f$\sigma_{t_{0,offset}}\f$ is the
+# uncertainty of the time-zero-offset, \f$\sigma_{t_{0,slope}}\f$ is the
+# uncertainty of the time-zero-slope, \f$\sigma_{L_D}\f$ is the
+# uncertainty of the distance from the sample to the detector, and
+# \f$\sigma_{\lambda_f}\f$ the uncertainty of the final wavelength.
+#
+# \param tof (INPUT) is the time-of-flight axis in units of
+# micro-seconds
+# \param tof_err2 (INPUT) is the square of the uncertainty in the
+# time-of-flight axis
+# \param final_wavelength (INPUT) is the final wavelength of the
+# neutron in units of Angstroms
+# \param final_wavelength_err2 (INPUT) is the square of the
+# uncertainty in final_wavelength
+# \param time_0_slope (INPUT) is the slope parameter of a linear fit of 
+# time zero versus initial wavelength
+# \param time_0_slope_err2 (INPUT) is the square of the uncertainty
+# in time_0_slope
+# \param time_0_offset (INPUT) is the offset parameter of a linear fit of 
+# time zero versus initial wavelength
+# \param time_0_offset_err2 (INPUT) is the square of the uncertainty
+# in time_0_offset
+# \param dist_source_sample (INPUT) is the distance from source to
+# sample in units of meter
+# \param dist_source_sample_err2 (INPUT) is the square of the
+# uncertainty in dist_source_sample
+# \param dist_sample_detector (INPUT) is the distance from sample
+# to detector in units of meter
+# \param dist_sample_detector_err2 (INPUT) is the square of the
+# uncertainty in dist_sample_detector
+#
+# \return
+# - The initial wavelength axis in units of Angstrom
+# - The square of the uncertainty of the initial wavelength axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def tof_to_initial_wavelength_igs_lin_time_zero(tof,
+                                                tof_err2,
+                                                final_wavelength,
+                                                final_wavelength_err2,
+                                                time_0_slope,
+                                                time_0_slope_err2,
+                                                time_0_offset,
+                                                time_0_offset_err2,
+                                                dist_source_sample,
+                                                dist_source_sample_err2,
+                                                dist_sample_detector,
+                                                dist_sample_detector_err2):
+
+    """
+    ---------------------------------------------------------------------------
+
+    This function calculates the initial wavelength for an inverse geometry
+    spectrometer according to the equation:
+
+    lambda_i[i] = (1/(m_n/h).L_S + t_0_slope) * (t[i] - (m_n lambda_f L_D)/h -
+                  t_0_offset)
+
+    where lambda_i is the incident wavelength, h is Planck's constant,
+    m_n is the mass of the neutron, L_S is the distance from the source to
+    the sample, t[i] is the total time-of-flight, lambda_f is the final
+    wavelength, L_D is the distance from the sample to the detector, and
+    t_0_offset is the time zero offset and t_0_slope is the time zero slope
+    determined from a linear fit to data of time zero versus initial
+    wavelength.
+
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the initial wavelength for an inverse geometry spectromter
+    is defined by
+
+    lambda_i_err[i]^2 = (1/((m_n/h)L_S + t_0_slope))^2 * (lambda_i[i]^2 *
+                        ((m_n/h)^2*L_S_err^2+t_0_slope_err^2) + t_err[i]^2 +
+                        t_0_offset_err^2 + lambda_f^2*L_D_err^2 + 
+                        L_D^2*lambda_f_err^2)
+
+
+    where lambda_i_err is the uncertainty of the initial wavelength axis,
+    L_S_err is the uncertainty of the distance from the source to the sample,
+    t_err is the uncertainty of the time-of-flight, t_0_offset_err is the
+    uncertainty of the time-zero-offset, t_0_slope_err is the uncertainty of
+    the time-zero-slope, L_D_err is the uncertainty of the distance from the
+    sample to the detector, and lambda_f_err2 is the uncertainty of the final
+    wavelength.
+
+    Parameters:
+    __________
+
+    -> tof is the time-of-flight axis in units of micro-seconds
+    -> tof_err2 is the square of the uncertainty in the time-of-flight axis
+    -> final_wavelength is the final wavelength of the neutron in units of
+       Angstroms
+    -> final_wavelength_err2 is the square of the uncertainty in
+       final_wavelength
+    -> time_0_slope is the slope parameter of a linear fit of time zero versus
+       initial wavelength
+    -> time_0_slope_err2 is the square of the uncertainty in time_0_slope
+    -> time_0_offset is the offset parameter of a linear fit of time zero
+       versus initial wavelength
+    -> time_0_offset_err2 is the square of the uncertainty in time_0_offset
+    -> dist_source_sample is the distance from source to sample in units of
+       meter
+    -> dist_source_sample_err2 is the square of the uncertainty in
+       dist_source_sample
+    -> dist_sample_detector is the distance from sample to detector in units
+       of meter
+    -> dist_sample_detector_err2 is the square of the uncertainty in
+       dist_sample_detector
+
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- the initial wavelength axis in units of Angstroms
+    <- the square of the uncertainty of the initial wavelength axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+    try:
+        if tof.__type__ != tof_err2.__type__:
+            raise TypeError("Tof and Tof Err2 arrays are not the same type.")
+
+        if (tof.__type__ == nessi_list.NessiList.DOUBLE):
+            initial_wavelength = nessi_list.NessiList(len(tof))
+            initial_wavelength_err2 = nessi_list.NessiList(len(tof))
+            axis_manip_bind.tof_to_initial_wavelength_igs_lin_time_zero_d(\
+                    tof.__array__,\
+                    tof_err2.__array__,\
+                    float(final_wavelength),\
+                    float(final_wavelength_err2),\
+                    float(time_0_slope),\
+                    float(time_0_slope_err2),\
+                    float(time_0_offset),\
+                    float(time_0_offset_err2),\
+                    float(dist_source_sample),\
+                    float(dist_source_sample_err2),\
+                    float(dist_sample_detector),\
+                    float(dist_sample_detector_err2),\
+                    initial_wavelength.__array__, \
+                    initial_wavelength_err2.__array__)
+
+        else:
+            raise TypeError("Unknown primitive type %s" % str(tof.__type__))
+
+        return (initial_wavelength, initial_wavelength_err2)
+
+    except AttributeError:
+        initial_wavelength_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.tof_to_initial_wavelength_igs_lin_time_zero_ss_d(\
+      float(tof),\
+      float(tof_err2),\
+      float(final_wavelength),\
+      float(final_wavelength_err2),\
+      float(time_0_slope),\
+      float(time_0_slope_err2),\
+      float(time_0_offset),\
+      float(time_0_offset_err2),\
+      float(dist_source_sample),\
+      float(dist_source_sample_err2),\
+      float(dist_sample_detector),\
+      float(dist_sample_detector_err2),\
+      initial_wavelength_ss)
+        return (initial_wavelength_ss.val, initial_wavelength_ss.val_err2)
+
+##
+# \}
 
 ##
 # \defgroup tof_to_scalar_Q axis_manip::tof_to_scalar_Q
