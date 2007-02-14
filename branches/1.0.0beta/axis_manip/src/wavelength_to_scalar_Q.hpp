@@ -149,6 +149,8 @@ namespace AxisManip
    * calculates parameters invariant across array calculation
    *
    * \param polar_angle (INPUT) same as parameter in wavelength_to_scalar_Q()
+   * \param polar_angle_err2 (INPUT) same as parameter in 
+   * wavelength_to_scalar_Q()
    * \param _4Pi (OUTPUT) the value of 4 times Pi
    * \param sin (OUTPUT) the sinus of the angle between positive z axis
    * and direction of the scattered neutrons
@@ -183,9 +185,6 @@ namespace AxisManip
    *
    * \param wavelength (INPUT) same as parameter in wavelength_to_scalar_Q()
    * \param wavelength_err2 (INPUT) same as parameter in
-   * wavelength_to_scalar_Q()
-   * \param polar_angle (INPUT) same as parameter in wavelength_to_scalar_Q()
-   * \param polar_angle_err2 (INPUT) same as parameter in
    * wavelength_to_scalar_Q()
    * \param _4Pi (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
    * \param sin (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
