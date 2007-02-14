@@ -1839,12 +1839,11 @@ namespace AxisManip
    *
    * \f[
    * \sigma^2_{\lambda_i}[i]=
-   * \left(\frac{1}{L_S + \frac{h t_{0,slope}}{m_n}}\right)^2*\left(
-   * \left(\lambda_i[i]\right)^2*\left(\sigma^2_{L_S}+
-   * \left(\frac{h}{m_n}\right)^2\sigma^2_{t_{0,slope}}\right)+(\sigma^2_t[i]+
-   * \sigma^2_{t_{0,offset}})+
-   * \left(\lambda_f\right)^2\sigma^2_{L_D}
-   * + \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
+   * \left(\frac{1}{\frac{m_n}{h}L_S + t_{0,slope}}\right)^2*\left(
+   * \left(\lambda_i[i]\right)^2*\left(\left(\frac{h}{m_n}\right)^2
+   * \sigma^2_{L_S}+ \sigma^2_{t_{0,slope}}\right)+(\sigma^2_t[i]+
+   * \sigma^2_{t_{0,offset}})+ \left(\lambda_f\right)^2\sigma^2_{L_D} + 
+   * \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
    * \f]
    *
    * where \f$\sigma_{\lambda_i}\f$ is the uncertainty of the initial
@@ -1936,12 +1935,11 @@ namespace AxisManip
    *
    * \f[
    * \sigma^2_{\lambda_i}=
-   * \left(\frac{1}{L_S + \frac{h t_{0,slope}}{m_n}}\right)^2*\left(
-   * \left(\lambda_i\right)^2*\left(\sigma^2_{L_S}+
-   * \left(\frac{h}{m_n}\right)^2\sigma^2_{t_{0,slope}}\right)+(\sigma^2_t+
-   * \sigma^2_{t_{0,offset}})+
-   * \left(\lambda_f\right)^2\sigma^2_{L_D}
-   * + \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
+   * \left(\frac{1}{\frac{m_n}{h}L_S + t_{0,slope}}\right)^2*\left(
+   * \left(\lambda_i\right)^2*\left(\left(\frac{h}{m_n}\right)^2\sigma^2_{L_S}+
+   * \sigma^2_{t_{0,slope}}\right)+(\sigma^2_t+\sigma^2_{t_{0,offset}})+
+   * \left(\lambda_f\right)^2\sigma^2_{L_D} + 
+   * \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
    * \f]
    *
    * where \f$\sigma_{\lambda_i}\f$ is the uncertainty of the initial
