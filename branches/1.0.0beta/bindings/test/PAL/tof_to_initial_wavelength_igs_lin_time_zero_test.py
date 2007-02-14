@@ -31,6 +31,8 @@
 import axis_manip
 import nessi_list
 import test_common
+from os import uname
+from sys import platform
 from vpair_bind import *
 
 NUM_VAL = 5
@@ -102,19 +104,37 @@ def initialize_true_outputs(key):
 
       # initialize the correct outputs for vector vector case
         true_output_vv.append(float(-1.63892767340579184e+02))
-        true_output_vv_err2.append(float(2.06885417307452781e+03))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(2.06885417307452872e+03))
+        else:
+            true_output_vv_err2.append(float(2.06885417307452781e+03))
         true_output_vv.append(float(-1.63889295796457191e+02))
-        true_output_vv_err2.append(float(2.06876654193679815e+03))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(2.06876654193679860e+03))
+        else:
+            true_output_vv_err2.append(float(2.06876654193679815e+03))
         true_output_vv.append(float(-1.63885824252335169e+02))
-        true_output_vv_err2.append(float(2.06867891265552862e+03))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(2.06867891265552907e+03))
+        else:
+            true_output_vv_err2.append(float(2.06867891265552862e+03))
         true_output_vv.append(float(-1.63882352708213176e+02))
-        true_output_vv_err2.append(float(2.06859128523071968e+03))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(2.06859128523072013e+03))
+        else:
+            true_output_vv_err2.append(float(2.06859128523071968e+03))
         true_output_vv.append(float(-1.63878881164091155e+02))
-        true_output_vv_err2.append(float(2.06850365966237041e+03))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(2.06850365966237086e+03))
+        else:
+            true_output_vv_err2.append(float(2.06850365966237041e+03))
 
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(-1.63892767340579184e+02)
-        true_output_ss.val_err2 = float(2.06885417307452781e+03)
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_ss.val_err2 = float(2.06885417307452872e+03)
+        else:
+            true_output_ss.val_err2 = float(2.06885417307452781e+03)
 
     else:
 
