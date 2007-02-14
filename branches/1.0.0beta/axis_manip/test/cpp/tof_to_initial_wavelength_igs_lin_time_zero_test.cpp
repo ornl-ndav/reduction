@@ -96,20 +96,20 @@ void initialize_true_outputs(float    & true_output_ss,
                              Nessi::Vector<float> & true_output_vv_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<float>(-0.58583915);
-  true_output_ss_err2=static_cast<float>(0.14668619);
+  true_output_ss=static_cast<float>(-1.6389276e+02);
+  true_output_ss_err2=static_cast<float>(2.0688537e+03);
 
   // vector vector
-  true_output_vv.push_back(static_cast<float>(-0.58583915));
-  true_output_vv_err2.push_back(static_cast<float>(0.14668619));
-  true_output_vv.push_back(static_cast<float>(-0.58224272));
-  true_output_vv_err2.push_back(static_cast<float>(0.14635196));
-  true_output_vv.push_back(static_cast<float>(-0.57864636));
-  true_output_vv_err2.push_back(static_cast<float>(0.14601984));
-  true_output_vv.push_back(static_cast<float>(-0.57504993));
-  true_output_vv_err2.push_back(static_cast<float>(0.14568985));
-  true_output_vv.push_back(static_cast<float>(-0.57145357));
-  true_output_vv_err2.push_back(static_cast<float>(0.14536203));
+  true_output_vv.push_back(static_cast<float>(-1.6389276e+02));
+  true_output_vv_err2.push_back(static_cast<float>(2.0688537e+03));
+  true_output_vv.push_back(static_cast<float>(-1.6388930e+02));
+  true_output_vv_err2.push_back(static_cast<float>(2.0687660e+03));
+  true_output_vv.push_back(static_cast<float>(-1.6388582e+02));
+  true_output_vv_err2.push_back(static_cast<float>(2.0686782e+03));
+  true_output_vv.push_back(static_cast<float>(-1.6388235e+02));
+  true_output_vv_err2.push_back(static_cast<float>(2.0685908e+03));
+  true_output_vv.push_back(static_cast<float>(-1.6387888e+02));
+  true_output_vv_err2.push_back(static_cast<float>(2.0685032e+03));
 }
 
 /**
@@ -132,20 +132,20 @@ void initialize_true_outputs(double    & true_output_ss,
                              Nessi::Vector<double> & true_output_vv_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<double>(-0.58583914499999989);
-  true_output_ss_err2=static_cast<double>(0.14668620920470620);
+  true_output_ss=static_cast<double>(-1.63892767340579184e+02);
+  true_output_ss_err2=static_cast<double>(2.06885417307452781e+03);
 
   // vector vector
-  true_output_vv.push_back(static_cast<double>(-0.58583914499999989));
-  true_output_vv_err2.push_back(static_cast<double>(0.14668620920470620));
-  true_output_vv.push_back(static_cast<double>(-0.58224275045454543));
-  true_output_vv_err2.push_back(static_cast<double>(0.14635196281566775));
-  true_output_vv.push_back(static_cast<double>(-0.57864635590909085));
-  true_output_vv_err2.push_back(static_cast<double>(0.14601985428674937));
-  true_output_vv.push_back(static_cast<double>(-0.57504996136363628));
-  true_output_vv_err2.push_back(static_cast<double>(0.14568988361795109));
-  true_output_vv.push_back(static_cast<double>(-0.57145356681818171));
-  true_output_vv_err2.push_back(static_cast<double>(0.14536205080927291));
+  true_output_vv.push_back(static_cast<double>(-1.63892767340579184e+02));
+  true_output_vv_err2.push_back(static_cast<double>(2.06885417307452781e+03));
+  true_output_vv.push_back(static_cast<double>(-1.63889295796457191e+02));
+  true_output_vv_err2.push_back(static_cast<double>(2.06876654193679815e+03));
+  true_output_vv.push_back(static_cast<double>(-1.63885824252335169e+02));
+  true_output_vv_err2.push_back(static_cast<double>(2.06867891265552862e+03));
+  true_output_vv.push_back(static_cast<double>(-1.63882352708213176e+02));
+  true_output_vv_err2.push_back(static_cast<double>(2.06859128523071968e+03));
+  true_output_vv.push_back(static_cast<double>(-1.63878881164091155e+02));
+  true_output_vv_err2.push_back(static_cast<double>(2.06850365966237041e+03));
 }
 
 /**
@@ -231,8 +231,8 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   Nessi::Vector<NumT>   tof_err2;
   NumT                  final_wavelength=static_cast<NumT>(1.25);
   NumT                  final_wavelength_err2=static_cast<NumT>(0.25);
-  NumT                  time_0_slope=static_cast<NumT>(1.0);
-  NumT                  time_0_slope_err2=static_cast<NumT>(0.25);
+  NumT                  time_0_slope=static_cast<NumT>(10.0);
+  NumT                  time_0_slope_err2=static_cast<NumT>(1.25);
   NumT                  time_0_offset=static_cast<NumT>(2.75);
   NumT                  time_0_offset_err2=static_cast<NumT>(0.75);
   NumT                  dist_source_sample=static_cast<NumT>(1.1);
