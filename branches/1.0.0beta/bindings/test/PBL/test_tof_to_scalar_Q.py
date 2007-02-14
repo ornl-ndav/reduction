@@ -59,16 +59,18 @@ TruthOutput_VV_D.append(1903.6233637303091654)
 TruthOutput_VV_D.append(1522.89869098424742333)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(83356917.45302573292922070)
+
 if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(83356917.45302574342922070)
     TruthOutput_Err2_VV_D.append(19027338.40778648479698093)
+    TruthOutput_Err2_VV_D.append(7830262.171940184207611242)
+    TruthOutput_Err2_VV_D.append(4190618.67836226290754512)
+    TruthOutput_Err2_VV_D.append(2592126.16276053851239873)
 else:
+    TruthOutput_Err2_VV_D.append(83356917.45302573292922070)
     TruthOutput_Err2_VV_D.append(19027338.40778648107169063)
-TruthOutput_Err2_VV_D.append(7830262.17194018297611242)
-TruthOutput_Err2_VV_D.append(4190618.67836226184754512)
-if(platform=="linux2" and uname()[4]=="i686"):
-    TruthOutput_Err2_VV_D.append(2592126.16276053797239873)
-else:
+    TruthOutput_Err2_VV_D.append(7830262.17194018297611242)
+    TruthOutput_Err2_VV_D.append(4190618.67836226184754512)
     TruthOutput_Err2_VV_D.append(2592126.16276053843806002)
 
 # Truth values for tof_to_scalar_Q scalar-scalar version
