@@ -1919,7 +1919,7 @@ namespace AxisManip
    * geometry spectromer according to the equation
    * \f[
    * \lambda_i=\frac{1}{\frac{m_n}{h} L_S + t_{0,slope}}
-   *              \left(t-\frac{m_n \lambda_f L_D}{h} -t_{0,offset}} \right)
+   *              \left(t-\frac{m_n \lambda_f L_D}{h} -t_{0,offset} \right)
    * \f]
    * where \f$\lambda_i\f$ is the incident wavelength, \f$h\f$ is
    * Planck's constant, \f$m_n\f$ is the mass of the neutron,
