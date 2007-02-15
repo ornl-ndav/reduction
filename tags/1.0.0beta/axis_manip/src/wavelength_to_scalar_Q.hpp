@@ -40,15 +40,15 @@
 namespace AxisManip
 {
   /// String for holding the wavelength_to_scalar_Q function name
-  const std::string et_func_str = "AxisManip::wavelength_to_scalar_Q";
+  const std::string wtsq_func_str = "AxisManip::wavelength_to_scalar_Q";
 
   // 3.18
   template <typename NumT>
   std::string
   wavelength_to_scalar_Q(const Nessi::Vector<NumT> & wavelength,
                          const Nessi::Vector<NumT> & wavelength_err2,
-                         const NumT scatt_angle,
-                         const NumT scatt_angle_err2,
+                         const NumT polar_angle,
+                         const NumT polar_angle_err2,
                          Nessi::Vector<NumT> & Q,
                          Nessi::Vector<NumT> & Q_err2,
                          void *temp=NULL)
@@ -60,7 +60,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument &e)
       {
-        throw std::invalid_argument(et_func_str+" (v,s): data "+e.what());
+        throw std::invalid_argument(wtsq_func_str+" (v,s): data "+e.what());
       }
 
     // check that the uncertainties are of proper size
@@ -70,7 +70,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument &e)
       {
-        throw std::invalid_argument(et_func_str+" (v,s): err2 "+e.what());
+        throw std::invalid_argument(wtsq_func_str+" (v,s): err2 "+e.what());
       }
 
     // check that the wavelength arrays are of proper size
@@ -80,7 +80,7 @@ namespace AxisManip
       }
     catch(std::invalid_argument &e)
       {
-        throw std::invalid_argument(et_func_str+" (v,s): wavelength "
+        throw std::invalid_argument(wtsq_func_str+" (v,s): wavelength "
                                     +e.what());
       }
 
@@ -90,11 +90,11 @@ namespace AxisManip
     NumT _4Pi;
     NumT sin;
     NumT sin2;
-    NumT cos2;
+    NumT term;
 
     // fill the local variables
-    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin,
-                                              sin2, cos2);
+    retstr += __wavelength_to_scalar_Q_static(polar_angle, polar_angle_err2, 
+                                              _4Pi, sin, sin2, term);
 
     // do the calculation
     size_t size_wavelength = wavelength.size();
@@ -102,10 +102,8 @@ namespace AxisManip
       {
         retstr += __wavelength_to_scalar_Q_dynamic(wavelength[i],
                                                    wavelength_err2[i],
-                                                   scatt_angle,
-                                                   scatt_angle_err2,
-                                                   _4Pi, sin, sin2, cos2,
-                                                   Q[i],
+                                                   _4Pi, sin, sin2, term,
+                                                   Q[i], 
                                                    Q_err2[i]);
       }
 
@@ -116,8 +114,8 @@ namespace AxisManip
   std::string
   wavelength_to_scalar_Q(const NumT wavelength,
                          const NumT wavelength_err2,
-                         const NumT scatt_angle,
-                         const NumT scatt_angle_err2,
+                         const NumT polar_angle,
+                         const NumT polar_angle_err2,
                          NumT & Q,
                          NumT & Q_err2,
                          void *temp=NULL)
@@ -128,18 +126,16 @@ namespace AxisManip
     NumT _4Pi;
     NumT sin;
     NumT sin2;
-    NumT cos2;
+    NumT term;
 
     // fill the local variables
-    retstr += __wavelength_to_scalar_Q_static(scatt_angle, _4Pi, sin,
-                                              sin2, cos2);
+    retstr += __wavelength_to_scalar_Q_static(polar_angle, polar_angle_err2,
+                                              _4Pi, sin, sin2, term);
 
     // do the calculation
     retstr += __wavelength_to_scalar_Q_dynamic(wavelength,
                                                wavelength_err2,
-                                               scatt_angle,
-                                               scatt_angle_err2,
-                                               _4Pi, sin, sin2, cos2,
+                                               _4Pi, sin, sin2, term,
                                                Q,
                                                Q_err2);
 
@@ -152,28 +148,31 @@ namespace AxisManip
    * This is a PRIVATE helper function for wavelength_to_scalar_Q that
    * calculates parameters invariant across array calculation
    *
-   * \param scatt_angle (INPUT) same as parameter in wavelength_to_scalar_Q()
+   * \param polar_angle (INPUT) same as parameter in wavelength_to_scalar_Q()
+   * \param polar_angle_err2 (INPUT) same as parameter in 
+   * wavelength_to_scalar_Q()
    * \param _4Pi (OUTPUT) the value of 4 times Pi
    * \param sin (OUTPUT) the sinus of the angle between positive z axis
    * and direction of the scattered neutrons
    * \param sin2 (OUTPUT) the square of the sinus of the angle between positive
    * z axis and direction of the scattered neutrons
-   * \param cos2 (OUTPUT) the square of the cosinus of the angle between
-   * positive z axis and direction of the scattered neutrons
+   * \param term (OUTPUT) \f$\frac{cos^2(polar/2)}{4}\times \sigma_{polar}^2\f$
    */
   template <typename NumT>
   std::string
-  __wavelength_to_scalar_Q_static(const NumT scatt_angle,
+  __wavelength_to_scalar_Q_static(const NumT polar_angle,
+                                  const NumT polar_angle_err2,
                                   NumT & _4Pi,
                                   NumT & sin,
                                   NumT & sin2,
-                                  NumT & cos2)
+                                  NumT & term)
   {
     _4Pi = 4.*static_cast<NumT>(PhysConst::PI);
-    sin=static_cast<NumT>(std::sin(static_cast<double>(scatt_angle)));
+    sin=static_cast<NumT>(std::sin(static_cast<double>(polar_angle/2.0)));
     sin2=sin*sin;
-    cos2=static_cast<NumT>(std::cos(static_cast<double>(scatt_angle)));
-    cos2=cos2*cos2;
+    NumT cos
+      = static_cast<NumT>(std::cos(static_cast<double>(polar_angle/2.0)));
+    term = ((cos * cos) / static_cast<NumT>(4.0)) * polar_angle_err2;
 
     return Nessi::EMPTY_WARN;
   }
@@ -187,13 +186,10 @@ namespace AxisManip
    * \param wavelength (INPUT) same as parameter in wavelength_to_scalar_Q()
    * \param wavelength_err2 (INPUT) same as parameter in
    * wavelength_to_scalar_Q()
-   * \param scatt_angle (INPUT) same as parameter in wavelength_to_scalar_Q()
-   * \param scatt_angle_err2 (INPUT) same as parameter in
-   * wavelength_to_scalar_Q()
    * \param _4Pi (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
    * \param sin (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
    * \param sin2 (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
-   * \param cos2 (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
+   * \param term (INPUT) same as parameter in __wavelength_to_scalar_Q_static()
    * \param Q (OUTPUT) same as parameter in wavelength_to_scalar_Q()
    * \param Q_err2 (OUTPUT) same as parameter in wavelength_to_scalar_Q()
    */
@@ -201,12 +197,10 @@ namespace AxisManip
   std::string
   __wavelength_to_scalar_Q_dynamic(const NumT wavelength,
                                    const NumT wavelength_err2,
-                                   const NumT scatt_angle,
-                                   const NumT scatt_angle_err2,
                                    const NumT _4Pi,
                                    const NumT sin,
                                    const NumT sin2,
-                                   const NumT cos2,
+                                   const NumT term,
                                    NumT & Q,
                                    NumT & Q_err2)
   {
@@ -216,7 +210,7 @@ namespace AxisManip
     Q = sin * _4Pi_wave;
 
     // the uncertainty in the result
-    Q_err2 = cos2 * scatt_angle_err2;
+    Q_err2 = term;
     Q_err2 += (sin2 * wavelength_err2)/(wavelength*wavelength);
     Q_err2 *= _4Pi_wave*_4Pi_wave;
 

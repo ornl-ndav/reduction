@@ -28,7 +28,7 @@ AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi/inc \
 pkglib_LTLIBRARIES = libAxisManip.la
 
 libAxisManip_la_LDFLAGS = $(LIB_AXIS_MANIP_VERSION) \
-              -L$(top_srcdir)/utils/src/.libs -lUtils
+              -L$(top_builddir)/utils/src/.libs -lUtils
 
 libAxisManip_la_SOURCES = \
 	d_spacing_to_tof_focused_det.hpp \
@@ -67,6 +67,8 @@ libAxisManip_la_SOURCES = \
 	tof_to_initial_velocity_igs.cpp \
 	tof_to_initial_wavelength_igs.hpp \
 	tof_to_initial_wavelength_igs.cpp \
+	tof_to_initial_wavelength_igs_lin_time_zero.hpp \
+	tof_to_initial_wavelength_igs_lin_time_zero.cpp \
 	tof_to_scalar_Q.hpp \
 	tof_to_scalar_Q.cpp \
 	tof_to_wavelength.hpp \
