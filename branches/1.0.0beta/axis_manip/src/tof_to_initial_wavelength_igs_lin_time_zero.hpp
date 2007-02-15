@@ -253,9 +253,9 @@ namespace AxisManip
     NumT ld2 = dist_sample_detector * dist_sample_detector;
     NumT lf2 = final_wavelength * final_wavelength;
     
-    d = (ld2 * final_wavelength_err2) + (lf2 * dist_sample_detector_err2) + 
-      time_0_offset_err2;
-
+    d = (((ld2 * final_wavelength_err2) + 
+          (lf2 * dist_sample_detector_err2)) / (k * k)) + time_0_offset_err2;
+    
     return Nessi::EMPTY_WARN;
   }
 
