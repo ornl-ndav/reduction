@@ -47,6 +47,8 @@ python tof_to_final_velocity_dgs_test.py
 echo
 python tof_to_initial_wavelength_igs_test.py
 echo
+python tof_to_initial_wavelength_igs_lin_time_zero_test.py
+echo
 python tof_to_scalar_Q_test.py
 echo
 python tof_to_wavelength_test.py
