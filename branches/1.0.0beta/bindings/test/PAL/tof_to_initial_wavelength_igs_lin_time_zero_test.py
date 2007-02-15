@@ -31,8 +31,6 @@
 import axis_manip
 import nessi_list
 import test_common
-from os import uname
-from sys import platform
 from vpair_bind import *
 
 NUM_VAL = 5
@@ -104,37 +102,19 @@ def initialize_true_outputs(key):
 
       # initialize the correct outputs for vector vector case
         true_output_vv.append(float(-0.565501480597332962))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(0.134880111049097390))
-        else:
-            true_output_vv_err2.append(float(0.134880111049097390))
+        true_output_vv_err2.append(float(0.134880111049097390))
         true_output_vv.append(float(-0.562029936475325287))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(0.134590680492193304))
-        else:
-            true_output_vv_err2.append(float(0.134590680492193304))
+        true_output_vv_err2.append(float(0.134590680492193304))
         true_output_vv.append(float(-0.558558392353317723))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(0.134303106395620875))
-        else:
-            true_output_vv_err2.append(float(0.134303106395620875))
+        true_output_vv_err2.append(float(0.134303106395620875))
         true_output_vv.append(float(-0.555086848231310048))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(0.134017388759380074))
-        else:
-            true_output_vv_err2.append(float(0.134017388759380074))
+        true_output_vv_err2.append(float(0.134017388759380074))
         true_output_vv.append(float(-0.551615304109302484))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(0.133733527583470901))
-        else:
-            true_output_vv_err2.append(float(0.133733527583470901))
+        true_output_vv_err2.append(float(0.133733527583470901))
 
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(-0.565501480597332962)
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_ss.val_err2 = float(0.134880111049097390)
-        else:
-            true_output_ss.val_err2 = float(0.134880111049097390)
+        true_output_ss.val_err2 = float(0.134880111049097390)
 
     else:
 

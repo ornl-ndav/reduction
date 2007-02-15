@@ -20,8 +20,6 @@
 from axis_manip_bind import tof_to_initial_wavelength_igs_lin_time_zero_d
 from axis_manip_bind import tof_to_initial_wavelength_igs_lin_time_zero_ss_d
 from nessi_vector_bind import *
-from os import uname
-from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -69,27 +67,17 @@ TruthOutput_VV_D.append(-0.555086848231310048)
 TruthOutput_VV_D.append(-0.551615304109302484)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-if(platform=="linux2" and uname()[4]=="i686"):
-    TruthOutput_Err2_VV_D.append(0.134880111049097390)
-    TruthOutput_Err2_VV_D.append(0.134590680492193304)
-    TruthOutput_Err2_VV_D.append(0.134303106395620875)
-    TruthOutput_Err2_VV_D.append(0.134017388759380074)
-    TruthOutput_Err2_VV_D.append(0.133733527583470901)
-else:
-    TruthOutput_Err2_VV_D.append(0.134880111049097390)
-    TruthOutput_Err2_VV_D.append(0.134590680492193304)
-    TruthOutput_Err2_VV_D.append(0.134303106395620875)
-    TruthOutput_Err2_VV_D.append(0.134017388759380074)
-    TruthOutput_Err2_VV_D.append(0.133733527583470901)
+TruthOutput_Err2_VV_D.append(0.134880111049097390)
+TruthOutput_Err2_VV_D.append(0.134590680492193304)
+TruthOutput_Err2_VV_D.append(0.134303106395620875)
+TruthOutput_Err2_VV_D.append(0.134017388759380074)
+TruthOutput_Err2_VV_D.append(0.133733527583470901)
 
 # Truth values for tof_to_initial_wavelength_igs_lin_time_zero scalar-scalar
 # version
 TruthOutput_SS_D = DoubleVPair()
 TruthOutput_SS_D.val = -0.565501480597332962
-if(platform=="linux2" and uname()[4]=="i686"):
-    TruthOutput_SS_D.val_err2 = 0.134880111049097390
-else:
-    TruthOutput_SS_D.val_err2 = 0.134880111049097390
+TruthOutput_SS_D.val_err2 = 0.134880111049097390
 
 ###############################################################################
 # Create output placeholders for vectors
