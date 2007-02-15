@@ -246,6 +246,7 @@ namespace AxisManip
     a2 = a * a;
 
     b = ((dist_sample_detector * final_wavelength) / k) + time_0_offset;
+    b *= a;
 
     c = (dist_source_sample_err2 / (k * k)) + time_0_slope_err2;
     
