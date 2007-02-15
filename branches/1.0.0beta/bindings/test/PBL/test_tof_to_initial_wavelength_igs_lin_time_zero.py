@@ -62,34 +62,34 @@ for counter in range(NUM_VAL):
 # Truth values for tof_to_initial_wavelength_igs_lin_time_zero vector-vector
 # version
 TruthOutput_VV_D = DoubleNessiVector()
-TruthOutput_VV_D.append(-1.63892767340579184e+02)
-TruthOutput_VV_D.append(-1.63889295796457191e+02)
-TruthOutput_VV_D.append(-1.63885824252335169e+02)
-TruthOutput_VV_D.append(-1.63882352708213176e+02)
-TruthOutput_VV_D.append(-1.63878881164091155e+02)
+TruthOutput_VV_D.append(-0.565501480597332962)
+TruthOutput_VV_D.append(-0.562029936475325287)
+TruthOutput_VV_D.append(-0.558558392353317723)
+TruthOutput_VV_D.append(-0.555086848231310048)
+TruthOutput_VV_D.append(-0.551615304109302484)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 if(platform=="linux2" and uname()[4]=="i686"):
-    TruthOutput_Err2_VV_D.append(2.06885417307452872e+03)
-    TruthOutput_Err2_VV_D.append(2.06876654193679860e+03)
-    TruthOutput_Err2_VV_D.append(2.06867891265552907e+03)
-    TruthOutput_Err2_VV_D.append(2.06859128523072013e+03)
-    TruthOutput_Err2_VV_D.append(2.06850365966237086e+03)
+    TruthOutput_Err2_VV_D.append(0.134880111049097390)
+    TruthOutput_Err2_VV_D.append(0.134590680492193304)
+    TruthOutput_Err2_VV_D.append(0.134303106395620875)
+    TruthOutput_Err2_VV_D.append(0.134017388759380074)
+    TruthOutput_Err2_VV_D.append(0.133733527583470901)
 else:
-    TruthOutput_Err2_VV_D.append(2.06885417307452781e+03)
-    TruthOutput_Err2_VV_D.append(2.06876654193679815e+03)
-    TruthOutput_Err2_VV_D.append(2.06867891265552862e+03)
-    TruthOutput_Err2_VV_D.append(2.06859128523071968e+03)
-    TruthOutput_Err2_VV_D.append(2.06850365966237041e+03)
+    TruthOutput_Err2_VV_D.append(0.134880111049097390)
+    TruthOutput_Err2_VV_D.append(0.134590680492193304)
+    TruthOutput_Err2_VV_D.append(0.134303106395620875)
+    TruthOutput_Err2_VV_D.append(0.134017388759380074)
+    TruthOutput_Err2_VV_D.append(0.133733527583470901)
 
 # Truth values for tof_to_initial_wavelength_igs_lin_time_zero scalar-scalar
 # version
 TruthOutput_SS_D = DoubleVPair()
-TruthOutput_SS_D.val = -1.63892767340579184e+02
+TruthOutput_SS_D.val = -0.565501480597332962
 if(platform=="linux2" and uname()[4]=="i686"):
-    TruthOutput_SS_D.val_err2 = 2.06885417307452872e+03
+    TruthOutput_SS_D.val_err2 = 0.134880111049097390
 else:
-    TruthOutput_SS_D.val_err2 = 2.06885417307452781e+03
+    TruthOutput_SS_D.val_err2 = 0.134880111049097390
 
 ###############################################################################
 # Create output placeholders for vectors
