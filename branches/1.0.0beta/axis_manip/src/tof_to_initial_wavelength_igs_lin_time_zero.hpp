@@ -217,9 +217,9 @@ namespace AxisManip
    * final\_wavelength) + time\_0\_offset\f$
    * \param c (OUTPUT) \f$=\left(\frac{m_n}{h}\right)^2 \times 
    * dist\_source\_sample\_err2 + time\_0\_slope\_err2\f$
-   * \param d (OUTPUT) \f$=(dist\_sample\_detector^2 \times 
-   * final\_wavelength\_err2) + (final\_wavelength^2 \times 
-   * dist\_sample\_detector\_err2) + time\_0\_offset\_err2\f$
+   * \param d (OUTPUT) \f$=(\frac{m_n}{h})^2 \times ((dist\_sample\_detector^2 
+   * \times final\_wavelength\_err2) + (final\_wavelength^2 \times 
+   * dist\_sample\_detector\_err2)) + time\_0\_offset\_err2\f$
    */
   template <typename NumT>
   std::string __tof_to_initial_wavelength_igs_lin_time_zero_static(

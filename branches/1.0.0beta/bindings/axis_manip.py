@@ -2355,8 +2355,9 @@ def tof_to_initial_wavelength_igs(tof,
 # \left(\frac{1}{\frac{m_n}{h}L_S + t_{0,slope}}\right)^2*\left(
 # \left(\lambda_i[i]\right)^2*\left(\left(\frac{m_n}{h}\right)^2
 # \sigma^2_{L_S}+ \sigma^2_{t_{0,slope}}\right)+(\sigma^2_t[i]+
-# \sigma^2_{t_{0,offset}})+ \left(\lambda_f\right)^2\sigma^2_{L_D} + 
-# \left({L_D}\right)^2\sigma^2_{\lambda_f}\right)
+# \sigma^2_{t_{0,offset}})+ \left(\frac{m_n}{h}\right)^2\left(\left(
+# \lambda_f\right)^2\sigma^2_{L_D} + \left({L_D}\right)^2
+# \sigma^2_{\lambda_f}\right)\right)
 # \f]
 #
 # where \f$\sigma_{\lambda_i}\f$ is the uncertainty of the initial
@@ -2438,8 +2439,8 @@ def tof_to_initial_wavelength_igs_lin_time_zero(tof,
 
     lambda_i_err[i]^2 = (1/((m_n/h)L_S + t_0_slope))^2 * (lambda_i[i]^2 *
                         ((m_n/h)^2*L_S_err^2+t_0_slope_err^2) + t_err[i]^2 +
-                        t_0_offset_err^2 + lambda_f^2*L_D_err^2 + 
-                        L_D^2*lambda_f_err^2)
+                        t_0_offset_err^2 + (m_n/h)^2 * (lambda_f^2*L_D_err^2 + 
+                        L_D^2*lambda_f_err^2))
 
 
     where lambda_i_err is the uncertainty of the initial wavelength axis,
