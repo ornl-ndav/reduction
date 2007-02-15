@@ -2715,7 +2715,7 @@ namespace AxisManip
    * This function converts the wavelength to scalar momentum transfer
    * according to the equation
    * \f[
-   * Q[i]=\frac{4\pi}{\lambda[i]}\sin(polar/2)
+   * Q[i]=\frac{4\pi}{\lambda[i]}\sin(polar)
    * \f]
    * Where \f$Q[i]\f$ is the scalar momentum transfer, \f$\lambda[i]\f$
    * is the wavelength, and \f$polar\f$ is the angle between the
@@ -2725,7 +2725,7 @@ namespace AxisManip
    * uncertainty of the scalar momentum transfer is given by
    * \f[
    * \sigma^2_Q[i]=\left(\frac{4\pi}{\lambda[i]}\right)^2
-   * \left(\frac{cos(polar/2)^2}{4}\sigma_{polar}^2+\left(\frac{sin(polar/2)}
+   * \left(cos(polar)^2\sigma_{polar}^2+\left(\frac{sin(polar)}
    * {\lambda[i]}\right)^2\sigma^2_\lambda[i]\right)
    * \f]
    *
@@ -2762,7 +2762,7 @@ namespace AxisManip
    * This function converts the wavelength to scalar momentum transfer
    * according to the equation
    * \f[
-   * Q=\frac{4\pi}{\lambda}\sin(polar/2)
+   * Q=\frac{4\pi}{\lambda}\sin(polar)
    * \f]
    * Where \f$Q\f$ is the scalar momentum transfer, \f$\lambda\f$
    * is the wavelength, and \f$polar\f$ is the angle between the
@@ -2774,7 +2774,7 @@ namespace AxisManip
    * uncertainty of the scalar momentum transfer is given by
    * \f[
    * \sigma^2_Q=\left(\frac{4\pi}{\lambda}\right)^2
-   * \left(\frac{cos(polar/2)^2}{4}\sigma_{polar}^2+\left(\frac{sin(polar/2)}
+   * \left(cos(polar)^2\sigma_{polar}^2+\left(\frac{sin(polar)}
    * {\lambda}\right)^2\sigma^2_\lambda\right)
    * \f]
    *
