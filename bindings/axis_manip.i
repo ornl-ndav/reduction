@@ -173,6 +173,16 @@ std::string tof_to_initial_wavelength_igs_ss_d(const double tof, const double to
 
 std::string tof_to_initial_wavelength_igs_ss_d(const double tof, const double tof_err2, const double final_wavelength, const double final_wavelength_err2, const double time_offset, const double time_offset_err2, const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL);
 
+%template(tof_to_initial_wavelength_igs_lin_time_zero_d) AxisManip::tof_to_initial_wavelength_igs_lin_time_zero<double>;
+
+%{
+std::string tof_to_initial_wavelength_igs_lin_time_zero_ss_d(const double tof, const double tof_err2, const double final_wavelength, const double final_wavelength_err2, const double time_0_slope, const double time_0_slope_err2, const double time_0_offset, const double time_0_offset_err2, const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::tof_to_initial_wavelength_igs_lin_time_zero(tof, tof_err2, final_wavelength, final_wavelength_err2, time_0_slope, time_0_slope_err2, time_0_offset, time_0_offset_err2, dist_source_sample, dist_source_sample_err2, dist_sample_detector, dist_sample_detector_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string tof_to_initial_wavelength_igs_lin_time_zero_ss_d(const double tof, const double tof_err2, const double final_wavelength, const double final_wavelength_err2, const double time_0_slope, const double time_0_slope_err2, const double time_0_offset, const double time_0_offset_err2, const double dist_source_sample, const double dist_source_sample_err2, const double dist_sample_detector, const double dist_sample_detector_err2, VPair<double> & value, void *temp=NULL);
 
 %template(tof_to_Q_d) AxisManip::tof_to_Q<double>;
 

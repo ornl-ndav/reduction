@@ -84,13 +84,11 @@ def absorption_mult_scatt():
 
     raise NotImplementedError, "This function is not implemented."
 ##
-# \} // end of absorption_mult_scatt group
-#
+# \}
 
 ##
 # \defgroup dead_time_corr phys_corr::dead_time_corr
 # \{
-#
 
 ##
 # \brief This function calculates the effect of dead time on the data
@@ -118,13 +116,11 @@ def dead_time():
     raise NotImplementedError, "This function is not implemented."
 
 ##
-# \} // end of dead_time group
-#
+# \}
 
 ##
 # \defgroup incoherent_scatt_corr phys_corr::incoherent_scatt_corr
 # \{
-#
 
 ##
 # \brief This function calculates the effect of incoherent scattering on the
@@ -153,13 +149,11 @@ def incoherent_scatt_corr():
     raise NotImplementedError, "This function is not implemented."
 
 ##
-# \} // end of incoherent_scatt_corr group
-#
+# \}
 
 ##
 # \defgroup inelastic_scatt_corr phys_corr::inelastic_scatt_corr
 # \{
-#
 
 ##
 # \brief This function calculates the effect of inelastic scattering on the
@@ -188,5 +182,4 @@ def inelastic_scatt_corr():
     raise NotImplementedError, "This function is not implemented."
 
 ##
-# \} // end of inelastic_scatt_corr group
-#
+# \}

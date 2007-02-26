@@ -18,6 +18,8 @@
 from axis_manip_bind import wavelength_to_d_spacing_d
 from axis_manip_bind import wavelength_to_d_spacing_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -56,11 +58,17 @@ TruthOutput_VV_D.append(4.94887576632577355)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 TruthOutput_Err2_VV_D.append(0.15909755221565900)
-TruthOutput_Err2_VV_D.append(0.52479014214365200)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(0.52479014214365233)
+else:
+    TruthOutput_Err2_VV_D.append(0.52479014214365200)
 TruthOutput_Err2_VV_D.append(0.95381271273387956)
 TruthOutput_Err2_VV_D.append(1.44616526398634044)
-TruthOutput_Err2_VV_D.append(2.00184779590103556)
-
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(2.00184779590103600)
+else:
+    TruthOutput_Err2_VV_D.append(2.00184779590103556)
+    
 # Truth values for wavelength_to_d_spacing scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
 TruthOutput_SS_D.val = 0.54987508514730800

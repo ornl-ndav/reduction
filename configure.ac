@@ -23,7 +23,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.0.0iqc5], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
+AC_INIT([SNS Common Libraries], [1.0.0beta], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
@@ -49,6 +49,15 @@ AC_ARG_ENABLE(pdfdoc,
   *) AC_MSG_ERROR(bad value ${enableval} for --enable-pdfdoc) ;;
 esac],[pdfdoc=false])
 AM_CONDITIONAL(PDFDOC, test x$pdfdoc = xtrue)
+
+AC_ARG_ENABLE(optswig,
+[  --enable-optswig   Optimize SWIG bindings],
+[case "${enableval}" in
+  yes) optswig=true ;;
+  no)  optswig=false ;;
+  *) AC_MSG_ERROR(bad value ${enableval} for --enable-optswig) ;;
+esac],[optswig=false])
+AM_CONDITIONAL(OPTSWIG, test x$optswig = xtrue)
 
 AM_PATH_PYTHON(2.3, :)
 AC_CHECK_ROOT([python],[PYTHONROOT],[/usr /usr/local],[include/python$PYTHON_VERSION/Python.h])
@@ -78,11 +87,33 @@ AC_SUBST(PYLIB_UTILS_VERSION)
 PYLIB_VPAIR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_VPAIR_VERSION)
 
+# Checks for programs.
 AC_PROG_CXX
 if test $GXX = yes; then
 	CXXFLAGS="$CXXFLAGS -Wall"
 fi
 AC_PROG_LIBTOOL
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([float.h limits.h string.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_HEADER_STDBOOL
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_SIZE_T
+AC_CHECK_TYPES([ptrdiff_t])
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([floor memset pow sqrt strstr])
 
 dnl Add OS define flags for smoke tests
 case "$host" in
@@ -93,7 +124,7 @@ case "$host" in
 esac
 AC_SUBST(STOSFLAG)
 
-SCL_SWIG_CHECK([1.3.24])
+SCL_SWIG_CHECK([1.3.28])
 SCL_DOXYGEN_CHECK([1.4.6])
 AC_CHECK_PROGS(DOT, [dot])
 
@@ -156,6 +187,12 @@ else
    MAKEPDF="no"
 fi
 
+if test $optswig == "true" ; then
+   SWIGOPT="on"
+else
+   SWIGOPT="off"
+fi
+
 if test -n "$DOXYGEN_VERSION_REQ" ; then
    DOXYGEN_WARNING="If you wish to remake documentation, you need to get \
 $DOXYGEN_VERSION_REQ. Otherwise 
@@ -181,6 +218,7 @@ documentation:
 build:
         bindings:
                 SWIG:          ${SWIGBINDING}
+                Optimize:      ${SWIGOPT}
 
 Please check whether the configuration I detected matches what you
 would like to have.

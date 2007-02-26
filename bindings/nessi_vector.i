@@ -41,6 +41,10 @@ namespace std {
 }
 
 namespace Nessi {
+
+  %template(DoubleNessiVector) Vector<double>;
+  %template(IntNessiVector) Vector<int>;
+
   %extend Vector<double> {
     std::string __type__() {
       return "double";
@@ -60,7 +64,13 @@ namespace Nessi {
         Py_INCREF(Py_None);
         return Py_None;
     }
+    void  __set_from_Vector__(std::vector<double> *source) {
+       	
+	self->assign(source->begin(),source->end());
+	return;
+    }
   }
+
   %extend Vector<int> {
     std::string __type__() {
       return "int";
@@ -79,7 +89,10 @@ namespace Nessi {
         Py_INCREF(Py_None);
         return Py_None;
     }
+    void  __set_from_Vector__(std::vector<int> *source) {
+       	
+	self->assign(source->begin(),source->end());
+	return;
+    }
   }
-  %template(DoubleNessiVector) Vector<double>;
-  %template(IntNessiVector) Vector<int>;
 }

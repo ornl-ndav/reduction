@@ -57,22 +57,38 @@ TruthOutput_VV_D.append(1264.17918742388204636)
 TruthOutput_VV_D.append(2528.35837484776409272)
 TruthOutput_VV_D.append(3792.53756227164590728)
 TruthOutput_VV_D.append(5056.71674969552818102)
-TruthOutput_VV_D.append(6320.8959371194108650)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_VV_D.append(6320.8959371194099555)
+else:
+    TruthOutput_VV_D.append(6320.8959371194108650)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 if(platform=="linux2" and uname()[4]=="x86_64"):
-	TruthOutput_Err2_VV_D.append(999410.25272388576716936)
+    TruthOutput_Err2_VV_D.append(999410.25272388576716936)
+elif(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(999410.2527238855836913)
 else:
-	TruthOutput_Err2_VV_D.append(999410.2527238857001066)
-	
-TruthOutput_Err2_VV_D.append(3198566.5019376895343388)
+    TruthOutput_Err2_VV_D.append(999410.2527238857001066)
+
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(3198566.5019376886030162)
+else:
+    TruthOutput_Err2_VV_D.append(3198566.5019376895343388)
+    
 if(platform=="linux2" and uname()[4]=="x86_64"):
 	TruthOutput_Err2_VV_D.append(5798394.23868355906867743)
+elif(platform=="linux2" and uname()[4]=="i686"):
+    	TruthOutput_Err2_VV_D.append(5798394.2386835571378469)
 else:
 	TruthOutput_Err2_VV_D.append(5798394.2386835580691695)
-		
-TruthOutput_Err2_VV_D.append(8798893.46296149186264514)
-TruthOutput_Err2_VV_D.append(12200064.17477148882412910)
+
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(8798893.46296148933470250)
+    TruthOutput_Err2_VV_D.append(12200064.17477148696148395)
+else:
+    TruthOutput_Err2_VV_D.append(8798893.46296149186264514)
+    TruthOutput_Err2_VV_D.append(12200064.17477148882412910)
+
 
 # Truth values for d_spacing_to_tof_focused_det scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()

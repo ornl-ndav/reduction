@@ -18,6 +18,8 @@
 from axis_manip_bind import velocity_to_energy_d
 from axis_manip_bind import velocity_to_energy_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -45,17 +47,32 @@ for counter in range(NUM_VAL):
 # Truth values for velocity_to_energy vector-vector version
 TruthOutput_VV_D = DoubleNessiVector()
 TruthOutput_VV_D.append(0.00000000000000000)
-TruthOutput_VV_D.append(5.22699329999999912)
-TruthOutput_VV_D.append(20.90797319999999645)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_VV_D.append(5.22699330000000001)
+    TruthOutput_VV_D.append(20.90797320000000003)
+else:
+    TruthOutput_VV_D.append(5.22699329999999912)
+    TruthOutput_VV_D.append(20.90797319999999645)
+
 TruthOutput_VV_D.append(47.04293970000000000)
-TruthOutput_VV_D.append(83.63189279999998579)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_VV_D.append(83.63189280000000000)
+else:
+    TruthOutput_VV_D.append(83.63189279999998579)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
 TruthOutput_Err2_VV_D.append(0.00000000000000000)
-TruthOutput_Err2_VV_D.append(109285.83583297954889063)
-TruthOutput_Err2_VV_D.append(874286.68666383634924597)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(109285.83583297956344255)
+    TruthOutput_Err2_VV_D.append(874286.68666383646566129)
+else:
+    TruthOutput_Err2_VV_D.append(109285.83583297954889063)
+    TruthOutput_Err2_VV_D.append(874286.68666383634924597)
 TruthOutput_Err2_VV_D.append(2950717.56749044767169357)
-TruthOutput_Err2_VV_D.append(6994293.49331069093132257)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_Err2_VV_D.append(6994293.49331069186264514)
+else:
+    TruthOutput_Err2_VV_D.append(6994293.49331069093132257)
 
 # Truth values for velocity_to_energy scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()

@@ -32,7 +32,7 @@ print
 NUM_VAL = 5
 
 # Set parameters for function
-polar_angle = 2.0
+polar_angle = 4.0
 polar_angle_err2 = 0.5
 
 # Create input vectors
@@ -57,19 +57,21 @@ TruthOutput_VV_D.append(1.63236692345352230)
 TruthOutput_VV_D.append(1.26961871824162853)
 
 TruthOutput_Err2_VV_D = DoubleNessiVector()
-TruthOutput_Err2_VV_D.append(78.956835208714863938)
+
 if(platform=="linux2" and uname()[4]=="i686"):
-    TruthOutput_Err2_VV_D.append(3.937186620728660100)
+    TruthOutput_Err2_VV_D.append(68.701633877105257888)
+    TruthOutput_Err2_VV_D.append(2.79771980610536988)
 else:
-    TruthOutput_Err2_VV_D.append(3.937186620728660547)
-TruthOutput_Err2_VV_D.append(1.069209938485062406)
-TruthOutput_Err2_VV_D.append(0.469383224086273310)
-TruthOutput_Err2_VV_D.append(0.258361659002127153)
+    TruthOutput_Err2_VV_D.append(68.701633877105272099)
+    TruthOutput_Err2_VV_D.append(2.79771980610537032)
+TruthOutput_Err2_VV_D.append(0.65900188522067791)
+TruthOutput_Err2_VV_D.append(0.26009340099219965)
+TruthOutput_Err2_VV_D.append(0.13175423515509495)
 
 # Truth values for wavelength_to_scalar_Q scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
 TruthOutput_SS_D.val = 11.42656846417465566
-TruthOutput_SS_D.val_err2 = 78.956835208714863938
+TruthOutput_SS_D.val_err2 = 68.701633877105272099
 
 ###############################################################################
 # Create output placeholders for vectors
