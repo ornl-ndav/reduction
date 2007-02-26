@@ -213,8 +213,8 @@ namespace AxisManip
    * \param a (OUTPUT) \f$=\frac{1}{\frac{m_n}{h} dist\_source\_sample + 
    * time\_0\_slope}\f$
    * \param a2 (OUTPUT) \f$=a^2\f$
-   * \param b (OUTPUT) \f$=\frac{m_n}{h}(dist\_sample\_detector \times 
-   * final\_wavelength) + time\_0\_offset\f$
+   * \param b (OUTPUT) \f$=a\times\left(\frac{m_n}{h}(dist\_sample\_detector 
+   * \times final\_wavelength) + time\_0\_offset\right)\f$
    * \param c (OUTPUT) \f$=\left(\frac{m_n}{h}\right)^2 \times 
    * dist\_source\_sample\_err2 + time\_0\_slope\_err2\f$
    * \param d (OUTPUT) \f$=(\frac{m_n}{h})^2 \times ((dist\_sample\_detector^2 
