@@ -119,7 +119,11 @@ void initialize_true_outputs(double & true_output_ss,
 {
   // scalar scalar
   true_output_ss=static_cast<double>(0.59313725490196050);
+#ifdef LINUX
+  true_output_ss_err2=static_cast<double>(2.02874988488885986);
+#else
   true_output_ss_err2=static_cast<double>(2.02874988488886030);
+#endif
 
 }
 

@@ -64,15 +64,10 @@ UTILS_INC=-I$(top_srcdir)/utils/inc
 NESSI_INC=-I$(top_srcdir)/nessi/inc
 VPAIR_INC=-I$(top_srcdir)/bindings
 
-ARRAY_MANIP_LIB=-L$(top_srcdir)/array_manip/src/.libs
-AXIS_MANIP_LIB=-L$(top_srcdir)/axis_manip/src/.libs
-PHYS_CORR_LIB=-L$(top_srcdir)/phys_corr/src/.libs
-UTILS_LIB=-L$(top_srcdir)/utils/src/.libs
-
-ARRAY_MANIP_SRC=$(top_srcdir)/array_manip/src/*.lo
-AXIS_MANIP_SRC=$(top_srcdir)/axis_manip/src/*.lo
-PHYS_CORR_SRC=$(top_srcdir)/phys_corr/src/*.lo
-UTILS_SRC=$(top_srcdir)/utils/src/*.lo
+ARRAYMANIP_LIB=$(top_builddir)/array_manip/src/.libs/libArrayManip.la
+AXISMANIP_LIB=$(top_builddir)/axis_manip/src/.libs/libAxisManip.la
+PHYSCORR_LIB=$(top_builddir)/phys_corr/src/.libs/libPhysCorr.la
+UTILS_LIB=$(top_builddir)/utils/src/.libs/libUtils.la
 
 PYARRAYMANIP_INTERFACE=$(subst .la,,$(LIBPYARRAYMANIP))
 PYAXISMANIP_INTERFACE=$(subst .la,,$(LIBPYAXISMANIP))
@@ -128,7 +123,13 @@ pkgpython_HEADERS = \
 	$(PAL_FILES) \
 	$(PBL_FILES)
 
-EXTRA_DIST = $(SWIG_FILES)
+EXTRA_DIST = $(SWIG_FILES) vpair.hpp
+
+if OPTSWIG
+SWIGOPT= -O
+else
+SWIGOPT=
+endif
 
 clean-local:
 	rm -f $(PBL_FILES) $(PYTHON_WRAPPERS)
@@ -139,14 +140,13 @@ clean-local:
 if HAVE_SWIG
 if HAVE_PYTHON
 nodist_libPyArrayManip_la_SOURCES=$(ARRAYMANIP_PYTHONWRAP)
-libPyArrayManip_la_CPPFLAGS= $(PYTHON_INC) $(ARRAY_MANIP_INC) $(NESSI_INC) \
+libPyArrayManip_la_CPPFLAGS=$(PYTHON_INC) $(ARRAY_MANIP_INC) $(NESSI_INC) \
 			$(CFLAGS)
-libPyArrayManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_ARRAY_MANIP_VERSION) \
-			$(ARRAY_MANIP_SRC) $(UTILS_SRC)
-libPyArrayManip_la_LIBS=$(ARRAY_MANIP_LIB) $(UTILS_LIBS)
+libPyArrayManip_la_LDFLAGS=$(PYLIB_ARRAY_MANIP_VERSION) \
+			$(ARRAYMANIP_LIB) $(UTILS_LIB) $(LDFLAGS) 
 $(ARRAYMANIP_PYTHONWRAP) $(ARRAYMANIP_PBL): $(ARRAYMANIP_SWIG)
-	$(SWIG) -c++ -o $(ARRAYMANIP_PYTHONWRAP) -python $(ARRAY_MANIP_INC) \
-	-interface $(PYARRAYMANIP_INTERFACE) $<
+	$(SWIG) -c++ -o $(ARRAYMANIP_PYTHONWRAP) -python $(SWIGOPT) \
+	$(ARRAY_MANIP_INC) -interface $(PYARRAYMANIP_INTERFACE) $<
 endif
 endif
 
@@ -155,12 +155,11 @@ if HAVE_PYTHON
 nodist_libPyAxisManip_la_SOURCES=$(AXISMANIP_PYTHONWRAP)
 libPyAxisManip_la_CPPFLAGS= $(PYTHON_INC) $(AXIS_MANIP_INC) $(NESSI_INC) \
 			$(CFLAGS)
-libPyAxisManip_la_LDFLAGS=$(LDFLAGS) $(PYLIB_AXIS_MANIP_VERSION) \
-			$(AXIS_MANIP_SRC) $(UTILS_SRC)
-libPyAxisManip_la_LIBS=$(AXIS_MANIP_LIB) $(UTILS_LIB)
+libPyAxisManip_la_LDFLAGS=$(PYLIB_AXIS_MANIP_VERSION) \
+			$(AXISMANIP_LIB) $(UTILS_LIB) $(LDFLAGS) 
 $(AXISMANIP_PYTHONWRAP) $(AXISMANIP_PBL): $(AXISMANIP_SWIG)
-	$(SWIG) -c++ -o $(AXISMANIP_PYTHONWRAP) -python $(AXIS_MANIP_INC) \
-	-interface $(PYAXISMANIP_INTERFACE) $<
+	$(SWIG) -c++ -o $(AXISMANIP_PYTHONWRAP) -python $(SWIGOPT) \
+	$(AXIS_MANIP_INC) -interface $(PYAXISMANIP_INTERFACE) $<
 endif
 endif
 
@@ -168,10 +167,10 @@ if HAVE_SWIG
 if HAVE_PYTHON
 nodist_libPyNessiVector_la_SOURCES=$(NESSIVECTOR_PYTHONWRAP)
 libPyNessiVector_la_CPPFLAGS= $(PYTHON_INC) $(NESSI_INC) $(CFLAGS)
-libPyNessiVector_la_LDFLAGS=$(LDFLAGS) $(PYLIB_NESSI_VECTOR_VERSION)
+libPyNessiVector_la_LDFLAGS=$(PYLIB_NESSI_VECTOR_VERSION) $(LDFLAGS)
 $(NESSIVECTOR_PYTHONWRAP) $(NESSIVECTOR_PBL): $(NESSIVECTOR_SWIG)
-	$(SWIG) -c++ -o $(NESSIVECTOR_PYTHONWRAP) -python $(NESSI_INC)\
-	 -interface $(PYNESSIVECTOR_INTERFACE) $<
+	$(SWIG) -c++ -o $(NESSIVECTOR_PYTHONWRAP) -python $(SWIGOPT) \
+	$(NESSI_INC) -interface $(PYNESSIVECTOR_INTERFACE) $<
 endif
 endif
 
@@ -180,11 +179,10 @@ if HAVE_PYTHON
 nodist_libPyPhysCorr_la_SOURCES=$(PHYSCORR_PYTHONWRAP)
 libPyPhysCorr_la_CPPFLAGS= $(PYTHON_INC) $(PHYS_CORR_INC) $(NESSI_INC) \
 			$(CFLAGS)
-libPyPhysCorr_la_LDFLAGS=$(LDFLAGS) $(PYLIB_PHYS_CORR_VERSION) $(PHYS_CORR_SRC)
-libPyPhysCorr_la_LIBS=$(PHYS_CORR_LIB)
+libPyPhysCorr_la_LDFLAGS=$(PYLIB_PHYS_CORR_VERSION) $(PHYSCORR_LIB) $(LDFLAGS)
 $(PHYSCORR_PYTHONWRAP) $(PHYSCORR_PBL): $(PHYSCORR_SWIG)
-	$(SWIG) -c++ -o $(PHYSCORR_PYTHONWRAP) -python $(PHYS_CORR_INC) \
-	-interface $(PYPHYSCORR_INTERFACE) $<
+	$(SWIG) -c++ -o $(PHYSCORR_PYTHONWRAP) -python $(SWIGOPT) \
+	$(PHYS_CORR_INC) -interface $(PYPHYSCORR_INTERFACE) $<
 endif
 endif
 
@@ -192,11 +190,10 @@ if HAVE_SWIG
 if HAVE_PYTHON
 nodist_libPyUtils_la_SOURCES=$(UTILS_PYTHONWRAP)
 libPyUtils_la_CPPFLAGS= $(PYTHON_INC) $(UTILS_INC) $(NESSI_INC) $(CFLAGS)
-libPyUtils_la_LDFLAGS=$(LDFLAGS) $(PYLIB_UTILS_VERSION) $(UTILS_SRC)
-libPyUtils_la_LIBS=$(UTILS_LIB)
+libPyUtils_la_LDFLAGS=$(PYLIB_UTILS_VERSION) $(UTILS_LIB) $(LDFLAGS) 
 $(UTILS_PYTHONWRAP) $(UTILS_PBL): $(UTILS_SWIG)
-	$(SWIG) -c++ -o $(UTILS_PYTHONWRAP) -python $(UTILS_INC) \
-	-interface $(PYUTILS_INTERFACE) $<
+	$(SWIG) -c++ -o $(UTILS_PYTHONWRAP) -python $(SWIGOPT) \
+	$(UTILS_INC) -interface $(PYUTILS_INTERFACE) $<
 endif
 endif
 
@@ -204,9 +201,9 @@ if HAVE_SWIG
 if HAVE_PYTHON
 nodist_libPyVPair_la_SOURCES=$(VPAIR_PYTHONWRAP) 
 libPyVPair_la_CPPFLAGS= $(PYTHON_INC) $(VPAIR_INC) $(CFLAGS) 
-libPyVPair_la_LDFLAGS=$(LDFLAGS) $(PYLIB_VPAIR_VERSION)
+libPyVPair_la_LDFLAGS=$(PYLIB_VPAIR_VERSION) $(LDFLAGS)
 $(VPAIR_PYTHONWRAP) $(VPAIR_PBL): $(VPAIR_SWIG) 
-	$(SWIG) -c++ -o $(VPAIR_PYTHONWRAP) -python $(VPAIR_INC)\
-	 -interface $(PYVPAIR_INTERFACE) $<
+	$(SWIG) -c++ -o $(VPAIR_PYTHONWRAP) -python $(SWIGOPT) \
+	$(VPAIR_INC) -interface $(PYVPAIR_INTERFACE) $<
 endif
 endif

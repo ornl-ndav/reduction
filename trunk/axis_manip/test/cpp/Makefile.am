@@ -28,10 +28,10 @@ AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/utils/inc \
 AM_CXXFLAGS = $(STOSFLAG)
 
 AM_LDFLAGS  = -static \
-              -L$(top_srcdir)/axis_manip/src/.libs -lAxisManip \
-              -L$(top_srcdir)/utils/src/.libs -lUtils
+              -L$(top_builddir)/axis_manip/src/.libs -lAxisManip \
+              -L$(top_builddir)/utils/src/.libs -lUtils
 
-EXTRA_DIST=testsuite.at
+EXTRA_DIST=testsuite.at testsuite
 
 AXIS_MANIP_TARGETS = \
 	d_spacing_to_tof_focused_det_test \
@@ -48,6 +48,7 @@ AXIS_MANIP_TARGETS = \
 	time_offset_dgs_test \
 	tof_to_final_velocity_dgs_test \
 	tof_to_initial_wavelength_igs_test \
+	tof_to_initial_wavelength_igs_lin_time_zero_test \
 	tof_to_scalar_Q_test \
 	tof_to_wavelength_test \
 	velocity_to_energy_test\
@@ -103,6 +104,10 @@ tof_to_final_velocity_dgs_test_SOURCES = \
 
 tof_to_initial_wavelength_igs_test_SOURCES = \
         tof_to_initial_wavelength_igs_test.cpp \
+        test_common.hpp
+
+tof_to_initial_wavelength_igs_lin_time_zero_test_SOURCES = \
+        tof_to_initial_wavelength_igs_lin_time_zero_test.cpp \
         test_common.hpp
 
 tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp test_common.hpp

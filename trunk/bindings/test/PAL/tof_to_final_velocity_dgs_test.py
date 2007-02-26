@@ -121,6 +121,10 @@ def initialize_true_outputs(key):
             true_output_vv_err2.append(float(6.817174587695375))
             true_output_vv_err2.append(float(70.4852386802180320))
             true_output_vv_err2.append(float(0.4735235667252817))
+        elif(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_err2.append(float(6.8171745876953563))
+            true_output_vv_err2.append(float(70.4852386802183588))
+            true_output_vv_err2.append(float(0.4735235667252823))
         else:
             true_output_vv_err2.append(float(6.81717458769535600))
             true_output_vv_err2.append(float(70.48523868021837302))

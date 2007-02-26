@@ -53,9 +53,45 @@ namespace Nessi
    * This file contains the abstraction of std::vector to Nessi::Vector which
    * eliminates explicit calls to std::vector. This allows easy swapping of
    * std::vector for another container.
-   *
    * \defgroup nessivector Nessi::Vector
    * \{
+   *
+   * \section nessi-vector-required Required Functions
+   *
+   * To implement a Nessi::Vector one must implement the following
+   * functions in addition to those explicitly defined in the class
+   * already. They are not enumerated in the interface because they are
+   * inherited from std::vector.
+   *
+   * \code
+   * size_t size();
+   * \endcode
+   * This returns the number of elements currently contained in the
+   * Nessi::Vector.
+   *
+   * \code
+   * forward_iterator begin();
+   * \endcode
+   * Returns a read/write iterator that points to the first element in
+   * the Nessi::Vector. Iteration is done in ordinary element order.
+   *
+   * \code
+   * forward_iterator end();
+   * \endcode
+   * Returns a read/write iterator that points one past the last
+   * element in the Nessi::Vector. Iteration is done in ordinary
+   * element order.
+   *
+   * \code
+   * reference operator[](size_t i);
+   * \endcode
+   * Subscript access to the data contained in the Nessi::Vector. The
+   * parameter \p i is the index of the element for which data should
+   * be accessed. The function returns a read/write reference to data.
+   *
+   * This operator allows for easy, array-style, data access. Note
+   * that data access with this operator is unchecked and \p
+   * out_of_range lookups are not defined.
    */
   template <typename T>
   class Vector : public std::vector<T>

@@ -176,14 +176,22 @@ def initialize_true_outputs(key):
         true_output_vv_Qy_err2.append(float(0.11760239343867500))
         true_output_vv_Qz.append(float(-0.21987181166325700))
         true_output_vv_Qz_err2.append(float(0.74627936184453000))
-        
-        true_output_vv_Qx.append(float(-0.31285182159900200))
-        true_output_vv_Qx_err2.append(float(0.30248772434693300))
-        true_output_vv_Qy.append(float(-0.37844562383076100))
-        true_output_vv_Qy_err2.append(float(0.39347961245716444))
-        true_output_vv_Qz.append(float(-0.19576926099386238))
-        true_output_vv_Qz_err2.append(float(2.71699049828466823))
-        
+
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_Qx.append(float(-0.31285182159900200))
+            true_output_vv_Qx_err2.append(float(0.30248772434693300))
+            true_output_vv_Qy.append(float(-0.37844562383076100))
+            true_output_vv_Qy_err2.append(float(0.39347961245716444))
+            true_output_vv_Qz.append(float(-0.19576926099386238))
+            true_output_vv_Qz_err2.append(float(2.71699049828466867))
+        else:
+            true_output_vv_Qx.append(float(-0.31285182159900200))
+            true_output_vv_Qx_err2.append(float(0.30248772434693300))
+            true_output_vv_Qy.append(float(-0.37844562383076100))
+            true_output_vv_Qy_err2.append(float(0.39347961245716444))
+            true_output_vv_Qz.append(float(-0.19576926099386238))
+            true_output_vv_Qz_err2.append(float(2.71699049828466823))
+            
         true_output_vv_Qx.append(float(-0.45189707564300253))
         true_output_vv_Qx_err2.append(float(0.62419446317455556))
         true_output_vv_Qy.append(float(-0.54664367886665500))
@@ -192,19 +200,26 @@ def initialize_true_outputs(key):
         true_output_vv_Qz_err2.append(float(4.69817895177061088))
 
         if(platform=="linux2" and uname()[4]=="x86_64"):
-			true_output_vv_Qx.append(float(-0.59094232968700300))
-			true_output_vv_Qx_err2.append(float(1.05585507696780088))
-			true_output_vv_Qy.append(float(-0.71484173390254900))
-			true_output_vv_Qy_err2.append(float(1.36966827900951199))
-			true_output_vv_Qz.append(float(-0.14756415965507300))
-			true_output_vv_Qz_err2.append(float(6.68984472230235823))
+            true_output_vv_Qx.append(float(-0.59094232968700300))
+            true_output_vv_Qx_err2.append(float(1.05585507696780088))
+            true_output_vv_Qy.append(float(-0.71484173390254900))
+            true_output_vv_Qy_err2.append(float(1.36966827900951199))
+            true_output_vv_Qz.append(float(-0.14756415965507300))
+            true_output_vv_Qz_err2.append(float(6.68984472230235823))
+        elif(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv_Qx.append(float(-0.59094232968700333))
+            true_output_vv_Qx_err2.append(float(1.05585507696780088))
+            true_output_vv_Qy.append(float(-0.71484173390254900))
+            true_output_vv_Qy_err2.append(float(1.36966827900951199))
+            true_output_vv_Qz.append(float(-0.1475641596550736))
+            true_output_vv_Qz_err2.append(float(6.68984472230235823))
         else:
-			true_output_vv_Qx.append(float(-0.59094232968700300))
-			true_output_vv_Qx_err2.append(float(1.05585507696780088))
-			true_output_vv_Qy.append(float(-0.71484173390254900))
-			true_output_vv_Qy_err2.append(float(1.36966827900951199))
-			true_output_vv_Qz.append(float(-0.1475641596550734))
-			true_output_vv_Qz_err2.append(float(6.68984472230235823))
+            true_output_vv_Qx.append(float(-0.59094232968700300))
+            true_output_vv_Qx_err2.append(float(1.05585507696780088))
+            true_output_vv_Qy.append(float(-0.71484173390254900))
+            true_output_vv_Qy_err2.append(float(1.36966827900951199))
+            true_output_vv_Qz.append(float(-0.1475641596550734))
+            true_output_vv_Qz_err2.append(float(6.68984472230235823))
 			
         if(platform=="linux2" and uname()[4]=="x86_64"):
             true_output_vv_Qx.append(float(-0.72998758373100400))
@@ -273,13 +288,21 @@ def initialize_true_outputs(key):
         true_output_sv_Qy_err2.append(float(0.39347961245716444))
         true_output_sv_Qz.append(float(-1.19576926099386244))
         true_output_sv_Qz_err2.append(float(1.71699049828466867))
-        
-        true_output_sv_Qx.append(float(-0.45189707564300251))
-        true_output_sv_Qx_err2.append(float(0.62419446317455556))
-        true_output_sv_Qy.append(float(-0.54664367886665500))
-        true_output_sv_Qy_err2.append(float(0.81083490764744300))
-        true_output_sv_Qz.append(float(-2.17166671032446778))
-        true_output_sv_Qz_err2.append(float(2.69817895177061133))
+
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_sv_Qx.append(float(-0.45189707564300251))
+            true_output_sv_Qx_err2.append(float(0.62419446317455556))
+            true_output_sv_Qy.append(float(-0.54664367886665500))
+            true_output_sv_Qy_err2.append(float(0.81083490764744300))
+            true_output_sv_Qz.append(float(-2.17166671032446778))
+            true_output_sv_Qz_err2.append(float(2.69817895177061177))
+        else:
+            true_output_sv_Qx.append(float(-0.45189707564300251))
+            true_output_sv_Qx_err2.append(float(0.62419446317455556))
+            true_output_sv_Qy.append(float(-0.54664367886665500))
+            true_output_sv_Qy_err2.append(float(0.81083490764744300))
+            true_output_sv_Qz.append(float(-2.17166671032446778))
+            true_output_sv_Qz_err2.append(float(2.69817895177061133))
         
         if(platform=="linux2" and uname()[4]=="x86_64"):
             true_output_sv_Qx.append(float(-0.59094232968700300))
@@ -288,6 +311,13 @@ def initialize_true_outputs(key):
             true_output_sv_Qy_err2.append(float(1.36966827900951199))
             true_output_sv_Qz.append(float(-3.14756415965507310))
             true_output_sv_Qz_err2.append(float(3.68984472230235778))
+        elif(platform=="linux2" and uname()[4]=="i686"):
+            true_output_sv_Qx.append(float(-0.59094232968700333))
+            true_output_sv_Qx_err2.append(float(1.05585507696780088))
+            true_output_sv_Qy.append(float(-0.71484173390254900))
+            true_output_sv_Qy_err2.append(float(1.36966827900951199))
+            true_output_sv_Qz.append(float(-3.1475641596550736))
+            true_output_sv_Qz_err2.append(float(3.68984472230235822))
         else:
             true_output_sv_Qx.append(float(-0.59094232968700300))
             true_output_sv_Qx_err2.append(float(1.05585507696780088))

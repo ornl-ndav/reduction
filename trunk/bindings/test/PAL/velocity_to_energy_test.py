@@ -30,6 +30,8 @@
 
 import axis_manip
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 from vpair_bind import *
 
@@ -103,15 +105,25 @@ def initialize_true_outputs(key):
       # initialize the correct outputs for vector vector case
         true_output_vv.append(float(0.00000000000000000))
         true_output_vv_err2.append(float(0.00000000000000000))
-        true_output_vv.append(float(5.22699329999999912))
-        true_output_vv_err2.append(float(109285.83583297954889063))
-        true_output_vv.append(float(20.90797319999999645))
-        true_output_vv_err2.append(float(874286.68666383634924597))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv.append(float(5.22699330000000001))
+            true_output_vv_err2.append(float(109285.83583297956344255))
+            true_output_vv.append(float(20.90797320000000003))
+            true_output_vv_err2.append(float(874286.68666383646566129))
+        else:
+            true_output_vv.append(float(5.22699329999999912))
+            true_output_vv_err2.append(float(109285.83583297954889063))
+            true_output_vv.append(float(20.90797319999999645))
+            true_output_vv_err2.append(float(874286.68666383634924597))
         true_output_vv.append(float(47.04293970000000000))
         true_output_vv_err2.append(float(2950717.56749044767169357))
-        true_output_vv.append(float(83.63189279999998579))
-        true_output_vv_err2.append(float(6994293.49331069093132257))
-
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv.append(float(83.63189280000000000))
+            true_output_vv_err2.append(float(6994293.49331069186264514))
+        else:
+            true_output_vv.append(float(83.63189279999998579))
+            true_output_vv_err2.append(float(6994293.49331069093132257))
+            
       # initialize the correct outputs for scalar scalar case
         true_output_ss.val = float(0.00000000000000000)
         true_output_ss.val_err2 = float(0.00000000000000000)

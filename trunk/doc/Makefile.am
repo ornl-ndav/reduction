@@ -26,7 +26,7 @@ CPP_PDFFILE = $(PACKAGE_TARNAME)_cpp-$(VERSION).pdf
 PYTHON_PDFFILE = $(PACKAGE_TARNAME)_python-$(VERSION).pdf
 
 if PDFDOC
-MAKEPDF = ./makepdf $(CPP_PDFFILE) $(PYTHON_PDFFILE)
+MAKEPDF = $(srcdir)/makepdf $(CPP_PDFFILE) $(PYTHON_PDFFILE)
 CP_CPP_PDF = cp latex_cpp/$(CPP_PDFFILE) $(DRLIBDOCDIR)
 CP_PYTHON_PDF = cp latex_python/$(PYTHON_PDFFILE) $(DRLIBDOCDIR)
 RM_CPP_PDF = rm $(DRLIBDOCDIR)/$(CPP_PDFFILE)
@@ -51,7 +51,7 @@ docs:
 	$(MAKEPDF)
 
 install:
-	./instdoc $(DRLIBDOCDIR)
+	$(srcdir)/instdoc $(DRLIBDOCDIR)
 	$(CP_CPP_PDF)
 	$(CP_PYTHON_PDF)
 

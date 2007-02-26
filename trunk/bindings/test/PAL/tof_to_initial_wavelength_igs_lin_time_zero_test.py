@@ -25,24 +25,22 @@
 ##
 # $Id$
 #
-# \file bindings/test/PAL/tof_to_scalar_Q_test.py
+# \file bindings/test/PAL/tof_to_initial_wavelength_igs_lin_time_zero_test.py
 #
 
 import axis_manip
 import nessi_list
-from os import uname
-from sys import platform
 import test_common
 from vpair_bind import *
 
 NUM_VAL = 5
 
 ##
-# \defgroup tof_to_scalar_Q_test tof_to_scalar_Q_test
+# \defgroup tof_to_initial_wavelength_igs_lin_time_zero_test tof_to_initial_wavelength_igs_lin_time_zero_test
 # \{
 #
 # This test compares the output data (\f$output\_vv\f$, and \f$output\_ss\f$)
-# calculated by the binding module <i>tof_to_scalar_Q.py</i> of the
+# calculated by the binding module <i>tof_to_initial_wavelength.py</i> of the
 # Python Abstration Layer (PAL)
 # <i>axis_manip.py</i> with the true output data calculated
 # (\f$true\_output\_vv\f$, and \f$true\_output\_ss\f$) manually calculated.
@@ -103,35 +101,20 @@ def initialize_true_outputs(key):
         true_output_ss=DoubleVPair()
 
       # initialize the correct outputs for vector vector case
-        true_output_vv.append(float(7614.49345492123666190))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(83356917.45302574342922070))
-        else:
-            true_output_vv_err2.append(float(83356917.45302573292922070))
-        true_output_vv.append(float(3807.24672746061833095))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(19027338.40778648479698093))
-        else:
-            true_output_vv_err2.append(float(19027338.40778648107169063))
-        true_output_vv.append(float(2538.16448497374540238))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(7830262.171940184207611242))
-        else:
-            true_output_vv_err2.append(float(7830262.17194018297611242))
-        true_output_vv.append(float(1903.6233637303091654))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(4190618.67836226290754512))
-        else:
-            true_output_vv_err2.append(float(4190618.67836226184754512))
-        true_output_vv.append(float(1522.89869098424742333))
-        if(platform=="linux2" and uname()[4]=="i686"):
-            true_output_vv_err2.append(float(2592126.16276053851239873))
-        else:
-            true_output_vv_err2.append(float(2592126.16276053843806002))
+        true_output_vv.append(float(-0.565501480597332962))
+        true_output_vv_err2.append(float(0.134880111049097390))
+        true_output_vv.append(float(-0.562029936475325287))
+        true_output_vv_err2.append(float(0.134590680492193304))
+        true_output_vv.append(float(-0.558558392353317723))
+        true_output_vv_err2.append(float(0.134303106395620875))
+        true_output_vv.append(float(-0.555086848231310048))
+        true_output_vv_err2.append(float(0.134017388759380074))
+        true_output_vv.append(float(-0.551615304109302484))
+        true_output_vv_err2.append(float(0.133733527583470901))
 
       # initialize the correct outputs for scalar scalar case
-        true_output_ss.val = float(7614.49345492123666190)
-        true_output_ss.val_err2 = float(83356917.45302573292922070)
+        true_output_ss.val = float(-0.565501480597332962)
+        true_output_ss.val_err2 = float(0.134880111049097390)
 
     else:
 
@@ -146,50 +129,74 @@ if __name__ == "__main__":
 
     mess =""
 
-    print "#######################################################"
-    print "# Checking tof_to_scalar_Q Python Abstraction layer #"
-    print "#######################################################"
+    print "###################################################################"
+    print "# Checking tof_to_initial_wavelength_igs_lin_time_zero Python     #"
+    print "# Abstraction layer                                               #"
+    print "###################################################################"
     print
 
-    polar = float(1.0)
-    polar_err2 = float(1.0)
-    pathlength = float(5.)
-    pathlength_err2 = float(2.5)
+    final_wavelength = float(1.25)
+    final_wavelength_err2 = float(0.25)
+    time_0_slope = float(10.0)
+    time_0_slope_err2 = float(1.25)
+    time_0_offset = float(2.75)
+    time_0_offset_err2 = float(0.75)
+    dist_source_sample = float(1.1)
+    dist_source_sample_err2 = float(0.1)
+    dist_sample_detector = float(0.51)
+    dist_sample_detector_err2 = float(0.05)
 
     # generate true_outputs
     true_output_vv_d, true_output_vv_err2_d,\
                       true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
 
-    # generate inputs
+    # vv case
     tof,tof_err2=initialize_inputs("double")
 
-    # vv case
-    output_vv, output_vv_err2 = axis_manip.tof_to_scalar_Q(tof,\
-                                                           tof_err2,\
-                                                           pathlength,\
-                                                           pathlength_err2,\
-                                                           polar,\
-                                                           polar_err2)
-    
+    output_vv, output_vv_err2 = \
+               axis_manip.tof_to_initial_wavelength_igs_lin_time_zero(\
+        tof,\
+        tof_err2,\
+        final_wavelength,\
+        final_wavelength_err2,\
+        time_0_slope,\
+        time_0_slope_err2,\
+        time_0_offset,\
+        time_0_offset_err2,\
+        dist_source_sample,\
+        dist_source_sample_err2,\
+        dist_sample_detector,\
+        dist_sample_detector_err2,\
+        )
+
     # Check values
     mess = test_common.MakeCheck("vv",\
                                  output_vv,\
                                  true_output_vv_d,\
                                  output_vv_err2,\
                                  true_output_vv_err2_d)
-    
+
     print mess
 
-    
     # ss case
-    output_ss, output_ss_err2 = axis_manip.tof_to_scalar_Q(tof[0],\
-                                                           tof_err2[0],\
-                                                           pathlength,\
-                                                           pathlength_err2,\
-                                                           polar,\
-                                                           polar_err2)
-    
+    tof, tof_err2=initialize_inputs("double")
+    output_ss, output_ss_err2 = \
+               axis_manip.tof_to_initial_wavelength_igs_lin_time_zero(\
+        tof[0],\
+        tof_err2[0],\
+        final_wavelength,\
+        final_wavelength_err2,\
+        time_0_slope,\
+        time_0_slope_err2,\
+        time_0_offset,\
+        time_0_offset_err2,\
+        dist_source_sample,\
+        dist_source_sample_err2,\
+        dist_sample_detector,\
+        dist_sample_detector_err2,\
+        )
+
     mess = test_common.MakeCheck1("ss",\
                                   output_ss,\
                                   true_output_ss_d,\
@@ -197,4 +204,5 @@ if __name__ == "__main__":
                                   true_output_ss_err2_d)
 
     print mess
+
 
