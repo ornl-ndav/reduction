@@ -70,6 +70,13 @@ naming conventions that were created.
 <ul>
 <li><em>_ncerr</em> This extension denotes that the function calculations
      the uncertainties assuming non-correlated errors</li>
+<li><em>_lojac</em> This extension denotes that the function will correct 
+    values based on the ratio of the difference between two bin boundaries 
+    from the original axis and the corresponding two bin boundaries from the 
+    transformed axis (known as the histogram Jacobian or linear-order 
+    Jacobian). This class of function will mostly be axis transformation 
+    functions and the function signatures will require the y values and errors 
+    in order for the function to work properly. 
 </ul>
 
 <h2>Definitions</h2>
