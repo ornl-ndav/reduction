@@ -29,12 +29,16 @@ AM_LDFLAGS  = -static \
 EXTRA_DIST=testsuite.at testsuite
 
 UTILS_TARGETS = \
+	linear_order_jacobian_test \
 	weighted_average_test
 
 TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(UTILS_TARGETS)
+
+linear_order_jacobian_test_SOURCES = linear_order_jacobian_test.cpp \
+	test_common.hpp
 
 weighted_average_test_SOURCES = weighted_average_test.cpp test_common.hpp
 
