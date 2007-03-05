@@ -94,12 +94,12 @@ namespace Utils
   // 3.49
   template <typename NumT>
   std::string
-  linear_order_jacobian(const NumT & orig_axis_lo,
-                        const NumT & orig_axis_hi,
-                        const NumT & transform_axis_lo,
-                        const NumT & transform_axis_hi,
-                        const NumT & input,
-                        const NumT & input_err2,
+  linear_order_jacobian(const NumT orig_axis_lo,
+                        const NumT orig_axis_hi,
+                        const NumT transform_axis_lo,
+                        const NumT transform_axis_hi,
+                        const NumT input,
+                        const NumT input_err2,
                         NumT & output,
                         NumT & output_err2,
                         void *temp=NULL)

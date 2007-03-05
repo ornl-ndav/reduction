@@ -69,12 +69,12 @@ namespace Utils
    * \ingroup linear_order_jacobian
    */
   template std::string
-  linear_order_jacobian<float>(const float & orig_axis_lo,
-                               const float & orig_axis_hi,
-                               const float & transform_axis_lo,
-                               const float & transform_axis_hi,
-                               const float & input,
-                               const float & input_err2,
+  linear_order_jacobian<float>(const float orig_axis_lo,
+                               const float orig_axis_hi,
+                               const float transform_axis_lo,
+                               const float transform_axis_hi,
+                               const float input,
+                               const float input_err2,
                                float & output,
                                float & output_err2,
                                void *temp);
@@ -86,12 +86,12 @@ namespace Utils
    * \ingroup linear_order_jacobian
    */
   template std::string
-  linear_order_jacobian<double>(const double & orig_axis_lo,
-                                const double & orig_axis_hi,
-                                const double & transform_axis_lo,
-                                const double & transform_axis_hi,
-                                const double & input,
-                                const double & input_err2,
+  linear_order_jacobian<double>(const double orig_axis_lo,
+                                const double orig_axis_hi,
+                                const double transform_axis_lo,
+                                const double transform_axis_hi,
+                                const double input,
+                                const double input_err2,
                                 double & output,
                                 double & output_err2,
                                 void *temp);
