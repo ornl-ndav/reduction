@@ -27,6 +27,8 @@ python test_init_scatt_wavevector_to_scalar_Q.py
 echo
 python test_initial_velocity_dgs.py
 echo
+python test_linear_order_jacobian.py
+echo
 python test_mult_ncerr.py
 echo
 python test_rebin_axis_1D.py
