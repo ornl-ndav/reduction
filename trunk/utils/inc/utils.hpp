@@ -118,11 +118,13 @@ namespace Utils
    *
    * This function corrects the input based on the ratio of differences 
    * between bin boundaries from the associated orignal and transformed axes.
-   * This correction only applies to histogram data. The calculation of the 
-   * linear order Jacobian is accomplished by:
+   * This correction only applies to histogram data. The incoming axes and 
+   * counts arrays should be in their original form (no reversing), otherwise 
+   * the calculation of the Jacobians will be done incorrectly. The 
+   * calculation of the linear order Jacobian is accomplished by:
    *
    * \f[
-   * I'[k] = I[k] \times \frac{x[k+1] - x[k]}{x'[k+1] - x'[k]}
+   * I'[k] = I[k] \times \left|\frac{x[k+1] - x[k]}{x'[k+1] - x'[k]}\right|
    * \f]
    *
    * where \f$I'[k]\f$ is the \f$k^{th}\f$ element of the corrected counts, 
@@ -130,7 +132,7 @@ namespace Utils
    * particular histogram bin \f$k\f$, \f$x[k+1]\f$ is the high bin boundary 
    * and \f$x[k]\f$ is the low bin boundary from the original axis and 
    * \f$x'[k+1]\f$ is the high bin boundary and \f$x'[k]\f$ is the low bin 
-   * boundary from the transformed axis.
+   * boundary from the transformed axis. 
    *
    * The square of the uncertainty is calculated via:
    * 
@@ -176,11 +178,13 @@ namespace Utils
    *
    * This  function corrects the input based on the ratio of differences 
    * between bin boundaries from the associated orignal and transformed axes.
-   * This correction only applies to histogram data. The calculation of the 
-   * linear order Jacobian is accomplished by:
+   * This correction only applies to histogram data. The bin boundaries should 
+   * be in their original order (no reversing) with respect to the counts, 
+   * otherwise the calculation of the Jacobian will be incorrect. The 
+   * calculation of the linear order Jacobian is accomplished by:
    *
    * \f[
-   * I' = I \times \frac{x_{hi} - x_{lo}}{x'_{hi} - x'_{lo}}
+   * I' = I \times \left|\frac{x_{hi} - x_{lo}}{x'_{hi} - x'_{lo}}\right|
    * \f]
    *
    * where \f$I'\f$ is the corrected counts, \f$I\f$ is the counts associated 

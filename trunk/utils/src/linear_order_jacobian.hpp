@@ -33,11 +33,12 @@
 #include "size_checks.hpp"
 #include "utils.hpp"
 #include "nessi_warn.hpp"
+#include <cmath>
 #include <stdexcept>
 
 namespace Utils 
 {
-  /// String for holding the rebin_axis_1D function name
+  /// String for holding the linear_order_jacobian function name
   const std::string lojac_func_str = "Utils::linear_order_jacobian";
 
   // 3.49
@@ -90,7 +91,6 @@ namespace Utils
     return retstr;
   }
 
-
   // 3.49
   template <typename NumT>
   std::string
@@ -107,13 +107,11 @@ namespace Utils
     NumT ratio = (orig_axis_hi - orig_axis_lo) / 
       (transform_axis_hi - transform_axis_lo);
 
-    output = input * ratio;
+    output = input * static_cast<NumT>(std::fabs(static_cast<double>(ratio)));
     output_err2 = input_err2 * ratio * ratio;
 
     return Nessi::EMPTY_WARN;
   }
-
-
 
 } // Utils
 
