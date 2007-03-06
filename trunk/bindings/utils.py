@@ -330,6 +330,13 @@ def linear_order_jacobian(orig_axis, transform_axis, input, input_err2):
         raise TyperError("Unknown primative type %s" % str(input.__type__))
 
 ##
+# \}
+
+##
+# \defgroup linear_order_jacobian_s Utils::linear_order_jacobian_s
+# \{
+
+##
 # \brief This function is documented in section 3.49
 #
 # This function is described in section 3.49 of the SNS 107030214-TD0001-R00,
