@@ -1,0 +1,51 @@
+Developer Build Installation Instructions
+=========================
+
+Prerequisites
+
+   The SNS Common Libraries uses Swig for generation of Python bindings to
+   the library functions. This program must be accessable on the compilation
+   machine. Doxygen is used for creating documentation and must be
+   accessable on the compilation machine.
+
+1) Checkout the code from the repository.
+
+   svn co https://flathead.sns.gov/repos/reduction/trunk
+   cd reduction/trunk
+
+2) At present it is necessary to run the autogen shell script to produce the
+   correct configure file.
+
+   sh autogen.sh
+
+3) Run 'configure' and 'make'. The build system needs to know where the
+   python directories (include, lib, etc.) live. This is usually /usr, but
+   could be elsewhere. Therefore, the --with-python switch must be used.
+
+   ./configure --with-python=/pythonhead
+   make
+
+   If there are any problems, try different configure options to see if one
+   will work.  You can see what switches are available by typing
+
+   ./configure --help
+
+4) To make the documentation
+
+   make docs
+
+5) Test the installation using
+
+   make test
+
+6) Install the files in the default location (usually /usr/local) using
+
+   make install
+
+Build a Distribution
+=========================
+
+To create a distribution follow steps 1-4 above, followed by
+   make dist
+
+$Id$
