@@ -123,11 +123,8 @@ void initialize_true_outputs(float    & true_output_ss,
 
 #ifdef LINUX
   true_output_vv.push_back(static_cast<float>(1903.62341308));
-#elif LINUX
+#else
   true_output_vv.push_back(static_cast<float>(1903.62353515));
-#elif MAC
-  true_output_vv.push_back(static_cast<float>(1903.62353515));
-  true_output_vv_err2.push_back(static_cast<float>(4190619.2500000));
 #endif
 
 #ifdef LINUX64
