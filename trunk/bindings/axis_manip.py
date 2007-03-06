@@ -2813,6 +2813,178 @@ def tof_to_wavelength(tof, tof_err2, pathlength, pathlength_err2):
 ##
 # \}
 
+##
+# \defgroup tof_to_wavelength_lin_time_zero axis_manip::tof_to_wavelength_lin_time_zero
+# \{
+#
+
+##
+# \brief This function converts the time-of-flight to wavelength
+#
+# This function is described in section 3.50 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function converts the time-of-flight to wavelength according
+# to the equation
+#
+# \f[
+# \lambda[i]=\frac{TOF[i] - t_{0,offset}}{\frac{m_n L}{h} + t_{0,slope}}
+# \f]
+#
+# where \f$\lambda[i]\f$ is the wavelength, \f$h\f$ is Planck's
+# constant, \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the
+# mass of the neutron, \f$L\f$ is the total flight path of the neutron. 
+# \f$t_{0,offset}\f$ is the time zero offset and \f$t_{0,slope}\f$ is the 
+# time zero slope determined from a linear fit to data of time zero versus 
+# wavelength.
+#
+# Assuming that the uncertainties are uncorrelated, the square of the
+# uncertainty of the wavelength axis is given by
+#
+# \f[
+# \sigma^2_{\lambda}[i]=\left(\frac{1}{\frac{m_n L}{h} + 
+# t_{0,slope}}\right)^2 \times \left(\sigma^2_{TOF}[i] + 
+# \sigma^2_{t_{0,offset}} + \lambda[i]^2 \left(\left(
+# \frac{m_n}{h}\right)^2\sigma^2_L + 
+# \sigma^2_{t_{0,slope}}\right)\right)
+# \f]
+#
+# where \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength axis,
+# \f$\sigma_{TOF}\f$ is the uncertainty in the time of flight axis, 
+# \f$\sigma_L\f$ is the uncertainty in the pathlength and 
+# \f$\sigma_{t_{0,offset}}\f$ is the uncertainty of the time-zero-offset, 
+# \f$\sigma_{t_{0,slope}}\f$ is the uncertainty of the time-zero-slope.
+#
+# \param tof (INPUT) is the time-of-flight axis in units of
+# micro-seconds
+# \param tof_err2 (INPUT) is the square of the uncertainty in the
+# time-of-flight axis
+# \param pathlength (INPUT) is the total flight path of the neutron
+# in units of meter
+# \param pathlength_err2 (INPUT) is the square of the uncertainty
+# in pathlength
+# \param time_0_slope (INPUT) is the slope parameter of a linear fit of 
+# time zero versus wavelength
+# \param time_0_slope_err2 (INPUT) is the square of the uncertainty
+# in time_0_slope
+# \param time_0_offset (INPUT) is the offset parameter of a linear fit of 
+# time zero versus wavelength
+# \param time_0_offset_err2 (INPUT) is the square of the uncertainty
+# in time_0_offset
+#
+# \return 
+# - The wavelength axis in units of Angstroms
+# - The square of the uncertainty in the wavelength axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def tof_to_wavelength_lin_time_zero(tof, tof_err2,
+                                    pathlength,
+                                    pathlength_err2,
+                                    time_0_slope,
+                                    time_0_slope_err2,
+                                    time_0_offset,
+                                    time_0_offset_err2):
+
+    """
+    This function converts the time-of-flight to wavelength according to the
+    equation
+
+    lambda[i]= (TOF[i] - t_{0,offset})/((m_n L)/h + t_{0,slope})
+
+    where lambda[i] is the wavelength, h is Planck's constant, TOF[i] is the
+    time-of-flight, m_n is the mass of the neutron, L is the total flight path
+    of the neutron, t_{0,offset} is the time zero offset and t_{0,slope} is
+    the time zero slope determined from a linear fit to data of time zero
+    versus wavelength.
+
+    Assuming that the uncertainties are uncorrelated, the square of the
+    uncertainty of the wavelength axis is given by
+
+    sigma^2_{lambda}[i]=(1 / ((m_n L)/h + t_{0,slope}))^2 *
+    (sigma^2_{TOF}[i] + sigma^2_{t_{0,offset}} + lambda[i]^2 *
+    (((m_n/h)^2 sigma^2_L + sigma^2_{t_{0,slope}}))
+
+    where sigma_{\lambda} is the uncertainty in the wavelength axis,
+    sigma_{TOF} is the uncertainty in the time of flight axis, sigma_L is the
+    uncertainty in the pathlength and sigma_{t_{0,offset}} is the uncertainty
+    of the time-zero-offset, sigma_{t_{0,slope}} is the uncertainty of the
+    time-zero-slope.
+
+    Parameters:
+    ----------
+    -> tof (INPUT) is the time-of-flight axis in units of micro-seconds
+    -> tof_err2 (INPUT) is the square of the uncertainty in the time-of-flight
+    axis
+    -> pathlength (INPUT) is the total flight path of the neutron in units of
+    meter
+    -> pathlength_err2 (INPUT) is the square of the uncertainty in pathlength
+    -> time_0_slope (INPUT) is the slope parameter of a linear fit of time
+    zero versus wavelength
+    -> time_0_slope_err2 (INPUT) is the square of the uncertainty in
+    time_0_slope
+    -> time_0_offset (INPUT) is the offset parameter of a linear fit of time
+    zero versus wavelength
+    -> time_0_offset_err2 (INPUT) is the square of the uncertainty in
+    time_0_offset
+
+    Returns:
+    -------
+    <- The wavelength axis in units of Angstroms
+    <- The square of the uncertainty in the wavelength axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+    """
+
+    try:
+        if tof.__type__ != tof_err2.__type__:
+            raise TypeError("Tof and Tof Err2 arrays are not the same type.")
+
+        if (tof.__type__ == nessi_list.NessiList.DOUBLE):
+
+            wavelength = nessi_list.NessiList(len(tof))
+            wavelength_err2 = nessi_list.NessiList(len(tof))
+            axis_manip_bind.tof_to_wavelength_lin_time_zero_d(\
+                tof.__array__,\
+                tof_err2.__array__,\
+                float(pathlength),\
+                float(pathlength_err2),
+                float(time_0_slope),\
+                float(time_0_slope_err2),\
+                float(time_0_offset),\
+                float(time_0_offset_err2),\
+                wavelength.__array__,\
+                wavelength_err2.__array__)
+
+        else:
+            raise TypeError("Unknown primitive type %s" % str(tof.__type__))
+
+        return (wavelength, wavelength_err2)
+
+    except AttributeError:
+        wavelength_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.tof_to_wavelength_lin_time_zero_ss_d(\
+      float(tof),\
+      float(tof_err2),\
+      float(pathlength),\
+      float(pathlength_err2),\
+      float(time_0_slope),\
+      float(time_0_slope_err2),\
+      float(time_0_offset),\
+      float(time_0_offset_err2),\
+      wavelength_ss)
+        return (wavelength_ss.val, wavelength_ss.val_err2)
+
+##
+# \}
 
 ##
 # \defgroup velocity_to_energy axis_manip::velocity_to_energy
