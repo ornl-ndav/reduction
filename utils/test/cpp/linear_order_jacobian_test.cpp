@@ -88,9 +88,12 @@ void initialize_inputs(Nessi::Vector<NumT> & input1,
  * Function that sets the true outputs based on values contained in
  * \f$input1\f$ and \f$input1\_err2\f$.
  *
- * \param true_output (OUTPUT) is the true value of the weighted average
+ * \param true_output_ss (OUTPUT) is the true output for the ss case
+ * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the ss case
+ * \param true_output (OUTPUT) is the true value of the linear order jacobian
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
- * weighted average
+ * linear order jacobian
  */
 void initialize_true_outputs(float & true_output_ss,
                              float & true_output_ss_err2,
@@ -120,9 +123,12 @@ void initialize_true_outputs(float & true_output_ss,
  * Function that sets the true outputs based on values contained in
  * \f$input1\f$ and \f$input1\_err2\f$.
  *
- * \param true_output (OUTPUT) is the true value of the weighted average
+ * \param true_output_ss (OUTPUT) is the true output for the ss case
+ * \param true_output_ss_err2 (OUTPUT) is the square of the uncertainty of the
+ * true output for the ss case
+ * \param true_output (OUTPUT) is the true value of the linear order jacobian
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
- * weighted average
+ * linear order jacobian
  */
 void initialize_true_outputs(double & true_output_ss,
                              double & true_output_ss_err2,
@@ -154,6 +160,13 @@ void initialize_true_outputs(double & true_output_ss,
  * TRUE if the two values compared \f$output\f$ and \f$true\_output\f$ match,
  * and returns FALSE if they do not match.
  *
+ * \param output_ss (INPUT) is the value created by 
+ * <i>linear_order_jacobian</i> for the ss case
+ * \param output_ss_err2 (INPUT) is the square of the uncertainty of the value
+ * created by <i>linear_order_jacobian</i> for the ss case
+ * \param true_output_ss (INPUT)) is the true value for the ss case
+ * \param true_output_ss_err2 (INPUT) is the square of the uncertainty of the
+ * true value for the ss case
  * \param output (INPUT) is the value created by <i>linear_order_jacobian</i>
  * \param output_err2 (INPUT) is the square of the uncertainty in the
  * value created by <i>linear_order_jacobian</i>
