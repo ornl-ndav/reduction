@@ -40,6 +40,7 @@
 
 import nessi_list
 import utils_bind
+import vpair_bind
 
 ##
 # \namespace utils
@@ -201,6 +202,249 @@ def fit_reflectometer_background():
     """
 
     raise NotImplementedError("This function is not implemented.")
+
+##
+# \}
+
+##
+# \defgroup linear_order_jacobian Utils::linear_order_jacobian
+# \{
+
+##
+# \brief This function is documented in section 3.49
+#
+# This function is described in section 3.49 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function corrects the input based on the ratio of differences 
+# between bin boundaries from the associated orignal and transformed axes.
+# This correction only applies to histogram data. The incoming axes and 
+# counts arrays should be in their original form (no reversing), otherwise 
+# the calculation of the Jacobians will be done incorrectly. The 
+# calculation of the linear order Jacobian is accomplished by:
+#
+# \f[
+# I'[k] = I[k] \times \left|\frac{x[k+1] - x[k]}{x'[k+1] - x'[k]}\right|
+# \f]
+#
+# where \f$I'[k]\f$ is the \f$k^{th}\f$ element of the corrected counts, 
+# \f$I[k]\f$ is the \f$k^{th}\f$ element of the counts associated with a 
+# particular histogram bin \f$k\f$, \f$x[k+1]\f$ is the high bin boundary 
+# and \f$x[k]\f$ is the low bin boundary from the original axis and 
+# \f$x'[k+1]\f$ is the high bin boundary and \f$x'[k]\f$ is the low bin 
+# boundary from the transformed axis. 
+#
+# The square of the uncertainty is calculated via:
+# 
+# \f[
+# \sigma^2_{I'}[k] = \sigma^2_I[k] \times \left(\frac{x[k+1] - x[k]}
+# {x'[k+1] - x'[k]}\right)^2
+# \f]
+#
+# where \f$\sigma^2_{I'}[k]\f$ is the \f$k^{th}\f$ element of the square of 
+# the uncertainty of the corrected counts, \f$\sigma^2_I[k]\f$ is the 
+# \f$k^{th}\f$ element of the square of the uncertainty in the counts 
+# associated with a particular histogram bin \f$k\f$, \f$x[k+1]\f$ is the 
+# high bin boundary and \f$x[k]\f$ is the low bin boundary from the 
+# original axis and \f$x'[k+1]\f$ is the high bin boundary and \f$x'[k]\f$ 
+# is the low bin boundary from the transformed axis.
+#
+# \param orig_axis (INPUT) is the original histogram axis associated with 
+# the data
+# \param transform_axis (INPUT) is the transformed histogram axis 
+# associated with the data
+# \param input (INPUT) is the counts data
+# \param input_err2 (INPUT) is the square of the uncertainty in the counts 
+# data
+# \return
+# - the corrected counts array
+# - the corrected square of the uncertainty in the counts array
+#
+
+def linear_order_jacobian(orig_axis, transform_axis, input, input_err2):
+    """
+    This function corrects the input based on the ratio of differences 
+    between bin boundaries from the associated orignal and transformed axes.
+    This correction only applies to histogram data. The incoming axes and 
+    counts arrays should be in their original form (no reversing), otherwise 
+    the calculation of the Jacobians will be done incorrectly. The 
+    calculation of the linear order Jacobian is accomplished by:
+
+    I'[k] = I[k] * |(x[k+1] - x[k])/(x'[k+1] - x'[k])|
+
+    where I'[k] is the k^{th} element of the corrected counts, I[k] is the
+    k^{th} element of the counts associated with a particular histogram bin k,
+    x[k+1] is the high bin boundary and x[k] is the low bin boundary from the
+    original axis and x'[k+1] is the high bin boundary and x'[k] is the low
+    bin boundary from the transformed axis. 
+
+    The square of the uncertainty is calculated via:
+
+    sigma^2_{I'}[k] = sigma^2_I[k] * ((x[k+1] - x[k])/(x'[k+1] - x'[k]))^2
+
+    where sigma^2_{I'}[k] is the k^{th} element of the square of the
+    uncertainty of the corrected counts, sigma^2_I[k] is the k^{th} element of
+    the square of the uncertainty in the counts associated with a particular
+    histogram bin k, x[k+1] is the high bin boundary and x[k] is the low bin
+    boundary from the original axis and x'[k+1] is the high bin boundary and
+    x'[k] is the low bin boundary from the transformed axis.
+
+    Parameters:
+    ----------
+    -> orig_axis (INPUT) is the original histogram axis associated with the
+    data
+    -> transform_axis (INPUT) is the transformed histogram axis associated
+    with the data
+    -> input (INPUT) is the counts data
+    -> input_err2 (INPUT) is the square of the uncertainty in the counts data
+
+    Returns:
+    -------
+    <- The corrected counts array
+    <- The corrected uncertainty squared in the counts array
+    """
+
+    if orig_axis.__type__ != input.__type__:
+        raise TypeError("Original Axis and Input Data are not the same type.")
+
+    if orig_axis.__type__ != transform_axis.__type__:
+        raise TypeError("Original Axis and Transform Axis are not the same"\
+                        +"type.")
+
+    if input.__type__ != input_err2.__type__:
+        raise TypeError("Input and Input Err2 arrays are not the same type")
+
+    if input.__type__ == nessi_list.NessiList.DOUBLE:
+        output = nessi_list.NessiList(len(input))
+        output_err2 = nessi_list.NessiList(len(input_err2))
+        utils_bind.linear_order_jacobian_d(orig_axis.__array__,
+                                           transform_axis.__array__,
+                                           input.__array__,
+                                           input_err2.__array__,
+                                           output.__array__,
+                                           output_err2.__array__)
+
+        return (output, output_err2)
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(input.__type__))
+
+##
+# \brief This function is documented in section 3.49
+#
+# This function is described in section 3.49 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function corrects the input based on the ratio of differences 
+# between bin boundaries from the associated orignal and transformed axes.
+# This correction only applies to histogram data. The bin boundaries should 
+# be in their original order (no reversing) with respect to the counts, 
+# otherwise the calculation of the Jacobian will be incorrect. The 
+# calculation of the linear order Jacobian is accomplished by:
+#
+# \f[
+# I' = I \times \left|\frac{x_{hi} - x_{lo}}{x'_{hi} - x'_{lo}}\right|
+# \f]
+#
+# where \f$I'\f$ is the corrected counts, \f$I\f$ is the counts associated 
+# with a particular histogram bin, \f$x_{hi}\f$ is the high bin boundary 
+# and \f$x_{lo}\f$ is the low bin boundary from the original axis and 
+# \f$x'_{hi}\f$ is the high bin boundary and \f$x'_{lo}\f$ is the low bin 
+# boundary from the transformed axis.
+#
+# The square of the uncertainty is calculated via:
+# 
+# \f[
+# \sigma^2_{I'} = \sigma^2_I \times \left(\frac{x_{hi} - x_{lo}}
+# {x'_{hi} - x'_{lo}}\right)^2
+# \f]
+#
+# where \f$\sigma^2_{I'}\f$ is the square of the uncertainty of the 
+# corrected counts, \f$\sigma^2_I\f$ is the square of the uncertainty in 
+# the counts associated with a particular histogram bin, \f$x_{hi}\f$ is 
+# the high bin boundary and \f$x_{lo}\f$ is the low bin boundary from the 
+# original axis and \f$x'_{hi}\f$ is the high bin boundary and 
+# \f$x'_{lo}\f$ is the low bin boundary from the transformed axis.
+#
+# \param orig_axis_lo (INPUT) is the low bin boundary of the original 
+# histogram axis associated with the data
+# \param orig_axis_hi (INPUT) is the high bin boundary of the original 
+# histogram axis associated with the data
+# \param transform_axis_lo (INPUT) is the low bin boundary of the 
+# transformed histogram axis associated with the data
+# \param transform_axis_hi (INPUT) is the high bin boundary of the 
+# transformed histogram axis associated with the data
+# \param input (INPUT) is the counts data
+# \param input_err2 (INPUT) is the square of the uncertainty in the counts 
+# data
+# \return 
+# - the corrected counts
+# - the corrected square of the uncertainty in the counts
+#
+   
+def linear_order_jacobian_s(orig_axis_lo, orig_axis_hi, transform_axis_lo,
+                            transform_axis_hi, input, input_err2):
+   """
+   This function corrects the input based on the ratio of differences 
+   between bin boundaries from the associated orignal and transformed axes.
+   This correction only applies to histogram data. The bin boundaries should 
+   be in their original order (no reversing) with respect to the counts, 
+   otherwise the calculation of the Jacobian will be incorrect. The 
+   calculation of the linear order Jacobian is accomplished by:
+
+   I' = I * |(x_{hi} - x_{lo})/(x'_{hi} - x'_{lo})|
+
+   where I' is the corrected counts, I is the counts associated with a
+   particular histogram bin, x_{hi} is the high bin boundary and x_{lo} is the
+   low bin boundary from the original axis and x'_{hi} is the high bin
+   boundary and x'_{lo} is the low bin boundary from the transformed axis.
+
+   The square of the uncertainty is calculated via:
+ 
+   sigma^2_{I'} = sigma^2_I * ((x_{hi} - x_{lo})/(x'_{hi} - x'_{lo}))^2
+
+   where sigma^2_{I'} is the square of the uncertainty of the corrected
+   counts, sigma^2_I is the square of the uncertainty in the counts
+   associated with a particular histogram bin, x_{hi} is the high bin boundary
+   and x_{lo} is the low bin boundary from the original axis and x'_{hi} is
+   the high bin boundary and x'_{lo} is the low bin boundary from the
+   transformed axis.
+
+   Parameters:
+   ----------
+   -> orig_axis_lo (INPUT) is the low bin boundary of the original histogram
+   axis associated with the data
+   -> orig_axis_hi (INPUT) is the high bin boundary of the original histogram
+   axis associated with the data
+   -> transform_axis_lo (INPUT) is the low bin boundary of the transformed
+   histogram axis associated with the data
+   -> transform_axis_hi (INPUT) is the high bin boundary of the transformed
+   histogram axis associated with the data
+   -> input (INPUT) is the counts data
+   -> input_err2 (INPUT) is the square of the uncertainty in the counts data
+
+   Returns:
+   -------
+   <- the corrected counts
+   <- the corrected square of the uncertainty in the counts
+   """
+
+   try:
+       orig_axis_lo.__type__
+       input.__type__
+
+       raise TypeError("This function does not handle arrays!")
+
+   except AttributeError:
+       output = vpair_bind.DoubleVPair()
+       utils_bind.linear_order_jacobian_ss_d(float(orig_axis_lo),
+                                             float(orig_axis_hi),
+                                             float(transform_axis_lo),
+                                             float(transform_axis_hi),
+                                             float(input),
+                                             float(input_err2),
+                                             output)
+       return (output.val, output.val_err2)
 
 ##
 # \}
