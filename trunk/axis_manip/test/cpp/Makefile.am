@@ -51,6 +51,7 @@ AXIS_MANIP_TARGETS = \
 	tof_to_initial_wavelength_igs_lin_time_zero_test \
 	tof_to_scalar_Q_test \
 	tof_to_wavelength_test \
+	tof_to_wavelength_lin_time_zero_test \
 	velocity_to_energy_test\
 	velocity_to_scalar_k_test \
 	wavelength_to_d_spacing_test \
@@ -113,6 +114,9 @@ tof_to_initial_wavelength_igs_lin_time_zero_test_SOURCES = \
 tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp test_common.hpp
 
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
+
+tof_to_wavelength_lin_time_zero_test_SOURCES = \
+	tof_to_wavelength_lin_time_zero_test.cpp test_common.hpp
 
 velocity_to_energy_test_SOURCES = velocity_to_energy_test.cpp \
         test_common.hpp
