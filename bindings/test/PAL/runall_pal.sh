@@ -55,6 +55,8 @@ python tof_to_scalar_Q_test.py
 echo
 python tof_to_wavelength_test.py
 echo
+python tof_to_wavelength_lin_time_zero_test.py
+echo
 python velocity_to_energy_test.py
 echo
 python velocity_to_scalar_k_test.py
