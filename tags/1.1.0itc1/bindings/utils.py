@@ -207,11 +207,11 @@ def fit_reflectometer_background():
 # \}
 
 ##
-# \defgroup linear_order_jacobian Utils::linear_order_jacobian
+# \defgroup linear_order_jacobian utils::linear_order_jacobian
 # \{
 
 ##
-# \brief This function is documented in section 3.49
+# \brief This function calculates the linear order jacobian
 #
 # This function is described in section 3.49 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".
@@ -333,11 +333,11 @@ def linear_order_jacobian(orig_axis, transform_axis, input, input_err2):
 # \}
 
 ##
-# \defgroup linear_order_jacobian_s Utils::linear_order_jacobian_s
+# \defgroup linear_order_jacobian_s utils::linear_order_jacobian_s
 # \{
 
 ##
-# \brief This function is documented in section 3.49
+# \brief This function calculates the linear order jacobian
 #
 # This function is described in section 3.49 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".

@@ -208,6 +208,17 @@ std::string tof_to_wavelength_ss_d(const double tof, const double tof_err2, cons
 
 std::string tof_to_wavelength_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, VPair<double> & value, void *temp=NULL);
 
+%template(tof_to_wavelength_lin_time_zero_d) AxisManip::tof_to_wavelength_lin_time_zero<double>;
+
+%{
+std::string tof_to_wavelength_lin_time_zero_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, const double time_0_slope, const double time_0_slope_err2, const double time_0_offset, const double time_0_offset_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::tof_to_wavelength_lin_time_zero(tof, tof_err2, pathlength, pathlength_err2, time_0_slope, time_0_slope_err2, time_0_offset, time_0_offset_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string tof_to_wavelength_lin_time_zero_ss_d(const double tof, const double tof_err2, const double pathlength, const double pathlength_err2, const double time_0_slope, const double time_0_slope_err2, const double time_0_offset, const double time_0_offset_err2, VPair<double> & value, void *temp=NULL);
+
 %template(velocity_to_energy_d) AxisManip::velocity_to_energy<double>;
 
 %{

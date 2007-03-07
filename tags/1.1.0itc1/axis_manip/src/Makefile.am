@@ -73,6 +73,8 @@ libAxisManip_la_SOURCES = \
 	tof_to_scalar_Q.cpp \
 	tof_to_wavelength.hpp \
 	tof_to_wavelength.cpp \
+	tof_to_wavelength_lin_time_zero.hpp \
+	tof_to_wavelength_lin_time_zero.cpp \
 	velocity_to_energy.hpp \
 	velocity_to_energy.cpp \
 	velocity_to_scalar_k.hpp \
