@@ -29,6 +29,8 @@
 #
 
 import nessi_list
+from os import uname
+from sys import platform
 import test_common
 import utils
 from vpair_bind import *
@@ -114,7 +116,10 @@ def initialize_true_outputs(key):
         true_output_vv_err2.append(float(1.65289256198347090))
         true_output_vv.append(float(18.1818181818181799))
         true_output_vv_err2.append(float(3.30578512396694180))
-        true_output_vv.append(float(27.2727272727272728))
+        if(platform=="linux2" and uname()[4]=="i686"):
+            true_output_vv.append(float(27.2727272727272698))
+        else:
+            true_output_vv.append(float(27.2727272727272728))
         true_output_vv_err2.append(float(4.95867768595041269))
         true_output_vv.append(float(36.3636363636363740))
         true_output_vv_err2.append(float(6.61157024793388892))
