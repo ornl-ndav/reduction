@@ -118,10 +118,10 @@ namespace Utils
    *
    * This function corrects the input based on the ratio of differences 
    * between bin boundaries from the associated orignal and transformed axes.
-   * This correction only applies to histogram data. The incoming axes and 
-   * counts arrays should be in their original form (no reversing), otherwise 
-   * the calculation of the Jacobians will be done incorrectly. The 
-   * calculation of the linear order Jacobian is accomplished by:
+   * This correction only applies to <b>histogram</b> data. <b>The incoming 
+   * axes and counts arrays should be in their original form (no reversing), 
+   * otherwise the calculation of the Jacobians will be done incorrectly</b>. 
+   * The calculation of the linear order Jacobian is accomplished by:
    *
    * \f[
    * I'[k] = I[k] \times \left|\frac{x[k+1] - x[k]}{x'[k+1] - x'[k]}\right|
@@ -178,10 +178,11 @@ namespace Utils
    *
    * This function corrects the input based on the ratio of differences 
    * between bin boundaries from the associated orignal and transformed axes.
-   * This correction only applies to histogram data. The bin boundaries should 
-   * be in their original order (no reversing) with respect to the counts, 
-   * otherwise the calculation of the Jacobian will be incorrect. The 
-   * calculation of the linear order Jacobian is accomplished by:
+   * This correction only applies to <b>histogram</b> data. <b>The bin 
+   * boundaries should be in their original order (no reversing) with respect 
+   * to the counts, otherwise the calculation of the Jacobian will be 
+   * incorrect</b>. The calculation of the linear order Jacobian is 
+   * accomplished by:
    *
    * \f[
    * I' = I \times \left|\frac{x_{hi} - x_{lo}}{x'_{hi} - x'_{lo}}\right|
