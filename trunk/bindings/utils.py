@@ -218,9 +218,9 @@ def fit_reflectometer_background():
 #
 # This function corrects the input based on the ratio of differences 
 # between bin boundaries from the associated orignal and transformed axes.
-# This correction only applies to histogram data. The incoming axes and 
-# counts arrays should be in their original form (no reversing), otherwise 
-# the calculation of the Jacobians will be done incorrectly. The 
+# This correction only applies to <b>histogram</b> data. <b>The incoming axes
+# and counts arrays should be in their original form (no reversing), otherwise 
+# the calculation of the Jacobians will be done incorrectly</b>. The 
 # calculation of the linear order Jacobian is accomplished by:
 #
 # \f[
@@ -265,10 +265,10 @@ def linear_order_jacobian(orig_axis, transform_axis, input, input_err2):
     """
     This function corrects the input based on the ratio of differences 
     between bin boundaries from the associated orignal and transformed axes.
-    This correction only applies to histogram data. The incoming axes and 
-    counts arrays should be in their original form (no reversing), otherwise 
-    the calculation of the Jacobians will be done incorrectly. The 
-    calculation of the linear order Jacobian is accomplished by:
+    This correction only applies to HISTOGRAM data. THE INCOMING AXES AND
+    COUNTS ARRAYS SHOULD BE IN THEIR ORIGINAL FORM (NO REVERSING), OTHERWISE
+    THE CALCULATION OF THE JACOBIANS WILL BE DONE INCORRECTLY. The calculation
+    of the linear order Jacobian is accomplished by:
 
     I'[k] = I[k] * |(x[k+1] - x[k])/(x'[k+1] - x'[k])|
 
@@ -344,9 +344,9 @@ def linear_order_jacobian(orig_axis, transform_axis, input, input_err2):
 #
 # This function corrects the input based on the ratio of differences 
 # between bin boundaries from the associated orignal and transformed axes.
-# This correction only applies to histogram data. The bin boundaries should 
-# be in their original order (no reversing) with respect to the counts, 
-# otherwise the calculation of the Jacobian will be incorrect. The 
+# This correction only applies to <b>histogram</b> data. <b>The bin boundaries
+# should be in their original order (no reversing) with respect to the counts, 
+# otherwise the calculation of the Jacobian will be incorrect</b>. The 
 # calculation of the linear order Jacobian is accomplished by:
 #
 # \f[
@@ -394,9 +394,9 @@ def linear_order_jacobian_s(orig_axis_lo, orig_axis_hi, transform_axis_lo,
    """
    This function corrects the input based on the ratio of differences 
    between bin boundaries from the associated orignal and transformed axes.
-   This correction only applies to histogram data. The bin boundaries should 
-   be in their original order (no reversing) with respect to the counts, 
-   otherwise the calculation of the Jacobian will be incorrect. The 
+   This correction only applies to HISTOGRAM data. THE BIN BOUNDARIES SHOULD
+   BE IN THEIR ORIGINAL ORDER (NO REVERSING) WITH RESPECT TO THE COUNTS,
+   OTHERWISE THE CALCULATION OF THE JACOBIAN WILL BE INCORRECT. The
    calculation of the linear order Jacobian is accomplished by:
 
    I' = I * |(x_{hi} - x_{lo})/(x'_{hi} - x'_{lo})|
