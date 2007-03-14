@@ -18,6 +18,8 @@
 from utils_bind import linear_order_jacobian_d
 from utils_bind import linear_order_jacobian_ss_d
 from nessi_vector_bind import *
+from os import uname
+from sys import platform
 import test_common_bind
 from vpair_bind import *
 
@@ -53,7 +55,10 @@ AxisOut_D.append(float((NUM_VAL+1) * 1.1))
 TruthOutput_VV_D = DoubleNessiVector()
 TruthOutput_VV_D.append(9.09090909090908994)
 TruthOutput_VV_D.append(18.1818181818181799)
-TruthOutput_VV_D.append(27.2727272727272728)
+if(platform=="linux2" and uname()[4]=="i686"):
+    TruthOutput_VV_D.append(27.2727272727272698)
+else:
+    TruthOutput_VV_D.append(27.2727272727272728)
 TruthOutput_VV_D.append(36.3636363636363740)
 TruthOutput_VV_D.append(45.4545454545454319)
 
