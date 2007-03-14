@@ -52,6 +52,16 @@ namespace Utils
                         Nessi::Vector<NumT> & output_err2,
                         void *temp=NULL)
   {
+    // check that the input and output value arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(input, output);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(lojac_func_str+" input data & output data "
+                                    +e.what());
+      }
     // check that the original histogram is of the proper size
     try
       {
