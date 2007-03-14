@@ -23,6 +23,9 @@
 # $Id$
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/utils/inc -I$(top_srcdir)/nessi/inc
+
+AM_CXXFLAGS = $(STOSFLAG)
+
 AM_LDFLAGS  = -static \
               -L$(top_builddir)/utils/src/.libs -lUtils
 
