@@ -437,12 +437,6 @@ def linear_order_jacobian_s(orig_axis_lo, orig_axis_hi, transform_axis_lo,
    """
 
    try:
-       orig_axis_lo.__type__
-       input.__type__
-
-       raise TypeError("This function does not handle arrays!")
-
-   except AttributeError:
        output = vpair_bind.DoubleVPair()
        utils_bind.linear_order_jacobian_ss_d(float(orig_axis_lo),
                                              float(orig_axis_hi),
@@ -451,7 +445,18 @@ def linear_order_jacobian_s(orig_axis_lo, orig_axis_hi, transform_axis_lo,
                                              float(input),
                                              float(input_err2),
                                              output)
-       return (output.val, output.val_err2)
+       return (output.val, output.val_err2)       
+   except TypeError:
+       import sys
+       import traceback
+       tb = str(traceback.extract_tb(sys.exc_info()[2])[0]).split(',')
+       func_name = str(tb[2]).strip().strip('\'')
+       par_name = str(tb[3])
+       open_paren_index = par_name.rfind('(')
+       close_paren_index = par_name.rfind(')')
+       par_name = par_name[open_paren_index+1:close_paren_index]
+       raise TypeError("Argument %s:%s must be a string or a number" \
+                       % (func_name, par_name))
 
 ##
 # \}
