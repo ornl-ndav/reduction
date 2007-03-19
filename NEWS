@@ -4,6 +4,7 @@ Changes in Version 1.1.0
 - Provide the following new functions
 
   - Axis Manipulations (1.1.0)
+    * energy_to_wavelength
     * tof_to_initial_wavelength_igs_lin_time_zero
     * tof_to_wavelength_lin_time_zero
 
