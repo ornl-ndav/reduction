@@ -15,6 +15,8 @@ python d_spacing_to_tof_focused_det_test.py
 echo
 python div_ncerr_test.py
 echo
+python energy_to_wavelength_test.py
+echo
 python energy_transfer_test.py
 echo
 python frequency_to_angular_frequency_test.py
