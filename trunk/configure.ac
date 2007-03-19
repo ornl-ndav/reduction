@@ -41,6 +41,14 @@ AM_INIT_AUTOMAKE([1.9])
 
 AM_CONFIG_HEADER(config/snscomlibconfig.h:config/snscomlibconfig_h.in)
 
+AC_ARG_WITH([cxx], AC_HELP_STRING([--with-cxx=c++ compiler], [Specify name of C++ compiler]), [with_cxx=$withval], [with_cxx=yes])
+  if test x"$with_cxx" != x"no" ; then
+    if test x"$with_cxx" != x"yes" ; then CXX="$with_cxx"; fi
+	  AC_PROG_CXX
+    else
+	  CXX=
+  fi
+
 AC_ARG_ENABLE(pdfdoc,
 [  --enable-pdfdoc    Create a PDF version of the documentation],
 [case "${enableval}" in
@@ -87,11 +95,12 @@ AC_SUBST(PYLIB_UTILS_VERSION)
 PYLIB_VPAIR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_VPAIR_VERSION)
 
-# Checks for programs.
-AC_PROG_CXX
+# Enable compiler warnings
 if test $GXX = yes; then
 	CXXFLAGS="$CXXFLAGS -Wall"
 fi
+
+# Checks for programs.
 AC_PROG_LIBTOOL
 AC_PROG_CC
 AC_PROG_CPP
