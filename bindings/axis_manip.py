@@ -199,6 +199,111 @@ def d_spacing_to_tof_focused_det(d_spacing, d_spacing_err2,
 # \}
 
 ##
+# \defgroup energy_to_wavelength axis_manip::energy_to_wavelength
+# \{
+#
+
+##
+# \brief This function is described in section 3.51.
+#
+# This function calculates the wavelength of a neutron given its
+# energy according to the equation
+# \f[
+# \lambda[i]=\sqrt{\frac{h^2}{2 m_n E[i]}}
+# \f]
+# where \f$\lambda[i]\f$ is the wavelength of the neutron, \f$h\f$ is 
+# Planck's constant, \f$m_n\f$ is the mass of the neutron and \f$E[i]\f$ is 
+# energy of the neutron.
+#
+# Assuming that the uncertainties are uncorrelated, the uncertainty
+# in the wavelength is defined by
+# \f[
+# \sigma^2_{\lambda}[i]=\left(\frac{\lambda[i]}{2E[i]}\right)^2\sigma^2_E[i]
+# \f]
+# where \f$\sigma_{\lambda}[i]\f$ is the uncertainty in the wavelength axis 
+# and \f$\sigma_E[i]\f$ is the uncertainty in the energy.
+#
+# \param energy (INPUT) is the energy of the neutron in units of meV
+# \param energy_err2 (INPUT) is the square of the uncertainty in the energy
+# axis
+#
+# \return 
+# - The wavelength axis in units of Angstroms
+# - The square of the uncertainty in the wavelength axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+#
+
+def energy_to_wavelength(energy, energy_err2):
+    
+    """
+    ---------------------------------------------------------------------------
+
+    This function calculates the wavelength of a neutron given its
+    energy according to the equation:
+
+    lambda[i] = sqrt((h^2)/(2.m_n.E[i]))
+
+    where lambda is the wavelength of the neutron, h is Planck's constant,
+    m_n is the mass of the neutron and E is the energy of the neutron.
+
+    Assuming that the uncertainties are uncorrelated, the uncertainty in the
+    wavelength is defined by:
+
+    lambda_err2[i]^2 = (lambda[i]/2.E[i])^2.E_err2[i]^2
+
+    where lambda_err2 is the uncertainty in the wavelength axis and E_err2 is
+    the uncertainty in the energy.
+
+    Parameters:
+    __________
+    -> energy is the energy axis in units of Angstroms
+    -> energy_err2 is the square of the uncertainty in the energy
+       axis
+
+    Returns 2 NessiLists:
+    ______________________
+    <- the wavelength of the neutron in units of Angstroms
+    <- the square of the uncertainty in the wavelength
+
+    Exceptions:
+    __________
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+    try:
+        if energy.__type__ != energy_err2.__type__:
+            raise TypeError("Energy and Energy Err2 arrays are not " \
+                            +"the same type")
+
+        if (energy.__type__ == nessi_list.NessiList.DOUBLE):
+            wavelength = nessi_list.NessiList(len(energy))
+            wavelength_err2 = nessi_list.NessiList(len(energy))
+            axis_manip_bind.energy_to_wavelength_d(energy.__array__, \
+                                                   energy_err2.__array__,\
+                                                   wavelength.__array__,\
+                                                   wavelength_err2.__array__)
+        else:
+            raise TypeError("Unknown primitive type %s" % \
+                            str(energy.__type__))
+
+        return (wavelength, wavelength_err2)
+
+    except AttributeError:
+        wavelength_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.energy_to_wavelength_ss_d(\
+      float(energy),\
+      float(energy_err2),\
+      wavelength_ss)
+        return (wavelength_ss.val, wavelength_ss.val_err2)
+
+##
+# \}
+
+##
 # \defgroup energy_transfer axis_manip::energy_transfer
 # \{
 
