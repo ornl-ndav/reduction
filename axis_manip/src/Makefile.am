@@ -33,6 +33,8 @@ libAxisManip_la_LDFLAGS = $(LIB_AXIS_MANIP_VERSION) \
 libAxisManip_la_SOURCES = \
 	d_spacing_to_tof_focused_det.hpp \
 	d_spacing_to_tof_focused_det.cpp \
+	energy_to_wavelength.hpp \
+	energy_to_wavelength.cpp \
 	energy_transfer.hpp \
 	energy_transfer.cpp \
 	final_velocity_igs.hpp \
