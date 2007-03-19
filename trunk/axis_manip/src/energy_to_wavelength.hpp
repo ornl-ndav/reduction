@@ -134,7 +134,7 @@ namespace AxisManip
   std::string
   __energy_to_wavelength_static(NumT & a)
   {
-    a = static_cast<NumT>(4. * PhysConst::H2_OVER_2MNEUT);
+    a = static_cast<NumT>(PhysConst::H2_OVER_2MNEUT / 4.);
     return Nessi::EMPTY_WARN;
   }
 
