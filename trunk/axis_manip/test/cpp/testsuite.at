@@ -35,6 +35,12 @@ AT_CHECK([d_spacing_to_tof_focused_det_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Energy to Wavelength Function.  ])
+AT_CHECK([energy_to_wavelength_test | sed -e 's/\r$//' ],[],
+[[energy_to_wavelength_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Energy Transfer Function.  ])
 AT_CHECK([energy_transfer_test | sed -e 's/\r$//' ],[],
 [[energy_transfer_test.cpp..........Functionality OK
