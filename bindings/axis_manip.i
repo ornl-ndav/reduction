@@ -73,6 +73,17 @@ std::string d_spacing_to_tof_focused_det_ss_d(const double d_spacing, const doub
 
 std::string d_spacing_to_tof_focused_det_ss_d(const double d_spacing, const double d_spacing_err2, const double pathlength_focused, const double pathlength_focused_err2, const double polar_angle_focused, const double polar_angle_focused_err2, VPair<double> & value, void *temp=NULL);
 
+%template(energy_to_wavelength_d) AxisManip::energy_to_wavelength<double>;
+
+%{
+std::string energy_to_wavelength_ss_d(const double energy, const double energy_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::energy_to_wavelength(energy, energy_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string energy_to_wavelength_ss_d(const double energy, const double energy_err2, VPair<double> & value, void *temp=NULL);
+
 %template(energy_transfer_d) AxisManip::energy_transfer<double>;
 
 %{
