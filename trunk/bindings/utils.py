@@ -62,6 +62,111 @@ import vpair_bind
 #
 
 ##
+# \defgroup calc_bin_centers utils::calc_bin_centers
+# \{
+#
+
+##
+# \brief This function calculates bin centers
+#
+# This function is described in section 3.52 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+# 
+# This function takes in an axis array and its associated squared 
+# uncertainties and calculates the bin centers via the following formula:
+#
+# \f[
+# bin\_center[i] = \frac{1}{2}\left(axis[i] + axis[i+1]\right)
+# \f]
+#
+# where \f$bin\_center[i]\f$ is the \f$i^{th}\f$ bin center, \f$axis[i]\f$ 
+# is the \f$i^{th}\f$ axis element and \f$axis[i+1]\f$ is the 
+# \f$(i+1)^{th}\f$ axis element. The resulting array for the bin centers 
+# will be one element shorter than the incoming axis. 
+#
+# The squared uncertainties are calculated by:
+#
+# \f[
+# \sigma^2_{bin\_center}[i] = \frac{1}{4}\left(\sigma^2_{axis}[i] + 
+# \sigma^2_{axis}[i+1]\right)
+# \f]
+#
+# where \f$\sigma^2_{bin\_center}[i]\f$ is the \f$i^{th}\f$ squared 
+# uncertainty of the bin center, \f$\sigma^2_{axis}[i]\f$ is the 
+# \f$i^{th}\f$ squared uncertainty of the axis and 
+# \f$\sigma^2_{axis}[i+1]\f$ is the \f$(i+1)^{th}\f$ squared uncertainty of 
+# the axis.
+#
+# \param axis (INPUT) is an array of independent axis values
+# \param axis_err2 (INPUT) is an array of the squares of the uncertainties 
+# associated with the independent axis
+#
+# \return
+# - an array of bin centers of the independent axis
+# - an array of the squares of the uncertainties associated with the bin
+#   centers
+#
+# \exception TypeError is raised if axis and axis_err2 are not the same type
+# \exception TypeError is raised if axis is not of type double
+#
+
+def calc_bin_centers(axis, axis_err2):
+    """
+    This function takes in an axis array and its associated squared 
+    uncertainties and calculates the bin centers via the following formula:
+
+    bin_center[i] = 1/2 x (axis[i] + axis[i+1])
+
+    where bin_center[i] is the i^{th} bin center, axis[i] is the i^{th} axis
+    element and axis[i+1] is the (i+1)^{th} axis element. The resulting array
+    for the bin centers will be one element shorter than the incoming axis. 
+
+    The squared uncertainties are calculated by:
+
+    sigma^2_{bin_center}[i] = 1/4 x (sigma^2_{axis}[i] + sigma^2_{axis}[i+1])
+
+    where sigma^2_{bin_center}[i] is the i^{th} squared uncertainty of the bin
+    center, sigma^2_{axis}[i] is the i^{th} squared uncertainty of the axis
+    and sigma^2_{axis}[i+1] is the (i+1)^{th} squared uncertainty of the axis.
+
+    Parameters:
+    ----------
+    -> axis is an array of independent axis values
+    -> axis_err2 is an array of the squares of the uncertainties associated
+       with the independent axis
+
+    Returns:
+    -------
+    <- an array of bin centers of the independent axis
+    <- an array of the squares of the uncertainties associated with the bin
+       centers
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if axis and axis_err2 are not the same type
+    <- TypeError is raised if axis is not of type double
+
+    """
+    if axis.__type__ != axis_err2.__type__:
+        raise TypeError("Axis and Axis Err2 arrays are not the same type")
+
+    if axis.__type__ == nessi_list.NessiList.DOUBLE:
+        bin_centers = nessi_list.NessiList(len(axis) - 1)
+        bin_centers_err2 = nessi_list.NessiList(len(axis_err2) - 1)
+        utils_bind.calc_bin_centers_d(axis.__array__,
+                                      axis_err2.__array__,
+                                      bin_centers.__array__,
+                                      bin_centers_err2.__array__)
+        
+        return (bin_centers, bin_centers_err2)
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(axis.__type__))
+    
+##
+# \}
+
+##
 # \defgroup calib_refl_areadet \
 # utils::calib_refl_areadet
 # \{
