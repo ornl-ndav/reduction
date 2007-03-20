@@ -80,9 +80,9 @@ void initialize_inputs(Nessi::Vector<NumT> & axis,
  * Function that sets the true outputs based on values contained in
  * \f$input1\f$ and \f$input1\_err2\f$.
  *
- * \param true_output (OUTPUT) is the true value of the linear order jacobian
+ * \param true_output (OUTPUT) is the true value of the calculate bin centers
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
- * linear order jacobian
+ * calculate bin centers
  */
 void initialize_true_outputs(Nessi::Vector<float> & true_output,
                              Nessi::Vector<float> & true_output_err2)
@@ -106,9 +106,9 @@ void initialize_true_outputs(Nessi::Vector<float> & true_output,
  * Function that sets the true outputs based on values contained in
  * \f$input1\f$ and \f$input1\_err2\f$.
  *
- * \param true_output (OUTPUT) is the true value of the linear order jacobian
+ * \param true_output (OUTPUT) is the true value of the calculate bin centers
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
- * linear order jacobian
+ * calculate bin centers
  */
 void initialize_true_outputs(Nessi::Vector<double> & true_output,
                              Nessi::Vector<double> & true_output_err2)
@@ -137,9 +137,9 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
  * \param output (INPUT) is the value created by <i>calc_bin_centers</i>
  * \param output_err2 (INPUT) is the square of the uncertainty in the
  * value created by <i>calc_bin_centers</i>
- * \param true_output (INPUT) is the true value of the linear order jacobian
+ * \param true_output (INPUT) is the true value of the calculate bin centers
  * \param true_output_err2 (INPUT) is the square of the uncertainty in the
- * true value of the linear order jacobian
+ * true value of the calculate bin centers
  */
 template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output,
