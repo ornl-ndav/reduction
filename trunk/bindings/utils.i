@@ -58,6 +58,8 @@
 
 // Instantiate templates for utils
 
+%template(calc_bin_centers_d) Utils::calc_bin_centers<double>;
+
 %template(peak_integration_d) Utils::peak_integration<double>;
 
 %template(matrix_multiplication_d) Utils::matrix_multiplication<double>;

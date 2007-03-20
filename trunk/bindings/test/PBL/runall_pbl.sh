@@ -11,6 +11,8 @@ export PYTHONPATH="$PBL_MODULES:$PBL_LIBS:$PYTHONPATH"
 
 python test_add_ncerr.py
 echo
+python test_calc_bin_centers.py
+echo
 python test_d_spacing_to_tof_focused_det.py
 echo
 python test_div_ncerr.py
