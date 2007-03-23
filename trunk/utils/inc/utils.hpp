@@ -65,7 +65,8 @@ namespace Utils
    * \f$(i+1)^{th}\f$ axis element. The resulting array for the bin centers 
    * will be one element shorter than the incoming axis. 
    *
-   * The squared uncertainties are calculated by:
+   * Assuming that the uncertainties are uncorrelated, the squared 
+   * uncertainties are calculated by:
    *
    * \f[
    * \sigma^2_{bin\_center}[i] = \frac{1}{4}\left(\sigma^2_{axis}[i] + 

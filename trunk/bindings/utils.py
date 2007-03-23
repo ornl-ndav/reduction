@@ -84,7 +84,8 @@ import vpair_bind
 # \f$(i+1)^{th}\f$ axis element. The resulting array for the bin centers 
 # will be one element shorter than the incoming axis. 
 #
-# The squared uncertainties are calculated by:
+# Assuming that the uncertainties are uncorrelated, the squared uncertainties
+# are calculated by:
 #
 # \f[
 # \sigma^2_{bin\_center}[i] = \frac{1}{4}\left(\sigma^2_{axis}[i] + 
@@ -121,7 +122,8 @@ def calc_bin_centers(axis, axis_err2):
     element and axis[i+1] is the (i+1)^{th} axis element. The resulting array
     for the bin centers will be one element shorter than the incoming axis. 
 
-    The squared uncertainties are calculated by:
+    Assuming that the uncertainties are uncorrelated, the squared
+    uncertainties are calculated by:
 
     sigma^2_{bin_center}[i] = 1/4 x (sigma^2_{axis}[i] + sigma^2_{axis}[i+1])
 
