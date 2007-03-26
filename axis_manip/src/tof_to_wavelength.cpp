@@ -34,7 +34,7 @@ namespace AxisManip
   // explicit instantiations
 
   /**
-   * This is the float declaration of the function defined in 3.30.
+   * This is the float declaration of the function defined in 3.15.
    *
    * \ingroup tof_to_wavelength
    */
@@ -48,7 +48,7 @@ namespace AxisManip
                            void *temp);
 
   /**
-   * This is the float declaration of the function defined in 3.30.
+   * This is the float declaration of the function defined in 3.15.
    *
    * \ingroup tof_to_wavelength
    */
@@ -63,7 +63,7 @@ namespace AxisManip
 
   /**
    * This is the double precision float declaration of the function
-   * defined in 3.30.
+   * defined in 3.15.
    *
    * \ingroup tof_to_wavelength
    */
@@ -78,7 +78,7 @@ namespace AxisManip
 
   /**
    * This is the double precision float declaration of the function
-   * defined in 3.30.
+   * defined in 3.15.
    *
    * \ingroup tof_to_wavelength
    */
