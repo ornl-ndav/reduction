@@ -27,6 +27,7 @@ Changes in Version 1.0.0
     * time_offset_dgs
     * tof_to_final_velocity_dgs
     * tof_to_initial_wavelength_igs
+    * tof_to_initial_wavelength_igs_lin_time_zero
     * tof_to_scalar_Q
     * tof_to_wavelength
     * velocity_to_energy
