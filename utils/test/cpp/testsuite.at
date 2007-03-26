@@ -30,18 +30,6 @@ AT_INIT
 AT_BANNER([[Checking Functionality of the Utility Functions
                   utils/test/cpp]])
 
-AT_SETUP([Checking the Calculation of Bin Centers Function.  ])
-AT_CHECK([calc_bin_centers_test | sed -e 's/\r$//' ],[],
-[[calc_bin_centers_test.cpp..........Functionality OK
-]])
-AT_CLEANUP
-
-AT_SETUP([Checking the Linear Order Jacobian Function.  ])
-AT_CHECK([linear_order_jacobian_test | sed -e 's/\r$//' ],[],
-[[linear_order_jacobian_test.cpp..........Functionality OK
-]])
-AT_CLEANUP
-
 AT_SETUP([Checking the Weighted Average Function.  ])
 AT_CHECK([weighted_average_test | sed -e 's/\r$//' ],[],
 [[weighted_average_test.cpp..........Functionality OK
