@@ -35,12 +35,6 @@ AT_CHECK([d_spacing_to_tof_focused_det_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
-AT_SETUP([Checking the Energy to Wavelength Function.  ])
-AT_CHECK([energy_to_wavelength_test | sed -e 's/\r$//' ],[],
-[[energy_to_wavelength_test.cpp..........Functionality OK
-]])
-AT_CLEANUP
-
 AT_SETUP([Checking the Energy Transfer Function.  ])
 AT_CHECK([energy_transfer_test | sed -e 's/\r$//' ],[],
 [[energy_transfer_test.cpp..........Functionality OK
@@ -137,12 +131,6 @@ AT_CHECK([tof_to_wavelength_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
-AT_SETUP([Checking the TOF to Wavelength with Linear Time Zero Function.  ])
-AT_CHECK([tof_to_wavelength_lin_time_zero_test | sed -e 's/\r$//' ],[],
-[[tof_to_wavelength_lin_time_zero_test.cpp..........Functionality OK
-]])
-AT_CLEANUP
-
 AT_SETUP([Checking the Velocity to Energy Function.  ])
 AT_CHECK([velocity_to_energy_test | sed -e 's/\r$//' ],[],
 [[velocity_to_energy_test.cpp..........Functionality OK
@@ -166,6 +154,8 @@ AT_CHECK([wavelength_to_energy_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_energy_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
+
+
 
 AT_SETUP([Checking the Wavelength to Scalar Wavevector Function.  ])
 AT_CHECK([wavelength_to_scalar_k_test | sed -e 's/\r$//' ],[],

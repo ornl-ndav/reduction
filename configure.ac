@@ -23,7 +23,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.1.0iqc2], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
+AC_INIT([SNS Common Libraries], [1.0.0beta], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
@@ -40,14 +40,6 @@ fi
 AM_INIT_AUTOMAKE([1.9])
 
 AM_CONFIG_HEADER(config/snscomlibconfig.h:config/snscomlibconfig_h.in)
-
-AC_ARG_WITH([cxx], AC_HELP_STRING([--with-cxx=c++ compiler], [Specify name of C++ compiler]), [with_cxx=$withval], [with_cxx=yes])
-  if test x"$with_cxx" != x"no" ; then
-    if test x"$with_cxx" != x"yes" ; then CXX="$with_cxx"; fi
-	  AC_PROG_CXX
-    else
-	  CXX=
-  fi
 
 AC_ARG_ENABLE(pdfdoc,
 [  --enable-pdfdoc    Create a PDF version of the documentation],
@@ -76,31 +68,30 @@ AC_SUBST(DRLIBDOCDIR)
 # Collect all the library version numbers here
 LIB_ARRAY_MANIP_VERSION='-version-info 1:0:0'
 AC_SUBST(LIB_ARRAY_MANIP_VERSION)
-LIB_AXIS_MANIP_VERSION='-version-info 2:0:1'
+LIB_AXIS_MANIP_VERSION='-version-info 1:0:0'
 AC_SUBST(LIB_AXIS_MANIP_VERSION)
 LIB_PHYS_CORR_VERSION='-version-info 1:0:0'
 AC_SUBST(LIB_PHYS_CORR_VERSION)
-LIB_UTILS_VERSION='-version-info 2:0:1'
+LIB_UTILS_VERSION='-version-info 1:0:0'
 AC_SUBST(LIB_UTILS_VERSION)
 PYLIB_ARRAY_MANIP_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_ARRAY_MANIP_VERSION)
-PYLIB_AXIS_MANIP_VERSION='-version-info 2:0:1'
+PYLIB_AXIS_MANIP_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_AXIS_MANIP_VERSION)
 PYLIB_NESSI_VECTOR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_NESSI_VECTOR_VERSION)
 PYLIB_PHYS_CORR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_PHYS_CORR_VERSION)
-PYLIB_UTILS_VERSION='-version-info 2:0:1'
+PYLIB_UTILS_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_UTILS_VERSION)
 PYLIB_VPAIR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_VPAIR_VERSION)
 
-# Enable compiler warnings
+# Checks for programs.
+AC_PROG_CXX
 if test $GXX = yes; then
 	CXXFLAGS="$CXXFLAGS -Wall"
 fi
-
-# Checks for programs.
 AC_PROG_LIBTOOL
 AC_PROG_CC
 AC_PROG_CPP

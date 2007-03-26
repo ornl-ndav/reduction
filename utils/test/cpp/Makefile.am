@@ -23,28 +23,18 @@
 # $Id$
 
 AM_CPPFLAGS = -I. -I$(top_srcdir)/utils/inc -I$(top_srcdir)/nessi/inc
-
-AM_CXXFLAGS = $(STOSFLAG)
-
 AM_LDFLAGS  = -static \
               -L$(top_builddir)/utils/src/.libs -lUtils
 
 EXTRA_DIST=testsuite.at testsuite
 
 UTILS_TARGETS = \
-	calc_bin_centers_test \
-	linear_order_jacobian_test \
 	weighted_average_test
 
 TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(UTILS_TARGETS)
-
-calc_bin_centers_test_SOURCES = calc_bin_centers_test.cpp test_common.hpp
-
-linear_order_jacobian_test_SOURCES = linear_order_jacobian_test.cpp \
-	test_common.hpp
 
 weighted_average_test_SOURCES = weighted_average_test.cpp test_common.hpp
 

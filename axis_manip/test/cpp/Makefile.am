@@ -35,7 +35,6 @@ EXTRA_DIST=testsuite.at testsuite
 
 AXIS_MANIP_TARGETS = \
 	d_spacing_to_tof_focused_det_test \
-	energy_to_wavelength_test \
 	energy_transfer_test \
 	frequency_to_angular_frequency_test\
 	frequency_to_energy_test \
@@ -52,7 +51,6 @@ AXIS_MANIP_TARGETS = \
 	tof_to_initial_wavelength_igs_lin_time_zero_test \
 	tof_to_scalar_Q_test \
 	tof_to_wavelength_test \
-	tof_to_wavelength_lin_time_zero_test \
 	velocity_to_energy_test\
 	velocity_to_scalar_k_test \
 	wavelength_to_d_spacing_test \
@@ -68,9 +66,6 @@ check_PROGRAMS = $(AXIS_MANIP_TARGETS)
 
 d_spacing_to_tof_focused_det_test_SOURCES = \
 	d_spacing_to_tof_focused_det_test.cpp \
-	test_common.hpp
-
-energy_to_wavelength_test_SOURCES = energy_to_wavelength_test.cpp \
 	test_common.hpp
 
 energy_transfer_test_SOURCES = energy_transfer_test.cpp test_common.hpp
@@ -118,9 +113,6 @@ tof_to_initial_wavelength_igs_lin_time_zero_test_SOURCES = \
 tof_to_scalar_Q_test_SOURCES = tof_to_scalar_Q_test.cpp test_common.hpp
 
 tof_to_wavelength_test_SOURCES = tof_to_wavelength_test.cpp test_common.hpp
-
-tof_to_wavelength_lin_time_zero_test_SOURCES = \
-	tof_to_wavelength_lin_time_zero_test.cpp test_common.hpp
 
 velocity_to_energy_test_SOURCES = velocity_to_energy_test.cpp \
         test_common.hpp

@@ -11,13 +11,9 @@ export PYTHONPATH="$PAL_MODULES:$PBL_LIBS:$PYTHONPATH"
 
 python add_ncerr_test.py
 echo
-python calc_bin_centers_test.py
-echo
 python d_spacing_to_tof_focused_det_test.py
 echo
 python div_ncerr_test.py
-echo
-python energy_to_wavelength_test.py
 echo
 python energy_transfer_test.py
 echo
@@ -30,8 +26,6 @@ echo
 python init_scatt_wavevector_to_scalar_Q_test.py
 echo
 python initial_velocity_dgs_test.py
-echo
-python linear_order_jacobian_test.py
 echo
 python mult_ncerr_test.py
 echo
@@ -58,8 +52,6 @@ echo
 python tof_to_scalar_Q_test.py
 echo
 python tof_to_wavelength_test.py
-echo
-python tof_to_wavelength_lin_time_zero_test.py
 echo
 python velocity_to_energy_test.py
 echo
