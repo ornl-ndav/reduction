@@ -39,6 +39,8 @@ python rebin_axis_1D_test.py
 echo
 python rebin_axis_2D_test.py
 echo
+python rebin_diagonal_test.py
+echo
 python reverse_array_cp_test.py
 echo
 python reverse_array_nc_test.py
