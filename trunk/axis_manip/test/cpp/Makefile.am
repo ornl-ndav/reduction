@@ -44,6 +44,7 @@ AXIS_MANIP_TARGETS = \
 	initial_velocity_dgs_test \
 	rebin_axis_1D_test \
 	rebin_axis_2D_test \
+	rebin_diagonal_test \
 	reverse_array_cp_test \
 	reverse_array_nc_test \
 	time_offset_dgs_test \
@@ -96,6 +97,8 @@ initial_velocity_dgs_test_SOURCES = \
 rebin_axis_1D_test_SOURCES = rebin_axis_1D_test.cpp test_common.hpp
 
 rebin_axis_2D_test_SOURCES = rebin_axis_2D_test.cpp test_common.hpp
+
+rebin_diagonal_test_SOURCES = rebin_diagonal_test.cpp test_common.hpp
 
 reverse_array_cp_test_SOURCES = reverse_array_cp_test.cpp test_common.hpp
 
