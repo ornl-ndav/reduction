@@ -55,6 +55,8 @@ libAxisManip_la_SOURCES = \
 	rebin_axis_2D.cpp \
 	rebin_axis_4D.hpp \
 	rebin_axis_4D.cpp \
+	rebin_diagonal.hpp \
+	rebin_diagonal.cpp \
 	reverse_array_cp.hpp \
 	reverse_array_cp.cpp \
 	reverse_array_nc.hpp \
