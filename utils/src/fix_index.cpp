@@ -27,9 +27,6 @@
  * 
  * \file utils/src/fix_index.cpp
  */
-#ifndef _FIX_INDEX_HPP
-#define _FIX_INDEX_HPP 1
-
 #include "utils.hpp"
 #include <limits>
 
@@ -51,5 +48,3 @@ namespace Utils
       }
   }
 } // Utils
-
-#endif // _FIX_INDEX_HPP
