@@ -89,6 +89,12 @@ AT_CHECK([rebin_axis_2D_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Rebin Diagonal Function.  ])
+AT_CHECK([rebin_diagonal_test | sed -e 's/\r$//' ],[],
+[[rebin_diagonal_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Reverse Array (Copy) Function.  ])
 AT_CHECK([reverse_array_cp_test | sed -e 's/\r$//' ],[],
 [[reverse_array_cp_test.cpp..........Functionality OK
