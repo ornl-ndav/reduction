@@ -41,7 +41,7 @@ libUtils_la_SOURCES = \
 	fit_linear_background.cpp \
 	fit_reflectometer_background.hpp \
 	fit_reflectometer_background.cpp \
-	fix_index.hpp \
+	fix_index.cpp \
 	linear_order_jacobian.hpp \
 	linear_order_jacobian.cpp \
 	matrix_multiplication.hpp \
