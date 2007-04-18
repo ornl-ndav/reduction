@@ -60,6 +60,8 @@
 
 %template(rebin_axis_4D_d) AxisManip::rebin_axis_4D<double>;
 
+%template(rebin_diagonal_d) AxisManip::rebin_diagonal<double>;
+
 // Instantiate conversion templates
 
 %template(d_spacing_to_tof_focused_det_d) AxisManip::d_spacing_to_tof_focused_det<double>;
