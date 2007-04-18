@@ -1811,6 +1811,218 @@ def rebin_axis_2D(axis_in_1, axis_in_2, data_in, data_in_err2,
 # \}
 
 ##
+# \defgroup rebin_diagonal axis_manip::rebin_diagonal
+# \{
+
+##
+# \brief This function rebins data and its associated errors from two axes to
+#        two different axes.
+#
+# This function is described in section 3.XX of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function rebins a two-dimensional spectrum that is diagonal in 
+# terms of the number of elements in the axes that make up the spectrum. 
+# The best way to illustrate the functionality is with an example.
+#
+# We start with a histogram containing 16 bins, which runs from 0 to 4 on 
+# its x and y axes, but with values only along the diagonal of the 
+# histogram. So, the histogram looks like:
+#
+# <CENTER>
+# <TABLE>
+# <TR>
+# <TH>X-Axis Value</TH>
+# <TH>Y-Axis Value</TH>
+# <TH>Counts</TH>
+# <TH>\f$\sigma^2\f$</TH>
+# </TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>1</TD><TD>10</TD><TD>1</TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>2</TD><TD>10</TD><TD>1</TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD>3</TD><TD>10</TD><TD>1</TD></TR>
+# <TR ALIGN="CENTER"><TD>3</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>4</TD><TD>  </TD><TD> </TD></TR>
+# </TABLE>
+# </CENTER>
+#
+# Our new histogram is still [0,4] on both the x and y axes, but now the x 
+# axis is three bins and the y axis is two bins. The result of the 
+# rebinned histogram is shown in the table below.
+# 
+# <CENTER>
+# <TABLE>
+# <TR>
+# <TH>X-Axis Value</TH>
+# <TH>Y-Axis Value</TH>
+# <TH>Counts</TH>
+# <TH>\f$\sigma^2\f$</TH>
+# </TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>13.333</TD><TD>1.111</TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>0</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>1.333</TD><TD>0</TD><TD>6.666</TD><TD>0.444</TD></TR>
+# <TR ALIGN="CENTER"><TD>1.333</TD><TD>2</TD><TD>6.666</TD><TD>0.444</TD></TR>
+# <TR ALIGN="CENTER"><TD>1.333</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2.666</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>2.666</TD><TD>2</TD><TD>13.333</TD><TD>1.111</TD></TR>
+# <TR ALIGN="CENTER"><TD>2.666</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
+# <TR ALIGN="CENTER"><TD>4</TD><TD>  </TD><TD> </TD></TR>
+# </TABLE>
+# </CENTER>
+#
+# \param axis_in_1 (INPUT) is the 1st initial data axis
+# \param axis_in_2 (INPUT) is the 2nd initial data axis
+# \param data_in (INPUT) is the data associated with the initial axis
+# \param data_in_err2 (INPUT) is the square of the uncertainty associated
+# with the data
+# \param axis_out_1 (INPUT) is the 1st target axis for rebinning
+# \param axis_out_2 (INPUT) is the 2nd target axis for rebinning
+#
+# \return
+# - The rebinned data according to the target axis
+# - The uncertainty associated with the rebinned data
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def rebin_diagonal(axis_in_1, axis_in_2, data_in, data_in_err2,
+                   axis_out_1, axis_out_2):
+    """
+    ---------------------------------------------------------------------------
+    This function rebins a two-dimensional spectrum that is diagonal in 
+    terms of the number of elements in the axes that make up the spectrum. 
+    The best way to illustrate the functionality is with an example.
+    
+    We start with a histogram containing 16 bins, which runs from 0 to 4 on 
+    its x and y axes, but with values only along the diagonal of the 
+    histogram. So, the histogram looks like:
+    
+             X-axis Value  | Y-axis Value  |  Counts   |  sigma^2
+             ______________|_______________|___________|___________
+                   0       |       0       |    10     |     1
+                   0       |       1       |           |     
+                   0       |       2       |           |     
+                   0       |       3       |           |
+                   0       |       4       |           |
+                   1       |       0       |           |     
+                   1       |       1       |    10     |     1
+                   1       |       2       |           |     
+                   1       |       3       |           |
+                   1       |       4       |           |
+                   2       |       0       |           |     
+                   2       |       1       |           |     
+                   2       |       2       |    10     |     1
+                   2       |       3       |           |
+                   2       |       4       |           |
+                   3       |       0       |           |     
+                   3       |       1       |           |     
+                   3       |       2       |           |     
+                   3       |       3       |    10     |     1
+                   3       |       4       |           |                   
+                   4
+
+    Our new histogram is still [0,4] on both the x and y axes, but now the x 
+    axis is three bins and the y axis is two bins. The result of the 
+    rebinned histogram is shown in the table below.
+    
+
+             X-axis Value  | Y-axis Value  |  Counts   |  sigma^2
+             ______________|_______________|___________|___________
+                   0       |       0       |  13.333   |   1.111
+                   0       |       2       |           | 
+                   0       |       4       |           |
+                 1.333     |       0       |   6.666   |   0.444
+                 1.333     |       2       |   6.666   |   0.444
+                 1.333     |       4       |           |
+                 2.666     |       0       |           | 
+                 2.666     |       2       |  13.333   |   1.111
+                 2.666     |       4       |           |
+                   4
+
+    Parameters:
+    __________
+
+    -> axis_in_1 is the 1st initial data axis
+    -> axis_in_2 is the 2nd initial data axis
+    -> data_in is the data associated with the initial axis
+    -> data_in_err2 is the square of the uncertainty associated with the data
+    -> axis_out_1 is the 1st target axis for rebinning
+    -> axis_out_2 is the 2nd target axis for rebinning
+
+    Returns - two NessiLists:
+    __________________________
+
+    <- the rebinned data according to the target axis
+    <- the square of the uncertainty associated with the rebinned data
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+
+    """
+
+    if axis_in_1.__type__ != axis_in_2.__type__:
+        raise TypeError("Input Axis 1 and Input Axis 2 are not the same type.")
+
+    if axis_in_1.__type__ != data_in.__type__:
+        raise TypeError("Input Axis 1 and Input Data are not the same type.")
+
+    if axis_in_1.__type__ != axis_out_1.__type__:
+        raise TypeError("Input Axis 1 and Output Axis 1 are not the same " \
+                        +"type.")
+
+    if axis_out_1.__type__ != axis_out_2.__type__:
+        raise TypeError("Output Axis 1 and Output Axis 2 are not the same " \
+                        +"type.")
+
+    if data_in.__type__ != data_in_err2.__type__:
+        raise TypeError("Input Data and Input Data Err2 are not the same " \
+                        +"type.")
+
+    if (axis_in_1.__type__ == nessi_list.NessiList.DOUBLE):
+        output = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                      (len(axis_out_2)-1))
+        output_err2 = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                           (len(axis_out_2)-1))
+        axis_manip_bind.rebin_diagonal_d(axis_in_1.__array__,
+                                         axis_in_2.__array__,
+                                         data_in.__array__,
+                                         data_in_err2.__array__,
+                                         axis_out_1.__array__,
+                                         axis_out_2.__array__,
+                                         output.__array__,
+                                         output_err2.__array__)
+    else:
+        raise TypeError("Unknown primitive type %s" % str(data_in.__type__))
+
+    return (output, output_err2)
+
+##
+# \}
+
+
+##
 # \defgroup reverse_array_cp axis_manip::reverse_array_cp
 # \{
 
