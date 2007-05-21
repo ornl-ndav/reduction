@@ -181,13 +181,14 @@ namespace AxisManip
             NumT x_rebin_lo = axis_out_1[i];
             NumT x_rebin_hi = axis_out_1[i+1];
 
+            NumT delta_x = std::min(x_orig_hi, x_rebin_hi) - 
+              std::max(x_orig_lo, x_rebin_lo);
+
             for(std::size_t j = index_y_left; j < index_y_right; ++j)
               {
                 NumT y_rebin_lo = axis_out_2[j];
                 NumT y_rebin_hi = axis_out_2[j+1];
 
-                NumT delta_x = std::min(x_orig_hi, x_rebin_hi) - 
-                  std::max(x_orig_lo, x_rebin_lo);
                 NumT delta_y = std::min(y_orig_hi, y_rebin_hi) - 
                   std::max(y_orig_lo, y_rebin_lo);
 
