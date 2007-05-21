@@ -105,6 +105,11 @@ namespace AxisManip
         NumT y_orig_lo = axis_in_2[k];
         NumT y_orig_hi = axis_in_2[k+1];
 
+        NumT dx_orig = x_orig_hi - x_orig_lo;
+        NumT dy_orig = y_orig_hi - y_orig_lo;
+
+        NumT width = dx_orig * dy_orig;
+
         // Check to see if the original bin boundaries are outside the 
         // rebinned axes boundaries
         bool check1 = (x_orig_lo < axis_out_1[0] && 
@@ -170,10 +175,7 @@ namespace AxisManip
             continue;
           }
 
-        NumT dx_orig = x_orig_hi - x_orig_lo;
-        NumT dy_orig = y_orig_hi - y_orig_lo;
-
-        // Actuall do the rebinning
+        // Actually do the rebinning
         for(std::size_t i = index_x_left; i < index_x_right; ++i)
           {
             NumT x_rebin_lo = axis_out_1[i];
@@ -190,7 +192,6 @@ namespace AxisManip
                   std::max(y_orig_lo, y_rebin_lo);
 
                 NumT delta = delta_x * delta_y;
-                NumT width = dx_orig * dy_orig;
                 
                 NumT portion = delta / width;
 
