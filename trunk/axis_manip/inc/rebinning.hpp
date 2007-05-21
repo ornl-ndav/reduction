@@ -357,7 +357,7 @@ namespace AxisManip
    */
 
   /**
-   * \brief This function is described in section 3.XX.
+   * \brief This function is described in section 3.53.
    *
    * This function rebins a two-dimensional spectrum that is diagonal in 
    * terms of the number of elements in the axes that make up the spectrum. 

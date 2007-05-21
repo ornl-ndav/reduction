@@ -43,7 +43,7 @@ namespace AxisManip
   /// String for holding the rebin_diagonal function name
   const std::string rd_func_str = "AxisManip::rebin_diagonal";
 
-  // 3.XX
+  // 3.53
   template <typename NumT>
   std::string
   rebin_diagonal(const Nessi::Vector<NumT> & axis_in_1,

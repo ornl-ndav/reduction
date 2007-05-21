@@ -38,7 +38,7 @@ using namespace std;
  * \{
  *
  * This test compares the output data calculated by the library
- * function <i>rebin_diagonal</i> and described in 3.XX
+ * function <i>rebin_diagonal</i> and described in 3.53
  * of the <i>SNS 107030214-TD0001-R00, "Data Reduction Library Software
  * Requirements and Specifications"</i> with the true output data
  * \f$true\_output\f$ manually calculated.
