@@ -34,7 +34,7 @@ namespace AxisManip
   // explicit instantiations
 
   /**
-   * This is the float declaration of the function defined in 3.XX.
+   * This is the float declaration of the function defined in 3.53.
    *
    * \ingroup rebin_diagonal
    */
@@ -51,7 +51,7 @@ namespace AxisManip
   
   /**
    * This is the double precision float declaration of the function
-   * defined in 3.XX.
+   * defined in 3.53.
    *
    * \ingroup rebin_diagonal
    */

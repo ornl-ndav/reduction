@@ -1818,7 +1818,7 @@ def rebin_axis_2D(axis_in_1, axis_in_2, data_in, data_in_err2,
 # \brief This function rebins data and its associated errors from two axes to
 #        two different axes.
 #
-# This function is described in section 3.XX of the SNS 107030214-TD0001-R00,
+# This function is described in section 3.53 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".
 #
 # This function rebins a two-dimensional spectrum that is diagonal in 
