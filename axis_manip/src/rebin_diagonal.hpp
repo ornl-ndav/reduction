@@ -89,15 +89,13 @@ namespace AxisManip
 
     std::string retstr(Nessi::EMPTY_WARN);
 
-    std::vector<std::size_t> length_axis_in;
-    length_axis_in.push_back(axis_in_1.size() - 1);
-    length_axis_in.push_back(axis_in_2.size() - 1);
+    std::size_t input_size = input.size();
 
     std::vector<std::size_t> length_axis_out;
     length_axis_out.push_back(axis_out_1.size() - 1);
     length_axis_out.push_back(axis_out_2.size() - 1);
 
-    for(std::size_t k = 0; k < length_axis_in[0]; ++k)
+    for(std::size_t k = 0; k < input_size; ++k)
       {
         // Get the bin boundaries in out of the original axes
         NumT x_orig_lo = axis_in_1[k];
