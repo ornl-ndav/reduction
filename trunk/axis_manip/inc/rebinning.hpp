@@ -367,13 +367,13 @@ namespace AxisManip
    * its x and y axes, but with values only along the diagonal of the 
    * histogram. So, the histogram looks like:
    *
-   * <IMG SRC="../../doc/images/Rebin_Diagonal_OrigHist.png" />
+   * <IMG SRC="images/Rebin_Diagonal_OrigHist.png" />
    *
    * Our new histogram is still [0,4] on both the x and y axes, but now the x 
    * axis is three bins and the y axis is two bins. The result of the 
    * rebinned histogram is shown in the table below.
    * 
-   * <IMG SRC="../../doc/images/Rebin_Diagonal_RebinHist.png" />
+   * <IMG SRC="images/Rebin_Diagonal_RebinHist.png" />
    *
    * \param axis_in_1 (INPUT) is the 1st initial data axis
    * \param axis_in_2 (INPUT) is the 2nd initial data axis
