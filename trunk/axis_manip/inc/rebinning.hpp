@@ -367,62 +367,13 @@ namespace AxisManip
    * its x and y axes, but with values only along the diagonal of the 
    * histogram. So, the histogram looks like:
    *
-   * <CENTER>
-   * <TABLE>
-   * <TR>
-   * <TH>X-Axis Value</TH>
-   * <TH>Y-Axis Value</TH>
-   * <TH>Counts</TH>
-   * <TH>\f$\sigma^2\f$</TH>
-   * </TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>1</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>1</TD><TD>1</TD><TD>10</TD><TD>1</TD></TR>
-   * <TR ALIGN="CENTER"><TD>1</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>1</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>1</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>2</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>2</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>2</TD><TD>2</TD><TD>10</TD><TD>1</TD></TR>
-   * <TR ALIGN="CENTER"><TD>2</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>2</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>3</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>3</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>3</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>3</TD><TD>3</TD><TD>10</TD><TD>1</TD></TR>
-   * <TR ALIGN="CENTER"><TD>3</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>4</TD><TD>  </TD><TD> </TD></TR>
-   * </TABLE>
-   * </CENTER>
+   * <IMG SRC="../../doc/images/Rebin_Diagonal_OrigHist.png" />
    *
    * Our new histogram is still [0,4] on both the x and y axes, but now the x 
    * axis is three bins and the y axis is two bins. The result of the 
    * rebinned histogram is shown in the table below.
    * 
-   * <CENTER>
-   * <TABLE>
-   * <TR>
-   * <TH>X-Axis Value</TH>
-   * <TH>Y-Axis Value</TH>
-   * <TH>Counts</TH>
-   * <TH>\f$\sigma^2\f$</TH>
-   * </TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>13.333</TD><TD>1.111</TD></TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>0</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>1.333</TD><TD>0</TD><TD>6.666</TD><TD>0.444</TD></TR>
-   * <TR ALIGN="CENTER"><TD>1.333</TD><TD>2</TD><TD>6.666</TD><TD>0.444</TD></TR>
-   * <TR ALIGN="CENTER"><TD>1.333</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>2.666</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>2.666</TD><TD>2</TD><TD>13.333</TD><TD>1.111</TD></TR>
-   * <TR ALIGN="CENTER"><TD>2.666</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-   * <TR ALIGN="CENTER"><TD>4</TD><TD>  </TD><TD> </TD></TR>
-   * </TABLE>
-   * </CENTER>
+   * <IMG SRC="../../doc/images/Rebin_Diagonal_RebinHist.png" />
    *
    * \param axis_in_1 (INPUT) is the 1st initial data axis
    * \param axis_in_2 (INPUT) is the 2nd initial data axis
