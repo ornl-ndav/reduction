@@ -1829,62 +1829,13 @@ def rebin_axis_2D(axis_in_1, axis_in_2, data_in, data_in_err2,
 # its x and y axes, but with values only along the diagonal of the 
 # histogram. So, the histogram looks like:
 #
-# <CENTER>
-# <TABLE>
-# <TR>
-# <TH>X-Axis Value</TH>
-# <TH>Y-Axis Value</TH>
-# <TH>Counts</TH>
-# <TH>\f$\sigma^2\f$</TH>
-# </TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>10</TD><TD>1</TD></TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>1</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>1</TD><TD>1</TD><TD>10</TD><TD>1</TD></TR>
-# <TR ALIGN="CENTER"><TD>1</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>1</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>1</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>2</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>2</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>2</TD><TD>2</TD><TD>10</TD><TD>1</TD></TR>
-# <TR ALIGN="CENTER"><TD>2</TD><TD>3</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>2</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>3</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>3</TD><TD>1</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>3</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>3</TD><TD>3</TD><TD>10</TD><TD>1</TD></TR>
-# <TR ALIGN="CENTER"><TD>3</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>4</TD><TD>  </TD><TD> </TD></TR>
-# </TABLE>
-# </CENTER>
+# <IMG SRC="../images/Rebin_Diagonal_OrigHist.png">
 #
 # Our new histogram is still [0,4] on both the x and y axes, but now the x 
 # axis is three bins and the y axis is two bins. The result of the 
 # rebinned histogram is shown in the table below.
 # 
-# <CENTER>
-# <TABLE>
-# <TR>
-# <TH>X-Axis Value</TH>
-# <TH>Y-Axis Value</TH>
-# <TH>Counts</TH>
-# <TH>\f$\sigma^2\f$</TH>
-# </TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>0</TD><TD>13.333</TD><TD>1.111</TD></TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>2</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>0</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>1.333</TD><TD>0</TD><TD>6.666</TD><TD>0.444</TD></TR>
-# <TR ALIGN="CENTER"><TD>1.333</TD><TD>2</TD><TD>6.666</TD><TD>0.444</TD></TR>
-# <TR ALIGN="CENTER"><TD>1.333</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>2.666</TD><TD>0</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>2.666</TD><TD>2</TD><TD>13.333</TD><TD>1.111</TD></TR>
-# <TR ALIGN="CENTER"><TD>2.666</TD><TD>4</TD><TD> </TD><TD> </TD></TR>
-# <TR ALIGN="CENTER"><TD>4</TD><TD>  </TD><TD> </TD></TR>
-# </TABLE>
-# </CENTER>
+# <IMG SRC="../images/Rebin_Diagonal_RebinHist.png">
 #
 # \param axis_in_1 (INPUT) is the 1st initial data axis
 # \param axis_in_2 (INPUT) is the 2nd initial data axis
@@ -1914,48 +1865,40 @@ def rebin_diagonal(axis_in_1, axis_in_2, data_in, data_in_err2,
     We start with a histogram containing 16 bins, which runs from 0 to 4 on 
     its x and y axes, but with values only along the diagonal of the 
     histogram. So, the histogram looks like:
-    
-             X-axis Value  | Y-axis Value  |  Counts   |  sigma^2
-             ______________|_______________|___________|___________
-                   0       |       0       |    10     |     1
-                   0       |       1       |           |     
-                   0       |       2       |           |     
-                   0       |       3       |           |
-                   0       |       4       |           |
-                   1       |       0       |           |     
-                   1       |       1       |    10     |     1
-                   1       |       2       |           |     
-                   1       |       3       |           |
-                   1       |       4       |           |
-                   2       |       0       |           |     
-                   2       |       1       |           |     
-                   2       |       2       |    10     |     1
-                   2       |       3       |           |
-                   2       |       4       |           |
-                   3       |       0       |           |     
-                   3       |       1       |           |     
-                   3       |       2       |           |     
-                   3       |       3       |    10     |     1
-                   3       |       4       |           |                   
-                   4
+
+                4 -----------------------------------------
+                  |         |         |         |         |
+                  |         |         |         |  10+-1  |
+                  |         |         |         |         |
+                3 -----------------------------------------
+                  |         |         |         |         |
+                  |         |         |  10+-1  |         |
+                  |         |         |         |         |
+                2 -----------------------------------------
+                  |         |         |         |         |
+                  |         |  10+-1  |         |         |
+                  |         |         |         |         |
+                1 -----------------------------------------
+                  |         |         |         |         |
+                  |  10+-1  |         |         |         |
+                  |         |         |         |         |
+                0 -----------------------------------------
+                  0         1         2         3         4
 
     Our new histogram is still [0,4] on both the x and y axes, but now the x 
     axis is three bins and the y axis is two bins. The result of the 
     rebinned histogram is shown in the table below.
     
-
-             X-axis Value  | Y-axis Value  |  Counts   |  sigma^2
-             ______________|_______________|___________|___________
-                   0       |       0       |  13.333   |   1.111
-                   0       |       2       |           | 
-                   0       |       4       |           |
-                 1.333     |       0       |   6.666   |   0.444
-                 1.333     |       2       |   6.666   |   0.444
-                 1.333     |       4       |           |
-                 2.666     |       0       |           | 
-                 2.666     |       2       |  13.333   |   1.111
-                 2.666     |       4       |           |
-                   4
+              4 ----------------------------------------------
+                |              |              |              |
+                |      0       | 6.666+-0.444 | 13.333+-1.111|
+                |              |              |              |
+              2 ----------------------------------------------
+                |              |              |              |
+                | 13.333+-1.111| 6.666+-0.444 |      0       |
+                |              |              |              |
+              0 ----------------------------------------------
+                0            1.333          2.666            4
 
     Parameters:
     __________
