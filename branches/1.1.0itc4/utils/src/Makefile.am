@@ -31,6 +31,8 @@ libUtils_la_LDFLAGS = $(LIB_UTILS_VERSION)
 libUtils_la_SOURCES = \
 	calc_bin_centers.hpp \
 	calc_bin_centers.cpp \
+	calc_bin_widths.hpp \
+	calc_bin_widths.cpp \
 	check_histo_sizes.hpp \
 	check_histo_sizes.cpp \
 	check_sizes_square.hpp \
