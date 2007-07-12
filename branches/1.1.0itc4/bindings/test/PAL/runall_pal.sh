@@ -13,6 +13,8 @@ python add_ncerr_test.py
 echo
 python calc_bin_centers_test.py
 echo
+python calc_bin_widths_test.py
+echo
 python d_spacing_to_tof_focused_det_test.py
 echo
 python div_ncerr_test.py
