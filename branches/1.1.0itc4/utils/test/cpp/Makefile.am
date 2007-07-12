@@ -33,6 +33,7 @@ EXTRA_DIST=testsuite.at testsuite
 
 UTILS_TARGETS = \
 	calc_bin_centers_test \
+	calc_bin_widths_test \
 	linear_order_jacobian_test \
 	weighted_average_test
 
@@ -42,6 +43,8 @@ AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(UTILS_TARGETS)
 
 calc_bin_centers_test_SOURCES = calc_bin_centers_test.cpp test_common.hpp
+
+calc_bin_widths_test_SOURCES = calc_bin_widths_test.cpp test_common.hpp
 
 linear_order_jacobian_test_SOURCES = linear_order_jacobian_test.cpp \
 	test_common.hpp

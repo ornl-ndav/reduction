@@ -36,6 +36,12 @@ AT_CHECK([calc_bin_centers_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Calculation of Bin Widths Function.  ])
+AT_CHECK([calc_bin_widths_test | sed -e 's/\r$//' ],[],
+[[calc_bin_widths_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Linear Order Jacobian Function.  ])
 AT_CHECK([linear_order_jacobian_test | sed -e 's/\r$//' ],[],
 [[linear_order_jacobian_test.cpp..........Functionality OK
