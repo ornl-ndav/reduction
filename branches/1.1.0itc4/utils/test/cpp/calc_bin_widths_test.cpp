@@ -90,16 +90,16 @@ void initialize_true_outputs(Nessi::Vector<float> & true_output,
   // initialize the correct outputs
 
   // vector-vector
-  true_output.push_back(static_cast<float>(1.5));
-  true_output_err2.push_back(static_cast<float>(0.825));
-  true_output.push_back(static_cast<float>(2.5));
-  true_output_err2.push_back(static_cast<float>(1.375));
-  true_output.push_back(static_cast<float>(3.5));
-  true_output_err2.push_back(static_cast<float>(1.925));
-  true_output.push_back(static_cast<float>(4.5));
-  true_output_err2.push_back(static_cast<float>(2.475));
-  true_output.push_back(static_cast<float>(5.5));
-  true_output_err2.push_back(static_cast<float>(3.025));
+  true_output.push_back(static_cast<float>(1.0));
+  true_output_err2.push_back(static_cast<float>(3.3000002));
+  true_output.push_back(static_cast<float>(1.0));
+  true_output_err2.push_back(static_cast<float>(5.5));
+  true_output.push_back(static_cast<float>(1.0));
+  true_output_err2.push_back(static_cast<float>(7.7));
+  true_output.push_back(static_cast<float>(1.0));
+  true_output_err2.push_back(static_cast<float>(9.9));
+  true_output.push_back(static_cast<float>(1.0));
+  true_output_err2.push_back(static_cast<float>(12.1));
 }
 
 /**
@@ -116,16 +116,16 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
   // initialize the correct outputs
 
   // vector-vector
-  true_output.push_back(static_cast<double>(1.5));
-  true_output_err2.push_back(static_cast<double>(0.825));
-  true_output.push_back(static_cast<double>(2.5));
-  true_output_err2.push_back(static_cast<double>(1.375));
-  true_output.push_back(static_cast<double>(3.5));
-  true_output_err2.push_back(static_cast<double>(1.925));
-  true_output.push_back(static_cast<double>(4.5));
-  true_output_err2.push_back(static_cast<double>(2.475));
-  true_output.push_back(static_cast<double>(5.5));
-  true_output_err2.push_back(static_cast<double>(3.0250000000000004));
+  true_output.push_back(static_cast<double>(1.0));
+  true_output_err2.push_back(static_cast<double>(3.30000000000000027));
+  true_output.push_back(static_cast<double>(1.0));
+  true_output_err2.push_back(static_cast<double>(5.5));
+  true_output.push_back(static_cast<double>(1.0));
+  true_output_err2.push_back(static_cast<double>(7.70000000000000107));
+  true_output.push_back(static_cast<double>(1.0));
+  true_output_err2.push_back(static_cast<double>(9.9));
+  true_output.push_back(static_cast<double>(1.0));
+  true_output_err2.push_back(static_cast<double>(12.1000000000000014));
 }
 
 /**
