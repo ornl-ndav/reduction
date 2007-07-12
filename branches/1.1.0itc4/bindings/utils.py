@@ -169,6 +169,112 @@ def calc_bin_centers(axis, axis_err2):
 # \}
 
 ##
+# \defgroup calc_bin_widths utils::calc_bin_widths
+# \{
+#
+
+##
+# \brief This function calculates bin widths
+#
+# This function is described in section 3.54 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+# 
+# This function takes in an axis array and its associated squared 
+# uncertainties and calculates the bin widths via the following formula:
+#
+# \f[
+# bin\_width[i] = axis[i+1] - axis[i]
+# \f]
+#
+# where \f$bin\_width[i]\f$ is the \f$i^{th}\f$ bin width, \f$axis[i]\f$ 
+# is the \f$i^{th}\f$ axis element and \f$axis[i+1]\f$ is the 
+# \f$(i+1)^{th}\f$ axis element. The resulting array for the bin widths 
+# will be one element shorter than the incoming axis. 
+#
+# Assuming that the uncertainties are uncorrelated, the squared uncertainties
+# are calculated by:
+#
+# \f[
+# \sigma^2_{bin\_width}[i] = \sigma^2_{axis}[i+1] + \sigma^2_{axis}[i]
+# \f]
+#
+# where \f$\sigma^2_{bin\_width}[i]\f$ is the \f$i^{th}\f$ squared 
+# uncertainty of the bin width, \f$\sigma^2_{axis}[i]\f$ is the 
+# \f$i^{th}\f$ squared uncertainty of the axis and 
+# \f$\sigma^2_{axis}[i+1]\f$ is the \f$(i+1)^{th}\f$ squared uncertainty of 
+# the axis.
+#
+# \param axis (INPUT) is an array of independent axis values
+# \param axis_err2 (INPUT) is an array of the squares of the uncertainties 
+# associated with the independent axis
+#
+# \return
+# - an array of bin widths of the independent axis
+# - an array of the squares of the uncertainties associated with the bin
+#   widths
+#
+# \exception TypeError is raised if axis and axis_err2 are not the same type
+# \exception TypeError is raised if axis is not of type double
+#
+
+def calc_bin_widths(axis, axis_err2):
+    """
+    This function takes in an axis array and its associated squared 
+    uncertainties and calculates the bin widths via the following formula:
+
+    bin_width[i] = axis[i+1] - axis[i]
+
+    where bin_width[i] is the i^{th} bin width, axis[i] is the i^{th} axis
+    element and axis[i+1] is the (i+1)^{th} axis element. The resulting array
+    for the bin widths will be one element shorter than the incoming axis. 
+
+    Assuming that the uncertainties are uncorrelated, the squared
+    uncertainties are calculated by:
+
+    sigma^2_{bin_width}[i] = sigma^2_{axis}[i+1] + sigma^2_{axis}[i]
+
+    where sigma^2_{bin_width}[i] is the i^{th} squared uncertainty of the bin
+    width, sigma^2_{axis}[i] is the i^{th} squared uncertainty of the axis
+    and sigma^2_{axis}[i+1] is the (i+1)^{th} squared uncertainty of the axis.
+
+    Parameters:
+    ----------
+    -> axis is an array of independent axis values
+    -> axis_err2 is an array of the squares of the uncertainties associated
+       with the independent axis
+
+    Returns:
+    -------
+    <- an array of bin widths of the independent axis
+    <- an array of the squares of the uncertainties associated with the bin
+       widths
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if axis and axis_err2 are not the same type
+    <- TypeError is raised if axis is not of type double
+
+    """
+    if axis.__type__ != axis_err2.__type__:
+        raise TypeError("Axis and Axis Err2 arrays are not the same type")
+
+    if axis.__type__ == nessi_list.NessiList.DOUBLE:
+        bin_widths = nessi_list.NessiList(len(axis) - 1)
+        bin_widths_err2 = nessi_list.NessiList(len(axis_err2) - 1)
+        utils_bind.calc_bin_widths_d(axis.__array__,
+                                     axis_err2.__array__,
+                                     bin_widths.__array__,
+                                     bin_widths_err2.__array__)
+        
+        return (bin_widths, bin_widths_err2)
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(axis.__type__))
+    
+##
+# \}
+
+##
 # \defgroup calib_refl_areadet \
 # utils::calib_refl_areadet
 # \{
