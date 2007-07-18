@@ -3909,3 +3909,130 @@ def wavelength_to_scalar_Q(wavelength, wavelength_err2, polar, polar_err2):
 ##
 # \}
 
+##
+# \defgroup wavelength_to_tof axis_manip::wavelength_to_tof
+# \{
+#
+   
+##
+# \brief This function calculates time-of-flight from wavelength
+#
+# This function is described in section 3.16 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function converts the wavelength to time-of-flight according
+# to the equation
+# \f[
+# TOF[i]=\frac{m_n L \lambda[i]}{h}
+# \f]
+# Where \f$TOF[i]\f$ is the time-of-flight, \f$m_n\f$ is the mass
+# of the neutron, \f$L\f$ is the total flight path of the neutron,
+# \f$\lambda[i]\f$ is the wavelength, and \f$h\f$ is Planck's
+# constant. The uncertainty is calculated using the assumption of
+# uncorrelated uncertainties.
+#
+# Assuming that the uncertainties are uncorrelated, the square of the 
+# uncertainty in time-of-flight is given by
+# \f[
+# \sigma^2_{TOF}[i]=\left(\frac{m_n \lambda[i]}{h}\right)^2\sigma^2_L +
+# \left(\frac{m_n L}{h}\right)^2\sigma^2_{\lambda}[i]
+# \f]
+# where \f$\sigma_{TOF}[i]\f$ is the uncertainty in the time of flight 
+# axis, \f$\sigma_{\lambda}[i]\f$ is the uncertainty in the wavelength 
+# axis and \f$\sigma_L\f$ is the uncertainty in the pathlength.
+#
+# \param wavelength (INPUT) is the wavelength axis in units of
+# angstroms
+# \param wavelength_err2 (INPUT) is the square of the uncertainty
+# in the wavelength axis
+# \param pathlength (INPUT) is the total flight path of the neutron
+# in units of meter
+# \param pathlength_err2 (INPUT) is the square of the uncertainty
+# in pathlength
+#
+# \return
+# - The time-of-flight axis in units of micro-seconds
+# - The square of the uncertainty in the time-of-flight axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible  sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+#
+
+def wavelength_to_tof(wavelength, wavelength_err2, pathlength,
+                      pathlength_err2):
+    """
+    This function converts the wavelength to time-of-flight according to the
+    equation
+
+    TOF[i] = (m_n L lambda[i]) / h
+
+    Where TOF[i] is the time-of-flight, m_n is the mass of the neutron, L is
+    the total flight path of the neutron, lambda[i] is the wavelength, and h is
+    Planck's constant. The uncertainty is calculated using the assumption of
+    uncorrelated uncertainties.
+
+    Assuming that the uncertainties are uncorrelated, the square of the 
+    uncertainty in time-of-flight is given by
+
+    sigma^2_TOF[i] = ((m_n lambda[i])/h)^2 sigma^2_L + ((m_n L)/h)^2 *
+    sigma^2_lambda[i]
+    
+    where sigma_TOF[i] is the uncertainty in the time of flight axis,
+    sigma_lambda[i] is the uncertainty in the wavelength axis and sigma_L is
+    the uncertainty in the pathlength.
+    
+    Parameters:
+    __________
+
+    -> wavelength is the wavelength axis in units of Angstroms
+    -> wavelength_err2 is the square of the uncertainty in the wavelength axis
+    -> pathlength is the total flight path of the neutron in units of meter
+    -> pathlength_err2 is the square of the uncertainty in pathlength
+
+    Returns - 2 NessiLists:
+    ________________________
+
+    <- the time-of-flight axis in units of micro-seconds
+    <- the square of the uncertainty in the time-of-flight axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+    """
+    
+    try:
+        if wavelength.__type__ != wavelength_err2.__type__:
+            raise TypeError("Wavelength and Wavelength Err2 arrays are "\
+                            +"not the same type.")
+
+        if wavelength.__type__ == nessi_list.NessiList.DOUBLE:
+
+            tof = nessi_list.NessiList(len(wavelength))
+            tof_err2 = nessi_list.NessiList(len(wavelength))
+            axis_manip_bind.wavelength_to_tof_d(wavelength.__array__,
+                                                wavelength_err2.__array__,
+                                                float(pathlength),
+                                                float(pathlength_err2),
+                                                tof.__array__,
+                                                tof_err2.__array__)
+
+        else:
+            raise TypeError("Unknown primitive type %s" \
+                            % str(wavelength.__type__))
+
+        return (tof, tof_err2)
+
+    except AttributeError:
+        tof_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.wavelength_to_tof_ss_d(float(wavelength),
+                                               float(wavelength_err2),
+                                               float(pathlength),
+                                               float(pathlength_err2),
+                                               tof_ss)
+        return (tof_ss.val, tof_ss.val_err2)
+
+##
+#\}
