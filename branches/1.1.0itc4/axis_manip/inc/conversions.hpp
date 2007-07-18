@@ -3268,6 +3268,16 @@ namespace AxisManip
    * constant. The uncertainty is calculated using the assumption of
    * uncorrelated uncertainties.
    *
+   * Assuming that the uncertainties are uncorrelated, the square of the 
+   * uncertainty in time-of-flight is given by
+   * \f[
+   * \sigma^2_{TOF}[i]=\left(\frac{m_n \lambda[i]}{h}\right)^2\sigma^2_L +
+   * \left(\frac{m L}{h}\right)^2\sigma^2_{\lambda}[i]
+   * \f]
+   * where \f$\sigma_{TOF}[i]\f$ is the uncertainty in the time of flight 
+   * axis, \f$\sigma_{\lambda}[i]\f$ is the uncertainty in the wavelength 
+   * axis and \f$\sigma_L\f$ is the uncertainty in the pathlength.
+   *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
    * \param wavelength_err2 (INPUT) is the square of the uncertainty
@@ -3308,6 +3318,16 @@ namespace AxisManip
    * \f$\lambda\f$ is the wavelength, and \f$h\f$ is Planck's
    * constant. The uncertainty is calculated using the assumption of
    * uncorrelated uncertainties.
+   *
+   * Assuming that the uncertainties are uncorrelated, the square of the 
+   * uncertainty in time-of-flight is given by
+   * \f[
+   * \sigma^2_{TOF}=\left(\frac{m_n \lambda}{h}\right)^2\sigma^2_L +
+   * \left(\frac{m L}{h}\right)^2\sigma^2_{\lambda}
+   * \f]
+   * where \f$\sigma_{TOF}\f$ is the uncertainty in the time of flight 
+   * axis, \f$\sigma_{\lambda}\f$ is the uncertainty in the wavelength 
+   * axis and \f$\sigma_L\f$ is the uncertainty in the pathlength.
    *
    * \param wavelength (INPUT) is the wavelength axis in units of
    * angstroms
