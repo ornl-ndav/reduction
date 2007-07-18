@@ -184,3 +184,9 @@ AT_CHECK([wavelength_to_scalar_Q_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_scalar_Q_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
+
+AT_SETUP([Checking the Wavelength to TOF Function.  ])
+AT_CHECK([wavelength_to_tof_test | sed -e 's/\r$//' ],[],
+[[wavelength_to_tof_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
