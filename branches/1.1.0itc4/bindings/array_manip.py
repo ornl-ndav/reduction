@@ -62,6 +62,66 @@ import array_manip_bind
 #
 
 ##
+# \defgroup abs_val array_manip::abs_val
+# \{
+#
+
+##
+# \brief This function applies the absolute value to every element of a
+# NessiList
+#
+# This function takes each element, \f$i\f$, and applies the absolute 
+# value to that element 
+# \f[
+# data_{out}[i] = |data_{in}[i]|
+# \f] 
+# where \f$data_{out}[i]\f$ is the \f$i^{th}\f$ component of the output
+# array, \f$data_{in}[i]\f$ is the \f$i^{th}\f$ component of the input 
+# array.
+#
+# \param input (INPUT) is a NessiList to have its elements absolute valued
+#
+# \return
+# - The resulting NessiList
+#
+# \exception RuntimeError is raised if the NessiList type is not double or int
+
+def abs_val(input): 
+    """
+    This function takes each element, i, and applies the absolute value to
+    that element 
+
+    data_{out}[i] = |data_{in}[i]|
+
+    where data_{out}[i] is the i^{th} component of the output array,
+    data_{in}[i] is the i^{th} component of the input array.
+
+    Parameters:
+    ----------
+    -> input is a NessiList to have its elements absolute valued
+
+    Returns:
+    -------
+    <- The resulting NessiList
+
+    Exceptions:
+    ----------
+    <- RuntimeError is raised if the NessiList type is not double or int
+    
+    """
+    output = nessi_list.NessiList(len(input), type=input.__type__)
+    if input.__type__ == input.DOUBLE:
+        array_manip_bind.abs_val_d(input.__array__, output.__array__)
+    elif input.__type__ == input.INT:
+        array_manip_bind.abs_val_i(input.__array__, output.__array__)
+    else:
+        raise RuntimeError("Do not understand type %s" % input.__type__)
+
+    return output
+##
+# \}
+
+##
 # \defgroup add_ncerr array_manip::add_ncerr
 # \{
 
