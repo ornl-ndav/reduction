@@ -2,6 +2,8 @@ Changes in Version 1.1.0
 ========================
 
 - Provide the following new functions
+  - Array Manipulations (1.1.0)
+    * abs_val
 
   - Axis Manipulations (1.1.0)
     * energy_to_wavelength
