@@ -64,14 +64,4 @@ namespace ArrayManip
                Nessi::Vector<int> & output,
                void *temp);
 
-  /**
-   * This is the unsigned integer declaration of the function defined in 3.55.
-   *
-   * \ingroup abs_val
-   */
-  template std::string
-  abs_val<unsigned int>(const Nessi::Vector<unsigned int> & input,
-                        Nessi::Vector<unsigned int> & output,
-                        void *temp);
-
 } // ArrayManip
