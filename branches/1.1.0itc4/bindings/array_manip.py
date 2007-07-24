@@ -84,7 +84,7 @@ import array_manip_bind
 # \return
 # - The resulting NessiList
 #
-# \exception RuntimeError is raised if the NessiList type is not double or int
+# \exception TypeError is raised if the NessiList type is not double or int
 
 def abs_val(input): 
     """
@@ -106,7 +106,7 @@ def abs_val(input):
 
     Exceptions:
     ----------
-    <- RuntimeError is raised if the NessiList type is not double or int
+    <- TypeError is raised if the NessiList type is not double or int
     
     """
     output = nessi_list.NessiList(len(input), type=input.__type__)
@@ -115,7 +115,7 @@ def abs_val(input):
     elif input.__type__ == input.INT:
         array_manip_bind.abs_val_i(input.__array__, output.__array__)
     else:
-        raise RuntimeError("Do not understand type %s" % input.__type__)
+        raise TypeError("Do not understand type %s" % input.__type__)
 
     return output
 ##
