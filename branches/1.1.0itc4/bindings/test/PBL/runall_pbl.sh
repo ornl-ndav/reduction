@@ -9,6 +9,8 @@ PBL_LIBS="$cwd/../../../bindings/.libs"
 
 export PYTHONPATH="$PBL_MODULES:$PBL_LIBS:$PYTHONPATH"
 
+python test_abs_val.py
+echo
 python test_add_ncerr.py
 echo
 python test_calc_bin_centers.py
