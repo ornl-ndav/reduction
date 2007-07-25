@@ -7,7 +7,19 @@ Prerequisites
    the library functions. This program must be accessable on the compilation
    machine. Doxygen is used for creating documentation. If documentation is
    desired and did not come with the distribution, this program must be
-   accessable on the compilation machine.
+   accessable on the compilation machine. The minimum software versions for 
+   dependencies are listed below.
+
+     1. GCC            - 3.4.6
+     2. Autoconf       - 2.59
+     3. Automake       - 1.9.4
+     4. Libtool        - 1.5.10
+     5. Swig           - 1.3.28
+     6. Python         - 2.3.4
+     7. Doxygen        - 1.4.6
+     8. Dot (Graphviz) - 2.8
+
+   Note: Higher versions may work but are not guaranteed. 
 
 1) Extract the archive
 
