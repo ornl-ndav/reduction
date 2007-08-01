@@ -46,6 +46,9 @@ calc_bin_centers_test_SOURCES = calc_bin_centers_test.cpp test_common.hpp
 
 calc_bin_widths_test_SOURCES = calc_bin_widths_test.cpp test_common.hpp
 
+fit_linear_background_test_SOURCES = fit_linear_background_test.cpp \
+	test_common.hpp
+
 linear_order_jacobian_test_SOURCES = linear_order_jacobian_test.cpp \
 	test_common.hpp
 
