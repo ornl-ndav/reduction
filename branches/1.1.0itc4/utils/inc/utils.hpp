@@ -169,8 +169,10 @@ namespace Utils
    * This function takes an independent axis and the associated values and 
    * errors and fits a linear function to those points. An optional range 
    * can be specified that will restrict the fit region. The function uses the 
-   * method of determinats which is described in detail in \em{Data Reduction 
-   * and Error Analysis for the Physical Sciences} by Bevington and Robinson. 
+   * method of determinats which is described in detail in Chapter 6 of 
+   * <em>Data Reduction and Error Analysis for the Physical Sciences</em> by 
+   * Bevington and Robinson. 
+   * 
    * The necessary formulas for the parameters from the method of determinants 
    * are given by the following.
    *
