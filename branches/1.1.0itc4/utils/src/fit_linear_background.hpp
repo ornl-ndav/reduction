@@ -92,11 +92,11 @@ namespace Utils
                                                input_err2[i], axis2_sum,
                                                axis_sum, inv_err2_sum,
                                                data_sum, axis_data_sum);
-       if (!warn.empty())
+        if (!warn.empty())
           {
             retstr += warn;
           }
-
+        
       }
 
 
@@ -140,13 +140,19 @@ namespace Utils
                                  const NumT axis_sum,
                                  const NumT inv_err2_sum,
                                  const NumT data_sum,
-                                 const NumT aixs_data_sum,
+                                 const NumT axis_data_sum,
                                  NumT & slope,
                                  NumT & slope_err2,
                                  NumT & intercept,
                                  NumT & intercept_err2)
   {
+    NumT delta = (inv_err2_sum * axis2_sum) - (axis_sum * axis_sum);
+    
+    slope = ((inv_err2_sum * axis_data_sum) - (axis_sum * data_sum)) / delta;
+    slope_err2 = inv_err2_sum / delta;
 
+    intercept = ((axis2_sum * data_sum) - (axis_sum * axis_data_sum)) / delta;
+    intercept_err2 = axis2_sum / delta;
 
     return Nessi::EMPTY_WARN;
   }
@@ -180,8 +186,13 @@ namespace Utils
                                   NumT & axis_sum,
                                   NumT & inv_err2_sum,
                                   NumT & data_sum,
-                                  NumT & aixs_data_sum)
+                                  NumT & axis_data_sum)
   {
+    axis2_sum += ((axis_in * axis_in) / input_err2);
+    axis_sum += (axis_in / input_err2);
+    inv_err2_sum += (static_cast<NumT>(1.0) / input_err2);
+    data_sum += (input / input_err2);
+    axis_data_sum += ((axis_in * input) / input_err2);
 
     return Nessi::EMPTY_WARN;
   }
