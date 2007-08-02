@@ -92,7 +92,7 @@ void initialize_inputs(Nessi::Vector<NumT> & axis1,
 
 /**
  * Function that sets the true outputs based on values contained in
- * \f$input1\f$ and \f$input1\_err2\f$.
+ * \f$axis1\f$, \f$input1\f$ and \f$input1\_err2\f$.
  *
  * \param true_output_slope (OUTPUT) is the true value of the line slope
  * \param true_output_slope_err2 (OUTPUT) is the square of the uncertainty of 
@@ -102,17 +102,40 @@ void initialize_inputs(Nessi::Vector<NumT> & axis1,
  * \param true_output_intercept_err2 (OUTPUT) is the square of the uncertainty 
  * of the line intercept
  */
-template <typename NumT>
-void initialize_true_outputs(NumT & true_output_slope,
-                             NumT & true_output_slope_err2,
-                             NumT & true_output_intercept,
-                             NumT & true_output_intercept_err2)
+void initialize_true_outputs(float & true_output_slope,
+                             float & true_output_slope_err2,
+                             float & true_output_intercept,
+                             float & true_output_intercept_err2)
 {
   // initialize the correct outputs
-  true_output_slope = static_cast<NumT>(1.99098429157316348);
-  true_output_slope_err2 = static_cast<NumT>(1.11545306817302532e-02);
-  true_output_intercept = static_cast<NumT>(1.02731718641181557);
-  true_output_intercept_err2 = static_cast<NumT>(1.18915886404085791e-01);
+  true_output_slope = static_cast<float>(1.9909847);
+  true_output_slope_err2 = static_cast<float>(1.1154531e-02);
+  true_output_intercept = static_cast<float>(1.0273158);
+  true_output_intercept_err2 = static_cast<float>(1.1891589e-01);
+}
+
+/**
+ * Function that sets the true outputs based on values contained in
+ * \f$axis1\f$, \f$input1\f$ and \f$input1\_err2\f$.
+ *
+ * \param true_output_slope (OUTPUT) is the true value of the line slope
+ * \param true_output_slope_err2 (OUTPUT) is the square of the uncertainty of 
+ * the line slope
+ * \param true_output_intercept (OUTPUT) is the true value of the line 
+ * intercept
+ * \param true_output_intercept_err2 (OUTPUT) is the square of the uncertainty 
+ * of the line intercept
+ */
+void initialize_true_outputs(double & true_output_slope,
+                             double & true_output_slope_err2,
+                             double & true_output_intercept,
+                             double & true_output_intercept_err2)
+{
+  // initialize the correct outputs
+  true_output_slope = static_cast<double>(1.99098429157316348);
+  true_output_slope_err2 = static_cast<double>(1.11545306817302532e-02);
+  true_output_intercept = static_cast<double>(1.02731718641181557);
+  true_output_intercept_err2 = static_cast<double>(1.18915886404085791e-01);
 }
 
 /**
@@ -203,7 +226,7 @@ bool test_func(NumT key, string debug)
                           true_output_intercept, true_output_intercept_err2);
 
   // run the code being tested
-  Utils::fit_linear_background(axis1, input1, input1_err2, 0, NUM_VAL-1,
+  Utils::fit_linear_background(axis1, input1, input1_err2, -1, -1,
                                output_slope, output_slope_err2,
                                output_intercept, output_intercept_err2);
 
