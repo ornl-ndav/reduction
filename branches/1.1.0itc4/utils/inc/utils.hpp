@@ -168,10 +168,12 @@ namespace Utils
    *
    * This function takes an independent axis and the associated values and 
    * errors and fits a linear function to those points. An optional range 
-   * can be specified that will restrict the fit region. The function uses the 
-   * method of determinats which is described in detail in Chapter 6 of 
-   * <em>Data Reduction and Error Analysis for the Physical Sciences</em> by 
-   * Bevington and Robinson. 
+   * can be specified that will restrict the fit region. That range is 
+   * specified via array elements (bins). If the minimum range bin is -1, the 
+   * first bin (0) is assumed. If the maximum range bin is -1, the ending bin 
+   * (length-1) is assumed. The function uses the method of determinats 
+   * which is described in detail in Chapter 6 of <em>Data Reduction and Error 
+   * Analysis for the Physical Sciences</em> by Bevington and Robinson. 
    * 
    * The necessary formulas for the parameters from the method of determinants 
    * are given by the following.
@@ -209,8 +211,8 @@ namespace Utils
    * independent axis
    * \param input_err2 (INPUT) is an array of the squares of the uncertainties 
    * associated with the values
-   * \param min_val (INPUT) is the minimum axis value for the fit range
-   * \param max_val (INPUT) is the maximum axis value for the fit range
+   * \param min_bin (INPUT) is the minimum axis bin for the fit range
+   * \param max_bin (INPUT) is the maximum axis bin for the fit range
    * \param slope (OUTPUT) is the slope of the line from the fit
    * \param slope_err2 (OUTPUT) is the square of the uncertainties associated 
    * with the slope
@@ -226,8 +228,8 @@ namespace Utils
   fit_linear_background(const Nessi::Vector<NumT> & axis_in,
                         const Nessi::Vector<NumT> & input,
                         const Nessi::Vector<NumT> & input_err2,
-                        const NumT min_val,
-                        const NumT max_val,
+                        const std::size_t min_bin,
+                        const std::size_t max_bin,
                         NumT & slope,
                         NumT & slope_err2,
                         NumT & intercept,

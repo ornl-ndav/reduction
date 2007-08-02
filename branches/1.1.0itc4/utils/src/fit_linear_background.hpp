@@ -33,6 +33,7 @@
 #include "nessi_warn.hpp"
 #include "size_checks.hpp"
 #include "utils.hpp"
+#include <limits>
 #include <stdexcept>
 
 namespace Utils
@@ -46,8 +47,8 @@ namespace Utils
   fit_linear_background(const Nessi::Vector<NumT> & axis_in,
                         const Nessi::Vector<NumT> & input,
                         const Nessi::Vector<NumT> & input_err2,
-                        const NumT min_val,
-                        const NumT max_val,
+                        const std::size_t min_bin,
+                        const std::size_t max_bin,
                         NumT & slope,
                         NumT & slope_err2,
                         NumT & intercept,
@@ -85,8 +86,35 @@ namespace Utils
     NumT data_sum = static_cast<NumT>(0.0);
     NumT axis_data_sum = static_cast<NumT>(0.0);
 
-    std::size_t size_in = input.size();
-    for (std::size_t i = 0; i < size_in; ++i)
+    std::size_t start_bin;
+    std::size_t end_bin;
+
+    // Setup the bin range for the fit. If either of the incoming min_bin or 
+    // max_bin values are -1, they will be set to 
+    // std::numeric_limits<std::size_t>::max() since those variables are 
+    // std::size_t types and std::size_t is unsigned.
+
+    // Setup the starting bin
+    if (min_bin == std::numeric_limits<std::size_t>::max())
+      {
+        start_bin = 0;
+      }
+    else 
+      {
+        start_bin = min_bin;
+      }
+
+    // Setup the ending bin
+    if (max_bin == std::numeric_limits<std::size_t>::max())
+      {
+        end_bin = input.size() - 1;
+      }
+    else 
+      {
+        end_bin = max_bin;
+      }
+
+    for (std::size_t i = start_bin; i <= end_bin; ++i)
       {
         warn = __fit_linear_background_dynamic(axis_in[i], input[i], 
                                                input_err2[i], axis2_sum,
