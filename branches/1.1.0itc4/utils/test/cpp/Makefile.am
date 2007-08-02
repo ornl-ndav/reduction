@@ -34,6 +34,7 @@ EXTRA_DIST=testsuite.at testsuite
 UTILS_TARGETS = \
 	calc_bin_centers_test \
 	calc_bin_widths_test \
+	fit_linear_background_test \
 	linear_order_jacobian_test \
 	weighted_average_test
 
