@@ -108,9 +108,14 @@ void initialize_true_outputs(float & true_output_slope,
                              float & true_output_intercept_err2)
 {
   // initialize the correct outputs
+#ifdef LINUX
+  true_output_slope = static_cast<float>(1.9909854);
+  true_output_intercept = static_cast<float>(1.0273134);
+#else
   true_output_slope = static_cast<float>(1.9909847);
-  true_output_slope_err2 = static_cast<float>(1.1154531e-02);
   true_output_intercept = static_cast<float>(1.0273158);
+#endif
+  true_output_slope_err2 = static_cast<float>(1.1154531e-02);
   true_output_intercept_err2 = static_cast<float>(1.1891589e-01);
 }
 
@@ -132,9 +137,14 @@ void initialize_true_outputs(double & true_output_slope,
                              double & true_output_intercept_err2)
 {
   // initialize the correct outputs
+#ifdef LINUX
+  true_output_slope = static_cast<double>(1.99098429157316548);
+  true_output_intercept = static_cast<double>(1.02731718641181979);
+#else
   true_output_slope = static_cast<double>(1.99098429157316348);
-  true_output_slope_err2 = static_cast<double>(1.11545306817302532e-02);
   true_output_intercept = static_cast<double>(1.02731718641181557);
+#endif
+  true_output_slope_err2 = static_cast<double>(1.11545306817302532e-02);
   true_output_intercept_err2 = static_cast<double>(1.18915886404085791e-01);
 }
 
