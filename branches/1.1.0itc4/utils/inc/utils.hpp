@@ -171,7 +171,7 @@ namespace Utils
    * can be specified that will restrict the fit region. That range is 
    * specified via array elements (bins). If the minimum range bin is -1, the 
    * first bin (0) is assumed. If the maximum range bin is -1, the ending bin 
-   * (length-1) is assumed. The function uses the method of determinats 
+   * (length-1) is assumed. The function uses the method of determinants 
    * which is described in detail in Chapter 6 of <em>Data Reduction and Error 
    * Analysis for the Physical Sciences</em> by Bevington and Robinson. 
    * 
@@ -207,7 +207,7 @@ namespace Utils
    * uncertainty in the input data array.
    *
    * \param axis_in (INPUT) is an array of independent axis values
-   * \param input (INTPUT) is an array of values associated with the 
+   * \param input (INPUT) is an array of values associated with the 
    * independent axis
    * \param input_err2 (INPUT) is an array of the squares of the uncertainties 
    * associated with the values
