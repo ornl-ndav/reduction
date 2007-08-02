@@ -219,10 +219,10 @@ namespace Utils
   std::string
   eval_linear_fit(const Nessi::Vector<NumT> & axis_in,
                   const Nessi::Vector<NumT> & axis_in_err2,
-                  const NumT & slope,
-                  const NumT & slope_err2,
-                  const NumT & intercept,
-                  const NumT & intercept_err2,
+                  const NumT slope,
+                  const NumT slope_err2,
+                  const NumT intercept,
+                  const NumT intercept_err2,
                   Nessi::Vector<NumT> & output,
                   Nessi::Vector<NumT> & output_err2,
                   void *temp=NULL);
