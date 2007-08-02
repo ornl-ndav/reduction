@@ -42,6 +42,12 @@ AT_CHECK([calc_bin_widths_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Evaluate Linear Fit Function.  ])
+AT_CHECK([eval_linear_fit_test | sed -e 's/\r$//' ],[],
+[[eval_linear_fit_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Fit Linear Background Function.  ])
 AT_CHECK([fit_linear_background_test | sed -e 's/\r$//' ],[],
 [[fit_linear_background_test.cpp..........Functionality OK
