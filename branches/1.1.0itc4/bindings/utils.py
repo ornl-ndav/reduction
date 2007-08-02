@@ -365,24 +365,140 @@ def compare(value1, value2):
 # This function is described in section 3.43 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".
 #
-# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
+# This function takes an independent axis and the associated values and 
+# errors and fits a linear function to those points. An optional range 
+# can be specified that will restrict the fit region. That range is 
+# specified via array elements (bins). The minimum and maximum bin values
+# must be passed to the function. The use of -1 for either of these parameters
+# will result in an OverflowError. The function uses the method of
+# determinants which is described in detail in Chapter 6 of <em>Data Reduction
+# and Error Analysis for the Physical Sciences</em> by Bevington and Robinson. 
+# 
+# The necessary formulas for the parameters from the method of determinants 
+# are given by the following.
 #
-# \exception NotImplementedError is raised when the function is called since
-#            it is not implemented.
+# \f[
+# \Delta = \sum\frac{1}{\sigma^2_i[i]} \sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
+# - \left(\sum\frac{axis_i[i]}{\sigma^2_i[i]} \right)^2
+# \f]
+# \f[
+# slope = \frac{1}{\Delta} \left(\sum\frac{1}{\sigma^2_i[i]} 
+# \sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]} - 
+# \sum\frac{axis_i[i]}{\sigma^2_i[i]} \sum\frac{data_i[i]}{\sigma^2_i[i]} 
+# \right)
+# \f]
+# \f[
+# intercept = \frac{1}{\Delta} \left(\sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
+# \sum\frac{data_i[i]}{\sigma^2_i[i]} - \sum\frac{axis_i[i]}{\sigma^2_i[i]}
+# \sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]} \right)
+# \f]
+# \f[
+# \sigma^2_{slope} = \frac{1}{\Delta} \sum\frac{1}{\sigma^2_i[i]}
+# \f]
+# \f[
+# \sigma^2_{intercept} = \frac{1}{\Delta} 
+# \sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
+# \f]
+#
+# where \f$axis_i[i]\f$ is the \f$i^{th}\f$ element of the independent 
+# axis, \f$data_i[i]\f$ is the \f$i^{th}\f$ element of the input data array
+# and \f$\sigma^2_i[i]\f$ is the \f$i^{th}\f$ element of the square 
+# uncertainty in the input data array.
+#
+# \param axis (INPUT) is an array of independent axis values
+# \param input (INTPUT) is an array of values associated with the 
+# independent axis
+# \param input_err2 (INPUT) is an array of the squares of the uncertainties 
+# associated with the values
+# \param min_bin (INPUT) is the minimum axis bin for the fit range
+# \param max_bin (INPUT) is the maximum axis bin for the fit range
+#
+# \return
+# - {"slope" : (slope, slope_err2), "intercept" : (intercept, intercept_err2))
+#
+# \exception IndexError is raised if any of the lists are not the same length
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception TypeError is raised if any of the lists are not recognized types
+# \exception OverflowError is raised if -1 is passed to either min_bin or
+#                          max_bin
 
-def fit_linear_background():
+def fit_linear_background(axis, input, input_err2, min_bin, max_bin):
     """
     ---------------------------------------------------------------------------
-    This function fits a line to an array
+    This function takes an independent axis and the associated values and 
+    errors and fits a linear function to those points. An optional range 
+    can be specified that will restrict the fit region. That range is 
+    specified via array elements (bins). The minimum and maximum bin values
+    must be passed to the function. The use of -1 for either of these
+    parameters will result in an OverflowError. The function uses the method of
+    determinants which is described in detail in Chapter 6 of Data Reduction
+    and Error Analysis for the Physical Sciences by Bevington and Robinson. 
+ 
+    The necessary formulas for the parameters from the method of determinants 
+    are given by the following.
+
+    Delta = Sum(1 / sigma^2_i[i]) * Sum(axis^2_i[i] / sigma^2_i[i]) 
+            - (Sum(axis_i[i] / sigma^2_i[i])^2
+
+    slope = (1 / Delta) * (Sum(1 / sigma^2_i[i]) *
+            Sum((axis_i[i] * data_i[i]) / sigma^2_i[i]) - 
+            Sum(axis_i[i] / sigma^2_i[i]) * Sum(data_i[i] / \sigma^2_i[i]))
+
+    intercept = (1 / Delta) * (Sum(axis^2_i[i] / sigma^2_i[i]) * 
+                Sum(data_i[i] / sigma^2_i[i]) - Sum(axis_i[i] / sigma^2_i[i]) *
+                Sum((axis_i[i] * data_i[i]) / sigma^2_i[i]))
+
+    sigma^2_slope = (1 / Delta) * Sum(1 / sigma^2_i[i])
+
+    sigma^2_intercept = (1 / Delta) * Sum(axis^2_i[i] / sigma^2_i[i])
+
+    where axis_i[i] is the i^th element of the independent axis, data_i[i]
+    is the i^th element of the input data array and sigma^2_i[i] is the
+    i^th element of the square uncertainty in the input data array.
+
+    Inputs:
+    ------
+    -> axis_in is an array of independent axis values
+    -> input is an array of values associated with the independent axis
+    -> input_err2 is an array of the squares of the uncertainties associated
+                  with the values
+    -> min_bin is the minimum axis bin for the fit range
+    -> max_bin is the maximum axis bin for the fit range
+
+    Returns:
+    -------
+    <- Dictionary of {\"slope\" : (slope, slope_err2), \"intercept\" :
+                     (intercept, intercept_err2))
 
     Exceptions:
     ----------
-    <- NotImplementedError is raised when the function is called since it is
-       not implemented.
-
+    <- IndexError is raised if any of the lists are not the same length
+    <- TypeError is raised if any of the lists are not the same type
+    <- TypeError is raised if any of the lists are not recognized types
+    <- OverflowError is raised if -1 is passed to either min_bin or
+                     max_bin
     """
 
-    raise NotImplementedError("This function is not implemented.")
+    if input.__type__ != input_err2.__type__:
+        raise TypeError("Input and Input Err2 arrays are not the same type")
+
+    if input.__type__ != axis.__type__:
+        raise TypeError("Input and Axis arrays are not the same type")
+
+    if input.__type__ == nessi_list.NessiList.DOUBLE:
+        slope = vpair_bind.DoubleVPair()
+        intercept = vpair_bind.DoubleVPair()
+        
+        utils_bind.fit_linear_background_d(axis.__array__, input.__array__,
+                                           input_err2.__array__,
+                                           min_bin, max_bin,
+                                           slope, intercept)
+        
+        return {"slope" : (slope.val, slope.val_err2),
+                "intercept": (intercept.val, intercept.val_err2)}
+    else:
+        raise TypeError("fit_linear_background: Unknown primitive type %s" \
+                        % str(input.__type__))
 
 ##
 # \}
