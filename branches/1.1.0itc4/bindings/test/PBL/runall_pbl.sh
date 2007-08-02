@@ -25,6 +25,8 @@ python test_energy_to_wavelength.py
 echo
 python test_energy_transfer.py
 echo
+python test_fit_linear_background.py
+echo
 python test_frequency_to_angular_frequency.py
 echo
 python test_frequency_to_energy.py
