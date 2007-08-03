@@ -67,6 +67,8 @@
 %template(matrix_multiplication_d) Utils::matrix_multiplication<double>;
 %template(matrix_multiplication_i) Utils::matrix_multiplication<int>;
 
+%template(eval_linear_fit_d) Utils::eval_linear_fit<double>;
+
 %template(fit_reflectometer_background_d) Utils::fit_reflectometer_background<double>;
 
 %{
