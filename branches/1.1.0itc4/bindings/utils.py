@@ -397,19 +397,20 @@ def compare(value1, value2):
 # square uncertainty of the calculated linear equation value.
 #
 # \param axis (INPUT) is an array of independent axis values
-# \param axis_err2 (INPUT) is an array of the squares of the 
-# uncertainties associated with theindependent axis values
+# \param axis_err2 (INPUT) is an array of the squares of the uncertainties
+#        associated with the independent axis values
 # \param slope (INPUT) is the slope of the line from the fit
 # \param slope_err2 (INPUT) is the square of the uncertainties associated 
 # with the slope
 # \param intercept (INPUT) is the intercept of the line from the fit
-# \param intercept_err2 (INPUT) is the square of the uncertainties 
-# associated with the intercept
+# \param intercept_err2 (INPUT) is the square of the uncertainties associated
+#        with the intercept
 #
 # \return
-# - values calculated from the independent axis with the fit parameters
-# - squares of the uncertainties associated with the values calculated from
-#   the independent axis with the fit parameters
+# - NessiList of values calculated from the independent axis with the fit
+#   parameters
+# - NessiList of the squares of the uncertainties associated with the values
+#   calculated from the independent axis with the fit parameters
 #
 # \exception IndexError is raised if any of the lists are not the same length
 # \exception TypeError is raised if any of the lists are not the same type
@@ -449,20 +450,20 @@ def eval_linear_fit(axis, axis_err2, slope, slope_err2,
     Parameters:
     ----------
     -> axis is an array of independent axis values
-    -> axis_err2 is an array of the squares of the 
-    uncertainties associated with theindependent axis values
+    -> axis_err2 is an array of the squares of the uncertainties associated
+       with the independent axis values
     -> slope is the slope of the line from the fit
-    -> slope_err2 is the square of the uncertainties associated 
-    with the slope
+    -> slope_err2 is the square of the uncertainties associated with the slope
     -> intercept is the intercept of the line from the fit
-    -> intercept_err2 is the square of the uncertainties 
-    associated with the intercept
+    -> intercept_err2 is the square of the uncertainties associated with the
+       intercept
     
     Returns:
     -------
-    <- values calculated from the independent axis with the fit parameters
-    <- squares of the uncertainties associated with the values calculated from
-       the independent axis with the fit parameters
+    <- NessiList of values calculated from the independent axis with the fit
+       parameters
+    <- NessiList of the squares of the uncertainties associated with the
+       values calculated from the independent axis with the fit parameters
 
     Exceptions:
     ----------

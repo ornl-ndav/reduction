@@ -199,7 +199,7 @@ namespace Utils
    *
    * \param axis_in (INPUT) is an array of independent axis values
    * \param axis_in_err2 (INPUT) is an array of the squares of the 
-   * uncertainties associated with theindependent axis values
+   * uncertainties associated with the independent axis values
    * \param slope (INPUT) is the slope of the line from the fit
    * \param slope_err2 (INPUT) is the square of the uncertainties associated 
    * with the slope
