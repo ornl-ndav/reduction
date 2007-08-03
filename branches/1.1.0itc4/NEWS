@@ -14,6 +14,7 @@ Changes in Version 1.1.0
   - Utilities (1.1.0)
     * calc_bin_centers
     * calc_bin_widths
+    * eval_linear_fit
     * fit_linear_background
     * linear_order_jacobian
 
