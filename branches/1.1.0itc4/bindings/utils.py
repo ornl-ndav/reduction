@@ -356,6 +356,142 @@ def compare(value1, value2):
 # \}
 
 ##
+# \defgroup eval_linear_fit utils::eval_linear_fit
+# \{
+
+##
+# \brief This function evaluates a linear fit function
+#
+# This function is described in section 3.56 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function takes an independent axis and the associated uncertainties 
+# and the fit parameters of a line (slope and intercept) and calculates the 
+# values associated with the independent axis based on the fit parameters.
+#
+# The calculation of the new values from the input independent axis should 
+# be done by the following
+#
+# \f[
+# data_o[i] = slope \times axis_i[i] + intercept
+# \f]
+# 
+# where \f$axis_i[i]\f$ is the \f$i^{th}\f$ element of the independent 
+# axis, \f$slope\f$ is the slope of the linear fit, \f$intercept\f$ is the 
+# intercept of the linear fit and \f$data_o[i]\f$ is the \f$i^{th}\f$ 
+# element of the calculated linear equation.
+#
+# Assuming that the uncertainties are uncorrelated, the uncertainty on a 
+# given element of the calculated linear equation is
+#
+# \f[
+# \sigma^2_o[i] = axis^2_i[i] \sigma^2_{slope} + 
+# slope^2 \sigma^2_{axis_i}[i] + \sigma^2_{intercept}
+# \f]
+#
+# where \f$\sigma^2_{axis_i}[i]\f$ is the \f$i^{th}\f$ element of the 
+# square uncertainty of the independent axis, \f$\sigma^2_{slope}\f$ is the 
+# square uncertainty of the slope of the linear fit, 
+# \f$\sigma^2_{intercept}\f$ is the square uncertainty of the intercept of 
+# the linear fit and \f$\sigma^2_o[i]\f$ is the \f$i^{th}\f$ element of the 
+# square uncertainty of the calculated linear equation value.
+#
+# \param axis (INPUT) is an array of independent axis values
+# \param axis_err2 (INPUT) is an array of the squares of the 
+# uncertainties associated with theindependent axis values
+# \param slope (INPUT) is the slope of the line from the fit
+# \param slope_err2 (INPUT) is the square of the uncertainties associated 
+# with the slope
+# \param intercept (INPUT) is the intercept of the line from the fit
+# \param intercept_err2 (INPUT) is the square of the uncertainties 
+# associated with the intercept
+#
+# \return
+# - values calculated from the independent axis with the fit parameters
+# - squares of the uncertainties associated with the values calculated from
+#   the independent axis with the fit parameters
+#
+# \exception IndexError is raised if any of the lists are not the same length
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception TypeError is raised if any of the lists are not recognized types
+#
+
+def eval_linear_fit(axis, axis_err2, slope, slope_err2,
+                    intercept, intercept_err2):
+    """
+    This function takes an independent axis and the associated uncertainties 
+    and the fit parameters of a line (slope and intercept) and calculates the 
+    values associated with the independent axis based on the fit parameters.
+
+    The calculation of the new values from the input independent axis should 
+    be done by the following
+
+    data_o[i] = slope x axis_i[i] + intercept
+ 
+    where axis_i[i] is the i^th element of the independent 
+    axis, slope is the slope of the linear fit, intercept is the 
+    intercept of the linear fit and data_o[i] is the i^th 
+    element of the calculated linear equation.
+    
+    Assuming that the uncertainties are uncorrelated, the uncertainty on a 
+    given element of the calculated linear equation is
+    
+    sigma^2_o[i] = axis^2_i[i] sigma^2_slope + slope^2 sigma^2_axis_i[i] +
+                   sigma^2_intercept
+
+    where sigma^2_axis_i[i] is the i^th element of the 
+    square uncertainty of the independent axis, sigma^2_slope is the 
+    square uncertainty of the slope of the linear fit, 
+    sigma^2_intercept is the square uncertainty of the intercept of 
+    the linear fit and sigma^2_o[i] is the i^th element of the 
+    square uncertainty of the calculated linear equation value.
+
+    Parameters:
+    ----------
+    -> axis is an array of independent axis values
+    -> axis_err2 is an array of the squares of the 
+    uncertainties associated with theindependent axis values
+    -> slope is the slope of the line from the fit
+    -> slope_err2 is the square of the uncertainties associated 
+    with the slope
+    -> intercept is the intercept of the line from the fit
+    -> intercept_err2 is the square of the uncertainties 
+    associated with the intercept
+    
+    Returns:
+    -------
+    <- values calculated from the independent axis with the fit parameters
+    <- squares of the uncertainties associated with the values calculated from
+       the independent axis with the fit parameters
+
+    Exceptions:
+    ----------
+    <- IndexError is raised if any of the lists are not the same length
+    <- TypeError is raised if any of the lists are not the same type
+    <- TypeError is raised if any of the lists are not recognized types
+    """
+    
+    if axis.__type__ != axis_err2.__type__:
+        raise TypeError("Axis and Axis Err2 arrays are not the same type")
+
+    if axis.__type__ == nessi_list.NessiList.DOUBLE:
+        output = nessi_list.NessiList(len(axis))
+        output_err2 = nessi_list.NessiList(len(axis_err2))
+
+        utils_bind.eval_linear_fit_d(axis.__array__, axis_err2.__array__,
+                                     slope, slope_err2,
+                                     intercept, intercept_err2,
+                                     output.__array__, output_err2.__array__)
+        return (output, output_err2)
+        
+    else:
+        raise TypeError("eval_linear_fit: Unknown primitive type %s" \
+                        % str(axis.__type__))
+    
+##
+# \}
+
+##
 # \defgroup fit_linear_background utils::fit_linear_background
 # \{
 
