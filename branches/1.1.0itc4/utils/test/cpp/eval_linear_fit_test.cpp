@@ -123,7 +123,11 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
   // vector-vector
   true_output.push_back(static_cast<double>(3.01830147798497883));
   true_output.push_back(static_cast<double>(5.00928576955814275));
+#ifdef LINUX
+  true_output.push_back(static_cast<double>(7.00027006113130579));
+#else
   true_output.push_back(static_cast<double>(7.00027006113130668));
+#endif
   true_output.push_back(static_cast<double>(8.99125435270446971));
   true_output.push_back(static_cast<double>(10.9822386442776327));
 
