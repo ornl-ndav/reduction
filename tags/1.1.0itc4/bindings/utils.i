@@ -67,9 +67,18 @@
 %template(matrix_multiplication_d) Utils::matrix_multiplication<double>;
 %template(matrix_multiplication_i) Utils::matrix_multiplication<int>;
 
+%template(eval_linear_fit_d) Utils::eval_linear_fit<double>;
+
 %template(fit_reflectometer_background_d) Utils::fit_reflectometer_background<double>;
 
-%template(fit_linear_background_d) Utils::fit_linear_background<double>;
+%{
+std::string fit_linear_background_d(const Nessi::Vector<double> & axis_in, const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const std::size_t min_bin, const std::size_t max_bin, VPair<double> & slope, VPair<double> & intercept, void *temp=NULL) {
+std::string ret = Utils::fit_linear_background(axis_in, input, input_err2, min_bin, max_bin, slope.val, slope.val_err2, intercept.val, intercept.val_err2, temp);
+return ret;
+}
+%}
+
+std::string fit_linear_background_d(const Nessi::Vector<double> & axis_in, const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const std::size_t min_bin, const std::size_t max_bin, VPair<double> & slope, VPair<double> & intercept);
 
 %template(linear_order_jacobian_d) Utils::linear_order_jacobian<double>;
 

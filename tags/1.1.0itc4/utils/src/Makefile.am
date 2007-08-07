@@ -39,6 +39,8 @@ libUtils_la_SOURCES = \
 	check_sizes_square.cpp \
 	compare.hpp \
 	compare.cpp \
+	eval_linear_fit.hpp \
+	eval_linear_fit.cpp \
 	fit_linear_background.hpp \
 	fit_linear_background.cpp \
 	fit_reflectometer_background.hpp \
