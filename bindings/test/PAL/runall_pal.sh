@@ -9,9 +9,13 @@ PBL_LIBS="$cwd/../../../bindings/.libs"
 
 export PYTHONPATH="$PAL_MODULES:$PBL_LIBS:$PYTHONPATH"
 
+python abs_val_test.py
+echo
 python add_ncerr_test.py
 echo
 python calc_bin_centers_test.py
+echo
+python calc_bin_widths_test.py
 echo
 python d_spacing_to_tof_focused_det_test.py
 echo
@@ -20,6 +24,10 @@ echo
 python energy_to_wavelength_test.py
 echo
 python energy_transfer_test.py
+echo
+python eval_linear_fit_test.py
+echo
+python fit_linear_background_test.py
 echo
 python frequency_to_angular_frequency_test.py
 echo
@@ -74,6 +82,8 @@ echo
 python wavelength_to_scalar_Q_test.py
 echo
 python wavelength_to_scalar_k_test.py
+echo
+python wavelength_to_tof_test.py
 echo
 python weighted_average_test.py
 

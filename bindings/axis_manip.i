@@ -302,3 +302,12 @@ std::string wavelength_to_scalar_Q_ss_d(const double wavelength, const double wa
 
 
 %template(wavelength_to_tof_d) AxisManip::wavelength_to_tof<double>;
+
+%{
+std::string wavelength_to_tof_ss_d(const double wavelength, const double wavelength_err2, const double pathlength, const double pathlength_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::wavelength_to_tof(wavelength, wavelength_err2, pathlength, pathlength_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string wavelength_to_tof_ss_d(const double wavelength, const double wavelength_err2, const double pathlength, const double pathlength_err2, VPair<double> & value, void *temp=NULL);

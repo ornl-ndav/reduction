@@ -31,6 +31,7 @@ AM_LDFLAGS  = -static \
 EXTRA_DIST=testsuite.at testsuite
 
 ARRAY_MANIP_TARGETS = \
+	abs_val_test \
 	add_ncerr_test \
 	div_ncerr_test \
 	mult_ncerr_test \
@@ -41,6 +42,8 @@ TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(ARRAY_MANIP_TARGETS)
+
+abs_val_test_SOURCES = abs_val_test.cpp test_common.hpp
 
 add_ncerr_test_SOURCES = add_ncerr_test.cpp test_common.hpp
 

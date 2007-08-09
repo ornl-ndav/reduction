@@ -39,6 +39,9 @@
 
 // Instantiate some templates
 
+%template(abs_val_d) ArrayManip::abs_val<double>;
+%template(abs_val_i) ArrayManip::abs_val<int>;
+
 %template(add_ncerr_d) ArrayManip::add_ncerr<double>;
 %template(add_ncerr_i) ArrayManip::add_ncerr<int>;
 
