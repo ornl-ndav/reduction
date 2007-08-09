@@ -269,7 +269,7 @@ def calc_bin_widths(axis, axis_err2):
         return (bin_widths, bin_widths_err2)
 
     else:
-        raise TyperError("Unknown primative type %s" % str(axis.__type__))
+        raise TypeError("Unknown primative type %s" % str(axis.__type__))
     
 ##
 # \}
