@@ -551,7 +551,7 @@ def eval_linear_fit(axis, axis_err2, slope, slope_err2,
 # \param max_bin (INPUT) is the maximum axis bin for the fit range
 #
 # \return
-# - {"slope" : (slope, slope_err2), "intercept" : (intercept, intercept_err2))
+# - {"slope" : (slope, slope_err2), "intercept" : (intercept, intercept_err2)}
 #
 # \exception IndexError is raised if any of the lists are not the same length
 # \exception TypeError is raised if any of the lists are not the same type
