@@ -169,6 +169,112 @@ def calc_bin_centers(axis, axis_err2):
 # \}
 
 ##
+# \defgroup calc_bin_widths utils::calc_bin_widths
+# \{
+#
+
+##
+# \brief This function calculates bin widths
+#
+# This function is described in section 3.54 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+# 
+# This function takes in an axis array and its associated squared 
+# uncertainties and calculates the bin widths via the following formula:
+#
+# \f[
+# bin\_width[i] = axis[i+1] - axis[i]
+# \f]
+#
+# where \f$bin\_width[i]\f$ is the \f$i^{th}\f$ bin width, \f$axis[i]\f$ 
+# is the \f$i^{th}\f$ axis element and \f$axis[i+1]\f$ is the 
+# \f$(i+1)^{th}\f$ axis element. The resulting array for the bin widths 
+# will be one element shorter than the incoming axis. 
+#
+# Assuming that the uncertainties are uncorrelated, the squared uncertainties
+# are calculated by:
+#
+# \f[
+# \sigma^2_{bin\_width}[i] = \sigma^2_{axis}[i+1] + \sigma^2_{axis}[i]
+# \f]
+#
+# where \f$\sigma^2_{bin\_width}[i]\f$ is the \f$i^{th}\f$ squared 
+# uncertainty of the bin width, \f$\sigma^2_{axis}[i]\f$ is the 
+# \f$i^{th}\f$ squared uncertainty of the axis and 
+# \f$\sigma^2_{axis}[i+1]\f$ is the \f$(i+1)^{th}\f$ squared uncertainty of 
+# the axis.
+#
+# \param axis (INPUT) is an array of independent axis values
+# \param axis_err2 (INPUT) is an array of the squares of the uncertainties 
+# associated with the independent axis
+#
+# \return
+# - an array of bin widths of the independent axis
+# - an array of the squares of the uncertainties associated with the bin
+#   widths
+#
+# \exception TypeError is raised if axis and axis_err2 are not the same type
+# \exception TypeError is raised if axis is not of type double
+#
+
+def calc_bin_widths(axis, axis_err2):
+    """
+    This function takes in an axis array and its associated squared 
+    uncertainties and calculates the bin widths via the following formula:
+
+    bin_width[i] = axis[i+1] - axis[i]
+
+    where bin_width[i] is the i^{th} bin width, axis[i] is the i^{th} axis
+    element and axis[i+1] is the (i+1)^{th} axis element. The resulting array
+    for the bin widths will be one element shorter than the incoming axis. 
+
+    Assuming that the uncertainties are uncorrelated, the squared
+    uncertainties are calculated by:
+
+    sigma^2_{bin_width}[i] = sigma^2_{axis}[i+1] + sigma^2_{axis}[i]
+
+    where sigma^2_{bin_width}[i] is the i^{th} squared uncertainty of the bin
+    width, sigma^2_{axis}[i] is the i^{th} squared uncertainty of the axis
+    and sigma^2_{axis}[i+1] is the (i+1)^{th} squared uncertainty of the axis.
+
+    Parameters:
+    ----------
+    -> axis is an array of independent axis values
+    -> axis_err2 is an array of the squares of the uncertainties associated
+       with the independent axis
+
+    Returns:
+    -------
+    <- an array of bin widths of the independent axis
+    <- an array of the squares of the uncertainties associated with the bin
+       widths
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if axis and axis_err2 are not the same type
+    <- TypeError is raised if axis is not of type double
+
+    """
+    if axis.__type__ != axis_err2.__type__:
+        raise TypeError("Axis and Axis Err2 arrays are not the same type")
+
+    if axis.__type__ == nessi_list.NessiList.DOUBLE:
+        bin_widths = nessi_list.NessiList(len(axis) - 1)
+        bin_widths_err2 = nessi_list.NessiList(len(axis_err2) - 1)
+        utils_bind.calc_bin_widths_d(axis.__array__,
+                                     axis_err2.__array__,
+                                     bin_widths.__array__,
+                                     bin_widths_err2.__array__)
+        
+        return (bin_widths, bin_widths_err2)
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(axis.__type__))
+    
+##
+# \}
+
+##
 # \defgroup calib_refl_areadet \
 # utils::calib_refl_areadet
 # \{
@@ -250,6 +356,143 @@ def compare(value1, value2):
 # \}
 
 ##
+# \defgroup eval_linear_fit utils::eval_linear_fit
+# \{
+
+##
+# \brief This function evaluates a linear fit function
+#
+# This function is described in section 3.56 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function takes an independent axis and the associated uncertainties 
+# and the fit parameters of a line (slope and intercept) and calculates the 
+# values associated with the independent axis based on the fit parameters.
+#
+# The calculation of the new values from the input independent axis should 
+# be done by the following
+#
+# \f[
+# data_o[i] = slope \times axis_i[i] + intercept
+# \f]
+# 
+# where \f$axis_i[i]\f$ is the \f$i^{th}\f$ element of the independent 
+# axis, \f$slope\f$ is the slope of the linear fit, \f$intercept\f$ is the 
+# intercept of the linear fit and \f$data_o[i]\f$ is the \f$i^{th}\f$ 
+# element of the calculated linear equation.
+#
+# Assuming that the uncertainties are uncorrelated, the uncertainty on a 
+# given element of the calculated linear equation is
+#
+# \f[
+# \sigma^2_o[i] = axis^2_i[i] \sigma^2_{slope} + 
+# slope^2 \sigma^2_{axis_i}[i] + \sigma^2_{intercept}
+# \f]
+#
+# where \f$\sigma^2_{axis_i}[i]\f$ is the \f$i^{th}\f$ element of the 
+# square uncertainty of the independent axis, \f$\sigma^2_{slope}\f$ is the 
+# square uncertainty of the slope of the linear fit, 
+# \f$\sigma^2_{intercept}\f$ is the square uncertainty of the intercept of 
+# the linear fit and \f$\sigma^2_o[i]\f$ is the \f$i^{th}\f$ element of the 
+# square uncertainty of the calculated linear equation value.
+#
+# \param axis (INPUT) is an array of independent axis values
+# \param axis_err2 (INPUT) is an array of the squares of the uncertainties
+#        associated with the independent axis values
+# \param slope (INPUT) is the slope of the line from the fit
+# \param slope_err2 (INPUT) is the square of the uncertainties associated 
+# with the slope
+# \param intercept (INPUT) is the intercept of the line from the fit
+# \param intercept_err2 (INPUT) is the square of the uncertainties associated
+#        with the intercept
+#
+# \return
+# - NessiList of values calculated from the independent axis with the fit
+#   parameters
+# - NessiList of the squares of the uncertainties associated with the values
+#   calculated from the independent axis with the fit parameters
+#
+# \exception IndexError is raised if any of the lists are not the same length
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception TypeError is raised if any of the lists are not recognized types
+#
+
+def eval_linear_fit(axis, axis_err2, slope, slope_err2,
+                    intercept, intercept_err2):
+    """
+    This function takes an independent axis and the associated uncertainties 
+    and the fit parameters of a line (slope and intercept) and calculates the 
+    values associated with the independent axis based on the fit parameters.
+
+    The calculation of the new values from the input independent axis should 
+    be done by the following
+
+    data_o[i] = slope x axis_i[i] + intercept
+ 
+    where axis_i[i] is the i^th element of the independent 
+    axis, slope is the slope of the linear fit, intercept is the 
+    intercept of the linear fit and data_o[i] is the i^th 
+    element of the calculated linear equation.
+    
+    Assuming that the uncertainties are uncorrelated, the uncertainty on a 
+    given element of the calculated linear equation is
+    
+    sigma^2_o[i] = axis^2_i[i] sigma^2_slope + slope^2 sigma^2_axis_i[i] +
+                   sigma^2_intercept
+
+    where sigma^2_axis_i[i] is the i^th element of the 
+    square uncertainty of the independent axis, sigma^2_slope is the 
+    square uncertainty of the slope of the linear fit, 
+    sigma^2_intercept is the square uncertainty of the intercept of 
+    the linear fit and sigma^2_o[i] is the i^th element of the 
+    square uncertainty of the calculated linear equation value.
+
+    Parameters:
+    ----------
+    -> axis is an array of independent axis values
+    -> axis_err2 is an array of the squares of the uncertainties associated
+       with the independent axis values
+    -> slope is the slope of the line from the fit
+    -> slope_err2 is the square of the uncertainties associated with the slope
+    -> intercept is the intercept of the line from the fit
+    -> intercept_err2 is the square of the uncertainties associated with the
+       intercept
+    
+    Returns:
+    -------
+    <- NessiList of values calculated from the independent axis with the fit
+       parameters
+    <- NessiList of the squares of the uncertainties associated with the
+       values calculated from the independent axis with the fit parameters
+
+    Exceptions:
+    ----------
+    <- IndexError is raised if any of the lists are not the same length
+    <- TypeError is raised if any of the lists are not the same type
+    <- TypeError is raised if any of the lists are not recognized types
+    """
+    
+    if axis.__type__ != axis_err2.__type__:
+        raise TypeError("Axis and Axis Err2 arrays are not the same type")
+
+    if axis.__type__ == nessi_list.NessiList.DOUBLE:
+        output = nessi_list.NessiList(len(axis))
+        output_err2 = nessi_list.NessiList(len(axis_err2))
+
+        utils_bind.eval_linear_fit_d(axis.__array__, axis_err2.__array__,
+                                     slope, slope_err2,
+                                     intercept, intercept_err2,
+                                     output.__array__, output_err2.__array__)
+        return (output, output_err2)
+        
+    else:
+        raise TypeError("eval_linear_fit: Unknown primitive type %s" \
+                        % str(axis.__type__))
+    
+##
+# \}
+
+##
 # \defgroup fit_linear_background utils::fit_linear_background
 # \{
 
@@ -259,24 +502,140 @@ def compare(value1, value2):
 # This function is described in section 3.43 of the SNS 107030214-TD0001-R00,
 # "Data Reduction Library Software Requirements and Specifications".
 #
-# THIS FUNCTION HAS NOT BEEN DEFINED AND IS NOT IMPLEMENTED.
+# This function takes an independent axis and the associated values and 
+# errors and fits a linear function to those points. An optional range 
+# can be specified that will restrict the fit region. That range is 
+# specified via array elements (bins). The minimum and maximum bin values
+# must be passed to the function. The use of -1 for either of these parameters
+# will result in an OverflowError. The function uses the method of
+# determinants which is described in detail in Chapter 6 of <em>Data Reduction
+# and Error Analysis for the Physical Sciences</em> by Bevington and Robinson. 
+# 
+# The necessary formulas for the parameters from the method of determinants 
+# are given by the following.
 #
-# \exception NotImplementedError is raised when the function is called since
-#            it is not implemented.
+# \f[
+# \Delta = \sum\frac{1}{\sigma^2_i[i]} \sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
+# - \left(\sum\frac{axis_i[i]}{\sigma^2_i[i]} \right)^2
+# \f]
+# \f[
+# slope = \frac{1}{\Delta} \left(\sum\frac{1}{\sigma^2_i[i]} 
+# \sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]} - 
+# \sum\frac{axis_i[i]}{\sigma^2_i[i]} \sum\frac{data_i[i]}{\sigma^2_i[i]} 
+# \right)
+# \f]
+# \f[
+# intercept = \frac{1}{\Delta} \left(\sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
+# \sum\frac{data_i[i]}{\sigma^2_i[i]} - \sum\frac{axis_i[i]}{\sigma^2_i[i]}
+# \sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]} \right)
+# \f]
+# \f[
+# \sigma^2_{slope} = \frac{1}{\Delta} \sum\frac{1}{\sigma^2_i[i]}
+# \f]
+# \f[
+# \sigma^2_{intercept} = \frac{1}{\Delta} 
+# \sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
+# \f]
+#
+# where \f$axis_i[i]\f$ is the \f$i^{th}\f$ element of the independent 
+# axis, \f$data_i[i]\f$ is the \f$i^{th}\f$ element of the input data array
+# and \f$\sigma^2_i[i]\f$ is the \f$i^{th}\f$ element of the square 
+# uncertainty in the input data array.
+#
+# \param axis (INPUT) is an array of independent axis values
+# \param input (INTPUT) is an array of values associated with the 
+# independent axis
+# \param input_err2 (INPUT) is an array of the squares of the uncertainties 
+# associated with the values
+# \param min_bin (INPUT) is the minimum axis bin for the fit range
+# \param max_bin (INPUT) is the maximum axis bin for the fit range
+#
+# \return
+# - {"slope" : (slope, slope_err2), "intercept" : (intercept, intercept_err2))
+#
+# \exception IndexError is raised if any of the lists are not the same length
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception TypeError is raised if any of the lists are not recognized types
+# \exception OverflowError is raised if -1 is passed to either min_bin or
+#                          max_bin
 
-def fit_linear_background():
+def fit_linear_background(axis, input, input_err2, min_bin, max_bin):
     """
     ---------------------------------------------------------------------------
-    This function fits a line to an array
+    This function takes an independent axis and the associated values and 
+    errors and fits a linear function to those points. An optional range 
+    can be specified that will restrict the fit region. That range is 
+    specified via array elements (bins). The minimum and maximum bin values
+    must be passed to the function. The use of -1 for either of these
+    parameters will result in an OverflowError. The function uses the method of
+    determinants which is described in detail in Chapter 6 of Data Reduction
+    and Error Analysis for the Physical Sciences by Bevington and Robinson. 
+ 
+    The necessary formulas for the parameters from the method of determinants 
+    are given by the following.
+
+    Delta = Sum(1 / sigma^2_i[i]) * Sum(axis^2_i[i] / sigma^2_i[i]) 
+            - (Sum(axis_i[i] / sigma^2_i[i])^2
+
+    slope = (1 / Delta) * (Sum(1 / sigma^2_i[i]) *
+            Sum((axis_i[i] * data_i[i]) / sigma^2_i[i]) - 
+            Sum(axis_i[i] / sigma^2_i[i]) * Sum(data_i[i] / \sigma^2_i[i]))
+
+    intercept = (1 / Delta) * (Sum(axis^2_i[i] / sigma^2_i[i]) * 
+                Sum(data_i[i] / sigma^2_i[i]) - Sum(axis_i[i] / sigma^2_i[i]) *
+                Sum((axis_i[i] * data_i[i]) / sigma^2_i[i]))
+
+    sigma^2_slope = (1 / Delta) * Sum(1 / sigma^2_i[i])
+
+    sigma^2_intercept = (1 / Delta) * Sum(axis^2_i[i] / sigma^2_i[i])
+
+    where axis_i[i] is the i^th element of the independent axis, data_i[i]
+    is the i^th element of the input data array and sigma^2_i[i] is the
+    i^th element of the square uncertainty in the input data array.
+
+    Inputs:
+    ------
+    -> axis_in is an array of independent axis values
+    -> input is an array of values associated with the independent axis
+    -> input_err2 is an array of the squares of the uncertainties associated
+                  with the values
+    -> min_bin is the minimum axis bin for the fit range
+    -> max_bin is the maximum axis bin for the fit range
+
+    Returns:
+    -------
+    <- Dictionary of {\"slope\" : (slope, slope_err2), \"intercept\" :
+                     (intercept, intercept_err2))
 
     Exceptions:
     ----------
-    <- NotImplementedError is raised when the function is called since it is
-       not implemented.
-
+    <- IndexError is raised if any of the lists are not the same length
+    <- TypeError is raised if any of the lists are not the same type
+    <- TypeError is raised if any of the lists are not recognized types
+    <- OverflowError is raised if -1 is passed to either min_bin or
+                     max_bin
     """
 
-    raise NotImplementedError("This function is not implemented.")
+    if input.__type__ != input_err2.__type__:
+        raise TypeError("Input and Input Err2 arrays are not the same type")
+
+    if input.__type__ != axis.__type__:
+        raise TypeError("Input and Axis arrays are not the same type")
+
+    if input.__type__ == nessi_list.NessiList.DOUBLE:
+        slope = vpair_bind.DoubleVPair()
+        intercept = vpair_bind.DoubleVPair()
+        
+        utils_bind.fit_linear_background_d(axis.__array__, input.__array__,
+                                           input_err2.__array__,
+                                           min_bin, max_bin,
+                                           slope, intercept)
+        
+        return {"slope" : (slope.val, slope.val_err2),
+                "intercept": (intercept.val, intercept.val_err2)}
+    else:
+        raise TypeError("fit_linear_background: Unknown primitive type %s" \
+                        % str(input.__type__))
 
 ##
 # \}

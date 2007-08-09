@@ -31,6 +31,8 @@ libArrayManip_la_LDFLAGS = $(LIB_ARRAY_MANIP_VERSION) \
 			-L$(top_builddir)/utils/src/.libs -lUtils
 
 libArrayManip_la_SOURCES = \
+	abs_val.cpp \
+	abs_val.hpp \
 	add_ncerr.cpp \
 	add_ncerr.hpp \
         div_ncerr.cpp \

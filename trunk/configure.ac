@@ -23,7 +23,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.1.0iqc3], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
+AC_INIT([SNS Common Libraries], [1.1.0itc4], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
@@ -74,7 +74,7 @@ DRLIBDOCDIR='${datadir}/$(PACKAGE_TARNAME)/doc'
 AC_SUBST(DRLIBDOCDIR)
 
 # Collect all the library version numbers here
-LIB_ARRAY_MANIP_VERSION='-version-info 1:0:0'
+LIB_ARRAY_MANIP_VERSION='-version-info 2:0:1'
 AC_SUBST(LIB_ARRAY_MANIP_VERSION)
 LIB_AXIS_MANIP_VERSION='-version-info 2:0:1'
 AC_SUBST(LIB_AXIS_MANIP_VERSION)
@@ -82,7 +82,7 @@ LIB_PHYS_CORR_VERSION='-version-info 1:0:0'
 AC_SUBST(LIB_PHYS_CORR_VERSION)
 LIB_UTILS_VERSION='-version-info 2:0:1'
 AC_SUBST(LIB_UTILS_VERSION)
-PYLIB_ARRAY_MANIP_VERSION='-version-info 1:0:0'
+PYLIB_ARRAY_MANIP_VERSION='-version-info 2:0:1'
 AC_SUBST(PYLIB_ARRAY_MANIP_VERSION)
 PYLIB_AXIS_MANIP_VERSION='-version-info 2:0:1'
 AC_SUBST(PYLIB_AXIS_MANIP_VERSION)
