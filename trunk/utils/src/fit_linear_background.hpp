@@ -89,29 +89,27 @@ namespace Utils
     std::size_t start_bin;
     std::size_t end_bin;
 
-    // Setup the bin range for the fit. If either of the incoming min_bin or 
-    // max_bin values are -1, they will be set to 
-    // std::numeric_limits<std::size_t>::max() since those variables are 
-    // std::size_t types and std::size_t is unsigned.
+    // Setup the bin range for the fit. If max_bin is 0, the full array 
+    // is assumed.
 
     // Setup the starting bin
-    if (min_bin == std::numeric_limits<std::size_t>::max())
-      {
-        start_bin = 0;
-      }
-    else 
-      {
-        start_bin = min_bin;
-      }
+    start_bin = min_bin;
 
     // Setup the ending bin
-    if (max_bin == std::numeric_limits<std::size_t>::max())
+    if (max_bin == 0 || max_bin > input.size() - 1)
       {
         end_bin = input.size() - 1;
       }
     else 
       {
         end_bin = max_bin;
+      }
+
+    // Check to make sure that min_bin is less than max_bin
+    if (min_bin > max_bin)
+      {
+        throw std::invalid_argument(flb_func_str + " min_bin must be less "\
+                                    +"than max_bin");
       }
 
     for (std::size_t i = start_bin; i <= end_bin; ++i)
