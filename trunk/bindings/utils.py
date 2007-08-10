@@ -505,11 +505,11 @@ def eval_linear_fit(axis, axis_err2, slope, slope_err2,
 # This function takes an independent axis and the associated values and 
 # errors and fits a linear function to those points. An optional range 
 # can be specified that will restrict the fit region. That range is 
-# specified via array elements (bins). The minimum and maximum bin values
-# must be passed to the function. The use of -1 for either of these parameters
-# will result in an OverflowError. The function uses the method of
-# determinants which is described in detail in Chapter 6 of <em>Data Reduction
-# and Error Analysis for the Physical Sciences</em> by Bevington and Robinson. 
+# specified via array elements (bins). If the maximum range bin is set to 
+# zero then is ending bin is assumed to be the full length of the array 
+# (length-1). The function uses the method of determinants which is described
+# in detail in Chapter 6 of <em>Data Reduction and Error Analysis for the
+# Physical Sciences</em> by Bevington and Robinson. 
 # 
 # The necessary formulas for the parameters from the method of determinants 
 # are given by the following.
@@ -559,8 +559,7 @@ def eval_linear_fit(axis, axis_err2, slope, slope_err2,
 # \exception IndexError is raised if any of the lists are not the same length
 # \exception TypeError is raised if any of the lists are not the same type
 # \exception TypeError is raised if any of the lists are not recognized types
-# \exception OverflowError is raised if -1 is passed to either min_bin or
-#                          max_bin
+# \exception IndexError is raised if min_bin > max_bin
 
 def fit_linear_background(axis, input, input_err2, min_bin, max_bin):
     """
@@ -568,11 +567,11 @@ def fit_linear_background(axis, input, input_err2, min_bin, max_bin):
     This function takes an independent axis and the associated values and 
     errors and fits a linear function to those points. An optional range 
     can be specified that will restrict the fit region. That range is 
-    specified via array elements (bins). The minimum and maximum bin values
-    must be passed to the function. The use of -1 for either of these
-    parameters will result in an OverflowError. The function uses the method of
-    determinants which is described in detail in Chapter 6 of Data Reduction
-    and Error Analysis for the Physical Sciences by Bevington and Robinson. 
+    specified via array elements (bins). If the maximum range bin is set to 
+    zero then is ending bin is assumed to be the full length of the array 
+    (length-1).The function uses the method of determinants which is described
+    in detail in Chapter 6 of Data Reduction and Error Analysis for the
+    Physical Sciences by Bevington and Robinson. 
  
     The necessary formulas for the parameters from the method of determinants 
     are given by the following.
@@ -615,8 +614,7 @@ def fit_linear_background(axis, input, input_err2, min_bin, max_bin):
     <- IndexError is raised if any of the lists are not the same length
     <- TypeError is raised if any of the lists are not the same type
     <- TypeError is raised if any of the lists are not recognized types
-    <- OverflowError is raised if -1 is passed to either min_bin or
-                     max_bin
+    <- IndexError is raised if min_bin > max_bin
     """
 
     if input.__type__ != input_err2.__type__:
