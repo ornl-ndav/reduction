@@ -242,11 +242,11 @@ namespace Utils
    * This function takes an independent axis and the associated values and 
    * errors and fits a linear function to those points. An optional range 
    * can be specified that will restrict the fit region. That range is 
-   * specified via array elements (bins). If the minimum range bin is -1, the 
-   * first bin (0) is assumed. If the maximum range bin is -1, the ending bin 
-   * (length-1) is assumed. The function uses the method of determinants 
-   * which is described in detail in Chapter 6 of <em>Data Reduction and Error 
-   * Analysis for the Physical Sciences</em> by Bevington and Robinson. 
+   * specified via array elements (bins). If the maximum range bin is set to 
+   * zero then is ending bin is assumed to be the full length of the array 
+   * (length-1). The function uses the method of determinants which is 
+   * described in detail in Chapter 6 of <em>Data Reduction and Error Analysis 
+   * for the Physical Sciences</em> by Bevington and Robinson. 
    * 
    * The necessary formulas for the parameters from the method of determinants 
    * are given by the following.
