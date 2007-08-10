@@ -515,19 +515,22 @@ def eval_linear_fit(axis, axis_err2, slope, slope_err2,
 # are given by the following.
 #
 # \f[
-# \Delta = \sum\frac{1}{\sigma^2_i[i]} \sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
+# \Delta = \left(\sum\frac{1}{\sigma^2_i[i]}\right) 
+# \left(\sum\frac{axis^2_i[i]}{\sigma^2_i[i]}\right)
 # - \left(\sum\frac{axis_i[i]}{\sigma^2_i[i]} \right)^2
 # \f]
 # \f[
-# slope = \frac{1}{\Delta} \left(\sum\frac{1}{\sigma^2_i[i]} 
-# \sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]} - 
-# \sum\frac{axis_i[i]}{\sigma^2_i[i]} \sum\frac{data_i[i]}{\sigma^2_i[i]} 
-# \right)
+# slope = \frac{1}{\Delta} \left(\left(\sum\frac{1}{\sigma^2_i[i]}\right)
+# \left(\sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]}\right) - 
+# \left(\sum\frac{axis_i[i]}{\sigma^2_i[i]}\right) 
+# \left(\sum\frac{data_i[i]}{\sigma^2_i[i]}\right)\right)
 # \f]
 # \f[
-# intercept = \frac{1}{\Delta} \left(\sum\frac{axis^2_i[i]}{\sigma^2_i[i]}
-# \sum\frac{data_i[i]}{\sigma^2_i[i]} - \sum\frac{axis_i[i]}{\sigma^2_i[i]}
-# \sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]} \right)
+# intercept = \frac{1}{\Delta} 
+# \left(\left(\sum\frac{axis^2_i[i]}{\sigma^2_i[i]}\right)
+# \left(\sum\frac{data_i[i]}{\sigma^2_i[i]}\right) - 
+# \left(\sum\frac{axis_i[i]}{\sigma^2_i[i]}\right)
+# \left(\sum\frac{axis_i[i]\:data_i[i]}{\sigma^2_i[i]}\right)\right)
 # \f]
 # \f[
 # \sigma^2_{slope} = \frac{1}{\Delta} \sum\frac{1}{\sigma^2_i[i]}
