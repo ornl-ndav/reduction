@@ -236,7 +236,7 @@ bool test_func(NumT key, string debug)
                           true_output_intercept, true_output_intercept_err2);
 
   // run the code being tested
-  Utils::fit_linear_background(axis1, input1, input1_err2, -1, -1,
+  Utils::fit_linear_background(axis1, input1, input1_err2, 0, 0,
                                output_slope, output_slope_err2,
                                output_intercept, output_intercept_err2);
 
