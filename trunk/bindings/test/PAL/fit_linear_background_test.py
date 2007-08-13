@@ -137,8 +137,7 @@ if __name__ == "__main__":
 
     axis1, input, input_err2 = initialize_inputs("double")
 
-    output = utils.fit_linear_background(axis1, input, input_err2,
-                                         0, NUM_VAL-1)
+    output = utils.fit_linear_background(axis1, input, input_err2, 0, 0)
 
     # Check values
     mess = test_common.MakeCheck1("slope", output["slope"][0],

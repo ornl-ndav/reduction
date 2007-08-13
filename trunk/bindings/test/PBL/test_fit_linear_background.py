@@ -82,7 +82,7 @@ Output_Intercept_D = DoubleVPair()
 
 print "Checking Fit Linear Background Binding Function"
 
-fit_linear_background_d(Axis1_D, Input1_D, Input1_Err2_D, 0, NUM_VAL-1,
+fit_linear_background_d(Axis1_D, Input1_D, Input1_Err2_D, 0, 0,
                         Output_Slope_D, Output_Intercept_D)
 
 mess = test_common_bind.makeCheck("fit_linear_background_d (slope)",
