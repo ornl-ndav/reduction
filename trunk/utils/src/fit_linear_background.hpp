@@ -96,7 +96,7 @@ namespace Utils
     start_bin = min_bin;
 
     // Setup the ending bin
-    if (max_bin == 0 || max_bin > input.size() - 1)
+    if (max_bin == 0 || max_bin > (input.size() - 1))
       {
         end_bin = input.size() - 1;
       }
