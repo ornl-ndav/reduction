@@ -243,7 +243,7 @@ namespace Utils
    * errors and fits a linear function to those points. An optional range 
    * can be specified that will restrict the fit region. That range is 
    * specified via array elements (bins). If the maximum range bin is set to 
-   * zero then is ending bin is assumed to be the full length of the array 
+   * zero then the ending bin is assumed to be the full length of the array 
    * (length-1). The function uses the method of determinants which is 
    * described in detail in Chapter 6 of <em>Data Reduction and Error Analysis 
    * for the Physical Sciences</em> by Bevington and Robinson. 
