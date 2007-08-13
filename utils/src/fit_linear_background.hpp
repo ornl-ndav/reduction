@@ -105,8 +105,9 @@ namespace Utils
         end_bin = max_bin;
       }
 
-    // Check to make sure that min_bin is less than max_bin
-    if (min_bin >= max_bin)
+    // Now that start_bin and end_bin have been set from min_bin and max_bin, 
+    // check to make sure that start_bin is less than end_bin
+    if (start_bin >= end_bin)
       {
         throw std::invalid_argument(flb_func_str + " min_bin must be less "\
                                     +"than max_bin");
