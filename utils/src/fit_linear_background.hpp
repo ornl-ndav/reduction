@@ -106,7 +106,7 @@ namespace Utils
       }
 
     // Check to make sure that min_bin is less than max_bin
-    if (min_bin > max_bin)
+    if (min_bin >= max_bin)
       {
         throw std::invalid_argument(flb_func_str + " min_bin must be less "\
                                     +"than max_bin");
