@@ -133,7 +133,13 @@ case "$host" in
 esac
 AC_SUBST(STOSFLAG)
 
-SCL_SWIG_CHECK([1.3.28])
+# Must have Swig version 1.3.31 to make Python 2.5 bindings
+if test "$PYTHON_VERSION" = "2.5"; then
+   SCL_SWIG_CHECK([1.3.31])
+else
+   SCL_SWIG_CHECK([1.3.28])	
+fi
+
 SCL_DOXYGEN_CHECK([1.4.6])
 AC_CHECK_PROGS(DOT, [dot])
 
