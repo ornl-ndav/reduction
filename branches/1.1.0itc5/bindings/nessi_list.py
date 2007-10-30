@@ -39,6 +39,8 @@
 
 import nessi_vector_bind
 
+from scl_defs import VERSION as __version__
+
 ##
 # \namespace nessi_list
 #

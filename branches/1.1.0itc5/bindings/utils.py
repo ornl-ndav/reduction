@@ -42,6 +42,8 @@ import nessi_list
 import utils_bind
 import vpair_bind
 
+from scl_defs import VERSION as __version__
+
 ##
 # \namespace utils
 #

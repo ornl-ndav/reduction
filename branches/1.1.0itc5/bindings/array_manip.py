@@ -42,6 +42,8 @@
 import nessi_list
 import array_manip_bind
 
+from scl_defs import VERSION as __version__
+
 ##
 # \namespace array_manip
 #
