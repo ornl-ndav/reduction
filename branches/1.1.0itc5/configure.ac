@@ -185,6 +185,7 @@ AC_CONFIG_FILES([Makefile
 		utils/inc/Makefile
 		utils/src/Makefile
 		bindings/Makefile
+		bindings/scl_defs.py
 		doc/Makefile
 		])
 AC_OUTPUT

@@ -115,15 +115,18 @@ PYTHON_WRAPPERS = \
 PAL_FILES = \
 	$(ARRAYMANIP_PAL) \
 	$(AXISMANIP_PAL) \
+	scl_defs.py \
 	nessi_list.py \
 	$(PHYSCORR_PAL) \
 	$(UTILS_PAL)
 
-pkgpython_HEADERS = \
+pkgpython_PYTHON = \
 	$(PAL_FILES) \
 	$(PBL_FILES)
 
-EXTRA_DIST = $(SWIG_FILES) vpair.hpp
+EXTRA_DIST = $(SWIG_FILES) vpair.hpp scl_defs.py.in
+
+DISTCLEANFILES = scl_defs.py
 
 if OPTSWIG
 SWIGOPT= -O
