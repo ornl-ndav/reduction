@@ -67,8 +67,17 @@ AC_ARG_ENABLE(optswig,
 esac],[optswig=false])
 AM_CONDITIONAL(OPTSWIG, test x$optswig = xtrue)
 
-AM_PATH_PYTHON(2.3, :)
-AC_CHECK_ROOT([python],[PYTHONROOT],[/usr /usr/local],[include/python$PYTHON_VERSION/Python.h])
+# Our code requires Python 2.3
+PYTHON_REQUIRED=2.3
+AM_PATH_PYTHON($PYTHON_REQUIRED,, :)
+if test x$PYTHON = x:; then
+   AC_MSG_ERROR([You need python version $PYTHON_REQUIRED to make bindings])
+else
+   # Need to back up one more since $PYTHON=/path/to/python/bin/python
+   TEMP=`dirname $PYTHON`
+   PYTHONROOT=`dirname $TEMP`
+fi
+AC_SUBST(PYTHONROOT)
 
 DRLIBDOCDIR='${datadir}/$(PACKAGE_TARNAME)/doc'
 AC_SUBST(DRLIBDOCDIR)
