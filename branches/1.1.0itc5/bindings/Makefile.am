@@ -138,6 +138,10 @@ clean-local:
 	rm -f $(PBL_FILES) $(PYTHON_WRAPPERS)
 	rm -rf .libs _libs
 
+dist-hook:
+	rm -f $(distdir)/*_bind.py
+	rm -f $(distdir)/scl_defs.py
+
 # python wrappers
 
 if HAVE_SWIG
