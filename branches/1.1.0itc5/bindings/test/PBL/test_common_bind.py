@@ -111,29 +111,27 @@ def makeCheck(funcName, output, truth_output,
 
        if funcName.endswith("_d"):
            dataval = vector_is_equals_d(output, truth_output)
-           if output_err2!=None and truth_output_err2!=None:
+           if output_err2 is not None and truth_output_err2 is not None:
                err2val = vector_is_equals_d(output_err2, truth_output_err2)
            else:
                err2val = True
        elif funcName.endswith("_i"):
             dataval = vector_is_equals_i(output, truth_output)
-            if output_err2!=None and truth_output_err2!=None:
+            if output_err2 is not None and truth_output_err2 is not None:
                 err2val = vector_is_equals_i(output_err2, truth_output_err2)
             else:
                 err2val = True
        else:
-           raise TypeError, "Function type not recognized!"
+           raise TypeError("Function type not recognized!")
 
-       if dataval == False or err2val == False:
-
-           if dataval == False:
-               if err2val == False:
+       if not dataval or not err2val:
+           if not dataval:
+               if not err2val:
                    mess += " Data and Err2 Not OK"
                else:
                    mess += " Data Not OK"
-           elif err2val == False:
+           elif not err2val:
                mess += " Err2 Not OK"
-
        else:
            mess += " Functionality OK"
 
@@ -145,16 +143,14 @@ def makeCheck(funcName, output, truth_output,
            # Make it OK
            err2val = 0
 
-       if dataval != 0 or err2val != 0:
-
-           if dataval != 0:
-               if err2val !=0:
+       if dataval or err2val:
+           if dataval:
+               if err2val:
                    mess += " Data and Err2 Not OK"
                else:
                    mess += " Data Not OK"
-           elif err2val != 0:
+           elif err2val:
                mess += " Err2 Not OK"
-
        else:
             mess += " Functionality OK"
 
