@@ -67,7 +67,8 @@ namespace Utils
    * element in the x coordinate array, \f$y_{i-1}\f$ is the \f$i^{th}-1\f$ 
    * element in the y coordinate array and \f$y_{i+1}\f$ is the \f$i^{th}+1\f$ 
    * element in the y coordinate array. The value of \f$A\f$ is a signed area. 
-   * In order to get \f$|A|\f$, the signed boolean flag should be set to false.
+   * In order to get \f$|A|\f$, the signed_area boolean flag should be set to 
+   * false.
    * 
    * The implementation of this formula requires that the coordinate arrays 
    * must have the first ([0]) and second ([1]) elements repeated making the 
@@ -77,8 +78,8 @@ namespace Utils
    * \param y_coord (INPUT) the array of y coordinates for the polygon
    * \param size_poly (INPUT) the size of the polygon (i.e. square: 
    * size_poly=4)
-   * \param signed (INPUT) flag to pass back the resulting area as a signed or
-   * unsigned quantity
+   * \param signed_area (INPUT) flag to pass back the resulting area as a 
+   * signed or unsigned quantity
    * \param area (OUTPUT) the area of the polygon
    * \param temp holds temporary memory to be passed to the function
    *
@@ -94,7 +95,7 @@ namespace Utils
   calc_area_2D_polygon(const Nessi::Vector<NumT> & x_coord,
                        const Nessi::Vector<NumT> & y_coord,
                        const std::size_t size_poly,
-                       const bool signed,
+                       const bool signed_area,
                        NumT & area,
                        void *temp=NULL);
 
