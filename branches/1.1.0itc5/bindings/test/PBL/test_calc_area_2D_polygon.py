@@ -21,7 +21,7 @@ import test_common_bind
 from vpair_bind import *
 
 print "#####################################################################"
-print "# Checking Calc_area_2D_polygon Swig Generated Python Binding Layer #"
+print "# Checking Calc_Area_2D_polygon Swig Generated Python Binding Layer #"
 print "#####################################################################"
 print
 
@@ -98,7 +98,7 @@ Output_Triangle_D = DoubleVPair()
 Output_Square_D = DoubleVPair()
 Output_Parallelogram_D = DoubleVPair()
 
-print "Checking Weighted Average Binding Function"
+print "Checking 2D Polygon Area Calculation Binding Function"
 
 calc_area_2D_polygon_d(Triangle_X_D, Triangle_Y_D, 3, False, Output_Triangle_D)
 
