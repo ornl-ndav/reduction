@@ -139,7 +139,11 @@ def makeCheck(funcName, output, truth_output,
 
    except AttributeError:
        dataval = compare(output, truth_output)
-       err2val = compare(output_err2, truth_output_err2)
+       if output_err2 is not None and truth_output_err2 is not None:
+           err2val = compare(output_err2, truth_output_err2)
+       else:
+           # Make it OK
+           err2val = 0
 
        if dataval != 0 or err2val != 0:
 
