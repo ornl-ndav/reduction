@@ -32,6 +32,7 @@ AM_LDFLAGS  = -static \
 EXTRA_DIST=testsuite.at testsuite
 
 UTILS_TARGETS = \
+	calc_area_2D_polygon_test \
 	calc_bin_centers_test \
 	calc_bin_widths_test \
 	eval_linear_fit_test \
@@ -43,6 +44,9 @@ TESTSUITE	= $(srcdir)/testsuite
 TESTSUITE_AT	= ## dbase.at devices.at starter.at
 AUTOTEST	= $(AUTOM4TE) --language=autotest
 check_PROGRAMS = $(UTILS_TARGETS)
+
+calc_area_2D_polygon_test_SOURCES = calc_area_2D_polygon_test.cpp \
+	test_common.hpp
 
 calc_bin_centers_test_SOURCES = calc_bin_centers_test.cpp test_common.hpp
 
