@@ -77,30 +77,42 @@ void initialize_inputs(Nessi::Vector<NumT> & triangle_x,
   triangle_x.push_back(static_cast<NumT>(1.0));
   triangle_x.push_back(static_cast<NumT>(-1.0));
   triangle_x.push_back(static_cast<NumT>(0.0));
+  triangle_x.push_back(static_cast<NumT>(1.0));
+  triangle_x.push_back(static_cast<NumT>(-1.0));
 
   triangle_y.push_back(static_cast<NumT>(1.0));
   triangle_y.push_back(static_cast<NumT>(1.0));
   triangle_y.push_back(static_cast<NumT>(3.0));
+  triangle_y.push_back(static_cast<NumT>(1.0));
+  triangle_y.push_back(static_cast<NumT>(1.0));
 
   square_x.push_back(static_cast<NumT>(2.5));
   square_x.push_back(static_cast<NumT>(1.5));
   square_x.push_back(static_cast<NumT>(1.5));
   square_x.push_back(static_cast<NumT>(2.5));
+  square_x.push_back(static_cast<NumT>(2.5));
+  square_x.push_back(static_cast<NumT>(1.5));
 
   square_y.push_back(static_cast<NumT>(-1.0));
   square_y.push_back(static_cast<NumT>(-1.0));
   square_y.push_back(static_cast<NumT>(0.0));
   square_y.push_back(static_cast<NumT>(0.0));
+  square_y.push_back(static_cast<NumT>(-1.0));
+  square_y.push_back(static_cast<NumT>(-1.0));
 
   parallelogram_x.push_back(static_cast<NumT>(-2.0));
   parallelogram_x.push_back(static_cast<NumT>(-3.0));
   parallelogram_x.push_back(static_cast<NumT>(-0.5));
   parallelogram_x.push_back(static_cast<NumT>(0.5));
+  parallelogram_x.push_back(static_cast<NumT>(-2.0));
+  parallelogram_x.push_back(static_cast<NumT>(-3.0));
 
   parallelogram_y.push_back(static_cast<NumT>(-1.0));
   parallelogram_y.push_back(static_cast<NumT>(-3.0));
   parallelogram_y.push_back(static_cast<NumT>(-3.0));
-  parallelogram_y.push_back(static_cast<NumT>(1.0));
+  parallelogram_y.push_back(static_cast<NumT>(-1.0));
+  parallelogram_y.push_back(static_cast<NumT>(-1.0));
+  parallelogram_y.push_back(static_cast<NumT>(-3.0));
 }
 
 /**
@@ -120,9 +132,9 @@ void initialize_true_outputs(NumT & true_output_triangle,
                              NumT & true_output_parallelogram)
 {
   // initialize the correct outputs
-  true_output_triangle = static_cast<NumT>(3.);
-  true_output_square = static_cast<NumT>(0.2);
-  true_output_parallelogram = static_cast<NumT>(0.2);
+  true_output_triangle = static_cast<NumT>(2.);
+  true_output_square = static_cast<NumT>(1.);
+  true_output_parallelogram = static_cast<NumT>(-5.);
 }
 
 /**
