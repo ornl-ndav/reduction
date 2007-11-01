@@ -64,6 +64,111 @@ from scl_defs import VERSION as __version__
 #
 
 ##
+# \defgroup calc_area_2D_polygon utils::calc_area_2D_polygon
+# \{
+#
+
+##
+# \brief This function calculates the 2D polygon area
+#
+# This function is described in section 3.59 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function takes two arrays of coordinates of a 2D polygon and 
+# calculates the area for that polygon. The coordinates of the polygon can 
+# be in any two-dimensional space. The area is calculated according to 
+# the function
+#
+# \f[
+# A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i-1} - 
+# y_{i+1}\right)\right)
+# \f]
+#
+# where \f$n\f$ is the size of the polygon, \f$x_i\f$ is the \f$i^{th}\f$ 
+# element in the x coordinate array, \f$y_{i-1}\f$ is the \f$i^{th}-1\f$ 
+# element in the y coordinate array and \f$y_{i+1}\f$ is the \f$i^{th}+1\f$ 
+# element in the y coordinate array. The value of \f$A\f$ is a signed area. 
+# In order to get \f$|A|\f$, the signed_area boolean flag should be set to 
+# false.
+# 
+# The implementation of this formula requires that the coordinate arrays 
+# must have the first ([0]) and second ([1]) elements repeated making the 
+# array sizes size_poly + 2. 
+#
+# \param x_coord (INPUT) the array of x coordinates for the polygon
+# \param y_coord (INPUT) the array of y coordinates for the polygon
+# \param size_poly (INPUT) the size of the polygon (i.e. square: 
+# size_poly=4)
+# \param signed_area (INPUT) flag to pass back the resulting area as a 
+# signed or unsigned quantity. The default value is False (unsigned area).
+#
+# \return
+# - The area of the 2D polygon
+#
+# \exception TypeError is raised if x_coord and y_coord are not the same type
+# \exception IndexError is raised if x_coord and y_coord are not the same
+# length
+# \exception TypeError is raised if the size of x_coord is not identical to
+# size_poly+2.
+#
+def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
+    """
+    This function takes two arrays of coordinates of a 2D polygon and 
+    calculates the area for that polygon. The coordinates of the polygon can 
+    be in any two-dimensional space. The area is calculated according to 
+    the function
+
+    A = (1/2) sum^n_{i=1} (x_i * (y_{i-1} - y_{i+1}))
+
+    where n is the size of the polygon, x_i is the i^{th} element in the x
+    coordinate array, y_{i-1} is the i^{th}-1 element in the y coordinate
+    array and y_{i+1} is the i^{th}+1 element in the y coordinate array. The
+    value of A is a signed area. In order to get |A|, the signed_area boolean
+    flag should be set to False.
+    
+    The implementation of this formula requires that the coordinate arrays 
+    must have the first ([0]) and second ([1]) elements repeated making the 
+    array sizes size_poly + 2. 
+
+    Parameters:
+    ----------
+    -> x_coord the array of x coordinates for the polygon
+    -> y_coord the array of y coordinates for the polygon
+    -> size_poly the size of the polygon (i.e. square: size_poly=4)
+    -> signed_area flag to pass back the resulting area as a signed or
+       unsigned quantity. The default value is False (unsigned area).
+
+    Returns:
+    -------
+    <- The area of the 2D polygon
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if x_coord and y_coord are not the same type
+    <- TypeError is raised if x_coord is not of type double    
+    <- IndexError is raised if x_coord and y_coord are not the same length
+    <- TypeError is raised if the size of x_coord is not identical to
+       size_poly+2.
+    """
+    if x_coord.__type__ != y_coord.__type__:
+        raise TypeError("X and Y Coordinate arrays are not the same type")
+
+    if x_coord.__type__ == nessi_list.NessiList.DOUBLE:
+        area = vpair_bind.DoubleVPair()
+        utils_bind.calc_area_2D_polygon_d(x_coord.__array__,
+                                          y_coord.__array__,
+                                          size_poly,
+                                          signed_area,
+                                          area)
+        
+        return area.val
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(x_coord.__type__))
+##
+# \}
+
+##
 # \defgroup calc_bin_centers utils::calc_bin_centers
 # \{
 #
