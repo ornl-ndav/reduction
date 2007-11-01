@@ -1,0 +1,57 @@
+Original Author: Michael Reuter
+Date: January 18, 2006
+
+Release Instructions
+====================
+
+This file documents the source and supporting files for the SNS Common
+Libraries that need to be modified for version numbers for a particular
+revision. Other items that may need to be changed for a new release other than
+version numbers will be highlighted.
+
+First a note about version numbers for the entire set of common libraries and
+the version numbers for the individual libraries. These version numbers can
+and most likely will move independently of each other. To clarify this, lets
+make an example progression of versions for the common libraries and some
+component libraries.
+
+Common Libraries Version:  1.0.0      2.0.0
+Library 1 Version:    1.0.0      2.0.0
+Library 2 Version:    1.0.0      1.0.0
+
+In this example, Library 2 did not change version since no work was done on
+that library for the 2.0.0 release of the common libraries. The NEWS file
+associated with the source code should always contain the correct library
+versions for the particular release of the common libraries.
+
+OK, with that being said, let's get to the business of the files that might
+need modification.
+
+In the top directory of the source:
+
+NEWS
+  - This file should be updated for each release. It should include a
+  description of the overall changes from the previous release and can
+  contain a detailed list of those changes. An insert of a list of SVN
+  log changes is probably not very useful here, so I would recommend
+  against doing it, but I won't stop you.
+
+configure.ac
+  - The second argument in the AC_INIT command contains the version
+  number for the common libraries. Change to to appropriate version for
+  release.
+  - Interim releases, alpha and beta, should be appended to the version
+  number at this location.
+  - The third argument (author list) may also need to be updated for
+  a particular release.
+  - Find the section that lists all of the individual library version
+  numbers. Changes these to the appropriate versions for the common
+  library release.
+
+In doc:
+
+index.html
+  - The version number for the common libraries is contained in this
+  file. Change to the appropriate version for the release.
+
+$Id$
