@@ -79,8 +79,8 @@ def MakeCheck(function_type, output, truth_output, output_err2,
 
     return mess
 
-def MakeCheck1(function_type, output, truth_output, output_err2,
-               truth_output_err2):
+def MakeCheck1(function_type, output, truth_output, output_err2=None,
+               truth_output_err2=None):
     """
        This function checks output and truth vectors for both data and
        square of the uncertainty in the data (err2) arrays.
@@ -96,7 +96,11 @@ def MakeCheck1(function_type, output, truth_output, output_err2,
     err2val = ""
 
     dataval = utils.compare(output, truth_output)
-    err2val = utils.compare(output_err2, truth_output_err2)
+    if output_err2 is not None and truth_output_err2 is not None:
+        err2val = utils.compare(output_err2, truth_output_err2)
+    else:
+        # Make it OK
+        err2val = 0
 
     mess = "scalar-scalar"
 
