@@ -13,6 +13,8 @@ python abs_val_test.py
 echo
 python add_ncerr_test.py
 echo
+python calc_area_2D_polygon_test.py
+echo
 python calc_bin_centers_test.py
 echo
 python calc_bin_widths_test.py
