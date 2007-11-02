@@ -27,15 +27,9 @@ def printVector(object, last=10):
     else:
         print
 
-
-def MakeCheck(function_type,\
-        output,\
-        truth_output,\
-        output_err2,\
-        truth_output_err2):
-
+def MakeCheck(function_type, output, truth_output, output_err2,
+              truth_output_err2):
     """
-
        This function checks output and truth vectors for both data and
        square of the uncertainty in the data (err2) arrays.
 
@@ -49,53 +43,45 @@ def MakeCheck(function_type,\
     dataval = ""
     err2val = ""
 
-    if (function_type=="double" or \
-    function_type=="int" or \
-    function_type=="vv" or \
-    function_type=="vs" or \
-    function_type=="sv"):
+    if function_type == "double" or function_type == "int" or \
+        function_type == "vv" or function_type == "vs" or \
+        function_type == "sv":
         dataval = utils.vector_is_equals(output, truth_output)
         err2val = utils.vector_is_equals(output_err2, truth_output_err2)
     else:
-        raise TypeError, "Function type not recognized!"
+        raise TypeError("Function type not recognized!")
 
-    if function_type=="vv":
+    if function_type == "vv":
         mess = "vector-vector"
-    elif function_type=="vs":
+    elif function_type == "vs":
         mess = "vector-scalar"
-    elif function_type=="sv":
+    elif function_type == "sv":
         mess = "scalar-vector"
     else:
         mess = function_type
 
-    if (function_type=="double"):
+    if function_type == "double":
         mess += "............................."
     else:
         mess += "................................"
 
-    if dataval == False or err2val == False:
+    if not dataval or not err2val:
 
-        if dataval == False:
-            if err2val == False:
+        if not dataval:
+            if not err2val:
                 mess += " Data and Err2 Not OK"
             else:
                 mess += " Data Not OK"
-        elif err2val == False:
+        elif not err2val:
             mess += " Err2 Not OK"
-
     else:
         mess += " Functionality OK"
 
     return mess
 
-def MakeCheck1(function_type,\
-         output,\
-         truth_output,\
-         output_err2,\
-         truth_output_err2):
-
+def MakeCheck1(function_type, output, truth_output, output_err2,
+               truth_output_err2):
     """
-
        This function checks output and truth vectors for both data and
        square of the uncertainty in the data (err2) arrays.
 
@@ -114,19 +100,19 @@ def MakeCheck1(function_type,\
 
     mess = "scalar-scalar"
 
-    if (function_type=="double"):
+    if function_type == "double":
         mess += "............................."
     else:
         mess += "................................"
 
-    if dataval != 0 or err2val != 0:
+    if dataval or err2val:
 
-        if dataval != 0:
-            if err2val != 0:
+        if dataval:
+            if err2val:
                 mess += " Data and Err2 Not OK"
             else:
                 mess += " Data Not OK"
-        elif err2val != 0:
+        elif err2val:
             mess += " Err2 Not OK"
 
     else:
@@ -134,12 +120,8 @@ def MakeCheck1(function_type,\
 
     return mess
 
-def MakeCheck2(function_type,\
-         output,\
-         truth_output):
-
+def MakeCheck2(function_type, output, truth_output):
     """
-
        This function checks output and truth vectors for data arrays.
 
        function_type     : this is the type of the Swig binding layer function
@@ -153,12 +135,12 @@ def MakeCheck2(function_type,\
 
     mess = function_type
 
-    if (function_type=="double"):
+    if function_type == "double":
         mess += "............................."
     else:
         mess += "................................"
 
-    if dataval == False:
+    if not dataval:
         mess += " Data Not OK"
     else:
         mess += " Functionality OK"
