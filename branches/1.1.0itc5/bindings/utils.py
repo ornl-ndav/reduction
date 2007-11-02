@@ -91,9 +91,9 @@ from scl_defs import VERSION as __version__
 # In order to get \f$|A|\f$, the signed_area boolean flag should be set to 
 # false.
 # 
-# The implementation of this formula requires that the coordinate arrays 
-# must have the first ([0]) and second ([1]) elements repeated making the 
-# array sizes size_poly + 2. 
+# <b>The implementation of this formula requires that the coordinate arrays
+# must have the first ([0]) and second ([1]) elements repeated making the
+# array sizes size_poly + 2.</b> 
 #
 # \param x_coord (INPUT) the array of x coordinates for the polygon
 # \param y_coord (INPUT) the array of y coordinates for the polygon
@@ -126,9 +126,9 @@ def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
     value of A is a signed area. In order to get |A|, the signed_area boolean
     flag should be set to False.
     
-    The implementation of this formula requires that the coordinate arrays 
-    must have the first ([0]) and second ([1]) elements repeated making the 
-    array sizes size_poly + 2. 
+    THE IMPLEMENTATION OF THIS FORMULA REQUIRES THAT THE COORDINATE
+    ARRAYS MUST HAVE THE FIRST ([0]) AND SECOND ([1]) ELEMENTS REPEATED MAKING
+    THE ARRAY SIZES SIZE_POLY + 2. 
 
     Parameters:
     ----------

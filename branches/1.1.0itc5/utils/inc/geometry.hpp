@@ -33,16 +33,6 @@
 #include "nessi.hpp"
 #include <string>
 
-/**
- * \namespace Utils
- *
- * \brief This sub-library contains various functions that do not
- * specifically reside in any of the other sub-libraries.
- *
- * All of these functions are written in reference to SNS
- * 107030214-TD0001-R00, "Data Reduction Library Software Requirements
- * and Specifications."
- */
 namespace Utils
 {
   /**
@@ -70,9 +60,9 @@ namespace Utils
    * In order to get \f$|A|\f$, the signed_area boolean flag should be set to 
    * false.
    * 
-   * The implementation of this formula requires that the coordinate arrays 
+   * <b>The implementation of this formula requires that the coordinate arrays 
    * must have the first ([0]) and second ([1]) elements repeated making the 
-   * array sizes size_poly + 2. 
+   * array sizes size_poly + 2.</b> 
    *
    * \param x_coord (INPUT) the array of x coordinates for the polygon
    * \param y_coord (INPUT) the array of y coordinates for the polygon
