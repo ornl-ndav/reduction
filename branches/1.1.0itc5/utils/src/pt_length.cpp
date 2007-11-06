@@ -25,7 +25,7 @@
 /**
  * $Id$
  *
- * \file utils/src/pt_length.hpp
+ * \file utils/src/pt_length.cpp
  */
 
 #include "pt_length.hpp"
