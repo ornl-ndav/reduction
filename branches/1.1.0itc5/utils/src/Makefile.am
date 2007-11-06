@@ -39,6 +39,8 @@ libUtils_la_SOURCES = \
 	check_histo_sizes.cpp \
 	check_sizes_square.hpp \
 	check_sizes_square.cpp \
+	classify_pt_to_edge.hpp \
+	classify_pt_to_edge.cpp \
 	compare.hpp \
 	compare.cpp \
 	convex_polygon_intersect.hpp \
