@@ -103,8 +103,9 @@ namespace Utils
    *
    * This function calculates the intersection of two convex polygons (labeled 
    * A and B for identification purposes) and returns the overlap polygon 
-   * (labeled C). The prescription for this function is taken from 
-   * Laszlo, M. Upper Saddle River, 1996. 
+   * (labeled C). The prescription for this function is taken from section 6.5 
+   * of <em>Computational Geometry and Computer Graphics in C++</em> by 
+   * Michael Laszlo.
    *
    * \param ax_coord (INPUT) the x coordinates for polygon A
    * \param ay_coord (INPUT) the y coordinates for polygon A
