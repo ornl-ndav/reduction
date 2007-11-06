@@ -1,0 +1,449 @@
+/*
+ *                     SNS Common Libraries
+ *           A part of the SNS Analysis Software Suite.
+ *
+ *                  Spallation Neutron Source
+ *          Oak Ridge National Laboratory, Oak Ridge TN.
+ *
+ *
+ *                             NOTICE
+ *
+ * For this software and its associated documentation, permission is granted
+ * to reproduce, prepare derivative works, and distribute copies to the public
+ * for any purpose and without fee.
+ *
+ * This material was prepared as an account of work sponsored by an agency of
+ * the United States Government.  Neither the United States Government nor the
+ * United States Department of Energy, nor any of their employees, makes any
+ * warranty, express or implied, or assumes any legal liability or
+ * responsibility for the accuracy, completeness, or usefulness of any
+ * information, apparatus, product, or process disclosed, or represents that
+ * its use would not infringe privately owned rights.
+ *
+ */
+
+/**
+ * $Id$
+ *
+ * \file utils/test/cpp/convex_polygon_intersect_test.cpp
+ */
+
+#include "geometry.hpp"
+#include "test_common.hpp"
+
+using namespace std;
+
+/**
+ * \defgroup convex_polygon_intersect_test convex_polygon_intersect_test
+ * \{
+ *
+ * This test compares the output data (\f$output\f$) calculated by the library
+ * function <i>convex_polygon_intersect</i> and described in section 3.60 of 
+ * the <i>SNS 107030214-TD0001-R00, "Data Reduction Library Software 
+ * Requirements and Specifications"</i> with the true output data 
+ * (\f$true\_output\f$) manually calculated.
+ * Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
+ * will generate in the testsuite.log file an error message that gives details
+ * about the location and type of the error.
+ *
+ * <b>Notations used:</b>
+ * - vv : vector-vector
+ * - VV : "v,v"
+ * - ERROR = "error "
+ */
+
+/**
+ *
+ * This function initializes the values of the coordinate arrays for the 
+ * different polygons
+ *
+ * \param parallelogram_x (OUTPUT) is the x coordinate array for a 
+ * parallelogram 
+ * \param parallelogram_y (OUTPUT) is the y coordinate array for a 
+ * parallelogram 
+ * \param square1_x (OUTPUT) is the x coordinate array for a square 
+ * \param square1_y (OUTPUT) is the y coordinate array for a square 
+ * \param square2_x (OUTPUT) is the x coordinate array for a square 
+ * \param square2_y (OUTPUT) is the y coordinate array for a square 
+ * \param square3_x (OUTPUT) is the x coordinate array for a square 
+ * \param square3_y (OUTPUT) is the y coordinate array for a square 
+ * \param square4_x (OUTPUT) is the x coordinate array for a square 
+ * \param square4_y (OUTPUT) is the y coordinate array for a square 
+ */
+template <typename NumT>
+void initialize_inputs(Nessi::Vector<NumT> & parallelogram_x,
+                       Nessi::Vector<NumT> & parallelogram_y,
+                       Nessi::Vector<NumT> & square1_x,
+                       Nessi::Vector<NumT> & square1_y,
+                       Nessi::Vector<NumT> & square2_x,
+                       Nessi::Vector<NumT> & square2_y,
+                       Nessi::Vector<NumT> & square3_x,
+                       Nessi::Vector<NumT> & square3_y,
+                       Nessi::Vector<NumT> & square4_x,
+                       Nessi::Vector<NumT> & square4_y)
+{
+  parallelogram_x.push_back(static_cast<NumT>(-2.0));
+  parallelogram_x.push_back(static_cast<NumT>(-3.0));
+  parallelogram_x.push_back(static_cast<NumT>(-0.5));
+  parallelogram_x.push_back(static_cast<NumT>(0.5));
+
+  parallelogram_y.push_back(static_cast<NumT>(-1.0));
+  parallelogram_y.push_back(static_cast<NumT>(-3.0));
+  parallelogram_y.push_back(static_cast<NumT>(-3.0));
+  parallelogram_y.push_back(static_cast<NumT>(-1.0));
+
+  square1_x.push_back(static_cast<NumT>(1.0));
+  square1_x.push_back(static_cast<NumT>(0.0));
+  square1_x.push_back(static_cast<NumT>(0.0));
+  square1_x.push_back(static_cast<NumT>(1.0));
+
+  square1_y.push_back(static_cast<NumT>(-2.0));
+  square1_y.push_back(static_cast<NumT>(-2.0));
+  square1_y.push_back(static_cast<NumT>(-1.0));
+  square1_y.push_back(static_cast<NumT>(-1.0));
+
+  square2_x.push_back(static_cast<NumT>(0.0));
+  square2_x.push_back(static_cast<NumT>(-1.0));
+  square2_x.push_back(static_cast<NumT>(-1.0));
+  square2_x.push_back(static_cast<NumT>(0.0));
+
+  square2_y.push_back(static_cast<NumT>(-3.0));
+  square2_y.push_back(static_cast<NumT>(-3.0));
+  square2_y.push_back(static_cast<NumT>(-2.0));
+  square2_y.push_back(static_cast<NumT>(-2.0));
+
+  square3_x.push_back(static_cast<NumT>(0.5));
+  square3_x.push_back(static_cast<NumT>(-0.5));
+  square3_x.push_back(static_cast<NumT>(-0.5));
+  square3_x.push_back(static_cast<NumT>(0.5));
+
+  square3_y.push_back(static_cast<NumT>(-1.5));
+  square3_y.push_back(static_cast<NumT>(-1.5));
+  square3_y.push_back(static_cast<NumT>(-0.5));
+  square3_y.push_back(static_cast<NumT>(-0.5));
+
+  square4_x.push_back(static_cast<NumT>(-1.0));
+  square4_x.push_back(static_cast<NumT>(-2.0));
+  square4_x.push_back(static_cast<NumT>(-2.0));
+  square4_x.push_back(static_cast<NumT>(-1.0));
+
+  square4_y.push_back(static_cast<NumT>(-2.0));
+  square4_y.push_back(static_cast<NumT>(-2.0));
+  square4_y.push_back(static_cast<NumT>(-1.0));
+  square4_y.push_back(static_cast<NumT>(-1.0));
+}
+
+/**
+ * Function that sets the true outputs based on values contained coordinate 
+ * arrays for the triangle, square and parallelogram.
+ *
+ * \param true_output1_x (OUTPUT) is the x-coordinates of the true 
+ * intersection polygon of the parallelogram with square1
+ * \param true_output1_y (OUTPUT) is the y-coordinates of the true 
+ * intersection polygon of the parallelogram with square1
+ * \param true_output2_x (OUTPUT) is the x-coordinates of the true 
+ * intersection polygon of the parallelogram with square2
+ * \param true_output2_y (OUTPUT) is the y-coordinates of the true 
+ * intersection polygon of the parallelogram with square2
+ * \param true_output3_x (OUTPUT) is the x-coordinates of the true 
+ * intersection polygon of the parallelogram with square3
+ * \param true_output3_y (OUTPUT) is the y-coordinates of the true 
+ * intersection polygon of the parallelogram with square3
+ * \param true_output4_x (OUTPUT) is the x-coordinates of the true 
+ * intersection polygon of the parallelogram with square4
+ * \param true_output4_y (OUTPUT) is the y-coordinates of the true 
+ * intersection polygon of the parallelogram with square4
+ */
+template <typename NumT>
+void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
+                             Nessi::Vector<NumT> & true_output1_y,
+                             Nessi::Vector<NumT> & true_output2_x,
+                             Nessi::Vector<NumT> & true_output2_y,
+                             Nessi::Vector<NumT> & true_output3_x,
+                             Nessi::Vector<NumT> & true_output3_y,
+                             Nessi::Vector<NumT> & true_output4_x,
+                             Nessi::Vector<NumT> & true_output4_y)
+{
+  // initialize the correct outputs
+  true_output1_x.push_back(static_cast<NumT>(-2.0));
+  true_output1_x.push_back(static_cast<NumT>(-3.0));
+  true_output1_x.push_back(static_cast<NumT>(-0.5));
+  true_output1_x.push_back(static_cast<NumT>(0.5));
+
+  true_output1_y.push_back(static_cast<NumT>(-1.0));
+  true_output1_y.push_back(static_cast<NumT>(-3.0));
+  true_output1_y.push_back(static_cast<NumT>(-3.0));
+  true_output1_y.push_back(static_cast<NumT>(-1.0));
+
+  true_output2_x.push_back(static_cast<NumT>(-2.0));
+  true_output2_x.push_back(static_cast<NumT>(-3.0));
+  true_output2_x.push_back(static_cast<NumT>(-0.5));
+  true_output2_x.push_back(static_cast<NumT>(0.5));
+
+  true_output2_y.push_back(static_cast<NumT>(-1.0));
+  true_output2_y.push_back(static_cast<NumT>(-3.0));
+  true_output2_y.push_back(static_cast<NumT>(-3.0));
+  true_output2_y.push_back(static_cast<NumT>(-1.0));
+
+  true_output3_x.push_back(static_cast<NumT>(-2.0));
+  true_output3_x.push_back(static_cast<NumT>(-3.0));
+  true_output3_x.push_back(static_cast<NumT>(-0.5));
+  true_output3_x.push_back(static_cast<NumT>(0.5));
+
+  true_output3_y.push_back(static_cast<NumT>(-1.0));
+  true_output3_y.push_back(static_cast<NumT>(-3.0));
+  true_output3_y.push_back(static_cast<NumT>(-3.0));
+  true_output3_y.push_back(static_cast<NumT>(-1.0));
+
+  true_output4_x.push_back(static_cast<NumT>(-2.0));
+  true_output4_x.push_back(static_cast<NumT>(-3.0));
+  true_output4_x.push_back(static_cast<NumT>(-0.5));
+  true_output4_x.push_back(static_cast<NumT>(0.5));
+
+  true_output4_y.push_back(static_cast<NumT>(-1.0));
+  true_output4_y.push_back(static_cast<NumT>(-3.0));
+  true_output4_y.push_back(static_cast<NumT>(-3.0));
+  true_output4_y.push_back(static_cast<NumT>(-1.0));
+}
+
+/**
+ * Function that tests the discrepancies between the outputs
+ * generated by the <i>convex_polygon_intersect</i> function. The function 
+ * returns TRUE if the two values compared, \f$output\f$ and 
+ * \f$true\_output\f$, match, and returns FALSE if they do not match.
+ *
+ * \param output1_x (INPUT) is the x-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square1
+ * \param output1_y (INPUT) is the y-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square1
+ * \param output2_x (INPUT) is the x-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square2
+ * \param output2_y (INPUT) is the y-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square2
+ * \param output3_x (INPUT) is the x-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square3
+ * \param output3_y (INPUT) is the y-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square3
+ * \param output4_x (INPUT) is the x-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square4
+ * \param output4_y (INPUT) is the y-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square4
+
+ * \param true_output1_x (INPUT) is the true x-coordinates of the overlap of 
+ * the parallelogram with square1
+ * \param true_output1_y (INPUT) is the true y-coordinates of the overlap of 
+ * the parallelogram with square1
+ * \param true_output2_x (INPUT) is the true x-coordinates of the overlap of 
+ * the parallelogram with square2
+ * \param true_output2_y (INPUT) is the true y-coordinates of the overlap of 
+ * the parallelogram with square2
+ * \param true_output3_x (INPUT) is the true x-coordinates of the overlap of 
+ * the parallelogram with square3
+ * \param true_output3_y (INPUT) is the true y-coordinates of the overlap of 
+ * the parallelogram with square3
+ * \param true_output4_x (INPUT) is the true x-coordinates of the overlap of 
+ * the parallelogram with square4
+ * \param true_output4_y (INPUT) is the true y-coordinates of the overlap of 
+ * the parallelogram with square4
+ */
+template <typename NumT>
+bool test_okay(Nessi::Vector<NumT> & output1_x,
+               Nessi::Vector<NumT> & output1_y,
+               Nessi::Vector<NumT> & output2_x,
+               Nessi::Vector<NumT> & output2_y,
+               Nessi::Vector<NumT> & output3_x,
+               Nessi::Vector<NumT> & output3_y,
+               Nessi::Vector<NumT> & output4_x,
+               Nessi::Vector<NumT> & output4_y,
+               Nessi::Vector<NumT> & true_output1_x,
+               Nessi::Vector<NumT> & true_output1_y,
+               Nessi::Vector<NumT> & true_output2_x,
+               Nessi::Vector<NumT> & true_output2_y,
+               Nessi::Vector<NumT> & true_output3_x,
+               Nessi::Vector<NumT> & true_output3_y,
+               Nessi::Vector<NumT> & true_output4_x,
+               Nessi::Vector<NumT> & true_output4_y)
+{
+  bool value = true;
+
+  // fraction 1 x comparison
+  if (!test_okay(output1_x, true_output1_x, VV))
+    {
+      value = false;
+    }
+  // fraction 1 y comparison
+  if (!test_okay(output1_y, true_output1_y, VV))
+    {
+      value = false;
+    }
+  // fraction 2 x comparison
+  if (!test_okay(output2_x, true_output2_x, VV))
+    {
+      value = false;
+    }
+  // fraction 2 y comparison
+  if (!test_okay(output2_y, true_output2_y, VV))
+    {
+      value = false;
+    }
+  // fraction 3 x comparison
+  if (!test_okay(output3_x, true_output3_x, VV))
+    {
+      value = false;
+    }
+  // fraction 3 y comparison
+  if (!test_okay(output3_y, true_output3_y, VV))
+    {
+      value = false;
+    }
+  // fraction 4 x comparison
+  if (!test_okay(output4_x, true_output4_x, VV))
+    {
+      value = false;
+    }
+  // fraction 4 y comparison
+  if (!test_okay(output4_y, true_output4_y, VV))
+    {
+      value = false;
+    }
+
+  // everything okay
+  return value;
+}
+
+/**
+ * Function that generates the data using the <i>convex_polygon_intersect</i> 
+ * function (as described in the documentation of the 
+ * <i>convex_polygon_intersect</i> function) and launches the comparison of 
+ * the data. Returns the result of the test_okay function (TRUE/FALSE).
+ *
+ * \param key (INPUT) key that permits to launch the correct test
+ * \param debug (INPUT) is any sting that launches the debug mode (print all
+ * the array created and calculated)
+ *
+ * \return Result of the function (TRUE/FALSE)
+ */
+template <typename NumT>
+bool test_func(NumT key, string debug)
+{ 
+  // allocate arrays and values
+  Nessi::Vector<NumT> parallelogram_x;
+  Nessi::Vector<NumT> parallelogram_y;
+  Nessi::Vector<NumT> square1_x;
+  Nessi::Vector<NumT> square1_y;
+  Nessi::Vector<NumT> square2_x;
+  Nessi::Vector<NumT> square2_y;
+  Nessi::Vector<NumT> square3_x;
+  Nessi::Vector<NumT> square3_y;
+  Nessi::Vector<NumT> square4_x;
+  Nessi::Vector<NumT> square4_y;
+
+  Nessi::Vector<NumT> output1_x;
+  Nessi::Vector<NumT> output1_y;
+  Nessi::Vector<NumT> output2_x;
+  Nessi::Vector<NumT> output2_y;
+  Nessi::Vector<NumT> output3_x;
+  Nessi::Vector<NumT> output3_y;
+  Nessi::Vector<NumT> output4_x;
+  Nessi::Vector<NumT> output4_y;
+  Nessi::Vector<NumT> true_output1_x;
+  Nessi::Vector<NumT> true_output1_y;
+  Nessi::Vector<NumT> true_output2_x;
+  Nessi::Vector<NumT> true_output2_y;
+  Nessi::Vector<NumT> true_output3_x;
+  Nessi::Vector<NumT> true_output3_y;
+  Nessi::Vector<NumT> true_output4_x;
+  Nessi::Vector<NumT> true_output4_y;
+
+  // fill in values as appropriate
+  initialize_inputs(parallelogram_x, parallelogram_y, square1_x, square1_y, 
+                    square2_x, square2_y, square3_x, square3_y, 
+                    square4_x, square4_y);
+  initialize_true_outputs(true_output1_x, true_output1_y, 
+                          true_output2_x, true_output2_y, 
+                          true_output3_x, true_output3_y, 
+                          true_output4_x, true_output4_y);
+
+  // run the code being tested
+  Utils::convex_polygon_intersect(parallelogram_x, parallelogram_y, 
+                                  square1_x, square1_y, output1_x, output1_y);
+
+  Utils::convex_polygon_intersect(parallelogram_x, parallelogram_y, 
+                                  square2_x, square2_y, output2_x, output2_y);
+
+  Utils::convex_polygon_intersect(parallelogram_x, parallelogram_y, 
+                                  square3_x, square3_y, output3_x, output3_y);
+
+  Utils::convex_polygon_intersect(parallelogram_x, parallelogram_y, 
+                                  square4_x, square4_y, output4_x, output4_y);
+
+
+  if(!debug.empty())
+    {
+      cout << endl;
+      print(output1_x, true_output1_x, VV, debug);
+      print(output1_y, true_output1_y, VV, debug);
+      print(output2_x, true_output2_x, VV, debug);
+      print(output2_y, true_output2_y, VV, debug);
+      print(output3_x, true_output3_x, VV, debug);
+      print(output3_y, true_output3_y, VV, debug);
+      print(output4_x, true_output4_x, VV, debug);
+      print(output4_y, true_output4_y, VV, debug);
+    }
+
+  return test_okay(output1_x, output1_y, output2_x, output2_y, 
+                   output3_x, output3_y, output4_x, output4_y,   
+                   true_output1_x, true_output1_y, 
+                   true_output2_x, true_output2_y, 
+                   true_output3_x, true_output3_y, 
+                   true_output4_x, true_output4_y);
+}
+
+/**
+ * Main function that tests <i>convex_polygon_intersect</i> for float and 
+ * double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
+ */
+int main(int argc, char *argv[])
+{
+  cout << "convex_polygon_intersect_test.cpp..........";
+
+  string debug;
+  if(argc > 1)
+    {
+      debug = argv[1];
+    }
+
+  int value = 0;
+
+  if(!test_func(static_cast<float>(1), debug))
+    {
+      value = -1;
+    }
+
+  if(!test_func(static_cast<double>(1), debug))
+    {
+      value = -1;
+    }
+
+  if(value == 0)
+    {
+      cout << "Functionality OK" << endl;
+    }
+
+  return value;
+}
+
+/**
+ * \}
+ */   //end of convex_polygon_intersect_test group

@@ -48,6 +48,12 @@ AT_CHECK([calc_bin_widths_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Convex Polygon Intersection Function.  ])
+AT_CHECK([convex_polygon_intersect_test | sed -e 's/\r$//' ],[],
+[[convex_polygon_intersect_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Evaluate Linear Fit Function.  ])
 AT_CHECK([eval_linear_fit_test | sed -e 's/\r$//' ],[],
 [[eval_linear_fit_test.cpp..........Functionality OK
