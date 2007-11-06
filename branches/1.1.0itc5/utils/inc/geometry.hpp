@@ -259,6 +259,28 @@ namespace Utils
             const NumT dest_x, const NumT dest_y,
             const NumT para_slope,
             const NumT & pt_x, const NumT & pt_y);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function calculates the dot product between two points via the 
+   * following formula
+   *
+   * \f[
+   * dp = pt1_x * pt2_x + pt1_y * pt2_y
+   * \f]
+   *
+   * \param pt1_x (INPUT) the x-coordinate of the first point
+   * \param pt1_y (INPUT) the y-coordinate of the first point
+   * \param pt2_x (INPUT) the x-coordinate of the second point
+   * \param pt2_y (INPUT) the y-coordinate of the second point
+   *
+   * \return The value of the dot product
+   */
+  template <typename NumT>
+  NumT
+  __dot_product(const NumT pt1_x, const NumT pt1_y, 
+                const NumT pt2_x, const NumT pt2_y);
   /**
    * \} // end of convex_polygon_intersect
    */ 
