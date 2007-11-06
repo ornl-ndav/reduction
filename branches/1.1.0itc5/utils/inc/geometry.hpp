@@ -306,7 +306,7 @@ namespace Utils
    * \return The orientation of the edges
    */
   template <typename NumT>
-  int
+  bool
   __aims_at(const NumT orig_x1, const NumT orig_y1, 
             const NumT dest_x1, const NumT dest_y1,
             const NumT orig_x2, const NumT orig_y2, 
