@@ -41,6 +41,8 @@ libUtils_la_SOURCES = \
 	check_sizes_square.cpp \
 	compare.hpp \
 	compare.cpp \
+	convex_polygon_intersect.hpp \
+	convex_polygon_intersect.cpp \
 	eval_linear_fit.hpp \
 	eval_linear_fit.cpp \
 	fit_linear_background.hpp \
