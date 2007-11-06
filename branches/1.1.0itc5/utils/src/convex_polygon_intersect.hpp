@@ -33,6 +33,7 @@
 
 #include "geometry.hpp"
 #include "nessi_warn.hpp"
+#include "num_comparison.hpp"
 #include "size_checks.hpp"
 #include <algorithm>
 #include <stdexcept>
@@ -62,6 +63,17 @@ namespace Utils
     BETWEEN,      /**< Point is between edge origin and destination */
     ORIGIN,       /**< Point equals edge origin */
     DESTINATION   /**< Point equals edge destination */
+  };
+
+  /**
+   * Enumeration for handling edge orientations
+   */
+  enum {
+    COLLINEAR,      /**< Edges lie on the same line */
+    PARALLEL,       /**< Edges point in the same direction */
+    SKEW,           /**< Edges are at an angle to each other */
+    SKEW_CROSS,     /**< Edges are at an angle and intersect */
+    SKEW_NO_CROSS   /**< Edges are at an angle and do not intersect */
   };
 
   // 3.60
@@ -116,6 +128,10 @@ namespace Utils
     NumT x_start;
     NumT y_start;
    
+    // The current intersection point
+    NumT x_i = static_cast<NumT>(0.0);
+    NumT y_i = static_cast<NumT>(0.0);
+
     // Variables to hold the current origin position of an edge within the 
     // coordinate arrays
     std::size_t a_orig = 0;
@@ -134,7 +150,7 @@ namespace Utils
 
     int inflag = UNKNOWN;
 
-    std::size_t max_iters = static_cast<std::size_t>(2) * (a_size + b_size);
+    std::size_t max_iters = 2 * (a_size + b_size);
 
     for (std::size_t i = 1; (i <= max_iters) || (2 == phase); ++i)
       {
@@ -147,13 +163,107 @@ namespace Utils
             b_dest = b_dest - b_size;
           }
 
-        int pclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
+        int aclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
                                            bx_coord[b_orig], by_coord[b_orig],
                                            bx_coord[b_dest], by_coord[b_dest]);
 
-        int qclass = __classify_pt_to_edge(bx_coord[b_dest], by_coord[b_dest],
+        int bclass = __classify_pt_to_edge(bx_coord[b_dest], by_coord[b_dest],
                                            ax_coord[a_orig], ay_coord[a_orig],
                                            ax_coord[a_dest], ay_coord[a_dest]);
+
+        int cross_type = __crossing_pt(ax_coord[a_orig], ay_coord[a_orig],
+                                       ax_coord[a_dest], ay_coord[a_dest],
+                                       bx_coord[b_orig], by_coord[b_orig],
+                                       bx_coord[b_dest], by_coord[b_dest],
+                                       x_i, y_i);
+
+        if (cross_type == SKEW_CROSS)
+          {
+            if (1 == phase) 
+              {
+                phase = 2;
+                cx_coord.push_back(x_i);
+                cy_coord.push_back(y_i);
+
+                x_start = x_i;
+                y_start = y_i;
+              }
+            else if (compare(x_i, cx_coord[0]) != 0 && 
+                     compare(y_i, cy_coord[0]) != 0)
+              {
+                if (compare(x_i, x_start) != 0 && 
+                    compare(y_i, y_start) != 0)
+                  {
+                    cx_coord.push_back(x_i);
+                    cy_coord.push_back(y_i);
+                  }
+                else
+                  {
+                    return Nessi::EMPTY_WARN;
+                  }
+              }
+            if (aclass == RIGHT)
+              {
+                inflag = A_IS_INSIDE;
+              }
+            else if (bclass == RIGHT)
+              {
+                inflag = B_IS_INSIDE;
+              }
+            else
+              {
+                inflag = UNKNOWN;
+              }
+          }
+        else if (cross_type == COLLINEAR && 
+                 (aclass != BEHIND && bclass != BEHIND))
+          {
+            inflag = UNKNOWN;
+
+            bool a_aims_b = __aims_at(ax_coord[a_orig], ay_coord[a_orig],
+                                      ax_coord[a_dest], ay_coord[a_dest],
+                                      bx_coord[b_orig], by_coord[b_orig],
+                                      bx_coord[b_dest], by_coord[b_dest],
+                                      aclass, cross_type);
+            bool b_aims_a = __aims_at(bx_coord[b_orig], by_coord[b_orig],
+                                      bx_coord[b_dest], by_coord[b_dest],
+                                      ax_coord[a_orig], ay_coord[a_orig],
+                                      ax_coord[a_dest], ay_coord[a_dest],
+                                      bclass, cross_type);
+            
+            if (a_aims_b && b_aims_a)
+              {
+                if ((inflag == B_IS_INSIDE) || 
+                    ((inflag == UNKNOWN) && (aclass == LEFT)))
+                  {
+                    
+                  }
+                else
+                  {
+                    
+                  }
+              }
+            else if (a_aims_b)
+              {
+                
+              }
+            else if (b_aims_a)
+              {
+                
+              }
+            else
+              {
+                if ((inflag == B_IS_INSIDE) || 
+                    ((inflag == UNKNOWN) && (aclass == LEFT)))
+                  {
+                    
+                  }
+                else
+                  {
+                    
+                  }
+              }
+          }
       }
 
     return Nessi::EMPTY_WARN;
