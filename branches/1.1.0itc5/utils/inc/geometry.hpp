@@ -281,6 +281,38 @@ namespace Utils
   NumT
   __dot_product(const NumT pt1_x, const NumT pt1_y, 
                 const NumT pt2_x, const NumT pt2_y);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function takes two edges and determines if the two edges aim 
+   * at each other.
+   *
+   * \param orig_x1 (INPUT) the x-coordinate of the origin point of edge 1
+   * \param orig_y1 (INPUT) the y-coordinate of the origin point of edge 1
+   * \param dest_x1 (INPUT) the x-coordinate of the destination point of edge 1
+   * \param dest_y1 (INPUT) the y-coordinate of the destination point of edge 1
+   * \param orig_x2 (INPUT) the x-coordinate of the origin point of edge 2
+   * \param orig_y2 (INPUT) the y-coordinate of the origin point of edge 2
+   * \param dest_x2 (INPUT) the x-coordinate of the destination point of edge 2
+   * \param dest_y2 (INPUT) the y-coordinate of the destination point of edge 2
+   * \param point_class (INPUT) the classification of the destination point of 
+   * edge 1 with respect to edge 2
+   * \param cross_type (INPUT) the crossing-type classification of the two 
+   * edges
+   *
+   * \return A boolean determining if the two edges aim at each other
+   *
+   * \return The orientation of the edges
+   */
+  template <typename NumT>
+  int
+  __aims_at(const NumT orig_x1, const NumT orig_y1, 
+            const NumT dest_x1, const NumT dest_y1,
+            const NumT orig_x2, const NumT orig_y2, 
+            const NumT dest_x2, const NumT dest_y2,
+            const int point_class, const int cross_type);
+
   /**
    * \} // end of convex_polygon_intersect
    */ 
