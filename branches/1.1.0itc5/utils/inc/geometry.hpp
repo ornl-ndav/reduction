@@ -133,6 +133,33 @@ namespace Utils
                            Nessi::Vector<NumT> & cx_coord,
                            Nessi::Vector<NumT> & cy_coord,
                            void *temp=NULL);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function takes a point, which is given by an (x,y) pair and 
+   * classifies its location in space relative to a given directed edge. The 
+   * edge is represented by a pair of (x,y) pairs.
+   *
+   * The possible classifications are shown by the following figure.
+   *
+   * <IMG SRC="../images/Point_Edge_Classification.png">
+   *
+   * \param pt_x (INPUT) the x-coordinate of the point to classify
+   * \param pt_y (INPUT) the y-coordinate of the point to classify
+   * \param edge_orig_x (INPUT) the x-coordinate of the edge origin
+   * \param edge_orig_y (INPUT) the y-coordinate of the edge origin
+   * \param edge_dest_x (INPUT) the x-coordinate of the edge destination (end)
+   * \param edge_dest_y (INPUT) the y-coordinate of the edge destination (end)
+   *
+   * \return The classification of the point with respect to the edge
+   */
+  template <typename NumT>
+  int
+  __classify_pt_to_edge(const NumT pt_x, const NumT pt_y,
+                        const NumT edge_orig_x, const NumT edge_orig_y,
+                        const NumT edge_dest_x, const NumT edge_dest_y);
+
   /**
    * \} // end of convex_polygon_intersect
    */ 
