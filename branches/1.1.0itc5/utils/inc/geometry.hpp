@@ -185,26 +185,26 @@ namespace Utils
    * This function takes two edges and finds the crossing point of the edges 
    * if the orientation allows this.
    *
-   * \param x1_orig (INPUT) the x-coordinate of the origin point of edge 1
-   * \param y1_orig (INPUT) the y-coordinate of the origin point of edge 1
-   * \param x1_dest (INPUT) the x-coordinate of the destination point of edge 1
-   * \param y1_dest (INPUT) the y-coordinate of the destination point of edge 1
-   * \param x2_orig (INPUT) the x-coordinate of the origin point of edge 2
-   * \param y2_orig (INPUT) the y-coordinate of the origin point of edge 2
-   * \param x2_dest (INPUT) the x-coordinate of the destination point of edge 2
-   * \param y2_dest (INPUT) the y-coordinate of the destination point of edge 2
-   * \param x_cross (OUTPUT) the x-coordinate of the crossing point
-   * \param y_cross (OUTPUT) the y-coordinate of the crossing point
+   * \param orig_x1 (INPUT) the x-coordinate of the origin point of edge 1
+   * \param orig_y1 (INPUT) the y-coordinate of the origin point of edge 1
+   * \param dest_x1 (INPUT) the x-coordinate of the destination point of edge 1
+   * \param dest_y1 (INPUT) the y-coordinate of the destination point of edge 1
+   * \param orig_x2 (INPUT) the x-coordinate of the origin point of edge 2
+   * \param orig_y2 (INPUT) the y-coordinate of the origin point of edge 2
+   * \param dest_x2 (INPUT) the x-coordinate of the destination point of edge 2
+   * \param dest_y2 (INPUT) the y-coordinate of the destination point of edge 2
+   * \param cross_x (OUTPUT) the x-coordinate of the crossing point
+   * \param cross_y (OUTPUT) the y-coordinate of the crossing point
    *
    * \return The orientation of the edges
    */
   template <typename NumT>
   int
-  __crossing_pt(const NumT x1_orig, const NumT y1_orig, 
-                const NumT x1_dest, const NumT y1_dest,
-                const NumT x2_orig, const NumT y2_orig, 
-                const NumT x2_dest, const NumT y2_dest,
-                const NumT & x_cross, const NumT & y_cross);
+  __crossing_pt(const NumT orig_x1, const NumT orig_y1, 
+                const NumT dest_x1, const NumT dest_y1,
+                const NumT orig_x2, const NumT orig_y2, 
+                const NumT dest_x2, const NumT dest_y2,
+                const NumT & cross_x, const NumT & cross_y);
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
@@ -212,24 +212,24 @@ namespace Utils
    * This function takes two edges and finds the parametric slope for the 
    * intersection if the orientation allows this.
    *
-   * \param x1_orig (INPUT) the x-coordinate of the origin point of edge 1
-   * \param y1_orig (INPUT) the y-coordinate of the origin point of edge 1
-   * \param x1_dest (INPUT) the x-coordinate of the destination point of edge 1
-   * \param y1_dest (INPUT) the y-coordinate of the destination point of edge 1
-   * \param x2_orig (INPUT) the x-coordinate of the origin point of edge 2
-   * \param y2_orig (INPUT) the y-coordinate of the origin point of edge 2
-   * \param x2_dest (INPUT) the x-coordinate of the destination point of edge 2
-   * \param y2_dest (INPUT) the y-coordinate of the destination point of edge 2
+   * \param orig_x1 (INPUT) the x-coordinate of the origin point of edge 1
+   * \param orig_y1 (INPUT) the y-coordinate of the origin point of edge 1
+   * \param dest_x1 (INPUT) the x-coordinate of the destination point of edge 1
+   * \param dest_y1 (INPUT) the y-coordinate of the destination point of edge 1
+   * \param orig_x2 (INPUT) the x-coordinate of the origin point of edge 2
+   * \param orig_y2 (INPUT) the y-coordinate of the origin point of edge 2
+   * \param dest_x2 (INPUT) the x-coordinate of the destination point of edge 2
+   * \param dest_y2 (INPUT) the y-coordinate of the destination point of edge 2
    * \param para_slope (OUTPUT) the parametric slope of the intersection
    *
    * \return The orientation of the edges
    */
   template <typename NumT>
   int
-  __edge_intersect(const NumT x1_orig, const NumT y1_orig, 
-                   const NumT x1_dest, const NumT y1_dest,
-                   const NumT x2_orig, const NumT y2_orig, 
-                   const NumT x2_dest, const NumT y2_dest,
+  __edge_intersect(const NumT orig_x1, const NumT orig_y1, 
+                   const NumT dest_x1, const NumT dest_y1,
+                   const NumT orig_x2, const NumT orig_y2, 
+                   const NumT dest_x2, const NumT dest_y2,
                    const NumT & para_slope);
   
   /**
