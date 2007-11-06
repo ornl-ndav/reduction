@@ -89,9 +89,9 @@ namespace Utils
     // when the overlap finding is complete, the correct size is reported.
     cx_coord.clear();
     cy_coord.clear();
-    
-    std::copy(ax_coord.begin(), ax_coord.end(), cx_coord.begin());
-    std::copy(ay_coord.begin(), ay_coord.end(), cy_coord.begin());
+
+    std::copy(ax_coord.begin(), ax_coord.end(), std::back_inserter(cx_coord));
+    std::copy(ay_coord.begin(), ay_coord.end(), std::back_inserter(cy_coord));
 
     return Nessi::EMPTY_WARN;
   }
