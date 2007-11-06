@@ -180,6 +180,33 @@ namespace Utils
   __pt_length(const NumT x, const NumT y);
 
   /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function takes two edges and finds the crossing point of the edges 
+   * if the orientation allows this.
+   *
+   * \param x1_orig (INPUT) the x-coordinate of the origin point of edge 1
+   * \param y1_orig (INPUT) the y-coordinate of the origin point of edge 1
+   * \param x1_dest (INPUT) the x-coordinate of the destination point of edge 1
+   * \param y1_dest (INPUT) the y-coordinate of the destination point of edge 1
+   * \param x2_orig (INPUT) the x-coordinate of the origin point of edge 2
+   * \param y2_orig (INPUT) the y-coordinate of the origin point of edge 2
+   * \param x2_dest (INPUT) the x-coordinate of the destination point of edge 2
+   * \param y2_dest (INPUT) the y-coordinate of the destination point of edge 2
+   * \param x_cross (OUTPUT) the x-coordinate of the crossing point
+   * \param y_cross (OUTPUT) the y-coordinate of the crossing point
+   *
+   * \return The orientation of the edges
+   */
+  template <typename NumT>
+  int
+  __crossing_pt(const NumT x1_orig, const NumT y1_orig, 
+                const NumT x1_dest, const NumT y1_dest,
+                const NumT x2_orig, const NumT y2_orig, 
+                const NumT x2_dest, const NumT y2_dest,
+                const NumT & x_cross, const NumT & y_cross);
+
+  /**
    * \} // end of convex_polygon_intersect
    */ 
 
