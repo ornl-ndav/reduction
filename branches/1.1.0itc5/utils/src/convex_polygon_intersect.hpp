@@ -42,6 +42,28 @@ namespace Utils
   /// String for holding the convex_polygon_intersect function name
   const std::string cpi_func_str = "Utils::convex_polygon_intersect";
 
+  /**
+   * Enumeration for handling edge positions
+   */
+  enum { 
+    UNKNOWN,        /**< Which edge is inside the other is not known */
+    A_IS_INSIDE,    /**< Edge A is inside of edge B */
+    B_IS_INSIDE     /**< Edge B is inside of edge A */
+  };
+
+  /** 
+   * Enumeration for handling point to edge classifications
+   */
+  enum {
+    LEFT,         /**< Point is to left of edge */
+    RIGHT,        /**< Point is to right of edge */
+    BEYOND,       /**< Point is right of edge destination */
+    BEHIND,       /**< Point is left of edge origin */
+    BETWEEN,      /**< Point is between edge origin and destination */
+    ORIGIN,       /**< Point equals edge origin */
+    DESTINATION   /**< Point equals edge destination */
+  };
+
   // 3.60
   template <typename NumT>
   std::string
@@ -90,8 +112,26 @@ namespace Utils
     cx_coord.clear();
     cy_coord.clear();
 
-    std::copy(ax_coord.begin(), ax_coord.end(), std::back_inserter(cx_coord));
-    std::copy(ay_coord.begin(), ay_coord.end(), std::back_inserter(cy_coord));
+    // Starting coordinate pair for intersection
+    NumT x_start;
+    NumT y_start;
+   
+    // Variables to hold the current origin position of an edge within the 
+    // coordinate arrays
+    std::size_t a_index_pos = 0;
+    std::size_t b_index_pos = 0;
+
+    int phase = 1;
+
+    int inflag = UNKNOWN;
+
+    std::size_t max_iters = static_cast<std::size_t>(2) * (ax_coord.size() +
+                                                           bx_coord.size());
+
+    for (std::size_t i = 1; (i <= max_iters) || (2 == phase); ++i)
+      {
+        
+      }
 
     return Nessi::EMPTY_WARN;
   }
