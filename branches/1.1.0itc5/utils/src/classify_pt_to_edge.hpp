@@ -32,6 +32,7 @@
 #define _CLASSIFY_PT_TO_EDGE_HPP 1
 
 #include "convex_polygon_intersect.hpp"
+#include "num_comparison.hpp"
 
 namespace Utils
 {
@@ -41,9 +42,48 @@ namespace Utils
                         const NumT edge_orig_x, const NumT edge_orig_y,
                         const NumT edge_dest_x, const NumT edge_dest_y)
   {
+    NumT edge_diff_x = edge_dest_x - edge_orig_x;
+    NumT edge_diff_y = edge_dest_y - edge_orig_y;
+    
+    NumT pt_edge_orig_diff_x = pt_x - edge_orig_x;
+    NumT pt_edge_orig_diff_y = pt_y - edge_orig_y;
+
+    NumT length_edge_diff = __pt_length(edge_diff_x, edge_diff_y);
+    NumT length_pt_edge_orig_diff = __pt_length(pt_edge_orig_diff_x, 
+                                                pt_edge_orig_diff_y);
+
+    NumT sa = (edge_diff_x * pt_edge_orig_diff_y) - 
+      (pt_edge_orig_diff_x * edge_diff_y);
+
+    if (sa > static_cast<NumT>(0.0)) 
+      {
+        return LEFT;
+      }
+    if (sa < static_cast<NumT>(0.0)) 
+      {
+        return RIGHT;
+      }
+    if ((edge_diff_x * pt_edge_orig_diff_x < static_cast<NumT>(0.0)) || 
+        (edge_diff_y * pt_edge_orig_diff_y < static_cast<NumT>(0.0)))
+      {
+        return BEHIND;
+      }
+    if (length_edge_diff < length_pt_edge_orig_diff)
+      {
+        return BEYOND;
+      }
+    if (compare(pt_x, edge_orig_x) && compare(pt_y, edge_orig_y))
+      {
+        return ORIGIN;
+      }
+    if (compare(pt_x, edge_dest_x) && compare(pt_y, edge_dest_y))
+      {
+        return DESTINATION;
+      }
 
     return BETWEEN;
   }
+
 } // Utils
 
 #endif // _CLASSIFY_PT_TO_EDGE_HPP

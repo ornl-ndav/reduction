@@ -118,23 +118,48 @@ namespace Utils
    
     // Variables to hold the current origin position of an edge within the 
     // coordinate arrays
-    std::size_t a_index_pos = 0;
-    std::size_t b_index_pos = 0;
+    std::size_t a_orig = 0;
+    std::size_t b_orig = 0;
+
+    // Variable to hold the current index positions of the destination edge 
+    // points 
+    std::size_t a_dest = a_orig + 1;
+    std::size_t b_dest = b_orig + 1;
+
+    // Variables to hold the sizes of the incoming polygons
+    std::size_t a_size = ax_coord.size();
+    std::size_t b_size = bx_coord.size();
 
     int phase = 1;
 
     int inflag = UNKNOWN;
 
-    std::size_t max_iters = static_cast<std::size_t>(2) * (ax_coord.size() +
-                                                           bx_coord.size());
+    std::size_t max_iters = static_cast<std::size_t>(2) * (a_size + b_size);
 
     for (std::size_t i = 1; (i <= max_iters) || (2 == phase); ++i)
       {
-        
+        if (a_dest >= a_size)
+          {
+            a_dest = a_dest - a_size;
+          }
+        if (b_dest >= b_size)
+          {
+            b_dest = b_dest - b_size;
+          }
+
+        int pclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
+                                           bx_coord[b_orig], by_coord[b_orig],
+                                           bx_coord[b_dest], by_coord[b_dest]);
+
+        int qclass = __classify_pt_to_edge(bx_coord[b_dest], by_coord[b_dest],
+                                           ax_coord[a_orig], ay_coord[a_orig],
+                                           ax_coord[a_dest], ay_coord[a_dest]);
       }
 
     return Nessi::EMPTY_WARN;
   }
+
+  
 
 } // Utils
 
