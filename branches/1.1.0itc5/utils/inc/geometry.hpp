@@ -161,6 +161,25 @@ namespace Utils
                         const NumT edge_dest_x, const NumT edge_dest_y);
 
   /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function returns the length of a (x,y) coordinate pair with respect 
+   * to the origin by the following formula
+   *
+   * \f[
+   * length = \sqrt{x^2 + y^2}
+   * \f]
+   *
+   * \param x (INPUT) the x-coordinate of the point
+   * \param y (INPUT) the y-coordinate of the point
+   *
+   * \return The length of the point
+   */
+  template <typename NumT>
+  NumT
+  __pt_length(const NumT x, const NumT y);
+
+  /**
    * \} // end of convex_polygon_intersect
    */ 
 
