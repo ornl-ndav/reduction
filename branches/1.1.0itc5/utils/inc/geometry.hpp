@@ -233,6 +233,33 @@ namespace Utils
                    const NumT & para_slope);
   
   /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function takes an edge and a parametric slope parameter and 
+   * calculates a point via the following formula
+   *
+   * \f[
+   * pt_i = orig_i + t * \left(dest_i - orig_i\right)
+   * \f]
+   *
+   * where \f$i\f$ is either the x or y coordinate of the points and \f$t\f$ 
+   * is the parametric slope.
+   *
+   * \param orig_x (INPUT) the x-coordinate of the origin point of edge 
+   * \param orig_y (INPUT) the y-coordinate of the origin point of edge 
+   * \param dest_x (INPUT) the x-coordinate of the destination point of edge 
+   * \param dest_y (INPUT) the y-coordinate of the destination point of edge 
+   * \param para_slope (INPUT) the parametric slope for the edge line
+   * \param pt_x (OUTPUT) the x-coordinate of the point on the edge line 
+   * \param pt_y (OUTPUT) the y-coordinate of the point on the edge line 
+   */
+  template <typename NumT>
+  void
+  __edge_pt(const NumT orig_x, const NumT orig_y, 
+            const NumT dest_x, const NumT dest_y,
+            const NumT para_slope,
+            const NumT & pt_x, const NumT & pt_y);
+  /**
    * \} // end of convex_polygon_intersect
    */ 
 
