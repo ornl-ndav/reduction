@@ -230,37 +230,37 @@ namespace Utils
                 if ((inflag == B_IS_INSIDE) || 
                     ((inflag == UNKNOWN) && (aclass == LEFT)))
                   {
-                    __advance_edge(ax_coord, ay_coord, cx_coord, cy_coord,
-                                   a_orig, a_dest, false);
+                    __advance_edge(ax_coord, ay_coord, false, 
+                                   cx_coord, cy_coord, a_orig, a_dest);
                   }
                 else
                   {
-                    __advance_edge(bx_coord, by_coord, cx_coord, cy_coord,
-                                   b_orig, b_dest, false);
+                    __advance_edge(bx_coord, by_coord, false, 
+                                   cx_coord, cy_coord, b_orig, b_dest);
                   }
               }
             else if (a_aims_b)
               {
-                __advance_edge(ax_coord, ay_coord, cx_coord, cy_coord,
-                               a_orig, a_dest, inflag==A_IS_INSIDE);
+                __advance_edge(ax_coord, ay_coord, inflag==A_IS_INSIDE, 
+                               cx_coord, cy_coord, a_orig, a_dest);
               }
             else if (b_aims_a)
               {
-                __advance_edge(bx_coord, by_coord, cx_coord, cy_coord,
-                               b_orig, b_dest, inflag==B_IS_INSIDE);
+                __advance_edge(bx_coord, by_coord, inflag==B_IS_INSIDE, 
+                               cx_coord, cy_coord, b_orig, b_dest);
               }
             else
               {
                 if ((inflag == B_IS_INSIDE) || 
                     ((inflag == UNKNOWN) && (aclass == LEFT)))
                   {
-                    __advance_edge(ax_coord, ay_coord, cx_coord, cy_coord,
-                                   a_orig, a_dest, false);
+                    __advance_edge(ax_coord, ay_coord, false, 
+                                   cx_coord, cy_coord, a_orig, a_dest);
                   }
                 else
                   {
-                    __advance_edge(bx_coord, by_coord, cx_coord, cy_coord,
-                                   b_orig, b_dest, false);
+                    __advance_edge(bx_coord, by_coord, false, 
+                                   cx_coord, cy_coord, b_orig, b_dest);
                   }
               }
           }
