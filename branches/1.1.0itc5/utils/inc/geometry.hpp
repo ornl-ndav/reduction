@@ -258,7 +258,7 @@ namespace Utils
   __edge_pt(const NumT orig_x, const NumT orig_y, 
             const NumT dest_x, const NumT dest_y,
             const NumT para_slope,
-            const NumT & pt_x, const NumT & pt_y);
+            NumT & pt_x, NumT & pt_y);
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
