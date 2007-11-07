@@ -230,7 +230,7 @@ namespace Utils
                    const NumT dest_x1, const NumT dest_y1,
                    const NumT orig_x2, const NumT orig_y2, 
                    const NumT dest_x2, const NumT dest_y2,
-                   const NumT & para_slope);
+                   NumT & para_slope);
   
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
