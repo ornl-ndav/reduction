@@ -314,6 +314,34 @@ namespace Utils
             const int point_class, const int cross_type);
 
   /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   * 
+   * This function takes a polygon's coordinate arrays and the current 
+   * coordinate arrays in the intersection polygon and advances the polygon 
+   * edge and adds points to the current intersection polygon.
+   * 
+   * \param x_coord (INPUT) the x-coordinate array of the polygon to check
+   * \param y_coord (INPUT) the y-coordinate array of the polygon to check
+   * \param cx_coord (INPUT/OUTPUT) the x-coordinate array of the intersection 
+   * polygon
+   * \param cy_coord (INPUT/OUTPUT) the y-coordinate array of the intersection 
+   * polygon
+   * \param orig_pos (INPUT/OUTPUT) the index position of the current edge's 
+   * origin
+   * \param dest_pos (INPUT/OUTPUT) the index position of the current edge's 
+   * destination
+   * \param inside (INPUT) the current polygon that is inside the other
+   */
+  template <typename NumT>
+  void
+  __advance_edge(const Nessi::Vector<NumT> & x_coord, 
+                 const Nessi::Vector<NumT> & y_coord, 
+                 const Nessi::Vector<NumT> & cx_coord,
+                 const Nessi::Vector<NumT> & cy_coord,
+                 const std::size_t & orig_pos, const std::size_t & dest_pos,
+                 int inside);
+
+  /**
    * \} // end of convex_polygon_intersect
    */ 
 
