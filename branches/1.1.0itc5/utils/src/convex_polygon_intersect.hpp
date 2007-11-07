@@ -154,14 +154,8 @@ namespace Utils
 
     for (std::size_t i = 1; (i <= max_iters) || (2 == phase); ++i)
       {
-        if (a_dest >= a_size)
-          {
-            a_dest = a_dest - a_size;
-          }
-        if (b_dest >= b_size)
-          {
-            b_dest = b_dest - b_size;
-          }
+        a_dest = __wrap_indicies(a_dest, a_size);
+        b_dest = __wrap_indicies(b_dest, b_size);
 
         int aclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
                                            bx_coord[b_orig], by_coord[b_orig],
@@ -236,31 +230,37 @@ namespace Utils
                 if ((inflag == B_IS_INSIDE) || 
                     ((inflag == UNKNOWN) && (aclass == LEFT)))
                   {
-                    
+                    __advance_edge(ax_coord, ay_coord, cx_coord, cy_coord,
+                                   a_orig, a_dest, false);
                   }
                 else
                   {
-                    
+                    __advance_edge(bx_coord, by_coord, cx_coord, cy_coord,
+                                   b_orig, b_dest, false);
                   }
               }
             else if (a_aims_b)
               {
-                
+                __advance_edge(ax_coord, ay_coord, cx_coord, cy_coord,
+                               a_orig, a_dest, inflag==A_IS_INSIDE);
               }
             else if (b_aims_a)
               {
-                
+                __advance_edge(bx_coord, by_coord, cx_coord, cy_coord,
+                               b_orig, b_dest, inflag==B_IS_INSIDE);
               }
             else
               {
                 if ((inflag == B_IS_INSIDE) || 
                     ((inflag == UNKNOWN) && (aclass == LEFT)))
                   {
-                    
+                    __advance_edge(ax_coord, ay_coord, cx_coord, cy_coord,
+                                   a_orig, a_dest, false);
                   }
                 else
                   {
-                    
+                    __advance_edge(bx_coord, by_coord, cx_coord, cy_coord,
+                                   b_orig, b_dest, false);
                   }
               }
           }
