@@ -322,6 +322,7 @@ namespace Utils
    * 
    * \param x_coord (INPUT) the x-coordinate array of the polygon to check
    * \param y_coord (INPUT) the y-coordinate array of the polygon to check
+   * \param inside (INPUT) the current polygon that is inside the other
    * \param ix_coord (INPUT/OUTPUT) the x-coordinate array of the intersection 
    * polygon
    * \param iy_coord (INPUT/OUTPUT) the y-coordinate array of the intersection 
@@ -330,16 +331,16 @@ namespace Utils
    * origin
    * \param dest_pos (INPUT/OUTPUT) the index position of the current edge's 
    * destination
-   * \param inside (INPUT) the current polygon that is inside the other
    */
   template <typename NumT>
   void
   __advance_edge(const Nessi::Vector<NumT> & x_coord, 
                  const Nessi::Vector<NumT> & y_coord, 
+                 const int inside,
                  Nessi::Vector<NumT> & ix_coord,
                  Nessi::Vector<NumT> & iy_coord,
-                 std::size_t & orig_pos, std::size_t & dest_pos,
-                 int inside);
+                 std::size_t & orig_pos, 
+                 std::size_t & dest_pos);
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
