@@ -63,4 +63,5 @@ libUtils_la_SOURCES = \
 	vector_is_equals.hpp \
 	vector_is_equals.cpp \
 	weighted_average.hpp \
-	weighted_average.cpp
+	weighted_average.cpp \
+	wrap_indicies.cpp
