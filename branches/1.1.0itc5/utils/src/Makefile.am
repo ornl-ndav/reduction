@@ -47,6 +47,8 @@ libUtils_la_SOURCES = \
 	convex_polygon_intersect.cpp \
 	dot_product.hpp \
 	dot_product.cpp \
+	edge_pt.hpp \
+	edge_pt.cpp \
 	eval_linear_fit.hpp \
 	eval_linear_fit.cpp \
 	fit_linear_background.hpp \
