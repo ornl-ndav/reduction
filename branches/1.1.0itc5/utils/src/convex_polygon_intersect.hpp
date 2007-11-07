@@ -213,58 +213,58 @@ namespace Utils
                  (aclass != BEHIND && bclass != BEHIND))
           {
             inflag = UNKNOWN;
+          }
 
-            bool a_aims_b = __aims_at(ax_coord[a_orig], ay_coord[a_orig],
-                                      ax_coord[a_dest], ay_coord[a_dest],
-                                      bx_coord[b_orig], by_coord[b_orig],
-                                      bx_coord[b_dest], by_coord[b_dest],
-                                      aclass, cross_type);
-            bool b_aims_a = __aims_at(bx_coord[b_orig], by_coord[b_orig],
-                                      bx_coord[b_dest], by_coord[b_dest],
-                                      ax_coord[a_orig], ay_coord[a_orig],
-                                      ax_coord[a_dest], ay_coord[a_dest],
-                                      bclass, cross_type);
-            
-            if (a_aims_b && b_aims_a)
+        bool a_aims_b = __aims_at(ax_coord[a_orig], ay_coord[a_orig],
+                                  ax_coord[a_dest], ay_coord[a_dest],
+                                  bx_coord[b_orig], by_coord[b_orig],
+                                  bx_coord[b_dest], by_coord[b_dest],
+                                  aclass, cross_type);
+        bool b_aims_a = __aims_at(bx_coord[b_orig], by_coord[b_orig],
+                                  bx_coord[b_dest], by_coord[b_dest],
+                                  ax_coord[a_orig], ay_coord[a_orig],
+                                  ax_coord[a_dest], ay_coord[a_dest],
+                                  bclass, cross_type);
+        
+        if (a_aims_b && b_aims_a)
+          {
+            if ((inflag == B_IS_INSIDE) || 
+                ((inflag == UNKNOWN) && (aclass == LEFT)))
               {
-                if ((inflag == B_IS_INSIDE) || 
-                    ((inflag == UNKNOWN) && (aclass == LEFT)))
-                  {
-                    __advance_edge(ax_coord, ay_coord, false, 
-                                   cx_coord, cy_coord, a_orig, a_dest);
-                  }
-                else
-                  {
-                    __advance_edge(bx_coord, by_coord, false, 
-                                   cx_coord, cy_coord, b_orig, b_dest);
-                  }
-              }
-            else if (a_aims_b)
-              {
-                __advance_edge(ax_coord, ay_coord, inflag==A_IS_INSIDE, 
+                __advance_edge(ax_coord, ay_coord, false, 
                                cx_coord, cy_coord, a_orig, a_dest);
-              }
-            else if (b_aims_a)
-              {
-                __advance_edge(bx_coord, by_coord, inflag==B_IS_INSIDE, 
-                               cx_coord, cy_coord, b_orig, b_dest);
               }
             else
               {
-                if ((inflag == B_IS_INSIDE) || 
-                    ((inflag == UNKNOWN) && (aclass == LEFT)))
-                  {
-                    __advance_edge(ax_coord, ay_coord, false, 
-                                   cx_coord, cy_coord, a_orig, a_dest);
-                  }
-                else
-                  {
-                    __advance_edge(bx_coord, by_coord, false, 
-                                   cx_coord, cy_coord, b_orig, b_dest);
-                  }
+                __advance_edge(bx_coord, by_coord, false, 
+                               cx_coord, cy_coord, b_orig, b_dest);
               }
           }
-      }
+        else if (a_aims_b)
+          {
+            __advance_edge(ax_coord, ay_coord, inflag==A_IS_INSIDE, 
+                           cx_coord, cy_coord, a_orig, a_dest);
+          }
+        else if (b_aims_a)
+          {
+            __advance_edge(bx_coord, by_coord, inflag==B_IS_INSIDE, 
+                           cx_coord, cy_coord, b_orig, b_dest);
+          }
+        else
+          {
+            if ((inflag == B_IS_INSIDE) || 
+                ((inflag == UNKNOWN) && (aclass == LEFT)))
+              {
+                __advance_edge(ax_coord, ay_coord, false, 
+                               cx_coord, cy_coord, a_orig, a_dest);
+              }
+            else
+              {
+                __advance_edge(bx_coord, by_coord, false, 
+                               cx_coord, cy_coord, b_orig, b_dest);
+              }
+          }
+      } // for
 
     return Nessi::EMPTY_WARN;
   }
