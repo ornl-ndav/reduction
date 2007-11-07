@@ -322,9 +322,9 @@ namespace Utils
    * 
    * \param x_coord (INPUT) the x-coordinate array of the polygon to check
    * \param y_coord (INPUT) the y-coordinate array of the polygon to check
-   * \param cx_coord (INPUT/OUTPUT) the x-coordinate array of the intersection 
+   * \param ix_coord (INPUT/OUTPUT) the x-coordinate array of the intersection 
    * polygon
-   * \param cy_coord (INPUT/OUTPUT) the y-coordinate array of the intersection 
+   * \param iy_coord (INPUT/OUTPUT) the y-coordinate array of the intersection 
    * polygon
    * \param orig_pos (INPUT/OUTPUT) the index position of the current edge's 
    * origin
@@ -336,8 +336,8 @@ namespace Utils
   void
   __advance_edge(const Nessi::Vector<NumT> & x_coord, 
                  const Nessi::Vector<NumT> & y_coord, 
-                 const Nessi::Vector<NumT> & cx_coord,
-                 const Nessi::Vector<NumT> & cy_coord,
+                 const Nessi::Vector<NumT> & ix_coord,
+                 const Nessi::Vector<NumT> & iy_coord,
                  const std::size_t & orig_pos, const std::size_t & dest_pos,
                  int inside);
 
