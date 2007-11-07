@@ -342,6 +342,23 @@ namespace Utils
                  int inside);
 
   /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   * 
+   * This function checks an index against the size of a polygon. If the 
+   * index is equal to or larger that the polygon size, the index is shifted 
+   * by subtracting the polygon size. This helps connect the last point in a
+   * coordinate array.
+   * 
+   * \param curr_index (INPUT) the current coordinate array index
+   * \param poly_size (INPUT) the size of the polygon
+   *
+   * \return A possibly modified index
+   */
+  template <typename NumT>
+  std::size_t 
+  __wrap_indicies(const std::size_t curr_index, const std::size_t poly_size);
+
+  /**
    * \} // end of convex_polygon_intersect
    */ 
 
