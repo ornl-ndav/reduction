@@ -49,6 +49,8 @@ libUtils_la_SOURCES = \
 	dot_product.cpp \
 	edge_pt.hpp \
 	edge_pt.cpp \
+	edge_intersect.hpp \
+	edge_intersect.cpp \
 	eval_linear_fit.hpp \
 	eval_linear_fit.cpp \
 	fit_linear_background.hpp \
