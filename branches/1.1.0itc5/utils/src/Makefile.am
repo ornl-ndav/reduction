@@ -29,6 +29,8 @@ pkglib_LTLIBRARIES = libUtils.la
 libUtils_la_LDFLAGS = $(LIB_UTILS_VERSION)
 
 libUtils_la_SOURCES = \
+	aims_at.hpp \
+	aims_at.cpp \
 	calc_area_2D_polygon.hpp \
 	calc_area_2D_polygon.cpp \
 	calc_bin_centers.hpp \
