@@ -354,9 +354,8 @@ namespace Utils
    *
    * \return A possibly modified index
    */
-  template <typename NumT>
-  std::size_t 
-  __wrap_indicies(const std::size_t curr_index, const std::size_t poly_size);
+  std::size_t __wrap_indicies(const std::size_t curr_index, 
+                              const std::size_t poly_size);
 
   /**
    * \} // end of convex_polygon_intersect
