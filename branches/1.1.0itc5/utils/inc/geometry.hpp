@@ -336,9 +336,9 @@ namespace Utils
   void
   __advance_edge(const Nessi::Vector<NumT> & x_coord, 
                  const Nessi::Vector<NumT> & y_coord, 
-                 const Nessi::Vector<NumT> & ix_coord,
-                 const Nessi::Vector<NumT> & iy_coord,
-                 const std::size_t & orig_pos, const std::size_t & dest_pos,
+                 Nessi::Vector<NumT> & ix_coord,
+                 Nessi::Vector<NumT> & iy_coord,
+                 std::size_t & orig_pos, std::size_t & dest_pos,
                  int inside);
 
   /**
