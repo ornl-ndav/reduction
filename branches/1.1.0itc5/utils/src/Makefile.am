@@ -29,6 +29,8 @@ pkglib_LTLIBRARIES = libUtils.la
 libUtils_la_LDFLAGS = $(LIB_UTILS_VERSION)
 
 libUtils_la_SOURCES = \
+	advance_edge.hpp \
+	advance_edge.cpp \
 	aims_at.hpp \
 	aims_at.cpp \
 	calc_area_2D_polygon.hpp \
