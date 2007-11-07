@@ -32,7 +32,6 @@
 #define _AIMS_AT_HPP 1
 
 #include "convex_polygon_intersect.hpp"
-#include "geometry.hpp"
 
 namespace Utils
 {
