@@ -37,6 +37,7 @@
 #include "size_checks.hpp"
 #include <algorithm>
 #include <stdexcept>
+#include <iostream>
 
 namespace Utils
 {
@@ -151,11 +152,21 @@ namespace Utils
     int inflag = UNKNOWN;
 
     std::size_t max_iters = 2 * (a_size + b_size);
-
+    std::cout << "Max Iterations: " << max_iters << std::endl;
     for (std::size_t i = 1; (i <= max_iters) || (2 == phase); ++i)
       {
-        a_dest = __wrap_indicies(a_dest, a_size);
-        b_dest = __wrap_indicies(b_dest, b_size);
+        std::cout << "Iteration " << i << ", Phase " << phase << " Edge 1 (";
+        std::cout << a_orig << ",";
+        std::cout << a_dest << "), Edge 2 (" << b_orig << "," << b_dest;
+        std::cout << ")" << std::endl;
+        std::cout << "Edge 1 orig: (" << ax_coord[a_orig] << ",";
+        std::cout << ay_coord[a_orig] << "), dest: (" << ax_coord[a_dest];
+        std::cout << "," << ay_coord[a_dest] << "), Edge 2 orig: (";
+        std::cout << bx_coord[b_orig] << ",";
+        std::cout << by_coord[b_orig] << "), dest: (" << bx_coord[b_dest];
+        std::cout << "," << by_coord[b_dest] << ")" << std::endl;
+        std::cout << "Trap: (" << (i <= max_iters) << "," << (2 == phase) << ")";
+        std::cout << std::endl;
 
         int aclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
                                            bx_coord[b_orig], by_coord[b_orig],
@@ -171,10 +182,16 @@ namespace Utils
                                        bx_coord[b_dest], by_coord[b_dest],
                                        x_i, y_i);
 
+        std::cout << "Cross Type: " << cross_type << ", A Class: " << aclass;
+        std::cout << ", B Class: " << bclass << std::endl;
+
         if (cross_type == SKEW_CROSS)
           {
             if (1 == phase) 
               {
+                std::cout << "Cross-pt 1: (" << x_i << "," << y_i << ")";
+                std::cout << std::endl;
+
                 phase = 2;
                 cx_coord.push_back(x_i);
                 cy_coord.push_back(y_i);
@@ -182,35 +199,43 @@ namespace Utils
                 x_start = x_i;
                 y_start = y_i;
               }
-            else if (compare(x_i, cx_coord[0]) != 0 && 
-                     compare(y_i, cy_coord[0]) != 0)
+            else if (compare(x_i, cx_coord.back()) != 0 && 
+                     compare(y_i, cy_coord.back()) != 0)
               {
+                std::cout << "Cross-pt 2: (" << x_i << "," << y_i << ")";
+                std::cout << std::endl;
                 if (compare(x_i, x_start) != 0 && 
                     compare(y_i, y_start) != 0)
                   {
+                    std::cout << "Adding intersection point" << std::endl;
                     cx_coord.push_back(x_i);
                     cy_coord.push_back(y_i);
                   }
                 else
                   {
+                    std::cout << "Size of intersection: " << cx_coord.size();
+                    std::cout << std::endl;
                     return Nessi::EMPTY_WARN;
                   }
               }
             if (aclass == RIGHT)
               {
+                std::cout << "A is inside" << std::endl;
                 inflag = A_IS_INSIDE;
               }
             else if (bclass == RIGHT)
               {
+                std::cout << "B is inside" << std::endl;
                 inflag = B_IS_INSIDE;
               }
             else
               {
+                std::cout << "Edge is unknown" << std::endl;
                 inflag = UNKNOWN;
               }
           }
         else if (cross_type == COLLINEAR && 
-                 (aclass != BEHIND && bclass != BEHIND))
+                 ((aclass != BEHIND) && (bclass != BEHIND)))
           {
             inflag = UNKNOWN;
           }
@@ -225,28 +250,36 @@ namespace Utils
                                   ax_coord[a_orig], ay_coord[a_orig],
                                   ax_coord[a_dest], ay_coord[a_dest],
                                   bclass, cross_type);
+
+        std::cout << "InFlag = " << inflag << std::endl;
+        std::cout << "A_aims_B = " << a_aims_b << ", B_aims_A = " << b_aims_a;
+        std::cout << std::endl;
         
         if (a_aims_b && b_aims_a)
           {
             if ((inflag == B_IS_INSIDE) || 
                 ((inflag == UNKNOWN) && (aclass == LEFT)))
               {
+                std::cout << "Advance Edge 1" << std::endl;
                 __advance_edge(ax_coord, ay_coord, false, 
                                cx_coord, cy_coord, a_orig, a_dest);
               }
             else
               {
+                std::cout << "Advance Edge 2" << std::endl;
                 __advance_edge(bx_coord, by_coord, false, 
                                cx_coord, cy_coord, b_orig, b_dest);
               }
           }
         else if (a_aims_b)
           {
+            std::cout << "Advance Edge 3" << std::endl;
             __advance_edge(ax_coord, ay_coord, inflag==A_IS_INSIDE, 
                            cx_coord, cy_coord, a_orig, a_dest);
           }
         else if (b_aims_a)
           {
+            std::cout << "Advance Edge 4" << std::endl;
             __advance_edge(bx_coord, by_coord, inflag==B_IS_INSIDE, 
                            cx_coord, cy_coord, b_orig, b_dest);
           }
@@ -255,22 +288,42 @@ namespace Utils
             if ((inflag == B_IS_INSIDE) || 
                 ((inflag == UNKNOWN) && (aclass == LEFT)))
               {
+                std::cout << "Advance Edge 5" << std::endl;
                 __advance_edge(ax_coord, ay_coord, false, 
                                cx_coord, cy_coord, a_orig, a_dest);
               }
             else
               {
+                std::cout << "Advance Edge 6" << std::endl;
                 __advance_edge(bx_coord, by_coord, false, 
                                cx_coord, cy_coord, b_orig, b_dest);
               }
           }
       } // for
 
+    if(__pt_in_convex_polygon(ax_coord[a_orig], ay_coord[a_orig],
+                              b_orig, bx_coord, by_coord))
+      {
+        std::copy(ax_coord.begin(), ax_coord.end(), 
+                  std::back_inserter(cx_coord));
+        std::copy(ay_coord.begin(), ay_coord.end(), 
+                  std::back_inserter(cy_coord));
+        return Nessi::EMPTY_WARN;
+      }
+    else if (__pt_in_convex_polygon(bx_coord[b_orig], by_coord[b_orig],
+                                    a_orig, ax_coord, ay_coord))
+      {
+        std::copy(bx_coord.begin(), bx_coord.end(), 
+                  std::back_inserter(cx_coord));
+        std::copy(by_coord.begin(), by_coord.end(), 
+                  std::back_inserter(cy_coord));
+        return Nessi::EMPTY_WARN;
+      }
+
+    cx_coord.push_back(static_cast<NumT>(0.0));
+    cy_coord.push_back(static_cast<NumT>(0.0));
     return Nessi::EMPTY_WARN;
   }
-
-  
-
 } // Utils
 
 #endif // _CONVEX_POLYGON_INTERSECT_HPP
