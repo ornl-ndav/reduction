@@ -359,6 +359,25 @@ namespace Utils
                               const std::size_t poly_size);
 
   /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   * 
+   * This function checks to see if a point is within a convex polygon
+   *
+   * \param pt_x (INPUT) the x-coordinate of the point to check
+   * \param pt_y (INPUT) the y-coordinate of the point to check
+   * \param orig_pos (INPUT) the current point index
+   * \param x_coord (INPUT) the x-coordinate array of the polygon to check
+   * \param y_coord (INPUT) the y-coordinate array of the polygon to check
+   *
+   * \return A boolean determining if the point is inside the given polygon
+   */
+  template <typename NumT>
+  bool
+  __pt_in_convex_polygon(const NumT pt_x, const NumT pt_y,
+                         const std::size_t orig_pos, 
+                         const Nessi::Vector<NumT> & x_coord, 
+                         const Nessi::Vector<NumT> & y_coord);
+  /**
    * \} // end of convex_polygon_intersect
    */ 
 
