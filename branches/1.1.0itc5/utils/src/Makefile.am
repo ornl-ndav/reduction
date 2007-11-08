@@ -70,6 +70,8 @@ libUtils_la_SOURCES = \
 	matrix_multiplication.cpp \
 	peak_integration.hpp \
 	peak_integration.cpp \
+	pt_in_convex_polygon.hpp \
+	pt_in_convex_polygon.cpp \
 	pt_length.hpp \
 	pt_length.cpp \
 	vector_is_equals.hpp \
