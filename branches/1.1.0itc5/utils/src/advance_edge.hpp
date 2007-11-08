@@ -47,22 +47,33 @@ namespace Utils
                  std::size_t & dest_pos)
   {
     // Advance to the next edge in the polygon
-    orig_pos = __wrap_indicies(orig_pos++, x_coord.size());
-    dest_pos = __wrap_indicies(dest_pos++, x_coord.size());
+    std::cout << "Original Edge: (" << orig_pos << "," << dest_pos << ")";
+    std::cout << ",  Size = " << x_coord.size() << std::endl;
+    orig_pos = __wrap_indicies(++orig_pos, x_coord.size());
+    dest_pos = __wrap_indicies(++dest_pos, x_coord.size());
+    std::cout << "New Edge: (" << orig_pos << "," << dest_pos << ")";
+    std::cout << std::endl;
 
     // Get the polygon coordinates for the new edge origin
     NumT p_orig_x = x_coord[orig_pos];
     NumT p_orig_y = y_coord[orig_pos];
 
     // Get the last point in the intersection polygon
+    std::cout << "Getting intersect point" << std::endl;
     NumT i_orig_x = ix_coord.back();
     NumT i_orig_y = iy_coord.back();
+    std::cout << "Intersect point = (" << i_orig_x << "," << i_orig_y << ")";
+    std::cout << std::endl;
 
     int x_compare = compare(i_orig_x, p_orig_x);
     int y_compare = compare(i_orig_y, p_orig_y);
 
+    std::cout << "Compare (x, y) = (" << x_compare << "," << y_compare << ")";
+    std::cout << ", Inside = " << inside << std::endl;
+
     if (inside && (x_compare != 0 && y_compare != 0))
       {
+        std::cout << "Inserting intersection point" << std::endl;
         ix_coord.push_back(p_orig_x);
         iy_coord.push_back(p_orig_y);
       }
