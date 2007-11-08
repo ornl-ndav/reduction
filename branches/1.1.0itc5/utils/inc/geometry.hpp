@@ -302,8 +302,6 @@ namespace Utils
    * edges
    *
    * \return A boolean determining if the two edges aim at each other
-   *
-   * \return The orientation of the edges
    */
   template <typename NumT>
   bool
