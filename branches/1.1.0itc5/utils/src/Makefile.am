@@ -49,6 +49,8 @@ libUtils_la_SOURCES = \
 	compare.cpp \
 	convex_polygon_intersect.hpp \
 	convex_polygon_intersect.cpp \
+	crossing_pt.hpp \
+	crossing_pt.cpp \
 	dot_product.hpp \
 	dot_product.cpp \
 	edge_pt.hpp \
