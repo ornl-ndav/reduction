@@ -264,9 +264,12 @@ namespace Utils
           }
       } // for
 
+    // If we get here, no intersection points have been found. 
+
     if(__pt_in_convex_polygon(ax_coord[a_orig], ay_coord[a_orig],
                               b_orig, bx_coord, by_coord))
       {
+        // Polygon A lies within B
         std::copy(ax_coord.begin(), ax_coord.end(), 
                   std::back_inserter(cx_coord));
         std::copy(ay_coord.begin(), ay_coord.end(), 
@@ -276,12 +279,15 @@ namespace Utils
     else if (__pt_in_convex_polygon(bx_coord[b_orig], by_coord[b_orig],
                                     a_orig, ax_coord, ay_coord))
       {
+        // Polygon B lies within A
         std::copy(bx_coord.begin(), bx_coord.end(), 
                   std::back_inserter(cx_coord));
         std::copy(by_coord.begin(), by_coord.end(), 
                   std::back_inserter(cy_coord));
         return Nessi::EMPTY_WARN;
       }
+
+    // Polygons A and B lie outside each other
 
     cx_coord.push_back(static_cast<NumT>(0.0));
     cy_coord.push_back(static_cast<NumT>(0.0));
