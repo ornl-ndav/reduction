@@ -12,8 +12,10 @@ Changes in Version 1.1.0
     * wavelength_to_tof
 
   - Utilities (1.1.0)
+    * calc_area_2D_polygon
     * calc_bin_centers
     * calc_bin_widths
+    * convex_polygon_intersect
     * eval_linear_fit
     * fit_linear_background
     * linear_order_jacobian
