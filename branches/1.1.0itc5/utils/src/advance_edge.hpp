@@ -71,7 +71,7 @@ namespace Utils
     std::cout << "Compare (x, y) = (" << x_compare << "," << y_compare << ")";
     std::cout << ", Inside = " << inside << std::endl;
 
-    if (inside && (x_compare != 0 && y_compare != 0))
+    if (inside && !(x_compare == 0 && y_compare == 0))
       {
         std::cout << "Inserting intersection point" << std::endl;
         ix_coord.push_back(p_orig_x);
