@@ -54,7 +54,7 @@ namespace Utils
         NumT cp1 = v1_x * v2_y;
         NumT cp2 = v2_x * v1_y;
 
-        if (cp1 > cp2 || compare(cp1, cp2) == 0)
+        if (compare(cp1, cp2) >= 0)
           {
             return (point_class != RIGHT);
           }
