@@ -47,7 +47,7 @@ namespace Utils
                 NumT & cross_x, NumT & cross_y)
   {
     static const NumT EPSILON = std::numeric_limits<NumT>::epsilon();
-    std::cout << "In crossing_pt " << EPSILON << std::endl;
+
     // Parametric slope holders for edge 1 (s) and edge 2 (t)
     NumT s;
     NumT t;
@@ -56,23 +56,15 @@ namespace Utils
                                   orig_x2, orig_y2, dest_x2, dest_y2,
                                   s);
 
-    std::cout << "Edge 1 class: " << classe << ", PSlope = " << s << std::endl;
-
     if ((classe == COLLINEAR) || (classe == PARALLEL))
       {
         return classe;
       }
 
-    std::cout << "Edge 1 diff x: " << dest_x1-orig_x1 << ", y: ";
-    std::cout << dest_y1-orig_y1 << std::endl;
-
     NumT lene = __pt_length(dest_x1-orig_x1, dest_y1-orig_y1);
-
-    std::cout << "Edge 1 length = " << lene << std::endl;
 
     if ((s < -EPSILON*lene) || (s > static_cast<NumT>(1.0)+EPSILON*lene))
       {
-        std::cout << "In SKEW_NO_CROSS 1" << std::endl;
         return SKEW_NO_CROSS;
       }
 
@@ -80,24 +72,11 @@ namespace Utils
                      orig_x1, orig_y1, dest_x1, dest_y1,
                      t);    
 
-    std::cout << "Edge 2 diff x: " << dest_x2-orig_x2 << ", y: ";
-    std::cout << dest_y2-orig_y2 << std::endl;
-
-    std::cout << "Edge 2 PSlope = " << t << std::endl;
-
     NumT lenf = __pt_length(orig_x2-dest_x2, orig_y2-dest_y2);
-
-    std::cout << "Edge 2 length = " << lenf << std::endl;
-
-
-    std::cout << "Check1: " << compare(-EPSILON*lenf, t) << std::endl;
-    std::cout << "Check2: " << compare(t, static_cast<NumT>(1.0)+EPSILON*lenf);
-    std::cout << std::endl;
 
     if (compare(-EPSILON*lenf, t) <= 0 && 
         compare(t, static_cast<NumT>(1.0)+EPSILON*lenf) <= 0)
       {
-        std::cout << "In SKEW_CROSS" << std::endl;
         if (compare(t, EPSILON*lenf) <= 0)
           {
             cross_x = orig_x2;
@@ -126,7 +105,6 @@ namespace Utils
       }
     else
       {
-        std::cout << "In SKEW_NO_CROSS 2" << std::endl;
         return SKEW_NO_CROSS;
       }
   }
