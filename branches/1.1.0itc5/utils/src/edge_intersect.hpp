@@ -32,7 +32,6 @@
 #define _EDGE_INTERSECT_HPP 1
 
 #include "convex_polygon_intersect.hpp"
-#include "geometry.hpp"
 #include "num_comparison.hpp"
 
 namespace Utils
