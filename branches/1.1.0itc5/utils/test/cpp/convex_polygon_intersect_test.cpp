@@ -530,19 +530,19 @@ bool test_func(NumT key, string debug)
 
   // allocate the output arrays since we now know the sizes
   Nessi::Vector<NumT> output1_x(parallelogram_x.size()+square1_x.size());
-  Nessi::Vector<NumT> output1_y(parallelogram_x.size()+square1_x.size());
+  Nessi::Vector<NumT> output1_y(parallelogram_y.size()+square1_y.size());
   Nessi::Vector<NumT> output2_x(parallelogram_x.size()+square2_x.size());
-  Nessi::Vector<NumT> output2_y(parallelogram_x.size()+square2_x.size());
+  Nessi::Vector<NumT> output2_y(parallelogram_y.size()+square2_y.size());
   Nessi::Vector<NumT> output3_x(parallelogram_x.size()+square3_x.size());
-  Nessi::Vector<NumT> output3_y(parallelogram_x.size()+square3_x.size());
+  Nessi::Vector<NumT> output3_y(parallelogram_y.size()+square3_y.size());
   Nessi::Vector<NumT> output4_x(parallelogram_x.size()+square4_x.size());
-  Nessi::Vector<NumT> output4_y(parallelogram_x.size()+square4_x.size());
+  Nessi::Vector<NumT> output4_y(parallelogram_y.size()+square4_y.size());
   Nessi::Vector<NumT> output5_x(parallelogram_x.size()+square5_x.size());
-  Nessi::Vector<NumT> output5_y(parallelogram_x.size()+square5_x.size());
+  Nessi::Vector<NumT> output5_y(parallelogram_y.size()+square5_y.size());
   Nessi::Vector<NumT> output6_x(parallelogram_x.size()+square6_x.size());
-  Nessi::Vector<NumT> output6_y(parallelogram_x.size()+square6_x.size());
+  Nessi::Vector<NumT> output6_y(parallelogram_y.size()+square6_y.size());
   Nessi::Vector<NumT> output7_x(parallelogram_x.size()+square7_x.size());
-  Nessi::Vector<NumT> output7_y(parallelogram_x.size()+square7_x.size());
+  Nessi::Vector<NumT> output7_y(parallelogram_y.size()+square7_y.size());
 
   initialize_true_outputs(true_output1_x, true_output1_y, 
                           true_output2_x, true_output2_y, 
