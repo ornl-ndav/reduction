@@ -185,54 +185,52 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
                              Nessi::Vector<NumT> & true_output5_y)
 {
   // initialize the correct outputs
-  true_output1_x.push_back(static_cast<NumT>(-2.0));
-  true_output1_x.push_back(static_cast<NumT>(-3.0));
-  true_output1_x.push_back(static_cast<NumT>(-0.5));
   true_output1_x.push_back(static_cast<NumT>(0.5));
+  true_output1_x.push_back(static_cast<NumT>(0.0));
+  true_output1_x.push_back(static_cast<NumT>(0.0));
 
   true_output1_y.push_back(static_cast<NumT>(-1.0));
-  true_output1_y.push_back(static_cast<NumT>(-3.0));
-  true_output1_y.push_back(static_cast<NumT>(-3.0));
+  true_output1_y.push_back(static_cast<NumT>(-2.0));
   true_output1_y.push_back(static_cast<NumT>(-1.0));
 
-  true_output2_x.push_back(static_cast<NumT>(-2.0));
-  true_output2_x.push_back(static_cast<NumT>(-3.0));
+  true_output2_x.push_back(static_cast<NumT>(0.0));
   true_output2_x.push_back(static_cast<NumT>(-0.5));
-  true_output2_x.push_back(static_cast<NumT>(0.5));
+  true_output2_x.push_back(static_cast<NumT>(-1.0));
+  true_output2_x.push_back(static_cast<NumT>(-1.0));
 
-  true_output2_y.push_back(static_cast<NumT>(-1.0));
+  true_output2_y.push_back(static_cast<NumT>(-2.0));
   true_output2_y.push_back(static_cast<NumT>(-3.0));
   true_output2_y.push_back(static_cast<NumT>(-3.0));
-  true_output2_y.push_back(static_cast<NumT>(-1.0));
+  true_output2_y.push_back(static_cast<NumT>(-2.0));
 
-  true_output3_x.push_back(static_cast<NumT>(-2.0));
-  true_output3_x.push_back(static_cast<NumT>(-3.0));
-  true_output3_x.push_back(static_cast<NumT>(-0.5));
   true_output3_x.push_back(static_cast<NumT>(0.5));
+  true_output3_x.push_back(static_cast<NumT>(0.25));
+  true_output3_x.push_back(static_cast<NumT>(-0.5));
+  true_output3_x.push_back(static_cast<NumT>(-0.5));
 
   true_output3_y.push_back(static_cast<NumT>(-1.0));
-  true_output3_y.push_back(static_cast<NumT>(-3.0));
-  true_output3_y.push_back(static_cast<NumT>(-3.0));
+  true_output3_y.push_back(static_cast<NumT>(-1.5));
+  true_output3_y.push_back(static_cast<NumT>(-1.5));
   true_output3_y.push_back(static_cast<NumT>(-1.0));
 
+  true_output4_x.push_back(static_cast<NumT>(-1.0));
+  true_output4_x.push_back(static_cast<NumT>(-1.0));
   true_output4_x.push_back(static_cast<NumT>(-2.0));
-  true_output4_x.push_back(static_cast<NumT>(-3.0));
-  true_output4_x.push_back(static_cast<NumT>(-0.5));
-  true_output4_x.push_back(static_cast<NumT>(0.5));
+  true_output4_x.push_back(static_cast<NumT>(-2.0));
 
   true_output4_y.push_back(static_cast<NumT>(-1.0));
-  true_output4_y.push_back(static_cast<NumT>(-3.0));
-  true_output4_y.push_back(static_cast<NumT>(-3.0));
+  true_output4_y.push_back(static_cast<NumT>(-2.0));
+  true_output4_y.push_back(static_cast<NumT>(-2.0));
   true_output4_y.push_back(static_cast<NumT>(-1.0));
 
-  true_output5_x.push_back(static_cast<NumT>(-2.0));
-  true_output5_x.push_back(static_cast<NumT>(-3.0));
   true_output5_x.push_back(static_cast<NumT>(-0.5));
-  true_output5_x.push_back(static_cast<NumT>(0.5));
+  true_output5_x.push_back(static_cast<NumT>(-0.5));
+  true_output5_x.push_back(static_cast<NumT>(-1.5));
+  true_output5_x.push_back(static_cast<NumT>(-1.5));
 
   true_output5_y.push_back(static_cast<NumT>(-1.0));
-  true_output5_y.push_back(static_cast<NumT>(-3.0));
-  true_output5_y.push_back(static_cast<NumT>(-3.0));
+  true_output5_y.push_back(static_cast<NumT>(-1.5));
+  true_output5_y.push_back(static_cast<NumT>(-1.5));
   true_output5_y.push_back(static_cast<NumT>(-1.0));
 }
 
