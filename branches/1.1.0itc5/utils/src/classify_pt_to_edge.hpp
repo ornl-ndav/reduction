@@ -72,11 +72,11 @@ namespace Utils
       {
         return BEYOND;
       }
-    if (compare(pt_x, edge_orig_x) && compare(pt_y, edge_orig_y))
+    if ((compare(pt_x, edge_orig_x) == 0) && (compare(pt_y, edge_orig_y) == 0))
       {
         return ORIGIN;
       }
-    if (compare(pt_x, edge_dest_x) && compare(pt_y, edge_dest_y))
+    if ((compare(pt_x, edge_dest_x) == 0) && (compare(pt_y, edge_dest_y) == 0))
       {
         return DESTINATION;
       }
