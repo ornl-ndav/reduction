@@ -58,6 +58,8 @@ return ret;
 
 std::string calc_area_2D_polygon_d(const Nessi::Vector<double> & x_coord, const Nessi::Vector<double> & y_coord, const std::size_t size_poly, bool signed_area, VPair<double> & area);
 
+%template(convex_polygon_intersect_d) Utils::convex_polygon_intersect<double>;
+
 // Instantiate templates for number comparisons
 %template(vector_is_equals_d) Utils::vector_is_equals<double>;
 %template(vector_is_equals_i) Utils::vector_is_equals<int>;
