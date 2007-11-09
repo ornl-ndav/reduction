@@ -199,13 +199,13 @@ namespace Utils
                 x_start = x_i;
                 y_start = y_i;
               }
-            else if (compare(x_i, cx_coord.back()) != 0 && 
-                     compare(y_i, cy_coord.back()) != 0)
+            else if (!(compare(x_i, cx_coord.back()) == 0 && 
+                       compare(y_i, cy_coord.back()) == 0))
               {
                 std::cout << "Cross-pt 2: (" << x_i << "," << y_i << ")";
                 std::cout << std::endl;
-                if (compare(x_i, x_start) != 0 && 
-                    compare(y_i, y_start) != 0)
+                if (!(compare(x_i, x_start) == 0 && 
+                      compare(y_i, y_start) == 0))
                   {
                     std::cout << "Adding intersection point" << std::endl;
                     cx_coord.push_back(x_i);
