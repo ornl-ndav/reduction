@@ -69,6 +69,8 @@ using namespace std;
  * \param square3_y (OUTPUT) is the y coordinate array for a square 
  * \param square4_x (OUTPUT) is the x coordinate array for a square 
  * \param square4_y (OUTPUT) is the y coordinate array for a square 
+ * \param square5_x (OUTPUT) is the x coordinate array for a square 
+ * \param square5_y (OUTPUT) is the y coordinate array for a square 
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & parallelogram_x,
@@ -80,17 +82,19 @@ void initialize_inputs(Nessi::Vector<NumT> & parallelogram_x,
                        Nessi::Vector<NumT> & square3_x,
                        Nessi::Vector<NumT> & square3_y,
                        Nessi::Vector<NumT> & square4_x,
-                       Nessi::Vector<NumT> & square4_y)
+                       Nessi::Vector<NumT> & square4_y,
+                       Nessi::Vector<NumT> & square5_x,
+                       Nessi::Vector<NumT> & square5_y)
 {
-  parallelogram_x.push_back(static_cast<NumT>(-2.0));
   parallelogram_x.push_back(static_cast<NumT>(-3.0));
-  parallelogram_x.push_back(static_cast<NumT>(-0.5));
+  parallelogram_x.push_back(static_cast<NumT>(-2.0));
   parallelogram_x.push_back(static_cast<NumT>(0.5));
+  parallelogram_x.push_back(static_cast<NumT>(-0.5));
 
-  parallelogram_y.push_back(static_cast<NumT>(-1.0));
-  parallelogram_y.push_back(static_cast<NumT>(-3.0));
   parallelogram_y.push_back(static_cast<NumT>(-3.0));
   parallelogram_y.push_back(static_cast<NumT>(-1.0));
+  parallelogram_y.push_back(static_cast<NumT>(-1.0));
+  parallelogram_y.push_back(static_cast<NumT>(-3.0));
 
   square1_x.push_back(static_cast<NumT>(1.0));
   square1_x.push_back(static_cast<NumT>(0.0));
@@ -131,6 +135,16 @@ void initialize_inputs(Nessi::Vector<NumT> & parallelogram_x,
   square4_y.push_back(static_cast<NumT>(-2.0));
   square4_y.push_back(static_cast<NumT>(-1.0));
   square4_y.push_back(static_cast<NumT>(-1.0));
+
+  square5_x.push_back(static_cast<NumT>(-0.5));
+  square5_x.push_back(static_cast<NumT>(-0.5));
+  square5_x.push_back(static_cast<NumT>(-1.5));
+  square5_x.push_back(static_cast<NumT>(-1.5));
+
+  square5_y.push_back(static_cast<NumT>(-0.5));
+  square5_y.push_back(static_cast<NumT>(-1.5));
+  square5_y.push_back(static_cast<NumT>(-1.5));
+  square5_y.push_back(static_cast<NumT>(-0.5));
 }
 
 /**
@@ -153,6 +167,10 @@ void initialize_inputs(Nessi::Vector<NumT> & parallelogram_x,
  * intersection polygon of the parallelogram with square4
  * \param true_output4_y (OUTPUT) is the y-coordinates of the true 
  * intersection polygon of the parallelogram with square4
+ * \param true_output5_x (OUTPUT) is the x-coordinates of the true 
+ * intersection polygon of the parallelogram with square5
+ * \param true_output5_y (OUTPUT) is the y-coordinates of the true 
+ * intersection polygon of the parallelogram with square5
  */
 template <typename NumT>
 void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
@@ -162,7 +180,9 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
                              Nessi::Vector<NumT> & true_output3_x,
                              Nessi::Vector<NumT> & true_output3_y,
                              Nessi::Vector<NumT> & true_output4_x,
-                             Nessi::Vector<NumT> & true_output4_y)
+                             Nessi::Vector<NumT> & true_output4_y,
+                             Nessi::Vector<NumT> & true_output5_x,
+                             Nessi::Vector<NumT> & true_output5_y)
 {
   // initialize the correct outputs
   true_output1_x.push_back(static_cast<NumT>(-2.0));
@@ -204,6 +224,16 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
   true_output4_y.push_back(static_cast<NumT>(-3.0));
   true_output4_y.push_back(static_cast<NumT>(-3.0));
   true_output4_y.push_back(static_cast<NumT>(-1.0));
+
+  true_output5_x.push_back(static_cast<NumT>(-2.0));
+  true_output5_x.push_back(static_cast<NumT>(-3.0));
+  true_output5_x.push_back(static_cast<NumT>(-0.5));
+  true_output5_x.push_back(static_cast<NumT>(0.5));
+
+  true_output5_y.push_back(static_cast<NumT>(-1.0));
+  true_output5_y.push_back(static_cast<NumT>(-3.0));
+  true_output5_y.push_back(static_cast<NumT>(-3.0));
+  true_output5_y.push_back(static_cast<NumT>(-1.0));
 }
 
 /**
@@ -236,6 +266,12 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
  * \param output4_y (INPUT) is the y-coordinates created by 
  * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
  * square4
+ * \param output5_x (INPUT) is the x-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square5
+ * \param output5_y (INPUT) is the y-coordinates created by 
+ * <i>convex_polygon_intersect</i> for the overlap of the parallelogram with 
+ * square5
 
  * \param true_output1_x (INPUT) is the true x-coordinates of the overlap of 
  * the parallelogram with square1
@@ -253,6 +289,10 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
  * the parallelogram with square4
  * \param true_output4_y (INPUT) is the true y-coordinates of the overlap of 
  * the parallelogram with square4
+ * \param true_output5_x (INPUT) is the true x-coordinates of the overlap of 
+ * the parallelogram with square5
+ * \param true_output5_y (INPUT) is the true y-coordinates of the overlap of 
+ * the parallelogram with square5
  */
 template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output1_x,
@@ -263,6 +303,8 @@ bool test_okay(Nessi::Vector<NumT> & output1_x,
                Nessi::Vector<NumT> & output3_y,
                Nessi::Vector<NumT> & output4_x,
                Nessi::Vector<NumT> & output4_y,
+               Nessi::Vector<NumT> & output5_x,
+               Nessi::Vector<NumT> & output5_y,
                Nessi::Vector<NumT> & true_output1_x,
                Nessi::Vector<NumT> & true_output1_y,
                Nessi::Vector<NumT> & true_output2_x,
@@ -270,7 +312,9 @@ bool test_okay(Nessi::Vector<NumT> & output1_x,
                Nessi::Vector<NumT> & true_output3_x,
                Nessi::Vector<NumT> & true_output3_y,
                Nessi::Vector<NumT> & true_output4_x,
-               Nessi::Vector<NumT> & true_output4_y)
+               Nessi::Vector<NumT> & true_output4_y,
+               Nessi::Vector<NumT> & true_output5_x,
+               Nessi::Vector<NumT> & true_output5_y)
 {
   bool value = true;
 
@@ -314,6 +358,16 @@ bool test_okay(Nessi::Vector<NumT> & output1_x,
     {
       value = false;
     }
+  // fraction 5 x comparison
+  if (!test_okay(output5_x, true_output5_x, VV))
+    {
+      value = false;
+    }
+  // fraction 5 y comparison
+  if (!test_okay(output5_y, true_output5_y, VV))
+    {
+      value = false;
+    }
 
   // everything okay
   return value;
@@ -345,15 +399,9 @@ bool test_func(NumT key, string debug)
   Nessi::Vector<NumT> square3_y;
   Nessi::Vector<NumT> square4_x;
   Nessi::Vector<NumT> square4_y;
+  Nessi::Vector<NumT> square5_x;
+  Nessi::Vector<NumT> square5_y;
 
-  Nessi::Vector<NumT> output1_x;
-  Nessi::Vector<NumT> output1_y;
-  Nessi::Vector<NumT> output2_x;
-  Nessi::Vector<NumT> output2_y;
-  Nessi::Vector<NumT> output3_x;
-  Nessi::Vector<NumT> output3_y;
-  Nessi::Vector<NumT> output4_x;
-  Nessi::Vector<NumT> output4_y;
   Nessi::Vector<NumT> true_output1_x;
   Nessi::Vector<NumT> true_output1_y;
   Nessi::Vector<NumT> true_output2_x;
@@ -362,17 +410,34 @@ bool test_func(NumT key, string debug)
   Nessi::Vector<NumT> true_output3_y;
   Nessi::Vector<NumT> true_output4_x;
   Nessi::Vector<NumT> true_output4_y;
+  Nessi::Vector<NumT> true_output5_x;
+  Nessi::Vector<NumT> true_output5_y;
 
   // fill in values as appropriate
   initialize_inputs(parallelogram_x, parallelogram_y, square1_x, square1_y, 
                     square2_x, square2_y, square3_x, square3_y, 
-                    square4_x, square4_y);
+                    square4_x, square4_y, square5_x, square5_y);
+
+  // allocate the output arrays since we now know the sizes
+  Nessi::Vector<NumT> output1_x(parallelogram_x.size()+square1_x.size());
+  Nessi::Vector<NumT> output1_y(parallelogram_x.size()+square1_x.size());
+  Nessi::Vector<NumT> output2_x(parallelogram_x.size()+square2_x.size());
+  Nessi::Vector<NumT> output2_y(parallelogram_x.size()+square2_x.size());
+  Nessi::Vector<NumT> output3_x(parallelogram_x.size()+square3_x.size());
+  Nessi::Vector<NumT> output3_y(parallelogram_x.size()+square3_x.size());
+  Nessi::Vector<NumT> output4_x(parallelogram_x.size()+square4_x.size());
+  Nessi::Vector<NumT> output4_y(parallelogram_x.size()+square4_x.size());
+  Nessi::Vector<NumT> output5_x(parallelogram_x.size()+square5_x.size());
+  Nessi::Vector<NumT> output5_y(parallelogram_x.size()+square5_x.size());
+
   initialize_true_outputs(true_output1_x, true_output1_y, 
                           true_output2_x, true_output2_y, 
                           true_output3_x, true_output3_y, 
-                          true_output4_x, true_output4_y);
+                          true_output4_x, true_output4_y,
+                          true_output5_x, true_output5_y);
 
   // run the code being tested
+
   Utils::convex_polygon_intersect(parallelogram_x, parallelogram_y, 
                                   square1_x, square1_y, output1_x, output1_y);
 
@@ -385,6 +450,8 @@ bool test_func(NumT key, string debug)
   Utils::convex_polygon_intersect(parallelogram_x, parallelogram_y, 
                                   square4_x, square4_y, output4_x, output4_y);
 
+  Utils::convex_polygon_intersect(parallelogram_x, parallelogram_y, 
+                                  square5_x, square5_y, output5_x, output5_y);
 
   if(!debug.empty())
     {
@@ -397,14 +464,18 @@ bool test_func(NumT key, string debug)
       print(output3_y, true_output3_y, VV, debug);
       print(output4_x, true_output4_x, VV, debug);
       print(output4_y, true_output4_y, VV, debug);
+      print(output5_x, true_output5_x, VV, debug);
+      print(output5_y, true_output5_y, VV, debug);
     }
 
   return test_okay(output1_x, output1_y, output2_x, output2_y, 
-                   output3_x, output3_y, output4_x, output4_y,   
+                   output3_x, output3_y, output4_x, output4_y,
+                   output5_x, output5_y,   
                    true_output1_x, true_output1_y, 
                    true_output2_x, true_output2_y, 
                    true_output3_x, true_output3_y, 
-                   true_output4_x, true_output4_y);
+                   true_output4_x, true_output4_y,
+                   true_output5_x, true_output5_y);
 }
 
 /**
