@@ -463,6 +463,94 @@ def compare(value1, value2):
 # \}
 
 ##
+# \defgroup convex_polygon_intersect utils::convex_polygon_intersect
+# \{
+   
+##
+# \brief This function finds the intersection of two convex polygons
+#
+# This function calculates the intersection of two convex polygons (labeled 
+# A and B for identification purposes) and returns the overlap polygon 
+# (labeled C). The prescription for this function is taken from section 6.5 
+# of <em>Computational Geometry and Computer Graphics in C++</em> by 
+# Michael Laszlo.
+#
+# \param ax_coord (INPUT) the x coordinates for polygon A
+# \param ay_coord (INPUT) the y coordinates for polygon A
+# \param bx_coord (INPUT) the x coordinates for polygon B
+# \param by_coord (INPUT) the y coordinates for polygon B
+#
+# \return
+# - A NessiList of the x coordinates of the intersection polygon
+# - A NessiList of the y coordinates of the intersection polygon
+#
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception IndexError is raised if the size of ax_coord is not identical to
+# the size of ay_coord
+# \exception IndexError is raised if the size of bx_coord is not identical to
+# the size of by_coord
+#
+   
+def convex_polygon_intersect(ax_coord, ay_coord, bx_coord, by_coord):
+    """
+    This function calculates the intersection of two convex polygons (labeled 
+    A and B for identification purposes) and returns the overlap polygon 
+    (labeled C). The prescription for this function is taken from section 6.5 
+    of Computational Geometry and Computer Graphics in C++ by Michael Laszlo.
+    
+    Parameters:
+    ----------
+    -> ax_coord the x coordinates for polygon A
+    -> ay_coord the y coordinates for polygon A
+    -> bx_coord the x coordinates for polygon B
+    -> by_coord the y coordinates for polygon B
+    
+    Returns:
+    -------
+    <- A NessiList of the x coordinates of the intersection polygon
+    <- A NessiList of the y coordinates of the intersection polygon
+    
+    Exceptions:
+    ----------
+    <- TypeError is raised if any of the lists are not the same type
+    <- IndexError is raised if the size of ax_coord is not identical to
+    the size of ay_coord
+    <- IndexError is raised if the size of bx_coord is not identical to
+    the size of by_coord
+    """
+    
+    if ax_coord.__type__ != ay_coord.__type__:
+        raise TypeError("X and Y coordinate arrays for polygon A are not "\
+                        +"the same type")
+
+    if bx_coord.__type__ != by_coord.__type__:
+        raise TypeError("X and Y coordinate arrays for polygon B are not "\
+                        +"the same type")
+
+    if ax_coord.__type__ != bx_coord.__type__:
+        raise TypeError("The coordinate arrays for polygon A and B are not "\
+                        +"the same type")    
+
+    if ax_coord.__type__ == nessi_list.NessiList.DOUBLE:
+        output_x = nessi_list.NessiList(len(ax_coord)+len(bx_coord))
+        output_y = nessi_list.NessiList(len(ay_coord)+len(by_coord))
+
+        utils_bind.convex_polygon_intersect_d(ax_coord.__array__,
+                                              ay_coord.__array__,
+                                              bx_coord.__array__,
+                                              by_coord.__array__,
+                                              output_x.__array__,
+                                              output_y.__array__)
+        return (output_x, output_y)
+        
+    else:
+        raise TypeError("convex_polygon_intersect: Unknown primitive type %s" \
+                        % str(ax_coord.__type__))
+    
+##
+# \}
+
+##
 # \defgroup eval_linear_fit utils::eval_linear_fit
 # \{
 
