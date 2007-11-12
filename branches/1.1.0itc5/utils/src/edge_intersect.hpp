@@ -44,9 +44,12 @@ namespace Utils
                    const NumT dest_x2, const NumT dest_y2,
                    NumT & para_slope)
   {
+    // Make perpendicular vector by rotating edge 2 by 90 degrees clockwise 
+    // about center
     NumT n_x = dest_y2 - orig_y2;
     NumT n_y = orig_x2 - dest_x2;
 
+    // Make edge 1 vector
     NumT m_x = dest_x1 - orig_x1;
     NumT m_y = dest_y1 - orig_y1;
 
@@ -54,6 +57,8 @@ namespace Utils
 
     if (compare(denom, static_cast<NumT>(0.0)) == 0)
       {
+        // Both edges lie in same direction and do not cross, so they are 
+        // either PARALLEL or COLLINEAR
         int aclass = __classify_pt_to_edge(orig_x1, orig_y1, orig_x2, orig_y2,
                                            dest_x2, dest_y2);
         if (aclass == LEFT || aclass == RIGHT)
@@ -65,7 +70,9 @@ namespace Utils
             return COLLINEAR;
           }
       }
-    
+
+    // Both edges are SKEW, so calculate parametric slope of perpendicular 
+    // vector
     NumT l_x = orig_x1 - orig_x2;
     NumT l_y = orig_y1 - orig_y2;
 
