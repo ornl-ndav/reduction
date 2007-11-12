@@ -350,7 +350,7 @@ namespace Utils
    * This function checks an index against the size of a polygon. If the 
    * index is equal to or larger that the polygon size, the index is shifted 
    * by subtracting the polygon size. This helps connect the last point in a
-   * coordinate array.
+   * coordinate array to the first point.
    * 
    * \param curr_index (INPUT) the current coordinate array index
    * \param poly_size (INPUT) the size of the polygon
