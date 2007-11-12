@@ -249,6 +249,9 @@ namespace Utils
    * where \f$i\f$ is either the x or y coordinate of the points and \f$t\f$ 
    * is the parametric slope.
    *
+   * This function is taken from section 4.4.3 of <em>Computational Geometry 
+   * and Computer Graphics in C++</em> by Michael Laszlo.
+   *
    * \param orig_x (INPUT) the x-coordinate of the origin point of edge 
    * \param orig_y (INPUT) the y-coordinate of the origin point of edge 
    * \param dest_x (INPUT) the x-coordinate of the destination point of edge 
