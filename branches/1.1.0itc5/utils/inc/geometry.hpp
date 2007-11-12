@@ -271,8 +271,11 @@ namespace Utils
    * following formula
    *
    * \f[
-   * dp = pt1_x * pt2_x + pt1_y * pt2_y
+   * \vec{pt1} \cdot \vec{pt2} = pt1_x * pt2_x + pt1_y * pt2_y
    * \f]
+   *
+   * This function is taken from section 4.4.3 of <em>Computational Geometry 
+   * and Computer Graphics in C++</em> by Michael Laszlo.
    *
    * \param pt1_x (INPUT) the x-coordinate of the first point
    * \param pt1_y (INPUT) the y-coordinate of the first point
