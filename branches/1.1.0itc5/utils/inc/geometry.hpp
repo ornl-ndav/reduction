@@ -320,7 +320,10 @@ namespace Utils
    * 
    * This function takes a polygon's coordinate arrays and the current 
    * coordinate arrays in the intersection polygon and advances the polygon 
-   * edge and adds points to the current intersection polygon.
+   * edge and adds points to the current intersection polygon if those points 
+   * lie on the intersection edge. This function is taken from section 6.5 
+   * of <em>Computational Geometry and Computer Graphics in C++</em> by 
+   * Michael Laszlo.
    * 
    * \param x_coord (INPUT) the x-coordinate array of the polygon to check
    * \param y_coord (INPUT) the y-coordinate array of the polygon to check

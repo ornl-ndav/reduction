@@ -61,6 +61,8 @@ namespace Utils
     int x_compare = compare(i_orig_x, p_orig_x);
     int y_compare = compare(i_orig_y, p_orig_y);
 
+    // If the point lies on the inner chain and is not the same as the last 
+    // intersection point, add it to the list.
     if (inside && !(x_compare == 0 && y_compare == 0))
       {
         ix_coord.push_back(p_orig_x);
