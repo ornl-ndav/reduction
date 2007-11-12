@@ -48,14 +48,16 @@ namespace Utils
   {
     static const NumT EPSILON = std::numeric_limits<NumT>::epsilon();
 
-    // Parametric slope holders for edge 1 (s) and edge 2 (t)
-    NumT s;
-    NumT t;
+    // Parametric slope holders
+    NumT s; // Edge 2 intersection with edge 1
+    NumT t; // Edge 1 intersection with edge 2
 
+    // Compute intersection point for infinite edge 2
     int classe = __edge_intersect(orig_x1, orig_y1, dest_x1, dest_y1,
                                   orig_x2, orig_y2, dest_x2, dest_y2,
                                   s);
 
+    // Classification does not allow edge 1 and edge 2 to cross
     if ((classe == COLLINEAR) || (classe == PARALLEL))
       {
         return classe;
@@ -63,11 +65,14 @@ namespace Utils
 
     NumT lene = __pt_length(dest_x1-orig_x1, dest_y1-orig_y1);
 
+    // If the intersection point from edge 2 is not on edge 1 origin or 
+    // destination points, the edges cannot cross
     if ((s < -EPSILON*lene) || (s > static_cast<NumT>(1.0)+EPSILON*lene))
       {
         return SKEW_NO_CROSS;
       }
 
+    // Compute intersection point for infinite edge 1
     __edge_intersect(orig_x2, orig_y2, dest_x2, dest_y2,
                      orig_x1, orig_y1, dest_x1, dest_y1,
                      t);    

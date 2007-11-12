@@ -190,7 +190,10 @@ namespace Utils
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
    *
    * This function takes two edges and finds the crossing point of the edges 
-   * if the orientation allows this. 
+   * if the orientation allows this. This function is taken from section 6.5.2 
+   * of <em>Computational Geometry and Computer Graphics in C++</em> by 
+   * Michael Laszlo.
+   *
    *
    * \param orig_x1 (INPUT) the x-coordinate of the origin point of edge 1
    * \param orig_y1 (INPUT) the y-coordinate of the origin point of edge 1
