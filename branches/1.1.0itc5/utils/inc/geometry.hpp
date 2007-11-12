@@ -363,7 +363,9 @@ namespace Utils
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
    * 
-   * This function checks to see if a point is within a convex polygon
+   * This function checks to see if a point is within a convex polygon. This 
+   * is taken from section 4.3.5 of <em>Computational Geometry and Computer 
+   * Graphics in C++</em> by Michael Laszlo.
    *
    * \param pt_x (INPUT) the x-coordinate of the point to check
    * \param pt_y (INPUT) the y-coordinate of the point to check

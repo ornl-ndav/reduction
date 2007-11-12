@@ -47,31 +47,40 @@ namespace Utils
     std::size_t poly_size = x_coord.size();
 
     orig_pos = __wrap_indicies(orig_pos, poly_size);
+
+    // Get edge destination point
     std::size_t dest_pos = __wrap_indicies(orig_pos+1, poly_size);
 
     if (1 == poly_size)
       {
+        // Incoming polygon is a point so they must be equal to coincide
         int x_compare = compare(pt_x, x_coord[orig_pos]);
         int y_compare = compare(pt_y, y_coord[orig_pos]);
-        return (x_compare == 0 && y_compare == 0);
+        return (0 == x_compare && 0 == y_compare);
       }
     if (2 == poly_size)
       {
+        // Incoming polygon is a line, so the point to check must lie on the 
+        // line if is it "inside".
         int c = __classify_pt_to_edge(pt_x, pt_y, 
                                       x_coord[orig_pos], y_coord[orig_pos],
                                       x_coord[dest_pos], y_coord[dest_pos]);
-        return ((c == BETWEEN) || (c == ORIGIN) || (c == DESTINATION));
+        return ((BETWEEN == c) || (ORIGIN == c) || (DESTINATION == c));
       }
     
+    // Have a standard polygon. If the point lies inside the polygon, the
+    // classification is anything but LEFT. A LEFT classification denotes that 
+    // point lies outside the polygon.
     for (std::size_t i = 0; i < poly_size; ++i, ++orig_pos, ++dest_pos)
       {
+        // Advance polygon edge
         orig_pos = __wrap_indicies(orig_pos, poly_size);
         dest_pos = __wrap_indicies(dest_pos, poly_size);
 
         int c = __classify_pt_to_edge(pt_x, pt_y, 
                                       x_coord[orig_pos], y_coord[orig_pos],
                                       x_coord[dest_pos], y_coord[dest_pos]);
-        if (c == LEFT)
+        if (LEFT == c)
           {
             return false;
           }
