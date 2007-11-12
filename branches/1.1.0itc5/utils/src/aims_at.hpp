@@ -43,6 +43,8 @@ namespace Utils
             const NumT dest_x2, const NumT dest_y2,
             const int point_class, const int cross_type)
   {
+    // Make cross-product components
+
     NumT v1_x = dest_x1 - orig_x1;
     NumT v1_y = dest_y1 - orig_y1;
 
@@ -51,20 +53,27 @@ namespace Utils
 
     if (cross_type != COLLINEAR)
       {
+        // Calculate cross-product terms
         NumT cp1 = v1_x * v2_y;
         NumT cp2 = v2_x * v1_y;
 
         if (compare(cp1, cp2) >= 0)
           {
+            // Edge 1 can only aim at edge 2 if the edge 1 destination point 
+            // is not RIGHT of the edge 2
             return (point_class != RIGHT);
           }
         else
           {
+            // Edge 1 can only aim at edge 2 if the edge 1 destination point 
+            // is not LEFT of the edge 2
             return (point_class != LEFT);
           }
       }
     else
       {
+        // If the edges are COLLINEAR, edge 1 can only aim at edge 2 if the 
+        // edge 1 destination point is not BEYOND the edge 2 destination point
         return (point_class != BEYOND);
       }
   }

@@ -289,8 +289,16 @@ namespace Utils
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
    *
-   * This function takes two edges and determines if the two edges aim 
-   * at each other.
+   * This function takes two edges and determines if edge 1 aims at edge 2.
+   * This function is taken from section 6.5 of <em>Computational Geometry and 
+   * Computer Graphics in C++</em> by Michael Laszlo.
+   *
+   * Edge 1 aims at edge 2 if:
+   *
+   * \li \f$\vec{E1} \times \vec{E2} \geq 0\f$ and edge 1 destination point 
+   * is not RIGHT of edge 2
+   * \li \f$\vec{E1} \times \vec{E2} < 0\f$ and edge 1 destination point is 
+   * not LEFT of edge 2
    *
    * \param orig_x1 (INPUT) the x-coordinate of the origin point of edge 1
    * \param orig_y1 (INPUT) the y-coordinate of the origin point of edge 1
