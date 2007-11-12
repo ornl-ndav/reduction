@@ -174,6 +174,9 @@ namespace Utils
    * length = \sqrt{x^2 + y^2}
    * \f]
    *
+   * This function is taken from section 4.2.6 of <em>Computational Geometry 
+   * and Computer Graphics in C++</em> by Michael Laszlo.
+   *
    * \param x (INPUT) the x-coordinate of the point
    * \param y (INPUT) the y-coordinate of the point
    *
