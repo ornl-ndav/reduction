@@ -105,7 +105,11 @@ namespace Utils
    * A and B for identification purposes) and returns the overlap polygon 
    * (labeled C). The prescription for this function is taken from section 6.5 
    * of <em>Computational Geometry and Computer Graphics in C++</em> by 
-   * Michael Laszlo.
+   * Michael Laszlo. It has been modified to fit to the data model 
+   * (Nessi::Vectors) of the SNS Common Libraries. The porting of method names 
+   * to library functions is not one-to-one and have been modified to fit the
+   * library naming conventions. The methodology presented in the book is used
+   * as is. 
    *
    * \param ax_coord (INPUT) the x coordinates for polygon A
    * \param ay_coord (INPUT) the y coordinates for polygon A
