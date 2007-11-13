@@ -148,13 +148,16 @@ namespace Utils
     std::size_t b_size = bx_coord.size();
 
     int phase = 1;
-
+    
+    // Flag to keep track of the polygon with the inside edge
     int inflag = UNKNOWN;
 
     std::size_t max_iters = 2 * (a_size + b_size);
 
     for (std::size_t i = 1; (i <= max_iters) || (2 == phase); ++i)
       {
+        // Classify both edge destination points with respect to the opposing
+        // edge
         int aclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
                                            bx_coord[b_orig], by_coord[b_orig],
                                            bx_coord[b_dest], by_coord[b_dest]);
@@ -163,6 +166,7 @@ namespace Utils
                                            ax_coord[a_orig], ay_coord[a_orig],
                                            ax_coord[a_dest], ay_coord[a_dest]);
 
+        // Determine if the edges cross
         int cross_type = __crossing_pt(ax_coord[a_orig], ay_coord[a_orig],
                                        ax_coord[a_dest], ay_coord[a_dest],
                                        bx_coord[b_orig], by_coord[b_orig],
@@ -171,6 +175,9 @@ namespace Utils
 
         if (cross_type == SKEW_CROSS)
           {
+            // The current edges cross. 
+
+            //If we're in phase 1, move onto phase 2
             if (1 == phase) 
               {
                 phase = 2;
@@ -180,9 +187,13 @@ namespace Utils
                 x_start = x_i;
                 y_start = y_i;
               }
+            // We're in phase 2 already, so we need to check if the found 
+            // intersection point matches the previous found one.
             else if (!(compare(x_i, cx_coord.back()) == 0 && 
                        compare(y_i, cy_coord.back()) == 0))
               {
+                // Check the found intersection point against the first 
+                // intersection point found
                 if (!(compare(x_i, x_start) == 0 && 
                       compare(y_i, y_start) == 0))
                   {
@@ -194,6 +205,8 @@ namespace Utils
                     return Nessi::EMPTY_WARN;
                   }
               }
+
+            // Determine which polygon has the inside edge
             if (aclass == RIGHT)
               {
                 inflag = A_IS_INSIDE;
@@ -210,9 +223,13 @@ namespace Utils
         else if (cross_type == COLLINEAR && 
                  ((aclass != BEHIND) && (bclass != BEHIND)))
           {
+            // The current edges do not cross, but we can't determine which
+            // polygon has the inside edge.
             inflag = UNKNOWN;
           }
 
+        // Determine which polygon edge aims at the other for edge advancement 
+        // determination
         bool a_aims_b = __aims_at(ax_coord[a_orig], ay_coord[a_orig],
                                   ax_coord[a_dest], ay_coord[a_dest],
                                   bx_coord[b_orig], by_coord[b_orig],
@@ -226,6 +243,7 @@ namespace Utils
 
         if (a_aims_b && b_aims_a)
           {
+            // Advance the edge on the outside, no intersection point inserted
             if ((inflag == B_IS_INSIDE) || 
                 ((inflag == UNKNOWN) && (aclass == LEFT)))
               {
@@ -240,16 +258,21 @@ namespace Utils
           }
         else if (a_aims_b)
           {
+            // Advance edge on polygon A, insert edge end point as 
+            // intersection point if A edge is on inside edge
             __advance_edge(ax_coord, ay_coord, inflag==A_IS_INSIDE, 
                            cx_coord, cy_coord, a_orig, a_dest);
           }
         else if (b_aims_a)
           {
+            // Advance edge on polygon B, insert edge end point as 
+            // intersection point if B edge is on inside edge
             __advance_edge(bx_coord, by_coord, inflag==B_IS_INSIDE, 
                            cx_coord, cy_coord, b_orig, b_dest);
           }
         else
           {
+            // Advance the edge on the outside, no intersection point inserted
             if ((inflag == B_IS_INSIDE) || 
                 ((inflag == UNKNOWN) && (aclass == LEFT)))
               {
@@ -287,8 +310,8 @@ namespace Utils
         return Nessi::EMPTY_WARN;
       }
 
-    // Polygons A and B lie outside each other
-
+    // Polygons A and B lie outside each other, so push back a coordinate axis 
+    // origin
     cx_coord.push_back(static_cast<NumT>(0.0));
     cy_coord.push_back(static_cast<NumT>(0.0));
     return Nessi::EMPTY_WARN;
