@@ -185,6 +185,75 @@ namespace Utils
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   * 
+   * This function takes a polygon's coordinate arrays and the current 
+   * coordinate arrays in the intersection polygon and advances the polygon 
+   * edge and adds points to the current intersection polygon if those points 
+   * lie on the intersection edge. This function is taken from section 6.5 
+   * of <em>Computational Geometry and Computer Graphics in C++</em> by 
+   * Michael Laszlo.
+   * 
+   * \param x_coord (INPUT) the x-coordinate array of the polygon to check
+   * \param y_coord (INPUT) the y-coordinate array of the polygon to check
+   * \param inside (INPUT) the current polygon that is inside the other
+   * \param ix_coord (INPUT/OUTPUT) the x-coordinate array of the intersection 
+   * polygon
+   * \param iy_coord (INPUT/OUTPUT) the y-coordinate array of the intersection 
+   * polygon
+   * \param orig_pos (INPUT/OUTPUT) the index position of the current edge's 
+   * origin
+   * \param dest_pos (INPUT/OUTPUT) the index position of the current edge's 
+   * destination
+   */
+  template <typename NumT>
+  void
+  __advance_edge(const Nessi::Vector<NumT> & x_coord, 
+                 const Nessi::Vector<NumT> & y_coord, 
+                 const int inside,
+                 Nessi::Vector<NumT> & ix_coord,
+                 Nessi::Vector<NumT> & iy_coord,
+                 std::size_t & orig_pos, 
+                 std::size_t & dest_pos);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function takes two edges and determines if edge 1 aims at edge 2.
+   * This function is taken from section 6.5 of <em>Computational Geometry and 
+   * Computer Graphics in C++</em> by Michael Laszlo.
+   *
+   * Edge 1 aims at edge 2 if:
+   *
+   * \li \f$\vec{E1} \times \vec{E2} \geq 0\f$ and edge 1 destination point 
+   * is not RIGHT of edge 2
+   * \li \f$\vec{E1} \times \vec{E2} < 0\f$ and edge 1 destination point is 
+   * not LEFT of edge 2
+   *
+   * \param orig_x1 (INPUT) the x-coordinate of the origin point of edge 1
+   * \param orig_y1 (INPUT) the y-coordinate of the origin point of edge 1
+   * \param dest_x1 (INPUT) the x-coordinate of the destination point of edge 1
+   * \param dest_y1 (INPUT) the y-coordinate of the destination point of edge 1
+   * \param orig_x2 (INPUT) the x-coordinate of the origin point of edge 2
+   * \param orig_y2 (INPUT) the y-coordinate of the origin point of edge 2
+   * \param dest_x2 (INPUT) the x-coordinate of the destination point of edge 2
+   * \param dest_y2 (INPUT) the y-coordinate of the destination point of edge 2
+   * \param point_class (INPUT) the classification of the destination point of 
+   * edge 1 with respect to edge 2
+   * \param cross_type (INPUT) the crossing-type classification of the two 
+   * edges
+   *
+   * \return A boolean determining if the two edges aim at each other
+   */
+  template <typename NumT>
+  bool
+  __aims_at(const NumT orig_x1, const NumT orig_y1, 
+            const NumT dest_x1, const NumT dest_y1,
+            const NumT orig_x2, const NumT orig_y2, 
+            const NumT dest_x2, const NumT dest_y2,
+            const int point_class, const int cross_type);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
    *
    * This function takes a point, which is given by an (x,y) pair and 
    * classifies its location in space relative to a given directed edge. The 
@@ -210,28 +279,6 @@ namespace Utils
   __classify_pt_to_edge(const NumT pt_x, const NumT pt_y,
                         const NumT edge_orig_x, const NumT edge_orig_y,
                         const NumT edge_dest_x, const NumT edge_dest_y);
-
-  /**
-   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
-   *
-   * This function returns the length of a (x,y) coordinate pair with respect 
-   * to the origin by the following formula
-   *
-   * \f[
-   * length = \sqrt{x^2 + y^2}
-   * \f]
-   *
-   * This function is taken from section 4.2.6 of <em>Computational Geometry 
-   * and Computer Graphics in C++</em> by Michael Laszlo.
-   *
-   * \param x (INPUT) the x-coordinate of the point
-   * \param y (INPUT) the y-coordinate of the point
-   *
-   * \return The length of the point
-   */
-  template <typename NumT>
-  NumT
-  __pt_length(const NumT x, const NumT y);
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
@@ -263,6 +310,31 @@ namespace Utils
                 const NumT orig_x2, const NumT orig_y2, 
                 const NumT dest_x2, const NumT dest_y2,
                 NumT & cross_x, NumT & cross_y);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function calculates the dot product between two points via the 
+   * following formula
+   *
+   * \f[
+   * \vec{pt1} \cdot \vec{pt2} = pt1_x * pt2_x + pt1_y * pt2_y
+   * \f]
+   *
+   * This function is taken from section 4.4.3 of <em>Computational Geometry 
+   * and Computer Graphics in C++</em> by Michael Laszlo.
+   *
+   * \param pt1_x (INPUT) the x-coordinate of the first point
+   * \param pt1_y (INPUT) the y-coordinate of the first point
+   * \param pt2_x (INPUT) the x-coordinate of the second point
+   * \param pt2_y (INPUT) the y-coordinate of the second point
+   *
+   * \return The value of the dot product
+   */
+  template <typename NumT>
+  NumT
+  __dot_product(const NumT pt1_x, const NumT pt1_y, 
+                const NumT pt2_x, const NumT pt2_y);
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
@@ -344,116 +416,6 @@ namespace Utils
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
-   *
-   * This function calculates the dot product between two points via the 
-   * following formula
-   *
-   * \f[
-   * \vec{pt1} \cdot \vec{pt2} = pt1_x * pt2_x + pt1_y * pt2_y
-   * \f]
-   *
-   * This function is taken from section 4.4.3 of <em>Computational Geometry 
-   * and Computer Graphics in C++</em> by Michael Laszlo.
-   *
-   * \param pt1_x (INPUT) the x-coordinate of the first point
-   * \param pt1_y (INPUT) the y-coordinate of the first point
-   * \param pt2_x (INPUT) the x-coordinate of the second point
-   * \param pt2_y (INPUT) the y-coordinate of the second point
-   *
-   * \return The value of the dot product
-   */
-  template <typename NumT>
-  NumT
-  __dot_product(const NumT pt1_x, const NumT pt1_y, 
-                const NumT pt2_x, const NumT pt2_y);
-
-  /**
-   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
-   *
-   * This function takes two edges and determines if edge 1 aims at edge 2.
-   * This function is taken from section 6.5 of <em>Computational Geometry and 
-   * Computer Graphics in C++</em> by Michael Laszlo.
-   *
-   * Edge 1 aims at edge 2 if:
-   *
-   * \li \f$\vec{E1} \times \vec{E2} \geq 0\f$ and edge 1 destination point 
-   * is not RIGHT of edge 2
-   * \li \f$\vec{E1} \times \vec{E2} < 0\f$ and edge 1 destination point is 
-   * not LEFT of edge 2
-   *
-   * \param orig_x1 (INPUT) the x-coordinate of the origin point of edge 1
-   * \param orig_y1 (INPUT) the y-coordinate of the origin point of edge 1
-   * \param dest_x1 (INPUT) the x-coordinate of the destination point of edge 1
-   * \param dest_y1 (INPUT) the y-coordinate of the destination point of edge 1
-   * \param orig_x2 (INPUT) the x-coordinate of the origin point of edge 2
-   * \param orig_y2 (INPUT) the y-coordinate of the origin point of edge 2
-   * \param dest_x2 (INPUT) the x-coordinate of the destination point of edge 2
-   * \param dest_y2 (INPUT) the y-coordinate of the destination point of edge 2
-   * \param point_class (INPUT) the classification of the destination point of 
-   * edge 1 with respect to edge 2
-   * \param cross_type (INPUT) the crossing-type classification of the two 
-   * edges
-   *
-   * \return A boolean determining if the two edges aim at each other
-   */
-  template <typename NumT>
-  bool
-  __aims_at(const NumT orig_x1, const NumT orig_y1, 
-            const NumT dest_x1, const NumT dest_y1,
-            const NumT orig_x2, const NumT orig_y2, 
-            const NumT dest_x2, const NumT dest_y2,
-            const int point_class, const int cross_type);
-
-  /**
-   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
-   * 
-   * This function takes a polygon's coordinate arrays and the current 
-   * coordinate arrays in the intersection polygon and advances the polygon 
-   * edge and adds points to the current intersection polygon if those points 
-   * lie on the intersection edge. This function is taken from section 6.5 
-   * of <em>Computational Geometry and Computer Graphics in C++</em> by 
-   * Michael Laszlo.
-   * 
-   * \param x_coord (INPUT) the x-coordinate array of the polygon to check
-   * \param y_coord (INPUT) the y-coordinate array of the polygon to check
-   * \param inside (INPUT) the current polygon that is inside the other
-   * \param ix_coord (INPUT/OUTPUT) the x-coordinate array of the intersection 
-   * polygon
-   * \param iy_coord (INPUT/OUTPUT) the y-coordinate array of the intersection 
-   * polygon
-   * \param orig_pos (INPUT/OUTPUT) the index position of the current edge's 
-   * origin
-   * \param dest_pos (INPUT/OUTPUT) the index position of the current edge's 
-   * destination
-   */
-  template <typename NumT>
-  void
-  __advance_edge(const Nessi::Vector<NumT> & x_coord, 
-                 const Nessi::Vector<NumT> & y_coord, 
-                 const int inside,
-                 Nessi::Vector<NumT> & ix_coord,
-                 Nessi::Vector<NumT> & iy_coord,
-                 std::size_t & orig_pos, 
-                 std::size_t & dest_pos);
-
-  /**
-   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
-   * 
-   * This function checks an index against the size of a polygon. If the 
-   * index is equal to or larger that the polygon size, the index is shifted 
-   * by subtracting the polygon size. This helps connect the last point in a
-   * coordinate array to the first point.
-   * 
-   * \param curr_index (INPUT) the current coordinate array index
-   * \param poly_size (INPUT) the size of the polygon
-   *
-   * \return A possibly modified index
-   */
-  std::size_t __wrap_indicies(const std::size_t curr_index, 
-                              const std::size_t poly_size);
-
-  /**
-   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
    * 
    * This function checks to see if a point is within a convex polygon. This 
    * is taken from section 4.3.5 of <em>Computational Geometry and Computer 
@@ -473,6 +435,45 @@ namespace Utils
                          std::size_t & orig_pos, 
                          const Nessi::Vector<NumT> & x_coord, 
                          const Nessi::Vector<NumT> & y_coord);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
+   * This function returns the length of a (x,y) coordinate pair with respect 
+   * to the origin by the following formula
+   *
+   * \f[
+   * length = \sqrt{x^2 + y^2}
+   * \f]
+   *
+   * This function is taken from section 4.2.6 of <em>Computational Geometry 
+   * and Computer Graphics in C++</em> by Michael Laszlo.
+   *
+   * \param x (INPUT) the x-coordinate of the point
+   * \param y (INPUT) the y-coordinate of the point
+   *
+   * \return The length of the point
+   */
+  template <typename NumT>
+  NumT
+  __pt_length(const NumT x, const NumT y);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   * 
+   * This function checks an index against the size of a polygon. If the 
+   * index is equal to or larger that the polygon size, the index is shifted 
+   * by subtracting the polygon size. This helps connect the last point in a
+   * coordinate array to the first point.
+   * 
+   * \param curr_index (INPUT) the current coordinate array index
+   * \param poly_size (INPUT) the size of the polygon
+   *
+   * \return A possibly modified index
+   */
+  std::size_t __wrap_indicies(const std::size_t curr_index, 
+                              const std::size_t poly_size);
+
   /**
    * \} // end of convex_polygon_intersect
    */ 
