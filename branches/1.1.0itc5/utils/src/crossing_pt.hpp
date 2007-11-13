@@ -52,7 +52,7 @@ namespace Utils
     NumT s; // Edge 2 intersection with edge 1
     NumT t; // Edge 1 intersection with edge 2
 
-    // Compute intersection point for infinite edge 2
+    // Compute parametric slope for intersection for infinite edge 2
     int classe = __edge_intersect(orig_x1, orig_y1, dest_x1, dest_y1,
                                   orig_x2, orig_y2, dest_x2, dest_y2,
                                   s);
@@ -65,49 +65,58 @@ namespace Utils
 
     NumT lene = __pt_length(dest_x1-orig_x1, dest_y1-orig_y1);
 
-    // If the intersection point from edge 2 is not on edge 1 origin or 
-    // destination points, the edges cannot cross
+    // If the parametric slope for intersection from edge 2 is not between 
+    // 0-ep and 1+ep, the edges cannot cross.
     if ((s < -EPSILON*lene) || (s > static_cast<NumT>(1.0)+EPSILON*lene))
       {
         return SKEW_NO_CROSS;
       }
 
-    // Compute intersection point for infinite edge 1
+    // Compute parametric slope for intersection for infinite edge 1
     __edge_intersect(orig_x2, orig_y2, dest_x2, dest_y2,
                      orig_x1, orig_y1, dest_x1, dest_y1,
                      t);    
 
     NumT lenf = __pt_length(orig_x2-dest_x2, orig_y2-dest_y2);
 
+    // We now check the reverse case to the above. If the parametric slope for 
+    // intersection from edge 1 is not between 0-ep and 1+ep, the edges cannot 
+    // cross.
     if (compare(-EPSILON*lenf, t) <= 0 && 
         compare(t, static_cast<NumT>(1.0)+EPSILON*lenf) <= 0)
       {
+        // Crossing happens at edge 2's origin point
         if (compare(t, EPSILON*lenf) <= 0)
           {
             cross_x = orig_x2;
             cross_y = orig_y2;
           }
+        // Crossing happens at edge 2's destination point
         else if (compare(t, static_cast<NumT>(1.0)-EPSILON*lenf) >= 0)
           {
             cross_x = dest_x2;
             cross_y = dest_y2;
           }
+        // Crossing happens at edge 1's origin point
         else if (compare(s, EPSILON*lene) <= 0)
           {
             cross_x = orig_x1;
             cross_y = orig_y1;
           }
+        // Crossing happens at edge 1's destination point
         else if (compare(s, static_cast<NumT>(1.0)-EPSILON*lene) >= 0)
           {
             cross_x = dest_x1;
             cross_y = dest_y1;
           }
+        // Crossing occurs somewhere along edge 2
         else
           {
             __edge_pt(orig_x2, orig_y2, dest_x2, dest_y2, t, cross_x, cross_y);
           }
         return SKEW_CROSS;
       }
+    // OK, now they definitely do not cross.
     else
       {
         return SKEW_NO_CROSS;
