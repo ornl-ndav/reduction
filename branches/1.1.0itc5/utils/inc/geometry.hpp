@@ -109,8 +109,53 @@ namespace Utils
    * (Nessi::Vectors) of the SNS Common Libraries. The porting of method names 
    * to library functions is not one-to-one and have been modified to fit the
    * library naming conventions. The methodology presented in the book is used
-   * as is. 
+   * as is and is summarized below. 
    *
+   * Local Vocabulary Definitions
+   * \li \em Sickle - Regions that encircling the intersection polygon that 
+   * consist of a set of points (chains) from both polygon A and B and 
+   * terminates at the intersection points. These are the grey regions in the 
+   * figure below.
+   * \li <em>Inner chain</em> - The set of points of a sickle that lies on the 
+   * intersection polygon
+   * \li \em Edge - A set of two points with an origin and a destination point
+   * \li <em>Origin point</em> - The current coordinate point based on the 
+   * iteration through the coordinate lists
+   * \li <em>Destination point</em> - The i+1 point from the origin point
+   *
+   * <IMG SRC="../images/PolygonOverlap.png">
+   *
+   * <em>Phase 1:</em> Search for edge intersection
+   * <OL>
+   * <LI>Create windows (a, b) based on edges of A and B respectively</LI>
+   * <LI>Move a and b until both edges on the same sickle</LI>
+   * </OL>
+   * <em>Phase 2:</em> Search for intersection points
+   * <OL>
+   * <LI>Advance a or b based on the following rules (note: edge a is 
+   * considered outside edge b if the destination edge point of a lies to the 
+   * left of b).
+   * <UL>
+   * <LI>a and b aim at each other: advance the edge which is outside</LI>
+   * <LI>a aims at b, but b does not aim at a: insert a's destination point 
+   * into intersection polygon and advance a</LI>
+   * <LI>b aims at a, but a does not aim at b: insert b's destination point 
+   * into intersection polygon and advance b</LI>
+   * <LI>a and b do not aim at each other: advance the edge which is 
+   * outside</LI>
+   * </UL>
+   * <LI>If the edge end point of a or b belong to the inner chain, insert the 
+   * point into the intersection polygon</LI>
+   * <LI>When a and b cross, that point is inserted into intersection 
+   * polygon</LI>
+   * <LI>Continue until the first intersection point is found again</LI>
+   * </OL>
+   * 
+   * If 2*(size(A)+size(B)) iterations are performed without an intersection 
+   * point being found, then the polygon boundaries do not cross. The 
+   * coordinate pairs of the polygons are compared to each other to determine 
+   * the \f$A \subset B\f$, \f$A \supset B\f$ or \f$A \cap B = 0\f$ cases.
+   * 
    * \param ax_coord (INPUT) the x coordinates for polygon A
    * \param ay_coord (INPUT) the y coordinates for polygon A
    * \param bx_coord (INPUT) the x coordinates for polygon B
