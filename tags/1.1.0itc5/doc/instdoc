@@ -1,0 +1,74 @@
+#!/bin/sh
+
+###############################################################################
+#
+# This script installs the SNS Common Library documentation. It checks to see
+# if the documentation directories exist in the source code. If they do not,
+# the install is ignored.
+#
+# $Id$
+#
+###############################################################################
+
+if [[ $# -ne 1 ]] ; then
+  echo "Usage: $0 <target directory>"
+  exit -1
+fi
+
+# Create top-level directory for documentation
+echo "mkdir -p $1"
+mkdir -p $1
+
+# Copy main page
+echo "cp index.html $1"
+cp index.html $1
+
+# Copy material directory
+echo "mkdir -p $1/material"
+mkdir -p $1/material
+echo "cp material/*.* $1/material"
+cp material/* $1/material
+
+# Copy images directory
+echo "mkdir -p $1/images"
+mkdir -p $1/images
+echo "cp images/*.* $1/images"
+cp images/*.* $1/images
+
+# Copy tutorials directory
+echo "mkdir -p $1/tutorials"
+mkdir -p $1/tutorials
+echo "cp tutorials/*.* $1/tutorials"
+cp tutorials/*.* $1/tutorials
+
+# Copy C++ HTML directory
+if [[ -d html_cpp ]] ; then 
+  echo "cp -r html_cpp $1"
+  cp -r html_cpp $1
+fi
+
+# Copy C++ LaTex directory
+if [[ -d latex_cpp ]] ; then
+  echo "mkdir -p $1/latex_cpp"
+  mkdir -p $1/latex_cpp
+  echo "cp latex_cpp/*.eps $1/latex_cpp"
+  cp latex_cpp/*.eps $1/latex_cpp
+  echo "cp latex/*.tex $1/latex_cpp"
+  cp latex_cpp/*.tex $1/latex_cpp
+fi
+
+# Copy Python HTML directory
+if [[ -d html_python ]] ; then
+  echo "cp -r html_python $1"
+  cp -r html_python $1
+fi
+
+# Copy Python LaTex directory
+if [[ -d latex_python ]] ; then
+  echo "mkdir -p $1/latex_python"
+  mkdir -p $1/latex_python
+  echo "cp latex_python/*.eps $1/latex_python"
+  cp latex_python/*.eps $1/latex_python
+  echo "cp latex/*.tex $1/latex_python"
+  cp latex_python/*.tex $1/latex_python
+fi
