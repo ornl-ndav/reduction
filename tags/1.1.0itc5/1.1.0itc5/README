@@ -1,0 +1,51 @@
+Installation Instructions
+=========================
+
+Prerequisites
+
+   The SNS Common Libraries uses Swig for generation of Python bindings to
+   the library functions. This program must be accessable on the compilation
+   machine. Doxygen is used for creating documentation. If documentation is
+   desired and did not come with the distribution, this program must be
+   accessable on the compilation machine. The minimum software versions for 
+   dependencies are listed below.
+
+     1. GCC            - 3.4.6
+     2. Autoconf       - 2.59
+     3. Automake       - 1.9.4
+     4. Libtool        - 1.5.10
+     5. Swig           - 1.3.28
+     6. Python         - 2.3.4
+     7. Doxygen        - 1.4.6
+     8. Dot (Graphviz) - 2.8
+
+   Note: Higher versions may work but are not guaranteed. 
+
+1) Extract the archive
+
+   tar xzf sns_common_lib-<version>.tar.gz
+   cd sns_common_lib-<version>
+
+2) Run 'configure' and 'make'.
+
+   ./configure
+   make
+
+   If an alternate Python distribution is needed, make sure the Python command
+   appears in the $PATH first. That one will be interpreted and used by the 
+   configuration system.  
+
+   If there are any problems, try different configure options to see if one
+   will work.  You can see what switches are available by typing
+
+   ./configure --help
+
+3) Test the installation using
+
+   make test
+
+4) Install the files in the default location (usually /usr/local) using
+
+   make install
+
+$Id$
