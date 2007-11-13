@@ -188,7 +188,9 @@ namespace Utils
    *
    * This function takes a point, which is given by an (x,y) pair and 
    * classifies its location in space relative to a given directed edge. The 
-   * edge is represented by a pair of (x,y) pairs.
+   * edge is represented by a pair of (x,y) pairs. This function is taken from 
+   * section 4.2.5 of <em>Computational Geometry and Computer Graphics in 
+   * C++</em> by Michael Laszlo.
    *
    * The possible classifications are shown by the following figure.
    *
