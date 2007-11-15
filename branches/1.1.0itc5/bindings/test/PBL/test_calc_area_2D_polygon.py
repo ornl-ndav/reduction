@@ -84,10 +84,10 @@ TruthOutput_Triangle_D = DoubleVPair()
 TruthOutput_Triangle_D.val=float(2)
 # Square
 TruthOutput_Square_D = DoubleVPair()
-TruthOutput_Square_D.val=float(1)
+TruthOutput_Square_D.val=float(-1)
 # Parallelogram
 TruthOutput_Parallelogram_D = DoubleVPair()
-TruthOutput_Parallelogram_D.val=float(-5)
+TruthOutput_Parallelogram_D.val=float(5)
 
 ###############################################################################
 # Create output placeholders for vectors

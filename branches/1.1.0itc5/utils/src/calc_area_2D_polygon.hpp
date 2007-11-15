@@ -73,7 +73,7 @@ namespace Utils
     
     for (std::size_t i = 1; i <= size_poly; ++i)
       {
-        area += (x_coord[i] * (y_coord[i-1] - y_coord[i+1]));
+        area += (x_coord[i] * (y_coord[i+1] - y_coord[i-1]));
       }
 
     area /= static_cast<NumT>(2.0);
