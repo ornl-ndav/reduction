@@ -76,7 +76,12 @@ from scl_defs import VERSION as __version__
 # the context of locating a bin index within an associated data array 
 # (which is always one less than the axis array) based on the axis array 
 # value. The found index may need to be adjusted based on its value with 
-# respect to the size of the data array.
+# respect to the size of the data array. <b>NOTE:</b> If the search value 
+# is outside the axis range, the result of the function will be to return 
+# the closest edge bin. This means for a search value smaller than the 
+# smallest axis value, the index returned will be 0. If the search value is 
+# greater than the largest axis value, the index returned will be the last 
+# bin in the data array (axis size minus 1).
 #
 # \param axis (INPUT) is an array of independent axis values to search
 # \param value (INPUT) is the value to search axis for
@@ -93,7 +98,12 @@ def bisect_helper(axis, value):
     context of locating a bin index within an associated data array (which is
     always one less than the axis array) based on the axis array value. The
     found index may need to be adjusted based on its value with respect to the
-    size of the data array.
+    size of the data array. NOTE: If the search value is outside the axis
+    range, the result of the function will be to return the closest edge bin.
+    This means for a search value smaller than the smallest axis value, the
+    index returned will be 0. If the search value is greater than the largest
+    axis value, the index returned will be the last bin in the data array
+    (axis size minus 1).
 
     Parameters:
     ----------
