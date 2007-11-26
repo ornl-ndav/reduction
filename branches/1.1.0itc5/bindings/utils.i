@@ -74,6 +74,15 @@ std::string calc_area_2D_polygon_d(const Nessi::Vector<double> & x_coord, const 
 
 // Instantiate templates for utils
 
+%{
+std::string bisect_helper_d(const Nessi::Vector<double> & axis, const double value, VPair<std::size_t> & index, void *temp=NULL) {
+  std::string ret = Utils::bisect_helper(axis, value, index.val, temp);
+  return ret;
+}
+%}
+
+std::string bisect_helper_d(const Nessi::Vector<double> & axis, const double value, VPair<std::size_t> & index);
+
 %template(calc_bin_centers_d) Utils::calc_bin_centers<double>;
 
 %template(calc_bin_widths_d) Utils::calc_bin_widths<double>;
