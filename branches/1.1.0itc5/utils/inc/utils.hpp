@@ -408,8 +408,7 @@ namespace Utils
    */
 
   /**
-   * \defgroup bsh_fix_index Utils::__fix_index2
-   * \{
+   * \ingroup bisect_helper
    */
 
   /**
@@ -429,10 +428,6 @@ namespace Utils
    */
   std::size_t __fix_index2(const std::size_t index, 
                            const std::size_t end_index);
-
-  /**
-   * \} // end of bsh_fix_index group
-   */
 
   /**
    * \defgroup linear_order_jacobian Utils::linear_order_jacobian
