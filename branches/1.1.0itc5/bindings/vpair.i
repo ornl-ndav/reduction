@@ -35,3 +35,4 @@
 
 %template(DoubleVPair) VPair<double>;
 %template(IntVPair) VPair<int>;
+%template(SizetVPair) VPair<std::size_t>;
