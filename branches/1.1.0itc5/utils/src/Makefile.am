@@ -33,6 +33,8 @@ libUtils_la_SOURCES = \
 	advance_edge.cpp \
 	aims_at.hpp \
 	aims_at.cpp \
+	bisect_helper.hpp \
+	bisect_helper.cpp \
 	calc_area_2D_polygon.hpp \
 	calc_area_2D_polygon.cpp \
 	calc_bin_centers.hpp \
