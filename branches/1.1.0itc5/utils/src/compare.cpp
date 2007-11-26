@@ -103,4 +103,13 @@ namespace Utils
   compare<unsigned int>(const unsigned int & value1,
                         const unsigned int & value2);
 
+  /**
+   * This is the std::size_t declaration of the compare function.
+   *
+   * \ingroup compare
+   */
+  template int
+  compare<std::size_t>(const std::size_t & value1,
+                       const std::size_t & value2);
+
 } // Utils
