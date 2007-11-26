@@ -375,6 +375,33 @@ namespace Utils
    */
 
   /**
+   * \defgroup bsh_fix_index Utils::__fix_index2
+   * \{
+   */
+
+  /**
+   * \brief This function fixes indicies for Utils::bisect_helper
+   *
+   * This function fixes indices for Utils::bisect_helper. If the index is 
+   * equal to the largest std::size_t, then the returned index is 0. If the 
+   * index is equal to end_index, then the returned index is one less than 
+   * original index. If not either of the above two cases, return the original 
+   * index. <b>NOTE: This is a private function and will not be exported.</b>
+   * 
+   * \param index (INPUT) is the index to check and fix
+   * \param end_index (INPUT) is the last index of the array associated with 
+   * index
+   * 
+   * \return The corrected index
+   */
+  std::size_t __fix_index2(const std::size_t index, 
+                           const std::size_t end_index);
+
+  /**
+   * \} // end of bsh_fix_index group
+   */
+
+  /**
    * \defgroup linear_order_jacobian Utils::linear_order_jacobian
    * \{
    */
