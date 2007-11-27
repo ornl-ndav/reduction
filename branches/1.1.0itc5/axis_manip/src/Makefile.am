@@ -49,6 +49,8 @@ libAxisManip_la_SOURCES = \
 	init_scatt_wavevector_to_scalar_Q.cpp \
 	initial_velocity_dgs.hpp \
 	initial_velocity_dgs.cpp \
+	rebin_2D_quad_to_rectlin.hpp \
+	rebin_2D_quad_to_rectlin.cpp \
 	rebin_axis_1D.hpp \
 	rebin_axis_1D.cpp \
 	rebin_axis_2D.hpp \
