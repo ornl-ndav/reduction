@@ -48,7 +48,7 @@ namespace AxisManip
   static const std::size_t SIZE_QUAD = 4;
 
   /// Over-Maximum Size (points) of a quadrilateral and rectilinear bin overlap
-  static const std::size_t SIZE_TWO_QUADS = 8;
+  static const std::size_t SIZE_TWO_QUADS = 2 * SIZE_QUAD;
 
   /// Minimum size of a polygon is 3 points
   static const std::size_t MIN_SIZE_POLY = 3;
