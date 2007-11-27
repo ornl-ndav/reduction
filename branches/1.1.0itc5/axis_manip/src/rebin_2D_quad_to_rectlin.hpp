@@ -324,7 +324,8 @@ namespace AxisManip
                                                 frac_bin_x, frac_bin_y);
 
                 // Overlap is not a polygon, so area can't be calculated
-                if (frac_bin_x.size() < MIN_SIZE_POLY)
+                std::size_t length_poly = frac_bin_x.size();
+                if (length_poly < MIN_SIZE_POLY)
                   {
                     continue;
                   }
@@ -340,7 +341,7 @@ namespace AxisManip
                 NumT portion;
 
                 Utils::calc_area_2D_polygon(frac_bin_x, frac_bin_y, 
-                                            frac_bin_x.size(), false,
+                                            length_poly, false,
                                             portion);
 
                 std::size_t channel = j + i * length_axis_out[1];
