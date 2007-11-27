@@ -33,6 +33,10 @@
 
 using namespace std;
 
+const size_t NUM_VAL = 5;
+const size_t SIZE_QUAD = 4;
+const size_t SIZE_TWO_QUADS = 2 * SIZE_QUAD;
+
 /**
  * \defgroup rebin_2D_quad_to_rectlin_test rebin_2D_quad_to_rectlin_test
  * \{
@@ -48,12 +52,26 @@ using namespace std;
  */
 
 /**
- * This function initializes the value of arrays, \f$axis\_in\_1\f$,
+ * This function initializes the value of arrays, \f$axis\_in\_x1\f$,
  * \f$axis\_in\_2\f$, \f$axis\_out\_1\f$, \f$axis\_out\_2\f$, \f$input\f$,
  * and \f$input\_err2\f$.
  *
- * \param axis_in_1 (OUTPUT) is the initial data 1st axis
- * \param axis_in_2 (OUTPUT) is the initial data 2nd axis
+ * \param axis_in_x1 (OUTPUT) is the x-coordinate of the 1st corner of the 
+ * initial data axis
+ * \param axis_in_y1 (OUTPUT) is the y-coordinate of the 1st corner of the 
+ * initial data axis
+ * \param axis_in_x2 (OUTPUT) is the x-coordinate of the 2nd corner of the 
+ * initial data axis
+ * \param axis_in_y2 (OUTPUT) is the y-coordinate of the 2nd corner of the 
+ * initial data axis
+ * \param axis_in_x3 (OUTPUT) is the x-coordinate of the 3rd corner of the 
+ * initial data axis
+ * \param axis_in_y3 (OUTPUT) is the y-coordinate of the 3rd corner of the 
+ * initial data axis
+ * \param axis_in_x4 (OUTPUT) is the x-coordinate of the 4th corner of the 
+ * initial data axis
+ * \param axis_in_y4 (OUTPUT) is the y-coordinate of the 4th corner of the 
+ * initial data axis
  * \param axis_out_1 (OUTPUT) is the 1st target axis for rebinning
  * \param axis_out_2 (OUTPUT) is the 2nd target axis for rebinning
  * \param input (OUTPUT) is the data associated with the initial axis
@@ -61,57 +79,92 @@ using namespace std;
  * the data
  */
 template <typename NumT>
-void initialize_inputs(Nessi::Vector<NumT> & axis_in_1,
-                       Nessi::Vector<NumT> & axis_in_2,
+void initialize_inputs(Nessi::Vector<NumT> & axis_in_x1,
+                       Nessi::Vector<NumT> & axis_in_y1,
+                       Nessi::Vector<NumT> & axis_in_x2,
+                       Nessi::Vector<NumT> & axis_in_y2,
+                       Nessi::Vector<NumT> & axis_in_x3,
+                       Nessi::Vector<NumT> & axis_in_y3,
+                       Nessi::Vector<NumT> & axis_in_x4,
+                       Nessi::Vector<NumT> & axis_in_y4,
                        Nessi::Vector<NumT> & axis_out_1,
                        Nessi::Vector<NumT> & axis_out_2,
                        Nessi::Vector<NumT> & input,
                        Nessi::Vector<NumT> & input_err2)
 {
-  axis_in_1.push_back(static_cast<NumT>(0.));
-  axis_in_1.push_back(static_cast<NumT>(1.));
-  axis_in_1.push_back(static_cast<NumT>(2.));
-  axis_in_1.push_back(static_cast<NumT>(3.));
-  axis_in_1.push_back(static_cast<NumT>(4.));
+  for (size_t i = 0; i < NUM_VAL; ++i)
+    {
+      input.push_back(static_cast<NumT>(10.));
+      input_err2.push_back(static_cast<NumT>(1.));
+      axis_out_1.push_back(static_cast<NumT>(i));
+      axis_out_2.push_back(static_cast<NumT>(i));
+    }
 
-  axis_in_2.push_back(static_cast<NumT>(0.));
-  axis_in_2.push_back(static_cast<NumT>(1.));
-  axis_in_2.push_back(static_cast<NumT>(2.));
-  axis_in_2.push_back(static_cast<NumT>(3.));
-  axis_in_2.push_back(static_cast<NumT>(4.));
+  axis_in_x1.push_back(static_cast<NumT>(0.));
+  axis_in_x1.push_back(static_cast<NumT>(0.));
+  axis_in_x1.push_back(static_cast<NumT>(0.));
+  axis_in_x1.push_back(static_cast<NumT>(0.));
+  axis_in_x1.push_back(static_cast<NumT>(0.));
 
-  axis_out_1.push_back(static_cast<NumT>(0.));
-  axis_out_1.push_back(static_cast<NumT>(1.33333));
-  axis_out_1.push_back(static_cast<NumT>(2.66666));
-  axis_out_1.push_back(static_cast<NumT>(4.));
+  axis_in_y1.push_back(static_cast<NumT>(0.));
+  axis_in_y1.push_back(static_cast<NumT>(0.));
+  axis_in_y1.push_back(static_cast<NumT>(0.));
+  axis_in_y1.push_back(static_cast<NumT>(0.));
+  axis_in_y1.push_back(static_cast<NumT>(0.));
 
-  axis_out_2.push_back(static_cast<NumT>(0.));
-  axis_out_2.push_back(static_cast<NumT>(2.));
-  axis_out_2.push_back(static_cast<NumT>(4.));
+  axis_in_x2.push_back(static_cast<NumT>(1.));
+  axis_in_x2.push_back(static_cast<NumT>(0.));
+  axis_in_x2.push_back(static_cast<NumT>(0.));
+  axis_in_x2.push_back(static_cast<NumT>(0.));
+  axis_in_x2.push_back(static_cast<NumT>(0.));
 
-  input.push_back(static_cast<NumT>(10.));
-  input.push_back(static_cast<NumT>(10.));
-  input.push_back(static_cast<NumT>(10.));
-  input.push_back(static_cast<NumT>(10.));
+  axis_in_y2.push_back(static_cast<NumT>(1.));
+  axis_in_y2.push_back(static_cast<NumT>(0.));
+  axis_in_y2.push_back(static_cast<NumT>(0.));
+  axis_in_y2.push_back(static_cast<NumT>(0.));
+  axis_in_y2.push_back(static_cast<NumT>(0.));
 
-  input_err2.push_back(static_cast<NumT>(1.));
-  input_err2.push_back(static_cast<NumT>(1.));
-  input_err2.push_back(static_cast<NumT>(1.));
-  input_err2.push_back(static_cast<NumT>(1.));
+  axis_in_x3.push_back(static_cast<NumT>(0.));
+  axis_in_x3.push_back(static_cast<NumT>(0.));
+  axis_in_x3.push_back(static_cast<NumT>(0.));
+  axis_in_x3.push_back(static_cast<NumT>(0.));
+  axis_in_x3.push_back(static_cast<NumT>(0.));
+
+  axis_in_y3.push_back(static_cast<NumT>(0.));
+  axis_in_y3.push_back(static_cast<NumT>(0.));
+  axis_in_y3.push_back(static_cast<NumT>(0.));
+  axis_in_y3.push_back(static_cast<NumT>(0.));
+  axis_in_y3.push_back(static_cast<NumT>(0.));
+
+  axis_in_x4.push_back(static_cast<NumT>(0.));
+  axis_in_x4.push_back(static_cast<NumT>(0.));
+  axis_in_x4.push_back(static_cast<NumT>(0.));
+  axis_in_x4.push_back(static_cast<NumT>(0.));
+  axis_in_x4.push_back(static_cast<NumT>(0.));
+
+  axis_in_y4.push_back(static_cast<NumT>(0.));
+  axis_in_y4.push_back(static_cast<NumT>(0.));
+  axis_in_y4.push_back(static_cast<NumT>(0.));
+  axis_in_y4.push_back(static_cast<NumT>(0.));
+  axis_in_y4.push_back(static_cast<NumT>(0.));
 }
 
 /**
  * This function sets the true outputs based on values contained in
- * \f$axis\_in\_1\f$, \f$axis\_in\_2\f$, \f$axis\_out\_1\f$,
+ * \f$axis\_in\_x1\f$, \f$axis\_in\_y1\f$, \f$axis\_in\_x2\f$, 
+ * \f$axis\_in\_y2\f$, \f$axis\_in\_x3\f$, \f$axis\_in\_y3\f$, 
+ * \f$axis\_in\_x4\f$, \f$axis\_in\_y4\f$, \f$axis\_out\_1\f$,
  * \f$axis\_out\_2\f$, \f$input\f$, and \f$input\_err2\f$ for the float case.
  *
  * \param true_output (OUTPUT) is the true output
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
  * true output
+ * \param true_frac_area (OUTPUT) is the true fractional area
  *
  */
 void initialize_true_outputs(Nessi::Vector<float> & true_output,
-                             Nessi::Vector<float> & true_output_err2)
+                             Nessi::Vector<float> & true_output_err2,
+                             Nessi::Vector<float> & true_frac_area)
 {
   true_output.push_back(static_cast<float>(13.33330049));
   true_output.push_back(static_cast<float>(0.0));
@@ -119,6 +172,16 @@ void initialize_true_outputs(Nessi::Vector<float> & true_output,
   true_output.push_back(static_cast<float>(6.66660067));
   true_output.push_back(static_cast<float>(0.0));
   true_output.push_back(static_cast<float>(13.33339905));
+  true_output.push_back(static_cast<float>(13.33330049));
+  true_output.push_back(static_cast<float>(0.0));
+  true_output.push_back(static_cast<float>(6.66669938));
+  true_output.push_back(static_cast<float>(6.66660067));
+  true_output.push_back(static_cast<float>(0.0));
+  true_output.push_back(static_cast<float>(13.33339905));
+  true_output.push_back(static_cast<float>(13.33330049));
+  true_output.push_back(static_cast<float>(0.0));
+  true_output.push_back(static_cast<float>(6.66669938));
+  true_output.push_back(static_cast<float>(6.66660067));
 
   true_output_err2.push_back(static_cast<float>(1.11110894));
   true_output_err2.push_back(static_cast<float>(0.0));
@@ -126,20 +189,51 @@ void initialize_true_outputs(Nessi::Vector<float> & true_output,
   true_output_err2.push_back(static_cast<float>(0.44443565));
   true_output_err2.push_back(static_cast<float>(0.0));
   true_output_err2.push_back(static_cast<float>(1.11111551));
+  true_output_err2.push_back(static_cast<float>(1.11110894));
+  true_output_err2.push_back(static_cast<float>(0.0));
+  true_output_err2.push_back(static_cast<float>(0.44444882));
+  true_output_err2.push_back(static_cast<float>(0.44443565));
+  true_output_err2.push_back(static_cast<float>(0.0));
+  true_output_err2.push_back(static_cast<float>(1.11111551));
+  true_output_err2.push_back(static_cast<float>(1.11110894));
+  true_output_err2.push_back(static_cast<float>(0.0));
+  true_output_err2.push_back(static_cast<float>(0.44444882));
+  true_output_err2.push_back(static_cast<float>(0.44443565));
+
+  true_frac_area.push_back(static_cast<float>(13.33330049));
+  true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(6.66669938));
+  true_frac_area.push_back(static_cast<float>(6.66660067));
+  true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(13.33339905));
+  true_frac_area.push_back(static_cast<float>(13.33330049));
+  true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(6.66669938));
+  true_frac_area.push_back(static_cast<float>(6.66660067));
+  true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(13.33339905));
+  true_frac_area.push_back(static_cast<float>(13.33330049));
+  true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(6.66669938));
+  true_frac_area.push_back(static_cast<float>(6.66660067));
 }
 
 /**
  * This function sets the true outputs based on values contained in
- * \f$axis\_in\_1\f$, \f$axis\_in\_2\f$, \f$axis\_out\_1\f$,
+ * \f$axis\_in\_x1\f$, \f$axis\_in\_y1\f$, \f$axis\_in\_x2\f$, 
+ * \f$axis\_in\_y2\f$, \f$axis\_in\_x3\f$, \f$axis\_in\_y3\f$, 
+ * \f$axis\_in\_x4\f$, \f$axis\_in\_y4\f$, \f$axis\_out\_1\f$,
  * \f$axis\_out\_2\f$, \f$input\f$, and \f$input\_err2\f$ for the double case.
  *
  * \param true_output (OUTPUT) is the true output
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
  * true output
+ * \param true_frac_area (OUTPUT) is the true fractional area
  *
  */
 void initialize_true_outputs(Nessi::Vector<double> & true_output,
-                             Nessi::Vector<double> & true_output_err2)
+                             Nessi::Vector<double> & true_output_err2,
+                             Nessi::Vector<double> & true_frac_area)
 {
   true_output.push_back(static_cast<double>(13.3333));
   true_output.push_back(static_cast<double>(0.0));
@@ -147,6 +241,16 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
   true_output.push_back(static_cast<double>(6.66659999999999808));
   true_output.push_back(static_cast<double>(0.0));
   true_output.push_back(static_cast<double>(13.3334000000000010));
+  true_output.push_back(static_cast<double>(13.3333));
+  true_output.push_back(static_cast<double>(0.0));
+  true_output.push_back(static_cast<double>(6.66670000000000051));
+  true_output.push_back(static_cast<double>(6.66659999999999808));
+  true_output.push_back(static_cast<double>(0.0));
+  true_output.push_back(static_cast<double>(13.3334000000000010));
+  true_output.push_back(static_cast<double>(13.3333));
+  true_output.push_back(static_cast<double>(0.0));
+  true_output.push_back(static_cast<double>(6.66670000000000051));
+  true_output.push_back(static_cast<double>(6.66659999999999808));
 
   true_output_err2.push_back(static_cast<double>(1.1111088889));
   true_output_err2.push_back(static_cast<double>(0.0));
@@ -154,6 +258,33 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
   true_output_err2.push_back(static_cast<double>(0.4444355555999998));
   true_output_err2.push_back(static_cast<double>(0.0));
   true_output_err2.push_back(static_cast<double>(1.1111155556));
+  true_output_err2.push_back(static_cast<double>(1.1111088889));
+  true_output_err2.push_back(static_cast<double>(0.0));
+  true_output_err2.push_back(static_cast<double>(0.4444488889000001));
+  true_output_err2.push_back(static_cast<double>(0.4444355555999998));
+  true_output_err2.push_back(static_cast<double>(0.0));
+  true_output_err2.push_back(static_cast<double>(1.1111155556));
+  true_output_err2.push_back(static_cast<double>(1.1111088889));
+  true_output_err2.push_back(static_cast<double>(0.0));
+  true_output_err2.push_back(static_cast<double>(0.4444488889000001));
+  true_output_err2.push_back(static_cast<double>(0.4444355555999998));
+
+  true_frac_area.push_back(static_cast<double>(13.3333));
+  true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(6.66670000000000051));
+  true_frac_area.push_back(static_cast<double>(6.66659999999999808));
+  true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(13.3334000000000010));
+  true_frac_area.push_back(static_cast<double>(13.3333));
+  true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(6.66670000000000051));
+  true_frac_area.push_back(static_cast<double>(6.66659999999999808));
+  true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(13.3334000000000010));
+  true_frac_area.push_back(static_cast<double>(13.3333));
+  true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(6.66670000000000051));
+  true_frac_area.push_back(static_cast<double>(6.66659999999999808));
 }
 
 /**
@@ -166,16 +297,21 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
  * \param output (INPUT) is the array created by 
  * <i>rebin_2D_quad_to_rectlin</i>
  * \param output_err2 (INPUT) is the square of the uncertainty in the array
- * created by <i>rebin_2D_quad_to_rectlin</i>
+ * created by <i>rebin_2D_quad_to_rectlin</i> 
+ * \param frac_area (INPUT) is the fractional area array created by 
+ * <i>rebin_2D_quad_to_rectlin</i>
  * \param true_output (INPUT) is the true array
  * \param true_output_err2 (INPUT) is the square of the uncertainty in the true
  * array
+ * \param true_frac_area (INPUT) is the true fractional area array
  */
 template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output,
                Nessi::Vector<NumT> & output_err2,
+               Nessi::Vector<NumT> & frac_area,
                Nessi::Vector<NumT> & true_output,
-               Nessi::Vector<NumT> & true_output_err2)
+               Nessi::Vector<NumT> & true_output_err2,
+               Nessi::Vector<NumT> & true_frac_area)
 {
   bool value = true;
 
@@ -185,6 +321,11 @@ bool test_okay(Nessi::Vector<NumT> & output,
     }
 
   if(!test_okay(output_err2, true_output_err2, VV))
+    {
+      value = false;
+    }
+
+  if(!test_okay(frac_area, true_frac_area, VV))
     {
       value = false;
     }
@@ -209,28 +350,53 @@ template <typename NumT>
 bool test_func(NumT key, string debug) // key forces correct test to happen
 {
   // allocate arrays
-  Nessi::Vector<NumT> axis_in_1;
-  Nessi::Vector<NumT> axis_in_2;
+  Nessi::Vector<NumT> axis_in_x1;
+  Nessi::Vector<NumT> axis_in_y1;
+  Nessi::Vector<NumT> axis_in_x2;
+  Nessi::Vector<NumT> axis_in_y2;
+  Nessi::Vector<NumT> axis_in_x3;
+  Nessi::Vector<NumT> axis_in_y3;
+  Nessi::Vector<NumT> axis_in_x4;
+  Nessi::Vector<NumT> axis_in_y4;
   Nessi::Vector<NumT> axis_out_1;
   Nessi::Vector<NumT> axis_out_2;
   Nessi::Vector<NumT> input;
   Nessi::Vector<NumT> input_err2;
   Nessi::Vector<NumT> true_output;
   Nessi::Vector<NumT> true_output_err2;
+  Nessi::Vector<NumT> true_frac_area;
+
+  Nessi::Vector<NumT> orig_bin_x(SIZE_QUAD);
+  Nessi::Vector<NumT> orig_bin_y(SIZE_QUAD);
+  Nessi::Vector<NumT> rebin_bin_x(SIZE_QUAD);
+  Nessi::Vector<NumT> rebin_bin_y(SIZE_QUAD);
+  Nessi::Vector<NumT> frac_bin_x(SIZE_TWO_QUADS);
+  Nessi::Vector<NumT> frac_bin_y(SIZE_TWO_QUADS);
 
   // fill in values as appropriate
-  initialize_inputs(axis_in_1, axis_in_2, axis_out_1, axis_out_2,
-                    input, input_err2);
-  initialize_true_outputs(true_output, true_output_err2);
+  initialize_inputs(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2, 
+                    axis_in_x3, axis_in_y3, axis_in_x4, axis_in_y4,
+                    axis_out_1, axis_out_2, input, input_err2);
+  initialize_true_outputs(true_output, true_output_err2, true_frac_area);
 
   // allocate output arrays
   Nessi::Vector<NumT> output((axis_out_1.size()-1)*(axis_out_2.size()-1));
   Nessi::Vector<NumT> output_err2((axis_out_1.size()-1)*
                                   (axis_out_2.size()-1));
+  Nessi::Vector<NumT> frac_area((axis_out_1.size()-1)*(axis_out_2.size()-1));
 
   // run the code being tested
-  AxisManip::rebin_diagonal(axis_in_1, axis_in_2, input, input_err2,
-                            axis_out_1, axis_out_2, output, output_err2);
+  AxisManip::rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, 
+                                      axis_in_x2, axis_in_y2, 
+                                      axis_in_x3, axis_in_y3, 
+                                      axis_in_x4, axis_in_y4, 
+                                      input, input_err2, 
+                                      axis_out_1, axis_out_2, 
+                                      orig_bin_x, orig_bin_y, 
+                                      rebin_bin_x, rebin_bin_y, 
+                                      frac_bin_x, frac_bin_y, 
+                                      output, output_err2,
+                                      frac_area);
 
   if(!debug.empty())
     {
@@ -238,9 +404,11 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
       cout << output.size() << " " << output_err2.size() << endl;
       print(output, true_output, VV, debug);
       print(output_err2, true_output_err2, ERROR+VV, debug);
+      print(frac_area, true_frac_area, VV, debug);
     }
 
-  return test_okay(output, output_err2, true_output, true_output_err2);
+  return test_okay(output, output_err2, frac_area, 
+                   true_output, true_output_err2, true_frac_area);
 }
 
 /**
