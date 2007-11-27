@@ -49,6 +49,8 @@ python linear_order_jacobian_test.py
 echo
 python mult_ncerr_test.py
 echo
+python rebin_2D_quad_to_rectlin_test.py
+echo
 python rebin_axis_1D_test.py
 echo
 python rebin_axis_2D_test.py
