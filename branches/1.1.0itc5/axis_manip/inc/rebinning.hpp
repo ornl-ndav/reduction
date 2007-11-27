@@ -81,6 +81,10 @@ namespace AxisManip
    * \param input (INPUT) is the data associated with the initial axis
    * \param input_err2 (INPUT) is the square of the uncertainty associated
    * with the data
+   * \param axis_out_1 (INPUT) is the 1st (x-coordinate) target axis for 
+   * rebinning
+   * \param axis_out_2 (INPUT) is the 2nd (y-coordinate) target axis for 
+   * rebinning
    * \param orig_bin_x (INPUT) is the placeholder array for x-coordinate of 
    * the original quadrilateral bin
    * \param orig_bin_y (INPUT) is the placeholder array for y-coordinate of 
@@ -89,10 +93,12 @@ namespace AxisManip
    * the rectilinear grid bin
    * \param rebin_bin_y (INPUT) is the placeholder array for y-coordinate of 
    * the rectilinear grid bin
-   * \param axis_out_1 (INPUT) is the 1st (x-coordinate) target axis for 
-   * rebinning
-   * \param axis_out_2 (INPUT) is the 2nd (y-coordinate) target axis for 
-   * rebinning
+   * \param frac_bin_x (INPUT) is the placeholder array for x-coordinate of 
+   * the intersection polygon between the quadrilateral bin and the 
+   * rectilinear grid bin
+   * \param frac_bin_y (INPUT) is the placeholder array for y-coordinate of 
+   * the intersection polygon between the quadrilateral bin and the 
+   * rectilinear grid bin
    * \param output (OUTPUT) is the rebinned data according to the target axis
    * \param output_err2 (OUTPUT) is the square of the uncertainty associated
    * with the rebinned data
@@ -123,12 +129,14 @@ namespace AxisManip
                            const Nessi::Vector<NumT> & axis_in_y4,
                            const Nessi::Vector<NumT> & input,
                            const Nessi::Vector<NumT> & input_err2,
-                           const Nessi::Vector<NumT> & orig_bin_x,
-                           const Nessi::Vector<NumT> & orig_bin_y,
-                           const Nessi::Vector<NumT> & rebin_bin_x,
-                           const Nessi::Vector<NumT> & rebin_bin_y,
                            const Nessi::Vector<NumT> & axis_out_1,
                            const Nessi::Vector<NumT> & axis_out_2,
+                           Nessi::Vector<NumT> & orig_bin_x,
+                           Nessi::Vector<NumT> & orig_bin_y,
+                           Nessi::Vector<NumT> & rebin_bin_x,
+                           Nessi::Vector<NumT> & rebin_bin_y,
+                           Nessi::Vector<NumT> & frac_bin_x,
+                           Nessi::Vector<NumT> & frac_bin_y,
                            Nessi::Vector<NumT> & output,
                            Nessi::Vector<NumT> & output_err2,
                            Nessi::Vector<NumT> & frac_area,
