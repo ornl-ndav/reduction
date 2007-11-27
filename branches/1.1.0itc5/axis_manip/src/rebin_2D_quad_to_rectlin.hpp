@@ -159,11 +159,22 @@ namespace AxisManip
     // check that the original histogram is of the proper size
     try
       {
-        Utils::check_histo_sizes(input, input_err2, axis_in_x1);
+        Utils::check_sizes_square(input, input_err2);
       }
     catch(std::invalid_argument &e)
       {
         throw std::invalid_argument(r2qtl_func_str+": original histogram "
+                                    +e.what());
+      }
+    // check that the original histogram and x-coordinate of the 1st corner are
+    // the proper size
+    try
+      {
+        Utils::check_sizes_square(input, axis_in_x1);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(r2qtl_func_str+": original histogram, x1 "
                                     +e.what());
       }
     // check that the rebinned histogram is of the proper size
