@@ -100,53 +100,53 @@ void initialize_inputs(Nessi::Vector<NumT> & axis_in_x1,
       axis_out_2.push_back(static_cast<NumT>(i));
     }
 
-  axis_in_x1.push_back(static_cast<NumT>(0.));
-  axis_in_x1.push_back(static_cast<NumT>(0.));
-  axis_in_x1.push_back(static_cast<NumT>(0.));
-  axis_in_x1.push_back(static_cast<NumT>(0.));
-  axis_in_x1.push_back(static_cast<NumT>(0.));
+  axis_in_x1.push_back(static_cast<NumT>(0.75));
+  axis_in_x1.push_back(static_cast<NumT>(1.25));
+  axis_in_x1.push_back(static_cast<NumT>(1.75));
+  axis_in_x1.push_back(static_cast<NumT>(2.25));
+  axis_in_x1.push_back(static_cast<NumT>(2.75));
 
-  axis_in_y1.push_back(static_cast<NumT>(0.));
-  axis_in_y1.push_back(static_cast<NumT>(0.));
-  axis_in_y1.push_back(static_cast<NumT>(0.));
-  axis_in_y1.push_back(static_cast<NumT>(0.));
-  axis_in_y1.push_back(static_cast<NumT>(0.));
+  axis_in_y1.push_back(static_cast<NumT>(0.75));
+  axis_in_y1.push_back(static_cast<NumT>(1.25));
+  axis_in_y1.push_back(static_cast<NumT>(1.75));
+  axis_in_y1.push_back(static_cast<NumT>(2.25));
+  axis_in_y1.push_back(static_cast<NumT>(2.75));
 
-  axis_in_x2.push_back(static_cast<NumT>(1.));
-  axis_in_x2.push_back(static_cast<NumT>(0.));
-  axis_in_x2.push_back(static_cast<NumT>(0.));
-  axis_in_x2.push_back(static_cast<NumT>(0.));
-  axis_in_x2.push_back(static_cast<NumT>(0.));
+  axis_in_x2.push_back(static_cast<NumT>(0.75));
+  axis_in_x2.push_back(static_cast<NumT>(1.25));
+  axis_in_x2.push_back(static_cast<NumT>(1.75));
+  axis_in_x2.push_back(static_cast<NumT>(2.25));
+  axis_in_x2.push_back(static_cast<NumT>(2.75));
 
-  axis_in_y2.push_back(static_cast<NumT>(1.));
-  axis_in_y2.push_back(static_cast<NumT>(0.));
-  axis_in_y2.push_back(static_cast<NumT>(0.));
-  axis_in_y2.push_back(static_cast<NumT>(0.));
-  axis_in_y2.push_back(static_cast<NumT>(0.));
+  axis_in_y2.push_back(static_cast<NumT>(1.25));
+  axis_in_y2.push_back(static_cast<NumT>(1.75));
+  axis_in_y2.push_back(static_cast<NumT>(2.25));
+  axis_in_y2.push_back(static_cast<NumT>(2.75));
+  axis_in_y2.push_back(static_cast<NumT>(3.25));
 
-  axis_in_x3.push_back(static_cast<NumT>(0.));
-  axis_in_x3.push_back(static_cast<NumT>(0.));
-  axis_in_x3.push_back(static_cast<NumT>(0.));
-  axis_in_x3.push_back(static_cast<NumT>(0.));
-  axis_in_x3.push_back(static_cast<NumT>(0.));
+  axis_in_x3.push_back(static_cast<NumT>(1.25));
+  axis_in_x3.push_back(static_cast<NumT>(1.75));
+  axis_in_x3.push_back(static_cast<NumT>(2.25));
+  axis_in_x3.push_back(static_cast<NumT>(2.75));
+  axis_in_x3.push_back(static_cast<NumT>(3.25));
 
-  axis_in_y3.push_back(static_cast<NumT>(0.));
-  axis_in_y3.push_back(static_cast<NumT>(0.));
-  axis_in_y3.push_back(static_cast<NumT>(0.));
-  axis_in_y3.push_back(static_cast<NumT>(0.));
-  axis_in_y3.push_back(static_cast<NumT>(0.));
+  axis_in_y3.push_back(static_cast<NumT>(1.75));
+  axis_in_y3.push_back(static_cast<NumT>(2.25));
+  axis_in_y3.push_back(static_cast<NumT>(2.75));
+  axis_in_y3.push_back(static_cast<NumT>(3.25));
+  axis_in_y3.push_back(static_cast<NumT>(3.75));
 
-  axis_in_x4.push_back(static_cast<NumT>(0.));
-  axis_in_x4.push_back(static_cast<NumT>(0.));
-  axis_in_x4.push_back(static_cast<NumT>(0.));
-  axis_in_x4.push_back(static_cast<NumT>(0.));
-  axis_in_x4.push_back(static_cast<NumT>(0.));
+  axis_in_x4.push_back(static_cast<NumT>(1.25));
+  axis_in_x4.push_back(static_cast<NumT>(1.75));
+  axis_in_x4.push_back(static_cast<NumT>(2.25));
+  axis_in_x4.push_back(static_cast<NumT>(2.75));
+  axis_in_x4.push_back(static_cast<NumT>(3.25));
 
-  axis_in_y4.push_back(static_cast<NumT>(0.));
-  axis_in_y4.push_back(static_cast<NumT>(0.));
-  axis_in_y4.push_back(static_cast<NumT>(0.));
-  axis_in_y4.push_back(static_cast<NumT>(0.));
-  axis_in_y4.push_back(static_cast<NumT>(0.));
+  axis_in_y4.push_back(static_cast<NumT>(1.25));
+  axis_in_y4.push_back(static_cast<NumT>(1.75));
+  axis_in_y4.push_back(static_cast<NumT>(2.25));
+  axis_in_y4.push_back(static_cast<NumT>(2.75));
+  axis_in_y4.push_back(static_cast<NumT>(3.25));
 }
 
 /**
