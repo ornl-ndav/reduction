@@ -323,10 +323,10 @@ namespace AxisManip
                                                 rebin_bin_x, rebin_bin_y,
                                                 frac_bin_x, frac_bin_y);
 
-                // Overlap is not a polygon, so area can't be calculated
                 std::size_t length_poly = frac_bin_x.size();
                 if (length_poly < MIN_SIZE_POLY)
                   {
+                    // Overlap is not a polygon, so area can't be calculated
                     continue;
                   }
 
