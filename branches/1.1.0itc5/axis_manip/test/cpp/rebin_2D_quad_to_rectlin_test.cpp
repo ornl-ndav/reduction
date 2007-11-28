@@ -166,56 +166,56 @@ void initialize_true_outputs(Nessi::Vector<float> & true_output,
                              Nessi::Vector<float> & true_output_err2,
                              Nessi::Vector<float> & true_frac_area)
 {
+  true_output.push_back(static_cast<float>(0.3125));
+  true_output.push_back(static_cast<float>(0.9375));
   true_output.push_back(static_cast<float>(0.0));
   true_output.push_back(static_cast<float>(0.0));
   true_output.push_back(static_cast<float>(0.0));
+  true_output.push_back(static_cast<float>(3.75));
+  true_output.push_back(static_cast<float>(1.25));
   true_output.push_back(static_cast<float>(0.0));
   true_output.push_back(static_cast<float>(0.0));
   true_output.push_back(static_cast<float>(0.0));
+  true_output.push_back(static_cast<float>(3.75));
+  true_output.push_back(static_cast<float>(1.25));
   true_output.push_back(static_cast<float>(0.0));
   true_output.push_back(static_cast<float>(0.0));
   true_output.push_back(static_cast<float>(0.0));
-  true_output.push_back(static_cast<float>(0.0));
-  true_output.push_back(static_cast<float>(0.0));
-  true_output.push_back(static_cast<float>(0.0));
-  true_output.push_back(static_cast<float>(0.0));
-  true_output.push_back(static_cast<float>(0.0));
-  true_output.push_back(static_cast<float>(0.0));
-  true_output.push_back(static_cast<float>(0.0));
+  true_output.push_back(static_cast<float>(1.25));
 
+  true_output_err2.push_back(static_cast<float>(0.0009766));
+  true_output_err2.push_back(static_cast<float>(0.0087891));
   true_output_err2.push_back(static_cast<float>(0.0));
   true_output_err2.push_back(static_cast<float>(0.0));
   true_output_err2.push_back(static_cast<float>(0.0));
+  true_output_err2.push_back(static_cast<float>(0.0644531));
+  true_output_err2.push_back(static_cast<float>(0.0097656));
   true_output_err2.push_back(static_cast<float>(0.0));
   true_output_err2.push_back(static_cast<float>(0.0));
   true_output_err2.push_back(static_cast<float>(0.0));
+  true_output_err2.push_back(static_cast<float>(0.0644531));
+  true_output_err2.push_back(static_cast<float>(0.0097656));
   true_output_err2.push_back(static_cast<float>(0.0));
   true_output_err2.push_back(static_cast<float>(0.0));
   true_output_err2.push_back(static_cast<float>(0.0));
-  true_output_err2.push_back(static_cast<float>(0.0));
-  true_output_err2.push_back(static_cast<float>(0.0));
-  true_output_err2.push_back(static_cast<float>(0.0));
-  true_output_err2.push_back(static_cast<float>(0.0));
-  true_output_err2.push_back(static_cast<float>(0.0));
-  true_output_err2.push_back(static_cast<float>(0.0));
-  true_output_err2.push_back(static_cast<float>(0.0));
+  true_output_err2.push_back(static_cast<float>(0.015625));
 
+  true_frac_area.push_back(static_cast<float>(0.03125));
+  true_frac_area.push_back(static_cast<float>(0.09375));
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(0.375));
+  true_frac_area.push_back(static_cast<float>(0.125));
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(0.375));
+  true_frac_area.push_back(static_cast<float>(0.125));
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.0));
-  true_frac_area.push_back(static_cast<float>(0.0));
-  true_frac_area.push_back(static_cast<float>(0.0));
-  true_frac_area.push_back(static_cast<float>(0.0));
-  true_frac_area.push_back(static_cast<float>(0.0));
-  true_frac_area.push_back(static_cast<float>(0.0));
-  true_frac_area.push_back(static_cast<float>(0.0));
-  true_frac_area.push_back(static_cast<float>(0.0));
+  true_frac_area.push_back(static_cast<float>(0.125));
 }
 
 /**
@@ -235,56 +235,56 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
                              Nessi::Vector<double> & true_output_err2,
                              Nessi::Vector<double> & true_frac_area)
 {
+  true_output.push_back(static_cast<double>(0.3125));
+  true_output.push_back(static_cast<double>(0.9375));
   true_output.push_back(static_cast<double>(0.0));
   true_output.push_back(static_cast<double>(0.0));
   true_output.push_back(static_cast<double>(0.0));
+  true_output.push_back(static_cast<double>(3.75));
+  true_output.push_back(static_cast<double>(1.25));
   true_output.push_back(static_cast<double>(0.0));
   true_output.push_back(static_cast<double>(0.0));
   true_output.push_back(static_cast<double>(0.0));
+  true_output.push_back(static_cast<double>(3.75));
+  true_output.push_back(static_cast<double>(1.25));
   true_output.push_back(static_cast<double>(0.0));
   true_output.push_back(static_cast<double>(0.0));
   true_output.push_back(static_cast<double>(0.0));
-  true_output.push_back(static_cast<double>(0.0));
-  true_output.push_back(static_cast<double>(0.0));
-  true_output.push_back(static_cast<double>(0.0));
-  true_output.push_back(static_cast<double>(0.0));
-  true_output.push_back(static_cast<double>(0.0));
-  true_output.push_back(static_cast<double>(0.0));
-  true_output.push_back(static_cast<double>(0.0));
+  true_output.push_back(static_cast<double>(1.25));
 
+  true_output_err2.push_back(static_cast<double>(0.0009765625));
+  true_output_err2.push_back(static_cast<double>(0.0087890625));
   true_output_err2.push_back(static_cast<double>(0.0));
   true_output_err2.push_back(static_cast<double>(0.0));
   true_output_err2.push_back(static_cast<double>(0.0));
+  true_output_err2.push_back(static_cast<double>(0.064453125));
+  true_output_err2.push_back(static_cast<double>(0.009765625));
   true_output_err2.push_back(static_cast<double>(0.0));
   true_output_err2.push_back(static_cast<double>(0.0));
   true_output_err2.push_back(static_cast<double>(0.0));
+  true_output_err2.push_back(static_cast<double>(0.064453125));
+  true_output_err2.push_back(static_cast<double>(0.009765625));
   true_output_err2.push_back(static_cast<double>(0.0));
   true_output_err2.push_back(static_cast<double>(0.0));
   true_output_err2.push_back(static_cast<double>(0.0));
-  true_output_err2.push_back(static_cast<double>(0.0));
-  true_output_err2.push_back(static_cast<double>(0.0));
-  true_output_err2.push_back(static_cast<double>(0.0));
-  true_output_err2.push_back(static_cast<double>(0.0));
-  true_output_err2.push_back(static_cast<double>(0.0));
-  true_output_err2.push_back(static_cast<double>(0.0));
-  true_output_err2.push_back(static_cast<double>(0.0));
+  true_output_err2.push_back(static_cast<double>(0.015625));
 
+  true_frac_area.push_back(static_cast<double>(0.03125));
+  true_frac_area.push_back(static_cast<double>(0.09375));
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(0.375));
+  true_frac_area.push_back(static_cast<double>(0.125));
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(0.375));
+  true_frac_area.push_back(static_cast<double>(0.125));
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.0));
-  true_frac_area.push_back(static_cast<double>(0.0));
-  true_frac_area.push_back(static_cast<double>(0.0));
-  true_frac_area.push_back(static_cast<double>(0.0));
-  true_frac_area.push_back(static_cast<double>(0.0));
-  true_frac_area.push_back(static_cast<double>(0.0));
-  true_frac_area.push_back(static_cast<double>(0.0));
-  true_frac_area.push_back(static_cast<double>(0.0));
+  true_frac_area.push_back(static_cast<double>(0.125));
 }
 
 /**
