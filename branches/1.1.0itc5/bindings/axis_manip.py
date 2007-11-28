@@ -1372,9 +1372,48 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
     illustrate the functionality is with an example.
     
     We start with a set of five quadrilateral bins with the same number of 
-    counts in each bin. The array of quadrilateral bins, shaded in gray, are 
-    shown in the following picture on the rectilinear grid to which they will 
-    be rebinned. 
+    counts in each bin. The array of quadrilateral bins, with the counts
+    inside, are shown in the following picture on the rectilinear grid to
+    which they will be rebinned. 
+
+                       4  ________________________________
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       | /     |
+                         |       |       |       |/|     |
+                         |       |       |       / |     |
+                         |       |       |      /  |     |
+                         |       |       |     / 10|     |
+                       3 |_______|_______|____/|+-1/_____|
+                         |       |       |   / |  /      |
+                         |       |       |  /  | /       |
+                         |       |       | / 10|/|       |
+                         |       |       |/|+-1/ |       |
+                         |       |       / |  /  |       |
+                         |       |      /  | /   |       |
+                         |       |     / 10|/    |       |
+                       2 |_______|____/|+-1/_____|_______|
+                         |       |   / |  /      |       |
+                         |       |  /  | /       |       |
+                         |       | / 10|/|       |       |
+                         |       |/|+-1/ |       |       |
+                         |       / |  /  |       |       |
+                         |      /  | /   |       |       |
+                         |     / 10|/    |       |       |
+                         |     |+-1/     |       |       |
+                       1 |_____|  /______|_______|_______|
+                         |     | /       |       |       |
+                         |     |/|       |       |       |
+                         |     / |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                       0 |_______|_______|_______|_______|
+                                 
+                         0       1       2       3       4
     
     After the rebinning process, the distribution of counts and fraction area 
     is shown in the following picture. The top line in each grid bin 
@@ -1382,7 +1421,38 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
     The bottom line in each grid bin is the summed fractional area for that 
     grid box as determined from the overlap of the original quadrilateral 
     bins.
-    
+
+        4 -------------------------------------------------------------
+          |              |              |              |              |
+          |       0      |       0      |    1.25+-    |    1.25+-    |
+          |              |              | 0.009765625  |   0.015625   |
+          |              |              |              |              |
+          |       0      |       0      |    0.125     |    0.125     |
+          |              |              |              |              |
+        3 -------------------------------------------------------------
+          |              |              |              |              |
+          |       0      |    1.25+-    |    3.75+-    |       0      |
+          |              | 0.009765625  | 0.064453125  |              |
+          |              |              |              |              |
+          |       0      |    0.125     |    0.375     |       0      |
+          |              |              |              |              |
+        2 -------------------------------------------------------------
+          |              |              |              |              |
+          |   0.9375+-   |    3.75+-    |       0      |       0      |
+          | 0.0087890625 | 0.064453125  |              |              |
+          |              |              |              |              |
+          |   0.09375    |    0.375     |       0      |       0      |
+          |              |              |              |              |
+        1 -------------------------------------------------------------
+          |              |              |              |              |
+          |   0.3125+-   |       0      |       0      |       0      |
+          | 0.0009765625 |              |              |              |
+          |              |              |              |              |
+          |   0.03125    |       0      |       0      |       0      |
+          |              |              |              |              |
+        0 -------------------------------------------------------------        
+          0              1              2              3              4
+
     Parameters:
     ----------
     -> axis_in_x1 is the x-coordinate of the 1st corner of the initial data
