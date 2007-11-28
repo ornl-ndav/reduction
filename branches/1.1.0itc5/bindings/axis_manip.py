@@ -1315,20 +1315,21 @@ def initial_velocity_dgs(dist_upstream_mon,
 # given input spectrum onto a given rectilinear grid. The best way to 
 # illustrate the functionality is with an example.
 #
-# We start with a set of five parallelogram bins with the same number of 
-# counts in each bin. The array of parallelogram bins, shaded in gray, are 
+# We start with a set of five quadrilateral bins with the same number of 
+# counts in each bin. The array of quadrilateral bins, shaded in gray, are 
 # shown in the following picture on the rectilinear grid to which they will 
 # be rebinned. 
 #
 # <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_OrigHist.png">
 #
 # After the rebinning process, the distribution of counts and fraction area 
-# is shown in the following picture. The top line in each grid bin 
-# represents the total counts placed from the original parallelogram bins. 
+# are shown in the following picture. The top line in each grid bin 
+# represents the total counts placed from the original quadrilateral bins. 
 # The bottom line in each grid bin is the summed fractional area for that 
-# grid box as determined from the overlap of the original parallelogram 
+# grid box as determined from the overlap of the original quadrilateral 
 # bins.
 #
+# <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_RebinHist.png">
 #
 # \param axis_in_x1 (INPUT) is the x-coordinate of the 1st corner of the 
 # initial data axis
@@ -1370,16 +1371,16 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
     given input spectrum onto a given rectilinear grid. The best way to 
     illustrate the functionality is with an example.
     
-    We start with a set of five parallelogram bins with the same number of 
-    counts in each bin. The array of parallelogram bins, shaded in gray, are 
+    We start with a set of five quadrilateral bins with the same number of 
+    counts in each bin. The array of quadrilateral bins, shaded in gray, are 
     shown in the following picture on the rectilinear grid to which they will 
     be rebinned. 
     
     After the rebinning process, the distribution of counts and fraction area 
     is shown in the following picture. The top line in each grid bin 
-    represents the total counts placed from the original parallelogram bins. 
+    represents the total counts placed from the original quadrilateral bins. 
     The bottom line in each grid bin is the summed fractional area for that 
-    grid box as determined from the overlap of the original parallelogram 
+    grid box as determined from the overlap of the original quadrilateral 
     bins.
     
     Parameters:
