@@ -76,6 +76,11 @@ std::string type_string(float vec)
   return std::string("float");
 }
 
+std::string type_string(std::size_t vec)
+{
+  return std::string("std::size_t");
+}
+
 std::string type_string(Nessi::Vector<int> & vec)
 {
   return std::string("int");

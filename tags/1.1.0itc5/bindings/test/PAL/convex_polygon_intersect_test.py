@@ -67,6 +67,8 @@ import test_common
 # - square6_y is the y coordinate array for square6
 # - square7_x is the x coordinate array for square7
 # - square7_y is the y coordinate array for square7
+# - square8_x is the x coordinate array for square8
+# - square8_y is the y coordinate array for square8
 
 def initialize_inputs(key):
     if (key == "double"):
@@ -85,7 +87,9 @@ def initialize_inputs(key):
         square6_x = nessi_list.NessiList()
         square6_y = nessi_list.NessiList()
         square7_x = nessi_list.NessiList()
-        square7_y = nessi_list.NessiList()        
+        square7_y = nessi_list.NessiList()
+        square8_x = nessi_list.NessiList()
+        square8_y = nessi_list.NessiList()        
 
         parallelogram_x.append(float(-3))
         parallelogram_x.append(float(-2))
@@ -112,10 +116,10 @@ def initialize_inputs(key):
         square2_x.append(float(-1))
         square2_x.append(float(0))
         
+        square2_y.append(float(-4))
+        square2_y.append(float(-4))
         square2_y.append(float(-3))
         square2_y.append(float(-3))
-        square2_y.append(float(-2))
-        square2_y.append(float(-2))
         
         square3_x.append(float(0.5))
         square3_x.append(float(-0.5))
@@ -166,13 +170,24 @@ def initialize_inputs(key):
         square7_y.append(float(-4))
         square7_y.append(float(0))
         square7_y.append(float(0))
+
+        square8_x.append(float(-2))
+        square8_x.append(float(-3))
+        square8_x.append(float(-3))
+        square8_x.append(float(-3))
+        
+        square8_y.append(float(-1))
+        square8_y.append(float(-1))
+        square8_y.append(float(0))
+        square8_y.append(float(0))
         
     else:
         raise TypeError
 
     return (parallelogram_x, parallelogram_y, square1_x, square1_y,
             square2_x, square2_y, square3_x, square3_y, square4_x, square4_y,
-            square5_x, square5_y, square6_x, square6_y, square7_x, square7_y)
+            square5_x, square5_y, square6_x, square6_y, square7_x, square7_y,
+            square8_x, square8_y)
             
 ##
 # Function that sets the true outputs based on values contained coordinate 
@@ -209,6 +224,10 @@ def initialize_inputs(key):
 # intersection polygon of the parallelogram with square7
 # - true_output7_y (OUTPUT) is the y-coordinates of the true 
 # intersection polygon of the parallelogram with square7
+# - true_output8_x (OUTPUT) is the x-coordinates of the true 
+# intersection polygon of the parallelogram with square8
+# - true_output8_y (OUTPUT) is the y-coordinates of the true 
+# intersection polygon of the parallelogram with square8
 #
 def initialize_true_outputs(key):
 
@@ -229,15 +248,11 @@ def initialize_true_outputs(key):
         true_output2_x = nessi_list.NessiList()
         true_output2_y = nessi_list.NessiList()
         
-        true_output2_x.append(float(0))
         true_output2_x.append(float(-0.5))
         true_output2_x.append(float(-1))
-        true_output2_x.append(float(-1))
         
-        true_output2_y.append(float(-2))
         true_output2_y.append(float(-3))
         true_output2_y.append(float(-3))
-        true_output2_y.append(float(-2))
         
         # Parallelogram and Square3
         true_output3_x = nessi_list.NessiList()
@@ -302,6 +317,14 @@ def initialize_true_outputs(key):
         true_output7_y.append(float(-1))
         true_output7_y.append(float(-1))
         true_output7_y.append(float(-3))
+
+        # Parallelogram and Square8
+        true_output8_x = nessi_list.NessiList()
+        true_output8_y = nessi_list.NessiList()
+        
+        true_output8_x.append(float(-2))
+        
+        true_output8_y.append(float(-1))        
         
     else:
         raise TypeError
@@ -309,7 +332,7 @@ def initialize_true_outputs(key):
     return (true_output1_x, true_output1_y, true_output2_x, true_output2_y,
             true_output3_x, true_output3_y, true_output4_x, true_output4_y,
             true_output5_x, true_output5_y, true_output6_x, true_output6_y,
-            true_output7_x, true_output7_y)
+            true_output7_x, true_output7_y, true_output8_x, true_output8_y)
 
 if __name__ == "__main__":
 
@@ -324,12 +347,13 @@ if __name__ == "__main__":
     (true_output1_x, true_output1_y, true_output2_x, true_output2_y,
      true_output3_x, true_output3_y, true_output4_x, true_output4_y,
      true_output5_x, true_output5_y, true_output6_x, true_output6_y,
-     true_output7_x, true_output7_y) = initialize_true_outputs("double")
+     true_output7_x, true_output7_y,
+     true_output8_x, true_output8_y) = initialize_true_outputs("double")
 
     (parallelogram_x, parallelogram_y, square1_x, square1_y,
      square2_x, square2_y, square3_x, square3_y, square4_x, square4_y,
      square5_x, square5_y, square6_x, square6_y,
-     square7_x, square7_y) = initialize_inputs("double")
+     square7_x, square7_y, square8_x, square8_y) = initialize_inputs("double")
 
     (output1_x, output1_y) = utils.convex_polygon_intersect(parallelogram_x,
                                                             parallelogram_y,
@@ -421,5 +445,18 @@ if __name__ == "__main__":
     mess = test_common.MakeCheck2("double", output7_y, true_output7_y)
 
     print "(p&s7)y: " + mess
+
+    (output8_x, output8_y) = utils.convex_polygon_intersect(parallelogram_x,
+                                                            parallelogram_y,
+                                                            square8_x,
+                                                            square8_y)
+    # Check values
+    mess = test_common.MakeCheck2("double", output8_x, true_output8_x)
+
+    print "(p&s8)x: " + mess
+
+    mess = test_common.MakeCheck2("double", output8_y, true_output8_y)
+
+    print "(p&s8)y: " + mess    
     
 

@@ -64,6 +64,73 @@ from scl_defs import VERSION as __version__
 #
 
 ##
+# \defgroup bisect_helper utils::bisect_helper
+# \{
+#
+
+##
+# \brief This function finds a bin index within an axis array
+# 
+# This function takes an axis array and a given value and searches that 
+# axis for the corresponding bin location. However, this helper is used in 
+# the context of locating a bin index within an associated data array 
+# (which is always one less than the axis array) based on the axis array 
+# value. The found index may need to be adjusted based on its value with 
+# respect to the size of the data array. <b>NOTE:</b> If the search value 
+# is outside the axis range, the result of the function will be to return 
+# the closest edge bin. This means for a search value smaller than the 
+# smallest axis value, the index returned will be 0. If the search value is 
+# greater than the largest axis value, the index returned will be the last 
+# bin in the data array (axis size minus 1).
+#
+# \param axis (INPUT) is an array of independent axis values to search
+# \param value (INPUT) is the value to search axis for
+#
+# \return
+# - the corresponding index for the value 
+#
+# \exception TypeError is raised if axis is not of type double
+#
+def bisect_helper(axis, value):
+    """
+    This function takes an axis array and a given value and searches that axis
+    for the corresponding bin location. However, this helper is used in the
+    context of locating a bin index within an associated data array (which is
+    always one less than the axis array) based on the axis array value. The
+    found index may need to be adjusted based on its value with respect to the
+    size of the data array. NOTE: If the search value is outside the axis
+    range, the result of the function will be to return the closest edge bin.
+    This means for a search value smaller than the smallest axis value, the
+    index returned will be 0. If the search value is greater than the largest
+    axis value, the index returned will be the last bin in the data array
+    (axis size minus 1).
+
+    Parameters:
+    ----------
+    -> axis is an array of independent axis values to search
+    -> value is the value to search axis for
+
+    Returns:
+    -------
+    <- The corresponding index for the value 
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if axis is not of type double
+    """
+    if axis.__type__ == nessi_list.NessiList.DOUBLE:
+        index = vpair_bind.SizetVPair()
+        utils_bind.bisect_helper_d(axis.__array__,
+                                   float(value),
+                                   index)
+        return index.val
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(axis.__type__))
+##
+# \}
+
+##
 # \defgroup calc_area_2D_polygon utils::calc_area_2D_polygon
 # \{
 #

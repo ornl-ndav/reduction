@@ -43,6 +43,8 @@ Square6_X_D = DoubleNessiVector()
 Square6_Y_D = DoubleNessiVector()
 Square7_X_D = DoubleNessiVector()
 Square7_Y_D = DoubleNessiVector()
+Square8_X_D = DoubleNessiVector()
+Square8_Y_D = DoubleNessiVector()
 
 Parallelogram_X_D.append(float(-3))
 Parallelogram_X_D.append(float(-2))
@@ -69,10 +71,10 @@ Square2_X_D.append(float(-1))
 Square2_X_D.append(float(-1))
 Square2_X_D.append(float(0))
 
+Square2_Y_D.append(float(-4))
+Square2_Y_D.append(float(-4))
 Square2_Y_D.append(float(-3))
 Square2_Y_D.append(float(-3))
-Square2_Y_D.append(float(-2))
-Square2_Y_D.append(float(-2))
 
 Square3_X_D.append(float(0.5))
 Square3_X_D.append(float(-0.5))
@@ -123,6 +125,16 @@ Square7_Y_D.append(float(-4))
 Square7_Y_D.append(float(-4))
 Square7_Y_D.append(float(0))
 Square7_Y_D.append(float(0))
+
+Square8_X_D.append(float(-2))
+Square8_X_D.append(float(-3))
+Square8_X_D.append(float(-3))
+Square8_X_D.append(float(-2))
+
+Square8_Y_D.append(float(-1))
+Square8_Y_D.append(float(-1))
+Square8_Y_D.append(float(0))
+Square8_Y_D.append(float(0))
 
 ###############################################################################
 # Create truth vectors and values
@@ -145,15 +157,11 @@ TruthOutput1_Y_D.append(float(-2))
 TruthOutput2_X_D = DoubleNessiVector()
 TruthOutput2_Y_D = DoubleNessiVector()
 
-TruthOutput2_X_D.append(float(0))
 TruthOutput2_X_D.append(float(-0.5))
 TruthOutput2_X_D.append(float(-1))
-TruthOutput2_X_D.append(float(-1))
 
-TruthOutput2_Y_D.append(float(-2))
 TruthOutput2_Y_D.append(float(-3))
 TruthOutput2_Y_D.append(float(-3))
-TruthOutput2_Y_D.append(float(-2))
 
 # Parallelogram and Square3
 TruthOutput3_X_D = DoubleNessiVector()
@@ -219,6 +227,14 @@ TruthOutput7_Y_D.append(float(-1))
 TruthOutput7_Y_D.append(float(-1))
 TruthOutput7_Y_D.append(float(-3))
 
+# Parallelogram and Square8
+TruthOutput8_X_D = DoubleNessiVector()
+TruthOutput8_Y_D = DoubleNessiVector()
+
+TruthOutput8_X_D.append(float(-2))
+
+TruthOutput8_Y_D.append(float(-1))
+
 ###############################################################################
 # Create output placeholders for vectors
 ###############################################################################
@@ -238,6 +254,8 @@ Output6_X_D = DoubleNessiVector(len(Parallelogram_X_D)+len(Square6_X_D))
 Output6_Y_D = DoubleNessiVector(len(Parallelogram_Y_D)+len(Square6_Y_D))
 Output7_X_D = DoubleNessiVector(len(Parallelogram_X_D)+len(Square7_X_D))
 Output7_Y_D = DoubleNessiVector(len(Parallelogram_Y_D)+len(Square7_Y_D))
+Output8_X_D = DoubleNessiVector(len(Parallelogram_X_D)+len(Square8_X_D))
+Output8_Y_D = DoubleNessiVector(len(Parallelogram_Y_D)+len(Square8_Y_D))
 
 print "Checking Convex Polygon Intersection Binding Function"
 
@@ -336,6 +354,20 @@ print mess
 
 mess = test_common_bind.makeCheck("(p&s7)y: convex_polygon_intersect_d",
                                   Output7_Y_D, TruthOutput7_Y_D)
+
+print mess
+
+convex_polygon_intersect_d(Parallelogram_X_D, Parallelogram_Y_D,
+                           Square8_X_D, Square8_Y_D,
+                           Output8_X_D, Output8_Y_D)
+
+mess = test_common_bind.makeCheck("(p&s8)x: convex_polygon_intersect_d",
+                                  Output8_X_D, TruthOutput8_X_D)
+
+print mess
+
+mess = test_common_bind.makeCheck("(p&s8)y: convex_polygon_intersect_d",
+                                  Output8_Y_D, TruthOutput8_Y_D)
 
 print mess
 

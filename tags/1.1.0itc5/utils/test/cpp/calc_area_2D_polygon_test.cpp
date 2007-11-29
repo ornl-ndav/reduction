@@ -133,8 +133,8 @@ void initialize_true_outputs(NumT & true_output_triangle,
 {
   // initialize the correct outputs
   true_output_triangle = static_cast<NumT>(2.);
-  true_output_square = static_cast<NumT>(1.);
-  true_output_parallelogram = static_cast<NumT>(-5.);
+  true_output_square = static_cast<NumT>(-1.);
+  true_output_parallelogram = static_cast<NumT>(5.);
 }
 
 /**

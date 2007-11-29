@@ -37,7 +37,6 @@
 #include "size_checks.hpp"
 #include <algorithm>
 #include <stdexcept>
-#include <iostream>
 
 namespace Utils
 {
@@ -154,7 +153,7 @@ namespace Utils
 
     std::size_t max_iters = 2 * (a_size + b_size);
 
-    for (std::size_t i = 1; (i <= max_iters) || (2 == phase); ++i)
+    for (std::size_t i = 1; i <= max_iters; ++i)
       {
         // Classify both edge destination points with respect to the opposing
         // edge
@@ -287,34 +286,43 @@ namespace Utils
           }
       } // for
 
-    // If we get here, no intersection points have been found. 
-
-    if(__pt_in_convex_polygon(ax_coord[a_orig], ay_coord[a_orig],
-                              b_orig, bx_coord, by_coord))
+    if (cx_coord.empty() && cy_coord.empty())
       {
-        // Polygon A lies within B
-        std::copy(ax_coord.begin(), ax_coord.end(), 
-                  std::back_inserter(cx_coord));
-        std::copy(ay_coord.begin(), ay_coord.end(), 
-                  std::back_inserter(cy_coord));
+        // If we get here, no intersection points have been found. 
+
+        if(__pt_in_convex_polygon(ax_coord[a_orig], ay_coord[a_orig],
+                                  b_orig, bx_coord, by_coord))
+          {
+            // Polygon A lies within B
+            std::copy(ax_coord.begin(), ax_coord.end(), 
+                      std::back_inserter(cx_coord));
+            std::copy(ay_coord.begin(), ay_coord.end(), 
+                      std::back_inserter(cy_coord));
+            return Nessi::EMPTY_WARN;
+          }
+        else if (__pt_in_convex_polygon(bx_coord[b_orig], by_coord[b_orig],
+                                        a_orig, ax_coord, ay_coord))
+          {
+            // Polygon B lies within A
+            std::copy(bx_coord.begin(), bx_coord.end(), 
+                      std::back_inserter(cx_coord));
+            std::copy(by_coord.begin(), by_coord.end(), 
+                      std::back_inserter(cy_coord));
+            return Nessi::EMPTY_WARN;
+          }
+        
+        // Polygons A and B lie outside each other, so push back a coordinate 
+        // axis origin
+        cx_coord.push_back(static_cast<NumT>(0.0));
+        cy_coord.push_back(static_cast<NumT>(0.0));
         return Nessi::EMPTY_WARN;
       }
-    else if (__pt_in_convex_polygon(bx_coord[b_orig], by_coord[b_orig],
-                                    a_orig, ax_coord, ay_coord))
+    else
       {
-        // Polygon B lies within A
-        std::copy(bx_coord.begin(), bx_coord.end(), 
-                  std::back_inserter(cx_coord));
-        std::copy(by_coord.begin(), by_coord.end(), 
-                  std::back_inserter(cy_coord));
+        // Intersection points have been found, but the main loop was 
+        // insufficient to find the starting intersection point again
         return Nessi::EMPTY_WARN;
       }
-
-    // Polygons A and B lie outside each other, so push back a coordinate axis 
-    // origin
-    cx_coord.push_back(static_cast<NumT>(0.0));
-    cy_coord.push_back(static_cast<NumT>(0.0));
-    return Nessi::EMPTY_WARN;
   }
 } // Utils
 

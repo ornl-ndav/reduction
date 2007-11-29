@@ -1301,6 +1301,273 @@ def initial_velocity_dgs(dist_upstream_mon,
 # \}
 
 ##
+# \defgroup rebin_2D_quad_to_rectlin axis_manip::rebin_2D_quad_to_rectlin
+# \{
+#
+
+##
+# \brief This function rebins quadrilateral bins to a rectilinear grid
+#
+# This function is described in section 3.61 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function rebins a set of two-dimensional quadrilateral bins from a 
+# given input spectrum onto a given rectilinear grid. The best way to 
+# illustrate the functionality is with an example.
+#
+# We start with a set of five quadrilateral bins with the same number of 
+# counts in each bin. The array of quadrilateral bins, shaded in gray, are 
+# shown in the following picture on the rectilinear grid to which they will 
+# be rebinned. 
+#
+# <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_OrigHist.png">
+#
+# After the rebinning process, the distribution of counts and fraction area 
+# are shown in the following picture. The top line in each grid bin 
+# represents the total counts placed from the original quadrilateral bins. 
+# The bottom line in each grid bin is the summed fractional area for that 
+# grid box as determined from the overlap of the original quadrilateral 
+# bins.
+#
+# <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_RebinHist.png">
+#
+# \param axis_in_x1 (INPUT) is the x-coordinate of the 1st corner of the 
+# initial data axis
+# \param axis_in_y1 (INPUT) is the y-coordinate of the 1st corner of the 
+# initial data axis
+# \param axis_in_x2 (INPUT) is the x-coordinate of the 2nd corner of the 
+# initial data axis
+# \param axis_in_y2 (INPUT) is the y-coordinate of the 2nd corner of the 
+# initial data axis
+# \param axis_in_x3 (INPUT) is the x-coordinate of the 3rd corner of the 
+# initial data axis
+# \param axis_in_y3 (INPUT) is the y-coordinate of the 3rd corner of the 
+# initial data axis
+# \param axis_in_x4 (INPUT) is the x-coordinate of the 4th corner of the 
+# initial data axis
+# \param axis_in_y4 (INPUT) is the y-coordinate of the 4th corner of the 
+# initial data axis
+# \param input (INPUT) is the data associated with the initial axis
+# \param input_err2 (INPUT) is the square of the uncertainty associated
+# with the data
+# \param axis_out_1 (INPUT) is the 1st (x-coordinate) target axis for 
+# rebinning
+# \param axis_out_2 (INPUT) is the 2nd (y-coordinate) target axis for 
+# rebinning
+#
+# \return
+# - The rebinned data according to the target axis
+# - The square of the uncertainty associated with the rebinned data
+# - The fractional area accumulated during rebinning
+#
+# \exception IndexError is raised if the arrays are not of compatible sizes
+# \exception TypeError is raised if any of the arrays are not recognized types
+#
+def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
+                             axis_in_x3, axis_in_y3, axis_in_x4, axis_in_y4,
+                             input, input_err2, axis_out_1, axis_out_2):
+    """
+    This function rebins a set of two-dimensional quadrilateral bins from a 
+    given input spectrum onto a given rectilinear grid. The best way to 
+    illustrate the functionality is with an example.
+    
+    We start with a set of five quadrilateral bins with the same number of 
+    counts in each bin. The array of quadrilateral bins, with the counts
+    inside, are shown in the following picture on the rectilinear grid to
+    which they will be rebinned. 
+
+                       4  ________________________________
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       | /     |
+                         |       |       |       |/|     |
+                         |       |       |       / |     |
+                         |       |       |      /  |     |
+                         |       |       |     / 10|     |
+                       3 |_______|_______|____/|+-1/_____|
+                         |       |       |   / |  /      |
+                         |       |       |  /  | /       |
+                         |       |       | / 10|/|       |
+                         |       |       |/|+-1/ |       |
+                         |       |       / |  /  |       |
+                         |       |      /  | /   |       |
+                         |       |     / 10|/    |       |
+                       2 |_______|____/|+-1/_____|_______|
+                         |       |   / |  /      |       |
+                         |       |  /  | /       |       |
+                         |       | / 10|/|       |       |
+                         |       |/|+-1/ |       |       |
+                         |       / |  /  |       |       |
+                         |      /  | /   |       |       |
+                         |     / 10|/    |       |       |
+                         |     |+-1/     |       |       |
+                       1 |_____|  /______|_______|_______|
+                         |     | /       |       |       |
+                         |     |/|       |       |       |
+                         |     / |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                         |       |       |       |       |
+                       0 |_______|_______|_______|_______|
+                                 
+                         0       1       2       3       4
+    
+    After the rebinning process, the distribution of counts and fraction area 
+    is shown in the following picture. The top line in each grid bin 
+    represents the total counts placed from the original quadrilateral bins. 
+    The bottom line in each grid bin is the summed fractional area for that 
+    grid box as determined from the overlap of the original quadrilateral 
+    bins.
+
+        4 -------------------------------------------------------------
+          |              |              |              |              |
+          |       0      |       0      |    1.25+-    |    1.25+-    |
+          |              |              | 0.009765625  |   0.015625   |
+          |              |              |              |              |
+          |       0      |       0      |    0.125     |    0.125     |
+          |              |              |              |              |
+        3 -------------------------------------------------------------
+          |              |              |              |              |
+          |       0      |    1.25+-    |    3.75+-    |       0      |
+          |              | 0.009765625  | 0.064453125  |              |
+          |              |              |              |              |
+          |       0      |    0.125     |    0.375     |       0      |
+          |              |              |              |              |
+        2 -------------------------------------------------------------
+          |              |              |              |              |
+          |   0.9375+-   |    3.75+-    |       0      |       0      |
+          | 0.0087890625 | 0.064453125  |              |              |
+          |              |              |              |              |
+          |   0.09375    |    0.375     |       0      |       0      |
+          |              |              |              |              |
+        1 -------------------------------------------------------------
+          |              |              |              |              |
+          |   0.3125+-   |       0      |       0      |       0      |
+          | 0.0009765625 |              |              |              |
+          |              |              |              |              |
+          |   0.03125    |       0      |       0      |       0      |
+          |              |              |              |              |
+        0 -------------------------------------------------------------        
+          0              1              2              3              4
+
+    Parameters:
+    ----------
+    -> axis_in_x1 is the x-coordinate of the 1st corner of the initial data
+    axis
+    -> axis_in_y1 is the y-coordinate of the 1st corner of the initial data
+    axis
+    -> axis_in_x2 is the x-coordinate of the 2nd corner of the initial data
+    axis
+    -> axis_in_y2 is the y-coordinate of the 2nd corner of the initial data
+    axis
+    -> axis_in_x3 is the x-coordinate of the 3rd corner of the initial data
+    axis
+    -> axis_in_y3 is the y-coordinate of the 3rd corner of the initial data
+    axis
+    -> axis_in_x4 is the x-coordinate of the 4th corner of the initial data
+    axis
+    -> axis_in_y4 is the y-coordinate of the 4th corner of the initial data
+    axis
+    -> input is the data associated with the initial axis
+    -> input_err2 is the square of the uncertainty associated with the data
+    -> axis_out_1 is the 1st (x-coordinate) target axis for rebinning
+    -> axis_out_2 is the 2nd (y-coordinate) target axis for rebinning
+    
+    Returns:
+    -------
+    <- The rebinned data according to the target axis
+    <- The square of the uncertainty associated with the rebinned data
+    <- The fractional area accumulated during rebinning
+
+    Exceptions:
+    ----------
+    -> IndexError is raised if the arrays are not of compatible sizes
+    -> TypeError is raised if any of the arrays are not recognized types
+    """
+    if axis_in_x1.__type__ != axis_in_y1.__type__:
+        raise TypeError("X and Y Axis for 1st Corner are not the same type.")
+
+    if axis_in_x2.__type__ != axis_in_y2.__type__:
+        raise TypeError("X and Y Axis for 2nd Corner are not the same type.")
+
+    if axis_in_x3.__type__ != axis_in_y3.__type__:
+        raise TypeError("X and Y Axis for 3rd Corner are not the same type.")
+
+    if axis_in_x4.__type__ != axis_in_y4.__type__:
+        raise TypeError("X and Y Axis for 4th Corner are not the same type.")
+
+    if axis_in_x1.__type__ != axis_in_x2.__type__:
+        raise TypeError("X Axes for 1st and 2nd Corner are not the same type.")
+
+    if axis_in_x1.__type__ != axis_in_x3.__type__:
+        raise TypeError("X Axes for 1st and 3rd Corner are not the same type.")
+
+    if axis_in_x1.__type__ != axis_in_x4.__type__:
+        raise TypeError("X Axes for 1st and 4th Corner are not the same type.")
+
+    if axis_in_x1.__type__ != input.__type__:
+        raise TypeError("Input Axis 1 and Input Data are not the same type.")
+
+    if axis_in_x1.__type__ != axis_out_1.__type__:
+        raise TypeError("X Axis for 1st Corner and Output Axis 1 are not the "\
+                        +"same type.")
+
+    if axis_out_1.__type__ != axis_out_2.__type__:
+        raise TypeError("Output Axis 1 and Output Axis 2 are not the same " \
+                        +"type.")
+
+    if input.__type__ != input_err2.__type__:
+        raise TypeError("Input Data and Input Data Err2 are not the same " \
+                        +"type.")
+
+    if (axis_in_x1.__type__ == nessi_list.NessiList.DOUBLE):
+        orig_bin_x = nessi_list.NessiList(4)
+        orig_bin_y = nessi_list.NessiList(4)
+        rebin_bin_x = nessi_list.NessiList(4)
+        rebin_bin_y = nessi_list.NessiList(4)
+        frac_bin_x = nessi_list.NessiList(8)
+        frac_bin_y = nessi_list.NessiList(8)
+
+        output = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                      (len(axis_out_2)-1))
+        output_err2 = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                           (len(axis_out_2)-1))
+        frac_area = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                         (len(axis_out_2)-1))
+        
+        axis_manip_bind.rebin_2D_quad_to_rectlin_d(axis_in_x1.__array__,
+                                                   axis_in_y1.__array__,
+                                                   axis_in_x2.__array__,
+                                                   axis_in_y2.__array__,
+                                                   axis_in_x3.__array__,
+                                                   axis_in_y3.__array__,
+                                                   axis_in_x4.__array__,
+                                                   axis_in_y4.__array__,
+                                                   input.__array__,
+                                                   input_err2.__array__,
+                                                   axis_out_1.__array__,
+                                                   axis_out_2.__array__,
+                                                   orig_bin_x.__array__,
+                                                   orig_bin_y.__array__,
+                                                   rebin_bin_x.__array__,
+                                                   rebin_bin_y.__array__,
+                                                   frac_bin_x.__array__,
+                                                   frac_bin_y.__array__,
+                                                   output.__array__,
+                                                   output_err2.__array__,
+                                                   frac_area.__array__)
+    else:
+        raise TypeError("Unknown primitive type %s" % str(input.__type__))
+
+    return (output, output_err2, frac_area)                    
+
+##
+# \}
+
+##
 # \defgroup rebin_axis_1D axis_manip::rebin_axis_1D
 # \{
 

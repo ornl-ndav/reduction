@@ -127,8 +127,8 @@ def initialize_true_outputs(key):
 
     if (key == "double"):
         true_output_triangle = float(2.)
-        true_output_square = float(1.)
-        true_output_parallelogram = float(-5.)
+        true_output_square = float(-1.)
+        true_output_parallelogram = float(5.)
     else:
         raise TypeError
 
