@@ -77,6 +77,12 @@ AT_CHECK([initial_velocity_dgs_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Rebin 2D Quadrilateral to Rectilinear Grid Function.  ])
+AT_CHECK([rebin_2D_quad_to_rectlin_test | sed -e 's/\r$//' ],[],
+[[rebin_2D_quad_to_rectlin_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Rebin 1D Function.  ])
 AT_CHECK([rebin_axis_1D_test | sed -e 's/\r$//' ],[],
 [[rebin_axis_1D_test.cpp..........Functionality OK

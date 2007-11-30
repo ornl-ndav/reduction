@@ -42,6 +42,7 @@ AXIS_MANIP_TARGETS = \
 	init_scatt_wavevector_to_Q_test \
 	init_scatt_wavevector_to_scalar_Q_test \
 	initial_velocity_dgs_test \
+	rebin_2D_quad_to_rectlin_test \
 	rebin_axis_1D_test \
 	rebin_axis_2D_test \
 	rebin_diagonal_test \
@@ -93,6 +94,9 @@ init_scatt_wavevector_to_scalar_Q_test_SOURCES = \
 
 initial_velocity_dgs_test_SOURCES = \
 	initial_velocity_dgs_test.cpp \
+	test_common.hpp
+
+rebin_2D_quad_to_rectlin_test_SOURCES = rebin_2D_quad_to_rectlin_test.cpp \
 	test_common.hpp
 
 rebin_axis_1D_test_SOURCES = rebin_axis_1D_test.cpp test_common.hpp

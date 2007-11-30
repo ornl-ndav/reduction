@@ -7,13 +7,16 @@ Changes in Version 1.1.0
 
   - Axis Manipulations (1.1.0)
     * energy_to_wavelength
+    * rebin_2D_quad_to_rectlin
     * tof_to_initial_wavelength_igs_lin_time_zero
     * tof_to_wavelength_lin_time_zero
     * wavelength_to_tof
 
   - Utilities (1.1.0)
+    * calc_area_2D_polygon
     * calc_bin_centers
     * calc_bin_widths
+    * convex_polygon_intersect
     * eval_linear_fit
     * fit_linear_background
     * linear_order_jacobian

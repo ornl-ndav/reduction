@@ -54,6 +54,8 @@
 
 // Instantiate rebinning templates
 
+%template(rebin_2D_quad_to_rectlin_d) AxisManip::rebin_2D_quad_to_rectlin<double>;
+
 %template(rebin_axis_1D_d) AxisManip::rebin_axis_1D<double>;
 
 %template(rebin_axis_2D_d) AxisManip::rebin_axis_2D<double>;

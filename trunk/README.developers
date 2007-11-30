@@ -30,12 +30,8 @@ Prerequisites
 
    sh autogen.sh
 
-3) Run 'configure' and 'make'. The build system needs to know where the
-   python directories (include, lib, etc.) live. This is usually /usr, but
-   could be elsewhere. Therefore, the --with-python switch must be used.
-
-   ./configure --with-python=/pythonhead
-   make
+3) Run 'configure' and 'make'. If a different Python distribution is required,
+   make sure the Python command appears first in the path. 
 
    If there are any problems, try different configure options to see if one
    will work.  You can see what switches are available by typing

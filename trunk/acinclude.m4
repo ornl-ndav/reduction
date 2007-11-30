@@ -69,9 +69,10 @@ AC_DEFUN(
 	AC_MSG_ERROR([Cannot find SWIG. This is vital to the library build, so please obtain SWIG. See http://www.swig.org])
     elif test -n "$1" ; then
 	AC_MSG_CHECKING([for SWIG version])
-	[swig_version=`$SWIG -version 2>&1 | grep 'SWIG Version' | cut -d" " -f3`]
-        AC_MSG_RESULT([$swig_version])
-	if test -n "$swig_version" ; then
+	[SWIG_VERSION=`$SWIG -version 2>&1 | grep 'SWIG Version' | cut -d" " -f3`]
+        AC_MSG_RESULT([$SWIG_VERSION])
+	AC_SUBST(SWIG_VERSION)
+	if test -n "$SWIG_VERSION" ; then
           [required=$1]
           [required_major=`echo $required | sed 's/[^0-9].*//'`]
           if test -z "$required_major" ; then
@@ -88,7 +89,7 @@ AC_DEFUN(
              [required_patch=0]
           fi
           # Calculate the available version number components
-          [available=`echo $swig_version | sed 's/[^0-9]*//'`]
+          [available=`echo $SWIG_VERSION | sed 's/[^0-9]*//'`]
           [available_major=`echo $available | sed 's/[^0-9].*//'`]
           if test -z "$available_major" ; then
              [available_major=0]
@@ -107,7 +108,7 @@ AC_DEFUN(
 	  if test $available_major -ne $required_major \
                -o $available_minor -ne $required_minor \
                -o $available_patch -lt $required_patch ; then
-	    AC_MSG_ERROR([You need SWIG version $1 and have SWIG version $swig_version])
+	    AC_MSG_ERROR([You need SWIG version $1 and have SWIG version $SWIG_VERSION])
 	  fi
        fi
     fi

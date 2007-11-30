@@ -25,6 +25,7 @@
 //
 %module utils_bind
 %{
+#include "geometry.hpp"
 #include "num_comparison.hpp"
 #include "size_checks.hpp"
 #include "utils.hpp"
@@ -35,14 +36,29 @@
 %include "libexcept.i"
 
 // Need to ignore guard names from header files
+%ignore _GEOMETRY_HPP;
 %ignore _NUM_COMPARISON_HPP;
 %ignore _SIZE_CHECKS_HPP;
 %ignore _UTILS_HPP;
 
 // Parse the original header file
+%include "geometry.hpp"
 %include "num_comparison.hpp"
 %include "size_checks.hpp"
 %include "utils.hpp"
+
+// Instantiate templates for geometry 
+
+%{
+std::string calc_area_2D_polygon_d(const Nessi::Vector<double> & x_coord, const Nessi::Vector<double> & y_coord, const std::size_t size_poly, bool signed_area, VPair<double> & area, void *temp=NULL) {
+std::string ret = Utils::calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area, area.val, temp);
+return ret;
+}
+%}
+
+std::string calc_area_2D_polygon_d(const Nessi::Vector<double> & x_coord, const Nessi::Vector<double> & y_coord, const std::size_t size_poly, bool signed_area, VPair<double> & area);
+
+%template(convex_polygon_intersect_d) Utils::convex_polygon_intersect<double>;
 
 // Instantiate templates for number comparisons
 %template(vector_is_equals_d) Utils::vector_is_equals<double>;
@@ -57,6 +73,15 @@
 %template(check_histo_sizes_i) Utils::check_histo_sizes<int>;
 
 // Instantiate templates for utils
+
+%{
+std::string bisect_helper_d(const Nessi::Vector<double> & axis, const double value, VPair<std::size_t> & index, void *temp=NULL) {
+  std::string ret = Utils::bisect_helper(axis, value, index.val, temp);
+  return ret;
+}
+%}
+
+std::string bisect_helper_d(const Nessi::Vector<double> & axis, const double value, VPair<std::size_t> & index);
 
 %template(calc_bin_centers_d) Utils::calc_bin_centers<double>;
 

@@ -38,6 +38,8 @@
    it, the module redirects the call to the right function.
 """
 
+from scl_defs import VERSION as __version__
+
 ##
 # \namespace phys_corr
 #

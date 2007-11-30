@@ -13,9 +13,15 @@ python test_abs_val.py
 echo
 python test_add_ncerr.py
 echo
+python test_bisect_helper.py
+echo
+python test_calc_area_2D_polygon.py
+echo
 python test_calc_bin_centers.py
 echo
 python test_calc_bin_widths.py
+echo
+python test_convex_polygon_intersect.py
 echo
 python test_d_spacing_to_tof_focused_det.py
 echo
@@ -42,6 +48,8 @@ echo
 python test_linear_order_jacobian.py
 echo
 python test_mult_ncerr.py
+echo
+python test_rebin_2D_quad_to_rectlin.py
 echo
 python test_rebin_axis_1D.py
 echo
