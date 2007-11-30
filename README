@@ -31,13 +31,9 @@ Prerequisites
    ./configure
    make
 
-   If your Python directories (include, lib, etc.) do not reside in the usual
-   locations (/usr or /usr/local), you need to use the --with-python switch to
-   tell the build system where the main Python directory is. So, run
-   'configure' as follows and then run 'make' as usual.
-
-   ./configure --with-python=/pythonmain
-   make
+   If an alternate Python distribution is needed, make sure the Python command
+   appears in the $PATH first. That one will be interpreted and used by the 
+   configuration system.  
 
    If there are any problems, try different configure options to see if one
    will work.  You can see what switches are available by typing

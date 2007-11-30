@@ -35,6 +35,19 @@
 %include <std_vector.i>
 %include "nessi.hpp"
 
+%feature("autodoc", "1");
+%feature("docstring") __type__ "Return the data type of the vector";
+%feature("docstring") __set_from_Vector__ 
+"""
+This function sets the self vector from another vector. The self 
+vector must be empty.
+""";
+%feature("docstring") __set_from_NessiVector__ 
+"""
+This function sets the self vector from another vector. The self 
+vector must not be empty.
+""";
+
 namespace std {
   %template(DoubleVector) vector<double>;
   %template(IntVector) vector<int>;

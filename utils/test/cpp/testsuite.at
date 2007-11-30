@@ -30,6 +30,18 @@ AT_INIT
 AT_BANNER([[Checking Functionality of the Utility Functions
                   utils/test/cpp]])
 
+AT_SETUP([Checking the Calculation of 2D Polygon Area Function.  ])
+AT_CHECK([calc_area_2D_polygon_test | sed -e 's/\r$//' ],[],
+[[calc_area_2D_polygon_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Bisection Helper Function.  ])
+AT_CHECK([bisect_helper_test | sed -e 's/\r$//' ],[],
+[[bisect_helper_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Calculation of Bin Centers Function.  ])
 AT_CHECK([calc_bin_centers_test | sed -e 's/\r$//' ],[],
 [[calc_bin_centers_test.cpp..........Functionality OK
@@ -39,6 +51,12 @@ AT_CLEANUP
 AT_SETUP([Checking the Calculation of Bin Widths Function.  ])
 AT_CHECK([calc_bin_widths_test | sed -e 's/\r$//' ],[],
 [[calc_bin_widths_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
+AT_SETUP([Checking the Convex Polygon Intersection Function.  ])
+AT_CHECK([convex_polygon_intersect_test | sed -e 's/\r$//' ],[],
+[[convex_polygon_intersect_test.cpp..........Functionality OK
 ]])
 AT_CLEANUP
 
