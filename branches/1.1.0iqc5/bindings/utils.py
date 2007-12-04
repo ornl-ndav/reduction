@@ -147,8 +147,8 @@ def bisect_helper(axis, value):
 # the function
 #
 # \f[
-# A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i-1} - 
-# y_{i+1}\right)\right)
+# A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i+1} - 
+# y_{i-1}\right)\right)
 # \f]
 #
 # where \f$n\f$ is the size of the polygon, \f$x_i\f$ is the \f$i^{th}\f$ 
@@ -185,7 +185,7 @@ def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
     be in any two-dimensional space. The area is calculated according to 
     the function
 
-    A = (1/2) sum^n_{i=1} (x_i * (y_{i-1} - y_{i+1}))
+    A = (1/2) sum^n_{i=1} (x_i * (y_{i+1} - y_{i-1}))
 
     where n is the size of the polygon, x_i is the i^{th} element in the x
     coordinate array, y_{i-1} is the i^{th}-1 element in the y coordinate

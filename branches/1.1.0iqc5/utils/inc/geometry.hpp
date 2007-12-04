@@ -49,8 +49,8 @@ namespace Utils
    * the function
    *
    * \f[
-   * A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i-1} - 
-   * y_{i+1}\right)\right)
+   * A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i+1} - 
+   * y_{i-1}\right)\right)
    * \f]
    *
    * where \f$n\f$ is the size of the polygon, \f$x_i\f$ is the \f$i^{th}\f$ 
