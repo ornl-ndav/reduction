@@ -175,6 +175,8 @@ def bisect_helper(axis, value):
 # \exception TypeError is raised if x_coord and y_coord are not the same type
 # \exception IndexError is raised if x_coord and y_coord are not the same
 # length
+# \exception TypeError is raised if an empty, point or a line is passed to the
+# function.
 # \exception TypeError is raised if the size of x_coord is not identical to
 # size_poly+2.
 #
@@ -214,6 +216,8 @@ def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
     <- TypeError is raised if x_coord and y_coord are not the same type
     <- TypeError is raised if x_coord is not of type double    
     <- IndexError is raised if x_coord and y_coord are not the same length
+    <- TypeError is raised if an empty, point or a line is passed to the
+        function.
     <- TypeError is raised if the size of x_coord is not identical to
        size_poly+2.
     """
