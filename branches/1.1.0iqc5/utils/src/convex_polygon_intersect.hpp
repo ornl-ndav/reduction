@@ -311,10 +311,7 @@ namespace Utils
             return Nessi::EMPTY_WARN;
           }
         
-        // Polygons A and B lie outside each other, so push back a coordinate 
-        // axis origin
-        cx_coord.push_back(static_cast<NumT>(0.0));
-        cy_coord.push_back(static_cast<NumT>(0.0));
+        // Polygons A and B lie outside each other, so return empty arrays
         return Nessi::EMPTY_WARN;
       }
     else
