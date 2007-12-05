@@ -208,10 +208,7 @@ TruthOutput5_Y_D.append(float(-1.5))
 # Parallelogram and Square6
 TruthOutput6_X_D = DoubleNessiVector()
 TruthOutput6_Y_D = DoubleNessiVector()
-
-TruthOutput6_X_D.append(float(0))
-
-TruthOutput6_Y_D.append(float(0))
+# This should be empty since there is no polygon intersection
 
 # Parallelogram and Square7
 TruthOutput7_X_D = DoubleNessiVector()
@@ -333,13 +330,13 @@ convex_polygon_intersect_d(Parallelogram_X_D, Parallelogram_Y_D,
                            Square6_X_D, Square6_Y_D,
                            Output6_X_D, Output6_Y_D)
 
-mess = test_common_bind.makeCheck("(p&s6)x: convex_polygon_intersect_d",
-                                  Output6_X_D, TruthOutput6_X_D)
+mess = test_common_bind.makeSizeCheck("(p&s6)x: convex_polygon_intersect_d",
+                                      Output6_X_D, TruthOutput6_X_D)
 
 print mess
 
-mess = test_common_bind.makeCheck("(p&s6)y: convex_polygon_intersect_d",
-                                  Output6_Y_D, TruthOutput6_Y_D)
+mess = test_common_bind.makeSizeCheck("(p&s6)y: convex_polygon_intersect_d",
+                                      Output6_Y_D, TruthOutput6_Y_D)
 
 print mess
 
