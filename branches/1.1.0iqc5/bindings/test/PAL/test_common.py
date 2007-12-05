@@ -151,3 +151,52 @@ def MakeCheck2(function_type, output, truth_output):
 
     return mess
 
+def MakeSizeCheck(function_type, output, truth_output, output_err2=None,
+                  truth_output_err2=None):
+    """
+       This function checks sizes of output and truth vectors for both data and
+       square of the uncertainty in the data (err2) arrays.
+
+       function_type     : this is the type of the Swig binding layer function
+       output            : this is the data array to be checked
+       truth_output      : this is the truth data array to be checked against
+       output_err2       : this is the err2 array to be checked
+       truth_output_err2 : this is the truth err2 array to be checked against
+    """
+
+    dataval = False
+    err2val = False
+
+    dataval = (len(output) == len(truth_output))
+    if output_err2 is not None and truth_output_err2 is not None:
+        err2val = (len(output_err2) == len(truth_output_err2))
+    else:
+        err2val = True
+
+    if function_type == "vv":
+        mess = "vector-vector"
+    elif function_type == "vs":
+        mess = "vector-scalar"
+    elif function_type == "sv":
+        mess = "scalar-vector"
+    else:
+        mess = function_type
+
+    if function_type == "double":
+        mess += "............................."
+    else:
+        mess += "................................"
+
+    if not dataval or not err2val:
+
+        if not dataval:
+            if not err2val:
+                mess += " Data and Err2 Not OK"
+            else:
+                mess += " Data Not OK"
+        elif not err2val:
+            mess += " Err2 Not OK"
+    else:
+        mess += " Functionality OK"
+
+    return mess

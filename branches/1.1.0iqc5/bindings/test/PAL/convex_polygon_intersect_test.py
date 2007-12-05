@@ -300,10 +300,6 @@ def initialize_true_outputs(key):
         true_output6_x = nessi_list.NessiList()
         true_output6_y = nessi_list.NessiList()
         
-        true_output6_x.append(float(0))
-        
-        true_output6_y.append(float(0))
-        
         # Parallelogram and Square7
         true_output7_x = nessi_list.NessiList()
         true_output7_y = nessi_list.NessiList()
@@ -425,11 +421,11 @@ if __name__ == "__main__":
                                                             square6_x,
                                                             square6_y)
     # Check values
-    mess = test_common.MakeCheck2("double", output6_x, true_output6_x)
+    mess = test_common.MakeSizeCheck("double", output6_x, true_output6_x)
 
     print "(p&s6)x: " + mess
 
-    mess = test_common.MakeCheck2("double", output6_y, true_output6_y)
+    mess = test_common.MakeSizeCheck("double", output6_y, true_output6_y)
 
     print "(p&s6)y: " + mess
 
