@@ -44,7 +44,7 @@ namespace Utils
             const float dest_x1, const float dest_y1,
             const float orig_x2, const float orig_y2, 
             const float dest_x2, const float dest_y2,
-            const int point_class, const int cross_type);
+            const eEdgeClass point_class, const eEdgeOrient cross_type);
 
   /**
    * This is the double precision float declaration of the aims_at
@@ -56,6 +56,6 @@ namespace Utils
             const double dest_x1, const double dest_y1,
             const double orig_x2, const double orig_y2, 
             const double dest_x2, const double dest_y2,
-            const int point_class, const int cross_type);
+            const eEdgeClass point_class, const eEdgeOrient cross_type);
 
 } // Utils

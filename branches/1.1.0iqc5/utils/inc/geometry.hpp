@@ -31,6 +31,7 @@
 #define _GEOMETRY_HPP 1
 
 #include "nessi.hpp"
+#include "utils_enums.hpp"
 #include <string>
 
 namespace Utils
@@ -252,7 +253,7 @@ namespace Utils
             const NumT dest_x1, const NumT dest_y1,
             const NumT orig_x2, const NumT orig_y2, 
             const NumT dest_x2, const NumT dest_y2,
-            const int point_class, const int cross_type);
+            const eEdgeClass point_class, const eEdgeOrient cross_type);
 
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
@@ -301,7 +302,7 @@ namespace Utils
    * \return The classification of the point with respect to the edge
    */
   template <typename NumT>
-  int
+  eEdgeClass
   __classify_pt_to_edge(const NumT pt_x, const NumT pt_y,
                         const NumT edge_orig_x, const NumT edge_orig_y,
                         const NumT edge_dest_x, const NumT edge_dest_y);
@@ -330,7 +331,7 @@ namespace Utils
    * \return The orientation of the edges
    */
   template <typename NumT>
-  int
+  eEdgeOrient
   __crossing_pt(const NumT orig_x1, const NumT orig_y1, 
                 const NumT dest_x1, const NumT dest_y1,
                 const NumT orig_x2, const NumT orig_y2, 
@@ -402,7 +403,7 @@ namespace Utils
    * \return The orientation of the edges
    */
   template <typename NumT>
-  int
+  eEdgeOrient
   __edge_intersect(const NumT orig_x1, const NumT orig_y1, 
                    const NumT dest_x1, const NumT dest_y1,
                    const NumT orig_x2, const NumT orig_y2, 

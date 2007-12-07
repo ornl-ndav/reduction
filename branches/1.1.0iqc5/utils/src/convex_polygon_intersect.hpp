@@ -43,39 +43,6 @@ namespace Utils
   /// String for holding the convex_polygon_intersect function name
   const std::string cpi_func_str = "Utils::convex_polygon_intersect";
 
-  /**
-   * Enumeration for handling edge positions
-   */
-  enum { 
-    UNKNOWN,        /**< Which edge is inside the other is not known */
-    A_IS_INSIDE,    /**< Edge A is inside of edge B */
-    B_IS_INSIDE     /**< Edge B is inside of edge A */
-  };
-
-  /** 
-   * Enumeration for handling point to edge classifications
-   */
-  enum {
-    LEFT,         /**< Point is to left of edge */
-    RIGHT,        /**< Point is to right of edge */
-    BEYOND,       /**< Point is right of edge destination */
-    BEHIND,       /**< Point is left of edge origin */
-    BETWEEN,      /**< Point is between edge origin and destination */
-    ORIGIN,       /**< Point equals edge origin */
-    DESTINATION   /**< Point equals edge destination */
-  };
-
-  /**
-   * Enumeration for handling edge orientations
-   */
-  enum {
-    COLLINEAR,      /**< Edges lie on the same line */
-    PARALLEL,       /**< Edges point in the same direction */
-    SKEW,           /**< Edges are at an angle to each other */
-    SKEW_CROSS,     /**< Edges are at an angle and intersect */
-    SKEW_NO_CROSS   /**< Edges are at an angle and do not intersect */
-  };
-
   // 3.60
   template <typename NumT>
   std::string
@@ -149,7 +116,7 @@ namespace Utils
     int phase = 1;
     
     // Flag to keep track of the polygon with the inside edge
-    int inflag = UNKNOWN;
+    eEdgeIn inflag = UNKNOWN;
 
     std::size_t max_iters = 2 * (a_size + b_size);
 
@@ -157,20 +124,30 @@ namespace Utils
       {
         // Classify both edge destination points with respect to the opposing
         // edge
-        int aclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
-                                           bx_coord[b_orig], by_coord[b_orig],
-                                           bx_coord[b_dest], by_coord[b_dest]);
+        eEdgeClass aclass = __classify_pt_to_edge(ax_coord[a_dest], 
+                                                  ay_coord[a_dest],
+                                                  bx_coord[b_orig], 
+                                                  by_coord[b_orig],
+                                                  bx_coord[b_dest], 
+                                                  by_coord[b_dest]);
 
-        int bclass = __classify_pt_to_edge(bx_coord[b_dest], by_coord[b_dest],
-                                           ax_coord[a_orig], ay_coord[a_orig],
-                                           ax_coord[a_dest], ay_coord[a_dest]);
+        eEdgeClass bclass = __classify_pt_to_edge(bx_coord[b_dest], 
+                                                  by_coord[b_dest],
+                                                  ax_coord[a_orig], 
+                                                  ay_coord[a_orig],
+                                                  ax_coord[a_dest], 
+                                                  ay_coord[a_dest]);
 
         // Determine if the edges cross
-        int cross_type = __crossing_pt(ax_coord[a_orig], ay_coord[a_orig],
-                                       ax_coord[a_dest], ay_coord[a_dest],
-                                       bx_coord[b_orig], by_coord[b_orig],
-                                       bx_coord[b_dest], by_coord[b_dest],
-                                       x_i, y_i);
+        eEdgeOrient cross_type = __crossing_pt(ax_coord[a_orig], 
+                                               ay_coord[a_orig],
+                                               ax_coord[a_dest], 
+                                               ay_coord[a_dest],
+                                               bx_coord[b_orig], 
+                                               by_coord[b_orig],
+                                               bx_coord[b_dest], 
+                                               by_coord[b_dest],
+                                               x_i, y_i);
 
         if (cross_type == SKEW_CROSS)
           {
