@@ -37,7 +37,7 @@
 namespace Utils
 {
   template <typename NumT>
-  int
+  eEdgeClass
   __classify_pt_to_edge(const NumT pt_x, const NumT pt_y,
                         const NumT edge_orig_x, const NumT edge_orig_y,
                         const NumT edge_dest_x, const NumT edge_dest_y)

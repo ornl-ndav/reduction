@@ -52,7 +52,7 @@ namespace Utils
     std::size_t dest_pt = orig_pt + 1;
     std::size_t class_pt = dest_pt + 1;
 
-    int pt_class;
+    eEdgeClass pt_class;
     if (isCW)
       {
         pt_class = RIGHT;
@@ -64,12 +64,12 @@ namespace Utils
 
     for (std::size_t i = 0; i < poly_size; ++i)
       {
-        int class_check = __classify_pt_to_edge(xcoord[class_pt], 
-                                                ycoord[class_pt],
-                                                xcoord[orig_pt],
-                                                ycoord[orig_pt],
-                                                xcoord[dest_pt],
-                                                ycoord[dest_pt]);
+        eEdgeClass class_check = __classify_pt_to_edge(xcoord[class_pt], 
+                                                       ycoord[class_pt],
+                                                       xcoord[orig_pt],
+                                                       ycoord[orig_pt],
+                                                       xcoord[dest_pt],
+                                                       ycoord[dest_pt]);
           
         if (class_check != pt_class)
           {
