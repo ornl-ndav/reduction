@@ -85,6 +85,18 @@ namespace Utils
                                     + e.what());
       }
 
+    if (!__check_convex_polygon(ax_coord, ay_coord, true)) 
+      {
+        throw std::invalid_argument(cpi_func_str + " polygon A is concave "
+                                    + "and must be convex!");
+      }
+
+    if (!__check_convex_polygon(bx_coord, by_coord, true)) 
+      {
+        throw std::invalid_argument(cpi_func_str + " polygon B is concave "
+                                    + "and must be convex!");
+      }
+
     // Since the memory (size of cx_coord and cy_coord) provided is greater 
     // than the size of the overlap polygon, we clear the contents so that 
     // when the overlap finding is complete, the correct size is reported.
