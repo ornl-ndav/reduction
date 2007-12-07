@@ -41,6 +41,48 @@ namespace Utils
                          const Nessi::Vector<NumT> & ycoord,
                          const bool isCW)
   {
+    std::size_t poly_size = xcoord.size();
+    // If we encounter empty, a point or a line, return false
+    if (poly_size < 3)
+      {
+        return false;
+      }
+
+    std::size_t orig_pt = 0;
+    std::size_t dest_pt = orig_pt + 1;
+    std::size_t class_pt = dest_pt + 1;
+
+    int pt_class;
+    if (isCW)
+      {
+        pt_class = RIGHT;
+      }
+    else
+      {
+        pt_class = LEFT;
+      }
+
+    for (std::size_t i = 0; i < poly_size; ++i)
+      {
+        int class_check = __classify_pt_to_edge(xcoord[class_pt], 
+                                                ycoord[class_pt],
+                                                xcoord[orig_pt],
+                                                ycoord[orig_pt],
+                                                xcoord[dest_pt],
+                                                ycoord[dest_pt]);
+          
+        if (class_check != pt_class)
+          {
+            // Polygon must be concave
+            return false;
+          }
+
+        orig_pt = __wrap_indicies(++orig_pt, poly_size);
+        dest_pt = __wrap_indicies(++dest_pt, poly_size);
+        class_pt = __wrap_indicies(++class_pt, poly_size);
+      }
+
+    // Polygon must be convex
     return true;
   }
 } // Utils
