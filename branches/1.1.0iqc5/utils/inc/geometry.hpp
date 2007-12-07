@@ -257,6 +257,30 @@ namespace Utils
   /**
    * \brief PRIVATE helper function for Utils::convex_polygon_intersect
    *
+   * This function checks a polygon, which is represented as a pair of 
+   * coordinate vectors, and determines if the polygon is convex. This is 
+   * achieved by using __classify_pt_to_edge and seeing if the classification 
+   * always comes back RIGHT for a clockwise oriented convex polygon or LEFT 
+   * for a counter-clockwise oriented convex polygon. If the respective 
+   * designations are violated, then the polygon is concave.
+   *
+   * \param xcoord (INPUT) is the x-coordinate list for the polygon
+   * \param ycoord (INPUT) is the y-coordinate list for the polygon
+   * \param isCW (INPUT) is a flag that sets the orientation of the polygon. 
+   * If true, the polygon is oriented clockwise, otherwise the polygon is 
+   * oriented counter-clockwise.
+   *
+   * \return A boolean determining if the polygon is convex or not
+   */
+  template <typename NumT>
+  bool
+  __check_convex_polygon(const Nessi::Vector<NumT> & xcoord,
+                         const Nessi::Vector<NumT> & ycoord,
+                         const bool isCW);
+
+  /**
+   * \brief PRIVATE helper function for Utils::convex_polygon_intersect
+   *
    * This function takes a point, which is given by an (x,y) pair and 
    * classifies its location in space relative to a given directed edge. The 
    * edge is represented by a pair of (x,y) pairs. This function is taken from 
