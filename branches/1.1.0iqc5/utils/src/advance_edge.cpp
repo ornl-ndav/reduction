@@ -42,7 +42,7 @@ namespace Utils
   template void
   __advance_edge(const Nessi::Vector<float> & x_coord, 
                  const Nessi::Vector<float> & y_coord, 
-                 const int inside,
+                 const bool inside,
                  Nessi::Vector<float> & ix_coord,
                  Nessi::Vector<float> & iy_coord,
                  std::size_t & orig_pos, 
@@ -57,7 +57,7 @@ namespace Utils
   template void
   __advance_edge(const Nessi::Vector<double> & x_coord, 
                  const Nessi::Vector<double> & y_coord, 
-                 const int inside,
+                 const bool inside,
                  Nessi::Vector<double> & ix_coord,
                  Nessi::Vector<double> & iy_coord,
                  std::size_t & orig_pos, 
