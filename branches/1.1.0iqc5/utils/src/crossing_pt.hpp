@@ -34,7 +34,6 @@
 #include "convex_polygon_intersect.hpp"
 #include "num_comparison.hpp"
 #include <limits>
-#include <iostream>
 
 namespace Utils
 {
