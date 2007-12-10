@@ -202,7 +202,7 @@ namespace AxisManip
     // are the proper size
     try
       {
-        Utils::check_sizes_square(orig_bin_x, orig_bin_y);
+        Utils::check_sizes_square(rebin_bin_x, rebin_bin_y);
       }
     catch(std::invalid_argument &e)
       {
@@ -213,7 +213,7 @@ namespace AxisManip
     // are the proper size
     try
       {
-        Utils::check_sizes_square(orig_bin_x, orig_bin_y);
+        Utils::check_sizes_square(frac_bin_x, frac_bin_y);
       }
     catch(std::invalid_argument &e)
       {
