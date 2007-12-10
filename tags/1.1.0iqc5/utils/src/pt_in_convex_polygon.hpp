@@ -62,9 +62,11 @@ namespace Utils
       {
         // Incoming polygon is a line, so the point to check must lie on the 
         // line if is it "inside".
-        int c = __classify_pt_to_edge(pt_x, pt_y, 
-                                      x_coord[orig_pos], y_coord[orig_pos],
-                                      x_coord[dest_pos], y_coord[dest_pos]);
+        eEdgeClass c = __classify_pt_to_edge(pt_x, pt_y, 
+                                             x_coord[orig_pos], 
+                                             y_coord[orig_pos],
+                                             x_coord[dest_pos], 
+                                             y_coord[dest_pos]);
         return ((BETWEEN == c) || (ORIGIN == c) || (DESTINATION == c));
       }
     
@@ -77,9 +79,11 @@ namespace Utils
         orig_pos = __wrap_indicies(orig_pos, poly_size);
         dest_pos = __wrap_indicies(dest_pos, poly_size);
 
-        int c = __classify_pt_to_edge(pt_x, pt_y, 
-                                      x_coord[orig_pos], y_coord[orig_pos],
-                                      x_coord[dest_pos], y_coord[dest_pos]);
+        eEdgeClass c = __classify_pt_to_edge(pt_x, pt_y, 
+                                             x_coord[orig_pos], 
+                                             y_coord[orig_pos],
+                                             x_coord[dest_pos],
+                                             y_coord[dest_pos]);
         if (LEFT == c)
           {
             return false;
