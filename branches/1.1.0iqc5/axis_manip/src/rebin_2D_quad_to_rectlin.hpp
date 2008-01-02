@@ -37,6 +37,7 @@
 #include "utils.hpp"
 #include <algorithm>
 #include <limits>
+#include <sstream>
 #include <stdexcept>
 
 namespace AxisManip
@@ -319,9 +320,21 @@ namespace AxisManip
                 rebin_bin_y[2] = axis_out_2[j+1];
                 rebin_bin_y[3] = axis_out_2[j];
                 
-                Utils::convex_polygon_intersect(orig_bin_x, orig_bin_y,
-                                                rebin_bin_x, rebin_bin_y,
-                                                frac_bin_x, frac_bin_y);
+                try
+                  {
+                    Utils::convex_polygon_intersect(orig_bin_x, orig_bin_y,
+                                                    rebin_bin_x, rebin_bin_y,
+                                                    frac_bin_x, frac_bin_y);
+                  }
+                catch (std::exception &e)
+                  {
+                    std::ostringstream bad_index;
+                    bad_index << "[" << k << "] ";
+
+                    throw std::invalid_argument(r2qtl_func_str + " index"
+                                                + bad_index.str() + ": "
+                                                + e.what());
+                  }
 
                 std::size_t length_poly = frac_bin_x.size();
                 if (length_poly < MIN_SIZE_POLY)
