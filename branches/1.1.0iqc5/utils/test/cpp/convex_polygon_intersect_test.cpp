@@ -123,10 +123,10 @@ void initialize_inputs(Nessi::Vector<NumT> & parallelogram_x,
   square2_x.push_back(static_cast<NumT>(-1.0));
   square2_x.push_back(static_cast<NumT>(0.0));
 
-  square2_y.push_back(static_cast<NumT>(-4.0));
-  square2_y.push_back(static_cast<NumT>(-4.0));
   square2_y.push_back(static_cast<NumT>(-3.0));
   square2_y.push_back(static_cast<NumT>(-3.0));
+  square2_y.push_back(static_cast<NumT>(-4.0));
+  square2_y.push_back(static_cast<NumT>(-4.0));
 
   square3_x.push_back(static_cast<NumT>(0.5));
   square3_x.push_back(static_cast<NumT>(-0.5));

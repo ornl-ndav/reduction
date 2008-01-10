@@ -71,10 +71,10 @@ Square2_X_D.append(float(-1))
 Square2_X_D.append(float(-1))
 Square2_X_D.append(float(0))
 
-Square2_Y_D.append(float(-4))
-Square2_Y_D.append(float(-4))
 Square2_Y_D.append(float(-3))
 Square2_Y_D.append(float(-3))
+Square2_Y_D.append(float(-4))
+Square2_Y_D.append(float(-4))
 
 Square3_X_D.append(float(0.5))
 Square3_X_D.append(float(-0.5))
