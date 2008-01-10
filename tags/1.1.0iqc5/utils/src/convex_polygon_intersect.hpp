@@ -46,10 +46,10 @@ namespace Utils
   // 3.60
   template <typename NumT>
   std::string
-  convex_polygon_intersect(const Nessi::Vector<NumT> & ax_coord,
-                           const Nessi::Vector<NumT> & ay_coord,
-                           const Nessi::Vector<NumT> & bx_coord,
-                           const Nessi::Vector<NumT> & by_coord,
+  convex_polygon_intersect(Nessi::Vector<NumT> & ax_coord,
+                           Nessi::Vector<NumT> & ay_coord,
+                           Nessi::Vector<NumT> & bx_coord,
+                           Nessi::Vector<NumT> & by_coord,
                            Nessi::Vector<NumT> & cx_coord,
                            Nessi::Vector<NumT> & cy_coord,
                            void *temp=NULL)
@@ -85,17 +85,9 @@ namespace Utils
                                     + e.what());
       }
 
-    if (!__check_convex_polygon(ax_coord, ay_coord, true)) 
-      {
-        throw std::invalid_argument(cpi_func_str + " polygon A is concave "
-                                    + "and must be convex!");
-      }
-
-    if (!__check_convex_polygon(bx_coord, by_coord, true)) 
-      {
-        throw std::invalid_argument(cpi_func_str + " polygon B is concave "
-                                    + "and must be convex!");
-      }
+    // Checking the ordering of the incoming polygons
+    __check_polygon_ordering(ax_coord, ay_coord, " polygon A");
+    __check_polygon_ordering(bx_coord, by_coord, " polygon B");
 
     // Since the memory (size of cx_coord and cy_coord) provided is greater 
     // than the size of the overlap polygon, we clear the contents so that 
@@ -310,6 +302,48 @@ namespace Utils
         return Nessi::EMPTY_WARN;
       }
   }
+
+
+  /**
+   * \ingroup convex_polygon_intersect
+   *
+   * This is a PRIVATE helper function for convex_polygon_intersect that checks
+   * a polygon's orientation. If that orientation is clockwise, nothing is 
+   * done. If that orientation is counter-clockwise, the coordinate points are 
+   * reordered to make the polygon clockwise. If the polygon fails both 
+   * checks, then it must be concave and the function will throw an exception.
+   *
+   * \param x_coord (INPUT/OUTPUT) The x-coordinates of the polygon
+   * \param y_coord (INPUT/OUTPUT) The y-coordinates of the polygon
+   * \param message (INPUT) Message to prepend to the generated exception
+   *
+   * \exception std::invalid_argument if the polygon is concave
+   */
+  template <typename NumT>
+  void
+  __check_polygon_ordering(Nessi::Vector<NumT> & x_coord,
+                           Nessi::Vector<NumT> & y_coord,
+                           std::string message)
+  {
+    if(__check_convex_polygon(x_coord, y_coord, true))
+      {
+        // Polygon is oriented clockwise, do nothing
+        return;
+      }
+    else if(__check_convex_polygon(x_coord, y_coord, false))
+      {
+        // Polygon is oriented counter-clockwise, reverse the ordering
+        std::reverse(x_coord.begin(), x_coord.end());
+        std::reverse(y_coord.begin(), y_coord.end());
+        return;
+      }
+    else
+      {
+        throw std::invalid_argument(cpi_func_str + message + " is concave "
+                                    + "and must be convex!");
+      }
+  }
+
 } // Utils
 
 #endif // _CONVEX_POLYGON_INTERSECT_HPP

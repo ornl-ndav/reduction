@@ -41,10 +41,10 @@ namespace Utils
    * \ingroup convex_polygon_intersect
    */
   template std::string
-  convex_polygon_intersect(const Nessi::Vector<float> & ax_coord,
-                           const Nessi::Vector<float> & ay_coord,
-                           const Nessi::Vector<float> & bx_coord,
-                           const Nessi::Vector<float> & by_coord,
+  convex_polygon_intersect(Nessi::Vector<float> & ax_coord,
+                           Nessi::Vector<float> & ay_coord,
+                           Nessi::Vector<float> & bx_coord,
+                           Nessi::Vector<float> & by_coord,
                            Nessi::Vector<float> & cx_coord,
                            Nessi::Vector<float> & cy_coord,
                            void *temp);
@@ -56,10 +56,10 @@ namespace Utils
    * \ingroup convex_polygon_intersect
    */
   template std::string
-  convex_polygon_intersect(const Nessi::Vector<double> & ax_coord,
-                           const Nessi::Vector<double> & ay_coord,
-                           const Nessi::Vector<double> & bx_coord,
-                           const Nessi::Vector<double> & by_coord,
+  convex_polygon_intersect(Nessi::Vector<double> & ax_coord,
+                           Nessi::Vector<double> & ay_coord,
+                           Nessi::Vector<double> & bx_coord,
+                           Nessi::Vector<double> & by_coord,
                            Nessi::Vector<double> & cx_coord,
                            Nessi::Vector<double> & cy_coord,
                            void *temp);

@@ -116,10 +116,10 @@ def initialize_inputs(key):
         square2_x.append(float(-1))
         square2_x.append(float(0))
         
-        square2_y.append(float(-4))
-        square2_y.append(float(-4))
         square2_y.append(float(-3))
         square2_y.append(float(-3))
+        square2_y.append(float(-4))
+        square2_y.append(float(-4))
         
         square3_x.append(float(0.5))
         square3_x.append(float(-0.5))
@@ -174,7 +174,7 @@ def initialize_inputs(key):
         square8_x.append(float(-2))
         square8_x.append(float(-3))
         square8_x.append(float(-3))
-        square8_x.append(float(-3))
+        square8_x.append(float(-2))
         
         square8_y.append(float(-1))
         square8_y.append(float(-1))
