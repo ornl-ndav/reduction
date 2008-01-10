@@ -321,14 +321,31 @@ namespace Utils
    */
   template <typename NumT>
   void
-  __check_polygon_ordering(const Nessi::Vector<NumT> & x_coord,
-                           const Nessi::Vector<NumT> & y_coord,
+  __check_polygon_ordering(Nessi::Vector<NumT> & x_coord,
+                           Nessi::Vector<NumT> & y_coord,
                            std::string message)
   {
     if(__check_convex_polygon(x_coord, y_coord, true))
       {
         // Polygon is oriented clockwise, do nothing
         return;
+      }
+    else if(__check_convex_polygon(x_coord, y_coord, false))
+      {
+        // Polygon is oriented counter-clockwise, reverse the ordering
+        std::reverse(x_coord.begin(), x_coord.end());
+        std::reverse(y_coord.begin(), y_coord.end());
+
+        if(__check_convex_polygon(x_coord, y_coord, true))
+          {
+            // Polygon is oriented clockwise, do nothing
+            return;
+          }
+        else
+          {
+            throw std::invalid_argument(cpi_func_str + message + " is concave "
+                                        + "and must be convex!");
+          }
       }
     else
       {
