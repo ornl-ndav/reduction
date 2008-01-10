@@ -174,7 +174,7 @@ def initialize_inputs(key):
         square8_x.append(float(-2))
         square8_x.append(float(-3))
         square8_x.append(float(-3))
-        square8_x.append(float(-3))
+        square8_x.append(float(-2))
         
         square8_y.append(float(-1))
         square8_y.append(float(-1))
