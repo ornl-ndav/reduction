@@ -46,10 +46,10 @@ namespace Utils
   // 3.60
   template <typename NumT>
   std::string
-  convex_polygon_intersect(const Nessi::Vector<NumT> & ax_coord,
-                           const Nessi::Vector<NumT> & ay_coord,
-                           const Nessi::Vector<NumT> & bx_coord,
-                           const Nessi::Vector<NumT> & by_coord,
+  convex_polygon_intersect(Nessi::Vector<NumT> & ax_coord,
+                           Nessi::Vector<NumT> & ay_coord,
+                           Nessi::Vector<NumT> & bx_coord,
+                           Nessi::Vector<NumT> & by_coord,
                            Nessi::Vector<NumT> & cx_coord,
                            Nessi::Vector<NumT> & cy_coord,
                            void *temp=NULL)
