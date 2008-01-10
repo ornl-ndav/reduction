@@ -335,17 +335,7 @@ namespace Utils
         // Polygon is oriented counter-clockwise, reverse the ordering
         std::reverse(x_coord.begin(), x_coord.end());
         std::reverse(y_coord.begin(), y_coord.end());
-
-        if(__check_convex_polygon(x_coord, y_coord, true))
-          {
-            // Polygon is oriented clockwise, do nothing
-            return;
-          }
-        else
-          {
-            throw std::invalid_argument(cpi_func_str + message + " is concave "
-                                        + "and must be convex!");
-          }
+        return;
       }
     else
       {
