@@ -123,10 +123,10 @@ void initialize_inputs(Nessi::Vector<NumT> & parallelogram_x,
   square2_x.push_back(static_cast<NumT>(-1.0));
   square2_x.push_back(static_cast<NumT>(0.0));
 
-  square2_y.push_back(static_cast<NumT>(-4.0));
-  square2_y.push_back(static_cast<NumT>(-4.0));
   square2_y.push_back(static_cast<NumT>(-3.0));
   square2_y.push_back(static_cast<NumT>(-3.0));
+  square2_y.push_back(static_cast<NumT>(-4.0));
+  square2_y.push_back(static_cast<NumT>(-4.0));
 
   square3_x.push_back(static_cast<NumT>(0.5));
   square3_x.push_back(static_cast<NumT>(-0.5));
@@ -289,10 +289,6 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output1_x,
   true_output5_y.push_back(static_cast<NumT>(-2.5));
   true_output5_y.push_back(static_cast<NumT>(-2.5));
   true_output5_y.push_back(static_cast<NumT>(-1.5));
-
-  true_output6_x.push_back(static_cast<NumT>(0.0));
-
-  true_output6_y.push_back(static_cast<NumT>(0.0));
 
   true_output7_x.push_back(static_cast<NumT>(-3.0));
   true_output7_x.push_back(static_cast<NumT>(-2.0));
@@ -483,12 +479,12 @@ bool test_okay(Nessi::Vector<NumT> & output1_x,
       value = false;
     }
   // fraction 6 x comparison
-  if (!test_okay(output6_x, true_output6_x, VV))
+  if (!test_size_okay(output6_x, true_output6_x))
     {
       value = false;
     }
   // fraction 6 y comparison
-  if (!test_okay(output6_y, true_output6_y, VV))
+  if (!test_size_okay(output6_y, true_output6_y))
     {
       value = false;
     }
@@ -642,8 +638,8 @@ bool test_func(NumT key, string debug)
       print(output4_y, true_output4_y, VV, debug);
       print(output5_x, true_output5_x, VV, debug);
       print(output5_y, true_output5_y, VV, debug);
-      print(output6_x, true_output6_x, VV, debug);
-      print(output6_y, true_output6_y, VV, debug);
+      print_size(output6_x, true_output6_x);
+      print_size(output6_y, true_output6_y);
       print(output7_x, true_output7_x, VV, debug);
       print(output7_y, true_output7_y, VV, debug);
       print(output8_x, true_output8_x, VV, debug);

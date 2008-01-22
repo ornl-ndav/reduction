@@ -41,7 +41,7 @@ namespace Utils
             const NumT dest_x1, const NumT dest_y1,
             const NumT orig_x2, const NumT orig_y2, 
             const NumT dest_x2, const NumT dest_y2,
-            const int point_class, const int cross_type)
+            const eEdgeClass point_class, const eEdgeOrient cross_type)
   {
     // Make cross-product components
 

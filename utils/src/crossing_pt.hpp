@@ -34,12 +34,11 @@
 #include "convex_polygon_intersect.hpp"
 #include "num_comparison.hpp"
 #include <limits>
-#include <iostream>
 
 namespace Utils
 {
   template <typename NumT>
-  int
+  eEdgeOrient
   __crossing_pt(const NumT orig_x1, const NumT orig_y1, 
                 const NumT dest_x1, const NumT dest_y1,
                 const NumT orig_x2, const NumT orig_y2, 
@@ -49,13 +48,15 @@ namespace Utils
     static const NumT EPSILON = std::numeric_limits<NumT>::epsilon();
 
     // Parametric slope holders
-    NumT s; // Edge 2 intersection with edge 1
-    NumT t; // Edge 1 intersection with edge 2
+    // Edge 2 intersection with edge 1
+    NumT s = std::numeric_limits<NumT>::max(); 
+    // Edge 1 intersection with edge 2
+    NumT t = std::numeric_limits<NumT>::max(); 
 
     // Compute parametric slope for intersection for infinite edge 2
-    int classe = __edge_intersect(orig_x1, orig_y1, dest_x1, dest_y1,
-                                  orig_x2, orig_y2, dest_x2, dest_y2,
-                                  s);
+    eEdgeOrient classe = __edge_intersect(orig_x1, orig_y1, dest_x1, dest_y1,
+                                          orig_x2, orig_y2, dest_x2, dest_y2,
+                                          s);
 
     // Classification does not allow edge 1 and edge 2 to cross
     if ((classe == COLLINEAR) || (classe == PARALLEL))

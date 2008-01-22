@@ -51,6 +51,12 @@ namespace Utils
                        NumT & area,
                        void *temp=NULL)
   {
+    // check to see that the polygon is area-calculable
+    if (size_poly <= 2) 
+      {
+        throw std::invalid_argument(ca2p_func_str + " incoming polygon " +
+                                    "cannot be empty, a point or a line.");
+      }
     // check that the x_coord and y_coord arrays are of proper size
     try
       {

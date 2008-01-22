@@ -25,37 +25,31 @@
 /**
  * $Id$
  *
- * \file utils/src/aims_at.cpp
+ * \file utils/src/check_convex_polygon.cpp
  */
 
-#include "aims_at.hpp"
+#include "check_convex_polygon.hpp"
 
 namespace Utils
 {
   // explicit instantiations
 
   /**
-   * This is the float declaration of the aims_at function
+   * This is the float declaration of the check_convex_polygon function
    *
    * \ingroup convex_polygon_intersect
    */
   template bool
-  __aims_at(const float orig_x1, const float orig_y1, 
-            const float dest_x1, const float dest_y1,
-            const float orig_x2, const float orig_y2, 
-            const float dest_x2, const float dest_y2,
-            const eEdgeClass point_class, const eEdgeOrient cross_type);
-
+  __check_convex_polygon(const Nessi::Vector<float> & xcoord,
+                         const Nessi::Vector<float> & ycoord,
+                         const bool isCW);
   /**
-   * This is the double precision float declaration of the aims_at
+   * This is the double precision float declaration of the check_convex_polygon
    *
    * \ingroup convex_polygon_intersect
    */
   template bool
-  __aims_at(const double orig_x1, const double orig_y1, 
-            const double dest_x1, const double dest_y1,
-            const double orig_x2, const double orig_y2, 
-            const double dest_x2, const double dest_y2,
-            const eEdgeClass point_class, const eEdgeOrient cross_type);
-
+  __check_convex_polygon(const Nessi::Vector<double> & xcoord,
+                         const Nessi::Vector<double> & ycoord,
+                         const bool isCW);
 } // Utils

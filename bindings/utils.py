@@ -147,8 +147,8 @@ def bisect_helper(axis, value):
 # the function
 #
 # \f[
-# A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i-1} - 
-# y_{i+1}\right)\right)
+# A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i+1} - 
+# y_{i-1}\right)\right)
 # \f]
 #
 # where \f$n\f$ is the size of the polygon, \f$x_i\f$ is the \f$i^{th}\f$ 
@@ -175,6 +175,8 @@ def bisect_helper(axis, value):
 # \exception TypeError is raised if x_coord and y_coord are not the same type
 # \exception IndexError is raised if x_coord and y_coord are not the same
 # length
+# \exception TypeError is raised if an empty, point or a line is passed to the
+# function.
 # \exception TypeError is raised if the size of x_coord is not identical to
 # size_poly+2.
 #
@@ -185,7 +187,7 @@ def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
     be in any two-dimensional space. The area is calculated according to 
     the function
 
-    A = (1/2) sum^n_{i=1} (x_i * (y_{i-1} - y_{i+1}))
+    A = (1/2) sum^n_{i=1} (x_i * (y_{i+1} - y_{i-1}))
 
     where n is the size of the polygon, x_i is the i^{th} element in the x
     coordinate array, y_{i-1} is the i^{th}-1 element in the y coordinate
@@ -214,6 +216,8 @@ def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
     <- TypeError is raised if x_coord and y_coord are not the same type
     <- TypeError is raised if x_coord is not of type double    
     <- IndexError is raised if x_coord and y_coord are not the same length
+    <- TypeError is raised if an empty, point or a line is passed to the
+        function.
     <- TypeError is raised if the size of x_coord is not identical to
        size_poly+2.
     """
@@ -538,13 +542,16 @@ def compare(value1, value2):
 #
 # This function calculates the intersection of two convex polygons (labeled 
 # A and B for identification purposes) and returns the overlap polygon 
-# (labeled C). The prescription for this function is taken from section 6.5 
-# of <em>Computational Geometry and Computer Graphics in C++</em> by 
-# Michael Laszlo. It has been modified to fit to the data model 
-# (Nessi::Vectors) of the SNS Common Libraries. The porting of method names 
-# to library functions is not one-to-one and have been modified to fit the
-# library naming conventions. The methodology presented in the book is used
-# as is and is summarized below. 
+# (labeled C). <b>NOTE</b>: The coordinates of the polygons must be specified
+# in <em>clockwise</em> order.
+#
+# The prescription for this function is taken from section 6.5 of
+# <em>Computational Geometry and Computer Graphics in C++</em> by Michael
+# Laszlo. It has been modified to fit to the data model (Nessi::Vectors) of
+# the SNS Common Libraries. The porting of method names to library functions
+# is not one-to-one and have been modified to fit the library naming
+# conventions. The methodology presented in the book is used as is and is
+# summarized below. 
 #
 # Local Vocabulary Definitions
 # \li \em Sickle - Regions that encircling the intersection polygon that 
@@ -611,9 +618,12 @@ def convex_polygon_intersect(ax_coord, ay_coord, bx_coord, by_coord):
     """
     This function calculates the intersection of two convex polygons (labeled 
     A and B for identification purposes) and returns the overlap polygon 
-    (labeled C). The prescription for this function is taken from section 6.5 
-    of Computational Geometry and Computer Graphics in C++ by Michael Laszlo.
-    It has been modified to fit to the data model (Nessi::Vectors) of the SNS
+    (labeled C). NOTE: The coordinates of the polygons must be specified in
+    CLOCKWISE order.
+
+    The prescription for this function is taken from section 6.5 of
+    Computational Geometry and Computer Graphics in C++ by Michael Laszlo. It
+    has been modified to fit to the data model (Nessi::Vectors) of the SNS
     Common Libraries. The porting of method names to library functions is not
     one-to-one and have been modified to fit the library naming conventions.
     The methodology presented in the book is used as is and is summarized

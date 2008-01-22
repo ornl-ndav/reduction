@@ -43,46 +43,13 @@ namespace Utils
   /// String for holding the convex_polygon_intersect function name
   const std::string cpi_func_str = "Utils::convex_polygon_intersect";
 
-  /**
-   * Enumeration for handling edge positions
-   */
-  enum { 
-    UNKNOWN,        /**< Which edge is inside the other is not known */
-    A_IS_INSIDE,    /**< Edge A is inside of edge B */
-    B_IS_INSIDE     /**< Edge B is inside of edge A */
-  };
-
-  /** 
-   * Enumeration for handling point to edge classifications
-   */
-  enum {
-    LEFT,         /**< Point is to left of edge */
-    RIGHT,        /**< Point is to right of edge */
-    BEYOND,       /**< Point is right of edge destination */
-    BEHIND,       /**< Point is left of edge origin */
-    BETWEEN,      /**< Point is between edge origin and destination */
-    ORIGIN,       /**< Point equals edge origin */
-    DESTINATION   /**< Point equals edge destination */
-  };
-
-  /**
-   * Enumeration for handling edge orientations
-   */
-  enum {
-    COLLINEAR,      /**< Edges lie on the same line */
-    PARALLEL,       /**< Edges point in the same direction */
-    SKEW,           /**< Edges are at an angle to each other */
-    SKEW_CROSS,     /**< Edges are at an angle and intersect */
-    SKEW_NO_CROSS   /**< Edges are at an angle and do not intersect */
-  };
-
   // 3.60
   template <typename NumT>
   std::string
-  convex_polygon_intersect(const Nessi::Vector<NumT> & ax_coord,
-                           const Nessi::Vector<NumT> & ay_coord,
-                           const Nessi::Vector<NumT> & bx_coord,
-                           const Nessi::Vector<NumT> & by_coord,
+  convex_polygon_intersect(Nessi::Vector<NumT> & ax_coord,
+                           Nessi::Vector<NumT> & ay_coord,
+                           Nessi::Vector<NumT> & bx_coord,
+                           Nessi::Vector<NumT> & by_coord,
                            Nessi::Vector<NumT> & cx_coord,
                            Nessi::Vector<NumT> & cy_coord,
                            void *temp=NULL)
@@ -118,6 +85,10 @@ namespace Utils
                                     + e.what());
       }
 
+    // Checking the ordering of the incoming polygons
+    __check_polygon_ordering(ax_coord, ay_coord, " polygon A");
+    __check_polygon_ordering(bx_coord, by_coord, " polygon B");
+
     // Since the memory (size of cx_coord and cy_coord) provided is greater 
     // than the size of the overlap polygon, we clear the contents so that 
     // when the overlap finding is complete, the correct size is reported.
@@ -149,7 +120,7 @@ namespace Utils
     int phase = 1;
     
     // Flag to keep track of the polygon with the inside edge
-    int inflag = UNKNOWN;
+    eEdgeIn inflag = UNKNOWN;
 
     std::size_t max_iters = 2 * (a_size + b_size);
 
@@ -157,20 +128,30 @@ namespace Utils
       {
         // Classify both edge destination points with respect to the opposing
         // edge
-        int aclass = __classify_pt_to_edge(ax_coord[a_dest], ay_coord[a_dest],
-                                           bx_coord[b_orig], by_coord[b_orig],
-                                           bx_coord[b_dest], by_coord[b_dest]);
+        eEdgeClass aclass = __classify_pt_to_edge(ax_coord[a_dest], 
+                                                  ay_coord[a_dest],
+                                                  bx_coord[b_orig], 
+                                                  by_coord[b_orig],
+                                                  bx_coord[b_dest], 
+                                                  by_coord[b_dest]);
 
-        int bclass = __classify_pt_to_edge(bx_coord[b_dest], by_coord[b_dest],
-                                           ax_coord[a_orig], ay_coord[a_orig],
-                                           ax_coord[a_dest], ay_coord[a_dest]);
+        eEdgeClass bclass = __classify_pt_to_edge(bx_coord[b_dest], 
+                                                  by_coord[b_dest],
+                                                  ax_coord[a_orig], 
+                                                  ay_coord[a_orig],
+                                                  ax_coord[a_dest], 
+                                                  ay_coord[a_dest]);
 
         // Determine if the edges cross
-        int cross_type = __crossing_pt(ax_coord[a_orig], ay_coord[a_orig],
-                                       ax_coord[a_dest], ay_coord[a_dest],
-                                       bx_coord[b_orig], by_coord[b_orig],
-                                       bx_coord[b_dest], by_coord[b_dest],
-                                       x_i, y_i);
+        eEdgeOrient cross_type = __crossing_pt(ax_coord[a_orig], 
+                                               ay_coord[a_orig],
+                                               ax_coord[a_dest], 
+                                               ay_coord[a_dest],
+                                               bx_coord[b_orig], 
+                                               by_coord[b_orig],
+                                               bx_coord[b_dest], 
+                                               by_coord[b_dest],
+                                               x_i, y_i);
 
         if (cross_type == SKEW_CROSS)
           {
@@ -311,10 +292,7 @@ namespace Utils
             return Nessi::EMPTY_WARN;
           }
         
-        // Polygons A and B lie outside each other, so push back a coordinate 
-        // axis origin
-        cx_coord.push_back(static_cast<NumT>(0.0));
-        cy_coord.push_back(static_cast<NumT>(0.0));
+        // Polygons A and B lie outside each other, so return empty arrays
         return Nessi::EMPTY_WARN;
       }
     else
@@ -324,6 +302,48 @@ namespace Utils
         return Nessi::EMPTY_WARN;
       }
   }
+
+
+  /**
+   * \ingroup convex_polygon_intersect
+   *
+   * This is a PRIVATE helper function for convex_polygon_intersect that checks
+   * a polygon's orientation. If that orientation is clockwise, nothing is 
+   * done. If that orientation is counter-clockwise, the coordinate points are 
+   * reordered to make the polygon clockwise. If the polygon fails both 
+   * checks, then it must be concave and the function will throw an exception.
+   *
+   * \param x_coord (INPUT/OUTPUT) The x-coordinates of the polygon
+   * \param y_coord (INPUT/OUTPUT) The y-coordinates of the polygon
+   * \param message (INPUT) Message to prepend to the generated exception
+   *
+   * \exception std::invalid_argument if the polygon is concave
+   */
+  template <typename NumT>
+  void
+  __check_polygon_ordering(Nessi::Vector<NumT> & x_coord,
+                           Nessi::Vector<NumT> & y_coord,
+                           std::string message)
+  {
+    if(__check_convex_polygon(x_coord, y_coord, true))
+      {
+        // Polygon is oriented clockwise, do nothing
+        return;
+      }
+    else if(__check_convex_polygon(x_coord, y_coord, false))
+      {
+        // Polygon is oriented counter-clockwise, reverse the ordering
+        std::reverse(x_coord.begin(), x_coord.end());
+        std::reverse(y_coord.begin(), y_coord.end());
+        return;
+      }
+    else
+      {
+        throw std::invalid_argument(cpi_func_str + message + " is concave "
+                                    + "and must be convex!");
+      }
+  }
+
 } // Utils
 
 #endif // _CONVEX_POLYGON_INTERSECT_HPP

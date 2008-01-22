@@ -159,3 +159,75 @@ def makeCheck(funcName, output, truth_output,
 ##
 # \}  // end of makeCheck group
 #
+
+##
+# \defgroup makeSizeCheck test_common_bind::makeSizeCheck
+# \{
+
+##
+# \brief This function checks the sizes of the vectors against one another
+#
+# This function checks the sizes of output and truth vectors for both data and
+# square of the uncertainty in the data (err2) vectors. It can also handle
+# just output and truth vectors only.
+#
+# \param funcName (INPUT) Name of the PBL function that was used to generate
+#        the output
+# \param output (INPUT) Data vector to be checked
+# \param truth_output (INPUT) Truth data vector to be checked against
+# \param output_err2 (INPUT/OPTIONAL) Err2 vector to be checked
+# \param truth_output_err2 (INPUT/OPTIONAL) Truth err2 vector to be checked
+#        against
+
+def makeSizeCheck(funcName, output, truth_output,
+                  output_err2=None, truth_output_err2=None):
+   """
+
+       This function checks the sizes of output and truth vectors for both data
+       and square of the uncertainty in the data (err2) vectors. It can also
+       handle just output and truth vectors only.
+
+       funcName          : this is the name of the PBL function
+       output            : this is the vector to be checked
+       truth_output      : this is the truth vector to be checked
+                           against
+       output_err2       : this is the err2 vector to be checked
+       truth_output_err2 : this is the truth err2 vector to be checked against
+    """
+
+   mess = funcName
+   if len(funcName) > 34:
+       mess += "..................."
+   elif len(funcName) > 30 and len(funcName) <= 34:
+       mess += "........................."
+   else:
+       mess += "............................."
+
+   try:
+       output.__type__()
+
+       dataval = (len(output) == len(truth_output))
+       if output_err2 is not None and truth_output_err2 is not None:
+           err2val = (len(output_err2) == len(truth_output_err2))
+       else:
+           err2val = True
+
+       if not dataval or not err2val:
+           if not dataval:
+               if not err2val:
+                   mess += " Data and Err2 Not OK"
+               else:
+                   mess += " Data Not OK"
+           elif not err2val:
+               mess += " Err2 Not OK"
+       else:
+           mess += " Functionality OK"
+
+   except AttributeError:
+       raise RuntimeError("Function expects arrays only.")
+
+   return mess
+
+##
+# \}  // end of makeSizeCheck group
+#
