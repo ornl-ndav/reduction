@@ -39,7 +39,7 @@ namespace Utils
    *
    * \ingroup convex_polygon_intersect
    */
-  template int
+  template eEdgeClass
   __classify_pt_to_edge(const float pt_x, const float pt_y,
                         const float edge_orig_x, const float edge_orig_y,
                         const float edge_dest_x, const float edge_dest_y);
@@ -49,7 +49,7 @@ namespace Utils
    *
    * \ingroup convex_polygon_intersect
    */
-  template int
+  template eEdgeClass
   __classify_pt_to_edge(const double pt_x, const double pt_y,
                         const double edge_orig_x, const double edge_orig_y,
                         const double edge_dest_x, const double edge_dest_y);

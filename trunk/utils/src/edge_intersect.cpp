@@ -39,7 +39,7 @@ namespace Utils
    *
    * \ingroup convex_polygon_intersect
    */
-  template int
+  template eEdgeOrient
   __edge_intersect(const float orig_x1, const float orig_y1, 
                    const float dest_x1, const float dest_y1,
                    const float orig_x2, const float orig_y2, 
@@ -51,7 +51,7 @@ namespace Utils
    *
    * \ingroup convex_polygon_intersect
    */
-  template int
+  template eEdgeOrient
   __edge_intersect(const double orig_x1, const double orig_y1, 
                    const double dest_x1, const double dest_y1,
                    const double orig_x2, const double orig_y2, 

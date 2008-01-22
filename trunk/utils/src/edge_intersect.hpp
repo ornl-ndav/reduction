@@ -37,7 +37,7 @@
 namespace Utils
 {
   template <typename NumT>
-  int
+  eEdgeOrient
   __edge_intersect(const NumT orig_x1, const NumT orig_y1, 
                    const NumT dest_x1, const NumT dest_y1,
                    const NumT orig_x2, const NumT orig_y2, 
@@ -59,8 +59,9 @@ namespace Utils
       {
         // Both edges lie in same direction and do not cross, so they are 
         // either PARALLEL or COLLINEAR
-        int aclass = __classify_pt_to_edge(orig_x1, orig_y1, orig_x2, orig_y2,
-                                           dest_x2, dest_y2);
+        eEdgeClass aclass = __classify_pt_to_edge(orig_x1, orig_y1, 
+                                                  orig_x2, orig_y2,
+                                                  dest_x2, dest_y2);
         if (aclass == LEFT || aclass == RIGHT)
           {
             return PARALLEL;
