@@ -23,6 +23,8 @@
 # $Id$
 
 pkginclude_HEADERS = \
+	geometry.hpp \
 	num_comparison.hpp \
 	size_checks.hpp \
-	utils.hpp
+	utils.hpp \
+	utils_enums.hpp

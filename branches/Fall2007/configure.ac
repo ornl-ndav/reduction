@@ -23,7 +23,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.1.0iqc4], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
+AC_INIT([SNS Common Libraries], [1.2dev], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
@@ -67,8 +67,17 @@ AC_ARG_ENABLE(optswig,
 esac],[optswig=false])
 AM_CONDITIONAL(OPTSWIG, test x$optswig = xtrue)
 
-AM_PATH_PYTHON(2.3, :)
-AC_CHECK_ROOT([python],[PYTHONROOT],[/usr /usr/local],[include/python$PYTHON_VERSION/Python.h])
+# Our code requires Python 2.3
+PYTHON_REQUIRED=2.3
+AM_PATH_PYTHON($PYTHON_REQUIRED,, :)
+if test x$PYTHON = x:; then
+   AC_MSG_ERROR([You need python version $PYTHON_REQUIRED to make bindings])
+else
+   # Need to back up one more since $PYTHON=/path/to/python/bin/python
+   TEMP=`dirname $PYTHON`
+   PYTHONROOT=`dirname $TEMP`
+fi
+AC_SUBST(PYTHONROOT)
 
 DRLIBDOCDIR='${datadir}/$(PACKAGE_TARNAME)/doc'
 AC_SUBST(DRLIBDOCDIR)
@@ -133,7 +142,13 @@ case "$host" in
 esac
 AC_SUBST(STOSFLAG)
 
-SCL_SWIG_CHECK([1.3.28])
+# Must have Swig version 1.3.31 to make Python 2.5 bindings
+if test "$PYTHON_VERSION" = "2.5"; then
+   SCL_SWIG_CHECK([1.3.31])
+else
+   SCL_SWIG_CHECK([1.3.28])	
+fi
+
 SCL_DOXYGEN_CHECK([1.4.6])
 AC_CHECK_PROGS(DOT, [dot])
 
@@ -170,6 +185,7 @@ AC_CONFIG_FILES([Makefile
 		utils/inc/Makefile
 		utils/src/Makefile
 		bindings/Makefile
+		bindings/scl_defs.py
 		doc/Makefile
 		])
 AC_OUTPUT

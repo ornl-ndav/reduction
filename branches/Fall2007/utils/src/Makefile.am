@@ -29,16 +29,38 @@ pkglib_LTLIBRARIES = libUtils.la
 libUtils_la_LDFLAGS = $(LIB_UTILS_VERSION)
 
 libUtils_la_SOURCES = \
+	advance_edge.hpp \
+	advance_edge.cpp \
+	aims_at.hpp \
+	aims_at.cpp \
+	bisect_helper.hpp \
+	bisect_helper.cpp \
+	calc_area_2D_polygon.hpp \
+	calc_area_2D_polygon.cpp \
 	calc_bin_centers.hpp \
 	calc_bin_centers.cpp \
 	calc_bin_widths.hpp \
 	calc_bin_widths.cpp \
+	check_convex_polygon.hpp \
+	check_convex_polygon.cpp \
 	check_histo_sizes.hpp \
 	check_histo_sizes.cpp \
 	check_sizes_square.hpp \
 	check_sizes_square.cpp \
+	classify_pt_to_edge.hpp \
+	classify_pt_to_edge.cpp \
 	compare.hpp \
 	compare.cpp \
+	convex_polygon_intersect.hpp \
+	convex_polygon_intersect.cpp \
+	crossing_pt.hpp \
+	crossing_pt.cpp \
+	dot_product.hpp \
+	dot_product.cpp \
+	edge_pt.hpp \
+	edge_pt.cpp \
+	edge_intersect.hpp \
+	edge_intersect.cpp \
 	eval_linear_fit.hpp \
 	eval_linear_fit.cpp \
 	fit_linear_background.hpp \
@@ -46,13 +68,19 @@ libUtils_la_SOURCES = \
 	fit_reflectometer_background.hpp \
 	fit_reflectometer_background.cpp \
 	fix_index.cpp \
+	fix_index2.cpp \
 	linear_order_jacobian.hpp \
 	linear_order_jacobian.cpp \
 	matrix_multiplication.hpp \
 	matrix_multiplication.cpp \
 	peak_integration.hpp \
 	peak_integration.cpp \
+	pt_in_convex_polygon.hpp \
+	pt_in_convex_polygon.cpp \
+	pt_length.hpp \
+	pt_length.cpp \
 	vector_is_equals.hpp \
 	vector_is_equals.cpp \
 	weighted_average.hpp \
-	weighted_average.cpp
+	weighted_average.cpp \
+	wrap_indicies.cpp

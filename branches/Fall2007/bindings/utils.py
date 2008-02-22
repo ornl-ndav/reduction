@@ -42,6 +42,8 @@ import nessi_list
 import utils_bind
 import vpair_bind
 
+from scl_defs import VERSION as __version__
+
 ##
 # \namespace utils
 #
@@ -60,6 +62,182 @@ import vpair_bind
 # NessiLists (data and error\f${}^2\f$) of type <i>double</i>, the module
 # redirects the call to the function \f$weighted\_average\_d\f$.
 #
+
+##
+# \defgroup bisect_helper utils::bisect_helper
+# \{
+#
+
+##
+# \brief This function finds a bin index within an axis array
+# 
+# This function takes an axis array and a given value and searches that 
+# axis for the corresponding bin location. However, this helper is used in 
+# the context of locating a bin index within an associated data array 
+# (which is always one less than the axis array) based on the axis array 
+# value. The found index may need to be adjusted based on its value with 
+# respect to the size of the data array. <b>NOTE:</b> If the search value 
+# is outside the axis range, the result of the function will be to return 
+# the closest edge bin. This means for a search value smaller than the 
+# smallest axis value, the index returned will be 0. If the search value is 
+# greater than the largest axis value, the index returned will be the last 
+# bin in the data array (axis size minus 1).
+#
+# \param axis (INPUT) is an array of independent axis values to search
+# \param value (INPUT) is the value to search axis for
+#
+# \return
+# - the corresponding index for the value 
+#
+# \exception TypeError is raised if axis is not of type double
+#
+def bisect_helper(axis, value):
+    """
+    This function takes an axis array and a given value and searches that axis
+    for the corresponding bin location. However, this helper is used in the
+    context of locating a bin index within an associated data array (which is
+    always one less than the axis array) based on the axis array value. The
+    found index may need to be adjusted based on its value with respect to the
+    size of the data array. NOTE: If the search value is outside the axis
+    range, the result of the function will be to return the closest edge bin.
+    This means for a search value smaller than the smallest axis value, the
+    index returned will be 0. If the search value is greater than the largest
+    axis value, the index returned will be the last bin in the data array
+    (axis size minus 1).
+
+    Parameters:
+    ----------
+    -> axis is an array of independent axis values to search
+    -> value is the value to search axis for
+
+    Returns:
+    -------
+    <- The corresponding index for the value 
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if axis is not of type double
+    """
+    if axis.__type__ == nessi_list.NessiList.DOUBLE:
+        index = vpair_bind.SizetVPair()
+        utils_bind.bisect_helper_d(axis.__array__,
+                                   float(value),
+                                   index)
+        return index.val
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(axis.__type__))
+##
+# \}
+
+##
+# \defgroup calc_area_2D_polygon utils::calc_area_2D_polygon
+# \{
+#
+
+##
+# \brief This function calculates the 2D polygon area
+#
+# This function is described in section 3.59 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function takes two arrays of coordinates of a 2D polygon and 
+# calculates the area for that polygon. The coordinates of the polygon can 
+# be in any two-dimensional space. The area is calculated according to 
+# the function
+#
+# \f[
+# A = \frac{1}{2}\sum^{n}_{i=1} \left(x_i \left(y_{i+1} - 
+# y_{i-1}\right)\right)
+# \f]
+#
+# where \f$n\f$ is the size of the polygon, \f$x_i\f$ is the \f$i^{th}\f$ 
+# element in the x coordinate array, \f$y_{i-1}\f$ is the \f$i^{th}-1\f$ 
+# element in the y coordinate array and \f$y_{i+1}\f$ is the \f$i^{th}+1\f$ 
+# element in the y coordinate array. The value of \f$A\f$ is a signed area. 
+# In order to get \f$|A|\f$, the signed_area boolean flag should be set to 
+# false.
+# 
+# <b>The implementation of this formula requires that the coordinate arrays
+# must have the first ([0]) and second ([1]) elements repeated making the
+# array sizes size_poly + 2.</b> 
+#
+# \param x_coord (INPUT) the array of x coordinates for the polygon
+# \param y_coord (INPUT) the array of y coordinates for the polygon
+# \param size_poly (INPUT) the size of the polygon (i.e. square: 
+# size_poly=4)
+# \param signed_area (INPUT) flag to pass back the resulting area as a 
+# signed or unsigned quantity. The default value is False (unsigned area).
+#
+# \return
+# - The area of the 2D polygon
+#
+# \exception TypeError is raised if x_coord and y_coord are not the same type
+# \exception IndexError is raised if x_coord and y_coord are not the same
+# length
+# \exception TypeError is raised if an empty, point or a line is passed to the
+# function.
+# \exception TypeError is raised if the size of x_coord is not identical to
+# size_poly+2.
+#
+def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
+    """
+    This function takes two arrays of coordinates of a 2D polygon and 
+    calculates the area for that polygon. The coordinates of the polygon can 
+    be in any two-dimensional space. The area is calculated according to 
+    the function
+
+    A = (1/2) sum^n_{i=1} (x_i * (y_{i+1} - y_{i-1}))
+
+    where n is the size of the polygon, x_i is the i^{th} element in the x
+    coordinate array, y_{i-1} is the i^{th}-1 element in the y coordinate
+    array and y_{i+1} is the i^{th}+1 element in the y coordinate array. The
+    value of A is a signed area. In order to get |A|, the signed_area boolean
+    flag should be set to False.
+    
+    THE IMPLEMENTATION OF THIS FORMULA REQUIRES THAT THE COORDINATE
+    ARRAYS MUST HAVE THE FIRST ([0]) AND SECOND ([1]) ELEMENTS REPEATED MAKING
+    THE ARRAY SIZES SIZE_POLY + 2. 
+
+    Parameters:
+    ----------
+    -> x_coord the array of x coordinates for the polygon
+    -> y_coord the array of y coordinates for the polygon
+    -> size_poly the size of the polygon (i.e. square: size_poly=4)
+    -> signed_area flag to pass back the resulting area as a signed or
+       unsigned quantity. The default value is False (unsigned area).
+
+    Returns:
+    -------
+    <- The area of the 2D polygon
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if x_coord and y_coord are not the same type
+    <- TypeError is raised if x_coord is not of type double    
+    <- IndexError is raised if x_coord and y_coord are not the same length
+    <- TypeError is raised if an empty, point or a line is passed to the
+        function.
+    <- TypeError is raised if the size of x_coord is not identical to
+       size_poly+2.
+    """
+    if x_coord.__type__ != y_coord.__type__:
+        raise TypeError("X and Y Coordinate arrays are not the same type")
+
+    if x_coord.__type__ == nessi_list.NessiList.DOUBLE:
+        area = vpair_bind.DoubleVPair()
+        utils_bind.calc_area_2D_polygon_d(x_coord.__array__,
+                                          y_coord.__array__,
+                                          size_poly,
+                                          signed_area,
+                                          area)
+        
+        return area.val
+
+    else:
+        raise TyperError("Unknown primative type %s" % str(x_coord.__type__))
+##
+# \}
 
 ##
 # \defgroup calc_bin_centers utils::calc_bin_centers
@@ -352,6 +530,192 @@ def compare(value1, value2):
     result = utils_bind.compare(value1, value2)
     return result
 
+##
+# \}
+
+##
+# \defgroup convex_polygon_intersect utils::convex_polygon_intersect
+# \{
+   
+##
+# \brief This function finds the intersection of two convex polygons
+#
+# This function calculates the intersection of two convex polygons (labeled 
+# A and B for identification purposes) and returns the overlap polygon 
+# (labeled C). <b>NOTE</b>: The coordinates of the polygons must be specified
+# in <em>clockwise</em> order.
+#
+# The prescription for this function is taken from section 6.5 of
+# <em>Computational Geometry and Computer Graphics in C++</em> by Michael
+# Laszlo. It has been modified to fit to the data model (Nessi::Vectors) of
+# the SNS Common Libraries. The porting of method names to library functions
+# is not one-to-one and have been modified to fit the library naming
+# conventions. The methodology presented in the book is used as is and is
+# summarized below. 
+#
+# Local Vocabulary Definitions
+# \li \em Sickle - Regions that encircling the intersection polygon that 
+# consist of a set of points (chains) from both polygon A and B and 
+# terminates at the intersection points. These are the grey regions in the 
+# figure below.
+# \li <em>Inner chain</em> - The set of points of a sickle that lies on the 
+# intersection polygon
+# \li \em Edge - A set of two points with an origin and a destination point
+# \li <em>Origin point</em> - The current coordinate point based on the 
+# iteration through the coordinate lists
+# \li <em>Destination point</em> - The i+1 point from the origin point
+#
+# <IMG SRC="../images/PolygonOverlap.png">
+#
+# <em>Phase 1:</em> Search for edge intersection
+# <OL>
+# <LI>Create windows (a, b) based on edges of A and B respectively</LI>
+# <LI>Move a and b until both edges on the same sickle</LI>
+# </OL>
+# <em>Phase 2:</em> Search for intersection points
+# <OL>
+# <LI>Advance a or b based on the following rules (note: edge a is 
+# considered outside edge b if the destination edge point of a lies to the 
+# left of b).
+# <UL>
+# <LI>a and b aim at each other: advance the edge which is outside</LI>
+# <LI>a aims at b, but b does not aim at a: insert a's destination point 
+# into intersection polygon and advance a</LI>
+# <LI>b aims at a, but a does not aim at b: insert b's destination point 
+# into intersection polygon and advance b</LI>
+# <LI>a and b do not aim at each other: advance the edge which is 
+# outside</LI>
+# </UL>
+# <LI>If the edge end point of a or b belong to the inner chain, insert the 
+# point into the intersection polygon</LI>
+# <LI>When a and b cross, that point is inserted into intersection 
+# polygon</LI>
+# <LI>Continue until the first intersection point is found again</LI>
+# </OL>
+# 
+# If 2*(size(A)+size(B)) iterations are performed without an intersection 
+# point being found, then the polygon boundaries do not cross. The 
+# coordinate pairs of the polygons are compared to each other to determine 
+# the \f$A \subset B\f$, \f$A \supset B\f$ or \f$A \cap B = 0\f$ cases.
+# 
+# \param ax_coord (INPUT) the x coordinates for polygon A
+# \param ay_coord (INPUT) the y coordinates for polygon A
+# \param bx_coord (INPUT) the x coordinates for polygon B
+# \param by_coord (INPUT) the y coordinates for polygon B
+#
+# \return
+# - A NessiList of the x coordinates of the intersection polygon
+# - A NessiList of the y coordinates of the intersection polygon
+#
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception IndexError is raised if the size of ax_coord is not identical to
+# the size of ay_coord
+# \exception IndexError is raised if the size of bx_coord is not identical to
+# the size of by_coord
+#
+   
+def convex_polygon_intersect(ax_coord, ay_coord, bx_coord, by_coord):
+    """
+    This function calculates the intersection of two convex polygons (labeled 
+    A and B for identification purposes) and returns the overlap polygon 
+    (labeled C). NOTE: The coordinates of the polygons must be specified in
+    CLOCKWISE order.
+
+    The prescription for this function is taken from section 6.5 of
+    Computational Geometry and Computer Graphics in C++ by Michael Laszlo. It
+    has been modified to fit to the data model (Nessi::Vectors) of the SNS
+    Common Libraries. The porting of method names to library functions is not
+    one-to-one and have been modified to fit the library naming conventions.
+    The methodology presented in the book is used as is and is summarized
+    below. 
+   
+    * Local Vocabulary Definitions *
+    Sickle - Regions that encircling the intersection polygon that 
+    consist of a set of points (chains) from both polygon A and B and 
+    terminates at the intersection points. 
+    Inner chain - The set of points of a sickle that lies on the intersection
+    polygon
+    Edge - A set of two points with an origin and a destination point
+    Origin point - The current coordinate point based on the iteration through
+    the coordinate lists
+    Destination point - The i+1 point from the origin point
+   
+    Phase 1: Search for edge intersection
+
+      1. Create windows (a, b) based on edges of A and B respectively
+      2. Move a and b until both edges on the same sickle
+  
+    Phase 2: Search for intersection points
+
+      1. Advance a or b based on the following rules (note: edge a is
+         considered outside edge b if the destination edge point of a lies to
+         the left of b).
+         - a and b aim at each other: advance the edge which is outside
+         - a aims at b, but b does not aim at a: insert a's destination point 
+           into intersection polygon and advance a
+         - b aims at a, but a does not aim at b: insert b's destination point 
+           into intersection polygon and advance b
+         - a and b do not aim at each other: advance the edge which is 
+           outside
+      2. If the edge end point of a or b belong to the inner chain, insert the 
+         point into the intersection polygon
+      3. When a and b cross, that point is inserted into intersection polygon
+      4. Continue until the first intersection point is found again
+    
+    If 2*(size(A)+size(B)) iterations are performed without an intersection 
+    point being found, then the polygon boundaries do not cross. The 
+    coordinate pairs of the polygons are compared to each other to determine 
+    the A within B, A contains B or A separate from B cases.
+    
+    Parameters:
+    ----------
+    -> ax_coord the x coordinates for polygon A
+    -> ay_coord the y coordinates for polygon A
+    -> bx_coord the x coordinates for polygon B
+    -> by_coord the y coordinates for polygon B
+    
+    Returns:
+    -------
+    <- A NessiList of the x coordinates of the intersection polygon
+    <- A NessiList of the y coordinates of the intersection polygon
+    
+    Exceptions:
+    ----------
+    <- TypeError is raised if any of the lists are not the same type
+    <- IndexError is raised if the size of ax_coord is not identical to
+    the size of ay_coord
+    <- IndexError is raised if the size of bx_coord is not identical to
+    the size of by_coord
+    """
+    
+    if ax_coord.__type__ != ay_coord.__type__:
+        raise TypeError("X and Y coordinate arrays for polygon A are not "\
+                        +"the same type")
+
+    if bx_coord.__type__ != by_coord.__type__:
+        raise TypeError("X and Y coordinate arrays for polygon B are not "\
+                        +"the same type")
+
+    if ax_coord.__type__ != bx_coord.__type__:
+        raise TypeError("The coordinate arrays for polygon A and B are not "\
+                        +"the same type")    
+
+    if ax_coord.__type__ == nessi_list.NessiList.DOUBLE:
+        output_x = nessi_list.NessiList(len(ax_coord)+len(bx_coord))
+        output_y = nessi_list.NessiList(len(ay_coord)+len(by_coord))
+
+        utils_bind.convex_polygon_intersect_d(ax_coord.__array__,
+                                              ay_coord.__array__,
+                                              bx_coord.__array__,
+                                              by_coord.__array__,
+                                              output_x.__array__,
+                                              output_y.__array__)
+        return (output_x, output_y)
+        
+    else:
+        raise TypeError("convex_polygon_intersect: Unknown primitive type %s" \
+                        % str(ax_coord.__type__))
+    
 ##
 # \}
 

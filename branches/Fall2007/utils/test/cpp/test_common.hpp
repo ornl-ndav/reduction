@@ -76,6 +76,11 @@ std::string type_string(float vec)
   return std::string("float");
 }
 
+std::string type_string(std::size_t vec)
+{
+  return std::string("std::size_t");
+}
+
 std::string type_string(Nessi::Vector<int> & vec)
 {
   return std::string("int");
@@ -130,6 +135,24 @@ bool test_okay(NumT & output,
   return true;
 }
 
+// returns true if nothing is wrong
+template <typename NumT>
+bool test_size_okay(Nessi::Vector<NumT> & output,
+                    Nessi::Vector<NumT> & true_output)
+{
+  std::size_t size_true = true_output.size();
+  std::size_t size_out = output.size();
+  if (size_true != size_out)
+    {
+      std::cout << "(" << type_string(output) 
+                << "): Output vector (" << size_out 
+                << ") is not the same size as expected vector (" << size_true 
+                << ")" << std::endl;
+      return false;
+    }
+  return true;
+}
+
 // Print out two arrays side-by-side to check for inconsitencies
 template <typename NumT>
 void print(Nessi::Vector<NumT> & array1,
@@ -163,6 +186,17 @@ void print(NumT & value1,
   std::cout.setf(std::ios::fixed);
   std::cout << std::setprecision(std::numeric_limits<NumT>::digits10+1);
   std::cout << value1 << "\t" << value2 << std::endl;
+}
+
+// Print the sizes of the truth and output arrays
+template <typename NumT>
+void print_size(Nessi::Vector<NumT> & array1,
+                Nessi::Vector<NumT> & array2)
+{
+  std::cout << "Printing sizes for " << type_string(array1) << " arrays" 
+            << std::endl;
+  std::cout << array1.size() << "\t" << array2.size() 
+            << std::endl;
 }
 
 /**
