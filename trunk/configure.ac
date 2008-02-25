@@ -157,6 +157,10 @@ AM_CONDITIONAL(HAVE_SWIG, [test ! -z "$SWIG"])
 AM_CONDITIONAL(HAVE_DOXYGEN, [test ! -z "$DOXYGEN"])
 AM_CONDITIONAL(HAVE_DOT, [test ! -z "$DOT"])
 
+AC_CONFIG_TESTDIR(array_manip/test/cpp)
+AC_CONFIG_TESTDIR(axis_manip/test/cpp)
+AC_CONFIG_TESTDIR(utils/test/cpp)
+
 AC_CONFIG_FILES([array_manip/test/Makefile
 		array_manip/test/cpp/Makefile
 		axis_manip/test/Makefile
