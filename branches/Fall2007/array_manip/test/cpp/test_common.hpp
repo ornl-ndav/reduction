@@ -81,7 +81,17 @@ std::string type_string(Nessi::Vector<int> & vec)
   return std::string("int");
 }
 
+std::string type_string(int vec)
+{
+  return std::string("int");
+}
+
 std::string type_string(Nessi::Vector<unsigned int> & vec)
+{
+  return std::string("unsigned int");
+}
+
+std::string type_string(unsigned int vec)
 {
   return std::string("unsigned int");
 }
