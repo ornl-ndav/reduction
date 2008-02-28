@@ -213,6 +213,7 @@ namespace ArrayManip
     NumT input1_2 = input1 * input1;
     NumT input2_2 = input2 * input2;
 
+    output = input1 / input2;
     output_err2 = (input1_err2 / input2_2)
                 + (input1_2 / (input2_2 * input2_2) * input2_err2);
 
