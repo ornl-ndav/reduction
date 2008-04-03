@@ -301,6 +301,16 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
 
+    - With 4 scalars, this function adds the numbers and propgates the errors
+    according to the equation:
+
+    Scalar_o = Scalar_1 + Scalar_2
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation:
+
+    Scalar_err2_o = Scalar_err2_1 + Scalar_err2_2
+
     >>> Multi-dimensional use <<<
     -----------------------------
 
@@ -506,6 +516,35 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
             scalar_e2 = be2
             array = a
             array_e2 = ae2
+
+            if array.__type__ == array.DOUBLE:
+                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+            
+                array_manip_bind.add_ncerr_d(array.__array__,
+                                             array_e2.__array__,
+                                             float(scalar),
+                                             float(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            elif array.__type__ == array.INT:
+                c = nessi_list.NessiList(len(array), type=array.INT)
+                ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                
+                array_manip_bind.add_ncerr_i(array.__array__,
+                                             array_e2.__array__,
+                                             int(scalar),
+                                             int(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" % \
+                                str(array.__type__))
+        
+            return (c, ce2)
+            
         except AttributeError:
             try:
                 b.__type__
@@ -513,36 +552,55 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                 scalar_e2 = ae2
                 array = b
                 array_e2 = be2
-            except AttributeError:
-                raise TypeError("add_ncerr does not understand types given "\
-                                +"to it")
 
-        if array.__type__ == array.DOUBLE:
-            c = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                if array.__type__ == array.DOUBLE:
+                    c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
             
-            array_manip_bind.add_ncerr_d(array.__array__,
-                                         array_e2.__array__,
-                                         float(scalar),
-                                         float(scalar_e2),
-                                         c.__array__,
-                                         ce2.__array__)
-            
-        elif array.__type__ == array.INT:
-            c = nessi_list.NessiList(len(array), type=array.INT)
-            ce2 = nessi_list.NessiList(len(array), type=array.INT)
-            
-            array_manip_bind.add_ncerr_i(array.__array__,
-                                         array_e2.__array__,
-                                         int(scalar),
-                                         int(scalar_e2),
-                                         c.__array__,
-                                         ce2.__array__)
-            
-        else:
-            raise TypeError("Unknown primative type %s" % str(array.__type__))
+                    array_manip_bind.add_ncerr_d(array.__array__,
+                                                 array_e2.__array__,
+                                                 float(scalar),
+                                                 float(scalar_e2),
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                elif array.__type__ == array.INT:
+                    c = nessi_list.NessiList(len(array), type=array.INT)
+                    ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                    
+                    array_manip_bind.add_ncerr_i(array.__array__,
+                                                 array_e2.__array__,
+                                                 int(scalar),
+                                                 int(scalar_e2),
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                else:
+                    raise TypeError("Unknown primative type %s" % \
+                                    str(array.__type__))
         
-        return (c, ce2)
+                return (c, ce2)
+
+            except AttributeError:
+
+                if type(a) == "float":
+                    c = vpair_bind.DoubleVPair()
+                    array_manip_bind.add_ncerr_ss_d(float(a), float(ae2),
+                                                    float(b), float(be2),
+                                                    c)
+
+                elif type(a) == "int":
+                    c = vpair_bind.IntVPair()
+                    array_manip_bind.add_ncerr_ss_i(int(a), int(ae2),
+                                                    int(b), int(be2),
+                                                    c)
+
+                else:
+                    raise TypeError("Unknown primative type %s" % type(a))
+
+                return (c.val, c.val_err2)
+
+
 
 ##
 # \}
