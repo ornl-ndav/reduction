@@ -259,24 +259,24 @@ print mess
 print
 print "Checking Scalar-Scalar Addition Binding Function"
 
-add_ncerr_d(Input1_D[NUM_VAL-1], Input1_Err2_D[NUM_VAL-1],
-            Input2_D[NUM_VAL-1], Input2_Err2_D[NUM_VAL-1],
-            Output_SS_D, Output_Err2_SS_D)
+add_ncerr_ss_d(Input1_D[NUM_VAL-1], Input1_Err2_D[NUM_VAL-1],
+               Input2_D[NUM_VAL-1], Input2_Err2_D[NUM_VAL-1],
+               Output_SS_D, Output_Err2_SS_D)
 
-mess = test_common_bind.makeCheck("add_ncerr_d", Output_SS_D,
-                                  TruthOutput_SS_D,
-                                  Output_Err2_SS_D,
-                                  TruthOutput_Err2_SS_D)
+mess = test_common_bind.makeCheck("add_ncerr_ss_d", Output_SS_D.val,
+                                  TruthOutput_SS_D.val,
+                                  Output_Err2_SS_D.val_err2,
+                                  TruthOutput_Err2_SS_D.val_err2)
 print mess
 
-add_ncerr_i(Input1_I[NUM_VAL-1], Input1_Err2_I[NUM_VAL-1],
-            Input2_I[NUM_VAL-1], Input2_Err2_I[NUM_VAL-1],
-            Output_SS_I, Output_Err2_SS_I)
+add_ncerr_ss_i(Input1_I[NUM_VAL-1], Input1_Err2_I[NUM_VAL-1],
+               Input2_I[NUM_VAL-1], Input2_Err2_I[NUM_VAL-1],
+               Output_SS_I, Output_Err2_SS_I)
 
-mess = test_common_bind.makeCheck("add_ncerr_i", Output_SS_I,
-                                  TruthOutput_SS_I,
-                                  Output_Err2_SS_I,
-                                  TruthOutput_Err2_SS_I)
+mess = test_common_bind.makeCheck("add_ncerr_ss_i", Output_SS_I.val,
+                                  TruthOutput_SS_I.val,
+                                  Output_Err2_SS_I.val_err2,
+                                  TruthOutput_Err2_SS_I.val_err2)
 print mess
 print
 print "Checking Multi-Dimensional Vector-Vector Addition Binding Function"
