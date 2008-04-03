@@ -132,16 +132,12 @@ TruthOutput_Err2_VS_I.append(2)
 
 #Truth values for add_ncerr scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
-TruthOutput_SS_D.val = (6.0)
+TruthOutput_SS_D.val = 6.0
+TruthOutput_SS_D.val_err2 = 2.0
 
 TruthOutput_SS_I = IntVPair()
-TruthOutput_SS_I.val = (6)
-
-TruthOutput_Err2_SS_D = DoubleVPair()
-TruthOutput_SS_D.val_err2 = (2.0)
-
-TruthOutput_Err2_SS_I = IntVPair()
-TruthOutput_SS_I.val_err2 = (2)
+TruthOutput_SS_I.val = 6
+TruthOutput_SS_I.val_err2 = 2
 
 # Truth values for add_ncerr multi-dimensional vector-vector version
 TruthOutput_Mul_VV_D = DoubleNessiVector()
@@ -212,8 +208,6 @@ Output_Err2_VS_I = IntNessiVector(len(Input1_Err2_I))
 # Output placeholders for add_ncerr scalar-scalar version
 Output_SS_D = DoubleVPair() 
 Output_SS_I = IntVPair()
-Output_Err2_SS_D = DoubleVPair()
-Output_Err2_SS_I = IntVPair()
 
 print "Checking Vector-Vector Addition Binding Function"
 
@@ -261,22 +255,22 @@ print "Checking Scalar-Scalar Addition Binding Function"
 
 add_ncerr_ss_d(Input1_D[NUM_VAL-1], Input1_Err2_D[NUM_VAL-1],
                Input2_D[NUM_VAL-1], Input2_Err2_D[NUM_VAL-1],
-               Output_SS_D, Output_Err2_SS_D)
+               Output_SS_D)
 
 mess = test_common_bind.makeCheck("add_ncerr_ss_d", Output_SS_D.val,
                                   TruthOutput_SS_D.val,
-                                  Output_Err2_SS_D.val_err2,
-                                  TruthOutput_Err2_SS_D.val_err2)
+                                  Output_SS_D.val_err2,
+                                  TruthOutput_SS_D.val_err2)
 print mess
 
 add_ncerr_ss_i(Input1_I[NUM_VAL-1], Input1_Err2_I[NUM_VAL-1],
                Input2_I[NUM_VAL-1], Input2_Err2_I[NUM_VAL-1],
-               Output_SS_I, Output_Err2_SS_I)
+               Output_SS_I)
 
 mess = test_common_bind.makeCheck("add_ncerr_ss_i", Output_SS_I.val,
                                   TruthOutput_SS_I.val,
-                                  Output_Err2_SS_I.val_err2,
-                                  TruthOutput_Err2_SS_I.val_err2)
+                                  Output_SS_I.val_err2,
+                                  TruthOutput_SS_I.val_err2)
 print mess
 print
 print "Checking Multi-Dimensional Vector-Vector Addition Binding Function"
