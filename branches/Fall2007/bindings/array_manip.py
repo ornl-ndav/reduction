@@ -41,6 +41,7 @@
 
 import nessi_list
 import array_manip_bind
+import vpair_bind
 
 from scl_defs import VERSION as __version__
 
@@ -149,6 +150,11 @@ def abs_val(input):
 # >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Scalar, Scalar_err2,
 # Vector_1, Vector_err2_1)
 # \endcode
+# - With 4 scalars:
+# \code
+# >>> Scalar_o, Scalar_err2_o = array_manip.add_ncerr (Scalar_1, Scalar_err2_1,
+# Scalar_2, Scalar_err2_2)
+# \endcode
 #
 #     ========================================================================
 #
@@ -188,6 +194,17 @@ def abs_val(input):
 # uncertainty of the output array, \f$\sigma_a\f$ is the
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
+#
+# - With 4 scalars, this function adds the numbers together and propgates
+# the errors according to the equation:
+# \f[
+# data_o = data_1 + data_2
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2=\sigma_1^2 + \sigma_2^2
+# \f]
 #
 # Multi-Dimensional Case
 # ======================
@@ -253,6 +270,7 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     This function accepts four arguments:
      - 4 NessiLists
      - 2 NessiLists and 2 scalars
+     - 4 scalars
 
     >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
@@ -260,6 +278,9 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector, Vector_err2,
         Scalar, Scalar_err2)
 
+    >>> Scalar_o, Scalar_err2_o = array_manip.add_ncerr (Scalar_1,
+        Scalar_err2_1, Scalar_2, Scalar_err2_2)
+        
     where Vector_o is the resulting NessiList and Vector_err2_o is the
     uncertainty in the NessiList o.
 
@@ -583,20 +604,21 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 
             except AttributeError:
 
-                if type(a) == "float":
+                try:
+                    a.__float__
                     c = vpair_bind.DoubleVPair()
                     array_manip_bind.add_ncerr_ss_d(float(a), float(ae2),
                                                     float(b), float(be2),
                                                     c)
-
-                elif type(a) == "int":
-                    c = vpair_bind.IntVPair()
-                    array_manip_bind.add_ncerr_ss_i(int(a), int(ae2),
-                                                    int(b), int(be2),
-                                                    c)
-
-                else:
-                    raise TypeError("Unknown primative type %s" % type(a))
+                except TypeError:
+                    try:
+                        a.__int__
+                        c = vpair_bind.IntVPair()
+                        array_manip_bind.add_ncerr_ss_i(int(a), int(ae2),
+                                                        int(b), int(be2),
+                                                        c)
+                    except TypeError:
+                        raise TypeError("Unknown primative type %s" % type(a))
 
                 return (c.val, c.val_err2)
 
