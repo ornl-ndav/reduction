@@ -1286,21 +1286,18 @@ def mult_ncerr(a, ae2, b, be2):
                 return (c, ce2)
 
             except AttributeError:
-                try:
-                    a.__float__
+                if str(type(a)).split('\'')[-2] == "float":
                     c = vpair_bind.DoubleVPair()
                     array_manip_bind.mult_ncerr_ss_d(float(a), float(ae2),
                                                      float(b), float(be2),
                                                      c)
-                except TypeError:
-                    try:
-                        a.__int__
-                        c = vpair_bind.IntVPair()
-                        array_manip_bind.mult_ncerr_ss_i(int(a), int(ae2),
-                                                         int(b), int(be2),
-                                                         c)
-                    except TypeError:
-                        raise TypeError("Unknown primative type %s" % type(a))
+                elif str(type(a)).split('\'')[-2] == "int":
+                    c = vpair_bind.IntVPair()
+                    array_manip_bind.mult_ncerr_ss_i(int(a), int(ae2),
+                                                     int(b), int(be2),
+                                                     c)
+                else:
+                    raise TypeError("Unknown primative type %s" % type(a))
                 
                 return (c.val, c.val_err2)
         
