@@ -848,7 +848,8 @@ namespace ArrayManip
    * and the uncorrelated uncertainties will be process according to
    * the equation
    * \f[
-   * \sigma_o^2 = (data_1\times\sigma_2)^2 + (data_2\times\sigma_1)^2 
+   * \sigma_o^2 = (data_1\times\sigma_2)^2 + (data_2\times\sigma_1)^2
+   * \f] 
    * where \f$data_o\f$ is the output scalar, \f$data_1\f$ is the first
    * scalar being multiplied, \f$data_2\f$ is the second scalar being
    * multiplied, \f$\sigma_o\f$ is the uncertainty of the output
