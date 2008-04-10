@@ -631,8 +631,8 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 ##
 # \brief This function substracts each element of two NessiList.
 #
-# This function accepts four NessiList as arguments or 2 NessiLists and
-# 2 scalars
+# This function accepts four NessiList as arguments, 2 NessiLists and
+# 2 scalars or 4 scalars.
 #
 # - With four NessiLists:
 # \code
@@ -737,8 +737,8 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # \param be2 (INPUT) is the square of the uncertainty in the NessiList or
 # scalar to subtract
 # \return
-# - The result NessiList
-# - The square of the uncertainty in the result NessiList
+# - The result NessiList or scalar
+# - The square of the uncertainty in the result NessiList or scalar
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
