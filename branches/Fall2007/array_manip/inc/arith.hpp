@@ -881,10 +881,6 @@ namespace ArrayManip
    * where \f$result_{returned}\f$ is the result returned by this function,
    * \f$result_{real}\f$ is the real result that should be returned by the
    * function, and \f$\%\f$ is the operator modulo.
-   *
-   * exception std::invalid_argument is thrown if the size of input1, 
-   * input1_err2, input2, input2_err2, output, and output_err2 are not
-   * identical.
    */
   template <typename NumT>
   std::string
