@@ -131,8 +131,8 @@ def abs_val(input):
 ##
 # \brief This function adds each element of two NessiList.
 #
-# This function accepts four NessiList as arguments or 2 NessiLists and
-# 2 scalars.
+# This function accepts four NessiList as arguments, 2 NessiLists and
+# 2 scalars or 4 scalars.
 #
 # - With four NessiLists:
 # \code
@@ -150,6 +150,7 @@ def abs_val(input):
 # >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Scalar, Scalar_err2,
 # Vector_1, Vector_err2_1)
 # \endcode
+#
 # - With 4 scalars:
 # \code
 # >>> Scalar_o, Scalar_err2_o = array_manip.add_ncerr (Scalar_1, Scalar_err2_1,
@@ -255,8 +256,8 @@ def abs_val(input):
 # \param kwargs (INPUT) is a list of keyword arguments that the function will
 # accept
 # \return
-# - The result NessiList
-# - The square of the uncertainty in the result NessiList
+# - The result NessiList or scalar
+# - The square of the uncertainty in the result NessiList or scalar
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
