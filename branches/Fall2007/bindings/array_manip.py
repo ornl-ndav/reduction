@@ -1096,7 +1096,7 @@ def mult_ncerr(a, ae2, b, be2):
         Scalar_err2_1, Scalar_2, Scalar_err2_2)        
 
     where Vector_o is the resulting NessiList and Vector_err2_o is the
-    uncertainty in the NessiList Vector_o.
+    square uncertainty in the NessiList Vector_o.
 
     =================================================================
 
@@ -1108,7 +1108,8 @@ def mult_ncerr(a, ae2, b, be2):
     and the uncorrelated uncertainties will be present according to the
     equation
 
-    Vector_err2_o^2[i] = Vector_err2_1^2[i] * Vector_err2_2^2[i]
+    Vector_err2_o[i] = (Vector_err2_1[i] * Vector_2[i]^2) +
+                       (Vector_err2_2[i] * Vector_1[i]^2)
 
     Where Vector_o[i] is the i^th component of the output
     array, Vector_1[i] is the i^th component of the first
@@ -1127,7 +1128,8 @@ def mult_ncerr(a, ae2, b, be2):
     and the uncorrelated uncertainties will be processed according to the
     equation
 
-    Vector_err2_o^2[i] = Vector_err2[i] * Scalar_err2
+    Vector_err2_o[i] = (Vector_err2[i] * Scalar^2) +
+                       (Scalar_err2 * Vector[i]^2)
 
     Where Vector_o[i] is the i^th component of the output
     array, Scalar is the scalar being multiplied to each element,
