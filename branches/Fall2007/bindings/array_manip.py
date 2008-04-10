@@ -990,8 +990,8 @@ def sub_ncerr(a, ae2, b, be2):
 ##
 # \brief This function multiplies each element of two NessiList.
 #
-# This function accepts four NessiList as arguments or 2 NessiLists and 2
-# scalars.
+# This function accepts four NessiList as arguments, 2 NessiLists and 2
+# scalars or 4 scalars.
 #
 # - With four NessiLists:
 # \code
@@ -1006,8 +1006,8 @@ def sub_ncerr(a, ae2, b, be2):
 # \endcode
 # - With 4 scalars:
 # \code
-# >>> Scalar_o, Scalar_err2_o = array_manip.add_ncerr (Scalar_1, Scalar_err2_1,
-# Scalar_2, Scalar_err2_2)
+# >>> Scalar_o, Scalar_err2_o = array_manip.mult_ncerr (Scalar_1,
+# Scalar_err2_1, Scalar_2, Scalar_err2_2)
 # \endcode
 #
 #     ========================================================================
@@ -1058,20 +1058,19 @@ def sub_ncerr(a, ae2, b, be2):
 # and the uncorrelated uncertainties will be processed according to
 # the equation
 # \f[
-# \sigma_o^2=(data_1\times\sigma_2)^2
-# +(data_2\times\sigma_1)^2
+# \sigma_o^2=(data_1\times\sigma_2)^2 +(data_2\times\sigma_1)^2
 # \f]
 #
-# \param a (INPUT) is the first NessiList/scalar to be multiplied
+# \param a (INPUT) is the first NessiLis or scalar to be multiplied
 # \param ae2 (INPUT) is the square of the uncertainty in the first
-# NessiList/scalar to be multiplied
-# \param b (INPUT) is the second NessiList/scalar to be multiplied
+# NessiList or scalar to be multiplied
+# \param b (INPUT) is the second NessiList or scalar to be multiplied
 # \param be2 (INPUT) is the square of the uncertainty in the second
-# NessiList/scalar to be multiplied
+# NessiList or scalar to be multiplied
 #
 # \return
-# - The result NessiList/scalar
-# - The square of the uncertainty in the result NessiList/scalar
+# - The result NessiList or scalar
+# - The square of the uncertainty in the result NessiList or scalar
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -1085,6 +1084,7 @@ def mult_ncerr(a, ae2, b, be2):
     This function accepts four arguments:
        - 4 NessiLists
        - 2 NessiLists and 2 scalars
+       - 4 scalars
 
     >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
@@ -1092,11 +1092,11 @@ def mult_ncerr(a, ae2, b, be2):
     >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector, Vector_err2,
         Scalar, Scalar_err2)
 
-    >>> Scalar_o, Scalar_err2_o = array_manip.add_ncerr (Scalar_1,
+    >>> Scalar_o, Scalar_err2_o = array_manip.mult_ncerr (Scalar_1,
         Scalar_err2_1, Scalar_2, Scalar_err2_2)        
 
     where Vector_o is the resulting NessiList and Vector_err2_o is the
-    uncertainty in the NessiList o.
+    uncertainty in the NessiList Vector_o.
 
     =================================================================
 
@@ -1160,8 +1160,8 @@ def mult_ncerr(a, ae2, b, be2):
     Returns 2 NessiLists or 2 scalars:
     ______________________
 
-    <- the result NessiList/scalar
-    <- the square of the uncertainty in the result NessiList/scalar
+    <- the result NessiList or scalar
+    <- the square of the uncertainty in the result NessiList or scalar
 
     Exceptions:
     __________
