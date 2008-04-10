@@ -1661,42 +1661,6 @@ def div_ncerr(a, ae2, b, be2):
                 
                 return (c, ce2)
 
-        except AttributeError:
-            try:
-                b.__type__
-                scalar = a
-                scalar_e2 = ae2
-                array = b
-                array_e2 = be2
-
-                if array.__type__ == array.DOUBLE:
-                    c = nessi_list.NessiList(len(array), type=array.DOUBLE)
-                    ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            
-                    array_manip_bind.add_ncerr_d(array.__array__,
-                                                 array_e2.__array__,
-                                                 float(scalar),
-                                                 float(scalar_e2),
-                                                 c.__array__,
-                                                 ce2.__array__)
-                    
-                elif array.__type__ == array.INT:
-                    c = nessi_list.NessiList(len(array), type=array.INT)
-                    ce2 = nessi_list.NessiList(len(array), type=array.INT)
-                    
-                    array_manip_bind.add_ncerr_i(array.__array__,
-                                                 array_e2.__array__,
-                                                 int(scalar),
-                                                 int(scalar_e2),
-                                                 c.__array__,
-                                                 ce2.__array__)
-                    
-                else:
-                    raise TypeError("Unknown primative type %s" % \
-                                    str(array.__type__))
-        
-                return (c, ce2)
-
             except AttributeError:
 
                 try:
