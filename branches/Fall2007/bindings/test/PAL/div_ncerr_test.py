@@ -388,7 +388,7 @@ if __name__ == "__main__":
                                                       input1_err2[0],\
                                                       input2[0],\
                                                       input2_err2[0])
-    print "A:", output_ss_err2, true_output_ss_err2_i
+
     mess = test_common.MakeCheck1("int",\
                                   output_ss,\
                                   true_output_ss_i,\
