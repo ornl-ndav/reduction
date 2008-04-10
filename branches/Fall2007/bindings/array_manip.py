@@ -663,13 +663,12 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # - With 4 NessiLists, This function subtracts each element, \f$i\f$, of two
 # arrays according to the equation:
 # \f[
-# data_o[i]=data_1[i]/data_2[i]
+# data_o[i]=data_1[i] - data_2[i]
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation:
 # \f[
-# \sigma_o^2[i]=\left(\frac{data_1[i]\times \sigma_2[i]}{data_2^2[i]}
-# \right)^2+\left(\frac{\sigma_1[i]}{data_2[i]}\right)^2
+# \sigma_o^2[i]=\sigma_1^2[i] + \sigma_2^2[i]
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the array
@@ -684,13 +683,12 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # - With 2 NessiLists and 2 Scalars, this function subtracts each element,
 # \f$i\f$, of an array by a scalar according to the equation:
 # \f[
-# data_o[i]=data_i[i]/a
+# data_o[i]=data_i[i] - a
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation:
 # \f[
-# \sigma_o^2[i]=\left(\frac{\sigma_i[i]}{a}\right)^2
-#                 +\left(\frac{data_i[i]\times\sigma_a}{a^2}\right)^2
+# \sigma_o^2[i]=\sigma_i^2[i] + \sigma_a^2
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$a\f$ is the scalar subtracting each element,
@@ -703,13 +701,12 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # - With 2 scalars and 2 NessiLists, this function subtracts a scalar by each
 # element, \f$i\f$, of an array according to the equation:
 # \f[
-# data_o[i]=a/data_i[i]
+# data_o[i]=a - data_i[i]
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation:
 # \f[
-# \sigma_o^2[i]=\left(\frac{a \times \sigma_i[i]}{data_i^2[i]}\right)^2
-#                 +\left(\frac{\sigma_a}{data_i[i]}\right)^2
+# \sigma_o^2[i]=\sigma_i^2[i] + \sigma_a^2
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$a\f$ is the scalar each element is subtracting,
