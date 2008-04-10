@@ -1305,7 +1305,7 @@ def mult_ncerr(a, ae2, b, be2):
 # \brief This function divides each element of two NessiLists.
 #
 # This function accepts four NessiLists as arguments, 2 NessiLists and 2
-# scalars or 2 scalars and 2 NessiLists.
+# scalars or 2 scalars and 2 NessiLists or 4 scalars.
 #
 # - With 4 NessiLists:
 # \code
@@ -1447,7 +1447,7 @@ def div_ncerr(a, ae2, b, be2):
         Scalar_err2_1, Scalar_2, Scalar_err2_2)        
 
     where Vector_o is the resulting NessiList and Vector_err2_o is the
-    uncertainty in the NessiList o.
+    square uncertainty in the NessiList Vector_o.
 
     =================================================================
 
@@ -1534,8 +1534,8 @@ def div_ncerr(a, ae2, b, be2):
     Returns 2 NessiLists or 2 scalars:
     ______________________
 
-    <- the result NessiList/scalar
-    <- the square of the uncertainty in the result NessiList/scalar
+    <- the result NessiList or scalar
+    <- the square of the uncertainty in the result NessiList or scalar
 
     Exceptions:
     __________
