@@ -1336,13 +1336,13 @@ def mult_ncerr(a, ae2, b, be2):
 # - With 4 NessiLists, this function divides each element, \f$i\f$, of two
 # NessiLists according to the equation
 # \f[
-# Vector_o[i] = Vector_1[i] / Vector_2[i]
+# data_o[i] = data_1[i] / data_2[i]
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation
 # \f[
-# \sigma_o[i] = \left(\frac{Vector_1[i]\times\sigma_2[i]}{Vector_2^2[i]}\right)
-# ^2 +\left(\frac{\sigma_1[i]}{Vector_2[i]}\right)^2
+# \sigma_o[i] = \left(\frac{data_1[i]\times\sigma_2[i]}{data_2^2[i]}\right)
+# ^2 +\left(\frac{\sigma_1[i]}{data_2[i]}\right)^2
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the array
