@@ -16,9 +16,12 @@
 #
 
 from array_manip_bind import div_ncerr_d
+from array_manip_bind import div_ncerr_ss_d
 from array_manip_bind import div_ncerr_i
+from array_manip_bind import div_ncerr_ss_i
 from nessi_vector_bind import *
 import test_common_bind
+from vpair_bind import *
 
 print "###########################################################"
 print "# Checking Div_Ncerr Swig Generated Python Binding Layer  #"
@@ -140,6 +143,15 @@ TruthOutput_Err2_SV_I.append(0)
 TruthOutput_Err2_SV_I.append(0)
 TruthOutput_Err2_SV_I.append(0)
 
+# Truth values for div_ncerr scalar-scalar version
+TruthOutput_SS_D = DoubleVPair()
+TruthOutput_SS_D.val = 5.0
+TruthOutput_SS_D.val_err2 = 6.5
+
+TruthOutput_SS_I = IntVPair()
+TruthOutput_SS_I.val = 5
+TruthOutput_SS_I.val_err2 = 6
+
 ###############################################################################
 # Create output placeholders for vectors
 ###############################################################################
@@ -162,6 +174,10 @@ Output_SV_I = IntNessiVector(len(Input1_I))
 Output_Err2_SV_D = DoubleNessiVector(len(Input1_Err2_D))
 Output_Err2_SV_I = IntNessiVector(len(Input1_Err2_I))
 
+# Output placeholders for div_ncerr scalar-scalar version
+Output_SS_D = DoubleVPair()
+Output_SS_I = IntVPair()
+ 
 print "Checking Vector-Vector Division Binding Function"
 
 div_ncerr_d(Input1_D, Input1_Err2_D, Input2_D, Input2_Err2_D,
@@ -220,6 +236,27 @@ mess = test_common_bind.makeCheck("div_ncerr_i", Output_SV_I,
                                   TruthOutput_SV_I,
                                   Output_Err2_SV_I,
                                   TruthOutput_Err2_SV_I)
+print mess
+print
+print "Checking Scalar-Scalar Division Binding Fuction"
+
+div_ncerr_ss_d(Input1_D[0], Input1_Err2_D[0], 
+               Input2_D[0], Input2_Err2_D[0],
+               Output_SS_D)
+
+mess = test_common_bind.makeCheck("div_ncerr_ss_d", Output_SS_D.val,
+                                 TruthOutput_SS_D.val,
+                                 Output_SS_D.val_err2,
+                                 TruthOutput_SS_D.val_err2)
+print mess
+div_ncerr_ss_i(Input1_I[0], Input1_Err2_I[0],
+               Input2_I[0], Input2_Err2_I[0],
+               Output_SS_I)
+
+mess = test_common_bind.makeCheck("div_ncerr_ss_i", Output_SS_I.val,
+                                 TruthOutput_SS_I.val,
+                                 Output_SS_I.val_err2,
+                                 TruthOutput_SS_I.val_err2)
 print mess
 
 ##

@@ -41,6 +41,7 @@
 
 import nessi_list
 import array_manip_bind
+import vpair_bind
 
 from scl_defs import VERSION as __version__
 
@@ -130,8 +131,8 @@ def abs_val(input):
 ##
 # \brief This function adds each element of two NessiList.
 #
-# This function accepts four NessiList as arguments or 2 NessiLists and
-# 2 scalars.
+# This function accepts four NessiList as arguments, 2 NessiLists and
+# 2 scalars or 4 scalars.
 #
 # - With four NessiLists:
 # \code
@@ -148,6 +149,12 @@ def abs_val(input):
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Scalar, Scalar_err2,
 # Vector_1, Vector_err2_1)
+# \endcode
+#
+# - With 4 scalars:
+# \code
+# >>> Scalar_o, Scalar_err2_o = array_manip.add_ncerr (Scalar_1, Scalar_err2_1,
+# Scalar_2, Scalar_err2_2)
 # \endcode
 #
 #     ========================================================================
@@ -188,6 +195,17 @@ def abs_val(input):
 # uncertainty of the output array, \f$\sigma_a\f$ is the
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
+#
+# - With 4 scalars, this function adds the numbers together and propgates
+# the errors according to the equation:
+# \f[
+# data_o = data_1 + data_2
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2=\sigma_1^2 + \sigma_2^2
+# \f]
 #
 # Multi-Dimensional Case
 # ======================
@@ -238,8 +256,8 @@ def abs_val(input):
 # \param kwargs (INPUT) is a list of keyword arguments that the function will
 # accept
 # \return
-# - The result NessiList
-# - The square of the uncertainty in the result NessiList
+# - The result NessiList or scalar
+# - The square of the uncertainty in the result NessiList or scalar
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -253,6 +271,7 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     This function accepts four arguments:
      - 4 NessiLists
      - 2 NessiLists and 2 scalars
+     - 4 scalars
 
     >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
@@ -260,6 +279,9 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     >>> Vector_o, Vector_err2_o = array_manip.add_ncerr (Vector, Vector_err2,
         Scalar, Scalar_err2)
 
+    >>> Scalar_o, Scalar_err2_o = array_manip.add_ncerr (Scalar_1,
+        Scalar_err2_1, Scalar_2, Scalar_err2_2)
+        
     where Vector_o is the resulting NessiList and Vector_err2_o is the
     uncertainty in the NessiList o.
 
@@ -300,6 +322,16 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
+
+    - With 4 scalars, this function adds the numbers and propgates the errors
+    according to the equation:
+
+    Scalar_o = Scalar_1 + Scalar_2
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation:
+
+    Scalar_err2_o = Scalar_err2_1 + Scalar_err2_2
 
     >>> Multi-dimensional use <<<
     -----------------------------
@@ -506,6 +538,35 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
             scalar_e2 = be2
             array = a
             array_e2 = ae2
+
+            if array.__type__ == array.DOUBLE:
+                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+            
+                array_manip_bind.add_ncerr_d(array.__array__,
+                                             array_e2.__array__,
+                                             float(scalar),
+                                             float(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            elif array.__type__ == array.INT:
+                c = nessi_list.NessiList(len(array), type=array.INT)
+                ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                
+                array_manip_bind.add_ncerr_i(array.__array__,
+                                             array_e2.__array__,
+                                             int(scalar),
+                                             int(scalar_e2),
+                                             c.__array__,
+                                             ce2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" % \
+                                str(array.__type__))
+        
+            return (c, ce2)
+            
         except AttributeError:
             try:
                 b.__type__
@@ -513,36 +574,52 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                 scalar_e2 = ae2
                 array = b
                 array_e2 = be2
-            except AttributeError:
-                raise TypeError("add_ncerr does not understand types given "\
-                                +"to it")
 
-        if array.__type__ == array.DOUBLE:
-            c = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                if array.__type__ == array.DOUBLE:
+                    c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
             
-            array_manip_bind.add_ncerr_d(array.__array__,
-                                         array_e2.__array__,
-                                         float(scalar),
-                                         float(scalar_e2),
-                                         c.__array__,
-                                         ce2.__array__)
-            
-        elif array.__type__ == array.INT:
-            c = nessi_list.NessiList(len(array), type=array.INT)
-            ce2 = nessi_list.NessiList(len(array), type=array.INT)
-            
-            array_manip_bind.add_ncerr_i(array.__array__,
-                                         array_e2.__array__,
-                                         int(scalar),
-                                         int(scalar_e2),
-                                         c.__array__,
-                                         ce2.__array__)
-            
-        else:
-            raise TypeError("Unknown primative type %s" % str(array.__type__))
+                    array_manip_bind.add_ncerr_d(array.__array__,
+                                                 array_e2.__array__,
+                                                 float(scalar),
+                                                 float(scalar_e2),
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                elif array.__type__ == array.INT:
+                    c = nessi_list.NessiList(len(array), type=array.INT)
+                    ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                    
+                    array_manip_bind.add_ncerr_i(array.__array__,
+                                                 array_e2.__array__,
+                                                 int(scalar),
+                                                 int(scalar_e2),
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                else:
+                    raise TypeError("Unknown primative type %s" % \
+                                    str(array.__type__))
         
-        return (c, ce2)
+                return (c, ce2)
+
+            except AttributeError:
+                if str(type(a)).split('\'')[-2] == "float":
+                    c = vpair_bind.DoubleVPair()
+                    array_manip_bind.add_ncerr_ss_d(float(a), float(ae2),
+                                                    float(b), float(be2),
+                                                    c)
+                elif str(type(a)).split('\'')[-2] == "int":
+                    c = vpair_bind.IntVPair()
+                    array_manip_bind.add_ncerr_ss_i(int(a), int(ae2),
+                                                    int(b), int(be2),
+                                                    c)
+                else:
+                    raise TypeError("Unknown primative type %s" % type(a))
+
+                return (c.val, c.val_err2)
+
+
 
 ##
 # \}
@@ -554,8 +631,8 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 ##
 # \brief This function substracts each element of two NessiList.
 #
-# This function accepts four NessiList as arguments or 2 NessiLists and
-# 2 scalars
+# This function accepts four NessiList as arguments, 2 NessiLists and
+# 2 scalars or 4 scalars.
 #
 # - With four NessiLists:
 # \code
@@ -575,18 +652,23 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # Vector_1, Vector_err2_1)
 # \endcode
 #
+# - With 4 scalars:
+# \code
+# >>> Scalar_o, Scalar_err2_o = array_manip.sub_ncerr (Scalar_1, Scalar_err2_1,
+# Scalar_2, Scalar_err2_2)
+# \endcode
+#
 #     ========================================================================
 #
 # - With 4 NessiLists, This function subtracts each element, \f$i\f$, of two
 # arrays according to the equation:
 # \f[
-# data_o[i]=data_1[i]/data_2[i]
+# data_o[i]=data_1[i] - data_2[i]
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation:
 # \f[
-# \sigma_o^2[i]=\left(\frac{data_1[i]\times \sigma_2[i]}{data_2^2[i]}
-# \right)^2+\left(\frac{\sigma_1[i]}{data_2[i]}\right)^2
+# \sigma_o^2[i]=\sigma_1^2[i] + \sigma_2^2[i]
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the array
@@ -601,13 +683,12 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # - With 2 NessiLists and 2 Scalars, this function subtracts each element,
 # \f$i\f$, of an array by a scalar according to the equation:
 # \f[
-# data_o[i]=data_i[i]/a
+# data_o[i]=data_i[i] - a
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation:
 # \f[
-# \sigma_o^2[i]=\left(\frac{\sigma_i[i]}{a}\right)^2
-#                 +\left(\frac{data_i[i]\times\sigma_a}{a^2}\right)^2
+# \sigma_o^2[i]=\sigma_i^2[i] + \sigma_a^2
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$a\f$ is the scalar subtracting each element,
@@ -620,13 +701,12 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # - With 2 scalars and 2 NessiLists, this function subtracts a scalar by each
 # element, \f$i\f$, of an array according to the equation:
 # \f[
-# data_o[i]=a/data_i[i]
+# data_o[i]=a - data_i[i]
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation:
 # \f[
-# \sigma_o^2[i]=\left(\frac{a \times \sigma_i[i]}{data_i^2[i]}\right)^2
-#                 +\left(\frac{\sigma_a}{data_i[i]}\right)^2
+# \sigma_o^2[i]=\sigma_i^2[i] + \sigma_a^2
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$a\f$ is the scalar each element is subtracting,
@@ -636,6 +716,17 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
+# - With 4 scalars, this function subtracts the numbers together and propgates
+# the errors according to the equation:
+# \f[
+# data_o = data_1 - data_2
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2=\sigma_1^2 + \sigma_2^2
+# \f]
+#
 # \param a (INPUT) is the NessiList or scalar to be subtracted from
 # \param ae2 (INPUT) is the square of the uncertainty in the
 # NessiList or scalar to be subtracted from
@@ -643,8 +734,8 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
 # \param be2 (INPUT) is the square of the uncertainty in the NessiList or
 # scalar to subtract
 # \return
-# - The result NessiList
-# - The square of the uncertainty in the result NessiList
+# - The result NessiList or scalar
+# - The square of the uncertainty in the result NessiList or scalar
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -668,6 +759,9 @@ def sub_ncerr(a, ae2, b, be2):
 
     >>> Vector_o, Vector_err2_o = array_manip.sub_ncerr (Scalar, Scalar_err2,
         Vector, Vector_err2)
+
+    >>> Scalar_o, Scalar_err2_o = array_manip.sub_ncerr (Scalar_1,
+        Scalar_err2_1, Scalar_2, Scalar_err2_2)
 
     where Vector_o is the resulting NessiList and Vector_err2_o is the
     uncertainty in the NessiList o.
@@ -729,6 +823,16 @@ def sub_ncerr(a, ae2, b, be2):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
+
+    - With 4 scalars, this function subtracts the numbers and propgates the
+    errors according to the equation:
+
+    Scalar_o = Scalar_1 - Scalar_2
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation:
+
+    Scalar_err2_o = Scalar_err2_1 + Scalar_err2_2
 
     Parameters:
     __________
@@ -831,38 +935,51 @@ def sub_ncerr(a, ae2, b, be2):
                 scalar_e2 = ae2
                 array = b
                 array_e2 = be2
+            
+                if array.__type__ == array.DOUBLE:
+                    c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    
+                    array_manip_bind.sub_ncerr_d(float(scalar),
+                                                 float(scalar_e2),
+                                                 array.__array__,
+                                                 array_e2.__array__,
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                elif array.__type__ == array.INT:
+                    c = nessi_list.NessiList(len(array), type=array.INT)
+                    ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                    
+                    array_manip_bind.sub_ncerr_i(int(scalar),
+                                                 int(scalar_e2),
+                                                 array.__array__,
+                                                 array_e2.__array__,
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                else:
+                    raise TypeError("Unknown primative type %s" \
+                                    % str(array.__type__))
+            
+                return (c, ce2)
+
             except AttributeError:
-                raise TypeError("sub_ncerr does not understand types given "\
-                                +"to it")
-            
-            if array.__type__ == array.DOUBLE:
-                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
-                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-                
-                array_manip_bind.sub_ncerr_d(float(scalar),
-                                             float(scalar_e2),
-                                             array.__array__,
-                                             array_e2.__array__,
-                                             c.__array__,
-                                             ce2.__array__)
-                
-            elif array.__type__ == array.INT:
-                c = nessi_list.NessiList(len(array), type=array.INT)
-                ce2 = nessi_list.NessiList(len(array), type=array.INT)
-                
-                array_manip_bind.sub_ncerr_i(int(scalar),
-                                             int(scalar_e2),
-                                             array.__array__,
-                                             array_e2.__array__,
-                                             c.__array__,
-                                             ce2.__array__)
-                
-            else:
-                raise TypeError("Unknown primative type %s" \
-                                % str(array.__type__))
-            
-            return (c, ce2)
-        
+                if str(type(a)).split('\'')[-2] == "float":
+                    c = vpair_bind.DoubleVPair()
+                    array_manip_bind.sub_ncerr_ss_d(float(a), float(ae2),
+                                                    float(b), float(be2),
+                                                    c)
+                elif str(type(a)).split('\'')[-2] == "int":
+                    c = vpair_bind.IntVPair()
+                    array_manip_bind.sub_ncerr_ss_i(int(a), int(ae2),
+                                                    int(b), int(be2),
+                                                    c)
+                else:
+                    raise TypeError("Unknown primative type %s" % type(a))
+
+                return (c.val, c.val_err2)
+                        
 ##
 # \}
 
@@ -873,8 +990,8 @@ def sub_ncerr(a, ae2, b, be2):
 ##
 # \brief This function multiplies each element of two NessiList.
 #
-# This function accepts four NessiList as arguments or 2 NessiLists and 2
-# scalars.
+# This function accepts four NessiList as arguments, 2 NessiLists and 2
+# scalars or 4 scalars.
 #
 # - With four NessiLists:
 # \code
@@ -886,6 +1003,11 @@ def sub_ncerr(a, ae2, b, be2):
 # \code
 # >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector,Vector_err2,
 # Scalar, Scalar_err2)
+# \endcode
+# - With 4 scalars:
+# \code
+# >>> Scalar_o, Scalar_err2_o = array_manip.mult_ncerr (Scalar_1,
+# Scalar_err2_1, Scalar_2, Scalar_err2_2)
 # \endcode
 #
 #     ========================================================================
@@ -928,15 +1050,27 @@ def sub_ncerr(a, ae2, b, be2):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# \param a (INPUT) is the first NessiList to be multiplied
-# \param ae2 (INPUT) is the second NessiList to multiplied
-# \param b (INPUT) is the second NessiList/scalar to be multiplied
+# - With 4 scalars, this function adds the numbers together and propgates
+# the errors according to the equation:
+# \f[
+# data_o = data_1 \times data_2
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2=(data_1\times\sigma_2)^2 +(data_2\times\sigma_1)^2
+# \f]
+#
+# \param a (INPUT) is the first NessiLis or scalar to be multiplied
+# \param ae2 (INPUT) is the square of the uncertainty in the first
+# NessiList or scalar to be multiplied
+# \param b (INPUT) is the second NessiList or scalar to be multiplied
 # \param be2 (INPUT) is the square of the uncertainty in the second
-# NessiList/scalar to be multiplied
+# NessiList or scalar to be multiplied
 #
 # \return
-# - The result NessiList
-# - The square of the uncertainty in the result NessiList
+# - The result NessiList or scalar
+# - The square of the uncertainty in the result NessiList or scalar
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -950,6 +1084,7 @@ def mult_ncerr(a, ae2, b, be2):
     This function accepts four arguments:
        - 4 NessiLists
        - 2 NessiLists and 2 scalars
+       - 4 scalars
 
     >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector_1,
         Vector_err2_1, Vector_2, Vector_err2_2)
@@ -957,8 +1092,11 @@ def mult_ncerr(a, ae2, b, be2):
     >>> Vector_o, Vector_err2_o = array_manip.mult_ncerr (Vector, Vector_err2,
         Scalar, Scalar_err2)
 
+    >>> Scalar_o, Scalar_err2_o = array_manip.mult_ncerr (Scalar_1,
+        Scalar_err2_1, Scalar_2, Scalar_err2_2)        
+
     where Vector_o is the resulting NessiList and Vector_err2_o is the
-    uncertainty in the NessiList o.
+    square uncertainty in the NessiList Vector_o.
 
     =================================================================
 
@@ -970,7 +1108,8 @@ def mult_ncerr(a, ae2, b, be2):
     and the uncorrelated uncertainties will be present according to the
     equation
 
-    Vector_err2_o^2[i] = Vector_err2_1^2[i] * Vector_err2_2^2[i]
+    Vector_err2_o[i] = (Vector_err2_1[i] * Vector_2[i]^2) +
+                       (Vector_err2_2[i] * Vector_1[i]^2)
 
     Where Vector_o[i] is the i^th component of the output
     array, Vector_1[i] is the i^th component of the first
@@ -989,7 +1128,8 @@ def mult_ncerr(a, ae2, b, be2):
     and the uncorrelated uncertainties will be processed according to the
     equation
 
-    Vector_err2_o^2[i] = Vector_err2[i] * Scalar_err2
+    Vector_err2_o[i] = (Vector_err2[i] * Scalar^2) +
+                       (Scalar_err2 * Vector[i]^2)
 
     Where Vector_o[i] is the i^th component of the output
     array, Scalar is the scalar being multiplied to each element,
@@ -998,6 +1138,16 @@ def mult_ncerr(a, ae2, b, be2):
     uncertainty of the output array, Scalar_err2 is the
     uncertainty in the scalar, and Vector_err2_1[i] is the
     i^th component of the uncertainty in the input array.
+
+    - With 4 scalars, this function adds the numbers and propgates the errors
+    according to the equation:
+
+    Scalar_o = Scalar_1 * Scalar_2
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation:
+
+    Scalar_err2_o = (Scalar_err2_1 * Scalar_2^2) + (Scalar_err2_2 * Scalar_1^2)
 
     Parameters:
     __________
@@ -1009,11 +1159,11 @@ def mult_ncerr(a, ae2, b, be2):
     -> be2 is the square of the uncertainty in the second NessiList or
        scalar to be multiplied
 
-    Returns 2 NessiLists:
+    Returns 2 NessiLists or 2 scalars:
     ______________________
 
-    <- the result NessiList
-    <- the square of the uncertainty in the result NessiList
+    <- the result NessiList or scalar
+    <- the square of the uncertainty in the result NessiList or scalar
 
     Exceptions:
     __________
@@ -1064,6 +1214,34 @@ def mult_ncerr(a, ae2, b, be2):
             scalar_e2 = be2
             array = a
             array_e2 = ae2
+
+            if array.__type__ == array.DOUBLE:
+                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                
+                array_manip_bind.mult_ncerr_d(array.__array__,
+                                              array_e2.__array__,
+                                              float(scalar),
+                                              float(scalar_e2),
+                                              c.__array__,
+                                              ce2.__array__)
+                
+            elif array.__type__ == array.INT:
+                c = nessi_list.NessiList(len(array), type=array.INT)
+                ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                
+                array_manip_bind.mult_ncerr_i(array.__array__,
+                                              array_e2.__array__,
+                                              int(scalar),
+                                              int(scalar_e2),
+                                              c.__array__,
+                                              ce2.__array__)
+                
+            else:
+                raise TypeError("Unknown primative type %s" % str(a.__type__))
+
+            return (c, ce2)
+        
         except AttributeError:
             try:
                 b.__type__
@@ -1071,36 +1249,50 @@ def mult_ncerr(a, ae2, b, be2):
                 scalar_e2 = ae2
                 array = b
                 array_e2 = be2
+            
+                if array.__type__ == array.DOUBLE:
+                    c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    
+                    array_manip_bind.mult_ncerr_d(array.__array__,
+                                                  array_e2.__array__,
+                                                  float(scalar),
+                                                  float(scalar_e2),
+                                                  c.__array__,
+                                                  ce2.__array__)
+                    
+                elif array.__type__ == array.INT:
+                    c = nessi_list.NessiList(len(array), type=array.INT)
+                    ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                    
+                    array_manip_bind.mult_ncerr_i(array.__array__,
+                                                  array_e2.__array__,
+                                                  int(scalar),
+                                                  int(scalar_e2),
+                                                  c.__array__,
+                                                  ce2.__array__)
+                    
+                else:
+                    raise TypeError("Unknown primative type %s" % \
+                                    str(a.__type__))
+            
+                return (c, ce2)
+
             except AttributeError:
-                raise TypeError("mult_ncerr does not understand types given "\
-                                +"to it")
-            
-        if array.__type__ == array.DOUBLE:
-            c = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-            
-            array_manip_bind.mult_ncerr_d(array.__array__,
-                                          array_e2.__array__,
-                                          float(scalar),
-                                          float(scalar_e2),
-                                          c.__array__,
-                                          ce2.__array__)
-            
-        elif array.__type__ == array.INT:
-            c = nessi_list.NessiList(len(array), type=array.INT)
-            ce2 = nessi_list.NessiList(len(array), type=array.INT)
-            
-            array_manip_bind.mult_ncerr_i(array.__array__,
-                                          array_e2.__array__,
-                                          int(scalar),
-                                          int(scalar_e2),
-                                          c.__array__,
-                                          ce2.__array__)
-            
-        else:
-            raise TypeError("Unknown primative type %s" % str(a.__type__))
-        
-        return (c, ce2)
+                if str(type(a)).split('\'')[-2] == "float":
+                    c = vpair_bind.DoubleVPair()
+                    array_manip_bind.mult_ncerr_ss_d(float(a), float(ae2),
+                                                     float(b), float(be2),
+                                                     c)
+                elif str(type(a)).split('\'')[-2] == "int":
+                    c = vpair_bind.IntVPair()
+                    array_manip_bind.mult_ncerr_ss_i(int(a), int(ae2),
+                                                     int(b), int(be2),
+                                                     c)
+                else:
+                    raise TypeError("Unknown primative type %s" % type(a))
+                
+                return (c.val, c.val_err2)
         
 ##
 # \}
@@ -1113,7 +1305,7 @@ def mult_ncerr(a, ae2, b, be2):
 # \brief This function divides each element of two NessiLists.
 #
 # This function accepts four NessiLists as arguments, 2 NessiLists and 2
-# scalars or 2 scalars and 2 NessiLists.
+# scalars or 2 scalars and 2 NessiLists or 4 scalars.
 #
 # - With 4 NessiLists:
 # \code
@@ -1133,18 +1325,24 @@ def mult_ncerr(a, ae2, b, be2):
 # Vector, Vector_err2)
 # \endcode
 #
+# - With 4 scalars:
+# \code
+# >>> Scalar_o, Scalar_err2_o = array_manip.div_ncerr (Scalar_1, Scalar_err2_1,
+# Scalar_2, Scalar_err2_2)
+# \endcode
+#
 #     ========================================================================
 #
 # - With 4 NessiLists, this function divides each element, \f$i\f$, of two
 # NessiLists according to the equation
 # \f[
-# Vector_o[i] = Vector_1[i] / Vector_2[i]
+# data_o[i] = data_1[i] / data_2[i]
 # \f]
 # and the uncorrelated uncertainties will be processed according to
 # the equation
 # \f[
-# \sigma_o[i] = \left(\frac{Vector_1[i]\times\sigma_2[i]}{Vector_2^2[i]}\right)
-# ^2 +\left(\frac{\sigma_1[i]}{Vector_2[i]}\right)^2
+# \sigma_o[i] = \left(\frac{data_1[i]\times\sigma_2[i]}{data_2^2[i]}\right)
+# ^2 +\left(\frac{\sigma_1[i]}{data_2[i]}\right)^2
 # \f]
 # Where \f$data_o[i]\f$ is the \f$i^{th}\f$ component of the output
 # array, \f$data_1[i]\f$ is the \f$i^{th}\f$ component of the array
@@ -1194,16 +1392,29 @@ def mult_ncerr(a, ae2, b, be2):
 # uncertainty in the scalar, and \f$\sigma_i[i]\f$ is the
 # \f$i^{th}\f$ component of the uncertainty in the input array.
 #
-# \param a (INPUT) is the NessiList being divided
-# \param ae2 (INPUT) is the dividing NessiList, if they are no more
+# - With 4 Scalars, this function divides a scalar by the other scalar
+# according to the equation
+# \f[
+# data_o=data_1/data_2
+# \f]
+# and the uncorrelated uncertainties will be processed according to
+# the equation
+# \f[
+# \sigma_o^2=\left(\frac{data_1 \times \sigma_2}{data_2^2}\right)^2
+#                 +\left(\frac{\sigma_1}{data_2}\right)^2
+# \f]
+#
+# \param a (INPUT) is the NessiList/scalar being divided
+# \param ae2 (INPUT) is the dividing NessiLists/scalar, if they are no more
 # arguments present, otherwise it's the square of the uncertainty in the
-# NessiList being divided
-# \param b (INPUT) is the dividing NessiList
-# \param be2 (INPUT) is the square of
-# the uncertainty in the dividing NessiList
+# NessiList/scalar being divided
+# \param b (INPUT) is the dividing NessiList/scalar
+# \param be2 (INPUT) is the square of the uncertainty in the dividing
+# NessiList/scalar
+#
 # \return
-# - The result NessiList
-# - The square of the uncertainty in the result NessiList
+# - The result NessiList/scalar
+# - The square of the uncertainty in the result NessiList/scalar
 #
 # \exception IndexError is thrown if a, ae2, b and be2 are not the same length
 # \exception TypeError is thrown if any of the arrays are not recognized types
@@ -1230,8 +1441,13 @@ def div_ncerr(a, ae2, b, be2):
     >>> Vector_o, Vector_err2_o = array_manip.div_ncerr (Scalar, Scalar_err2,
         Vector, Vector_err2)
 
+       - 4 scalars
+
+    >>> Scalar_o, Scalar_err2_o = array_manip.div_ncerr (Scalar_1,
+        Scalar_err2_1, Scalar_2, Scalar_err2_2)        
+
     where Vector_o is the resulting NessiList and Vector_err2_o is the
-    uncertainty in the NessiList o.
+    square uncertainty in the NessiList Vector_o.
 
     =================================================================
 
@@ -1294,6 +1510,17 @@ def div_ncerr(a, ae2, b, be2):
     uncertainty in the scalar, and Vector_err2[i] is the
     i^th component of the uncertainty in the input array.
 
+    - With 4 scalars, this function divides the numbers and propgates the
+    errors according to the equation:
+
+    Scalar_o = Scalar_1 / Scalar_2
+
+    and the uncorrelated uncertainties will be processed according to the
+    equation:
+
+    Scalar_err2_o = {(Scalar_1*Scalar_err2_2)/(Scalar_2^2)}^2
+    +{(Scalar_err2_1)/(Scalar_2)}^2
+
     Parameters:
     __________
 
@@ -1304,11 +1531,11 @@ def div_ncerr(a, ae2, b, be2):
     -> be2 is the square of the uncertainty in the NessiList or scalar to
        divide by
 
-    Returns 2 NessiLists:
+    Returns 2 NessiLists or 2 scalars:
     ______________________
 
-    <- the result NessiList
-    <- the square of the uncertainty in the result NessiList
+    <- the result NessiList or scalar
+    <- the square of the uncertainty in the result NessiList or scalar
 
     Exceptions:
     __________
@@ -1395,37 +1622,50 @@ def div_ncerr(a, ae2, b, be2):
                 scalar_e2 = ae2
                 array = b
                 array_e2 = be2
+            
+                if array.__type__ == array.DOUBLE:
+                    c = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
+                    
+                    array_manip_bind.div_ncerr_d(float(scalar),
+                                                 float(scalar_e2),
+                                                 array.__array__,
+                                                 array_e2.__array__,
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                elif array.__type__ == array.INT:
+                    c = nessi_list.NessiList(len(array), type=array.INT)
+                    ce2 = nessi_list.NessiList(len(array), type=array.INT)
+                    
+                    array_manip_bind.div_ncerr_i(int(scalar),
+                                                 int(scalar_e2),
+                                                 array.__array__,
+                                                 array_e2.__array__,
+                                                 c.__array__,
+                                                 ce2.__array__)
+                    
+                else:
+                    raise TypeError("Unknown primative type %s" \
+                                    % str(array.__type__))
+                
+                return (c, ce2)
+
             except AttributeError:
-                raise TypeError("div_ncerr does not understand types given "\
-                                +"to it")
-            
-            if array.__type__ == array.DOUBLE:
-                c = nessi_list.NessiList(len(array), type=array.DOUBLE)
-                ce2 = nessi_list.NessiList(len(array), type=array.DOUBLE)
-                
-                array_manip_bind.div_ncerr_d(float(scalar),
-                                             float(scalar_e2),
-                                             array.__array__,
-                                             array_e2.__array__,
-                                             c.__array__,
-                                             ce2.__array__)
-                
-            elif array.__type__ == array.INT:
-                c = nessi_list.NessiList(len(array), type=array.INT)
-                ce2 = nessi_list.NessiList(len(array), type=array.INT)
-                
-                array_manip_bind.div_ncerr_i(int(scalar),
-                                             int(scalar_e2),
-                                             array.__array__,
-                                             array_e2.__array__,
-                                             c.__array__,
-                                             ce2.__array__)
-                
-            else:
-                raise TypeError("Unknown primative type %s" \
-                                % str(array.__type__))
-            
-            return (c, ce2)
+                if str(type(a)).split('\'')[-2] == "float":
+                    c = vpair_bind.DoubleVPair()
+                    array_manip_bind.div_ncerr_ss_d(float(a), float(ae2),
+                                                    float(b), float(be2),
+                                                    c)
+                elif str(type(a)).split('\'')[-2] == "int":
+                    c = vpair_bind.IntVPair()
+                    array_manip_bind.div_ncerr_ss_i(int(a), int(ae2),
+                                                    int(b), int(be2),
+                                                    c)
+                else:
+                    raise TypeError("Unknown primative type %s" % type(a))
+
+                return (c.val, c.val_err2)            
 
 ##
 # \}

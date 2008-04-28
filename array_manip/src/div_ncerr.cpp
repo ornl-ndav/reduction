@@ -205,4 +205,61 @@ namespace ArrayManip
                           Nessi::Vector<unsigned int> & output,
                           Nessi::Vector<unsigned int> & output_err2,
                           void *temp);
+
+  /**
+   * This is the float declaration of the function defined in 3.9.
+   *
+   * \ingroup div_ncerr
+   */
+  template std::string
+  div_ncerr<float>(const float input1,
+                   const float input1_err2,
+                   const float input2,
+                   const float input2_err2,
+                   float & output,
+                   float & output_err2,
+                   void *temp);
+
+  /**
+   * This is the double declaration of the function defined in 3.9.
+   *
+   * \ingroup div_ncerr
+   */
+  template std::string
+  div_ncerr<double>(const double input1,
+                    const double input1_err2,
+                    const double input2,
+                    const double input2_err2,
+                    double & output,
+                    double & output_err2,
+                    void *temp);
+
+  /**
+   * This is the int declaration of the function defined in 3.9.
+   *
+   * \ingroup div_ncerr
+   */
+  template std::string
+  div_ncerr<int>(const int input1,
+                 const int input1_err2,
+                 const int input2,
+                 const int input2_err2,
+                 int & output,
+                 int & output_err2,
+                 void *temp);
+
+  /**
+   * This is the unsigned int declaratio of the function defined in 3.9.
+   *
+   * \ingroup div_ncerr
+   */
+  template std::string
+  div_ncerr<unsigned int>(const unsigned int input1,
+                          const unsigned int input1_err2,
+                          const unsigned int input2,
+                          const unsigned int input2_err2,
+                          unsigned int & output,
+                          unsigned int & output_err2,
+                          void *temp);
+ 
 } // ArrayManip

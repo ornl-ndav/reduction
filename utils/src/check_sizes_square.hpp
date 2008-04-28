@@ -59,6 +59,31 @@ namespace Utils
     return;
   }
 
+  template<typename NumT>
+  void check_sizes_square(std::string str,
+                          const Nessi::Vector<NumT> & array1,
+                          const Nessi::Vector<NumT> & array2,
+                          const Nessi::Vector<NumT> & array3)
+  {
+    size_t sz1 = array1.size();
+    size_t sz2 = array2.size();
+    size_t sz3 = array3.size();
+
+    if (sz1 != sz2)
+      {
+        std::string errstr = str + " " + "array1 not the same size as array2";
+        throw std::invalid_argument(errstr);
+      }
+
+    if (sz1 != sz3)
+      {
+        std::string errstr = str + " " + "array1 not the same size as array3";
+        throw std::invalid_argument(errstr);
+      }
+
+    return;
+  }
+
   template <typename NumT>
   void check_sizes_square(const Nessi::Vector<NumT> & array1,
                           const Nessi::Vector<NumT> & array2)
@@ -69,6 +94,23 @@ namespace Utils
     if (sz1 != sz2)
       {
         std::string errstr = "array1 not the same size as array2";
+        throw std::invalid_argument(errstr);
+      }
+
+    return;
+  }
+
+  template <typename NumT>
+  void check_sizes_square(std::string str,
+                          const Nessi::Vector<NumT> & array1,
+                          const Nessi::Vector<NumT> & array2)
+  {
+    size_t sz1 = array1.size();
+    size_t sz2 = array2.size();
+
+    if (sz1 != sz2)
+      {
+        std::string errstr = str + " " + "array1 not the same size as array2";
         throw std::invalid_argument(errstr);
       }
 

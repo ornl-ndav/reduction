@@ -137,6 +137,23 @@ namespace ArrayManip
     return Nessi::EMPTY_WARN;
   }
 
+  // 3.6
+  template <typename NumT>
+  std::string
+  add_ncerr(const NumT input1,
+            const NumT input1_err2,
+            const NumT input2,
+            const NumT input2_err2,
+            NumT & output,
+            NumT & output_err2,
+            void *temp=NULL)
+  {
+    output = input1 + input2;
+    output_err2 = input1_err2 + input2_err2;
+
+    return Nessi::EMPTY_WARN;
+  }
+
   // 3.6 for multi-dimensional as 1D
   template <typename NumT>
   std::string
