@@ -289,7 +289,7 @@ def calc_area_2D_polygon(x_coord, y_coord, size_poly, signed_area=False):
 # \exception TypeError is raised if axis is not of type double
 #
 
-def calc_bin_centers(axis, axis_err2):
+def calc_bin_centers(axis, axis_err2=None):
     """
     This function takes in an axis array and its associated squared 
     uncertainties and calculates the bin centers via the following formula:
@@ -327,12 +327,19 @@ def calc_bin_centers(axis, axis_err2):
     <- TypeError is raised if axis is not of type double
 
     """
-    if axis.__type__ != axis_err2.__type__:
-        raise TypeError("Axis and Axis Err2 arrays are not the same type")
+    if axis_err2 is not None:
+        if axis.__type__ != axis_err2.__type__:
+            raise TypeError("Axis and Axis Err2 arrays are not the same type")
 
     if axis.__type__ == nessi_list.NessiList.DOUBLE:
         bin_centers = nessi_list.NessiList(len(axis) - 1)
-        bin_centers_err2 = nessi_list.NessiList(len(axis_err2) - 1)
+
+        if axis_err2 is None:
+            bin_centers_err2 = nessi_list.NessiList(len(axis) - 1)
+            axis_err2 = nessi_list.NessiList(len(axis))
+        else:
+            bin_centers_err2 = nessi_list.NessiList(len(axis_err2) - 1)
+            
         utils_bind.calc_bin_centers_d(axis.__array__,
                                       axis_err2.__array__,
                                       bin_centers.__array__,
