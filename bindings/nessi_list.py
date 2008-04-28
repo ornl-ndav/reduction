@@ -1992,6 +1992,37 @@ class NessiList (list):
 # \}
 
 ##
+# \ingroup toNumpy NessiList
+#
+# \brief Function that returns a NumPy representation of the NessiList
+#
+# This function will return a NumPt representation of the internal NessiList
+# array.
+#
+# \param bin_centers This allows the bin centers to be returned rather than
+# the array itself. This is useful for NessiLists holding histogram axes.
+#
+# \return A NumPy representation of the NessiList
+
+    def toNumpy(self, bin_centers=False, **kwargs):
+        """
+        _______________________________________________________________________
+        This function will return a NumPt representation of the internal
+        NessiList array.
+
+        Parameters:
+        ----------
+        -> bin_centers a boolean which returns the bin centers
+
+        Return:
+        ------
+        <- The Numpy representation of the NessiList
+        """
+        pass
+##
+# \}
+
+##
 # \defgroup max_vect nessi_list::max_vect
 # \{
 
