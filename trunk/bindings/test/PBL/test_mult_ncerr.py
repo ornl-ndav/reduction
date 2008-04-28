@@ -16,9 +16,12 @@
 #
 
 from array_manip_bind import mult_ncerr_d
+from array_manip_bind import mult_ncerr_ss_d
 from array_manip_bind import mult_ncerr_i
+from array_manip_bind import mult_ncerr_ss_i
 from nessi_vector_bind import *
 import test_common_bind
+from vpair_bind import *
 
 print "############################################################"
 print "# Checking Mult_Ncerr Swig Generated Python Binding Layer  #"
@@ -111,6 +114,15 @@ TruthOutput_Err2_VS_I.append(32)
 TruthOutput_Err2_VS_I.append(25)
 TruthOutput_Err2_VS_I.append(20)
 
+#Truth values for mult_ncerr scalar-scalar version
+TruthOutput_SS_D = DoubleVPair()
+TruthOutput_SS_D.val = 8.0
+TruthOutput_SS_D.val_err2 = 6.0
+
+TruthOutput_SS_I = IntVPair()
+TruthOutput_SS_I.val = 8
+TruthOutput_SS_I.val_err2 = 6
+
 ###############################################################################
 # Create output placeholders for vectors
 ###############################################################################
@@ -127,10 +139,14 @@ Output_VS_I = IntNessiVector(len(Input1_I))
 Output_Err2_VS_D = DoubleNessiVector(len(Input1_Err2_D))
 Output_Err2_VS_I = IntNessiVector(len(Input1_Err2_I))
 
+# Output placeholders for mult_ncerr scalar-scalar version
+Output_SS_D = DoubleVPair()
+Output_SS_I = IntVPair()
+
 print "Checking Vector-Vector Multiplication Binding Function"
 
 mult_ncerr_d(Input1_D, Input1_Err2_D, Input2_D, Input2_Err2_D,
-            Output_VV_D, Output_Err2_VV_D)
+             Output_VV_D, Output_Err2_VV_D)
 
 mess = test_common_bind.makeCheck("mult_ncerr_d", Output_VV_D,
                                   TruthOutput_VV_D,
@@ -139,7 +155,7 @@ mess = test_common_bind.makeCheck("mult_ncerr_d", Output_VV_D,
 print mess
 
 mult_ncerr_i(Input1_I, Input1_Err2_I, Input2_I, Input2_Err2_I,
-            Output_VV_I, Output_Err2_VV_I)
+             Output_VV_I, Output_Err2_VV_I)
 
 mess = test_common_bind.makeCheck("mult_ncerr_i", Output_VV_I,
                                   TruthOutput_VV_I,
@@ -167,6 +183,28 @@ mess = test_common_bind.makeCheck("mult_ncerr_i", Output_VS_I,
                                   TruthOutput_VS_I,
                                   Output_Err2_VS_I,
                                   TruthOutput_Err2_VS_I)
+print mess
+print
+print "Checking Scalar-Scalar Multiplication Binding Function"
+
+mult_ncerr_ss_d(Input1_D[NUM_VAL-1], Input1_Err2_D[NUM_VAL-1],
+                Input2_D[NUM_VAL-1], Input2_Err2_D[NUM_VAL-1],
+                Output_SS_D)
+
+mess = test_common_bind.makeCheck("mult_ncerr_ss_d", Output_SS_D.val,
+                                  TruthOutput_SS_D.val,
+                                  Output_SS_D.val_err2,
+                                  TruthOutput_SS_D.val_err2)
+print mess
+
+mult_ncerr_ss_i(Input1_I[NUM_VAL-1], Input1_Err2_I[NUM_VAL-1],
+                Input2_I[NUM_VAL-1], Input2_Err2_I[NUM_VAL-1],
+                Output_SS_I)
+
+mess = test_common_bind.makeCheck("mult_ncerr_ss_i", Output_SS_I.val,
+                                  TruthOutput_SS_I.val,
+                                  Output_SS_I.val_err2,
+                                  TruthOutput_SS_I.val_err2)
 print mess
 
 ##
