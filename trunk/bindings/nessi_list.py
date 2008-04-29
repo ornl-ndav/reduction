@@ -2001,6 +2001,9 @@ class NessiList (list):
 #
 # \param bin_centers This allows the bin centers to be returned rather than
 # the array itself. This is useful for NessiLists holding histogram axes.
+# \param kwargs (INPUT/OPTIONAL) is a list of keywords by the method.
+# - reshape: A tuple containing the dimension sizes for a multi-dimensional\n
+#            representation.
 #
 # \return A NumPy representation of the NessiList
 
@@ -2013,12 +2016,29 @@ class NessiList (list):
         Parameters:
         ----------
         -> bin_centers a boolean which returns the bin centers
+        -> kwargs is a list of keywords by the method.
+           - reshape: A tuple containing the dimension sizes for a
+                      multi-dimensional representation.
+
 
         Return:
         ------
         <- The Numpy representation of the NessiList
         """
-        pass
+        try:
+            reshape = kwargs["reshape"]
+        except KeyError:
+            reshape = None
+
+        if bin_centers:
+            import utils
+            array = utils.calc_bin_centers(self.__array__)[0]
+        else:
+            array = self.__array__
+
+        import numpy
+        return numpy.array(list(array))
+        
 ##
 # \}
 
