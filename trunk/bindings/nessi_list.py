@@ -1996,21 +1996,22 @@ class NessiList (list):
 #
 # \brief Function that returns a NumPy representation of the NessiList
 #
-# This function will return a NumPt representation of the internal NessiList
+# This function will return a NumPy representation of the internal NessiList
 # array.
 #
 # \param bin_centers This allows the bin centers to be returned rather than
-# the array itself. This is useful for NessiLists holding histogram axes.
+# the array itself. This is useful for NessiLists holding histogram axes. The
+# default value is <em>False</em>.
 # \param kwargs (INPUT/OPTIONAL) is a list of keywords by the method.
-# - reshape: A tuple containing the dimension sizes for a multi-dimensional\n
-#            representation.
+# - <em>reshape</em>: A tuple containing the dimension sizes for a\n
+#                     multi-dimensional representation.
 #
 # \return A NumPy representation of the NessiList
 
-    def toNumpy(self, bin_centers=False, **kwargs):
+    def toNumPy(self, bin_centers=False, **kwargs):
         """
         _______________________________________________________________________
-        This function will return a NumPt representation of the internal
+        This function will return a NumPy representation of the internal
         NessiList array.
 
         Parameters:
@@ -2020,10 +2021,9 @@ class NessiList (list):
            - reshape: A tuple containing the dimension sizes for a
                       multi-dimensional representation.
 
-
         Return:
         ------
-        <- The Numpy representation of the NessiList
+        <- The NumPy representation of the NessiList
         """
         try:
             reshape = kwargs["reshape"]
@@ -2037,7 +2037,10 @@ class NessiList (list):
             array = self.__array__
 
         import numpy
-        return numpy.array(list(array))
+        if reshape is not None:
+            return numpy.array(list(array)).reshape(reshape)
+        else:
+            return numpy.array(list(array))
         
 ##
 # \}
