@@ -348,7 +348,7 @@ def calc_bin_centers(axis, axis_err2=None):
         return (bin_centers, bin_centers_err2)
 
     else:
-        raise TyperError("Unknown primative type %s" % str(axis.__type__))
+        raise TypeError("Unknown primative type %s" % str(axis.__type__))
     
 ##
 # \}
