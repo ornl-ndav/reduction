@@ -2032,9 +2032,9 @@ class NessiList (list):
 
         if bin_centers:
             import utils
-            array = utils.calc_bin_centers(self.__array__)[0]
+            array = utils.calc_bin_centers(self)[0]
         else:
-            array = self.__array__
+            array = self
 
         import numpy
         if reshape is not None:
