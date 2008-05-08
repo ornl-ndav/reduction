@@ -1824,6 +1824,102 @@ def rebin_axis_1D(axis_in, data_in, data_in_err2, axis_out):
 # \}
 
 ##
+# \defgroup rebin_axis_1D_frac axis_manip::rebin_axis_1D_frac
+# \{
+
+##
+# \brief This function rebins data and its associated errors from one axis to
+# another given axis.
+#
+# This function is described in section 3.62 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function rebins data and its associated errors from one axis to
+# another given axis. This function uses fractional overlap of bins to
+# perform the rebinning process. The function also assumes that the data
+# is represented by a histogram model. The fractional overlap is tracked 
+# separately. When processing the data, if either the input value or its 
+# associated error is <em>nan</em> or <em>inf</em>, the bin is ignored and 
+# the fraction is not added. 
+#
+# \param axis_in (INPUT) is the initial data axis
+# \param data_in (INPUT) is the data associated with the initial axis
+# \param data_in_err2 (INPUT) is the square of the uncertainty associated
+# with the data
+# \param axis_out (INPUT) is the target axis for rebinning
+# \return
+# - The rebinned data according to the target axis
+# - The uncertainty associated with the rebinned data
+# - The fractional area associated with rebinning the data to the target axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible
+# sizes
+# \exception TypeError is thrown if any of the arrays are not
+# recognized types
+
+def rebin_axis_1D_frac(axis_in, data_in, data_in_err2, axis_out):
+    """
+    This function rebins data and its associated errors from one axis to
+    another given axis. This function uses fractional overlap of bins to
+    perform the rebinning process. The function also assumes that the data
+    is represented by a histogram model. The fractional overlap is tracked 
+    separately. When processing the data, if either the input value or its 
+    associated error is <em>nan</em> or <em>inf</em>, the bin is ignored and 
+    the fraction is not added. 
+
+    Parameters:
+    __________
+
+    -> axis_in is the initial data axis
+    -> data_in is the data associated with the initial axis
+    -> data_in_err2 is the square of the uncertainty associated with the data
+    -> axis_out is the target axis for rebinning
+
+    Returns - two NessiLists:
+    __________________________
+
+    <- the rebinned data according to the target axis
+    <- the square of the uncertainty associated with the rebinned data
+    <- the fractional area associated with rebinning the data to the target
+       axis
+
+    Exceptions:
+    __________
+
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the arrays are not recognized
+       types
+    """
+    if axis_in.__type__ != data_in.__type__:
+        raise TypeError("Input Axis and Input Data are not the same type.")
+
+    if axis_in.__type__ != axis_out.__type__:
+        raise TypeError("Input Axis and Output Axis are not the same type.")
+
+    if data_in.__type__ != data_in_err2.__type__:
+        raise TypeError("Input Data and Input Data Err2 are not the same " \
+                        +"type.")
+
+    if (axis_in.__type__ == nessi_list.NessiList.DOUBLE):
+        output = nessi_list.NessiList(len(axis_out)-1)
+        output_err2 = nessi_list.NessiList(len(axis_out)-1)
+        frac_area = nessi_list.NessiList(len(axis_out)-1)
+        axis_manip_bind.rebin_axis_1D_frac_d(axis_in.__array__,
+                                             data_in.__array__,
+                                             data_in_err2.__array__,
+                                             axis_out.__array__,
+                                             output.__array__,
+                                             output_err2.__array__,
+                                             frac_area.__array__)
+
+        return (output, output_err2, frac_area)
+    else:
+        raise TypeError("Unknown primitive type %s" % str(data_in.__type__))
+
+##
+# \}
+
+##
 # \defgroup rebin_axis_2D axis_manip::rebin_axis_2D
 # \{
 
