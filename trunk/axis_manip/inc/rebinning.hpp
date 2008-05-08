@@ -332,6 +332,8 @@ namespace AxisManip
    * is not one more than the size of input and input_err2.
    * \exception std::invalid_argument is thrown if the size of
    * axis_out is not one more than the size of output and output_err2.
+   * \exception std::invalid_argument is thrown if the size of output is not 
+   * equal to frac_area.
    */
 
   template <typename NumT>
