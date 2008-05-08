@@ -53,6 +53,8 @@ libAxisManip_la_SOURCES = \
 	rebin_2D_quad_to_rectlin.cpp \
 	rebin_axis_1D.hpp \
 	rebin_axis_1D.cpp \
+	rebin_axis_1D_frac.hpp \
+	rebin_axis_1D_frac.cpp \
 	rebin_axis_2D.hpp \
 	rebin_axis_2D.cpp \
 	rebin_axis_4D.hpp \
