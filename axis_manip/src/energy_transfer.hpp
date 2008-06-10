@@ -96,6 +96,10 @@ namespace AxisManip
 
     // do the calculation
     size_t size_energy = initial_energy.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0; i < size_energy ; ++i )
       {
         retstr += __energy_transfer_dynamic(initial_energy[i],
@@ -106,6 +110,7 @@ namespace AxisManip
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
       }
+	}
 
     return retstr;
   }
@@ -161,6 +166,10 @@ namespace AxisManip
 
     // do the calculation
     size_t size_energy = initial_energy.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0; i < size_energy ; ++i )
       {
         retstr += __energy_transfer_dynamic(initial_energy[i],
@@ -171,6 +180,7 @@ namespace AxisManip
                                             energy_transfer[i],
                                             energy_transfer_err2[i]);
       }
+	}
 
     return retstr;
   }
@@ -226,6 +236,10 @@ namespace AxisManip
 
     // do the calculation
     size_t size_energy = final_energy.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0; i < size_energy ; ++i )
       {
         retstr += __energy_transfer_dynamic(initial_energy,
@@ -236,6 +250,7 @@ namespace AxisManip
                                             energy_transfer[i],
                                             energy_transfer_err2[i]);
       }
+	}
 
     return retstr;
   }
