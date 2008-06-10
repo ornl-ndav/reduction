@@ -88,6 +88,10 @@ namespace AxisManip
     retstr += __frequency_to_angular_frequency_static(a,a2);
 
     size_t sz = frequency.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i=0; i < sz; ++i)
       {
         retstr += __frequency_to_angular_frequency_dynamic(frequency[i],
@@ -97,6 +101,7 @@ namespace AxisManip
                                                            a,
                                                            a2);
       }
+	}
 
     return retstr;
 
