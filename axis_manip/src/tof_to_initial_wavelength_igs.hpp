@@ -100,6 +100,10 @@ namespace AxisManip
 
     // fill the results array
     size_t size_tof = tof.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0 ; i < size_tof ; ++i)
       {
         retstr +=
@@ -114,6 +118,7 @@ namespace AxisManip
                                                   a, b, c, ls2, inv_ls2,
                                                   ld2, wf2);
       }
+	}
 
     // send back all warnings
     return retstr;
