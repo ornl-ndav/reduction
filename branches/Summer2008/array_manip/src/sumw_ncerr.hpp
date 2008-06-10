@@ -82,6 +82,9 @@ namespace ArrayManip
 
 
     size_t sz = input1.size();
+
+	#pragma omp parallel for private(input1_err, input2_err, sum_err)
+	{
     for (size_t i = 0; i < sz; ++i)
       {
         // calculate the value
@@ -97,6 +100,7 @@ namespace ArrayManip
         output_err2[i]=(input1_err2[i]*input2_err+input2_err2[i]*input1_err)
           *(input1_err+input2_err);
       }
+	}
 
     return Nessi::EMPTY_WARN;
   }
