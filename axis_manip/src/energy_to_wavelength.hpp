@@ -89,6 +89,11 @@ namespace AxisManip
     retstr += __energy_to_wavelength_static(a);
 
     size_t sz = energy.size();
+
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0; i < sz; ++i)
       {
         retstr += __energy_to_wavelength_dynamic(energy[i],
@@ -97,6 +102,7 @@ namespace AxisManip
                                                  wavelength_err2[i],
                                                  a);
       }
+	}
 
     return retstr;
   }
