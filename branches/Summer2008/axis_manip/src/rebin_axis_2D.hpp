@@ -88,6 +88,9 @@ namespace AxisManip
     Nessi::Vector<NumT> stage1_err2;
     stage1_err2.reserve(nnew_input2 * nold_input1);
 
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for(size_t i = 0; i < nold_input1; ++i)
       {
         // Create space and fill a 2nd axis for data and err2 for both
@@ -128,6 +131,7 @@ namespace AxisManip
                            tmp_out_err2.end());
 
       }
+	}
 
     typename Nessi::Vector<NumT>::iterator iter;
     typename Nessi::Vector<NumT>::iterator iter_err2;
@@ -135,6 +139,9 @@ namespace AxisManip
     typename Nessi::Vector<NumT>::iterator t_iter;
     typename Nessi::Vector<NumT>::iterator t_iter_err2;
 
+	#pragma omp parallel for default(private) \
+		shared(nnew_input2, nold_input1, nnew_input1, stage1, stage1_err2)
+	{
     for(size_t j = 0; j < nnew_input2; ++j)
       {
         Nessi::Vector<NumT> tmp_in(nold_input1);
@@ -193,6 +200,7 @@ namespace AxisManip
             ++t_iter_err2;
           }
       }
+	}
 
     return retstr;
   }
