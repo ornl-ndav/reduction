@@ -82,15 +82,15 @@ namespace ArrayManip
     NumT scalar2 = scalar * scalar;
 
     size_t size = array_in.size();
-	//#pragma omp parallel for default(shared)
-	//{
-      for (size_t i = 0; i < size; ++i)
+	#pragma omp parallel for default(shared) private(i)
+	{
+    for (size_t i = 0; i < size; ++i)
       {
         array_out[i] = array_in[i] * scalar;
         array_out_err2[i] = (scalar2 * array_in_err2[i]) +
           ((array_in[i] * array_in[i]) * scalar_err2);
       }
-	//}
+	}
     return Nessi::EMPTY_WARN;
   }
 
@@ -138,11 +138,14 @@ namespace ArrayManip
                    output.begin(), std::multiplies<NumT>());
 
     size_t sz = input1.size();
+	#pragma omp parallel for default(shared) private(i)
+	{
     for (size_t i = 0; i < sz; ++i)
       {
         output_err2[i] = (input2[i] * input2[i] * input1_err2[i]) +
           (input1[i] * input1[i] * input2_err2[i]);
       }
+	}
 
     return Nessi::EMPTY_WARN;
   }
