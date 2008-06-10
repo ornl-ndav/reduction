@@ -95,6 +95,9 @@ namespace AxisManip
     length_axis_out.push_back(axis_out_1.size() - 1);
     length_axis_out.push_back(axis_out_2.size() - 1);
 
+	#pragma omp parallel for default(private) \
+		shared(axis_in_1, axis_in_2)
+	{
     for(std::size_t k = 0; k < input_size; ++k)
       {
         // Get the bin boundaries in out of the original axes
@@ -174,6 +177,8 @@ namespace AxisManip
           }
 
         // Actually do the rebinning
+		#pragma omp parallel for default(private)
+		{
         for(std::size_t i = index_x_left; i < index_x_right; ++i)
           {
             NumT x_rebin_lo = axis_out_1[i];
@@ -181,7 +186,9 @@ namespace AxisManip
 
             NumT delta_x = std::min(x_orig_hi, x_rebin_hi) - 
               std::max(x_orig_lo, x_rebin_lo);
-
+			
+			#pragma omp parallel for default(private)
+			{
             for(std::size_t j = index_y_left; j < index_y_right; ++j)
               {
                 NumT y_rebin_lo = axis_out_2[j];
@@ -199,8 +206,11 @@ namespace AxisManip
                 output[channel] += input[k] * portion;                
                 output_err2[channel] += input_err2[k] * portion * portion;
               }
+			}
           }
+		}
       }
+	}
     
     return retstr;
   }
