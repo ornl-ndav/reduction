@@ -250,7 +250,10 @@ namespace AxisManip
     std::vector<std::size_t> length_axis_out;
     length_axis_out.push_back(axis_out_1.size() - 1);
     length_axis_out.push_back(axis_out_2.size() - 1);
-
+	
+	#pragma omp parallel for default(private) \
+			shared(axis_in_x1, axis_in_x2, axis_in_x3, axis_in_x4)
+	{
     for(std::size_t k = 0; k < input_size; ++k)
       {
         // Get the bin boundaries in out of the original axes
@@ -305,6 +308,9 @@ namespace AxisManip
           }
 
         // Actually do the rebinning
+		#pragma omp parallel for default(private) \
+			 	shared(axis_out_1)
+		{
         for(std::size_t i = index_x_left; i <= index_x_right; ++i)
           {
             for(std::size_t j = index_y_left; j <= index_y_right; ++j)
@@ -364,7 +370,9 @@ namespace AxisManip
                 frac_area[channel] += portion;
               }
           }
+		}
       }
+	}
     
     return retstr;
   }
