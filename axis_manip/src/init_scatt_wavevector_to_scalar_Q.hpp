@@ -101,6 +101,10 @@ namespace AxisManip
 
     // do the calculation
     size_t size_wavevector=initial_wavevector.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
         retstr +=
@@ -112,6 +116,7 @@ namespace AxisManip
                                                       polar_angle_err2, a, b,
                                                       sang, Q[i], Q_err2[i]);
       }
+	}
 
     return retstr;
   }
@@ -174,6 +179,10 @@ namespace AxisManip
 
     // do the calculation
     size_t size_wavevector=final_wavevector.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
         retstr +=
@@ -185,6 +194,7 @@ namespace AxisManip
                                                       polar_angle_err2, a, b,
                                                       sang, Q[i], Q_err2[i]);
       }
+	}
 
     return retstr;
   }
@@ -246,6 +256,10 @@ namespace AxisManip
                                                          c);
     // do the calculation
     size_t size_wavevector=initial_wavevector.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0 ; i < size_wavevector ; ++i)
       {
         retstr +=
@@ -257,6 +271,7 @@ namespace AxisManip
                                                       polar_angle_err2, a, b,
                                                       c, Q[i], Q_err2[i]);
       }
+	}
 
     return retstr;
   }
