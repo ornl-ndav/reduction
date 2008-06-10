@@ -48,10 +48,14 @@ namespace  ArrayManip
           void *temp=NULL)
   {
     size_t size = input.size();
+
+	#pragma omp parallel for default(shared) private(i)
+	{
     for (size_t i = 0; i < size; ++i)
       {
         output[i] = static_cast<NumT>(std::abs(static_cast<double>(input[i])));
       }
+	}
 
     return Nessi::EMPTY_WARN;
   }
