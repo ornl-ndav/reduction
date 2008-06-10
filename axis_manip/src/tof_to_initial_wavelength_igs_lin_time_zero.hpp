@@ -111,6 +111,10 @@ namespace AxisManip
 
     // fill the results array
     size_t size_tof = tof.size();
+
+	#pragma omp parallel for default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0 ; i < size_tof ; ++i)
       {
         retstr +=
@@ -121,6 +125,7 @@ namespace AxisManip
                                                   initial_wavelength_err2[i],
                                                   a, a2, b, c, d);
       }
+	}
 
     // send back all warnings
     return retstr;
