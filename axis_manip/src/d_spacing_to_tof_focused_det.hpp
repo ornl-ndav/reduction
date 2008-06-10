@@ -104,6 +104,10 @@ namespace AxisManip
 
     // do the calculation
     size_t size_d_spacing = d_spacing.size();
+	
+	#pragma omp parallel default(shared) private(i, retstr) \
+		reduction(+:retstr)
+	{
     for (size_t i = 0; i < size_d_spacing; ++i)
       {
         retstr += __d_spacing_to_tof_focused_det_dynamic(d_spacing[i], 
@@ -116,6 +120,7 @@ namespace AxisManip
                                                          tof[i],
                                                          tof_err2[i]);
       }
+	}
 
     return retstr;
   }
