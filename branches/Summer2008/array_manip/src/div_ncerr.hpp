@@ -195,12 +195,15 @@ namespace ArrayManip
                    output.begin(), std::divides<NumT>());
 
     size_t sz = input1.size();
+	#pragma omp parallel for default(shared) private(i, input2_2)
+	{
     for (size_t i = 0; i < sz; ++i)
       {
         NumT input2_2 = input2[i] * input2[i];
         output_err2[i] = (input1_err2[i] / input2_2) +
           (((input1[i] * input1[i]) / (input2_2 * input2_2)) * input2_err2[i]);
       }
+	}
 
     return Nessi::EMPTY_WARN;
   }
