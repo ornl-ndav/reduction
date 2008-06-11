@@ -82,7 +82,7 @@ namespace ArrayManip
     NumT scalar2 = scalar * scalar;
 
     size_t size = array_in.size();
-	#pragma omp parallel for default(shared) private(i)
+	#pragma omp parallel for
 	{
     for (size_t i = 0; i < size; ++i)
       {
@@ -138,7 +138,7 @@ namespace ArrayManip
                    output.begin(), std::multiplies<NumT>());
 
     size_t sz = input1.size();
-	#pragma omp parallel for default(shared) private(i)
+	#pragma omp parallel for
 	{
     for (size_t i = 0; i < sz; ++i)
       {
