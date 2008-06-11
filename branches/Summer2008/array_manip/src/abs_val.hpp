@@ -49,7 +49,7 @@ namespace  ArrayManip
   {
     size_t size = input.size();
 
-	#pragma omp parallel for default(shared) private(i)
+	#pragma omp parallel for
 	{
     for (size_t i = 0; i < size; ++i)
       {
