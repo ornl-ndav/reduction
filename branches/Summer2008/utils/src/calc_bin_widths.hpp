@@ -72,8 +72,7 @@ namespace Utils
     std::string warn;
     
     std::size_t size_bin_widths = bin_widths.size();
-	#pragma omp parallel for default(shared) private(i, warn) \
-		reduction(+:retstr)
+	#pragma omp parallel for private(warn) reduction(+:retstr)
 	{
     for (std::size_t i = 0; i < size_bin_widths; ++i)
       {
@@ -81,10 +80,11 @@ namespace Utils
                                          axis_err2[i], axis_err2[i+1], 
                                          bin_widths[i], 
                                          bin_widths_err2[i]);
-        if (!warn.empty())
+        if (warn.empty())
           {
-            retstr += warn;
+            warn = "";
           }
+		retstr += warn;
       }
 	}
 
