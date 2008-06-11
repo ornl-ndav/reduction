@@ -81,7 +81,7 @@ namespace ArrayManip
       }
 
     size_t size = array_in.size();
-	#pragma omp parallel for default(shared) private(i)
+	#pragma omp parallel for
 	{
     for (size_t i = 0; i < size; ++i)
       {
@@ -227,7 +227,7 @@ namespace ArrayManip
 
     std::size_t stopping_criteria = i2_start + i2_span * size;
 	
-	#pragma omp parallel if(i1_span > 0 && i2_span > 0 && o_span > 0) for\
+	#pragma omp parallel if(i1_span > 0 && i2_span > 0 && o_span > 0) for \
 		default(shared) private(i, j, k)
 	{
     for(i = i1_start, j = i2_start, k = o_start; j < stopping_criteria;
