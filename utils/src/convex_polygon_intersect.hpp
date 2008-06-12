@@ -123,7 +123,7 @@ namespace Utils
     eEdgeIn inflag = UNKNOWN;
 
     std::size_t max_iters = 2 * (a_size + b_size);
-
+	bool error = false;
     for (std::size_t i = 1; i <= max_iters; ++i)
       {
         // Classify both edge destination points with respect to the opposing
@@ -182,7 +182,8 @@ namespace Utils
                   }
                 else
                   {
-                    return Nessi::EMPTY_WARN;
+					error = true;
+					break;
                   }
               }
 
@@ -266,6 +267,10 @@ namespace Utils
               }
           }
       } // for
+	if (error)
+	{
+		return Nessi::EMPTY_WARN;
+	} 
 
     if (cx_coord.empty() && cy_coord.empty())
       {
@@ -299,7 +304,7 @@ namespace Utils
       {
         // Intersection points have been found, but the main loop was 
         // insufficient to find the starting intersection point again
-        return Nessi::EMPTY_WARN;
+        return Nessi::EMPTY_WARN;;
       }
   }
 
