@@ -68,26 +68,35 @@ namespace Utils
 
     weighted_ave = static_cast<NumT>(0.0);
     weighted_ave_err2 = static_cast<NumT>(0.0);
-
+	#pragma omp parallel for private(do_once)
+	{
     for(std::size_t i = bin_start; i <= bin_end; ++i)
       {
+		static_cast<NumT>
+		static_cast<NumT>
         if(compare(input_err2[i], static_cast<NumT>(0.0)) != 0) 
           {
-            weighted_ave += (input[i] / input_err2[i]);
-            weighted_ave_err2 += (static_cast<NumT>(1.) / input_err2[i]);
+			#pragma omp critical
+			{
+            	weighted_ave += (input[i] / input_err2[i]);
+            	weighted_ave_err2 += (static_cast<NumT>(1.) / input_err2[i]);
+			}
           }
         else
           {
             if(do_once && warn.find("Utils") == std::string::npos)
               {
-                warn += wa_func_str + " Skipping index ";
+				#pragma omp atomic
+                	warn += wa_func_str + " Skipping index ";
                 do_once = false;
               }
             std::ostringstream os;
             os << i << " ";
-            warn += os.str();
+			#pragma omp atomic
+            	warn += os.str();
           }
       }
+	}
 
     if(compare(weighted_ave_err2, static_cast<NumT>(0.0)) != 0)                
       {
