@@ -73,6 +73,9 @@ namespace Utils
     // Have a standard polygon. If the point lies inside the polygon, the
     // classification is anything but LEFT. A LEFT classification denotes that 
     // point lies outside the polygon.
+	bool returnType = true;
+	#pragma omp parallel for private(orig_pos, dest_pos, c)
+	{
     for (std::size_t i = 0; i < poly_size; ++i, ++orig_pos, ++dest_pos)
       {
         // Advance polygon edge
@@ -86,11 +89,13 @@ namespace Utils
                                              y_coord[dest_pos]);
         if (LEFT == c)
           {
-            return false;
+			#pragma omp atomic
+            	returnType = false;
           }
       }
+	}
 
-    return true;
+    return returnType;
   }
 } // Utils
 
