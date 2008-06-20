@@ -1,5 +1,5 @@
 /*
- *                     SNS Common Libraries
+ *                     SNS Common Libraries 
  *           A part of the SNS Analysis Software Suite.
  *
  *                  Spallation Neutron Source
