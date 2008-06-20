@@ -22,8 +22,8 @@
 
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi/inc \
-	      -I$(top_srcdir)/utils/inc
+AM_CPPFLAGS = $(OPENMP) -I. -I$(top_srcdir)/array_manip/inc -I$(top_srcdir)/nessi/inc \
+	      -I$(top_srcdir)/utils/inc 
 
 pkglib_LTLIBRARIES = libArrayManip.la
 
