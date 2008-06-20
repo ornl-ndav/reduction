@@ -185,7 +185,7 @@ namespace AxisManip
     size_t size_wavevector=final_wavevector.size();
 
 	#pragma omp parallel for
-    for (int = 0 ; i < (int) size_wavevector ; ++i)
+    for (int i = 0 ; i < (int) size_wavevector ; ++i)
     {
         std::string tempS =
           __init_scatt_wavevector_to_scalar_Q_dynamic(
