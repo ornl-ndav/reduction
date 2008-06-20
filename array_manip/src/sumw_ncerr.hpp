@@ -81,26 +81,24 @@ namespace ArrayManip
       }
 
 
-    size_t sz = input1.size();
+    int sz = (int) input1.size();
 
-	#pragma omp parallel for private(input1_err, input2_err, sum_err)
-	{
-    for (size_t i = 0; i < sz; ++i)
-      {
+	#pragma omp parallel for 
+    for (int i = 0; i < sz; i++)
+    {
         // calculate the value
         NumT input1_err =
-          static_cast<NumT>(std::sqrt(static_cast<double>(input1_err2[i])));
+          	static_cast<NumT>(std::sqrt(static_cast<double>(input1_err2[i])));
         NumT input2_err =
-          static_cast<NumT>(std::sqrt(static_cast<double>(input2_err2[i])));
+          	static_cast<NumT>(std::sqrt(static_cast<double>(input2_err2[i])));
         NumT sum_err = input1_err + input2_err;
         output[i] = (input1[i] / input1_err) + (input2[i] / input2_err);
         output[i] *= sum_err / static_cast<NumT>(2.);
 
         // calculate the uncertainty
         output_err2[i]=(input1_err2[i]*input2_err+input2_err2[i]*input1_err)
-          *(input1_err+input2_err);
-      }
-	}
+          	*(input1_err+input2_err);
+    }
 
     return Nessi::EMPTY_WARN;
   }
