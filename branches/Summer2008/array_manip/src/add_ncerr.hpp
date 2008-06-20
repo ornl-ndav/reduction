@@ -81,14 +81,11 @@ namespace ArrayManip
       }
 
     size_t size = array_in.size();
-	#pragma omp parallel for
-	{
     for (size_t i = 0; i < size; ++i)
       {
         array_out[i] = array_in[i] + scalar;
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
       }
-	}
     return Nessi::EMPTY_WARN;
   }
 
@@ -227,16 +224,12 @@ namespace ArrayManip
 
     std::size_t stopping_criteria = i2_start + i2_span * size;
 	
-	#pragma omp parallel if(i1_span > 0 && i2_span > 0 && o_span > 0) for \
-		default(shared) private(i, j, k)
-	{
     for(i = i1_start, j = i2_start, k = o_start; j < stopping_criteria;
         i += i1_span, j += i2_span, k += o_span)
       {
         output[k] = input1[i] + input2[j];
         output_err2[k] = input1_err2[i] + input2_err2[j];
       }
-	}
 
     return Nessi::EMPTY_WARN;
   }
