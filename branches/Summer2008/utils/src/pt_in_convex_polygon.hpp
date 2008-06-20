@@ -75,7 +75,6 @@ namespace Utils
     // point lies outside the polygon.
 	bool returnType = true;
 	
-	#pragma omp parallel for private(orig_pos, dest_pos)
     for (int i = 0; i < (int) poly_size; ++i)
       {
         // Advance polygon edge
@@ -86,13 +85,10 @@ namespace Utils
                                              x_coord[orig_pos + static_cast<std::size_t>(i)], 
                                              y_coord[orig_pos + static_cast<std::size_t>(i)],
                                              x_coord[dest_pos + static_cast<std::size_t>(i)],
-                                             y_coord[dest_pos + static_cast<std::size_t>(i)];
+                                             y_coord[dest_pos + static_cast<std::size_t>(i)]);
         if (LEFT == c)
           {
-				#pragma omp critical
-				{
-            		returnType = false;
-				}
+            	returnType = false;
           }
       }
 
