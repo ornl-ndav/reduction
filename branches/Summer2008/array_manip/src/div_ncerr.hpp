@@ -82,19 +82,17 @@ namespace ArrayManip
 
     NumT scalar2 = scalar * scalar;
 
-    size_t size = array_in.size();
+    int size = (int) array_in.size();
 
-	#pragma omp parallel default(shared) private(i, array_in2)
-	{
-    for (size_t i = 0; i < size; ++i)
-      {
-      array_out[i] = scalar / array_in[i];
-      NumT array_in2 = array_in[i] * array_in[i];
-      array_out_err2[i] =
-        ((scalar2 / (array_in2 * array_in2)) * array_in_err2[i])
-        + (scalar_err2 / array_in2);
-      }
-	}
+	#pragma omp parallel for
+    for (int i = 0; i < size; i++)
+    {
+      	array_out[i] = scalar / array_in[i];
+      	NumT array_in2 = array_in[i] * array_in[i];
+      	array_out_err2[i] =
+        	((scalar2 / (array_in2 * array_in2)) * array_in_err2[i])
+        	+ (scalar_err2 / array_in2);
+    }
     return Nessi::EMPTY_WARN;
   }
 
@@ -140,17 +138,18 @@ namespace ArrayManip
     NumT scalar2 = scalar * scalar;
     NumT scalar4 = scalar2 * scalar2;
 
-    size_t size = array_in.size();
+    int size = (int) array_in.size();
 
-	#pragma omp parallel for 
-    for (size_t i = 0; i < size; ++i)
-      {
+	
+	#pragma omp parallel for
+    for (int i = 0; i < size; i++)
+    {
         array_out[i] = array_in[i] / scalar;
         array_out_err2[i] = (array_in_err2[i] / scalar2)
-          + (((array_in[i] * array_in[i])/ scalar4) * scalar_err2);
-      }
+          	+ (((array_in[i] * array_in[i])/ scalar4) * scalar_err2);
+   	}
     return Nessi::EMPTY_WARN;
-  }
+	}
 
   // 3.9
   template <typename NumT>
@@ -194,16 +193,15 @@ namespace ArrayManip
     std::transform(input1.begin(), input1.end(), input2.begin(),
                    output.begin(), std::divides<NumT>());
 
-    size_t sz = input1.size();
-	#pragma omp parallel for default(shared) private(i, input2_2)
-	{
-    for (size_t i = 0; i < sz; ++i)
-      {
+    int sz = (int) input1.size();
+
+	#pragma omp parallel for 
+    for (int i = 0; i < sz; i++)
+   	{
         NumT input2_2 = input2[i] * input2[i];
         output_err2[i] = (input1_err2[i] / input2_2) +
-          (((input1[i] * input1[i]) / (input2_2 * input2_2)) * input2_err2[i]);
-      }
-	}
+          	(((input1[i] * input1[i]) / (input2_2 * input2_2)) * input2_err2[i]);
+    }
 
     return Nessi::EMPTY_WARN;
   }
