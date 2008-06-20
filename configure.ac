@@ -67,6 +67,20 @@ AC_ARG_ENABLE(optswig,
 esac],[optswig=false])
 AM_CONDITIONAL(OPTSWIG, test x$optswig = xtrue)
 
+AC_ARG_ENABLE(openmp,
+[ --enable-openmp  Optimize processing time],
+[case "${enableval}" in
+	yes) openmp=true;;
+	no) openmp=false;;
+	*) AC_MSG_ERROR(bad value ${enableval} for --enable-openmp) ;;
+esac],[openmp=false])
+if test x$openmp = xtrue; then
+	OPENMP='-fopenmp'
+else
+	OPENMP=''
+fi
+AC_SUBST(OPENMP)
+
 # Our code requires Python 2.3
 PYTHON_REQUIRED=2.3
 AM_PATH_PYTHON($PYTHON_REQUIRED,, :)
