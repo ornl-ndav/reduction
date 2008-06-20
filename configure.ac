@@ -1,5 +1,5 @@
 dnl                     SNS Common Libraries
-dnl           A part of the SNS Analysis Software Suite.
+dnl           A part of the SNS Analysis Software Suite. 
 dnl
 dnl                  Spallation Neutron Source
 dnl          Oak Ridge National Laboratory, Oak Ridge TN.
