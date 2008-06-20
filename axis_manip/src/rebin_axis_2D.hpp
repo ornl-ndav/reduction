@@ -78,7 +78,7 @@ namespace AxisManip
 
     size_t nold_input1 = axis_in_1.size() - 1;
     size_t nold_input2 = axis_in_2.size() - 1;
-    size_t nnew_input1 = axis_out_1.size() - 1;
+    size_t nnew_input1 = axis_out_1.size() - 1; 
     size_t nnew_input2 = axis_out_2.size() - 1;
 
     // Create space for series of rebinned 2nd axes
@@ -87,15 +87,14 @@ namespace AxisManip
 
     Nessi::Vector<NumT> stage1_err2;
     stage1_err2.reserve(nnew_input2 * nold_input1);
-
-	#pragma omp parallel for default(shared) private(i, retstr) \
-		reduction(+:retstr)
-	{
-    for(size_t i = 0; i < nold_input1; ++i)
-      {
+	std::string error = "";
+	bool no_error = true;
+	#pragma omp parallel for
+    for(int i = 0; i < (int) nold_input1; ++i)
+    {
         // Create space and fill a 2nd axis for data and err2 for both
         // input and output
-
+		bool no_go = false;
         Nessi::Vector<NumT> tmp_in;
         tmp_in.reserve(nold_input2);
         tmp_in.insert(tmp_in.begin(), input.begin()+(i * nold_input2),
@@ -111,27 +110,44 @@ namespace AxisManip
         Nessi::Vector<NumT> tmp_out_err2(nnew_input2);
 
         try
-          {
-            retstr += rebin_axis_1D(axis_in_2, tmp_in, tmp_in_err2, axis_out_2,
+        {
+           	std::string tempS = rebin_axis_1D(axis_in_2, tmp_in, tmp_in_err2, axis_out_2,
                                     tmp_out, tmp_out_err2);
-          }
+			if (!tempS.empty())
+			{
+				#pragma omp critical
+				{
+					retstr += tempS;
+				}
+			}
+        }
         catch(std::invalid_argument &e)
-          {
-            throw std::invalid_argument(ra2_func_str+" rebin axis 2: "
-                                        +e.what());
-          }
+        {
+			no_go = true;
+			#pragma omp critical
+			{
+				no_error = false;
+				error += ra2_func_str+" rebin axis 2: "+e.what();;
+			}          
+        }
+		if (!no_go)
+		{			
+        	// Fill returned information into temporary storage
 
-        // Fill returned information into temporary storage
-
-        stage1.insert(stage1.begin()+(i*nnew_input2), tmp_out.begin(),
+        	stage1.insert(stage1.begin()+(i*nnew_input2), tmp_out.begin(),
                       tmp_out.end());
 
-        stage1_err2.insert(stage1_err2.begin()+(i*nnew_input2),
+        	stage1_err2.insert(stage1_err2.begin()+(i*nnew_input2),
                            tmp_out_err2.begin(),
                            tmp_out_err2.end());
-
-      }
+		}
 	}
+	if (no_error)
+	{
+		throw std::invalid_argument(error);
+	}
+	error = "";
+	no_error = true;
 
     typename Nessi::Vector<NumT>::iterator iter;
     typename Nessi::Vector<NumT>::iterator iter_err2;
@@ -139,11 +155,10 @@ namespace AxisManip
     typename Nessi::Vector<NumT>::iterator t_iter;
     typename Nessi::Vector<NumT>::iterator t_iter_err2;
 
-	#pragma omp parallel for default(private) \
-		shared(nnew_input2, nold_input1, nnew_input1, stage1, stage1_err2)
-	{
-    for(size_t j = 0; j < nnew_input2; ++j)
-      {
+	#pragma omp parallel for
+    for(int j = 0; j < (int) nnew_input2; ++j)
+    {
+		bool no_go = false;
         Nessi::Vector<NumT> tmp_in(nold_input1);
         tmp_in.reserve(nold_input1);
 
@@ -157,7 +172,7 @@ namespace AxisManip
         t_iter_err2 = tmp_in_err2.begin();
 
         while(iter < stage1.end() && iter_err2 < stage1_err2.end())
-          {
+        {
             *t_iter = *iter;
             *t_iter_err2 = *iter_err2;
 
@@ -166,40 +181,57 @@ namespace AxisManip
 
             ++t_iter;
             ++t_iter_err2;
-          }
+        }
 
         Nessi::Vector<NumT> tmp_out(nnew_input1);
         Nessi::Vector<NumT> tmp_out_err2(nnew_input1);
 
         try
-          {
-            retstr += rebin_axis_1D(axis_in_1, tmp_in, tmp_in_err2, axis_out_1,
+        {
+            std::string tempS  = rebin_axis_1D(axis_in_1, tmp_in, tmp_in_err2, axis_out_1,
                                     tmp_out, tmp_out_err2);
-          }
+			if (!tempS.empty())
+			{
+				#pragma omp critical
+				{
+					retstr += tempS;
+				}
+			}
+        }
         catch(std::invalid_argument &e)
-          {
-            throw std::invalid_argument(ra2_func_str+" rebin axis 1: "
-                                        +e.what());
-          }
+        {	
+			no_go = true;
+			#pragma omp critical
+			{
+				no_error = false;
+				error += ra2_func_str+" rebin axis 1: "+e.what();
+			}         
+        }
+		if (!no_go)
+		{
+        	iter = output.begin()+j;
+        	iter_err2 = output_err2.begin()+j;
 
-        iter = output.begin()+j;
-        iter_err2 = output_err2.begin()+j;
+        	t_iter = tmp_out.begin();
+        	t_iter_err2 = tmp_out_err2.begin();
 
-        t_iter = tmp_out.begin();
-        t_iter_err2 = tmp_out_err2.begin();
+        	while(iter < output.end() && iter_err2 < output_err2.end())
+        	{
+            	*iter = *t_iter;
+            	*iter_err2 = *t_iter_err2;
 
-        while(iter < output.end() && iter_err2 < output_err2.end())
-          {
-            *iter = *t_iter;
-            *iter_err2 = *t_iter_err2;
+            	advance(iter, nnew_input2);
+            	advance(iter_err2, nnew_input2);
 
-            advance(iter, nnew_input2);
-            advance(iter_err2, nnew_input2);
+            	++t_iter;
+            	++t_iter_err2;
+        	}
+		}
+  	}
 
-            ++t_iter;
-            ++t_iter_err2;
-          }
-      }
+	if (!no_error)
+	{
+		throw std::invalid_argument(error);
 	}
 
     return retstr;

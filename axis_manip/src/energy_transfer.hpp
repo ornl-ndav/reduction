@@ -36,6 +36,7 @@
 #include "size_checks.hpp"
 #include <stdexcept>
 
+
 namespace AxisManip
 {
   /// String for holding the energy_transfer function name
@@ -96,21 +97,25 @@ namespace AxisManip
 
     // do the calculation
     size_t size_energy = initial_energy.size();
-
-	#pragma omp parallel for default(shared) private(i, retstr) \
-		reduction(+:retstr)
-	{
-    for (size_t i = 0; i < size_energy ; ++i )
-      {
-        retstr += __energy_transfer_dynamic(initial_energy[i],
+	
+	#pragma omp parallel for
+    for (int i = 0; i < (int) size_energy ; ++i )
+    {
+        std::string tempS = __energy_transfer_dynamic(initial_energy[i],
                                        initial_energy_err2[i],
                                        final_energy[i],
                                        final_energy_err2[i],
                                        h, h2,
                                        energy_transfer[i],
                                        energy_transfer_err2[i]);
-      }
-	}
+		if (!tempS.empty())
+		{
+			#pragma omp critical
+			{
+				retstr += tempS;
+			}
+		}
+    }
 
     return retstr;
   }
@@ -166,21 +171,26 @@ namespace AxisManip
 
     // do the calculation
     size_t size_energy = initial_energy.size();
+	std::string tempS[(int) size_energy];
 
-	#pragma omp parallel for default(shared) private(i, retstr) \
-		reduction(+:retstr)
-	{
-    for (size_t i = 0; i < size_energy ; ++i )
-      {
-        retstr += __energy_transfer_dynamic(initial_energy[i],
+	#pragma omp parallel for
+    for (int i = 0; i < (int) size_energy ; ++i )
+    {
+       	std::string tempS = __energy_transfer_dynamic(initial_energy[i],
                                             initial_energy_err2[i],
                                             final_energy,
                                             final_energy_err2,
                                             h, h2,
                                             energy_transfer[i],
                                             energy_transfer_err2[i]);
-      }
-	}
+		if (!tempS.empty())
+		{
+			#pragma omp critical
+			{
+				retstr += tempS;
+			}
+		}
+    }
 
     return retstr;
   }
@@ -236,21 +246,26 @@ namespace AxisManip
 
     // do the calculation
     size_t size_energy = final_energy.size();
+	std::string tempS[(int) size_energy];
 
-	#pragma omp parallel for default(shared) private(i, retstr) \
-		reduction(+:retstr)
-	{
-    for (size_t i = 0; i < size_energy ; ++i )
-      {
-        retstr += __energy_transfer_dynamic(initial_energy,
+	#pragma omp parallel for
+    for (int i = 0; i < (int) size_energy ; ++i )
+    {
+        std::string tempS = __energy_transfer_dynamic(initial_energy,
                                             initial_energy_err2,
                                             final_energy[i],
                                             final_energy_err2[i],
                                             h, h2,
                                             energy_transfer[i],
                                             energy_transfer_err2[i]);
-      }
-	}
+		if (!tempS.empty())
+		{
+			#pragma omp critical
+			{
+				retstr += tempS;
+			}
+		}
+    }
 
     return retstr;
   }

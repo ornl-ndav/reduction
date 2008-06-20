@@ -110,22 +110,25 @@ namespace AxisManip
                                                     a, a2, b, c, d);
 
     // fill the results array
-    size_t size_tof = tof.size();
-
-	#pragma omp parallel for default(shared) private(i, retstr) \
-		reduction(+:retstr)
-	{
-    for (size_t i = 0 ; i < size_tof ; ++i)
-      {
-        retstr +=
+    int size_tof = (int) tof.size();
+	#pragma omp parallel for
+    for (int i = 0 ; i < (int) size_tof ; ++i)
+    {
+        std::string tempS =
           __tof_to_initial_wavelength_igs_lin_time_zero_dynamic(
                                                   tof[i], 
                                                   tof_err2[i],
                                                   initial_wavelength[i],
                                                   initial_wavelength_err2[i],
                                                   a, a2, b, c, d);
-      }
-	}
+		if (!tempS.empty())
+		{
+			#pragma omp critical
+			{
+				retstr += tempS;
+			}
+		}
+    }
 
     // send back all warnings
     return retstr;
