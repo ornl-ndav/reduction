@@ -1,4 +1,4 @@
-/*
+/* 
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
@@ -74,26 +74,27 @@ namespace Utils
     // classification is anything but LEFT. A LEFT classification denotes that 
     // point lies outside the polygon.
 	bool returnType = true;
-	#pragma omp parallel for private(orig_pos, dest_pos, c)
-	{
-    for (std::size_t i = 0; i < poly_size; ++i, ++orig_pos, ++dest_pos)
+	
+	#pragma omp parallel for private(orig_pos, dest_pos)
+    for (int i = 0; i < (int) poly_size; ++i)
       {
         // Advance polygon edge
-        orig_pos = __wrap_indicies(orig_pos, poly_size);
-        dest_pos = __wrap_indicies(dest_pos, poly_size);
+        orig_pos = __wrap_indicies(orig_pos + static_cast<std::size_t>(i), poly_size);
+        dest_pos = __wrap_indicies(dest_pos + static_cast<std::size_t>(i), poly_size);
 
         eEdgeClass c = __classify_pt_to_edge(pt_x, pt_y, 
-                                             x_coord[orig_pos], 
-                                             y_coord[orig_pos],
-                                             x_coord[dest_pos],
-                                             y_coord[dest_pos]);
+                                             x_coord[orig_pos + static_cast<std::size_t>(i)], 
+                                             y_coord[orig_pos + static_cast<std::size_t>(i)],
+                                             x_coord[dest_pos + static_cast<std::size_t>(i)],
+                                             y_coord[dest_pos + static_cast<std::size_t>(i)];
         if (LEFT == c)
           {
-			#pragma omp atomic
-            	returnType = false;
+				#pragma omp critical
+				{
+            		returnType = false;
+				}
           }
       }
-	}
 
     return returnType;
   }

@@ -74,16 +74,16 @@ namespace Utils
                                     "must have the first and second " + 
                                     "elements repeated at end of arrays.");
       }
+	
+	double tempArea = 0.0;
+	
+	#pragma omp parallel for reduction(+:tempArea)
+    for (int i = 1; i <= (int) size_poly; ++i)
+    {
+        tempArea += (double) x_coord[i] * (y_coord[i+1] - y_coord[i-1]);
+    }
 
-    area = static_cast<NumT>(0.0);
-    
-	#pragma omp parallel for reduction(+:area)
-	{
-    for (std::size_t i = 1; i <= size_poly; ++i)
-      {
-        area += (x_coord[i] * (y_coord[i+1] - y_coord[i-1]));
-      }
-	}
+	area = (NumT) tempArea;
 
     area /= static_cast<NumT>(2.0);
 

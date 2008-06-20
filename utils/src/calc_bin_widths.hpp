@@ -1,4 +1,4 @@
-/*
+/* 
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
@@ -69,24 +69,25 @@ namespace Utils
       }
 
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
     
     std::size_t size_bin_widths = bin_widths.size();
-	#pragma omp parallel for private(warn) reduction(+:retstr)
-	{
-    for (std::size_t i = 0; i < size_bin_widths; ++i)
+	
+	#pragma omp parallel for
+    for (int i = 0; i < (int) size_bin_widths; ++i)
       {
-        warn = __calc_bin_widths_dynamic(axis[i], axis[i+1], 
+        std::string warn = __calc_bin_widths_dynamic(axis[i], axis[i+1], 
                                          axis_err2[i], axis_err2[i+1], 
                                          bin_widths[i], 
                                          bin_widths_err2[i]);
-        if (warn.empty())
+        if (!warn.empty())
           {
-            warn = "";
+			#pragma omp critical
+			{
+				retstr += warn;
+			}
           }
-		retstr += warn;
+		
       }
-	}
 
     return retstr;
   }

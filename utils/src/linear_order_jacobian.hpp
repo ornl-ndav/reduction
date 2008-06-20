@@ -1,4 +1,4 @@
-/*
+/* 
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
@@ -83,25 +83,30 @@ namespace Utils
                                     +e.what());
       }
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     std::size_t size_in = input.size();
-    for (std::size_t i = 0; i < size_in; ++i)
+
+	#pragma omp parallel for
+    for (int i = 0; i < (int) size_in; ++i)
       {
-        warn = linear_order_jacobian(orig_axis[i], orig_axis[i+1],
+        std::string warn = linear_order_jacobian(orig_axis[i], orig_axis[i+1],
                                      transform_axis[i], transform_axis[i+1],
                                      input[i], input_err2[i],
                                      output[i], output_err2[i]);
-       if (!warn.empty())
+        if (!warn.empty())
           {
-            retstr += warn;
+			#pragma omp critical
+			{
+				retstr += warn;
+			}
           }
+				
       }
 
     return retstr;
   }
 
-  // 3.49
+  // 3.49 
   template <typename NumT>
   std::string
   linear_order_jacobian(const NumT orig_axis_lo,

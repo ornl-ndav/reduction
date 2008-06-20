@@ -61,11 +61,11 @@ namespace Utils
       {
         pt_class = LEFT;
       }
+
 	bool returnType = true;
-	#pragma omp parallel for
-	{
-    for (std::size_t i = 0; i < poly_size; ++i)
-      {
+	#pragma omp parallel for private(orig_pt, dest_pt)
+    for (int i = 0; i < (int) poly_size; ++i)
+    {
 		orig_pt = __wrap_indicies(i, poly_size);
         dest_pt = __wrap_indicies(i+1, poly_size);
         class_pt = __wrap_indicies(i+2, poly_size);
@@ -78,9 +78,11 @@ namespace Utils
         if (class_check != pt_class)
           {
             // Polygon must be concave
-            returnType = false;
-          }        
-      }
+			#pragma omp critical
+			{
+            	returnType = false;
+			}
+          }
 	}
 
     // Polygon must be convex
