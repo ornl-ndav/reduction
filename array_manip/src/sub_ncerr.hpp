@@ -81,16 +81,14 @@ namespace ArrayManip
       }
 
 
-    size_t size = array_in.size();
+    int size = (int) array_in.size();
 
 	#pragma omp parallel for
-	{
-    for (size_t i = 0; i < size; ++i)
-      {
+    for (int i = 0; i < size; i++)
+    {
         array_out[i] = array_in[i] - scalar;
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
-      }
-	}
+    }
     return Nessi::EMPTY_WARN;
   }
 
@@ -134,16 +132,14 @@ namespace ArrayManip
       }
 
 
-    size_t size = array_in.size();
+    int size = (int) array_in.size();
 	
 	#pragma omp parallel for
-	{
-    for (size_t i = 0; i < size; ++i)
-      {
+    for (int i = 0; i < size; i++)
+    {
         array_out[i] = scalar - array_in[i];
         array_out_err2[i] = array_in_err2[i] + scalar_err2;
-      }
-	}
+    }
     return Nessi::EMPTY_WARN;
   }
 
