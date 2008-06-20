@@ -1,4 +1,4 @@
-/*
+/*  
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
@@ -43,16 +43,21 @@ namespace Utils
   vector_is_equals (const Nessi::Vector<NumT> & value,
                     const Nessi::Vector<NumT> & true_value)
   {
-    size_t n_max = true_value.size();
-    for (size_t i = 0 ; i < n_max ; i++)
-      {
+    std::size_t n_max = true_value.size();
+	bool answer = true;
+	#pragma omp parallel for shared(answer)
+    for (int i = 0 ; i < (int) n_max ; i++)
+    {
         if (compare(value[i], true_value[i]) != 0)
-          {
-            __vector_is_equals_dynamic(i, value[i], true_value[i]);
-            return false;
-          }
-      }
-    return true;
+        {
+        	__vector_is_equals_dynamic(i, value[i], true_value[i]);
+			#pragma omp critical
+			{
+            	answer = false;
+			}
+        }
+	}
+    return answer;
   }
 
   /**
