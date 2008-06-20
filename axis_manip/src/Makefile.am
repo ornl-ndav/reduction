@@ -22,8 +22,8 @@
 
 # $Id$
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi/inc \
-              -I$(top_srcdir)/utils/inc -I$(top_srcdir)/phys_const/inc
+AM_CPPFLAGS = $(OPENMP) -I. -I$(top_srcdir)/axis_manip/inc -I$(top_srcdir)/nessi/inc \
+              -I$(top_srcdir)/utils/inc -I$(top_srcdir)/phys_const/inc 
 
 pkglib_LTLIBRARIES = libAxisManip.la
 
