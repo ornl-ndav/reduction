@@ -1,4 +1,4 @@
-/*
+/* 
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
@@ -38,7 +38,7 @@
 
 namespace Utils
 {
-  /// String for holding the fit_linear_background function name
+  /// String for holding the fit_linear_background function name 
   const std::string flb_func_str = "Utils::fit_linear_background";
 
   // 3.43
@@ -76,7 +76,7 @@ namespace Utils
                                     + e.what());
       }
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
+	std::string warn;
 
     // Setup place holders for sums
 
@@ -113,7 +113,8 @@ namespace Utils
                                     +"than max_bin");
       }
 
-    for (std::size_t i = start_bin; i <= end_bin; ++i)
+	#pragma omp parallel for private(warn)
+    for (int i = start_bin; i <= (int) end_bin; ++i)
       {
         warn = __fit_linear_background_dynamic(axis_in[i], input[i], 
                                                input_err2[i], axis2_sum,
@@ -121,9 +122,11 @@ namespace Utils
                                                data_sum, axis_data_sum);
         if (!warn.empty())
           {
-            retstr += warn;
-          }
-        
+			#pragma omp critical
+			{
+				retstr += warn;
+			}
+          }      
       }
 
 

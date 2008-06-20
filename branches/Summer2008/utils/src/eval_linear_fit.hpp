@@ -1,4 +1,4 @@
-/*
+/*  
  *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
@@ -74,21 +74,23 @@ namespace Utils
                                     + e.what());
       }
     std::string retstr(Nessi::EMPTY_WARN);
-    std::string warn;
 
     std::size_t size_axis = axis_in.size();
-
-    for (std::size_t i = 0; i < size_axis; ++i)
+	
+	#pragma omp parallel for
+    for (int i = 0; i < (int) size_axis; ++i)
       {
-        warn = __eval_linear_fit_dynamic(axis_in[i], axis_in_err2[i], 
+        std::string warn = __eval_linear_fit_dynamic(axis_in[i], axis_in_err2[i], 
                                          slope, slope_err2, 
                                          intercept, intercept_err2,
                                          output[i], output_err2[i]);
         if (!warn.empty())
           {
-            retstr += warn;
-          }
-        
+			#pragma omp critical
+			{
+				retstr += warn;
+			}
+          }		       
       }
 
     return retstr;
