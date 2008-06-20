@@ -68,20 +68,20 @@ namespace AxisManip
 
     size_t size_tof = tof.size();
 
-	#pragma omp parallel for default(shared) private(i, retstr, warn) \
-		reduction(+: retstr)
-	{
-    for (size_t i = 0; i < size_tof; ++i)
-      {
-        warn = __tof_to_scalar_Q_dynamic(tof[i], tof_err2[i], Q[i], Q_err2[i], 
+	#pragma omp parallel for
+    for (int i = 0; i < (int) size_tof; ++i)
+    {
+        std::string tempWarn = __tof_to_scalar_Q_dynamic(tof[i], tof_err2[i], Q[i], Q_err2[i], 
                                          a2, b, term1, term2);
 
         if (!warn.empty())
-          {
-            retstr += warn;
-          }
-      }
-	}
+        {
+			#pragma omp critical
+			{
+            	retstr += tempWarn;
+			}
+        }
+    }
 
 
 

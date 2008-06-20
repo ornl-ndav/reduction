@@ -244,35 +244,35 @@ namespace AxisManip
       }
 
     std::string retstr(Nessi::EMPTY_WARN);
+	std::string error = "";
 
     std::size_t input_size = input.size();
-
+	bool no_error = true;
     std::vector<std::size_t> length_axis_out;
     length_axis_out.push_back(axis_out_1.size() - 1);
     length_axis_out.push_back(axis_out_2.size() - 1);
-	
-	#pragma omp parallel for default(private) \
-			shared(axis_in_x1, axis_in_x2, axis_in_x3, axis_in_x4)
-	{
-    for(std::size_t k = 0; k < input_size; ++k)
-      {
+	#pragma omp parallel for
+    for(int k = 0; k < (int) input_size; ++k)
+    {
         // Get the bin boundaries in out of the original axes
-        orig_bin_x[0] = axis_in_x1[k];
-        orig_bin_x[1] = axis_in_x2[k];
-        orig_bin_x[2] = axis_in_x3[k];
-        orig_bin_x[3] = axis_in_x4[k];
+		Nessi::Vector<NumT> & t_orig_bin_x = orig_bin_x;
+        t_orig_bin_x[0] = axis_in_x1[k];
+        t_orig_bin_x[1] = axis_in_x2[k];
+        t_orig_bin_x[2] = axis_in_x3[k];
+        t_orig_bin_x[3] = axis_in_x4[k];
 
-        orig_bin_y[0] = axis_in_y1[k];
-        orig_bin_y[1] = axis_in_y2[k];
-        orig_bin_y[2] = axis_in_y3[k];
-        orig_bin_y[3] = axis_in_y4[k];
+		Nessi::Vector<NumT> & t_orig_bin_y = orig_bin_y;
+        t_orig_bin_y[0] = axis_in_y1[k];
+        t_orig_bin_y[1] = axis_in_y2[k];
+        t_orig_bin_y[2] = axis_in_y3[k];
+        t_orig_bin_y[3] = axis_in_y4[k];
 
         // Find the minimum and maximum values for the x and y coordinates
-        NumT x_min = *std::min_element(orig_bin_x.begin(), orig_bin_x.end());
-        NumT x_max = *std::max_element(orig_bin_x.begin(), orig_bin_x.end());
+        NumT x_min = *std::min_element(t_orig_bin_x.begin(), t_orig_bin_x.end());
+        NumT x_max = *std::max_element(t_orig_bin_x.begin(), t_orig_bin_x.end());
 
-        NumT y_min = *std::min_element(orig_bin_y.begin(), orig_bin_y.end());
-        NumT y_max = *std::max_element(orig_bin_y.begin(), orig_bin_y.end());
+        NumT y_min = *std::min_element(t_orig_bin_y.begin(), t_orig_bin_y.end());
+        NumT y_max = *std::max_element(t_orig_bin_y.begin(), t_orig_bin_y.end());
 
         // Check to see if the original bin boundaries are outside the 
         // rebinned axes boundaries
@@ -286,92 +286,112 @@ namespace AxisManip
                        y_max > axis_out_2[length_axis_out[1]]);
 
         if(check1 || check2 || check3 || check4)
-          {
-            continue;
-          }
-        
-        // Determine the range of indices to rebin over
-        std::size_t index_x_left;
-        std::size_t index_x_right;
-        std::size_t index_y_left;
-        std::size_t index_y_right;
-
-        Utils::bisect_helper(axis_out_1, x_min, index_x_left);
-        Utils::bisect_helper(axis_out_1, x_max, index_x_right);
-        Utils::bisect_helper(axis_out_2, y_min, index_y_left);
-        Utils::bisect_helper(axis_out_2, y_max, index_y_right);
-        
-        if(index_x_left == std::numeric_limits<std::size_t>::max() || 
-           index_y_left == std::numeric_limits<std::size_t>::max())
-          {
-            continue;
-          }
-
-        // Actually do the rebinning
-		#pragma omp parallel for default(private) \
-			 	shared(axis_out_1)
+        {
+        }
+		else
 		{
-        for(std::size_t i = index_x_left; i <= index_x_right; ++i)
-          {
-            for(std::size_t j = index_y_left; j <= index_y_right; ++j)
-              {
-                // Construct the rectlinear grid bin
-                rebin_bin_x[0] = axis_out_1[i];
-                rebin_bin_x[1] = axis_out_1[i];
-                rebin_bin_x[2] = axis_out_1[i+1];
-                rebin_bin_x[3] = axis_out_1[i+1];
+        
+        	// Determine the range of indices to rebin over
+        	std::size_t index_x_left;
+        	std::size_t index_x_right;
+        	std::size_t index_y_left;
+        	std::size_t index_y_right;
 
-                rebin_bin_y[0] = axis_out_2[j];
-                rebin_bin_y[1] = axis_out_2[j+1];
-                rebin_bin_y[2] = axis_out_2[j+1];
-                rebin_bin_y[3] = axis_out_2[j];
+        	Utils::bisect_helper(axis_out_1, x_min, index_x_left);
+        	Utils::bisect_helper(axis_out_1, x_max, index_x_right);
+        	Utils::bisect_helper(axis_out_2, y_min, index_y_left);
+        	Utils::bisect_helper(axis_out_2, y_max, index_y_right);
+        
+        	if(index_x_left == std::numeric_limits<std::size_t>::max() || 
+           		index_y_left == std::numeric_limits<std::size_t>::max())
+          	{
+          	}
+			else
+			{
+
+        		// Actually do the rebinning
+				#pragma omp parallel for
+        		for(int i = index_x_left; i <= (int) index_x_right; ++i)
+          		{
+					#pragma omp parallel for
+            		for(int j = index_y_left; j <= (int) index_y_right; ++j)
+              		{
+						bool no_quit = true;
+                		// Construct the rectlinear grid bin
+						Nessi::Vector<NumT> & t_rebin_bin_x = rebin_bin_x;
+                		t_rebin_bin_x[0] = axis_out_1[i];
+                		t_rebin_bin_x[1] = axis_out_1[i];
+                		t_rebin_bin_x[2] = axis_out_1[i+1];
+                		t_rebin_bin_x[3] = axis_out_1[i+1];
+
+						Nessi::Vector<NumT> & t_rebin_bin_y = rebin_bin_y;
+                		t_rebin_bin_y[0] = axis_out_2[j];
+                		t_rebin_bin_y[1] = axis_out_2[j+1];
+                		t_rebin_bin_y[2] = axis_out_2[j+1];
+                		t_rebin_bin_y[3] = axis_out_2[j];
                 
-                try
-                  {
-                    Utils::convex_polygon_intersect(orig_bin_x, orig_bin_y,
-                                                    rebin_bin_x, rebin_bin_y,
+                		try
+                  		{
+                    		Utils::convex_polygon_intersect(t_orig_bin_x, t_orig_bin_y,
+                                                    t_rebin_bin_x, t_rebin_bin_y,
                                                     frac_bin_x, frac_bin_y);
-                  }
-                catch (std::exception &e)
-                  {
-                    std::ostringstream bad_index;
-                    bad_index << "[" << k << "] ";
+                  		}
+                		catch (std::exception &e)
+                  		{
+                    		std::ostringstream bad_index;
+                    		bad_index << "[" << k << "] ";
+							#pragma omp critical
+							{
+								error += r2qtl_func_str + " index"
+                                           		+ bad_index.str() + ": "
+                                                + e.what();
+								no_error = false;
+							}
+							no_quit = false;							
+                  		}
+						if (no_quit)
+						{
 
-                    throw std::invalid_argument(r2qtl_func_str + " index"
-                                                + bad_index.str() + ": "
-                                                + e.what());
-                  }
+                			std::size_t length_poly = frac_bin_x.size();
+                			if (length_poly < MIN_SIZE_POLY)
+                  			{
+                    			// Overlap is not a polygon, so area can't be calculated
+                  			}
+							else
+							{
 
-                std::size_t length_poly = frac_bin_x.size();
-                if (length_poly < MIN_SIZE_POLY)
-                  {
-                    // Overlap is not a polygon, so area can't be calculated
-                    continue;
-                  }
+                				// Add first two coordinates back into the coordinate arrays 
+                				// for area calculation
+                				frac_bin_x.push_back(frac_bin_x[0]);
+                				frac_bin_x.push_back(frac_bin_x[1]);
 
-                // Add first two coordinates back into the coordinate arrays 
-                // for area calculation
-                frac_bin_x.push_back(frac_bin_x[0]);
-                frac_bin_x.push_back(frac_bin_x[1]);
+                				frac_bin_y.push_back(frac_bin_y[0]);
+                				frac_bin_y.push_back(frac_bin_y[1]);
 
-                frac_bin_y.push_back(frac_bin_y[0]);
-                frac_bin_y.push_back(frac_bin_y[1]);
+                				NumT portion;
 
-                NumT portion;
-
-                Utils::calc_area_2D_polygon(frac_bin_x, frac_bin_y, 
+                				Utils::calc_area_2D_polygon(frac_bin_x, frac_bin_y, 
                                             length_poly, false,
                                             portion);
 
-                std::size_t channel = j + i * length_axis_out[1];
-
-                output[channel] += input[k] * portion;                
-                output_err2[channel] += input_err2[k] * portion * portion;
-                frac_area[channel] += portion;
-              }
-          }
+                				std::size_t channel = j + i * length_axis_out[1];
+							
+								#pragma omp critical
+								{
+                					output[channel] += input[k] * portion;                
+                					output_err2[channel] += input_err2[k] * portion * portion;
+                					frac_area[channel] += portion;
+								}
+              				}
+          				}		
+      				}
+				}
+			}
 		}
-      }
+	}
+	if (!no_error)
+	{
+		throw std::invalid_argument(error);
 	}
     
     return retstr;

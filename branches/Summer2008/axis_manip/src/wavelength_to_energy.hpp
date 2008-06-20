@@ -88,14 +88,23 @@ namespace AxisManip
     retstr += __wavelength_to_energy_static(a2);
 
     size_t sz = wavelength.size();
-    for (size_t i = 0; i < sz; ++i)
-      {
-        retstr += __wavelength_to_energy_dynamic(wavelength[i],
+
+	#pragma omp parallel for
+    for (int i = 0; i < (int) sz; ++i)
+    {
+        std::string tempS = __wavelength_to_energy_dynamic(wavelength[i],
                                               wavelength_err2[i],
                                               energy[i],
                                               energy_err2[i],
                                               a2);
-      }
+		if (!tempS.empty())
+		{
+			#pragma omp critical
+			{
+				retstr += tempS;
+			}
+		}
+    }
 
     return retstr;
   }

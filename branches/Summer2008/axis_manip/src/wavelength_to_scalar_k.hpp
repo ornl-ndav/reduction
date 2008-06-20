@@ -89,14 +89,23 @@ namespace AxisManip
     retstr += __wavelength_to_scalar_k_static(a, a2);
 
     size_t size_wavelength = wavelength.size();
-    for (size_t i = 0 ; i < size_wavelength ; ++i)
-      {
-        retstr += __wavelength_to_scalar_k_dynamic(wavelength[i],
+
+	#pragma omp parallel for
+    for (int i = 0 ; i < (int) size_wavelength ; ++i)
+    {
+        std::string tempS = __wavelength_to_scalar_k_dynamic(wavelength[i],
                                                 wavelength_err2[i],
                                                 wavevector[i],
                                                 wavevector_err2[i],
                                                 a, a2);
-      }
+		if (!tempS.empty())
+		{
+			#pragma omp critical
+			{
+				retstr += tempS;
+			}
+		}
+    }
 
     return retstr;
   }

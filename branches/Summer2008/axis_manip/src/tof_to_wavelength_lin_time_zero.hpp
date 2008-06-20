@@ -105,6 +105,7 @@ namespace AxisManip
 
     // do the calculation
     size_t size_tof = tof.size();
+
     for (size_t i = 0; i < size_tof; ++i)
       {
         retstr += __tof_to_wavelength_lin_time_zero_dynamic(
