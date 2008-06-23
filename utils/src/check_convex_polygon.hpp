@@ -63,8 +63,8 @@ namespace Utils
       }
 
 	bool returnType = true;
-	#pragma omp parallel for private(orig_pt, dest_pt)
-    for (int i = 0; i < (int) poly_size; ++i)
+	#pragma omp parallel for private(orig_pt, dest_pt, class_pt)
+    for (int i = 0; i <  static_cast<int>(poly_size); ++i)
     {
 		orig_pt = __wrap_indicies(i, poly_size);
         dest_pt = __wrap_indicies(i+1, poly_size);

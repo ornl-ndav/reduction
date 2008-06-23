@@ -78,12 +78,12 @@ namespace Utils
 	double tempArea = 0.0;
 	
 	#pragma omp parallel for reduction(+:tempArea)
-    for (int i = 1; i <= (int) size_poly; ++i)
+    for (int i = 1; i <=  static_cast<int>(size_poly); ++i)
     {
-        tempArea += (double) x_coord[i] * (y_coord[i+1] - y_coord[i-1]);
+        tempArea +=  static_cast<double>(x_coord[i] * (y_coord[i+1] - y_coord[i-1]));
     }
 
-	area = (NumT) tempArea;
+	area =  static_cast<NumT>(tempArea);
 
     area /= static_cast<NumT>(2.0);
 

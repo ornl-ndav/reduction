@@ -72,7 +72,7 @@ namespace Utils
 	num1 = static_cast<NumT>(0.0);
 	num2 = static_cast<NumT>(1.);
 	#pragma omp parallel for
-    for(int i = bin_start; i <= (int) bin_end; ++i)
+    for(int i = static_cast<int>(bin_start); i <= static_cast<int>(bin_end); ++i)
     {
         if(compare(input_err2[i], num1) != 0) 
         {

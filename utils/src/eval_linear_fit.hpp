@@ -78,17 +78,17 @@ namespace Utils
     std::size_t size_axis = axis_in.size();
 	
 	#pragma omp parallel for
-    for (int i = 0; i < (int) size_axis; ++i)
+    for (int i = 0; i <  static_cast<int>(size_axis); ++i)
       {
-        std::string warn = __eval_linear_fit_dynamic(axis_in[i], axis_in_err2[i], 
+        std::string tempS = __eval_linear_fit_dynamic(axis_in[i], axis_in_err2[i], 
                                          slope, slope_err2, 
                                          intercept, intercept_err2,
                                          output[i], output_err2[i]);
-        if (!warn.empty())
+        if (!tempS.empty())
           {
 			#pragma omp critical
 			{
-				retstr += warn;
+				retstr += tempS;
 			}
           }		       
       }

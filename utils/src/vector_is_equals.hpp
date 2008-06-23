@@ -46,7 +46,7 @@ namespace Utils
     std::size_t n_max = true_value.size();
 	bool answer = true;
 	#pragma omp parallel for shared(answer)
-    for (int i = 0 ; i < (int) n_max ; i++)
+    for (int i = 0 ; i < static_cast<int>(n_max) ; i++)
     {
         if (compare(value[i], true_value[i]) != 0)
         {
