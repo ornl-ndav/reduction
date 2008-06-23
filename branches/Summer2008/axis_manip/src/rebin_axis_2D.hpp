@@ -90,7 +90,7 @@ namespace AxisManip
 	std::string error = "";
 	bool no_error = true;
 	#pragma omp parallel for
-    for(int i = 0; i < (int) nold_input1; ++i)
+    for(int i = 0; i < static_cast<int>(nold_input1); ++i)
     {
         // Create space and fill a 2nd axis for data and err2 for both
         // input and output
@@ -142,7 +142,7 @@ namespace AxisManip
                            tmp_out_err2.end());
 		}
 	}
-	if (no_error)
+	if (!no_error)
 	{
 		throw std::invalid_argument(error);
 	}
@@ -156,7 +156,7 @@ namespace AxisManip
     typename Nessi::Vector<NumT>::iterator t_iter_err2;
 
 	#pragma omp parallel for
-    for(int j = 0; j < (int) nnew_input2; ++j)
+    for(int j = 0; j < static_cast<int>(nnew_input2); ++j)
     {
 		bool no_go = false;
         Nessi::Vector<NumT> tmp_in(nold_input1);

@@ -90,7 +90,7 @@ namespace AxisManip
     size_t sz = velocity.size();
 
 	#pragma omp parallel for
-    for (int i=0; i < (int) sz; ++i)
+    for (int i=0; i < static_cast<int>(sz); ++i)
     {
         std::string tempS = __velocity_to_scalar_k_dynamic(velocity[i],
                                                  velocity_err2[i],

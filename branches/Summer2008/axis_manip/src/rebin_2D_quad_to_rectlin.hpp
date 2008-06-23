@@ -252,7 +252,7 @@ namespace AxisManip
     length_axis_out.push_back(axis_out_1.size() - 1);
     length_axis_out.push_back(axis_out_2.size() - 1);
 	#pragma omp parallel for
-    for(int k = 0; k < (int) input_size; ++k)
+    for(int k = 0; k < static_cast<int>(input_size); ++k)
     {
         // Get the bin boundaries in out of the original axes
 		Nessi::Vector<NumT> & t_orig_bin_x = orig_bin_x;
@@ -311,10 +311,12 @@ namespace AxisManip
 
         		// Actually do the rebinning
 				#pragma omp parallel for
-        		for(int i = index_x_left; i <= (int) index_x_right; ++i)
+        		for(int i = static_cast<int>(index_x_left); 
+						i <= static_cast<int>(index_x_right); ++i)
           		{
 					#pragma omp parallel for
-            		for(int j = index_y_left; j <= (int) index_y_right; ++j)
+            		for(int j = static_cast<int>(index_y_left); 
+							j <= static_cast<int>(index_y_right); ++j)
               		{
 						bool no_quit = true;
                 		// Construct the rectlinear grid bin

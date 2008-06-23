@@ -133,7 +133,7 @@ namespace AxisManip
    // do the calculation
    size_t size_wavevector=initial_wavevector.size();
 	#pragma omp parallel for
-   	for (int i = 0 ; i < (int) size_wavevector ; ++i)
+   	for (int i = 0 ; i < static_cast<int>(size_wavevector) ; ++i)
     {
        std::string tempS =
          __init_scatt_wavevector_to_Q_dynamic(initial_wavevector[i],
@@ -252,7 +252,7 @@ namespace AxisManip
     size_t size_wavevector=final_wavevector.size();
 
 	#pragma omp parallel for
-    for (int i = 0 ; i < (int) size_wavevector ; ++i)
+    for (int i = 0 ; i < static_cast<int>(size_wavevector) ; ++i)
     {
         std::string tempS =
           __init_scatt_wavevector_to_Q_dynamic(initial_wavevector,
@@ -371,7 +371,7 @@ namespace AxisManip
     size_t size_wavevector=initial_wavevector.size();
 
 	#pragma omp parallel for
-    for (int i = 0 ; i < (int) size_wavevector ; ++i)
+    for (int i = 0 ; i < static_cast<int>(size_wavevector) ; ++i)
     {
         std::string tempS =
           __init_scatt_wavevector_to_Q_dynamic(initial_wavevector[i],

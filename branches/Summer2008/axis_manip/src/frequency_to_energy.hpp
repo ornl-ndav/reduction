@@ -90,7 +90,7 @@ namespace AxisManip
     size_t sz = frequency.size();
 
 	#pragma omp parallel for
-    for (int i=0; i < (int) sz; ++i)
+    for (int i=0; i < static_cast<int>(sz); ++i)
     {
         std::string tempS = __frequency_to_energy_dynamic(frequency[i],
                                                 frequency_err2[i],
