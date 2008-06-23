@@ -105,7 +105,7 @@ namespace AxisManip
     // do the calculation
     size_t size_d_spacing = d_spacing.size();
 	#pragma omp parallel for
-    for (int i = 0; i < (int) size_d_spacing; ++i)
+    for (int i = 0; i < static_cast<int>(size_d_spacing); ++i)
     {
         std::string tempS = __d_spacing_to_tof_focused_det_dynamic(d_spacing[i], 
                                                          d_spacing_err2[i],

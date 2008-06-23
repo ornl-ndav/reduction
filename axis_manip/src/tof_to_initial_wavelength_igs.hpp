@@ -102,7 +102,7 @@ namespace AxisManip
     size_t size_tof = tof.size();
 
 	#pragma omp parallel for
-    for (int i = 0 ; i < (int) size_tof ; ++i)
+    for (int i = 0 ; i < static_cast<int>(size_tof) ; ++i)
     {
         std::string tempS =
           __tof_to_initial_wavelength_igs_dynamic(

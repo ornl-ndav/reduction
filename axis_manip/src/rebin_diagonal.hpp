@@ -98,7 +98,7 @@ namespace AxisManip
 
 
 	#pragma omp parallel for private(checkCont)
-    for(int k = 0; k < (int) input_size; ++k)
+    for(int k = 0; k < static_cast<int>(input_size); ++k)
     {
         // Get the bin boundaries in out of the original axes
         NumT x_orig_lo = axis_in_1[k];
@@ -182,7 +182,8 @@ namespace AxisManip
 
         		// Actually do the rebinning
 				#pragma omp parallel for
-        		for(int i = (int) index_x_left; i < (int) index_x_right; ++i)
+        		for(int i = static_cast<int>(index_x_left); 
+						i < static_cast<int>(index_x_right); ++i)
           		{
             		NumT x_rebin_lo = axis_out_1[i];
             		NumT x_rebin_hi = axis_out_1[i+1];
@@ -191,7 +192,8 @@ namespace AxisManip
               		std::max(x_orig_lo, x_rebin_lo);
 			
 					#pragma omp parallel for
-            		for(int j = (int) index_y_left; j < (int) index_y_right; ++j)
+            		for(int j = static_cast<int>(index_y_left); 
+							j <	static_cast<int>(index_y_right); ++j)
               		{
                 		NumT y_rebin_lo = axis_out_2[j];
                 		NumT y_rebin_hi = axis_out_2[j+1];

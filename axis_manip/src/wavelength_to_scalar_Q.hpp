@@ -100,7 +100,7 @@ namespace AxisManip
     size_t size_wavelength = wavelength.size();
 
 	#pragma omp parallel for
-    for (int i=0; i < (int) size_wavelength ; ++i)
+    for (int i=0; i < static_cast<int>(size_wavelength) ; ++i)
     {
         std::string tempS = __wavelength_to_scalar_Q_dynamic(wavelength[i],
                                                    wavelength_err2[i],

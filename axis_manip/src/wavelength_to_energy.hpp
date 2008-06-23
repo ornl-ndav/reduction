@@ -90,7 +90,7 @@ namespace AxisManip
     size_t sz = wavelength.size();
 
 	#pragma omp parallel for
-    for (int i = 0; i < (int) sz; ++i)
+    for (int i = 0; i < static_cast<int>(sz); ++i)
     {
         std::string tempS = __wavelength_to_energy_dynamic(wavelength[i],
                                               wavelength_err2[i],

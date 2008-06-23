@@ -99,7 +99,7 @@ namespace AxisManip
     size_t size_energy = initial_energy.size();
 	
 	#pragma omp parallel for
-    for (int i = 0; i < (int) size_energy ; ++i )
+    for (int i = 0; i < static_cast<int>(size_energy) ; ++i )
     {
         std::string tempS = __energy_transfer_dynamic(initial_energy[i],
                                        initial_energy_err2[i],
@@ -174,7 +174,7 @@ namespace AxisManip
 	std::string tempS[(int) size_energy];
 
 	#pragma omp parallel for
-    for (int i = 0; i < (int) size_energy ; ++i )
+    for (int i = 0; i < static_cast<int>(size_energy) ; ++i )
     {
        	std::string tempS = __energy_transfer_dynamic(initial_energy[i],
                                             initial_energy_err2[i],
@@ -249,7 +249,7 @@ namespace AxisManip
 	std::string tempS[(int) size_energy];
 
 	#pragma omp parallel for
-    for (int i = 0; i < (int) size_energy ; ++i )
+    for (int i = 0; i < static_cast<int>(size_energy) ; ++i )
     {
         std::string tempS = __energy_transfer_dynamic(initial_energy,
                                             initial_energy_err2,
