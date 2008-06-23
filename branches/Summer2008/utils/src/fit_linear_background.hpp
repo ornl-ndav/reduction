@@ -113,21 +113,21 @@ namespace Utils
                                     +"than max_bin");
       }
 
-	#pragma omp parallel for private(warn)
-    for (int i = start_bin; i <= (int) end_bin; ++i)
-      {
-        warn = __fit_linear_background_dynamic(axis_in[i], input[i], 
+	#pragma omp parallel for
+    for (int i =  static_cast<int>(start_bin); i <= static_cast<int>(end_bin); ++i)
+    {
+        std::string tempS = __fit_linear_background_dynamic(axis_in[i], input[i], 
                                                input_err2[i], axis2_sum,
                                                axis_sum, inv_err2_sum,
                                                data_sum, axis_data_sum);
-        if (!warn.empty())
-          {
+        if (!tempS.empty())
+        {
 			#pragma omp critical
 			{
-				retstr += warn;
+				retstr += tempS;
 			}
-          }      
-      }
+        }      
+    }
 
 
     warn = __fit_linear_background_static(axis2_sum, axis_sum, inv_err2_sum,

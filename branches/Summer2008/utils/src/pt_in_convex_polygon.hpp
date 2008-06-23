@@ -75,22 +75,28 @@ namespace Utils
     // point lies outside the polygon.
 	bool returnType = true;
 	
-    for (int i = 0; i < (int) poly_size; ++i)
-      {
+	#pragma omp parallel for
+    for (int i = 0; i < static_cast<int>(poly_size); ++i)
+    {
         // Advance polygon edge
-        orig_pos = __wrap_indicies(orig_pos + static_cast<std::size_t>(i), poly_size);
-        dest_pos = __wrap_indicies(dest_pos + static_cast<std::size_t>(i), poly_size);
+        std::size_t & t_orig_pos = 
+				__wrap_indicies(t_orig_pos + static_cast<std::size_t>(i), poly_size);
+        std::size_t & t_dest_pos = 
+				__wrap_indicies(t_dest_pos + static_cast<std::size_t>(i), poly_size);
 
         eEdgeClass c = __classify_pt_to_edge(pt_x, pt_y, 
-                                             x_coord[orig_pos + static_cast<std::size_t>(i)], 
-                                             y_coord[orig_pos + static_cast<std::size_t>(i)],
-                                             x_coord[dest_pos + static_cast<std::size_t>(i)],
-                                             y_coord[dest_pos + static_cast<std::size_t>(i)]);
+                                             x_coord[t_orig_pos + static_cast<std::size_t>(i)], 
+                                             y_coord[t_orig_pos + static_cast<std::size_t>(i)],
+                                             x_coord[t_dest_pos + static_cast<std::size_t>(i)],
+                                             y_coord[t_dest_pos + static_cast<std::size_t>(i)]);
         if (LEFT == c)
-          {
+        {
+			#pragma omp critical
+			{
             	returnType = false;
-          }
-      }
+			}
+        }
+    }
 
     return returnType;
   }
