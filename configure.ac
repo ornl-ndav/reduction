@@ -75,7 +75,7 @@ AC_ARG_ENABLE(openmp,
 	*) AC_MSG_ERROR(bad value ${enableval} for --enable-openmp) ;;
 esac],[openmp=false])
 if test x$openmp = xtrue; then
-	OPENMP='-fopenmp'
+	OPENMP='-D_GLIBCXX_PARALLEL -fopenmp'
 else
 	OPENMP=''
 fi
