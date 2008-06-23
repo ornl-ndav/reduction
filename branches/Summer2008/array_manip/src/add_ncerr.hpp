@@ -81,7 +81,8 @@ namespace ArrayManip
       }
 
     size_t size = array_in.size();
-    for (size_t i = 0; i < size; ++i)
+	#pragma omp parallel for
+    for (int i = 0; i < static_cast<int>(size); ++i)
       {
         array_out[i] = array_in[i] + scalar;
         array_out_err2[i] = array_in_err2[i] + scalar_err2;

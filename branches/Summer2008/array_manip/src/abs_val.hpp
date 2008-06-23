@@ -47,7 +47,7 @@ namespace  ArrayManip
           Nessi::Vector<NumT> & output,
           void *temp=NULL)
   {
-    int size = (int) input.size(); 
+    int size = static_cast<int>(input.size()); 
 	
 
 	#pragma omp parallel for  

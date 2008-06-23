@@ -81,7 +81,7 @@ namespace ArrayManip
       }
 
 
-    int size = (int) array_in.size();
+    int size = static_cast<int>(array_in.size());
 
 	#pragma omp parallel for
     for (int i = 0; i < size; i++)
@@ -132,7 +132,7 @@ namespace ArrayManip
       }
 
 
-    int size = (int) array_in.size();
+    int size = static_cast<int>(array_in.size());
 	
 	#pragma omp parallel for
     for (int i = 0; i < size; i++)

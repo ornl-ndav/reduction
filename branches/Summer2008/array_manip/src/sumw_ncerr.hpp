@@ -81,7 +81,7 @@ namespace ArrayManip
       }
 
 
-    int sz = (int) input1.size();
+    int sz = static_cast<int>(input1.size());
 
 	#pragma omp parallel for 
     for (int i = 0; i < sz; i++)
