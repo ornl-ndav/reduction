@@ -33,6 +33,7 @@
 #include "arith.hpp"
 #include "nessi_warn.hpp"
 #include "size_checks.hpp"
+#include <algorithm>
 #include <stdexcept>
 
 namespace ArrayManip
