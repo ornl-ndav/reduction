@@ -141,7 +141,7 @@ namespace ArrayManip
 
 	
 	#pragma omp parallel for
-    for (int i = 0; i < =size; i++)
+    for (int i = 0; i < size; i++)
     {
         array_out[i] = array_in[i] / scalar;
         array_out_err2[i] = (array_in_err2[i] / scalar2)
