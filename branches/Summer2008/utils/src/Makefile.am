@@ -27,7 +27,7 @@ AM_CPPFLAGS = $(OPENMP_CXX) $(OPENMP_LD) -I. -I$(top_srcdir)/utils/inc \
 
 pkglib_LTLIBRARIES = libUtils.la
 
-libUtils_la_LDFLAGS = $(LIB_UTILS_VERSION)
+libUtils_la_LDFLAGS = $(LIB_UTILS_VERSION) -lgomp
 
 libUtils_la_SOURCES = \
 	advance_edge.hpp \
