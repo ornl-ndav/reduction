@@ -67,19 +67,33 @@ AC_ARG_ENABLE(optswig,
 esac],[optswig=false])
 AM_CONDITIONAL(OPTSWIG, test x$optswig = xtrue)
 
-AC_ARG_ENABLE(openmp,
-[ --enable-openmp  Optimize processing time],
+AC_ARG_ENABLE(openmp_cxx,
+[ --enable-openmp_cxx  Optimize processing time],
 [case "${enableval}" in
-	yes) openmp=true;;
-	no) openmp=false;;
-	*) AC_MSG_ERROR(bad value ${enableval} for --enable-openmp) ;;
-esac],[openmp=false])
-if test x$openmp = xtrue; then
-	OPENMP='-D_GLIBCXX_PARALLEL -fopenmp'
+	yes) openmp_cxx=true;;
+	no) openmp_cxx=false;;
+	*) AC_MSG_ERROR(bad value ${enableval} for --enable-openmp_cxx) ;;
+esac],[openmp_cxx=false])
+if test x$openmp_cxx = xtrue; then
+	OPENMP_CXX='-D_GLIBCXX_PARALLEL -fopenmp'
 else
-	OPENMP=''
+	OPENMP_CXX=''
 fi
-AC_SUBST(OPENMP)
+AC_SUBST(OPENMP_CXX)
+
+AC_ARG_ENABLE(openmp_ld,
+[ --enable-openmp_ld Use shared library for SCL],
+[case "${enableval}" in
+	yes) openmp_ld=true;;
+	no) openmp_ld=false;;
+	*) AC_MSG_ERROR(bad value ${enableval} for --enable-openmp_ld) ;;
+esac],[openmp_ld=false])
+if test x$openmp_ld = xtrue; then
+	OPENMP_LD='-lgomp'
+else
+	OPENMP_LD=''
+fi
+AC_SUBST(OPENMP_LD)
 
 # Our code requires Python 2.3
 PYTHON_REQUIRED=2.3
