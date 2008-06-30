@@ -117,11 +117,11 @@ TruthOutput_Err2_VS_I.append(20)
 #Truth values for mult_ncerr scalar-scalar version
 TruthOutput_SS_D = DoubleVPair()
 TruthOutput_SS_D.val = 8.0
-TruthOutput_SS_D.val_err2 = 6.0
+TruthOutput_SS_D.val_err2 = 20.0
 
 TruthOutput_SS_I = IntVPair()
 TruthOutput_SS_I.val = 8
-TruthOutput_SS_I.val_err2 = 6
+TruthOutput_SS_I.val_err2 = 20
 
 ###############################################################################
 # Create output placeholders for vectors
