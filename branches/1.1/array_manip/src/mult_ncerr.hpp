@@ -33,6 +33,7 @@
 #include "arith.hpp"
 #include "nessi_warn.hpp"
 #include "size_checks.hpp"
+#include <algorithm>
 #include <stdexcept>
 
 namespace ArrayManip
@@ -143,6 +144,24 @@ namespace ArrayManip
 
     return Nessi::EMPTY_WARN;
   }
+
+  //3.8
+  template <typename NumT>
+  std::string
+  mult_ncerr(const NumT input1,
+             const NumT input1_err2,
+             const NumT input2,
+             const NumT input2_err2,
+             NumT & output,
+             NumT & output_err2,
+             void *temp=NULL)
+  {
+    output = input1*input2;
+    output_err2 = (input2*input1_err2) + (input1*input2_err2);
+
+    return Nessi::EMPTY_WARN;
+  }
+  
 } // ArrayManip
 
 #endif // _MULT_NCERR_HPP

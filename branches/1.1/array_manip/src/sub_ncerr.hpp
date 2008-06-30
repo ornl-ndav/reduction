@@ -187,6 +187,24 @@ namespace ArrayManip
 
     return Nessi::EMPTY_WARN;
   }
+
+  //3.7
+  template <typename NumT>
+  std::string
+  sub_ncerr(const NumT input1,
+            const NumT input1_err2,
+            const NumT input2,
+            const NumT input2_err2,
+            NumT & output,
+            NumT & output_err2,
+            void *temp=NULL)
+  {
+    output = input1 - input2;
+    output_err2 = input1_err2 + input2_err2;
+
+    return Nessi::EMPTY_WARN;
+  }
+
 } // ArrayManip
 
 #endif // _SUB_NCERR_HPP

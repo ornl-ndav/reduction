@@ -26,6 +26,7 @@
 %module array_manip_bind
 %{
 #include "arith.hpp"
+#include "vpair.hpp"
 %}
 
 %include <std_string.i>
@@ -43,16 +44,92 @@
 %template(abs_val_i) ArrayManip::abs_val<int>;
 
 %template(add_ncerr_d) ArrayManip::add_ncerr<double>;
+
+%{
+std::string add_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::add_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2,temp);
+  return ret;
+}
+%}
+
+std::string add_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL);
+
 %template(add_ncerr_i) ArrayManip::add_ncerr<int>;
 
+%{
+std::string add_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::add_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string add_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL);
+
 %template(sub_ncerr_d) ArrayManip::sub_ncerr<double>;
+
+%{
+std::string sub_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::sub_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string sub_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL);
+
 %template(sub_ncerr_i) ArrayManip::sub_ncerr<int>;
 
+%{
+std::string sub_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::sub_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string sub_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL);
+
 %template(mult_ncerr_d) ArrayManip::mult_ncerr<double>;
+
+%{
+std::string mult_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::mult_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string mult_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL);
+
 %template(mult_ncerr_i) ArrayManip::mult_ncerr<int>;
 
+%{
+std::string mult_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::mult_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string mult_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL);
+
 %template(div_ncerr_d) ArrayManip::div_ncerr<double>;
+
+%{
+std::string div_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::div_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string div_ncerr_ss_d(const double input1, const double input1_err2, const double input2, const double input2_err2, VPair<double> & value, void *temp=NULL);
+
 %template(div_ncerr_i) ArrayManip::div_ncerr<int>;
+
+%{
+std::string div_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL) {
+  std::string ret = ArrayManip::div_ncerr(input1, input1_err2, input2, input2_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string div_ncerr_ss_i(const int input1, const int input1_err2, const int input2, const int input2_err2, VPair<int> & value, void *temp=NULL);
 
 %template(sumw_ncerr_d) ArrayManip::sumw_ncerr<double>;
 %template(sumw_ncerr_i) ArrayManip::sumw_ncerr<int>;

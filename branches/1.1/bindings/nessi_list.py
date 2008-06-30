@@ -1992,6 +1992,60 @@ class NessiList (list):
 # \}
 
 ##
+# \ingroup toNumpy NessiList
+#
+# \brief Function that returns a NumPy representation of the NessiList
+#
+# This function will return a NumPy representation of the internal NessiList
+# array.
+#
+# \param bin_centers This allows the bin centers to be returned rather than
+# the array itself. This is useful for NessiLists holding histogram axes. The
+# default value is <em>False</em>.
+# \param kwargs (INPUT/OPTIONAL) is a list of keywords by the method.
+# - <em>reshape</em>: A tuple containing the dimension sizes for a\n
+#                     multi-dimensional representation.
+#
+# \return A NumPy representation of the NessiList
+
+    def toNumPy(self, bin_centers=False, **kwargs):
+        """
+        _______________________________________________________________________
+        This function will return a NumPy representation of the internal
+        NessiList array.
+
+        Parameters:
+        ----------
+        -> bin_centers a boolean which returns the bin centers
+        -> kwargs is a list of keywords by the method.
+           - reshape: A tuple containing the dimension sizes for a
+                      multi-dimensional representation.
+
+        Return:
+        ------
+        <- The NumPy representation of the NessiList
+        """
+        try:
+            reshape = kwargs["reshape"]
+        except KeyError:
+            reshape = None
+
+        if bin_centers:
+            import utils
+            array = utils.calc_bin_centers(self)[0]
+        else:
+            array = self
+
+        import numpy
+        if reshape is not None:
+            return numpy.array(list(array)).reshape(reshape)
+        else:
+            return numpy.array(list(array))
+        
+##
+# \}
+
+##
 # \defgroup max_vect nessi_list::max_vect
 # \{
 
