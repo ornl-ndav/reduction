@@ -31,6 +31,7 @@
 import array_manip
 import nessi_list
 import test_common
+from vpair_bind import *
 
 NUM_VAL = 5
 
@@ -39,9 +40,10 @@ NUM_VAL = 5
 # \{
 #
 # This test compares the output data (\f$output\_vs\f$, \f$output\_sv\f$,
-# and \f$output\_vv\f$) calculated by the binding module <i>sub_ncerr.py</i>
-# of the Python Abstration Layer (PAL) <i>array_manip.py</i> with the true
-# output data calculated (\f$true\_output\_vs\f$, \f$true\_output\_sv\f$  and
+# \f$output\_ss\f$ and \f$output\_vv\f$) calculated by the binding module
+# <i>sub_ncerr.py</i> of the Python Abstration Layer (PAL)
+# <i>array_manip.py</i> with the true output data calculated
+# (\f$true\_output\_vs\f$, \f$true\_output\_sv\f$, \f$true\_output\_ss\f$ and
 # \f$true\_output\_vv\f$) manually calculated.
 # Any discrepancy between the outputs (\f$output\f$ and \f$true\_output\f$)
 # will generate an error message that give details about the location and type
@@ -51,10 +53,11 @@ NUM_VAL = 5
 # - vv : vector-vector
 # - vs : vector-scalar
 # - sv : scalar-vector
+# - ss : scalar-scalar
 # - VV = "v,v"
 # - SV = "s,v"
 # - VS = "v,s"
-# - SV = "s,v"
+# - SS = "s,s"
 # - ERROR = "error "
 # - EMPTY = ""
 #
@@ -123,7 +126,8 @@ def initialize_true_outputs(key):
         true_output_vs_err2=nessi_list.NessiList()
         true_output_sv=nessi_list.NessiList()
         true_output_sv_err2=nessi_list.NessiList()
-
+        true_output_ss=DoubleVPair()
+        
       # initialize the correct outputs for vector vector case
         true_output_vv.append(float(6.))       # 6-0
         true_output_vv_err2.append(float(2.))
@@ -160,6 +164,10 @@ def initialize_true_outputs(key):
         true_output_sv.append(float(2.))     # 4-2
         true_output_sv_err2.append(float(2.))
 
+        # initialize the correct outputs for scalar scalar case        
+        true_output_ss.val = float(-2.)
+        true_output_ss.val_err2 = float(2.)        
+
     else:
 
         true_output_vv=nessi_list.NessiList(type="int")
@@ -168,7 +176,8 @@ def initialize_true_outputs(key):
         true_output_vs_err2=nessi_list.NessiList(type="int")
         true_output_sv=nessi_list.NessiList(type="int")
         true_output_sv_err2=nessi_list.NessiList(type="int")
-
+        true_output_ss=IntVPair()
+        
       # initialize the correct outputs for vector vector case
         true_output_vv.append(int(6))      # 6-0
         true_output_vv_err2.append(int(2))
@@ -205,12 +214,19 @@ def initialize_true_outputs(key):
         true_output_sv.append(int(2))     # 4-2
         true_output_sv_err2.append(int(2))
 
+        # initialize the correct outputs for scalar scalar case        
+        true_output_ss.val = int(-2)
+        true_output_ss.val_err2 = int(2)
+
     return true_output_vv,\
        true_output_vv_err2,\
        true_output_vs,\
        true_output_vs_err2, \
        true_output_sv,\
-       true_output_sv_err2
+       true_output_sv_err2,\
+       true_output_ss.val, \
+       true_output_ss.val_err2
+
 
 if __name__ == "__main__":
 
@@ -223,12 +239,14 @@ if __name__ == "__main__":
 
     true_output_vv_d, true_output_vv_err2_d,\
                       true_output_vs_d, true_output_vs_err2_d,\
-                      true_output_sv_d, true_output_sv_err2_d = \
+                      true_output_sv_d, true_output_sv_err2_d,\
+                      true_output_ss_d, true_output_ss_err2_d = \
                       initialize_true_outputs("double")
 
     true_output_vv_i, true_output_vv_err2_i,\
                       true_output_vs_i, true_output_vs_err2_i,\
-                      true_output_sv_i, true_output_sv_err2_i =\
+                      true_output_sv_i, true_output_sv_err2_i,\
+                      true_output_ss_i, true_output_ss_err2_i =\
                       initialize_true_outputs("int")
 
     # vv case
@@ -339,3 +357,38 @@ if __name__ == "__main__":
 
     print mess
 
+    # ss case
+    print
+    print "Checking Scalar-Scalar Subtraction Abstraction Layer Function"
+
+    # double case
+    input1, input1_err2, input2, input2_err2 = initialize_inputs("double")
+
+    output_ss, output_ss_err2 = array_manip.sub_ncerr(input1[4],\
+                                                      input1_err2[4],\
+                                                      input2[4],\
+                                                      input2_err2[4])
+    
+    mess = test_common.MakeCheck1("double",\
+                                  output_ss,\
+                                  true_output_ss_d,\
+                                  output_ss_err2,\
+                                  true_output_ss_err2_d)
+
+    print mess
+
+    # int case
+    input1, input1_err2, input2, input2_err2 = initialize_inputs("int")
+
+    output_ss, output_ss_err2 = array_manip.sub_ncerr(input1[4],\
+                                                      input1_err2[4],\
+                                                      input2[4],\
+                                                      input2_err2[4])
+
+    mess = test_common.MakeCheck1("int",\
+                                  output_ss,\
+                                  true_output_ss_i,\
+                                  output_ss_err2,\
+                                  true_output_ss_err2_i)
+
+    print mess

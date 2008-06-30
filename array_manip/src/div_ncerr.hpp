@@ -33,6 +33,7 @@
 #include "arith.hpp"
 #include "nessi_warn.hpp"
 #include "size_checks.hpp"
+#include <algorithm>
 #include <stdexcept>
 
 namespace ArrayManip
@@ -195,6 +196,27 @@ namespace ArrayManip
         output_err2[i] = (input1_err2[i] / input2_2) +
           (((input1[i] * input1[i]) / (input2_2 * input2_2)) * input2_err2[i]);
       }
+
+    return Nessi::EMPTY_WARN;
+  }
+
+  //3.9
+  template <typename NumT>
+  std::string
+  div_ncerr(const NumT input1,
+            const NumT input1_err2,
+            const NumT input2,
+            const NumT input2_err2,
+            NumT & output,
+            NumT & output_err2,
+            void *temp=NULL)
+  {
+    NumT input1_2 = input1 * input1;
+    NumT input2_2 = input2 * input2;
+
+    output = input1 / input2;
+    output_err2 = (input1_err2 / input2_2)
+                + (input1_2 / (input2_2 * input2_2) * input2_err2);
 
     return Nessi::EMPTY_WARN;
   }
