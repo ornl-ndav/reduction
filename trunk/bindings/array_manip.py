@@ -604,12 +604,12 @@ def add_ncerr(a, ae2, b, be2, **kwargs):
                 return (c, ce2)
 
             except AttributeError:
-                if str(type(a)).split('\'')[-2] == "float":
+                if type(a) == type(42.):
                     c = vpair_bind.DoubleVPair()
                     array_manip_bind.add_ncerr_ss_d(float(a), float(ae2),
                                                     float(b), float(be2),
                                                     c)
-                elif str(type(a)).split('\'')[-2] == "int":
+                elif type(a) == type(42):
                     c = vpair_bind.IntVPair()
                     array_manip_bind.add_ncerr_ss_i(int(a), int(ae2),
                                                     int(b), int(be2),
@@ -965,12 +965,12 @@ def sub_ncerr(a, ae2, b, be2):
                 return (c, ce2)
 
             except AttributeError:
-                if str(type(a)).split('\'')[-2] == "float":
+                if type(a) == type(42.):
                     c = vpair_bind.DoubleVPair()
                     array_manip_bind.sub_ncerr_ss_d(float(a), float(ae2),
                                                     float(b), float(be2),
                                                     c)
-                elif str(type(a)).split('\'')[-2] == "int":
+                elif type(a) == type(42):
                     c = vpair_bind.IntVPair()
                     array_manip_bind.sub_ncerr_ss_i(int(a), int(ae2),
                                                     int(b), int(be2),
@@ -1279,12 +1279,12 @@ def mult_ncerr(a, ae2, b, be2):
                 return (c, ce2)
 
             except AttributeError:
-                if str(type(a)).split('\'')[-2] == "float":
+                if type(a) == type(42.):
                     c = vpair_bind.DoubleVPair()
                     array_manip_bind.mult_ncerr_ss_d(float(a), float(ae2),
                                                      float(b), float(be2),
                                                      c)
-                elif str(type(a)).split('\'')[-2] == "int":
+                elif type(a) == type(42):
                     c = vpair_bind.IntVPair()
                     array_manip_bind.mult_ncerr_ss_i(int(a), int(ae2),
                                                      int(b), int(be2),
@@ -1652,12 +1652,12 @@ def div_ncerr(a, ae2, b, be2):
                 return (c, ce2)
 
             except AttributeError:
-                if str(type(a)).split('\'')[-2] == "float":
+                if type(a) == type(42.):
                     c = vpair_bind.DoubleVPair()
                     array_manip_bind.div_ncerr_ss_d(float(a), float(ae2),
                                                     float(b), float(be2),
                                                     c)
-                elif str(type(a)).split('\'')[-2] == "int":
+                elif type(a) == type(42):
                     c = vpair_bind.IntVPair()
                     array_manip_bind.div_ncerr_ss_i(int(a), int(ae2),
                                                     int(b), int(be2),
