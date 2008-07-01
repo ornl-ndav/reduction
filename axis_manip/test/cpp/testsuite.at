@@ -89,12 +89,6 @@ AT_CHECK([rebin_axis_1D_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
-AT_SETUP([Checking the Rebin 1D Fraction Function.  ])
-AT_CHECK([rebin_axis_1D_frac_test | sed -e 's/\r$//' ],[],
-[[rebin_axis_1D_frac_test.cpp..........Functionality OK
-]])
-AT_CLEANUP
-
 AT_SETUP([Checking the Rebin 2D Function.  ])
 AT_CHECK([rebin_axis_2D_test | sed -e 's/\r$//' ],[],
 [[rebin_axis_2D_test.cpp..........Functionality OK

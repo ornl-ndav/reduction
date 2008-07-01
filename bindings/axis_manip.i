@@ -58,8 +58,6 @@
 
 %template(rebin_axis_1D_d) AxisManip::rebin_axis_1D<double>;
 
-%template(rebin_axis_1D_frac_d) AxisManip::rebin_axis_1D_frac<double>;
-
 %template(rebin_axis_2D_d) AxisManip::rebin_axis_2D<double>;
 
 %template(rebin_axis_4D_d) AxisManip::rebin_axis_4D<double>;

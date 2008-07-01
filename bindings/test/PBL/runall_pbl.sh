@@ -53,8 +53,6 @@ python test_rebin_2D_quad_to_rectlin.py
 echo
 python test_rebin_axis_1D.py
 echo
-python test_rebin_axis_1D_frac.py
-echo
 python test_rebin_axis_2D.py
 echo
 python test_rebin_diagonal.py
