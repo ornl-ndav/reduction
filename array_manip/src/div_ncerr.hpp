@@ -216,7 +216,7 @@ namespace ArrayManip
 
     output = input1 / input2;
     output_err2 = (input1_err2 / input2_2)
-                + (input1_2 / (input2_2 * input2_2) * input2_err2);
+                + (input1_2 * input2_err2) / (input2_2 * input2_2);
 
     return Nessi::EMPTY_WARN;
   }

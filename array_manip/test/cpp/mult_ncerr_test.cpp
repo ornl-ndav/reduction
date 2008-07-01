@@ -146,7 +146,7 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output_vs,
 
   // initialize the correct true_outputs for the scalar scalar case
   true_output_ss = static_cast<NumT>(8.); // =2*4
-  true_output_ss_err2 = static_cast<NumT>(6.);
+  true_output_ss_err2 = static_cast<NumT>(20.);
 }
 
 /**

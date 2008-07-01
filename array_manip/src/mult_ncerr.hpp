@@ -156,8 +156,9 @@ namespace ArrayManip
              NumT & output_err2,
              void *temp=NULL)
   {
-    output = input1*input2;
-    output_err2 = (input2*input1_err2) + (input1*input2_err2);
+    output = input1 * input2;
+    output_err2 = (input2 * input2 * input1_err2) + 
+      (input1 * input1 * input2_err2);
 
     return Nessi::EMPTY_WARN;
   }

@@ -147,7 +147,7 @@ def initialize_true_outputs(key):
 
         # initialize the correct outputs for scalar scalar case        
         true_output_ss.val = float(8.)
-        true_output_ss.val_err2 = float(6.)        
+        true_output_ss.val_err2 = float(20.)        
 
     else:
 
@@ -183,7 +183,7 @@ def initialize_true_outputs(key):
 
         # initialize the correct outputs for scalar scalar case        
         true_output_ss.val = int(8)
-        true_output_ss.val_err2 = int(6)
+        true_output_ss.val_err2 = int(20)
 
     return true_output_vv,\
        true_output_vv_err2,\
