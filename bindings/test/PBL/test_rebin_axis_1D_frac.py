@@ -58,19 +58,19 @@ Axis_Out_D.append(10.)
 
 # Truth values for rebin_axis_1D_frac version
 TruthOutput_D = DoubleNessiVector()
-TruthOutput_D.append(15.)
-TruthOutput_D.append(17.5)
-TruthOutput_D.append(17.5)
+TruthOutput_D.append(30.)
+TruthOutput_D.append(35.)
+TruthOutput_D.append(35.)
 
 TruthOutput_Err2_D = DoubleNessiVector()
-TruthOutput_Err2_D.append(1.25)
-TruthOutput_Err2_D.append(1.3125)
-TruthOutput_Err2_D.append(1.5625)
+TruthOutput_Err2_D.append(5.0)
+TruthOutput_Err2_D.append(5.25)
+TruthOutput_Err2_D.append(6.25)
 
 TruthFracArea_D = DoubleNessiVector()
-TruthFracArea_D.append(1.5)
-TruthFracArea_D.append(1.75)
-TruthFracArea_D.append(1.75)
+TruthFracArea_D.append(3.0)
+TruthFracArea_D.append(3.5)
+TruthFracArea_D.append(3.5)
 
 ###############################################################################
 # Create output placeholders for vectors

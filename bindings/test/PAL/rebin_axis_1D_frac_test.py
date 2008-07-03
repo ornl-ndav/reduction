@@ -104,15 +104,15 @@ def initialize_true_outputs(key):
         true_frac_area_vv = nessi_list.NessiList()
 
       # initialize the correct outputs for vector vector case
-        true_output_vv.append(float(15))
-        true_output_vv_err2.append(float(1.25))
-        true_frac_area_vv.append(float(1.5))
-        true_output_vv.append(float(17.5))
-        true_output_vv_err2.append(float(1.3125))
-        true_frac_area_vv.append(float(1.75))
-        true_output_vv.append(float(17.5))
-        true_output_vv_err2.append(float(1.5625))
-        true_frac_area_vv.append(float(1.75))
+        true_output_vv.append(float(30))
+        true_output_vv_err2.append(float(5))
+        true_frac_area_vv.append(float(3))
+        true_output_vv.append(float(35))
+        true_output_vv_err2.append(float(5.25))
+        true_frac_area_vv.append(float(3.5))
+        true_output_vv.append(float(35))
+        true_output_vv_err2.append(float(6.25))
+        true_frac_area_vv.append(float(3.5))
 
     else:
         raise TypeError

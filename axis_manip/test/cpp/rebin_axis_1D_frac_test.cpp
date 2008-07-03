@@ -103,17 +103,17 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output,
                              Nessi::Vector<NumT> & true_output_err2,
                              Nessi::Vector<NumT> & true_frac_area)
 {
-  true_output.push_back(static_cast<NumT>(15.0));
-  true_output.push_back(static_cast<NumT>(17.5));
-  true_output.push_back(static_cast<NumT>(17.5));
+  true_output.push_back(static_cast<NumT>(30.0));
+  true_output.push_back(static_cast<NumT>(35.0));
+  true_output.push_back(static_cast<NumT>(35.0));
 
-  true_output_err2.push_back(static_cast<NumT>(1.25));
-  true_output_err2.push_back(static_cast<NumT>(1.3125));
-  true_output_err2.push_back(static_cast<NumT>(1.5625));
+  true_output_err2.push_back(static_cast<NumT>(5.0));
+  true_output_err2.push_back(static_cast<NumT>(5.25));
+  true_output_err2.push_back(static_cast<NumT>(6.25));
 
-  true_frac_area.push_back(static_cast<NumT>(1.5));
-  true_frac_area.push_back(static_cast<NumT>(1.75));
-  true_frac_area.push_back(static_cast<NumT>(1.75));
+  true_frac_area.push_back(static_cast<NumT>(3.0));
+  true_frac_area.push_back(static_cast<NumT>(3.5));
+  true_frac_area.push_back(static_cast<NumT>(3.5));
 }
 
 /**
