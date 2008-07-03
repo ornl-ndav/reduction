@@ -31,6 +31,7 @@
 #define _REBIN_AXIS_1D_FRAC_HPP 1
 
 #include "nessi_warn.hpp"
+#include "num_comparison.hpp"
 #include "rebinning.hpp"
 #include "size_checks.hpp"
 #include <cmath>
@@ -92,13 +93,13 @@ namespace AxisManip
         const NumT axis_out_lo = axis_out[inew];
         const NumT axis_out_hi = axis_out[inew + 1];
 
-        // SNS-FIXME These comparison statements don't make any sense for
-        // floating point numbers
-        if (axis_out_hi <= axis_in_lo)
+        //if (axis_out_hi <= axis_in_lo)
+        if (Utils::compare(axis_out_hi, axis_in_lo) <= 0)
           {
             inew++;
           }
-        else if (axis_in_hi <= axis_out_lo)
+        //else if (axis_in_hi <= axis_out_lo)
+        else if (Utils::compare(axis_in_hi, axis_out_lo) <= 0)
           {
             iold++;
           }
