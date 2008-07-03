@@ -111,12 +111,10 @@ namespace AxisManip
                 // delta is the overlap of the bins on the axis
                 const NumT delta = std::min(axis_in_hi, axis_out_hi) -
                   std::max(axis_in_lo, axis_out_lo);
-                const NumT width = axis_in_hi - axis_in_lo;
-                const NumT portion = delta / width;
                 
-                output[inew] += input[iold] * portion;
-                output_err2[inew] += input_err2[iold] * portion * portion;
-                frac_area[inew] += portion;
+                output[inew] += input[iold] * delta;
+                output_err2[inew] += input_err2[iold] * delta * delta;
+                frac_area[inew] += delta;
               }
             if (axis_out_hi > axis_in_hi)
               {
