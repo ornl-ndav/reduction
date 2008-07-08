@@ -78,6 +78,12 @@ AT_CHECK([linear_order_jacobian_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Shift Spectrum Function.  ])
+AT_CHECK([shift_spectrum_test | sed -e 's/\r$//' ],[],
+[[shift_spectrum_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Weighted Average Function.  ])
 AT_CHECK([weighted_average_test | sed -e 's/\r$//' ],[],
 [[weighted_average_test.cpp..........Functionality OK
