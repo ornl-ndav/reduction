@@ -116,6 +116,8 @@ return ret;
 
 std::string linear_order_jacobian_ss_d(const double orig_axis_lo, const double orig_axis_hi, const double transform_axis_lo, const double transform_axis_hi, const double input, const double input_err2, VPair<double> & output);
 
+%template(shift_spectrum_d) Utils::shift_spectrum<double>;
+
 %{
 std::string weighted_average_d(const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const std::size_t bin_start, const std::size_t bin_end, VPair<double> & value, void *temp=NULL) {
 std::string ret = Utils::weighted_average(input, input_err2, bin_start, bin_end, value.val, value.val_err2, temp);
