@@ -55,22 +55,22 @@ namespace Utils
   {
     // Check input is histogram
     Utils::check_histo_sizes(ss_func_str
-                             + std::string(" input histogram data "), 
+                             + std::string(" input histogram data:"), 
                              input, input_err2, axis_in);
     
     // Check output is histogram
     Utils::check_histo_sizes(ss_func_str
-                             + std::string(" output histogram data "), 
+                             + std::string(" output histogram data:"), 
                              output, output_err2, axis_in);
 
     // Check input and output are same size
     Utils::check_sizes_square(ss_func_str 
-                              + std::string(" input & output data "),
+                              + std::string(" input & output data:"),
                               input, output);
 
     // Check input and axis_bc_in are same size
     Utils::check_sizes_square(ss_func_str 
-                              + std::string(" input data & bin centers "),
+                              + std::string(" input data & bin centers:"),
                               input, axis_bc_in);
 
     size_t ie_index;
