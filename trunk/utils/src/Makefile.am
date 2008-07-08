@@ -79,6 +79,8 @@ libUtils_la_SOURCES = \
 	pt_in_convex_polygon.cpp \
 	pt_length.hpp \
 	pt_length.cpp \
+	shift_spectrum.hpp \
+	shift_spectrum.cpp \
 	vector_is_equals.hpp \
 	vector_is_equals.cpp \
 	weighted_average.hpp \
