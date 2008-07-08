@@ -80,6 +80,7 @@ namespace Utils
 
     std::string warn = "";
 
+    // Find bin indicies of xmin and xmax
     warn += Utils::bisect_helper(axis_in, xmin, ie_index);
     warn += Utils::bisect_helper(axis_in, xmax, ae_index);
 
@@ -93,7 +94,10 @@ namespace Utils
           {
             axis_pos = axis_bc_in[i] - (xshift - xmin);
           }
+        // Find bin index of shifted axis position
         warn += Utils::bisect_helper(axis_in, axis_pos, pos_index);
+
+        // Fill in data
         output[i] = input[pos_index];
         output_err2[i] = input_err2[pos_index];
       }
