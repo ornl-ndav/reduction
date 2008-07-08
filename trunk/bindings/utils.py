@@ -1372,6 +1372,7 @@ def peak_integration():
 # \defgroup shift_spectrum utils::shift_spectrum
 # \{
 
+##
 # \brief This function shifts a spectrum about a given point
 #
 # This function is described in section 3.64 of the SNS 107030214-TD0001-R00,
