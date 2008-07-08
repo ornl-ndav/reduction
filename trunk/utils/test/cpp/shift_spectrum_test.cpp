@@ -114,16 +114,16 @@ void initialize_true_outputs(Nessi::Vector<NumT> & true_output,
   // initialize the correct outputs
 
   // vector-vector
+  true_output.push_back(static_cast<NumT>(20.0));
+  true_output_err2.push_back(static_cast<NumT>(3.0));
+  true_output.push_back(static_cast<NumT>(30.0));
+  true_output_err2.push_back(static_cast<NumT>(4.0));
+  true_output.push_back(static_cast<NumT>(30.0));
+  true_output_err2.push_back(static_cast<NumT>(4.0));
+  true_output.push_back(static_cast<NumT>(20.0));
+  true_output_err2.push_back(static_cast<NumT>(3.0));
   true_output.push_back(static_cast<NumT>(10.0));
   true_output_err2.push_back(static_cast<NumT>(2.0));
-  true_output.push_back(static_cast<NumT>(20.0));
-  true_output_err2.push_back(static_cast<NumT>(3.0));
-  true_output.push_back(static_cast<NumT>(30.0));
-  true_output_err2.push_back(static_cast<NumT>(4.0));
-  true_output.push_back(static_cast<NumT>(30.0));
-  true_output_err2.push_back(static_cast<NumT>(4.0));
-  true_output.push_back(static_cast<NumT>(20.0));
-  true_output_err2.push_back(static_cast<NumT>(3.0));
 }
 
 /**
