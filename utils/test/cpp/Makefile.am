@@ -40,6 +40,7 @@ UTILS_TARGETS = \
 	eval_linear_fit_test \
 	fit_linear_background_test \
 	linear_order_jacobian_test \
+	shift_spectrum_test \
 	weighted_average_test
 
 TESTSUITE	= $(srcdir)/testsuite
@@ -66,6 +67,8 @@ fit_linear_background_test_SOURCES = fit_linear_background_test.cpp \
 
 linear_order_jacobian_test_SOURCES = linear_order_jacobian_test.cpp \
 	test_common.hpp
+
+shift_spectrum_test_SOURCES = shift_spectrum_test.cpp test_common.hpp
 
 weighted_average_test_SOURCES = weighted_average_test.cpp test_common.hpp
 
