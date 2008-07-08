@@ -1466,7 +1466,7 @@ def shift_spectrum(input, input_err2, axis_in, axis_bc_in, xshift, xmin, xmax):
     if axis_in.__type__ != input.__type__:
         raise TypeError("Input Data and Axis are not the same type.")
 
-    if axis.__type__ != axis_bc_in.__type__:
+    if axis_in.__type__ != axis_bc_in.__type__:
         raise TypeError("Input Axis and Bin Centers are not the same type.")
 
     if input.__type__ != input_err2.__type__:
