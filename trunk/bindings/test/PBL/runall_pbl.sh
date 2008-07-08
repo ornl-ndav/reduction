@@ -63,6 +63,8 @@ python test_reverse_array_cp.py
 echo
 python test_reverse_array_nc.py
 echo
+python test_shift_spectrum.py
+echo
 python test_sub_ncerr.py
 echo
 python test_sumw_ncerr.py
