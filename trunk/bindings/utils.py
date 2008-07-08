@@ -1369,6 +1369,131 @@ def peak_integration():
 # \}
 
 ##
+# \defgroup shift_spectrum utils::shift_spectrum
+# \{
+
+# \brief This function shifts a spectrum about a given point
+#
+# This function is described in section 3.64 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function takes the input data and shifts it about the given shift 
+# point. The values from \f$axis\_bc\_in\f$ are iterated through and the 
+# output data is built by the following mechanism.
+#
+# \f[
+# \mathrm{if}\: x \leq x_{shift}:
+# \f]
+# \f[
+# data_{out}(x') = data_{in}\left(x + \left(x_{max} - x_{shift}\right)
+# \right)
+# \f]
+# \f[
+# \sigma^2_{out}(x') = \sigma^2_{in}\left(x + \left(x_{max} - x_{shift}
+# \right)\right)
+# \f]
+# \f[
+# \mathrm{if}\: x > x_{shift}:
+# \f]
+# \f[
+# data_{out}(x') = data_{in}\left(x - \left(x_{shift} - x_{min}\right)
+# \right)
+# \f]
+# \f[
+# \sigma^2_{out}(x') = \sigma^2_{in}\left(x - \left(x_{shift} - x_{min}
+# \right)\right)
+# \f]
+#
+# where \f$x\f$ and \f$x'\f$ are the lock-step iteration of 
+# \f$axis\_bc\_in\f$.
+# 
+# \param input (INPUT) is the data to shift
+# \param input_err2 (INPUT) is the square uncertainty in the data being 
+# shifted
+# \param axis_in (INPUT) is the independent axis associated with the input 
+# data
+# \param axis_bc_in (INPUT) is the bin centers of the independent axis
+# \param xshift (INPUT) the point on the independent axis about 
+# which to shift the data
+# \param xmin (INPUT) is the minimum axis point from which to retrieve
+# data
+# \param xmax (INPUT) is the maximum axis point from which to retrieve
+# data
+#
+# \return
+# - the data after being shifted
+# - the square uncertainty associated with the shifted data
+#
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception TypeError is raised if any of the lists are not recognized types
+  
+def shift_spectrum(input, input_err2, axis_in, axis_bc_in, xshift, xmin, xmax):
+    """
+    This function takes the input data and shifts it about the given shift 
+    point. The values from axis_bc_in are iterated through and the output data
+    is built by the following mechanism.
+
+    if x <= x_shift:
+      data_out(x') = data_in(x + (x_max - x_shift))
+      sigma^2_out(x') = sigma^2_in(x + (x_max - x_shift))
+
+    if x > x_shift:
+      data_out(x') = data_in(x - (x_shift - x_min))
+      sigma^2_out(x') = sigma^2_in(x - (x_shift - x_min))
+
+    where x and x' are the lock-step iteration of axis_bc_in.
+
+    Parameters:
+    ----------
+    -> input is the data to shift
+    -> input_err2 is the square uncertainty in the data being shifted
+    -> axis_in is the independent axis associated with the input data
+    -> axis_bc_in is the bin centers of the independent axis
+    -> xshift the point on the independent axis about which to shift the data
+    -> xmin is the minimum axis point from which to retrieve data
+    -> xmax is the maximum axis point from which to retrieve data
+
+    Returns:
+    -------
+    <- the data after being shifted
+    <- the square uncertainty associated with the shifted data
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if any of the lists are not the same type
+    <- TypeError is raised if any of the lists are not recognized types
+    """
+    if axis_in.__type__ != input.__type__:
+        raise TypeError("Input Data and Axis are not the same type.")
+
+    if axis.__type__ != axis_bc_in.__type__:
+        raise TypeError("Input Axis and Bin Centers are not the same type.")
+
+    if input.__type__ != input_err2.__type__:
+        raise TypeError("Input and Input Err2 arrays are not the same type")
+
+    if input.__type__ == nessi_list.NessiList.DOUBLE:
+        output = nessi_list.NessiList(len(input))
+        output_err2 = nessi_list.NessiList(len(input_err2))
+
+        utils_bind.shift_spectrum_d(input.__array__,
+                                    input_err2.__array__,
+                                    axis_in.__array__,
+                                    axis_bc_in.__array__,
+                                    float(xshift),
+                                    float(xmin),
+                                    float(xmax),
+                                    output.__array__,
+                                    output_err2.__array__)
+
+        return (output, output_err2)
+    else:
+        raise TypeError("Unknown primative type %s" % str(input.__type__))
+
+##
+# \}
+
+##
 # \defgroup vector_is_equals utils::vector_is_equals
 # \{
 
