@@ -1999,6 +1999,7 @@ class NessiList (list):
 # This function will return a NumPy representation of the internal NessiList
 # array.
 #
+# \param self <i>this</i>
 # \param bin_centers This allows the bin centers to be returned rather than
 # the array itself. This is useful for NessiLists holding histogram axes. The
 # default value is <em>False</em>.
