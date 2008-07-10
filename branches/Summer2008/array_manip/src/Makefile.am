@@ -28,7 +28,7 @@ AM_CPPFLAGS = $(OPENMP_CXX) $(OPENMP_LD) -I. -I$(top_srcdir)/array_manip/inc \
 pkglib_LTLIBRARIES = libArrayManip.la
 
 libArrayManip_la_LDFLAGS = $(LIB_ARRAY_MANIP_VERSION) \
-			-L$(top_builddir)/utils/src/.libs -lUtils
+			-L$(top_builddir)/utils/src/.libs -lUtils -lgomp
 
 libArrayManip_la_SOURCES = \
 	abs_val.cpp \
