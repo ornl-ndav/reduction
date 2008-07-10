@@ -101,11 +101,9 @@ namespace AxisManip
 
     // do the calculation
     size_t size_wavevector=initial_wavevector.size();
-
-	#pragma omp parallel for
-    for (int i = 0 ; i < static_cast<int>(size_wavevector) ; ++i)
-    {
-        std::string tempS =
+    for (size_t i = 0 ; i < size_wavevector ; ++i)
+      {
+        retstr +=
           __init_scatt_wavevector_to_scalar_Q_dynamic(
                                                       initial_wavevector[i],
                                                       initial_wavevector_err2[i],
@@ -113,14 +111,7 @@ namespace AxisManip
                                                       final_wavevector_err2[i],
                                                       polar_angle_err2, a, b,
                                                       sang, Q[i], Q_err2[i]);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     return retstr;
   }
@@ -183,11 +174,9 @@ namespace AxisManip
 
     // do the calculation
     size_t size_wavevector=final_wavevector.size();
-
-	#pragma omp parallel for
-    for (int i = 0 ; i < static_cast<int>(size_wavevector) ; ++i)
-    {
-        std::string tempS =
+    for (size_t i = 0 ; i < size_wavevector ; ++i)
+      {
+        retstr +=
           __init_scatt_wavevector_to_scalar_Q_dynamic(
                                                       initial_wavevector,
                                                       initial_wavevector_err2,
@@ -195,14 +184,7 @@ namespace AxisManip
                                                       final_wavevector_err2[i],
                                                       polar_angle_err2, a, b,
                                                       sang, Q[i], Q_err2[i]);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     return retstr;
   }
@@ -264,11 +246,9 @@ namespace AxisManip
                                                          c);
     // do the calculation
     size_t size_wavevector=initial_wavevector.size();
-
-	#pragma omp parallel for
-    for (int i = 0 ; i < static_cast<int>(size_wavevector) ; ++i)
-    {
-        std::string tempS =
+    for (size_t i = 0 ; i < size_wavevector ; ++i)
+      {
+        retstr +=
           __init_scatt_wavevector_to_scalar_Q_dynamic(
                                                       initial_wavevector[i],
                                                       initial_wavevector_err2[i],
@@ -276,14 +256,7 @@ namespace AxisManip
                                                       final_wavevector_err2,
                                                       polar_angle_err2, a, b,
                                                       c, Q[i], Q_err2[i]);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     return retstr;
   }

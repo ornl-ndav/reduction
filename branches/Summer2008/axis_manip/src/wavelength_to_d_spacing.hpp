@@ -95,25 +95,16 @@ namespace AxisManip
 
     // do the calculation
     size_t size_wavelength = wavelength.size();
-
-	#pragma omp parallel for
-    for (int i=0; i < static_cast<int>(size_wavelength) ; ++i)
-    {
-        std::string tempS = __wavelength_to_d_spacing_dynamic(wavelength[i],
+    for (size_t i=0; i < size_wavelength ; ++i)
+      {
+        retstr += __wavelength_to_d_spacing_dynamic(wavelength[i],
                                                     wavelength_err2[i],
                                                     polar_angle,
                                                     polar_angle_err2,
                                                     a, a2, b2,
                                                     d_spacing[i],
                                                     d_spacing_err2[i]);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-  	}
+      }
 
     return retstr;
   }

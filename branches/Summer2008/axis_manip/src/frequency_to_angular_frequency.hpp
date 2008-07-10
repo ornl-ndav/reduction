@@ -88,24 +88,15 @@ namespace AxisManip
     retstr += __frequency_to_angular_frequency_static(a,a2);
 
     size_t sz = frequency.size();
-
-	#pragma omp parallel for
-    for (int i=0; i < static_cast<int>(sz); ++i)
-    {
-        std::string tempS = __frequency_to_angular_frequency_dynamic(frequency[i],
+    for (size_t i=0; i < sz; ++i)
+      {
+        retstr += __frequency_to_angular_frequency_dynamic(frequency[i],
                                                            frequency_err2[i],
                                                            angular_frequency[i],
                                                            angular_frequency_err2[i],
                                                            a,
                                                            a2);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     return retstr;
 

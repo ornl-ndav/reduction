@@ -85,6 +85,7 @@ namespace AxisManip
 
     // Traverse both sets of bin edges, and if there is an overlap, add the
     // portion of the overlapping old bin to the new bin.
+	int j = 0;
     while (inew < nnew && iold < nold)
       {
         const NumT axis_in_lo = axis_in[iold];
@@ -126,6 +127,11 @@ namespace AxisManip
                 inew++;
               }
           }
+			j++;
+			if (j > 1000000)
+			{
+				throw std::invalid_argument("infinite loop rebin_axis_1D_frac.hpp");
+			}
       }
 
     return Nessi::EMPTY_WARN;

@@ -1,5 +1,5 @@
 /*
- *                     SNS Common Libraries 
+ *                     SNS Common Libraries
  *           A part of the SNS Analysis Software Suite.
  *
  *                  Spallation Neutron Source
@@ -93,25 +93,16 @@ namespace AxisManip
     // fill the local variables
     retstr += __wavelength_to_tof_static(pathlength, pathlength_err2,
                                          a, a2, a_err2);
-    // do the calculation 
+    // do the calculation
     size_t size_wavelength = wavelength.size();
-
-	#pragma omp parallel for
-    for (int i = 0; i < static_cast<int>(size_wavelength); ++i)
-    {
-        std::string tempS = __wavelength_to_tof_dynamic(wavelength[i], 
+    for (size_t i = 0; i < size_wavelength; ++i)
+      {
+        retstr += __wavelength_to_tof_dynamic(wavelength[i], 
                                               wavelength_err2[i],
                                               a, a2, a_err2,
                                               tof[i],
                                               tof_err2[i]);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     return retstr;
   }
