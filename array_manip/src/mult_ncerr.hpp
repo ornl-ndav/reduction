@@ -81,10 +81,9 @@ namespace ArrayManip
       }
 
     NumT scalar2 = scalar * scalar;
-    int size = static_cast<int>(array_in.size());
+    size_t size = array_in.size();
 
-	#pragma omp parallel for
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         array_out[i] = array_in[i] * scalar;
         array_out_err2[i] = (scalar2 * array_in_err2[i]) +
@@ -136,9 +135,8 @@ namespace ArrayManip
     std::transform(input1.begin(), input1.end(), input2.begin(),
                    output.begin(), std::multiplies<NumT>());
 
-    int sz = static_cast<int>(input1.size());
-	#pragma omp parallel for
-    for (int i = 0; i < sz; i++)
+    size_t sz = input1.size();
+    for (size_t i = 0; i < sz; i++)
     {
       	output_err2[i] = (input2[i] * input2[i] * input1_err2[i]) +
          	(input1[i] * input1[i] * input2_err2[i]);
