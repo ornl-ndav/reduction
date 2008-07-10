@@ -88,24 +88,15 @@ namespace AxisManip
     retstr += __velocity_to_scalar_k_static(mh,mh2);
 
     size_t sz = velocity.size();
-
-	#pragma omp parallel for
-    for (int i=0; i < static_cast<int>(sz); ++i)
-    {
-        std::string tempS = __velocity_to_scalar_k_dynamic(velocity[i],
+    for (size_t i=0; i < sz; ++i)
+      {
+        retstr += __velocity_to_scalar_k_dynamic(velocity[i],
                                                  velocity_err2[i],
                                                  wavevector[i],
                                                  wavevector_err2[i],
                                                  mh,
                                                  mh2);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     return retstr;
   }

@@ -106,11 +106,9 @@ namespace AxisManip
 
     // fill the results array
     size_t size_tof = tof.size();
-
-	#pragma omp parallel for
-    for (int i = 0 ; i < static_cast<int>(size_tof) ; ++i)
-    {
-        std::string tempS =
+    for (size_t i = 0 ; i < size_tof ; ++i)
+      {
+        retstr +=
           __tof_to_final_velocity_dgs_dynamic(tof[i], 
                                               tof_err2[i],
                                               initial_velocity_err2,
@@ -121,14 +119,7 @@ namespace AxisManip
                                               final_velocity[i],
                                               final_velocity_err2[i],
                                               a, a2, b, c, c2, ld2);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     // send back all warnings
     return retstr;

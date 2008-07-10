@@ -95,21 +95,13 @@ namespace AxisManip
 
     // do the calculation
     size_t size_tof = tof.size();
-	#pragma omp parallel for
-    for (int i = 0; i < static_cast<int>(size_tof); ++i)
-    {
-        std::string tempS = __tof_to_wavelength_dynamic(tof[i], tof_err2[i],
+    for (size_t i = 0; i < size_tof; ++i)
+      {
+        retstr += __tof_to_wavelength_dynamic(tof[i], tof_err2[i],
                                               a, a2, a_err2,
                                               wavelength[i],
                                               wavelength_err2[i]);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     return retstr;
   }

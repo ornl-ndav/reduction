@@ -100,11 +100,9 @@ namespace AxisManip
 
     // fill the results array
     size_t size_tof = tof.size();
-
-	#pragma omp parallel for
-    for (int i = 0 ; i < static_cast<int>(size_tof) ; ++i)
-    {
-        std::string tempS =
+    for (size_t i = 0 ; i < size_tof ; ++i)
+      {
+        retstr +=
           __tof_to_initial_wavelength_igs_dynamic(
                                                   tof[i], tof_err2[i],
                                                   final_wavelength_err2,
@@ -115,14 +113,7 @@ namespace AxisManip
                                                   initial_wavelength_err2[i],
                                                   a, b, c, ls2, inv_ls2,
                                                   ld2, wf2);
-		if (!tempS.empty())
-		{
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-		}
-    }
+      }
 
     // send back all warnings
     return retstr;
