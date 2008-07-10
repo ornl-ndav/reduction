@@ -1,4 +1,4 @@
-dnl                     SNS Common Libraries
+dnl                     SNS Common Libraries 
 dnl           A part of the SNS Analysis Software Suite. 
 dnl
 dnl                  Spallation Neutron Source
