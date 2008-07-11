@@ -22,8 +22,10 @@
 
 # $Id$
 
+
 AM_CPPFLAGS = $(OPENMP_CXX) $(OPENMP_LD) -I. -I$(top_srcdir)/phys_corr/inc \
-			-I$(top_srcdir)/nessi/inc 
+			  -I$(top_srcdir)/nessi/inc
+
 
 pkglib_LTLIBRARIES = libPhysCorr.la
 

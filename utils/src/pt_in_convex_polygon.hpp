@@ -69,38 +69,37 @@ namespace Utils
                                              y_coord[dest_pos]);
         return ((BETWEEN == c) || (ORIGIN == c) || (DESTINATION == c));
       }
+	int returnType = 0;
     
     // Have a standard polygon. If the point lies inside the polygon, the
     // classification is anything but LEFT. A LEFT classification denotes that 
     // point lies outside the polygon.
-	bool returnType = true;
-	
-	#pragma omp parallel for
+	#pragma omp parallel for reduction(+:returnType)
     for (int i = 0; i < static_cast<int>(poly_size); ++i)
-    {
-        // Advance polygon edge
-		std::size_t t_orig_pos = orig_pos;
-		std::size_t t_dest_pos = dest_pos;
-        t_orig_pos = 
-				__wrap_indicies(t_orig_pos + static_cast<std::size_t>(i), poly_size);
-        t_dest_pos = 
-				__wrap_indicies(t_dest_pos + static_cast<std::size_t>(i), poly_size);
+      {
+        std::size_t orig_pos_t = 
+				__wrap_indicies(orig_pos + static_cast<std::size_t>(i), poly_size);
+        std::size_t dest_pos_t = 
+				__wrap_indicies(dest_pos + static_cast<std::size_t>(i), poly_size);
 
-        eEdgeClass c = __classify_pt_to_edge(pt_x, pt_y, 
-                                             x_coord[t_orig_pos + static_cast<std::size_t>(i)], 
-                                             y_coord[t_orig_pos + static_cast<std::size_t>(i)],
-                                             x_coord[t_dest_pos + static_cast<std::size_t>(i)],
-                                             y_coord[t_dest_pos + static_cast<std::size_t>(i)]);
+        eEdgeClass c = __classify_pt_to_edge(pt_x, pt_y,
+                                             x_coord[orig_pos_t], 
+                                             y_coord[orig_pos_t],
+                                             x_coord[dest_pos_t],
+                                             y_coord[dest_pos_t]);
+		int addReturn = 0;
+
         if (LEFT == c)
-        {
-			#pragma omp critical
-			{
-            	returnType = false;
-			}
-        }
-    }
+          {
+            addReturn = 1;
+          }
+		returnType += addReturn;
+      }
 
-    return returnType;
+	if (returnType > 0)
+		return false;
+	else
+    	return true;
   }
 } // Utils
 

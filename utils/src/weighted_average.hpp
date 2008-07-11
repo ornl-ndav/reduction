@@ -71,21 +71,15 @@ namespace Utils
 	NumT num1, num2;
 	num1 = static_cast<NumT>(0.0);
 	num2 = static_cast<NumT>(1.);
-	#pragma omp parallel for
-    for(int i = static_cast<int>(bin_start); i <= static_cast<int>(bin_end); ++i)
+    for(std::size_t i = bin_start; i <= bin_end; ++i)
     {
         if(compare(input_err2[i], num1) != 0) 
         {
-			#pragma omp critical
-			{
             	weighted_ave += (input[i] / input_err2[i]);
             	weighted_ave_err2 += (num2 / input_err2[i]);
-			}
         }
         else
         {
-			#pragma omp critical
-			{
             	if(do_once && warn.find("Utils") == std::string::npos)
               	{
                 	warn += wa_func_str + " Skipping index ";
@@ -95,7 +89,6 @@ namespace Utils
             std::ostringstream os;			
           	os << i << " ";
             warn += os.str();
-			}
         }
     }
 
