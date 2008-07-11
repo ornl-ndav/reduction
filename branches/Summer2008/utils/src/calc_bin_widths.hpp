@@ -72,20 +72,12 @@ namespace Utils
     
     std::size_t size_bin_widths = bin_widths.size();
 	
-	#pragma omp parallel for
-    for (int i = 0; i <  static_cast<int>(size_bin_widths); ++i)
+    for (std::size_t i = 0; i <  size_bin_widths; ++i)
       {
-        std::string tempS = __calc_bin_widths_dynamic(axis[i], axis[i+1], 
+        retstr += __calc_bin_widths_dynamic(axis[i], axis[i+1], 
                                          axis_err2[i], axis_err2[i+1], 
                                          bin_widths[i], 
                                          bin_widths_err2[i]);
-        if (!tempS.empty())
-          {
-			#pragma omp critical
-			{
-				retstr += tempS;
-			}
-          }
 		
       }
 

@@ -43,21 +43,27 @@ namespace Utils
   vector_is_equals (const Nessi::Vector<NumT> & value,
                     const Nessi::Vector<NumT> & true_value)
   {
-    std::size_t n_max = true_value.size();
-	bool answer = true;
-	#pragma omp parallel for shared(answer)
+
+    size_t n_max = true_value.size();
+	int returnType = 0;
+	#pragma omp parallel for reduction(+:returnType)
     for (int i = 0 ; i < static_cast<int>(n_max) ; i++)
-    {
+      {
+
+		int addVal = 0;
         if (compare(value[i], true_value[i]) != 0)
-        {
-        	__vector_is_equals_dynamic(i, value[i], true_value[i]);
-			#pragma omp critical
-			{
-            	answer = false;
-			}
-        }
-	}
-    return answer;
+
+          {
+            __vector_is_equals_dynamic(i, value[i], true_value[i]);
+            addVal = 1;
+          }
+		returnType += addVal;
+      }
+	if (returnType > 0)
+		return false;
+	else
+    	return true;
+
   }
 
   /**

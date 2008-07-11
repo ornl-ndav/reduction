@@ -1,4 +1,5 @@
-dnl                     SNS Common Libraries  
+
+dnl                     SNS Common Libraries
 dnl           A part of the SNS Analysis Software Suite. 
 dnl
 dnl                  Spallation Neutron Source
@@ -67,6 +68,7 @@ AC_ARG_ENABLE(optswig,
 esac],[optswig=false])
 AM_CONDITIONAL(OPTSWIG, test x$optswig = xtrue)
 
+
 AC_ARG_ENABLE(openmp_cxx,
 [ --enable-openmp_cxx  Optimize processing time],
 [case "${enableval}" in
@@ -75,7 +77,7 @@ AC_ARG_ENABLE(openmp_cxx,
 	*) AC_MSG_ERROR(bad value ${enableval} for --enable-openmp_cxx) ;;
 esac],[openmp_cxx=false])
 if test x$openmp_cxx = xtrue; then
-	OPENMP_CXX='-D_GLIBCXX_PARALLEL -fopenmp'
+	OPENMP_CXX='-fopenmp'
 else
 	OPENMP_CXX=''
 fi
@@ -94,6 +96,7 @@ else
 	OPENMP_LD=''
 fi
 AC_SUBST(OPENMP_LD)
+
 
 # Our code requires Python 2.3
 PYTHON_REQUIRED=2.3

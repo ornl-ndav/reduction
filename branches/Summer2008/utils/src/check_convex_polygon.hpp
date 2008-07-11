@@ -48,9 +48,6 @@ namespace Utils
         return false;
       }
 
-    std::size_t orig_pt;
-    std::size_t dest_pt;
-    std::size_t class_pt;
 
     eEdgeClass pt_class;
     if (isCW)
@@ -62,31 +59,35 @@ namespace Utils
         pt_class = LEFT;
       }
 
-	bool returnType = true;
-	#pragma omp parallel for private(orig_pt, dest_pt, class_pt)
-    for (int i = 0; i <  static_cast<int>(poly_size); ++i)
-    {
-		orig_pt = __wrap_indicies(i, poly_size);
-        dest_pt = __wrap_indicies(i+1, poly_size);
-        class_pt = __wrap_indicies(i+2, poly_size);
+
+	int returnType = 0;
+	#pragma omp parallel for reduction(+:returnType)
+    for (int i = 0; i < static_cast<int>(poly_size); ++i)
+      {
+		std::size_t orig_pt = __wrap_indicies(static_cast<size_t>(i), poly_size);
+        std::size_t dest_pt = __wrap_indicies(static_cast<size_t>(i) + 1, poly_size);
+        std::size_t class_pt = __wrap_indicies(static_cast<size_t>(i) + 2, poly_size);
         eEdgeClass class_check = __classify_pt_to_edge(xcoord[class_pt], 
                                                        ycoord[class_pt],
                                                        xcoord[orig_pt],
                                                        ycoord[orig_pt],
                                                        xcoord[dest_pt],
-                                                       ycoord[dest_pt]);          
+                                                       ycoord[dest_pt]);
+		int returnAdd = 0;          
         if (class_check != pt_class)
           {
             // Polygon must be concave
-			#pragma omp critical
-			{
-            	returnType = false;
-			}
-          }
-	}
 
-    // Polygon must be convex
-    return returnType;
+            returnAdd = 1;
+          }
+
+		returnType += returnAdd;        
+      }
+	if (returnType > 0)
+		return false;
+	// Polygon must be convex
+	else
+		return true;
   }
 } // Utils
 

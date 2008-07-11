@@ -127,11 +127,6 @@ namespace AxisManip
                 inew++;
               }
           }
-			j++;
-			if (j > 1000000)
-			{
-				throw std::invalid_argument("infinite loop rebin_axis_1D_frac.hpp");
-			}
       }
 
     return Nessi::EMPTY_WARN;

@@ -86,20 +86,12 @@ namespace Utils
 
     std::size_t size_in = input.size();
 
-	#pragma omp parallel for
-    for (int i = 0; i < (int) size_in; ++i)
+    for (std::size_t i = 0; i < size_in; ++i)
       {
-        std::string warn = linear_order_jacobian(orig_axis[i], orig_axis[i+1],
+       	retstr += linear_order_jacobian(orig_axis[i], orig_axis[i+1],
                                      transform_axis[i], transform_axis[i+1],
                                      input[i], input_err2[i],
                                      output[i], output_err2[i]);
-        if (!warn.empty())
-          {
-			#pragma omp critical
-			{
-				retstr += warn;
-			}
-          }
 				
       }
 
