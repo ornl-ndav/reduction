@@ -1,3 +1,23 @@
+Changes in Version 1.2.0
+========================
+
+- Provide the following new functions
+ - Axis Manipulations (1.2.0)
+   * rebin_axis_1D_frac
+
+ - Utilities (1.2.0)
+   * shift_spectrum
+
+- Provide PAL representations of above functions
+- Added scalar-scalar functions to *_ncerr (except sumw_ncerr) functions in 
+  Array Manipulations (1.2.0)
+- Changed PAL behavior of calc_bin_widths and calc_bin_centers to accept only 
+  one array
+- Added ability for NessiList (PAL) to return a NumPy representation of the 
+  array
+- Provided overloaded size checking functions that accept an additional string 
+  argument to prepend to the exception message
+
 Changes in Version 1.1.0
 ========================
 
