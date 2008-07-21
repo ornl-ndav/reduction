@@ -71,13 +71,14 @@ namespace Utils
 
     if (size != size_err2)
       {
-        std::string errstr = str + " " + "input and input_err2 are not the same size";
+        std::string errstr = str + \
+          " input and input_err2 are not the same size";
         throw std::invalid_argument(errstr);
       }
 
     if (size_axis != size+1)
       {
-        std::string errstr = str + " " + "axis size is not input size + 1";
+        std::string errstr = str + " axis size is not input size + 1";
         throw std::invalid_argument(errstr);
       }
     
@@ -127,13 +128,14 @@ namespace Utils
 
     if (size != size_err2)
       {
-        std::string errstr = str + " " + "input and input_err2 are not the same size";
+        std::string errstr = str + \
+          " input and input_err2 are not the same size";
         throw std::invalid_argument(errstr);
       }
 
     if (size_axis_1*size_axis_2 != size+size_axis_1+size_axis_2-1)
       {
-        std::string errstr = str + " " + "size(axis_1)*size(axis_2) is not ";
+        std::string errstr = str + " size(axis_1)*size(axis_2) is not ";
         errstr += "size(input)+size(axis_1)+size(axis_2)-1";
         throw std::invalid_argument(errstr);
       }
