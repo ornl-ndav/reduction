@@ -1379,35 +1379,32 @@ def peak_integration():
 # "Data Reduction Library Software Requirements and Specifications".
 #
 # This function takes the input data and shifts it about the given shift 
-# point. The values from \f$axis\_bc\_in\f$ are iterated through and the 
-# output data is built by the following mechanism.
+# point. The values from \f$axis\_bc\_in\f$ (\f$x\f$) are iterated through and
+# the output data is built by the following mechanism.
 #
 # \f[
 # \mathrm{if}\: x \leq x_{shift}:
 # \f]
 # \f[
-# data_{out}(x') = data_{in}\left(x + \left(x_{max} - x_{shift}\right)
+# data_{out}(x) = data_{in}\left(x + \left(x_{max} - x_{shift}\right)
 # \right)
 # \f]
 # \f[
-# \sigma^2_{out}(x') = \sigma^2_{in}\left(x + \left(x_{max} - x_{shift}
+# \sigma^2_{out}(x) = \sigma^2_{in}\left(x + \left(x_{max} - x_{shift}
 # \right)\right)
 # \f]
 # \f[
 # \mathrm{if}\: x > x_{shift}:
 # \f]
 # \f[
-# data_{out}(x') = data_{in}\left(x - \left(x_{shift} - x_{min}\right)
+# data_{out}(x) = data_{in}\left(x - \left(x_{shift} - x_{min}\right)
 # \right)
 # \f]
 # \f[
-# \sigma^2_{out}(x') = \sigma^2_{in}\left(x - \left(x_{shift} - x_{min}
+# \sigma^2_{out}(x) = \sigma^2_{in}\left(x - \left(x_{shift} - x_{min}
 # \right)\right)
 # \f]
 #
-# where \f$x\f$ and \f$x'\f$ are the lock-step iteration of 
-# \f$axis\_bc\_in\f$.
-# 
 # \param input (INPUT) is the data to shift
 # \param input_err2 (INPUT) is the square uncertainty in the data being 
 # shifted
@@ -1431,18 +1428,16 @@ def peak_integration():
 def shift_spectrum(input, input_err2, axis_in, axis_bc_in, xshift, xmin, xmax):
     """
     This function takes the input data and shifts it about the given shift 
-    point. The values from axis_bc_in are iterated through and the output data
-    is built by the following mechanism.
+    point. The values from axis_bc_in (x) are iterated through and the output
+    data is built by the following mechanism.
 
     if x <= x_shift:
-      data_out(x') = data_in(x + (x_max - x_shift))
-      sigma^2_out(x') = sigma^2_in(x + (x_max - x_shift))
+      data_out(x) = data_in(x + (x_max - x_shift))
+      sigma^2_out(x) = sigma^2_in(x + (x_max - x_shift))
 
     if x > x_shift:
-      data_out(x') = data_in(x - (x_shift - x_min))
-      sigma^2_out(x') = sigma^2_in(x - (x_shift - x_min))
-
-    where x and x' are the lock-step iteration of axis_bc_in.
+      data_out(x) = data_in(x - (x_shift - x_min))
+      sigma^2_out(x) = sigma^2_in(x - (x_shift - x_min))
 
     Parameters:
     ----------
