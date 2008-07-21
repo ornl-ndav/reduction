@@ -111,7 +111,7 @@ namespace Utils
    * This is the unsigned integer declaration of the check_sizes_square
    * function
    *
-   * \ingrup check_sizes_square
+   * \ingroup check_sizes_square
    */
   template void
   check_sizes_square<unsigned int>(std::string str,

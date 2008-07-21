@@ -655,35 +655,32 @@ namespace Utils
    * \brief This function is described in section 3.64
    *
    * This function takes the input data and shifts it about the given shift 
-   * point. The values from \f$axis\_bc\_in\f$ are iterated through and the 
-   * output data is built by the following mechanism.
+   * point. The values from \f$axis\_bc\_in\f$ (\f$x\f$) are iterated through 
+   * and the output data is built by the following mechanism.
    *
    * \f[
    * \mathrm{if}\: x \leq x_{shift}:
    * \f]
    * \f[
-   * data_{out}(x') = data_{in}\left(x + \left(x_{max} - x_{shift}\right)
+   * data_{out}(x) = data_{in}\left(x + \left(x_{max} - x_{shift}\right)
    * \right)
    * \f]
    * \f[
-   * \sigma^2_{out}(x') = \sigma^2_{in}\left(x + \left(x_{max} - x_{shift}
+   * \sigma^2_{out}(x) = \sigma^2_{in}\left(x + \left(x_{max} - x_{shift}
    * \right)\right)
    * \f]
    * \f[
    * \mathrm{if}\: x > x_{shift}:
    * \f]
    * \f[
-   * data_{out}(x') = data_{in}\left(x - \left(x_{shift} - x_{min}\right)
+   * data_{out}(x) = data_{in}\left(x - \left(x_{shift} - x_{min}\right)
    * \right)
    * \f]
    * \f[
-   * \sigma^2_{out}(x') = \sigma^2_{in}\left(x - \left(x_{shift} - x_{min}
+   * \sigma^2_{out}(x) = \sigma^2_{in}\left(x - \left(x_{shift} - x_{min}
    * \right)\right)
    * \f]
    *
-   * where \f$x\f$ and \f$x'\f$ are the lock-step iteration of 
-   * \f$axis\_bc\_in\f$.
-   * 
    * \param input (INPUT) is the data to shift
    * \param input_err2 (INPUT) is the square uncertainty in the data being 
    * shifted
