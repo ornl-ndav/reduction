@@ -71,13 +71,13 @@ namespace Utils
 
     if (sz1 != sz2)
       {
-        std::string errstr = str + " " + "array1 not the same size as array2";
+        std::string errstr = str + " array1 not the same size as array2";
         throw std::invalid_argument(errstr);
       }
 
     if (sz1 != sz3)
       {
-        std::string errstr = str + " " + "array1 not the same size as array3";
+        std::string errstr = str + " array1 not the same size as array3";
         throw std::invalid_argument(errstr);
       }
 
@@ -110,7 +110,7 @@ namespace Utils
 
     if (sz1 != sz2)
       {
-        std::string errstr = str + " " + "array1 not the same size as array2";
+        std::string errstr = str + " array1 not the same size as array2";
         throw std::invalid_argument(errstr);
       }
 
