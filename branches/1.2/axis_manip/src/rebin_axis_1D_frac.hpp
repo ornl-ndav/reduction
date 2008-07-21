@@ -55,27 +55,15 @@ namespace AxisManip
                      void *temp=NULL)
   {
     // check that the original histogram is of the proper size
-    try
-      {
-        Utils::check_histo_sizes(input, input_err2, axis_in);
-      }
-    catch(std::invalid_argument &e)
-      {
-        throw std::invalid_argument(ra1f_func_str+": original histogram "
-                                    +e.what());
-      }
-    // check that the rebinned histogram is of the proper size
-    try
-      {
-        Utils::check_histo_sizes(output, output_err2, axis_out);
-      }
-    catch(std::invalid_argument &e)
-      {
-        throw std::invalid_argument(ra1f_func_str+": rebinned histogram "
-                                    +e.what());
-      }
+    Utils::check_histo_sizes(ra1f_func_str + ": original histogram ",
+                             input, input_err2, axis_in);
 
-    Utils::check_sizes_square(ra1f_func_str+": fractional area ", 
+    // check that the rebinned histogram is of the proper size
+    Utils::check_histo_sizes(ra1f_func_str + ": rebinned histogram ",
+                             output, output_err2, axis_out);
+
+    // check that the output and fractional area arrays are the same size
+    Utils::check_sizes_square(ra1f_func_str + ": fractional area ", 
                               output, frac_area);
 
     size_t iold = 0;
