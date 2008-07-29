@@ -1848,26 +1848,22 @@ def rebin_axis_1D(axis_in, data_in, data_in_err2, axis_out):
 # fractional area are determined in the following manner:
 #
 # \f[
-# data_{out}[k] = \sum_j data_{in}[j] \times \frac{\Delta_{jk}}{\delta_j}
+# data_{out}[k] = \sum_j data_{in}[j] \times \Delta_{jk}
 # \f]
 # \f[
-# \sigma_{out}^2[k] = \sum_j \sigma_{in}^2[j] \times 
-# \left(\frac{\Delta_{jk}}{\delta_j}\right)^2
+# \sigma_{out}^2[k] = \sum_j \sigma_{in}^2[j] \times \Delta_{jk}^2
 # \f]
 # \f[
-# f[k] = \sum_j \frac{\Delta_{jk}}{\delta_j}
+# f[k] = \sum_j \Delta_{jk}
 # \f] 
 # 
 # where \f$k\f$ is the current bin in the output and \f$j\f$ are the bins 
-# in the input which have overlap with \f$k\f$. The variables 
-# \f$\Delta_{jk}\f$ and \f$\delta_j\f$ are given by
+# in the input which have overlap with \f$k\f$. The variable 
+# \f$\Delta_{jk}\f$ is given by
 #
 # \f[
 # \Delta_{jk} = min(axis_{out}[k+1], axis_{in}[j+1]) - 
 # max(axis_{out}[k], axis_{in}[j])
-# \f]
-# \f[
-# \delta_j = axis_{in}[j+1] - axis_{in}[j]
 # \f]
 #
 # \param axis_in (INPUT) is the initial data axis
@@ -1900,18 +1896,15 @@ def rebin_axis_1D_frac(axis_in, data_in, data_in_err2, axis_out):
     For each bin in the output array, the input data, squared uncertainty and 
     fractional area are determined in the following manner:
 
-    data_{out}[k] = sum_j data_{in}[j] x (Delta_{jk} / delta_j)
-    sigma_{out}^2[k] = sum_j sigma_{in}^2[j] x (Delta_{jk} / delta_j)^2
-    f[k] = sum_j (Delta_{jk} / delta_j)
+    data_{out}[k] = sum_j data_{in}[j] x Delta_{jk}
+    sigma_{out}^2[k] = sum_j sigma_{in}^2[j] x (Delta_{jk})^2
+    f[k] = sum_j Delta_{jk}
 
     where k is the current bin in the output and j are the bins in the input
-    which have overlap with k. The variables Delta_{jk} and delta_j are given
-    by
+    which have overlap with k. The variable Delta_{jk} is given by
 
     Delta_{jk} = min(axis_{out}[k+1], axis_{in}[j+1]) -
                  max(axis_{out}[k], axis_{in}[j])
-
-    delta_j = axis_{in}[j+1] - axis_{in}[j]
 
     Parameters:
     __________
