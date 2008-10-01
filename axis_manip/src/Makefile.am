@@ -37,8 +37,6 @@ libAxisManip_la_SOURCES = \
 	energy_to_wavelength.cpp \
 	energy_transfer.hpp \
 	energy_transfer.cpp \
-	final_velocity_igs.hpp \
-	final_velocity_igs.cpp \
 	frequency_to_angular_frequency.hpp \
 	frequency_to_angular_frequency.cpp \
 	frequency_to_energy.hpp \
@@ -96,4 +94,7 @@ libAxisManip_la_SOURCES = \
 	wavelength_to_scalar_k.hpp \
 	wavelength_to_scalar_k.cpp \
 	wavelength_to_tof.hpp \
-	wavelength_to_tof.cpp
+	wavelength_to_tof.cpp \
+	wavelength_to_velocity.hpp \
+	wavelength_to_velocity.cpp
+
