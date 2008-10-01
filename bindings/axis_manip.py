@@ -4440,3 +4440,111 @@ def wavelength_to_tof(wavelength, wavelength_err2, pathlength,
 
 ##
 #\}
+
+##
+# \defgroup wavelength_to_velocity axis_manip::wavelength_to_velocity
+# \{
+#
+
+##
+# \brief This function calculates velocity from wavelength
+#
+# This function is described in section 3.20 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function converts wavelength to velocity according to the equation
+# \f[
+# v[i]=\frac{h}{m_n \lambda[i]}
+# \f]
+# Where \f$v[i]\f$ is the velocity, \f$h\f$ is Planck's constant, \f$m_n\f$ 
+# is the mass of the neutron, and \f$\lambda[i]\f$ is the wavelength. The 
+# uncertainty is calculated using the assumption of uncorrelated 
+# uncertainties.
+#
+# Assuming that the uncertainties are uncorrelated, the square of the 
+# uncertainty in velocity is given by
+# \f[
+# \sigma^2_v[i] = \left(\frac{v[i]}{\lambda[i]}\right)^2 
+# \sigma^2_{\lambda}[i]
+# \f]
+# where \f$\sigma^2_v[i]\f$ is the uncertainty in the velocity axis and 
+# \f$\sigma^2_{\lambda}[i]\f$ is the uncertainty in the wavelength axis.
+#
+# \param wavelength (INPUT) is the wavelength axis in units of Angstroms
+# \param wavelength_err2 (INPUT) is the square of the uncertainty in the 
+# wavelength axis
+#
+# \return
+# - The velocity axis in units of meter/micro-seconds
+# - The square of the uncertainty in the velocity axis
+#
+# \exception IndexError is thrown if the arrays are not of compatible sizes
+# \exception TypeError is thrown if any of the lists are not recognized types
+#
+
+def wavelength_to_velocity(wavelength, wavelength_err2):
+    """
+    This function converts wavelength to velocity according to the equation
+
+    v[i] = h / (m_n lambda[i])
+
+    where v[i] is the velocity, h is Planck's constant, m_n is the mass of the
+    neutron, and lambda[i] is the wavelength. The uncertainty is calculated
+    using the assumption of uncorrelated uncertainties.
+
+    Assuming that the uncertainties are uncorrelated, the square of the 
+    uncertainty in velocity is given by
+
+    sigma^2_v[i] = (v[i] / lambda[i])^2 * sigma^2_lambda[i]
+
+    where sigma^2_v[i] is the uncertainty in the velocity axis and
+    sigma^2_lambda[i] is the uncertainty in the wavelength axis.
+
+    Parameters:
+    ----------
+    
+    -> wavelength is the wavelength axis in units of Angstroms
+    -> wavelength_err2 is the square of the uncertainty in the wavelength axis
+
+    Returns - 2 NessiLists:
+    ----------------------
+    
+    <- The velocity axis in units of meter/micro-seconds
+    <- The square of the uncertainty in the velocity axis
+
+    Exceptions:
+    ----------
+    
+    <- IndexError is thrown if the arrays are not of compatible sizes
+    <- TypeError is thrown if any of the lists are not recognized types
+
+    """
+    try:
+        if wavelength.__type__ != wavelength_err2.__type__:
+            raise TypeError("Wavelength and Wavelength Err2 arrays are "\
+                            +"not the same type.")
+
+        if wavelength.__type__ == nessi_list.NessiList.DOUBLE:
+
+            velocity = nessi_list.NessiList(len(wavelength))
+            velocity_err2 = nessi_list.NessiList(len(wavelength))
+            axis_manip_bind.wavelength_to_velocity_d(wavelength.__array__,
+                                                     wavelength_err2.__array__,
+                                                     velocity.__array__,
+                                                     velocity_err2.__array__)
+
+        else:
+            raise TypeError("Unknown primitive type %s" \
+                            % str(wavelength.__type__))
+
+        return (velocity, velocity_err2)
+
+    except AttributeError:
+        velocity_ss = vpair_bind.DoubleVPair()
+        axis_manip_bind.wavelength_to_velocity_ss_d(float(wavelength),
+                                                    float(wavelength_err2),
+                                                    velocity_ss)
+        return (velocity_ss.val, velocity_ss.val_err2)
+
+##
+#\}
