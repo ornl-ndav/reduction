@@ -85,6 +85,8 @@ libAxisManip_la_SOURCES = \
 	velocity_to_energy.cpp \
 	velocity_to_scalar_k.hpp \
 	velocity_to_scalar_k.cpp \
+	velocity_to_wavelength.hpp \
+	velocity_to_wavelength.cpp \
 	wavelength_to_d_spacing.hpp \
 	wavelength_to_d_spacing.cpp \
 	wavelength_to_energy.hpp \
