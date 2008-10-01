@@ -256,6 +256,17 @@ std::string velocity_to_scalar_k_ss_d(const double velocity, const double veloci
 
 std::string velocity_to_scalar_k_ss_d(const double velocity, const double velocity_err2, VPair<double> & value, void *temp=NULL);
 
+%template(velocity_to_wavelength_d) AxisManip::velocity_to_wavelength<double>;
+
+%{
+std::string velocity_to_wavelength_ss_d(const double velocity, const double velocity_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::velocity_to_wavelength(velocity, velocity_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string velocity_to_wavelength_ss_d(const double velocity, const double velocity_err2, VPair<double> & value, void *temp=NULL);
+
 %template(wavelength_to_d_spacing_d) AxisManip::wavelength_to_d_spacing<double>;
 
 %{
