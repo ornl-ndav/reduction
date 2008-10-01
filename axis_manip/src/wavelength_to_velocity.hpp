@@ -31,10 +31,15 @@
 #define _WAVELENGTH_TO_VELOCITY_HPP 1
 
 #include "conversions.hpp"
+#include "nessi_warn.hpp"
+#include "size_checks.hpp"
 #include <stdexcept>
 
 namespace AxisManip
 {
+  /// String for holding the wavelength_to_velocity function name
+  const std::string wtv_func_str = "AxisManip::wavelength_to_velocity";
+
   // 3.20
   template <typename NumT>
   std::string
@@ -44,7 +49,48 @@ namespace AxisManip
                          Nessi::Vector<NumT> & velocity_err2,
                          void *temp=NULL)
   {
-    throw std::runtime_error("Function [wavelength_to_velocity] not implemented");
+    // check that the values are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength, velocity);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(wtv_func_str+" (v,v): data "+e.what());
+      }
+
+    // check that the uncertainties are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength_err2, velocity_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(wtv_func_str+" (v,v): err2 "+e.what());
+      }
+
+    // check that the wavelength arrays are of proper size
+    try
+      {
+        Utils::check_sizes_square(wavelength, wavelength_err2);
+      }
+    catch(std::invalid_argument &e)
+      {
+        throw std::invalid_argument(wtv_func_str+" (v,v): wavelength "
+                                    +e.what());
+      }
+
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+    
+    
+    // do the calculation
+    size_t size_wavelength = wavelength.size();
+    for(size_t i = 0; i < size_wavelength; ++i)
+      {
+        
+      }
+
+    return retstr;
   }
 
   // 3.20
