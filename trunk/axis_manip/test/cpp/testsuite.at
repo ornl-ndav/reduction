@@ -173,6 +173,12 @@ AT_CHECK([velocity_to_scalar_k_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Velocity to Wavelength Function.  ])
+AT_CHECK([velocity_to_wavelength_test | sed -e 's/\r$//' ],[],
+[[velocity_to_wavelength_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Wavelength to d Spacing Function.  ])
 AT_CHECK([wavelength_to_d_spacing_test | sed -e 's/\r$//' ],[],
 [[wavelength_to_d_spacing_test.cpp..........Functionality OK

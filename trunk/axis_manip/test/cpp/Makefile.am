@@ -58,6 +58,7 @@ AXIS_MANIP_TARGETS = \
 	tof_to_wavelength_lin_time_zero_test \
 	velocity_to_energy_test\
 	velocity_to_scalar_k_test \
+	velocity_to_wavelength_test \
 	wavelength_to_d_spacing_test \
 	wavelength_to_energy_test \
 	wavelength_to_scalar_k_test \
@@ -138,6 +139,9 @@ velocity_to_energy_test_SOURCES = velocity_to_energy_test.cpp \
         test_common.hpp
 
 velocity_to_scalar_k_test_SOURCES = velocity_to_scalar_k_test.cpp \
+        test_common.hpp
+
+velocity_to_wavelength_test_SOURCES = velocity_to_wavelength_test.cpp \
         test_common.hpp
 
 wavelength_to_d_spacing_test_SOURCES = wavelength_to_d_spacing_test.cpp \
