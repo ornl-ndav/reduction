@@ -101,8 +101,6 @@ std::string energy_transfer_ss_d(const double initial_energy, const double initi
 
 std::string energy_transfer_ss_d(const double initial_energy, const double initial_energy_err2, const double final_energy, double final_energy_err2, VPair<double> & value, void *temp=NULL);
 
-%template(final_velocity_igs_d) AxisManip::final_velocity_igs<double>;
-
 %template(frequency_to_angular_frequency_d) AxisManip::frequency_to_angular_frequency<double>;
 
 %{
