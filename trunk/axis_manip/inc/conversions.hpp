@@ -3340,6 +3340,8 @@ namespace AxisManip
    * \sigma^2_v[i] = \left(\frac{v[i]}{\lambda[i]}\right)^2 
    * \sigma^2_{\lambda}[i]
    * \f]
+   * where \f$\sigma^2_v[i]\f$ is the uncertainty in the velocity axis and 
+   * \f$\sigma^2_{\lambda}[i]\f$ is the uncertainty in the wavelength.
    *
    * \param wavelength (INPUT) is the wavelength of the neutron in units of 
    * Angstroms
@@ -3379,6 +3381,8 @@ namespace AxisManip
    * \f[
    * \sigma^2_v = \left(\frac{v}{\lambda}\right)^2 \sigma^2_{\lambda}
    * \f]
+   * where \f$\sigma^2_v\f$ is the uncertainty in the velocity axis and 
+   * \f$\sigma^2_{\lambda}\f$ is the uncertainty in the wavelength.
    *
    * \param wavelength (INPUT) is the wavelength of the neutron in units of 
    * Angstroms
