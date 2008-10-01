@@ -3319,20 +3319,19 @@ namespace AxisManip
   /**
    * \defgroup wavelength_to_velocity AxisManip::wavelength_to_velocity
    * \{
-   */
+  */
 
   /**
    * \brief This function is described in section 3.20.
    *
-   * This function calculates the velocity of the neutron according to the 
-   * equation.
+   * This function converts wavelength to velocity according to the equation
    * \f[
    * v[i]=\frac{h}{m_n \lambda[i]}
    * \f]
-   * Where \f$v[i]\f$ is the velocity of the neutron, \f$h\f$ is
-   * Planck's constant, \f$m_n\f$ is the mass of the neutron, and
-   * \f$\lambda[i]\f$ is the wavelength of the neutron. The uncertainty is 
-   * calculated using the assumption of uncorrelated uncertainties.
+   * Where \f$v[i]\f$ is the velocity, \f$h\f$ is Planck's constant, \f$m_n\f$ 
+   * is the mass of the neutron, and \f$\lambda[i]\f$ is the wavelength. The 
+   * uncertainty is calculated using the assumption of uncorrelated 
+   * uncertainties.
    *
    * Assuming that the uncertainties are uncorrelated, the square of the 
    * uncertainty in velocity is given by
@@ -3341,15 +3340,15 @@ namespace AxisManip
    * \sigma^2_{\lambda}[i]
    * \f]
    * where \f$\sigma^2_v[i]\f$ is the uncertainty in the velocity axis and 
-   * \f$\sigma^2_{\lambda}[i]\f$ is the uncertainty in the wavelength.
+   * \f$\sigma^2_{\lambda}[i]\f$ is the uncertainty in the wavelength axis.
    *
-   * \param wavelength (INPUT) is the wavelength of the neutron in units of 
-   * Angstroms
-   * \param wavelength_err2 (INPUT) is the square of the uncertainty in 
-   * wavelength
-   * \param velocity (OUTPUT) is the velocity of the neutron in units of 
+   * \param wavelength (INPUT) is the wavelength axis in units of Angstroms
+   * \param wavelength_err2 (INPUT) is the square of the uncertainty in the 
+   * wavelength axis
+   * \param velocity (OUTPUT) is the velocity axis in units of 
    * meter/micro-seconds
-   * \param velocity_err2 (OUTPUT) is the square of the uncertainty in velocity
+   * \param velocity_err2 (OUTPUT) is the square of the uncertainty in the 
+   * velocity axis
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -3366,15 +3365,14 @@ namespace AxisManip
   /**
    * \brief This function is described in section 3.20.
    *
-   * This function calculates the velocity of the neutron according to the 
-   * equation.
+   * This function converts wavelength to velocity according to the equation
    * \f[
    * v=\frac{h}{m_n \lambda}
    * \f]
-   * Where \f$v\f$ is the velocity of the neutron, \f$h\f$ is
-   * Planck's constant, \f$m_n\f$ is the mass of the neutron, and
-   * \f$\lambda\f$ is the wavelength of the neutron. The uncertainty is 
-   * calculated using the assumption of uncorrelated uncertainties.
+   * Where \f$v\f$ is the velocity, \f$h\f$ is Planck's constant, \f$m_n\f$ is 
+   * the mass of the neutron, and \f$\lambda\f$ is the wavelength. The 
+   * uncertainty is calculated using the assumption of uncorrelated 
+   * uncertainties.
    *
    * Assuming that the uncertainties are uncorrelated, the square of the 
    * uncertainty in velocity is given by
@@ -3382,15 +3380,15 @@ namespace AxisManip
    * \sigma^2_v = \left(\frac{v}{\lambda}\right)^2 \sigma^2_{\lambda}
    * \f]
    * where \f$\sigma^2_v\f$ is the uncertainty in the velocity axis and 
-   * \f$\sigma^2_{\lambda}\f$ is the uncertainty in the wavelength.
+   * \f$\sigma^2_{\lambda}\f$ is the uncertainty in the wavelength axis.
    *
-   * \param wavelength (INPUT) is the wavelength of the neutron in units of 
-   * Angstroms
-   * \param wavelength_err2 (INPUT) is the square of the uncertainty in 
-   * wavelength
-   * \param velocity (OUTPUT) is the velocity of the neutron in units of 
+   * \param wavelength (INPUT) is the wavelength axis in units of Angstroms
+   * \param wavelength_err2 (INPUT) is the square of the uncertainty in the 
+   * wavelength axis
+   * \param velocity (OUTPUT) is the velocity axis in units of 
    * meter/micro-seconds
-   * \param velocity_err2 (OUTPUT) is the square of the uncertainty in velocity
+   * \param velocity_err2 (OUTPUT) is the square of the uncertainty in the 
+   * velocity axis
    *
    * \param temp holds temporary memory to be passed to the function
    *
