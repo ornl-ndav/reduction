@@ -3324,25 +3324,29 @@ namespace AxisManip
   /**
    * \brief This function is described in section 3.20.
    *
-   * This function calculates the final velocity of the neutron for an
-   * inverse geometry spectrometer according to the equation.
+   * This function calculates the velocity of the neutron according to the 
+   * equation.
    * \f[
-   * v=\frac{h}{m_n \lambda_f}
+   * v=\frac{h}{m_n \lambda}
    * \f]
-   * Where \f$v\f$ is the final velocity of the neutron, \f$h\f$ is
+   * Where \f$v\f$ is the velocity of the neutron, \f$h\f$ is
    * Planck's constant, \f$m_n\f$ is the mass of the neutron, and
-   * \f$\lambda_f\f$ is the wavelength reflected by the analyzer
-   * crystal. The uncertainty is calculated using the assumption of
-   * uncorrelated uncertainties.
+   * \f$\lambda\f$ is the wavelength of the neutron. The uncertainty is 
+   * calculated using the assumption of uncorrelated uncertainties.
    *
-   * \param analyzer_wavelength (INPUT) is the wavelength reflected by
-   * the analyzer crystal in units of Angstroms
-   * \param analyzer_wavelength_err2 (INPUT) is the square of the
-   * uncertainty in analyzer_wavelength
-   * \param final_velocity (OUTPUT) is the final velocity of the
-   * neutron in units of meter/micro-seconds
-   * \param final_velocity_err2 (OUTPUT) is the square of the
-   * uncertainty in final_velocity
+   * Assuming that the uncertainties are uncorrelated, the square of the 
+   * uncertainty in velocity is given by
+   * \f[
+   * \sigma^2_v = \left(\frac{v}{\lambda}\right)^2 \sigma^2_{\lambda}
+   * \f]
+   *
+   * \param wavelength (INPUT) is the wavelength of the neutron in units of 
+   * Angstroms
+   * \param wavelength_err2 (INPUT) is the square of the uncertainty in 
+   * wavelength
+   * \param velocity (OUTPUT) is the velocity of the neutron in units of 
+   * meter/micro-seconds
+   * \param velocity_err2 (OUTPUT) is the square of the uncertainty in velocity
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -3350,10 +3354,10 @@ namespace AxisManip
    */
   template <typename NumT>
   std::string
-  wavelength_to_velocity(const NumT analyzer_wavelength,
-                         const NumT analyzer_wavelength_err2,
-                         NumT & final_velocity,
-                         NumT & final_velocity_err2,
+  wavelength_to_velocity(const NumT wavelength,
+                         const NumT wavelength_err2,
+                         NumT & velocity,
+                         NumT & velocity_err2,
                          void *temp=NULL);
 
   /**
