@@ -30,6 +30,7 @@
 #ifndef _WAVELENGTH_TO_VELOCITY_HPP
 #define _WAVELENGTH_TO_VELOCITY_HPP 1
 
+#include "constants.hpp"
 #include "conversions.hpp"
 #include "nessi_warn.hpp"
 #include "size_checks.hpp"
@@ -103,6 +104,37 @@ namespace AxisManip
                          void *temp=NULL)
   {
     throw std::runtime_error("Function [wavelength_to_velocity] not implemented");
+  }
+
+  /**
+   * \ingroup wavelength_to_velocity
+   *
+   * This is a PRIVATE helper function for wavelength_to_velocity that
+   * calculates the velocity and its uncertainty
+   *
+   * \param wavelength (INPUT) same as the parameter in
+   * wavelength_to_velocity()
+   * \param wavelength_err2 (INPUT) same as the parameter in
+   * wavelength_to_velocity()
+   * \param velocity (OUTPUT) same as the parameter in
+   * wavelength_to_velocity()
+   * \param velocity_err2 (OUTPUT) same as the parameter in
+   * wavelength_to_velocity() 
+   */
+  template <typename NumT>
+  std::string __wavelength_to_velocity_dynamic(const NumT wavelength,
+                                               const NumT wavelength_err2,
+                                               NumT & velocity,
+                                               NumT & velocity_err2)
+  {
+    // calculate the value
+    velocity = PhysConst::H_OVER_MNEUT / wavelength;
+
+    // calculate the uncertainty
+    velocity_err2 = ((velocity * velocity) / (wavelength * wavelength)) 
+      * wavelength_err2;
+    
+    return Nessi::EMPTY_WARN;
   }
 } // AxisManip
 
