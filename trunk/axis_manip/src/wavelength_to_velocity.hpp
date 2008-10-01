@@ -106,7 +106,15 @@ namespace AxisManip
                          NumT & velocity_err2,
                          void *temp=NULL)
   {
-    throw std::runtime_error("Function [wavelength_to_velocity] not implemented");
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+
+    // do the calculation
+    retstr += __wavelength_to_velocity_dynamic(wavelength,
+                                               wavelength_err2,
+                                               velocity,
+                                               velocity_err2);
+
+    return retstr;
   }
 
   /**
