@@ -38,12 +38,35 @@ namespace AxisManip
    * \ingroup wavelength_to_velocity
    */
   template std::string
+  wavelength_to_velocity<float>(const Nessi::Vector<float> wavelength,
+                                const Nessi::Vector<float> wavelength_err2,
+                                Nessi::Vector<float> & velocity,
+                                Nessi::Vector<float> & velocity_err2,
+                                void *temp);
+  /**
+   * This is the float declaration of the function defined in 3.20.
+   *
+   * \ingroup wavelength_to_velocity
+   */
+  template std::string
   wavelength_to_velocity<float>(const float wavelength,
                                 const float wavelength_err2,
                                 float & velocity,
                                 float & velocity_err2,
                                 void *temp);
 
+  /**
+   * This is the double precision float declaration of the function 
+   * defined in 3.20.
+   *
+   * \ingroup wavelength_to_velocity
+   */
+  template std::string
+  wavelength_to_velocity<double>(const Nessi::Vector<double> wavelength,
+                                 const Nessi::Vector<double> wavelength_err2,
+                                 Nessi::Vector<double> & velocity,
+                                 Nessi::Vector<double> & velocity_err2,
+                                 void *temp);
   /**
    * This is the double precision float declaration of the function
    * defined in 3.20.

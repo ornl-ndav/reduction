@@ -38,6 +38,18 @@ namespace AxisManip
   // 3.20
   template <typename NumT>
   std::string
+  wavelength_to_velocity(const Nessi::Vector<NumT> wavelength,
+                         const Nessi::Vector<NumT> wavelength_err2,
+                         Nessi::Vector<NumT> & velocity,
+                         Nessi::Vector<NumT> & velocity_err2,
+                         void *temp=NULL)
+  {
+    throw std::runtime_error("Function [wavelength_to_velocity] not implemented");
+  }
+
+  // 3.20
+  template <typename NumT>
+  std::string
   wavelength_to_velocity(const NumT wavelength,
                          const NumT wavelength_err2,
                          NumT & velocity,
