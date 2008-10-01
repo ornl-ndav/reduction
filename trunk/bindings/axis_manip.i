@@ -313,3 +313,14 @@ std::string wavelength_to_tof_ss_d(const double wavelength, const double wavelen
 %}
 
 std::string wavelength_to_tof_ss_d(const double wavelength, const double wavelength_err2, const double pathlength, const double pathlength_err2, VPair<double> & value, void *temp=NULL);
+
+%template(wavelength_to_velocity_d) AxisManip::wavelength_to_velocity<double>;
+
+%{
+std::string wavelength_to_velocity_ss_d(const double wavelength, const double wavelength_err2, VPair<double> & value, void *temp=NULL) {
+  std::string ret = AxisManip::wavelength_to_velocity(wavelength, wavelength_err2, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
+
+std::string wavelength_to_velocity_ss_d(const double wavelength, const double wavelength_err2, VPair<double> & value, void *temp=NULL);
