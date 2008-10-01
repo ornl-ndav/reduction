@@ -38,10 +38,10 @@ namespace AxisManip
    * \ingroup wavelength_to_velocity
    */
   template std::string
-  wavelength_to_velocity<float>(const float analyzer_wavelength,
-                                const float analyzer_wavelength_err2,
-                                float & final_velocity,
-                                float & final_velocity_err2,
+  wavelength_to_velocity<float>(const float wavelength,
+                                const float wavelength_err2,
+                                float & velocity,
+                                float & velocity_err2,
                                 void *temp);
 
   /**
@@ -51,9 +51,9 @@ namespace AxisManip
    * \ingroup wavelength_to_velocity
    */
   template std::string
-  wavelength_to_velocity<double>(const double analyzer_wavelength,
-                             const double analyzer_wavelength_err2,
-                                 double & final_velocity,
-                                 double & final_velocity_err2,
+  wavelength_to_velocity<double>(const double wavelength,
+                                 const double wavelength_err2,
+                                 double & velocity,
+                                 double & velocity_err2,
                                  void *temp);
 } // AxisManip

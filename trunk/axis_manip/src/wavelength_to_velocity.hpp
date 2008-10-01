@@ -38,10 +38,10 @@ namespace AxisManip
   // 3.20
   template <typename NumT>
   std::string
-  wavelength_to_velocity(const NumT analyzer_wavelength,
-                         const NumT analyzer_wavelength_err2,
-                         NumT & final_velocity,
-                         NumT & final_velocity_err2,
+  wavelength_to_velocity(const NumT wavelength,
+                         const NumT wavelength_err2,
+                         NumT & velocity,
+                         NumT & velocity_err2,
                          void *temp=NULL)
   {
     throw std::runtime_error("Function [wavelength_to_velocity] not implemented");
