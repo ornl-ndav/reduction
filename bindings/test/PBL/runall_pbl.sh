@@ -97,5 +97,7 @@ python test_wavelength_to_scalar_k.py
 echo
 python test_wavelength_to_tof.py
 echo
+python test_wavelength_to_velocity.py
+echo
 python test_weighted_average.py
 
