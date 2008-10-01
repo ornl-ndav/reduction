@@ -88,7 +88,10 @@ namespace AxisManip
     size_t size_wavelength = wavelength.size();
     for(size_t i = 0; i < size_wavelength; ++i)
       {
-        
+        retstr += __wavelength_to_velocity_dynamic(wavelength[i],
+                                                   wavelength_err2[i],
+                                                   velocity[i],
+                                                   velocity_err2[i]);
       }
 
     return retstr;
