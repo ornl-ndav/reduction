@@ -1050,6 +1050,142 @@ def fit_reflectometer_background():
 # \}
 
 ##
+# \defgroup integrate_1D_hist Utils::integrate_1D_hist
+# \{
+
+##
+# \brief This function integrates a 1D histogram
+#
+# This function is described in section 3.65 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+#
+# This function integrates 1D <b>histogram</b> data according to the 
+# following formalism.
+#
+# \f[
+# data_{out} = \sum^{max}_{i=min} data_{in}[i]
+# \f]
+# \f[
+# \sigma^2_{out} = \sum^{max}_{i=min} \sigma^2_{in}[i]
+# \f]
+# 
+# where \f$min\f$ and \f$max\f$ are the bin indicies in the data that are 
+# determined from the associated independent-axis. There is also the option 
+# to remove the bin width from the integrations. If this is desired, the 
+# integration takes the following form.
+# 
+# \f[
+# data_{out} = \sum^{max}_{i=min} axis_{bw\_in}[i] \times data_{in}[i]
+# \f]
+# \f[
+# \sigma^2_{out} = \sum^{max}_{i=min} axis^2_{bw\_in}[i] \times 
+# \sigma^2_{in}[i]
+# \f]
+# 
+# \param input (INPUT) is the histogram data to integrate
+# \param input_err2 (INPUT) is the square uncertainty associated with the data
+# to integrate
+# \param axis (INPUT) is the independent-axis associated with the data 
+# \param kwargs (INPUT) is a list of keyword arguments that the function will
+# accept
+# - min_int is the minimum independent-axis value to start the integration from
+# - max_int is the maximum independent-axis value to end the integration at
+# - width is a flag that turns on width removal for the integration
+#
+# \return
+# - The value of the integration
+# - The value of the square uncertainty of the integration
+#
+# \exception TypeError is thrown if any of the arrays are not recognized types
+# \exception TypeError is thrown if input, input_err2 and axis are not the
+# same type
+
+def integrate_1D_hist(input, input_err2, axis, **kwargs):
+    """
+    This function integrates 1D <b>histogram</b> data according to the 
+    following formalism.
+
+    data_out = sum^max_(i=min) data_in[i]
+
+    sigma^2_out = sum^max_(i=min) sigma^2_in[i]
+  
+    where min and max are the bin indicies in the data that are determined
+    from the associated independent-axis. There is also the option to remove
+    the bin width from the integrations. If this is desired, the integration
+    takes the following form.
+ 
+    data_out = sum^max_(i=min) axis_(bw_in)[i] x data_in[i]
+    
+    sigma^2_out = sum^max_(i=min) axis^2_(bw_in)[i] x sigma^2_in[i]
+
+    Parameters:
+    ----------
+    <- input is the histogram data to integrate
+    <- input_err2 is the square uncertainty associated with the data to
+    integrate
+    <- axis is the independent-axis associated with the data 
+    <- kwargs is a list of keyword arguments that the function will
+    accept
+       - min_int is the minimum independent-axis value to start the
+       integration from
+       - max_int is the maximum independent-axis value to end the integration
+       at
+       - width is a flag that turns on width removal for the integration
+
+    Returns:
+    -------
+    <- The value of the integration
+    <- The value of the square uncertainty of the integration
+
+    Exceptions:
+    ----------
+    <- TypeError is thrown if any of the arrays are not recognized types
+    <- TypeError is thrown if input, input_err2 and axis are not the same type
+    """
+    if input.__type__ != input_err2.__type__:
+        raise TypeError("Input and Input Err2 are not the same type!.")
+
+    if input.__type__ != axis.__type__:
+        raise TypeError("Input and Axis are not the same type!.")
+    
+    # Get keyword arguments
+    try:
+        min_int = kwargs["min_int"]
+    except KeyError:
+        min_int = float('inf')
+
+    try:
+        max_int = kwargs["max_int"]
+    except KeyError:
+        max_int = float('inf')        
+    
+    try:
+        width = kwargs["width"]
+    except KeyError:
+        width = False
+
+    if width:
+        import utils
+        axis_bw = utils.calc_bin_widths(axis)[0]
+    else:
+        import nessi_list
+        axis_bw = nessi_list.NessiList(type=input.__type__)
+
+    if input.__type__ == input.DOUBLE:
+        import vpair_bind
+        output = vpair_bind.DoubleVPair()
+
+        utils_bind.integrate_1D_hist_d(input.__array__, input_err2.__array__,
+                                       axis.__array__, min_int, max_int,
+                                       width, axis_bw.__array__, output)
+
+        return (output.val, output.val_err2)
+    else:
+        raise TypeError("Unknown primative type %s" % str(input.__type__))
+##
+# \}
+
+##
 # \defgroup linear_order_jacobian utils::linear_order_jacobian
 # \{
 
