@@ -466,6 +466,7 @@ namespace Utils
    * \param input (INPUT) is the histogram data to integrate
    * \param input_err2 (INPUT) is the square uncertainty associated with the 
    * data to integrate
+   * \param axis_in (INPUT) is the independent-axis associated with the data
    * \param width (INPUT) is a flag to remove the bin width from the integrated
    * values
    * \param axis_bw_in (INPUT) is the bin widths that will be used to when the 
@@ -481,6 +482,7 @@ namespace Utils
   std::string
   integrate_1D_hist(const Nessi::Vector<NumT> & input,
                     const Nessi::Vector<NumT> & input_err2,
+                    const Nessi::Vector<NumT> & axis_in,
                     const bool width,
                     const Nessi::Vector<NumT> & axis_bw_in,
                     NumT & output,
