@@ -456,10 +456,10 @@ namespace Utils
    * If this is desired, the integration takes the following form.
    * 
    * \f[
-   * data_{out} = \sum^{N}_{i=min} axis_{bw\_in}[i] \times data_{in}[i]
+   * data_{out} = \sum^{N}_{i=0} axis_{bw\_in}[i] \times data_{in}[i]
    * \f]
    * \f[
-   * \sigma^2_{out} = \sum^{N}_{i=min} axis^2_{bw\_in}[i] \times 
+   * \sigma^2_{out} = \sum^{N}_{i=0} axis^2_{bw\_in}[i] \times 
    * \sigma^2_{in}[i]
    * \f]
    * 
