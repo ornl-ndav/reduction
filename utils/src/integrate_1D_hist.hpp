@@ -30,6 +30,7 @@
 #ifndef _INTEGRATE_1D_HIST
 #define _INTEGRATE_1D_HIST 1
 
+#include <cmath>
 #include <limits>
 #include "size_checks.hpp"
 #include "utils.hpp"
@@ -86,7 +87,48 @@ namespace Utils
                                   input, axis_bw_in);
       }
 
+    // Zero output holders 
+    output = static_cast<NumT>(0.0);
+    output_err2 = static_cast<NumT>(0.0);
+
+    std::size_t min_bin;
+    std::size_t max_bin;
+
     std::string warn = "";
+
+    // Determine the lower bin index
+    if (std::isinf(min_int))
+      {
+        min_bin = 0;
+      }
+    else
+      {
+        warn += Utils::bisect_helper(axis_in, min_int, min_bin);
+      }
+
+    // Determine the upper bin index
+    if (std::isinf(max_int))
+      {
+        max_bin = input.size() - 1;
+      }
+    else
+      {
+        warn += Utils::bisect_helper(axis_in, max_int, max_bin);
+      }
+
+    for (std::size_t i = min_bin; i <= max_bin; ++i)
+      {
+        if (width)
+          {
+            output += (axis_bw_in[i] * input[i]);
+            output_err2 += (axis_bw_in[i] * axis_bw_in[i] * input_err2[i]); 
+          }
+        else
+          {
+            output += input[i];
+            output_err2 += input_err2[i];
+          }
+      }
 
     return warn;
   }
