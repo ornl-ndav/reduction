@@ -39,6 +39,7 @@ UTILS_TARGETS = \
 	convex_polygon_intersect_test \
 	eval_linear_fit_test \
 	fit_linear_background_test \
+	integrate_1D_hist_test \
 	linear_order_jacobian_test \
 	shift_spectrum_test \
 	weighted_average_test
@@ -64,6 +65,8 @@ eval_linear_fit_test_SOURCES = eval_linear_fit_test.cpp test_common.hpp
 
 fit_linear_background_test_SOURCES = fit_linear_background_test.cpp \
 	test_common.hpp
+
+integrate_1D_hist_test_SOURCES = integrate_1D_hist_test.cpp test_common.hpp
 
 linear_order_jacobian_test_SOURCES = linear_order_jacobian_test.cpp \
 	test_common.hpp
