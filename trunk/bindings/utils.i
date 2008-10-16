@@ -105,6 +105,15 @@ return ret;
 
 std::string fit_linear_background_d(const Nessi::Vector<double> & axis_in, const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const std::size_t min_bin, const std::size_t max_bin, VPair<double> & slope, VPair<double> & intercept);
 
+%{
+std::string integrate_1D_hist_d(const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const Nessi::Vector<double> & axis_in, const double min_int, const double max_int, const bool width, const Nessi::Vector<double> & axis_bw_in, VPair<double> & output, void *temp=NULL) {
+std::string ret = Utils::integrate_1D_hist(input, input_err2, axis_in, min_int, max_int, width, axis_bw_in, output.val, output.val_err2, temp);
+return ret;
+}
+%}
+
+std::string integrate_1D_hist_d(const Nessi::Vector<double> & input, const Nessi::Vector<double> & input_err2, const Nessi::Vector<double> & axis_in, const double min_int, const double max_int, const bool width, const Nessi::Vector<double> & axis_bw_in, VPair<double> & output);
+
 %template(linear_order_jacobian_d) Utils::linear_order_jacobian<double>;
 
 %{
