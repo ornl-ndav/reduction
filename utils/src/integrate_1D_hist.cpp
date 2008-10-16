@@ -43,6 +43,7 @@ namespace Utils
   template std::string
   integrate_1D_hist<float>(const Nessi::Vector<float> & input,
                            const Nessi::Vector<float> & input_err2,
+                           const Nessi::Vector<float> & axis_in,
                            const bool width,
                            const Nessi::Vector<float> & axis_bw_in,
                            float & output,
@@ -57,6 +58,7 @@ namespace Utils
   template std::string
   integrate_1D_hist<double>(const Nessi::Vector<double> & input,
                             const Nessi::Vector<double> & input_err2,
+                            const Nessi::Vector<double> & axis_in,
                             const bool width,
                             const Nessi::Vector<double> & axis_bw_in,
                             double & output,
