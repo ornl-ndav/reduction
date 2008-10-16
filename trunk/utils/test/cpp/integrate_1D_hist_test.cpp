@@ -129,14 +129,14 @@ void initialize_true_outputs(NumT & true_output,
                              NumT & true_output_rw_err2)
 {
   // initialize the correct outputs
-  true_output = static_cast<NumT>(3.);
-  true_output_err2 = static_cast<NumT>(0.2);
-  true_output_w = static_cast<NumT>(3.);
-  true_output_w_err2 = static_cast<NumT>(0.2);
-  true_output_r = static_cast<NumT>(3.);
-  true_output_r_err2 = static_cast<NumT>(0.2);
-  true_output_rw = static_cast<NumT>(3.);
-  true_output_rw_err2 = static_cast<NumT>(0.2);
+  true_output = static_cast<NumT>(110.);
+  true_output_err2 = static_cast<NumT>(16.0);
+  true_output_w = static_cast<NumT>(55.);
+  true_output_w_err2 = static_cast<NumT>(4.0);
+  true_output_r = static_cast<NumT>(50.);
+  true_output_r_err2 = static_cast<NumT>(8.0);
+  true_output_rw = static_cast<NumT>(25.);
+  true_output_rw_err2 = static_cast<NumT>(2.0);
 }
 
 /**
@@ -237,9 +237,11 @@ bool test_okay(NumT & output,
  * of the test_okay function (TRUE/FALSE).
  *
  * \param key (INPUT) key that permits to launch the correct test
+ * \param debug (INPUT) is any sting that launches the debug mode (print all
+ * the array created and calculated)
  */
 template <typename NumT>
-bool test_func(NumT key)
+bool test_func(NumT key, string debug)
 { 
   // key forces correct test to happen
   // allocate arrays and values
@@ -291,6 +293,19 @@ bool test_func(NumT key)
   Utils::integrate_1D_hist(input, input_err2, axis_in, min_int, max_int, 
                            true, axis_bw, output_rw, output_rw_err2);
 
+  if (!debug.empty())
+    {
+      cout << endl;
+      print(output, true_output, SS, debug);
+      print(output_err2, true_output_err2, SS, debug);
+      print(output_w, true_output_w, SS, debug);
+      print(output_w_err2, true_output_w_err2, SS, debug);
+      print(output_r, true_output_r, SS, debug);
+      print(output_r_err2, true_output_r_err2, SS, debug);
+      print(output_rw, true_output_rw, SS, debug);
+      print(output_rw_err2, true_output_rw_err2, SS, debug);
+    }
+
   return test_okay(output, output_err2, output_w, output_w_err2,
                    output_r, output_r_err2, output_rw, output_rw_err2, 
                    true_output, true_output_err2, 
@@ -301,19 +316,28 @@ bool test_func(NumT key)
 
 /**
  * Main function that tests <i>integrate_1D_hist</i> for float and double
+ *
+ * \param argc The number of command-line arguments present
+ * \param argv The list of command-line arguments
  */
-int main()
+int main(int argc, char *argv[])
 {
   cout << "integrate_1D_hist_test.cpp..........";
 
+  string debug;
+  if(argc > 1)
+    {
+      debug = argv[1];
+    }
+
   int value = 0;
 
-  if(!test_func(static_cast<float>(1)))
+  if(!test_func(static_cast<float>(1), debug))
     {
       value = -1;
     }
 
-  if(!test_func(static_cast<double>(1)))
+  if(!test_func(static_cast<double>(1), debug))
     {
       value = -1;
     }
