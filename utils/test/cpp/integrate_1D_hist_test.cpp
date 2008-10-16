@@ -60,12 +60,12 @@ const int NUM_VAL = 5;
  * \f$input\f$ and \f$input\_err2\f$.
  *
  * \param axis (OUTPUT) is the array of independent values for the data to 
- * shift
+ * integrate
  * \param axis_bw (OUTPUT) is the array of bin widths from the independent 
- * values
- * \param input (OUTPUT) is the array of values to be shifted
+ * axis
+ * \param input (OUTPUT) is the array of values to be integrated
  * \param input_err2 (OUTPUT) is the square of the uncertainty associated
- * with the value array.
+ * with the input array.
  */
 template <typename NumT>
 void initialize_inputs(Nessi::Vector<NumT> & axis,
