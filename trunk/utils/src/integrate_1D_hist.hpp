@@ -30,6 +30,7 @@
 #ifndef _INTEGRATE_1D_HIST
 #define _INTEGRATE_1D_HIST 1
 
+#include <limits>
 #include "size_checks.hpp"
 #include "utils.hpp"
 
@@ -43,15 +44,19 @@ namespace Utils
   std::string
   integrate_1D_hist(const Nessi::Vector<NumT> & input,
                     const Nessi::Vector<NumT> & input_err2,
+                    const Nessi::Vector<NumT> & axis_in,
                     const bool width,
                     const Nessi::Vector<NumT> & axis_bw_in,
                     NumT & output,
                     NumT & output_err2,
                     void *temp=NULL)
   {
-    std::string warn = "";
-
-    return warn;
+    // Simply call the other function
+    return integrate_1D_hist(input, input_err2, axis_in,
+                             std::numeric_limits<NumT>::infinity(),
+                             std::numeric_limits<NumT>::infinity(),
+                             width, axis_bw_in,
+                             output, output_err2, temp);
   }
 
   // 3.65
@@ -68,6 +73,19 @@ namespace Utils
                     NumT & output_err2,
                     void *temp=NULL)
   {
+    // Check input is histogram
+    Utils::check_histo_sizes(i1h_func_str 
+                             + std::string(" input histogram data:"),
+                             input, input_err2, axis_in);
+
+    // Check that input and axis_bw_in are the same size if width is true
+    if (width)
+      {
+        Utils::check_sizes_square(i1h_func_str
+                                  + std::string(" input data & bin widths:"),
+                                  input, axis_bw_in);
+      }
+
     std::string warn = "";
 
     return warn;
