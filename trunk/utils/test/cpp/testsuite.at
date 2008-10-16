@@ -72,6 +72,12 @@ AT_CHECK([fit_linear_background_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Integration of 1D Histogram Function.  ])
+AT_CHECK([integrate_1D_hist_test | sed -e 's/\r$//' ],[],
+[[integrate_1D_hist_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Linear Order Jacobian Function.  ])
 AT_CHECK([linear_order_jacobian_test | sed -e 's/\r$//' ],[],
 [[linear_order_jacobian_test.cpp..........Functionality OK
