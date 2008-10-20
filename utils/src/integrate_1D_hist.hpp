@@ -118,15 +118,19 @@ namespace Utils
 
     for (std::size_t i = min_bin; i <= max_bin; ++i)
       {
-        if (width)
+        if (!std::isnan(input[i]) && !std::isnan(input_err2[i]) && 
+            !std::isinf(input[i]) && !std::isinf(input_err2[i]))
           {
-            output += (axis_bw_in[i] * input[i]);
-            output_err2 += (axis_bw_in[i] * axis_bw_in[i] * input_err2[i]); 
-          }
-        else
-          {
-            output += input[i];
-            output_err2 += input_err2[i];
+            if (width)
+              {
+                output += (axis_bw_in[i] * input[i]);
+                output_err2 += (axis_bw_in[i] * axis_bw_in[i] * input_err2[i]);
+              }
+            else
+              {
+                output += input[i];
+                output_err2 += input_err2[i];
+              }
           }
       }
 
