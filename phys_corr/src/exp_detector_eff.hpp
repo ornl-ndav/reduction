@@ -64,6 +64,22 @@ namespace PhysCorr
     return retstr;
   }
 
+  // 3.66
+  template <typename NumT>
+  std::string
+  exp_detector_eff(const NumT axis_bc,
+                   const NumT scale,
+                   const NumT scale_err2,
+                   const NumT constant,
+                   NumT eff,
+                   NumT eff_err2,
+                   void *temp=NULL)
+  {
+    std::string retstr(Nessi::EMPTY_WARN); // the warning string
+
+    return retstr;
+  }
+
 } // PhysCorr
 
 #endif // _EXP_DETECTOR_EFF_HPP

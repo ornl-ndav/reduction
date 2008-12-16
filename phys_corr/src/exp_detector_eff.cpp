@@ -25,7 +25,7 @@
 /**
  * $Id$
  *
- * \file axis_manip/src/exp_detector_eff.cpp
+ * \file phys_corr/src/exp_detector_eff.cpp
  */
 
 #include "exp_detector_eff.hpp"
@@ -49,6 +49,20 @@ namespace PhysCorr
                           void *temp);
 
   /**
+   * This is the float declaration of the function defined in 3.66.
+   *
+   * \ingroup exp_detector_eff
+   */
+  template std::string
+  exp_detector_eff<float>(const float axis_bc,
+                          const float scale,
+                          const float scale_err2,
+                          const float constant,
+                          float eff,
+                          float eff_err2,
+                          void *temp);
+
+  /**
    * This is the double precision float declaration of the function defined 
    * in 3.66.
    *
@@ -61,6 +75,21 @@ namespace PhysCorr
                            const double constant,
                            Nessi::Vector<double> & eff,
                            Nessi::Vector<double> & eff_err2,
+                           void *temp);
+
+  /**
+   * This is the double precision float declaration of the function defined 
+   * in 3.66.
+   *
+   * \ingroup exp_detector_eff
+   */
+  template std::string
+  exp_detector_eff<double>(const double axis_bc,
+                           const double scale,
+                           const double scale_err2,
+                           const double constant,
+                           double eff,
+                           double eff_err2,
                            void *temp);
 
 } // PhysCorr
