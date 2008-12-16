@@ -44,6 +44,8 @@
 %template(dead_time_corr_d) PhysCorr::dead_time_corr<double>;
 %template(dead_time_corr_i) PhysCorr::dead_time_corr<int>;
 
+%template(exp_detector_eff_d) PhysCorr::exp_detector_eff<double>;
+
 %template(inelastic_scatt_corr_d) PhysCorr::inelastic_scatt_corr<double>;
 
 %template(incoherent_scatt_corr_d) PhysCorr::incoherent_scatt_corr<double>;
