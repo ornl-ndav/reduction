@@ -26,6 +26,7 @@
 %module phys_corr_bind
 %{
 #include "physcorr.hpp"
+#include "vpair.hpp"
 %}
 
 %include <std_string.i>
@@ -45,6 +46,13 @@
 %template(dead_time_corr_i) PhysCorr::dead_time_corr<int>;
 
 %template(exp_detector_eff_d) PhysCorr::exp_detector_eff<double>;
+
+%{
+std::string exp_detector_eff_ss_d(const double axis_bc, const double scale, const double scale_err2, const double constant, VPair<double> & value, void *temp=NULL) {
+  std::string ret = PhysCorr::exp_detector_eff(axis_bc, scale, scale_err2, constant, value.val, value.val_err2, temp);
+  return ret;
+}
+%}
 
 %template(inelastic_scatt_corr_d) PhysCorr::inelastic_scatt_corr<double>;
 
