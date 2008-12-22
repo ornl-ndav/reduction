@@ -54,6 +54,8 @@ std::string exp_detector_eff_ss_d(const double axis_bc, const double scale, cons
 }
 %}
 
+std::string exp_detector_eff_ss_d(const double axis_bc, const double scale, const double scale_err2, const double constant, VPair<double> & value, void *temp=NULL);
+
 %template(inelastic_scatt_corr_d) PhysCorr::inelastic_scatt_corr<double>;
 
 %template(incoherent_scatt_corr_d) PhysCorr::incoherent_scatt_corr<double>;
