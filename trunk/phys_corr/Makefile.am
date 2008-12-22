@@ -22,4 +22,7 @@
 
 # $Id$
 
-SUBDIRS=inc src
+SUBDIRS=inc src test
+
+test: check
+
