@@ -34,6 +34,7 @@
 #include "nessi_warn.hpp"
 #include "physcorr.hpp"
 #include "size_checks.hpp"
+#include <cmath>
 
 namespace PhysCorr
 {
@@ -60,6 +61,12 @@ namespace PhysCorr
 
     // do the calculation
     std::size_t axis_size = axis_bc.size();
+    for (std::size_t i = 0; i < axis_size; ++i)
+      {
+        retstr += __exp_detector_eff_dynamic(axis_bc[i], scale, scale_err2, 
+                                             constant, eff[i], eff_err2[i]);
+
+      }
     
     return retstr;
   }
@@ -77,7 +84,46 @@ namespace PhysCorr
   {
     std::string retstr(Nessi::EMPTY_WARN); // the warning string
 
+    // do the calculation
+    retstr += __exp_detector_eff_dynamic(axis_bc, scale, scale_err2, constant,
+                                         eff, eff_err2);
+
     return retstr;
+  }
+
+  /**
+   * \ingroup exp_detector_eff
+   *
+   * This is a PRIVATE helper function for exp_detector_eff that
+   * calculates the exponential detector efficiency and its uncertainty
+   *
+   * \param axis_bc (INPUT) same parameter as in exp_detector_eff()
+   * \param scale (INPUT) same parameter as in exp_detector_eff()
+   * \param scale_err2 (INPUT) same parameter as in exp_detector_eff()
+   * \param constant (INPUT) same parameter as in exp_detector_eff() 
+   * \param eff (OUTPUT) same parameter as in exp_detector_eff()
+   * \param eff_err2 (OUTPUT) same parameter as in exp_detector_eff()
+   */
+  template <typename NumT>
+  std::string __exp_detector_eff_dynamic(const NumT axis_bc,
+                                         const NumT scale,
+                                         const NumT scale_err2,
+                                         const NumT constant,
+                                         NumT eff,
+                                         NumT eff_err2)
+  {
+    // calculate the value
+    NumT expon1 = static_cast<NumT>(-1.0) * constant * axis_bc;
+
+    eff = scale * static_cast<NumT>(std::exp(static_cast<double>(expon1)));
+
+    // calculate the uncertainty
+    NumT expon2 = static_cast<NumT>(2.0) * expon1;
+
+    eff_err2 = scale_err2 * 
+      static_cast<NumT>(std::exp(static_cast<double>(expon2)));
+
+    return Nessi::EMPTY_WARN;
   }
 
 } // PhysCorr
