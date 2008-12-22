@@ -58,8 +58,8 @@ namespace PhysCorr
                           const float scale,
                           const float scale_err2,
                           const float constant,
-                          float eff,
-                          float eff_err2,
+                          float & eff,
+                          float & eff_err2,
                           void *temp);
 
   /**
@@ -88,8 +88,8 @@ namespace PhysCorr
                            const double scale,
                            const double scale_err2,
                            const double constant,
-                           double eff,
-                           double eff_err2,
+                           double & eff,
+                           double & eff_err2,
                            void *temp);
 
 } // PhysCorr
