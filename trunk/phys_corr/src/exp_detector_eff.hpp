@@ -109,8 +109,8 @@ namespace PhysCorr
                                          const NumT scale,
                                          const NumT scale_err2,
                                          const NumT constant,
-                                         NumT eff,
-                                         NumT eff_err2)
+                                         NumT & eff,
+                                         NumT & eff_err2)
   {
     // calculate the value
     NumT expon1 = static_cast<NumT>(-1.0) * constant * axis_bc;
