@@ -7,6 +7,8 @@ Changes in Version 1.3.0
     * wavelength_to_velocity
   - Utils (1.3.0)
     * integrate_1D_hist
+  - Physics Corrections (1.0.0)
+    * exp_detector_eff
 
 - Provide PAL representations of above functions
 
