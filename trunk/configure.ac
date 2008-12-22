@@ -164,8 +164,10 @@ AC_CONFIG_TESTDIR(utils/test/cpp)
 
 AC_CONFIG_FILES([array_manip/test/Makefile
 		array_manip/test/cpp/Makefile
-		axis_manip/test/Makefile
+ 		axis_manip/test/Makefile
 		axis_manip/test/cpp/Makefile
+ 		phys_corr/test/Makefile
+		phys_corr/test/cpp/Makefile
 		utils/test/Makefile
 		utils/test/cpp/Makefile
 		])
