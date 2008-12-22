@@ -90,20 +90,20 @@ void initialize_true_outputs(float    & true_output_ss,
                              Nessi::Vector<float> & true_output_vv_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<float>(0.00079120);
-  true_output_ss_err2=static_cast<float>(0.00000037);
+  true_output_ss = static_cast<float>(1.35335283);
+  true_output_ss_err2 = static_cast<float>(1.83156389e-03);
 
   // vector vector
-  true_output_vv.push_back(static_cast<float>(0.00079120));
-  true_output_vv_err2.push_back(static_cast<float>(0.00000037));
-  true_output_vv.push_back(static_cast<float>(0.00158241));
-  true_output_vv_err2.push_back(static_cast<float>(0.00000118));
-  true_output_vv.push_back(static_cast<float>(0.00237362));
-  true_output_vv_err2.push_back(static_cast<float>(0.00000212));
-  true_output_vv.push_back(static_cast<float>(0.00316482));
-  true_output_vv_err2.push_back(static_cast<float>(0.00000319));
-  true_output_vv.push_back(static_cast<float>(0.00395603));
-  true_output_vv_err2.push_back(static_cast<float>(0.00000438));
+  true_output_vv.push_back(static_cast<float>(1.35335283));
+  true_output_vv_err2.push_back(static_cast<float>(1.83156389e-03));
+  true_output_vv.push_back(static_cast<float>(1.83156389e-01));
+  true_output_vv_err2.push_back(static_cast<float>(3.35462628e-05));
+  true_output_vv.push_back(static_cast<float>(2.47875218e-02));
+  true_output_vv_err2.push_back(static_cast<float>(6.14421235e-07));
+  true_output_vv.push_back(static_cast<float>(3.35462628e-03));
+  true_output_vv_err2.push_back(static_cast<float>(1.12535175e-08));
+  true_output_vv.push_back(static_cast<float>(4.53999298e-04));
+  true_output_vv_err2.push_back(static_cast<float>(2.06115362e-10));
 }
 
 /**
@@ -126,20 +126,20 @@ void initialize_true_outputs(double    & true_output_ss,
                              Nessi::Vector<double> & true_output_vv_err2)
 {
   // scalar scalar
-  true_output_ss=static_cast<double>(0.00079120679999999);
-  true_output_ss_err2=static_cast<double>(0.00000037560492021);
+  true_output_ss = static_cast<double>(1.35335283236612702);
+  true_output_ss_err2 = static_cast<double>(1.83156388887341804e-03);
 
   // vector vector
-  true_output_vv.push_back(static_cast<double>(0.00079120679999999));
-  true_output_vv_err2.push_back(static_cast<double>(0.00000037560492021));
-  true_output_vv.push_back(static_cast<double>(0.00158241359999999));
-  true_output_vv_err2.push_back(static_cast<double>(0.00000118941558069));
-  true_output_vv.push_back(static_cast<double>(0.00237362040000000));
-  true_output_vv_err2.push_back(static_cast<double>(0.00000212842788124));
-  true_output_vv.push_back(static_cast<double>(0.00316482719999999));
-  true_output_vv_err2.push_back(static_cast<double>(0.00000319264182181));
-  true_output_vv.push_back(static_cast<double>(0.00395603399999999));
-  true_output_vv_err2.push_back(static_cast<double>(0.00000438205740256));
+  true_output_vv.push_back(static_cast<double>(1.35335283236612702));
+  true_output_vv_err2.push_back(static_cast<double>(1.83156388887341804e-03));
+  true_output_vv.push_back(static_cast<double>(1.83156388887341787e-01));
+  true_output_vv_err2.push_back(static_cast<double>(3.35462627902511894e-05));
+  true_output_vv.push_back(static_cast<double>(2.47875217666635866e-02));
+  true_output_vv_err2.push_back(static_cast<double>(6.14421235332821002e-07));
+  true_output_vv.push_back(static_cast<double>(3.35462627902511842e-03));
+  true_output_vv_err2.push_back(static_cast<double>(1.12535174719259130e-08));
+  true_output_vv.push_back(static_cast<double>(4.53999297624848555e-04));
+  true_output_vv_err2.push_back(static_cast<double>(2.06115362243855797e-10));
 }
 
 /**
@@ -218,7 +218,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
 // allocate arrays
   Nessi::Vector<NumT>   axis_bc;
   NumT                  scale = static_cast<NumT>(10.);
-  NumT                  scale_err2 = static_cast<NumT>(1.);
+  NumT                  scale_err2 = static_cast<NumT>(0.1);
   NumT                  constant = static_cast<NumT>(2.0);
   NumT                  output_ss;
   NumT                  output_ss_err2;
