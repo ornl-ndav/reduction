@@ -200,8 +200,8 @@ namespace PhysCorr
                    const NumT scale,
                    const NumT scale_err2,
                    const NumT constant,
-                   NumT eff,
-                   NumT eff_err2,
+                   NumT & eff,
+                   NumT & eff_err2,
                    void *temp=NULL);
 
   /**
