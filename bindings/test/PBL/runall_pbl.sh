@@ -33,6 +33,8 @@ python test_energy_transfer.py
 echo
 python test_eval_linear_fit.py
 echo
+python test_exp_detector_eff.py
+echo
 python test_fit_linear_background.py
 echo
 python test_frequency_to_angular_frequency.py
