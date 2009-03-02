@@ -104,7 +104,9 @@ namespace AxisManip
    * \param output_err2 (OUTPUT) is the square of the uncertainty associated
    * with the rebinned data
    * \param frac_area (OUTPUT) is the fractional area accumulated during 
-   *rebinning
+   * rebinning
+   * \param bin_count (OUTPUT) is the tracking array for the contribution of 
+   * the data to the rebinned data. This will either be 0 or 1 for each bin.
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -141,6 +143,7 @@ namespace AxisManip
                            Nessi::Vector<NumT> & output,
                            Nessi::Vector<NumT> & output_err2,
                            Nessi::Vector<NumT> & frac_area,
+                           Nessi::Vector<NumT> & bin_count,
                            void *temp=NULL);
 
   /**
