@@ -1359,6 +1359,7 @@ def initial_velocity_dgs(dist_upstream_mon,
 # - The rebinned data according to the target axis
 # - The square of the uncertainty associated with the rebinned data
 # - The fractional area accumulated during rebinning
+# - The contribution of the data to the final grid (0 or 1 for each bin)
 #
 # \exception IndexError is raised if the arrays are not of compatible sizes
 # \exception TypeError is raised if any of the arrays are not recognized types
@@ -1481,6 +1482,7 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
     <- The rebinned data according to the target axis
     <- The square of the uncertainty associated with the rebinned data
     <- The fractional area accumulated during rebinning
+    <- The contribution of the data to the final grid (0 or 1 for each bin)
 
     Exceptions:
     ----------
@@ -1537,6 +1539,8 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
                                            (len(axis_out_2)-1))
         frac_area = nessi_list.NessiList((len(axis_out_1)-1) * \
                                          (len(axis_out_2)-1))
+        bin_count = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                         (len(axis_out_2)-1))
         
         axis_manip_bind.rebin_2D_quad_to_rectlin_d(axis_in_x1.__array__,
                                                    axis_in_y1.__array__,
@@ -1558,11 +1562,12 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
                                                    frac_bin_y.__array__,
                                                    output.__array__,
                                                    output_err2.__array__,
-                                                   frac_area.__array__)
+                                                   frac_area.__array__,
+                                                   bin_count.__array__)
     else:
         raise TypeError("Unknown primitive type %s" % str(input.__type__))
 
-    return (output, output_err2, frac_area)                    
+    return (output, output_err2, frac_area, bin_count)                    
 
 ##
 # \}
