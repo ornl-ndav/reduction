@@ -54,12 +54,14 @@ namespace AxisManip
    *
    * <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_OrigHist.png">
    *
-   * After the rebinning process, the distribution of counts and fraction area 
-   * are shown in the following picture. The top line in each grid bin 
-   * represents the total counts placed from the original quadrilateral bins. 
-   * The bottom line in each grid bin is the summed fractional area for that 
-   * grid box as determined from the overlap of the original quadrilateral 
-   * bins.
+   * After the rebinning process, the distribution of counts, fractional area 
+   * and bin contribution are shown in the following picture. The top line in 
+   * each grid bin represents the total counts placed from the original 
+   * quadrilateral bins. The second line in each grid bin is the summed 
+   * fractional area for that grid box as determined from the overlap of the 
+   * original quadrilateral bins. The bottom line is the contribution of the 
+   * data to the final grid where 1 means the input array contributed at least 
+   * once and 0 means no contribution.
    *
    * <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_RebinHist.png">
    *
@@ -104,7 +106,9 @@ namespace AxisManip
    * \param output_err2 (OUTPUT) is the square of the uncertainty associated
    * with the rebinned data
    * \param frac_area (OUTPUT) is the fractional area accumulated during 
-   *rebinning
+   * rebinning
+   * \param bin_count (OUTPUT) is the tracking array for the contribution of 
+   * the data to the rebinned data. This will either be 0 or 1 for each bin.
    *
    * \param temp holds temporary memory to be passed to the function
    *
@@ -141,6 +145,7 @@ namespace AxisManip
                            Nessi::Vector<NumT> & output,
                            Nessi::Vector<NumT> & output_err2,
                            Nessi::Vector<NumT> & frac_area,
+                           Nessi::Vector<NumT> & bin_count,
                            void *temp=NULL);
 
   /**

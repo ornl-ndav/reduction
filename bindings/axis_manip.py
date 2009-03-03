@@ -1322,12 +1322,14 @@ def initial_velocity_dgs(dist_upstream_mon,
 #
 # <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_OrigHist.png">
 #
-# After the rebinning process, the distribution of counts and fraction area 
-# are shown in the following picture. The top line in each grid bin 
-# represents the total counts placed from the original quadrilateral bins. 
-# The bottom line in each grid bin is the summed fractional area for that 
-# grid box as determined from the overlap of the original quadrilateral 
-# bins.
+# After the rebinning process, the distribution of counts, fractional area 
+# and bin contribution are shown in the following picture. The top line in 
+# each grid bin represents the total counts placed from the original 
+# quadrilateral bins. The second line in each grid bin is the summed 
+# fractional area for that grid box as determined from the overlap of the 
+# original quadrilateral bins. The bottom line is the contribution of the 
+# data to the final grid where 1 means the input array contributed at least 
+# once and 0 means no contribution.
 #
 # <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_RebinHist.png">
 #
@@ -1359,6 +1361,7 @@ def initial_velocity_dgs(dist_upstream_mon,
 # - The rebinned data according to the target axis
 # - The square of the uncertainty associated with the rebinned data
 # - The fractional area accumulated during rebinning
+# - The contribution of the data to the final grid (0 or 1 for each bin)
 #
 # \exception IndexError is raised if the arrays are not of compatible sizes
 # \exception TypeError is raised if any of the arrays are not recognized types
@@ -1414,13 +1417,15 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
                        0 |_______|_______|_______|_______|
                                  
                          0       1       2       3       4
-    
-    After the rebinning process, the distribution of counts and fraction area 
-    is shown in the following picture. The top line in each grid bin 
-    represents the total counts placed from the original quadrilateral bins. 
-    The bottom line in each grid bin is the summed fractional area for that 
-    grid box as determined from the overlap of the original quadrilateral 
-    bins.
+
+    After the rebinning process, the distribution of counts, fractional area 
+    and bin contribution are shown in the following picture. The top line in 
+    each grid bin represents the total counts placed from the original 
+    quadrilateral bins. The second line in each grid bin is the summed 
+    fractional area for that grid box as determined from the overlap of the 
+    original quadrilateral bins. The bottom line is the contribution of the 
+    data to the final grid where 1 means the input array contributed at least 
+    once and 0 means no contribution.
 
         4 -------------------------------------------------------------
           |              |              |              |              |
@@ -1429,12 +1434,16 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
           |              |              |              |              |
           |       0      |       0      |    0.125     |    0.125     |
           |              |              |              |              |
+          |       0      |       0      |       1      |       1      |
+          |              |              |              |              |
         3 -------------------------------------------------------------
           |              |              |              |              |
           |       0      |    1.25+-    |    3.75+-    |       0      |
           |              | 0.009765625  | 0.064453125  |              |
           |              |              |              |              |
           |       0      |    0.125     |    0.375     |       0      |
+          |              |              |              |              |
+          |       0      |       1      |       1      |       0      |
           |              |              |              |              |
         2 -------------------------------------------------------------
           |              |              |              |              |
@@ -1443,12 +1452,16 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
           |              |              |              |              |
           |   0.09375    |    0.375     |       0      |       0      |
           |              |              |              |              |
+          |       1      |       1      |       0      |       0      |
+          |              |              |              |              |
         1 -------------------------------------------------------------
           |              |              |              |              |
           |   0.3125+-   |       0      |       0      |       0      |
           | 0.0009765625 |              |              |              |
           |              |              |              |              |
           |   0.03125    |       0      |       0      |       0      |
+          |              |              |              |              |
+          |       1      |       0      |       0      |       0      |
           |              |              |              |              |
         0 -------------------------------------------------------------        
           0              1              2              3              4
@@ -1481,6 +1494,7 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
     <- The rebinned data according to the target axis
     <- The square of the uncertainty associated with the rebinned data
     <- The fractional area accumulated during rebinning
+    <- The contribution of the data to the final grid (0 or 1 for each bin)
 
     Exceptions:
     ----------
@@ -1537,6 +1551,8 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
                                            (len(axis_out_2)-1))
         frac_area = nessi_list.NessiList((len(axis_out_1)-1) * \
                                          (len(axis_out_2)-1))
+        bin_count = nessi_list.NessiList((len(axis_out_1)-1) * \
+                                         (len(axis_out_2)-1))
         
         axis_manip_bind.rebin_2D_quad_to_rectlin_d(axis_in_x1.__array__,
                                                    axis_in_y1.__array__,
@@ -1558,11 +1574,12 @@ def rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
                                                    frac_bin_y.__array__,
                                                    output.__array__,
                                                    output_err2.__array__,
-                                                   frac_area.__array__)
+                                                   frac_area.__array__,
+                                                   bin_count.__array__)
     else:
         raise TypeError("Unknown primitive type %s" % str(input.__type__))
 
-    return (output, output_err2, frac_area)                    
+    return (output, output_err2, frac_area, bin_count)                    
 
 ##
 # \}

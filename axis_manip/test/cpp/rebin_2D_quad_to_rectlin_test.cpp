@@ -160,11 +160,13 @@ void initialize_inputs(Nessi::Vector<NumT> & axis_in_x1,
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
  * true output
  * \param true_frac_area (OUTPUT) is the true fractional area
+ * \param true_bin_count (OUTPUT) is the true bin count tracking
  *
  */
 void initialize_true_outputs(Nessi::Vector<float> & true_output,
                              Nessi::Vector<float> & true_output_err2,
-                             Nessi::Vector<float> & true_frac_area)
+                             Nessi::Vector<float> & true_frac_area,
+                             Nessi::Vector<float> & true_bin_count)
 {
   true_output.push_back(static_cast<float>(0.3125));
   true_output.push_back(static_cast<float>(0.9375));
@@ -216,6 +218,23 @@ void initialize_true_outputs(Nessi::Vector<float> & true_output,
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.0));
   true_frac_area.push_back(static_cast<float>(0.125));
+
+  true_bin_count.push_back(static_cast<float>(1.0));
+  true_bin_count.push_back(static_cast<float>(1.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(1.0));
+  true_bin_count.push_back(static_cast<float>(1.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(1.0));
+  true_bin_count.push_back(static_cast<float>(1.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(0.0));
+  true_bin_count.push_back(static_cast<float>(1.0));
 }
 
 /**
@@ -229,11 +248,13 @@ void initialize_true_outputs(Nessi::Vector<float> & true_output,
  * \param true_output_err2 (OUTPUT) is the square of the uncertainty of the
  * true output
  * \param true_frac_area (OUTPUT) is the true fractional area
+ * \param true_bin_count (OUTPUT) is the true bin count tracking
  *
  */
 void initialize_true_outputs(Nessi::Vector<double> & true_output,
                              Nessi::Vector<double> & true_output_err2,
-                             Nessi::Vector<double> & true_frac_area)
+                             Nessi::Vector<double> & true_frac_area,
+                             Nessi::Vector<double> & true_bin_count)
 {
   true_output.push_back(static_cast<double>(0.3125));
   true_output.push_back(static_cast<double>(0.9375));
@@ -285,6 +306,23 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.0));
   true_frac_area.push_back(static_cast<double>(0.125));
+
+  true_bin_count.push_back(static_cast<double>(1.0));
+  true_bin_count.push_back(static_cast<double>(1.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(1.0));
+  true_bin_count.push_back(static_cast<double>(1.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(1.0));
+  true_bin_count.push_back(static_cast<double>(1.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(0.0));
+  true_bin_count.push_back(static_cast<double>(1.0));
 }
 
 /**
@@ -300,18 +338,23 @@ void initialize_true_outputs(Nessi::Vector<double> & true_output,
  * created by <i>rebin_2D_quad_to_rectlin</i> 
  * \param frac_area (INPUT) is the fractional area array created by 
  * <i>rebin_2D_quad_to_rectlin</i>
+ * \param bin_count (INPUT) is the bin count tracking array create by 
+ * <i>rebin_2D_quad_to_rectlin</i>
  * \param true_output (INPUT) is the true array
  * \param true_output_err2 (INPUT) is the square of the uncertainty in the true
  * array
  * \param true_frac_area (INPUT) is the true fractional area array
+ * \param true_bin_count (INPUT) is the true bin count tracking
  */
 template <typename NumT>
 bool test_okay(Nessi::Vector<NumT> & output,
                Nessi::Vector<NumT> & output_err2,
                Nessi::Vector<NumT> & frac_area,
+               Nessi::Vector<NumT> & bin_count,
                Nessi::Vector<NumT> & true_output,
                Nessi::Vector<NumT> & true_output_err2,
-               Nessi::Vector<NumT> & true_frac_area)
+               Nessi::Vector<NumT> & true_frac_area,
+               Nessi::Vector<NumT> & true_bin_count)
 {
   bool value = true;
 
@@ -326,6 +369,11 @@ bool test_okay(Nessi::Vector<NumT> & output,
     }
 
   if(!test_okay(frac_area, true_frac_area, VV))
+    {
+      value = false;
+    }
+
+  if(!test_okay(bin_count, true_bin_count, VV))
     {
       value = false;
     }
@@ -365,6 +413,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   Nessi::Vector<NumT> true_output;
   Nessi::Vector<NumT> true_output_err2;
   Nessi::Vector<NumT> true_frac_area;
+  Nessi::Vector<NumT> true_bin_count;
 
   Nessi::Vector<NumT> orig_bin_x(SIZE_QUAD);
   Nessi::Vector<NumT> orig_bin_y(SIZE_QUAD);
@@ -377,13 +426,15 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
   initialize_inputs(axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2, 
                     axis_in_x3, axis_in_y3, axis_in_x4, axis_in_y4,
                     axis_out_1, axis_out_2, input, input_err2);
-  initialize_true_outputs(true_output, true_output_err2, true_frac_area);
+  initialize_true_outputs(true_output, true_output_err2, true_frac_area,
+                          true_bin_count);
 
   // allocate output arrays
   Nessi::Vector<NumT> output((axis_out_1.size()-1)*(axis_out_2.size()-1));
   Nessi::Vector<NumT> output_err2((axis_out_1.size()-1)*
                                   (axis_out_2.size()-1));
   Nessi::Vector<NumT> frac_area((axis_out_1.size()-1)*(axis_out_2.size()-1));
+  Nessi::Vector<NumT> bin_count((axis_out_1.size()-1)*(axis_out_2.size()-1));
 
   // run the code being tested
   AxisManip::rebin_2D_quad_to_rectlin(axis_in_x1, axis_in_y1, 
@@ -396,7 +447,7 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
                                       rebin_bin_x, rebin_bin_y, 
                                       frac_bin_x, frac_bin_y, 
                                       output, output_err2,
-                                      frac_area);
+                                      frac_area, bin_count);
 
   if(!debug.empty())
     {
@@ -405,10 +456,12 @@ bool test_func(NumT key, string debug) // key forces correct test to happen
       print(output, true_output, VV, debug);
       print(output_err2, true_output_err2, ERROR+VV, debug);
       print(frac_area, true_frac_area, VV, debug);
+      print(bin_count, true_bin_count, VV, debug);
     }
 
-  return test_okay(output, output_err2, frac_area, 
-                   true_output, true_output_err2, true_frac_area);
+  return test_okay(output, output_err2, frac_area, bin_count,
+                   true_output, true_output_err2, true_frac_area, 
+                   true_bin_count);
 }
 
 /**
