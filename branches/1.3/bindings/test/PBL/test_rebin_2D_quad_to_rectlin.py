@@ -158,6 +158,24 @@ TruthFracArea_D.append(0.0)
 TruthFracArea_D.append(0.0)
 TruthFracArea_D.append(0.125)
 
+TruthBinCount_D = DoubleNessiVector()
+TruthBinCount_D.append(1.0)
+TruthBinCount_D.append(1.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(1.0)
+TruthBinCount_D.append(1.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(1.0)
+TruthBinCount_D.append(1.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(0.0)
+TruthBinCount_D.append(1.0)
+
 ###############################################################################
 # Create output placeholders for vectors
 ###############################################################################
@@ -175,6 +193,8 @@ Output_Err2_D = DoubleNessiVector((len(Axis_Out_1_D) - 1) *
                                   (len(Axis_Out_2_D) - 1))
 FracArea_D = DoubleNessiVector((len(Axis_Out_1_D) - 1) *
                                (len(Axis_Out_2_D) - 1))
+BinCount_D = DoubleNessiVector((len(Axis_Out_1_D) - 1) *
+                               (len(Axis_Out_2_D) - 1))
 
 print "Checking Rebin 2D Quadrilateral to Rectilinear Binding Function"
 
@@ -188,7 +208,7 @@ rebin_2D_quad_to_rectlin_d(Axis_In_X1_D, Axis_In_Y1_D,
                            RebinBin_X_D, RebinBin_Y_D,
                            FracBin_X_D, FracBin_Y_D,
                            Output_D, Output_Err2_D,
-                           FracArea_D)
+                           FracArea_D, BinCount_D)
 
 mess = test_common_bind.makeCheck("rebin_2D_quad_to_rectlin_d",
                                   Output_D, TruthOutput_D,
@@ -199,6 +219,11 @@ print mess
 
 mess = test_common_bind.makeCheck("(area): rebin_2D_quad_to_rectlin_d",
                                   FracArea_D, TruthFracArea_D)
+
+print mess
+
+mess = test_common_bind.makeCheck("(bc): rebin_2D_quad_to_rectlin_d",
+                                  BinCount_D, TruthBinCount_D)
 
 print mess
 
