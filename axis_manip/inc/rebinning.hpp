@@ -54,12 +54,14 @@ namespace AxisManip
    *
    * <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_OrigHist.png">
    *
-   * After the rebinning process, the distribution of counts and fraction area 
-   * are shown in the following picture. The top line in each grid bin 
-   * represents the total counts placed from the original quadrilateral bins. 
-   * The bottom line in each grid bin is the summed fractional area for that 
-   * grid box as determined from the overlap of the original quadrilateral 
-   * bins.
+   * After the rebinning process, the distribution of counts, fractional area 
+   * and bin contribution are shown in the following picture. The top line in 
+   * each grid bin represents the total counts placed from the original 
+   * quadrilateral bins. The second line in each grid bin is the summed 
+   * fractional area for that grid box as determined from the overlap of the 
+   * original quadrilateral bins. The bottom line is the contribution of the 
+   * data to the final grid where 1 means the input array contributed at least 
+   * once and 0 means no contribution.
    *
    * <IMG SRC="../images/Rebin_2D_Quad_To_Rectlin_RebinHist.png">
    *
