@@ -162,6 +162,7 @@ def initialize_inputs(key):
 # - The true NessiList
 # - The square of the uncertainty in the true NessiList
 # - The fractional area true NessiList
+# - The bin contribution tracking true NessiList
 #
 def initialize_true_outputs(key):
 
@@ -170,6 +171,7 @@ def initialize_true_outputs(key):
         true_output = nessi_list.NessiList()
         true_output_err2 = nessi_list.NessiList()
         true_frac_area = nessi_list.NessiList()
+        true_bin_count = nessi_list.NessiList()
         
       # initialize the correct outputs for vector vector case
         true_output.append(float(0.3125))
@@ -222,12 +224,28 @@ def initialize_true_outputs(key):
         true_frac_area.append(float(0.0))
         true_frac_area.append(float(0.0))
         true_frac_area.append(float(0.125))
-        
+
+        true_bin_count.append(float(1.0))
+        true_bin_count.append(float(1.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(1.0))
+        true_bin_count.append(float(1.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(1.0))
+        true_bin_count.append(float(1.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(0.0))
+        true_bin_count.append(float(1.0))
     else:
 
         raise TypeError
 
-    return (true_output, true_output_err2, true_frac_area)
+    return (true_output, true_output_err2, true_frac_area, true_bin_count)
 
 if __name__ == "__main__":
 
@@ -240,7 +258,7 @@ if __name__ == "__main__":
 
     # generate true_outputs
     (true_output_d, true_output_err2_d,
-     true_frac_area_d) = initialize_true_outputs("double")
+     true_frac_area_d, true_bin_count_d) = initialize_true_outputs("double")
 
     # vv case
     (axis_in_x1, axis_in_y1, axis_in_x2, axis_in_y2,
@@ -248,18 +266,18 @@ if __name__ == "__main__":
      axis_out_1, axis_out_2, input, input_err2) = initialize_inputs("double")
 
     (output, output_err2,
-     frac_area) = axis_manip.rebin_2D_quad_to_rectlin(axis_in_x1,
-                                                      axis_in_y1,
-                                                      axis_in_x2,
-                                                      axis_in_y2,
-                                                      axis_in_x3,
-                                                      axis_in_y3,
-                                                      axis_in_x4,
-                                                      axis_in_y4,
-                                                      input,
-                                                      input_err2,
-                                                      axis_out_1,
-                                                      axis_out_2)
+     frac_area, bin_count) = axis_manip.rebin_2D_quad_to_rectlin(axis_in_x1,
+                                                                 axis_in_y1,
+                                                                 axis_in_x2,
+                                                                 axis_in_y2,
+                                                                 axis_in_x3,
+                                                                 axis_in_y3,
+                                                                 axis_in_x4,
+                                                                 axis_in_y4,
+                                                                 input,
+                                                                 input_err2,
+                                                                 axis_out_1,
+                                                                 axis_out_2)
 
     # Check values
     mess = test_common.MakeCheck("vv", output, true_output_d,
@@ -271,3 +289,8 @@ if __name__ == "__main__":
     mess = test_common.MakeCheck2("vv", frac_area, true_frac_area_d)
 
     print "(area): " + mess
+
+    # Check values
+    mess = test_common.MakeCheck2("vv", bin_count, true_bin_count_d)
+
+    print "(bc): " + mess    
