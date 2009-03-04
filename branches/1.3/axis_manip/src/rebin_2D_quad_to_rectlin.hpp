@@ -368,10 +368,7 @@ namespace AxisManip
                 output[channel] += input[k] * portion;                
                 output_err2[channel] += input_err2[k] * portion * portion;
                 frac_area[channel] += portion;
-                if (Utils::compare(bin_count[channel], static_cast<NumT>(1.0)))
-                  {
-                    bin_count[channel] = 1.0;
-                  }
+                bin_count[channel] = 1.0;
               }
           }
       }
