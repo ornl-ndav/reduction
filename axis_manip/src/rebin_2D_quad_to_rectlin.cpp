@@ -60,6 +60,7 @@ namespace AxisManip
                                   Nessi::Vector<float> & output,
                                   Nessi::Vector<float> & output_err2,
                                   Nessi::Vector<float> & frac_area,
+                                  Nessi::Vector<float> & bin_count,
                                   void *temp);
   
   /**
@@ -90,5 +91,6 @@ namespace AxisManip
                                    Nessi::Vector<double> & output,
                                    Nessi::Vector<double> & output_err2,
                                    Nessi::Vector<double> & frac_area,
+                                   Nessi::Vector<double> & bin_count,
                                    void *temp);
 } // AxisManip
