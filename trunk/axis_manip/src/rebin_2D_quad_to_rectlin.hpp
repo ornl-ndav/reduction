@@ -32,6 +32,7 @@
 
 #include "geometry.hpp"
 #include "nessi_warn.hpp"
+#include "num_comparison.hpp"
 #include "rebinning.hpp"
 #include "size_checks.hpp"
 #include "utils.hpp"
@@ -78,6 +79,7 @@ namespace AxisManip
                            Nessi::Vector<NumT> & output,
                            Nessi::Vector<NumT> & output_err2,
                            Nessi::Vector<NumT> & frac_area,
+                           Nessi::Vector<NumT> & bin_count,
                            void *temp=NULL)
   {
     // check that the coordinate pair arrays for the 1st corner are the proper 
@@ -188,6 +190,10 @@ namespace AxisManip
         throw std::invalid_argument(r2qtl_func_str+": rebinned histogram "
                                     +e.what());
       }
+    // check that the output array and the bin count array are the proper size
+    Utils::check_sizes_square(r2qtl_func_str+": bin count array ", 
+                              output, bin_count);
+
     // check that the coordinate pair arrays for the original bin placehoder 
     // are the proper size
     try
@@ -362,6 +368,7 @@ namespace AxisManip
                 output[channel] += input[k] * portion;                
                 output_err2[channel] += input_err2[k] * portion * portion;
                 frac_area[channel] += portion;
+                bin_count[channel] = 1.0;
               }
           }
       }
