@@ -1,0 +1,228 @@
+#!/usr/bin/env python
+VERSION = "0.1"
+UNITS = "units"
+CONSTANT = 2. / 0.003956034 # 2 * m / h
+DIFC_UNITS = "microsecond/Angstrom"
+OFF_UNITS = "microsecond"
+
+def createpath(handle, path):
+    # see if the path exists
+    try:
+        handle.openpath(path)
+        return
+    except:
+        pass
+
+    # set up to recurse one level up
+    import os
+    mypath = os.path.split(path)
+    if mypath[0] == "/":
+        # create the last level
+        (name, nxclass) = mypath[1].split(":")
+        if nxclass == "SDS":
+            raise RuntimeError("Need more information to create SDS \"%s\"" % \
+                               path)
+        handle.makegroup(name, nxclass)
+        handle.opengroup(name, nxclass)
+        return
+
+def writedata(handle, label, data, dtype=None, shape=None):
+    if dtype is None:
+        dtype = data[0].dtype
+    if shape is None:
+        shape = data[0].shape
+    handle.makedata(label, dtype, shape)
+    handle.opendata(label)
+    if data[0] is not None:
+        handle.putdata(data[0])
+    if data[1] is not None:
+        handle.putattr(UNITS, data[1])
+    handle.closedata()
+
+def copydata(infile, outfile, sds):
+    infile.opendata(sds)
+    info = infile.getinfo()
+    data = (infile.getdata(), infile.getattrs()[UNITS])
+    infile.closedata()
+    writedata(outfile, sds, data)
+    return data
+
+def opentypes(handle, path):
+    handle.openpath("/")
+    mypath = path.split("/")[1:]
+    for item in mypath:
+        groups = handle.getentries()
+        for key in groups.keys():
+            if groups[key] == item:
+                handle.opengroup(key, item)
+                break
+
+def process(infile, outfile, detectors, **kwargs):
+    verbose = kwargs.get("verbose", 0)
+
+    # get L1
+    opentypes(infile, "/NXentry/NXinstrument/NXmoderator")
+    infile.opendata("distance")
+    L1 = (abs(infile.getdata()), infile.getattrs()[UNITS], infile.getinfo())
+
+    from numpy import sin, log10, power
+    import numpy
+
+    # go through the detectors
+    for detector in detectors:
+        if verbose > 0:
+            print detector
+
+        # open the input path and determine the output path
+        infile.openpath(detector)
+        outpath = "/" + detector.split("/")[-1]
+        outpath = outpath.replace("NXdetector", "focusing")
+        if verbose > 0:
+            print outpath
+
+        # create the appropriate group
+        createpath(outfile, outpath)
+
+        # copy information
+        writedata(outfile, "L1", L1, L1[2][1], L1[2][0])
+        angle = copydata(infile, outfile, "polar_angle")
+        length = copydata(infile, outfile, "distance")
+
+        # calculate and write out DIFC
+        # L = L1 + distance
+        # theta = polar_angle/2
+        # DIFC = 2 * m_n * L * sin(theta) / h
+        length = L1[0] + length[0]
+        angle = angle[0] / 2.
+        difc = 2 * CONSTANT * length * sin(angle)
+        writedata(outfile, "DIFC", (difc, DIFC_UNITS))
+
+        # calculate the offset table
+        logOffset = log10(difc)
+        logOffset = logOffset - logOffset[0,0]
+        offset = power(10., logOffset)
+        writedata(outfile, "tof_offset", (offset, OFF_UNITS))
+
+        # write out the mask table
+#        writedata(outfile, "mask_pid", (None, None), "int16", [nxs.UNLIMITED])
+        
+
+def buildTree(handle, path="", **kwargs):
+    try:
+        parenttype = kwargs["parenttype"]
+    except KeyError:
+        parenttype = None
+    result = []
+    handle.initgroupdir()
+    entry = handle.getnextentry()
+    while entry[0] is not None and entry[1] is not None:
+        myPath = "%s/%s" % (path, entry[0])
+        if entry[1] == "SDS":
+            handle.opendata(entry[0])
+            result.append(handle.longpath)
+            handle.closedata()
+        else:
+            handle.opengroup(entry[0], entry[1])
+            result.append(handle.longpath)
+            result.extend(buildTree(handle, myPath, parenttype=entry[1]))
+            handle.closegroup()
+        entry = handle.getnextentry()
+    return result
+
+def checkFile(filename, **kwargs):
+    """Returns True if the file is readable"""
+    throwExcept = kwargs.get("throwExcept", False)
+    if filename is None:
+        if throwExcept:
+            raise RuntimeError("Filename is None")
+        else:
+            return False
+    if len(filename) <= 0:
+        if throwExcept:
+            raise RuntimeError("Filename is an empty string")
+        else:
+            return False
+    import os
+    if not os.path.exists(filename):
+        if throwExcept:
+            raise RuntimeError("File \"%s\" does not exist " % filename)
+        else:
+            return False
+    return True
+
+def getNeXus(**kwargs):
+    verbose = kwargs.get("verbose", 0)
+    instrument = kwargs.get("instrument", None)
+    proposal = kwargs.get("proposal", None)
+    run = kwargs.get("run", None)
+    filename = kwargs.get("filename", None)
+
+    if filename is not None and checkFile(filename, throwExcept=True):
+        return filename
+
+    if run is None:
+        raise RuntimeError("Failed to specify a run number")
+
+    from findnexus_lib import ArchiveInfo, Finder
+    info = ArchiveInfo(instrument=instrument, proposal=proposal)
+    if (verbose > 0):
+        print "INFO:", info
+    finder = Finder(info, archive_only=True)
+    filename = finder.findNeXus(run)
+    if len(filename) == 0:
+        raise RuntimeError("Failed to find any NeXus files")
+    if len(filename) > 1:
+        raise RuntimeError("Found too man run files %s" % filename)
+    filename = filename[0]
+    checkFile(filename, throwExcept=True)
+    return filename
+        
+        
+
+if __name__ == "__main__":
+    """Main entry point when run from the command line"""
+    import optparse
+
+    # create the command line parser
+    info = []
+    parser = optparse.OptionParser("usage: %prog [options] <nexus file>", None,
+                                   optparse.Option, VERSION, "error",
+                                   " ".join(info))
+
+    # add the options
+    parser.add_option("-v", "--verbose", action="count", dest="verbose",
+                      help="Increase verbose level")
+    parser.add_option("-i", "--inst" , dest="inst",
+                      help="Specify the instrument name")
+    parser.add_option("-p", "--proposal", dest="proposal",
+                      help="Restrict the search to be within the supplied " \
+                      + "proposal")
+
+    # parse the command line
+    parser.set_defaults(inst=None, proposal=None, verbose=0)
+    (options, args) = parser.parse_args()
+
+    try:
+        run = int(args[0])
+        filename = None
+    except ValueError:
+        run = None
+        filename = args[0]
+
+    filename = getNeXus(instrument=options.inst, proposal=options.proposal,
+                        filename=filename, run=run)
+
+    if options.verbose > 0:
+        print "FILE:", filename
+
+    # build the tree of detectors to process
+    import nxs
+    infile = nxs.open(filename)
+    tree = buildTree(infile)
+    detectors = [item for item in tree if item.endswith("NXdetector")]
+
+    # create the output file
+    outfile = nxs.open("deleteme", "w5")
+    
+    # use the output file as a chace and write out the information
+    process(infile, outfile, detectors, verbose=options.verbose)
