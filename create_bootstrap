@@ -40,6 +40,9 @@ def writedata(handle, label, data, dtype=None, shape=None):
     handle.closedata()
 
 def copydata(infile, outfile, sds):
+    """Copy data from the input file (current location) create the
+    appropriate data in the output files and write it there. The"sds" is the
+    name of the data in the output file."""
     infile.opendata(sds)
     info = infile.getinfo()
     data = (infile.getdata(), infile.getattrs()[UNITS])
@@ -48,6 +51,7 @@ def copydata(infile, outfile, sds):
     return data
 
 def opentypes(handle, path):
+    """Open a path based on the supplied set of types."""
     handle.openpath("/")
     mypath = path.split("/")[1:]
     for item in mypath:
@@ -58,6 +62,7 @@ def opentypes(handle, path):
                 break
 
 def process(infile, outfile, detectors, **kwargs):
+    """Read in from the NeXus file and produce the time focusing file."""
     verbose = kwargs.get("verbose", 0)
 
     # get L1
@@ -108,6 +113,15 @@ def process(infile, outfile, detectors, **kwargs):
         
 
 def buildTree(handle, path="", **kwargs):
+    """Parse the supplied file and return a tree as a list of NeXus long paths.
+
+    Arguments:
+    handle - Handle to the NeXus file.
+    path - The path that the file is currently open to.
+
+    Keyword Arguments:
+    parenttype - The type of the parent path.
+    """
     try:
         parenttype = kwargs["parenttype"]
     except KeyError:
@@ -151,6 +165,14 @@ def checkFile(filename, **kwargs):
     return True
 
 def getNeXus(**kwargs):
+    """Determine the NeXus file to use based on the supplied keyword arguments.
+
+    filename - The absolute path to the file to use.
+    instrument - The name of the instrument to search in.
+    proposal - The proposal number. This will be filled in (if possible) by
+    findnexus.
+    run - The run number to use.
+    """
     verbose = kwargs.get("verbose", 0)
     instrument = kwargs.get("instrument", None)
     proposal = kwargs.get("proposal", None)
