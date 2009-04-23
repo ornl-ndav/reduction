@@ -31,5 +31,8 @@ test: check
 docs:
 	cd doc && make docs
 
+docsns:
+	cd doc && make docsns
+
 clean-local:
 	rm -f -- $(top_builddir)/-V-bank1.
