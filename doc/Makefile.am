@@ -50,6 +50,11 @@ docs:
 	doxygen scl_python.cfg
 	$(MAKEPDF)
 
+docsns:
+	doxygen scl_cpp_ns.cfg
+	doxygen scl_python_ns.cfg
+	$(MAKEPDF) 
+
 install:
 	$(srcdir)/instdoc $(DRLIBDOCDIR)
 	$(CP_CPP_PDF)
