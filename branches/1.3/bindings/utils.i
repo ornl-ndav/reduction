@@ -87,6 +87,8 @@ std::string bisect_helper_d(const Nessi::Vector<double> & axis, const double val
 
 %template(calc_bin_widths_d) Utils::calc_bin_widths<double>;
 
+%template(calc_eq_jacobian_dgs_d) Utils::calc_eq_jacobian_dgs<double>;
+
 %template(peak_integration_d) Utils::peak_integration<double>;
 
 %template(matrix_multiplication_d) Utils::matrix_multiplication<double>;
