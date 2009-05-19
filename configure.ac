@@ -23,7 +23,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.4dev], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
+AC_INIT([SNS Common Libraries], [1.3.3], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
@@ -89,7 +89,7 @@ LIB_AXIS_MANIP_VERSION='-version-info 4:2:3'
 AC_SUBST(LIB_AXIS_MANIP_VERSION)
 LIB_PHYS_CORR_VERSION='-version-info 1:0:0'
 AC_SUBST(LIB_PHYS_CORR_VERSION)
-LIB_UTILS_VERSION='-version-info 4:0:3'
+LIB_UTILS_VERSION='-version-info 5:0:4'
 AC_SUBST(LIB_UTILS_VERSION)
 PYLIB_ARRAY_MANIP_VERSION='-version-info 3:0:2'
 AC_SUBST(PYLIB_ARRAY_MANIP_VERSION)
@@ -99,7 +99,7 @@ PYLIB_NESSI_VECTOR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_NESSI_VECTOR_VERSION)
 PYLIB_PHYS_CORR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_PHYS_CORR_VERSION)
-PYLIB_UTILS_VERSION='-version-info 4:0:3'
+PYLIB_UTILS_VERSION='-version-info 5:0:4'
 AC_SUBST(PYLIB_UTILS_VERSION)
 PYLIB_VPAIR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_VPAIR_VERSION)
