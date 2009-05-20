@@ -569,8 +569,7 @@ def calc_eq_jacobian_dgs(e1_axis, e2_axis, e3_axis, e4_axis,
                                           q2_axis.__array__,
                                           q3_axis.__array__,
                                           q4_axis.__array__,
-                                          jacobian.__array__,
-                                          jacobian_err2.__array__)
+                                          jacobian.__array__)
         
         return (jacobian, jacobian_err2)
     else:
