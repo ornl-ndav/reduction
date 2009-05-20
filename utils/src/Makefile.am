@@ -41,6 +41,8 @@ libUtils_la_SOURCES = \
 	calc_bin_centers.cpp \
 	calc_bin_widths.hpp \
 	calc_bin_widths.cpp \
+	calc_eq_jacobian_dgs.hpp \
+	calc_eq_jacobian_dgs.cpp \
 	check_convex_polygon.hpp \
 	check_convex_polygon.cpp \
 	check_histo_sizes.hpp \

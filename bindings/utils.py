@@ -471,6 +471,114 @@ def calc_bin_widths(axis, axis_err2=None):
 #
 
 ##
+# \}
+
+##
+# \defgroup calc_eq_jacobian_dgs utils::calc_eq_jacobian_dgs
+# \{
+#
+
+##
+# \brief This function calculates the Jacobian for DGS S(Q,E) data
+#
+# This function is described in section 3.68 of the SNS 107030214-TD0001-R00,
+# "Data Reduction Library Software Requirements and Specifications".
+# 
+# This function takes four energy tranfer coordinate arrays and four 
+# momentum tranfer coordinate arrays and calculates the Jacobian for each 
+# bin for S(Q,E) given by the arrays. The function assembles two polygon 
+# vertex arrays for each bin and uses Utils::calc_area_2D_polygon to 
+# calculate the Jacobian, which is just the area of the S(Q,E) polygon.
+#
+# \param e1_axis (INPUT) is the first energy transfer vertex coordinate array
+# \param e2_axis (INPUT) is the second energy transfer vertex coordinate array
+# \param e3_axis (INPUT) is the third energy transfer vertex coordinate array
+# \param e4_axis (INPUT) is the fourth energy transfer vertex coordinate array
+# \param q1_axis (INPUT) is the first momentum transfer vertex coordinate array
+# \param q2_axis (INPUT) is the second momentum transfer vertex coordinate
+# array
+# \param q3_axis (INPUT) is the third momentum transfer vertex coordinate array
+# \param q4_axis (INPUT) is the fourth momentum transfer vertex coordinate
+# array
+#
+# \return
+# -  the calculated Jacobian for each set of vertex coordinates
+# -  the associated error of the Jacobian
+#
+# \exception TypeError is raised if any of the lists are not the same type
+# \exception TypeError is raised if lists are not of type double
+#
+
+def calc_eq_jacobian_dgs(e1_axis, e2_axis, e3_axis, e4_axis,
+                         q1_axis, q2_axis, q3_axis, q4_axis):
+
+    """
+    This function takes four energy tranfer coordinate arrays and four 
+    momentum tranfer coordinate arrays and calculates the Jacobian for each 
+    bin for S(Q,E) given by the arrays. The function assembles two polygon 
+    vertex arrays for each bin and uses Utils::calc_area_2D_polygon to 
+    calculate the Jacobian, which is just the area of the S(Q,E) polygon.
+
+    Parameters:
+    ----------
+    -> e1_axis is the first energy transfer vertex coordinate array
+    -> e2_axis is the second energy transfer vertex coordinate array
+    -> e3_axis is the third energy transfer vertex coordinate array
+    -> e4_axis is the fourth energy transfer vertex coordinate array
+    -> q1_axis is the first momentum transfer vertex coordinate array
+    -> q2_axis is the second momentum transfer vertex coordinate array
+    -> q3_axis is the third momentum transfer vertex coordinate array
+    -> q4_axis is the fourth momentum transfer vertex coordinate array
+
+    Returns:
+    -------
+    <- the calculated Jacobian for each set of vertex coordinates
+    <- the associated error of the Jacobian
+
+    Exceptions:
+    ----------
+    <- TypeError is raised if any of the lists are not the same type
+    <- TypeError is raised if lists are not of type double
+    
+    """
+    if e1_axis.__type__ != q1_axis.__type__:
+        raise TypeError("E1 and Q1 arrays are not the same type")
+    if e2_axis.__type__ != q2_axis.__type__:
+        raise TypeError("E2 and Q2 arrays are not the same type")
+    if e3_axis.__type__ != q3_axis.__type__:
+        raise TypeError("E3 and Q3 arrays are not the same type")
+    if e4_axis.__type__ != q4_axis.__type__:
+        raise TypeError("E4 and Q4 arrays are not the same type")
+    if e1_axis.__type__ != e2_axis.__type__:
+        raise TypeError("E1 and E2 arrays are not the same type")
+    if e2_axis.__type__ != e3_axis.__type__:
+        raise TypeError("E2 and E3 arrays are not the same type")
+    if e3_axis.__type__ != e4_axis.__type__:
+        raise TypeError("E3 and E4 arrays are not the same type")    
+  
+    if e1_axis.__type__ == nessi_list.NessiList.DOUBLE:
+        len_arr = len(e1_axis)
+        jacobian = nessi_list.NessiList(len_arr)
+        jacobian_err2 = nessi_list.NessiList(len_arr)
+
+        utils_bind.calc_eq_jacobian_dgs_d(e1_axis.__array__,
+                                          e2_axis.__array__,
+                                          e3_axis.__array__,
+                                          e4_axis.__array__,
+                                          q1_axis.__array__,
+                                          q2_axis.__array__,
+                                          q3_axis.__array__,
+                                          q4_axis.__array__,
+                                          jacobian.__array__)
+        
+        return (jacobian, jacobian_err2)
+    else:
+        raise TypeError("Unknown primative type %s" % str(e1_axis.__type__))
+
+##
+# \}
+    
+##
 # \brief This function calibrates a reflectometer 2D detector array for
 #        pixel variations
 #
