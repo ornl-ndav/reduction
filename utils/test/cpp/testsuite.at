@@ -54,6 +54,12 @@ AT_CHECK([calc_bin_widths_test | sed -e 's/\r$//' ],[],
 ]])
 AT_CLEANUP
 
+AT_SETUP([Checking the Calculation of EQ Jacobian DGS Function.  ])
+AT_CHECK([calc_eq_jacobian_dgs_test | sed -e 's/\r$//' ],[],
+[[calc_eq_jacobian_dgs_test.cpp..........Functionality OK
+]])
+AT_CLEANUP
+
 AT_SETUP([Checking the Convex Polygon Intersection Function.  ])
 AT_CHECK([convex_polygon_intersect_test | sed -e 's/\r$//' ],[],
 [[convex_polygon_intersect_test.cpp..........Functionality OK

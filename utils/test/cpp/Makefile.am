@@ -36,6 +36,7 @@ UTILS_TARGETS = \
 	calc_area_2D_polygon_test \
 	calc_bin_centers_test \
 	calc_bin_widths_test \
+	calc_eq_jacobian_dgs_test \
 	convex_polygon_intersect_test \
 	eval_linear_fit_test \
 	fit_linear_background_test \
@@ -57,6 +58,9 @@ calc_area_2D_polygon_test_SOURCES = calc_area_2D_polygon_test.cpp \
 calc_bin_centers_test_SOURCES = calc_bin_centers_test.cpp test_common.hpp
 
 calc_bin_widths_test_SOURCES = calc_bin_widths_test.cpp test_common.hpp
+
+calc_eq_jacobian_dgs_test_SOURCES = calc_eq_jacobian_dgs_test.cpp \
+	test_common.hpp
 
 convex_polygon_intersect_test_SOURCES = convex_polygon_intersect_test.cpp \
 	test_common.hpp
