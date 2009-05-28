@@ -174,6 +174,8 @@ AC_CONFIG_FILES([array_manip/test/Makefile
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 AC_CONFIG_FILES([Makefile
+		scl.spec:scl_spec.in
+		build_rpm
 		nessi/Makefile
 		nessi/inc/Makefile
 		array_manip/Makefile
