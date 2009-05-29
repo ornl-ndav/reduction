@@ -3,6 +3,9 @@
 # Template for SCL RPM SPEC file
 # Based on the NeXus build script by Freddie Akeroyd
 #
+
+%define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+
 Summary: Libraries and utilities for running data reduction at the SNS
 Name: @PACKAGE_TARNAME@
 Version: @PACKAGE_VERSION@
@@ -59,15 +62,11 @@ make DESTDIR="$RPM_BUILD_ROOT" install
 
 %files
 %defattr(-,root,root)
-%doc README NEWS ChangeLog AUTHORS COPYING INSTALL
+%doc README NEWS AUTHORS COPYING INSTALL
 # %docdir /usr/local/doc
 %{_libdir}/*
-%{_bindir}/*
-%{_datadir}/*
 %{_includedir}/*
-#%files devel
-#%{_libdir}/*.a
-#%{_libdir}/*.so*
+%{python_sitelib}/@PACKAGE_TARNAME@/*
 
 %clean
 if test "$RPM_BUILD_ROOT" != "/"; then rm -fr "$RPM_BUILD_ROOT"; fi
