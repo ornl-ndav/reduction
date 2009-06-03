@@ -105,10 +105,12 @@ AC_DEFUN(
              [available_patch=0]
           fi
 
-	  if test $available_major -ne $required_major \
-               -o $available_minor -ne $required_minor \
-               -o $available_patch -lt $required_patch ; then
-	    AC_MSG_ERROR([You need SWIG version $1 and have SWIG version $SWIG_VERSION])
+	  if test $available_major -le $required_major ; then
+	     if test $available_minor -le $required_minor ; then
+                if test $available_patch -lt $required_patch ; then
+	           AC_MSG_ERROR([You need SWIG version $1 and have SWIG version $SWIG_VERSION])
+	        fi
+             fi
 	  fi
        fi
     fi
