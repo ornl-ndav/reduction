@@ -646,8 +646,15 @@ def compare(value1, value2):
     <- 0 (eq), 1 (gt) or -1 (lt)
 
     """
+    if type(value1) == type(float()):
+        # Do SWIG reference trickey
+        input = vpair_bind.DoubleVPair()
+        input.val = value1
+        input.val_err2 = value2
+        result = utils_bind.compare_d(input)
+    else:
+        result = utils_bind.compare_i(value1, value2)
 
-    result = utils_bind.compare(value1, value2)
     return result
 
 ##
