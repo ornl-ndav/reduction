@@ -64,6 +64,16 @@ std::string calc_area_2D_polygon_d(const Nessi::Vector<double> & x_coord, const 
 %template(vector_is_equals_d) Utils::vector_is_equals<double>;
 %template(vector_is_equals_i) Utils::vector_is_equals<int>;
 
+%{
+int compare_d(VPair<double> & pair) {
+  int check = Utils::compare(pair.val, pair.val_err2);
+  return check;
+}
+%}
+int compare_d(VPair<double> & pair);
+
+%template(compare_i) Utils::compare<int>;
+
 // Instantiate templates for size checks
 
 %template(check_sizes_square_d) Utils::check_sizes_square<double>;
