@@ -649,11 +649,11 @@ def compare(value1, value2):
     if type(value1) == type(float()):
         # Do SWIG reference trickey
         input = vpair_bind.DoubleVPair()
-        input.val = value1
-        input.val_err2 = value2
+        input.val = float(value1)
+        input.val_err2 = float(value2)
         result = utils_bind.compare_d(input)
     else:
-        result = utils_bind.compare_i(value1, value2)
+        result = utils_bind.compare_i(int(value1), int(value2))
 
     return result
 
