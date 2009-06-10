@@ -39,11 +39,11 @@ RM_CPP_PDF =
 RM_PYTHON_PDF =
 endif
 
-#EXTRA_DIST = html_cpp html_python images index.html instdoc latex_cpp \
-#	     latex_python makepdf material scl_cpp.cfg scl_python.cfg tutorials
+EXTRA_DIST = html_cpp html_python images index.html instdoc latex_cpp \
+	     latex_python makepdf material scl_cpp.cfg scl_python.cfg tutorials
 
-#nodist_EXTRA_DIST = latex_cpp/*.aux latex_cpp/*.dvi latex_cpp/*.log \
-#		    latex_python/*.aux latex_python/*.dvi latex_python/*.log
+nodist_EXTRA_DIST = latex_cpp/*.aux latex_cpp/*.dvi latex_cpp/*.log \
+		    latex_python/*.aux latex_python/*.dvi latex_python/*.log
 
 docs:
 	doxygen scl_cpp.cfg
@@ -54,6 +54,19 @@ docsns:
 	doxygen scl_cpp_ns.cfg
 	doxygen scl_python_ns.cfg
 	$(MAKEPDF) 
+
+install:
+	$(srcdir)/instdoc $(DRLIBDOCDIR)
+	$(CP_CPP_PDF)
+	$(CP_PYTHON_PDF)
+
+uninstall:
+	rm -rf $(DRLIBDOCDIR)/html_cpp
+	rm -rf $(DRLIBDOCDIR)/latex_cpp
+	rm -rf $(DRLIBDOCDIR)/html_python
+	rm -rf $(DRLIBDOCDIR)/latex_python
+	$(RM_CPP_PDF)	
+	$(RM_PYTHON_PDF)
 
 clean-local:
 	rm -rf html_cpp

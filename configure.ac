@@ -23,7 +23,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.4dev], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
+AC_INIT([SNS Common Libraries], [1.3.5], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
@@ -99,7 +99,7 @@ PYLIB_NESSI_VECTOR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_NESSI_VECTOR_VERSION)
 PYLIB_PHYS_CORR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_PHYS_CORR_VERSION)
-PYLIB_UTILS_VERSION='-version-info 5:0:4'
+PYLIB_UTILS_VERSION='-version-info 5:1:4'
 AC_SUBST(PYLIB_UTILS_VERSION)
 PYLIB_VPAIR_VERSION='-version-info 1:0:0'
 AC_SUBST(PYLIB_VPAIR_VERSION)
@@ -143,10 +143,7 @@ esac
 AC_SUBST(STOSFLAG)
 
 # Must have Swig version 1.3.31 to make Python 2.5 bindings
-# Must have Swig version 1.3.39 to make Python 2.6 bindings
-if test "$PYTHON_VERSION" = "2.6"; then
-   SCL_SWIG_CHECK([1.3.39])
-elif test "$PYTHON_VERSION" = "2.5"; then
+if test "$PYTHON_VERSION" = "2.5"; then
    SCL_SWIG_CHECK([1.3.31])
 else
    SCL_SWIG_CHECK([1.3.28])	
@@ -177,8 +174,6 @@ AC_CONFIG_FILES([array_manip/test/Makefile
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 AC_CONFIG_FILES([Makefile
-		scl.spec:scl_spec.in
-		build_rpm
 		nessi/Makefile
 		nessi/inc/Makefile
 		array_manip/Makefile
