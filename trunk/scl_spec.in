@@ -66,6 +66,7 @@ make DESTDIR="$RPM_BUILD_ROOT" install
 # %docdir /usr/local/doc
 %{_libdir}/*
 %{_includedir}/*
+%{python_sitelib}/@PACKAGE_TARNAME@.pth
 %{python_sitelib}/@PACKAGE_TARNAME@/*
 
 %clean
