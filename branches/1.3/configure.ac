@@ -143,7 +143,10 @@ esac
 AC_SUBST(STOSFLAG)
 
 # Must have Swig version 1.3.31 to make Python 2.5 bindings
-if test "$PYTHON_VERSION" = "2.5"; then
+# Must have Swig version 1.3.39 to make Python 2.6 bindings
+if test "$PYTHON_VERSION" = "2.6"; then
+   SCL_SWIG_CHECK([1.3.39])
+elif test "$PYTHON_VERSION" = "2.5"; then
    SCL_SWIG_CHECK([1.3.31])
 else
    SCL_SWIG_CHECK([1.3.28])	
@@ -174,6 +177,8 @@ AC_CONFIG_FILES([array_manip/test/Makefile
 AM_MISSING_PROG([AUTOM4TE], [autom4te])
 
 AC_CONFIG_FILES([Makefile
+		scl.spec:scl_spec.in
+		build_rpm
 		nessi/Makefile
 		nessi/inc/Makefile
 		array_manip/Makefile
