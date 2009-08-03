@@ -120,6 +120,8 @@ PAL_FILES = \
 	$(PHYSCORR_PAL) \
 	$(UTILS_PAL)
 
+python_PYTHON = sns_common_libs.pth
+
 pkgpython_PYTHON = \
 	$(PAL_FILES) \
 	$(PBL_FILES)
