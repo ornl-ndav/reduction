@@ -155,31 +155,28 @@ void initialize_true_outputs(double    & true_output_ss,
   true_output_vv.push_back(static_cast<double>(-0.31288343558282200));
   true_output_vv_err2.push_back(static_cast<double>(0.13129216784667818));
 
-#ifdef LINUX64
-  true_output_vv.push_back(static_cast<double>(-0.8095238095238096));
-  true_output_vv_err2.push_back(static_cast<double>(6.817174587695375));
-#else
+#ifdef LINUX
   true_output_vv.push_back(static_cast<double>(-0.80952380952380909));
   true_output_vv_err2.push_back(static_cast<double>(6.81717458769535600));  
+#else
+  true_output_vv.push_back(static_cast<double>(-0.8095238095238096));
+  true_output_vv_err2.push_back(static_cast<double>(6.817174587695375));
 #endif
 
-#ifdef LINUX64
-  true_output_vv.push_back(static_cast<double>(1.3783783783783781));
-  true_output_vv_err2.push_back(static_cast<double>(70.4852386802180320));
-#elif LINUX
+#ifdef LINUX
   true_output_vv.push_back(static_cast<double>(1.37837837837837962));
   true_output_vv_err2.push_back(static_cast<double>(70.48523868021835880));
 #else
-  true_output_vv.push_back(static_cast<double>(1.37837837837837962));
-  true_output_vv_err2.push_back(static_cast<double>(70.48523868021837301));
+  true_output_vv.push_back(static_cast<double>(1.3783783783783781));
+  true_output_vv_err2.push_back(static_cast<double>(70.4852386802180320));
 #endif
 
-#ifdef LINUX64
-  true_output_vv.push_back(static_cast<double>(0.37226277372262783));
-  true_output_vv_err2.push_back(static_cast<double>(0.4735235667252817));
-#else
+#ifdef LINUX
   true_output_vv.push_back(static_cast<double>(0.37226277372262783));
   true_output_vv_err2.push_back(static_cast<double>(0.47352356672528228));
+#else
+  true_output_vv.push_back(static_cast<double>(0.37226277372262783));
+  true_output_vv_err2.push_back(static_cast<double>(0.4735235667252817));
 #endif
 
 }
