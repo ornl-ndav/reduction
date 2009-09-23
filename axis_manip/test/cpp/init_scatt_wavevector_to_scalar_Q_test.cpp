@@ -180,7 +180,11 @@ void initialize_true_outputs(float                & true_output_ss,
   true_output_vs_err2.push_back(static_cast<float>(1.56478857));
 #endif
   true_output_vs.push_back(static_cast<float>(1.80090785));
+#ifdef LINUX64
+  true_output_vs_err2.push_back(static_cast<float>(2.6823163));
+#else
   true_output_vs_err2.push_back(static_cast<float>(2.6823158));
+#endif
   true_output_vs.push_back(static_cast<float>(2.79347920));
 #ifdef LINUX
   true_output_vs_err2.push_back(static_cast<float>(3.7089961));
