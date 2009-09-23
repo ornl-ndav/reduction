@@ -135,10 +135,22 @@ AC_CHECK_FUNCS([floor memset pow sqrt strstr])
 
 dnl Add OS define flags for smoke tests
 case "$host" in
-     *-*-darwin*) STOSFLAG="-DMAC";;
-     x86_64-*-linux*) STOSFLAG="-DLINUX64";;
-     *-*-linux*) STOSFLAG="-DLINUX";;
-     *) STOSFLAG=;;
+     *-*-darwin*) 
+	STOSFLAG="-DMAC"
+	AM_CONDITIONAL(FIXSO, true)
+	;;
+     x86_64-*-linux*) 
+	STOSFLAG="-DLINUX64"
+	AM_CONDITIONAL(FIXSO, false)
+	;;
+     *-*-linux*) 
+	STOSFLAG="-DLINUX"
+	AM_CONDITIONAL(FIXSO, false)
+	;;
+     *) 
+	STOSFLAG=
+	AM_CONDITIONAL(FIXSO, false)
+	;;
 esac
 AC_SUBST(STOSFLAG)
 
