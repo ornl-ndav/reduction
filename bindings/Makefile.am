@@ -136,6 +136,14 @@ else
 SWIGOPT=
 endif
 
+if FIXSO
+install-exec-hook:
+	for file in $$(ls -1 $(pkgpythondir)/*.la); do \
+		temp=$$(echo $$file | sed 's/\.[^\.]*$$//'); \
+		ln -s $${temp}.dylib $${temp}.so; \
+	done
+endif
+
 clean-local:
 	rm -f $(PBL_FILES) $(PYTHON_WRAPPERS)
 	rm -rf .libs _libs
