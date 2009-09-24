@@ -190,21 +190,16 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_sv_Qz.push_back(static_cast<float>(-1.19576926));
   true_output_sv_Qz_err2.push_back(static_cast<float>(1.71699049));
 
-#ifdef LINUX
   true_output_sv_Qx.push_back(static_cast<float>(-0.45189707));
   true_output_sv_Qx_err2.push_back(static_cast<float>(0.62419446));
   true_output_sv_Qy.push_back(static_cast<float>(-0.54664367));
   true_output_sv_Qy_err2.push_back(static_cast<float>(0.81083490));
-  true_output_sv_Qz.push_back(static_cast<float>(-2.17166671));
-  true_output_sv_Qz_err2.push_back(static_cast<float>(2.69817896));
+#ifdef MAC
+  true_output_sv_Qz.push_back(static_cast<float>(-2.17166695));
 #else
-  true_output_sv_Qx.push_back(static_cast<float>(-0.45189707));
-  true_output_sv_Qx_err2.push_back(static_cast<float>(0.62419446));
-  true_output_sv_Qy.push_back(static_cast<float>(-0.54664367));
-  true_output_sv_Qy_err2.push_back(static_cast<float>(0.81083490));
   true_output_sv_Qz.push_back(static_cast<float>(-2.17166671));
-  true_output_sv_Qz_err2.push_back(static_cast<float>(2.69817872));
 #endif
+  true_output_sv_Qz_err2.push_back(static_cast<float>(2.69817896));
 
 #ifdef LINUX64
   true_output_sv_Qx.push_back(static_cast<float>(-0.59094232));
@@ -218,8 +213,8 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_sv_Qx_err2.push_back(static_cast<float>(1.05585507));
   true_output_sv_Qy.push_back(static_cast<float>(-0.71484173));
   true_output_sv_Qy_err2.push_back(static_cast<float>(1.36966827));
-  true_output_sv_Qz.push_back(static_cast<float>(-3.1475642));
-  true_output_sv_Qz_err2.push_back(static_cast<float>(3.68984472));
+  true_output_sv_Qz.push_back(static_cast<float>(-3.14756444));
+  true_output_sv_Qz_err2.push_back(static_cast<float>(3.68984496));
 #endif
 
 #ifdef LINUX64
@@ -238,11 +233,11 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_sv_Qz_err2.push_back(static_cast<float>(4.69198781));
 #else
   true_output_sv_Qx.push_back(static_cast<float>(-0.72998758));
-  true_output_sv_Qx_err2.push_back(static_cast<float>(1.59746921));
+  true_output_sv_Qx_err2.push_back(static_cast<float>(1.59746969));
   true_output_sv_Qy.push_back(static_cast<float>(-0.88303978));
   true_output_sv_Qy_err2.push_back(static_cast<float>(2.0699797));
   true_output_sv_Qz.push_back(static_cast<float>(-4.12346160));
-  true_output_sv_Qz_err2.push_back(static_cast<float>(4.69198733));
+  true_output_sv_Qz_err2.push_back(static_cast<float>(4.69198781));
 #endif
 
   // vector scalar
@@ -288,7 +283,7 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_vs_Qx_err2.push_back(static_cast<float>(0.09073486));
   true_output_vs_Qy.push_back(static_cast<float>(-0.21024756));
   true_output_vs_Qy_err2.push_back(static_cast<float>(0.11760239));
-  true_output_vs_Qz.push_back(static_cast<float>(2.78012818));
+  true_output_vs_Qz.push_back(static_cast<float>(2.78012794));
   true_output_vs_Qz_err2.push_back(static_cast<float>(3.74627913));
 #endif
 
@@ -296,7 +291,11 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_vs_Qx_err2.push_back(static_cast<float>(0.09073486));
   true_output_vs_Qy.push_back(static_cast<float>(-0.21024756));
   true_output_vs_Qy_err2.push_back(static_cast<float>(0.11760239));
+#ifdef MAC
+  true_output_vs_Qz.push_back(static_cast<float>(3.78012794));
+#else
   true_output_vs_Qz.push_back(static_cast<float>(3.78012818));
+#endif
   true_output_vs_Qz_err2.push_back(static_cast<float>(4.74627936));
 
   // vector vector
@@ -326,7 +325,7 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_vv_Qx_err2.push_back(static_cast<float>(0.62419446));
   true_output_vv_Qy.push_back(static_cast<float>(-0.54664367));
   true_output_vv_Qy_err2.push_back(static_cast<float>(0.81083490));
-  true_output_vv_Qz.push_back(static_cast<float>(-0.17166671));
+  true_output_vv_Qz.push_back(static_cast<float>(-0.17166685));
   true_output_vv_Qz_err2.push_back(static_cast<float>(4.6981788));
 #endif
 
@@ -337,20 +336,13 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_vv_Qy_err2.push_back(static_cast<float>(1.36966827));
   true_output_vv_Qz.push_back(static_cast<float>(-0.14756394));
   true_output_vv_Qz_err2.push_back(static_cast<float>(6.68984472));
-#elif LINUX
-  true_output_vv_Qx.push_back(static_cast<float>(-0.59094232));
-  true_output_vv_Qx_err2.push_back(static_cast<float>(1.05585507));
-  true_output_vv_Qy.push_back(static_cast<float>(-0.71484173));
-  true_output_vv_Qy_err2.push_back(static_cast<float>(1.36966827));
-  true_output_vv_Qz.push_back(static_cast<float>(-0.1475641));
-  true_output_vv_Qz_err2.push_back(static_cast<float>(6.6898446));
 #else
   true_output_vv_Qx.push_back(static_cast<float>(-0.59094232));
   true_output_vv_Qx_err2.push_back(static_cast<float>(1.05585507));
   true_output_vv_Qy.push_back(static_cast<float>(-0.71484173));
   true_output_vv_Qy_err2.push_back(static_cast<float>(1.36966827));
-  true_output_vv_Qz.push_back(static_cast<float>(-0.1475641));
-  true_output_vv_Qz_err2.push_back(static_cast<float>(6.6898441));
+  true_output_vv_Qz.push_back(static_cast<float>(-0.1475644));
+  true_output_vv_Qz_err2.push_back(static_cast<float>(6.6898446));
 #endif
 
 #ifdef LINUX64
@@ -360,20 +352,13 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_vv_Qy_err2.push_back(static_cast<float>(2.06997925));
   true_output_vv_Qz.push_back(static_cast<float>(-0.12346172));
   true_output_vv_Qz_err2.push_back(static_cast<float>(8.69198685));
-#elif LINUX
+#else
   true_output_vv_Qx.push_back(static_cast<float>(-0.72998758));
   true_output_vv_Qx_err2.push_back(static_cast<float>(1.59746957));
   true_output_vv_Qy.push_back(static_cast<float>(-0.88303978));
   true_output_vv_Qy_err2.push_back(static_cast<float>(2.06997973));
-  true_output_vv_Qz.push_back(static_cast<float>(-0.12346151));
+  true_output_vv_Qz.push_back(static_cast<float>(-0.12346173));
   true_output_vv_Qz_err2.push_back(static_cast<float>(8.69198780));
-#else
-  true_output_vv_Qx.push_back(static_cast<float>(-0.72998758));
-  true_output_vv_Qx_err2.push_back(static_cast<float>(1.59746921));
-  true_output_vv_Qy.push_back(static_cast<float>(-0.88303978));
-  true_output_vv_Qy_err2.push_back(static_cast<float>(2.0699797));
-  true_output_vv_Qz.push_back(static_cast<float>(-0.1234615));
-  true_output_vv_Qz_err2.push_back(static_cast<float>(8.69198685));
 #endif
 
 }
@@ -487,14 +472,7 @@ void initialize_true_outputs(double                & true_output_ss_Qx,
   true_output_sv_Qz_err2.push_back(static_cast<double>(2.69817895177061133));
 #endif
     
-#ifdef LINUX64
-  true_output_sv_Qx.push_back(static_cast<double>(-0.59094232968700300));
-  true_output_sv_Qx_err2.push_back(static_cast<double>(1.05585507696780088));
-  true_output_sv_Qy.push_back(static_cast<double>(-0.71484173390254900));
-  true_output_sv_Qy_err2.push_back(static_cast<double>(1.36966827900951199));
-  true_output_sv_Qz.push_back(static_cast<double>(-3.14756415965507310));
-  true_output_sv_Qz_err2.push_back(static_cast<double>(3.68984472230235778));
-#elif LINUX
+#ifdef LINUX
   true_output_sv_Qx.push_back(static_cast<double>(-0.59094232968700333));
   true_output_sv_Qx_err2.push_back(static_cast<double>(1.05585507696780088));
   true_output_sv_Qy.push_back(static_cast<double>(-0.71484173390254900));
@@ -506,7 +484,7 @@ void initialize_true_outputs(double                & true_output_ss_Qx,
   true_output_sv_Qx_err2.push_back(static_cast<double>(1.05585507696780088));
   true_output_sv_Qy.push_back(static_cast<double>(-0.71484173390254900));
   true_output_sv_Qy_err2.push_back(static_cast<double>(1.36966827900951199));
-  true_output_sv_Qz.push_back(static_cast<double>(-3.1475641596550736));
+  true_output_sv_Qz.push_back(static_cast<double>(-3.14756415965507310));
   true_output_sv_Qz_err2.push_back(static_cast<double>(3.68984472230235778));
 #endif
 
@@ -607,22 +585,12 @@ void initialize_true_outputs(double                & true_output_ss_Qx,
   true_output_vv_Qz_err2.push_back(static_cast<double>(6.68984472230235823));
 #endif
 
-#ifdef LINUX64
   true_output_vv_Qx.push_back(static_cast<double>(-0.72998758373100400));
   true_output_vv_Qx_err2.push_back(static_cast<double>(1.59746956572666845));
   true_output_vv_Qy.push_back(static_cast<double>(-0.88303978893844267));
   true_output_vv_Qy_err2.push_back(static_cast<double>(2.06997972654337000));
   true_output_vv_Qz.push_back(static_cast<double>(-0.12346160898567860));
   true_output_vv_Qz_err2.push_back(static_cast<double>(8.69198780987991000));
-#else
-  true_output_vv_Qx.push_back(static_cast<double>(-0.72998758373100400));
-  true_output_vv_Qx_err2.push_back(static_cast<double>(1.59746956572666845));
-  true_output_vv_Qy.push_back(static_cast<double>(-0.88303978893844267));
-  true_output_vv_Qy_err2.push_back(static_cast<double>(2.06997972654337000));
-  true_output_vv_Qz.push_back(static_cast<double>(-0.1234616089856790));
-  true_output_vv_Qz_err2.push_back(static_cast<double>(8.69198780987991000));
-#endif
-
 }
 
 /**
