@@ -196,10 +196,11 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_sv_Qy_err2.push_back(static_cast<float>(0.81083490));
 #ifdef MAC
   true_output_sv_Qz.push_back(static_cast<float>(-2.17166695));
+  true_output_sv_Qz_err2.push_back(static_cast<float>(2.69817896));
 #else
   true_output_sv_Qz.push_back(static_cast<float>(-2.17166671));
+  true_output_sv_Qz_err2.push_back(static_cast<float>(2.69817875));
 #endif
-  true_output_sv_Qz_err2.push_back(static_cast<float>(2.69817896));
 
 #ifdef LINUX64
   true_output_sv_Qx.push_back(static_cast<float>(-0.59094232));
@@ -271,19 +272,14 @@ void initialize_true_outputs(float                & true_output_ss_Qx,
   true_output_vs_Qz_err2.push_back(static_cast<float>(2.74627913));
 #endif
 
-#ifdef LINUX
   true_output_vs_Qx.push_back(static_cast<float>(-0.17380656));
   true_output_vs_Qx_err2.push_back(static_cast<float>(0.09073486));
   true_output_vs_Qy.push_back(static_cast<float>(-0.21024756));
   true_output_vs_Qy_err2.push_back(static_cast<float>(0.11760239));
   true_output_vs_Qz.push_back(static_cast<float>(2.78012818));
+#ifdef MAC
   true_output_vs_Qz_err2.push_back(static_cast<float>(3.74627937));
 #else
-  true_output_vs_Qx.push_back(static_cast<float>(-0.17380656));
-  true_output_vs_Qx_err2.push_back(static_cast<float>(0.09073486));
-  true_output_vs_Qy.push_back(static_cast<float>(-0.21024756));
-  true_output_vs_Qy_err2.push_back(static_cast<float>(0.11760239));
-  true_output_vs_Qz.push_back(static_cast<float>(2.78012794));
   true_output_vs_Qz_err2.push_back(static_cast<float>(3.74627913));
 #endif
 
