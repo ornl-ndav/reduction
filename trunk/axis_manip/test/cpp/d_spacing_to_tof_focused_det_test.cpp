@@ -137,27 +137,21 @@ void initialize_true_outputs(double    & true_output_ss,
                              Nessi::Vector<double> & true_output_vv_err2)
 {
   // scalar scalar
-#ifdef LINUX64
-  true_output_ss=static_cast<double>(1264.17918742388204636);
-  true_output_ss_err2=static_cast<double>(999410.25272388576716936);
-#elif LINUX
+#ifdef LINUX
   true_output_ss=static_cast<double>(1264.17918742388204636);
   true_output_ss_err2=static_cast<double>(999410.2527238855836913);
 #else
   true_output_ss=static_cast<double>(1264.17918742388204636);
-  true_output_ss_err2=static_cast<double>(999410.2527238857001066);
+  true_output_ss_err2=static_cast<double>(999410.25272388576716936);
 #endif
 
   // vector vector
-#ifdef LINUX64
-  true_output_vv.push_back(static_cast<double>(1264.17918742388204636));
-  true_output_vv_err2.push_back(static_cast<double>(999410.25272388576716936));
-#elif LINUX
+#ifdef LINUX
   true_output_vv.push_back(static_cast<double>(1264.17918742388204636));
   true_output_vv_err2.push_back(static_cast<double>(999410.2527238855836913));
 #else
   true_output_vv.push_back(static_cast<double>(1264.17918742388204636));
-  true_output_vv_err2.push_back(static_cast<double>(999410.2527238857));
+  true_output_vv_err2.push_back(static_cast<double>(999410.25272388576716936));
 #endif
 
   true_output_vv.push_back(static_cast<double>(2528.35837484776409272));
@@ -168,15 +162,12 @@ void initialize_true_outputs(double    & true_output_ss,
   true_output_vv_err2.push_back(static_cast<double>(3198566.5019376895343388));
 #endif
 
-#ifdef LINUX64
-  true_output_vv.push_back(static_cast<double>(3792.53756227164590728));
-  true_output_vv_err2.push_back(static_cast<double>(5798394.23868355906867743));
-#elif LINUX
+#ifdef LINUX
   true_output_vv.push_back(static_cast<double>(3792.53756227164590728));
   true_output_vv_err2.push_back(static_cast<double>(5798394.2386835571378469));
 #else
   true_output_vv.push_back(static_cast<double>(3792.53756227164590728));
-  true_output_vv_err2.push_back(static_cast<double>(5798394.2386835580691695));
+  true_output_vv_err2.push_back(static_cast<double>(5798394.23868355906867743));
 #endif
 
   true_output_vv.push_back(static_cast<double>(5056.71674969552818102));
