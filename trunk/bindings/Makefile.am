@@ -140,7 +140,9 @@ if FIXSO
 install-exec-hook:
 	for file in $$(ls -1 $(pkgpythondir)/*.la); do \
 		temp=$$(echo $$file | sed 's/\.[^\.]*$$//'); \
-		ln -s $${temp}.dylib $${temp}.so; \
+		if test ! -e "$${temp}.so"; then \
+			ln -s $${temp}.dylib $${temp}.so; \
+		fi; \
 	done
 endif
 
