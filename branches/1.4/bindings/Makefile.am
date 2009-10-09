@@ -22,19 +22,19 @@
 
 # $Id$
 
-ARRAYMANIP_SWIG=array_manip.i
-AXISMANIP_SWIG=axis_manip.i
-NESSIVECTOR_SWIG=nessi_vector.i
-PHYSCORR_SWIG=phys_corr.i
-UTILS_SWIG=utils.i
-VPAIR_SWIG=vpair.i
+ARRAYMANIP_BASE=array_manip
+AXISMANIP_BASE=axis_manip
+NESSIVECTOR_BASE=nessi_vector
+PHYSCORR_BASE=phys_corr
+UTILS_BASE=utils
+VPAIR_BASE=vpair
 
-ARRAYMANIP_BASE=$(subst .i,,$(ARRAYMANIP_SWIG))
-AXISMANIP_BASE=$(subst .i,,$(AXISMANIP_SWIG))
-NESSIVECTOR_BASE=$(subst .i,,$(NESSIVECTOR_SWIG))
-PHYSCORR_BASE=$(subst .i,,$(PHYSCORR_SWIG))
-UTILS_BASE=$(subst .i,,$(UTILS_SWIG))
-VPAIR_BASE=$(subst .i,,$(VPAIR_SWIG))
+ARRAYMANIP_SWIG=$(ARRAYMANIP_BASE).i
+AXISMANIP_SWIG=$(AXISMANIP_BASE).i
+NESSIVECTOR_SWIG=$(NESSIVECTOR_BASE).i
+PHYSCORR_SWIG=$(PHYSCORR_BASE).i
+UTILS_SWIG=$(UTILS_BASE).i
+VPAIR_SWIG=$(VPAIR_BASE).i
 
 ARRAYMANIP_PYTHONWRAP=array_manip_wrap.cpp
 AXISMANIP_PYTHONWRAP=axis_manip_wrap.cpp
@@ -49,6 +49,13 @@ NESSIVECTOR_PBL=$(NESSIVECTOR_BASE)_bind.py
 PHYSCORR_PBL=$(PHYSCORR_BASE)_bind.py
 UTILS_PBL=$(UTILS_BASE)_bind.py
 VPAIR_PBL=$(VPAIR_BASE)_bind.py
+
+PYARRAYMANIP_INTERFACE=libPyArrayManip
+PYAXISMANIP_INTERFACE=libPyAxisManip
+PYNESSIVECTOR_INTERFACE=libPyNessiVector
+PYPHYSCORR_INTERFACE=libPyPhysCorr
+PYUTILS_INTERFACE=libPyUtils
+PYVPAIR_INTERFACE=libPyVPair
 
 LIBPYARRAYMANIP=libPyArrayManip.la
 LIBPYAXISMANIP=libPyAxisManip.la
@@ -68,13 +75,6 @@ ARRAYMANIP_LIB=$(top_builddir)/array_manip/src/.libs/libArrayManip.la
 AXISMANIP_LIB=$(top_builddir)/axis_manip/src/.libs/libAxisManip.la
 PHYSCORR_LIB=$(top_builddir)/phys_corr/src/.libs/libPhysCorr.la
 UTILS_LIB=$(top_builddir)/utils/src/.libs/libUtils.la
-
-PYARRAYMANIP_INTERFACE=$(subst .la,,$(LIBPYARRAYMANIP))
-PYAXISMANIP_INTERFACE=$(subst .la,,$(LIBPYAXISMANIP))
-PYNESSIVECTOR_INTERFACE=$(subst .la,,$(LIBPYNESSIVECTOR))
-PYPHYSCORR_INTERFACE=$(subst .la,,$(LIBPYPHYSCORR))
-PYUTILS_INTERFACE=$(subst .la,,$(LIBPYUTILS))
-PYVPAIR_INTERFACE=$(subst .la,,$(LIBPYVPAIR))
 
 ARRAYMANIP_PAL=$(ARRAYMANIP_BASE).py
 AXISMANIP_PAL=$(AXISMANIP_BASE).py
@@ -140,7 +140,9 @@ if FIXSO
 install-exec-hook:
 	for file in $$(ls -1 $(pkgpythondir)/*.la); do \
 		temp=$$(echo $$file | sed 's/\.[^\.]*$$//'); \
-		ln -s $${temp}.dylib $${temp}.so; \
+		if test ! -e "$${temp}.so"; then \
+			ln -s $${temp}.dylib $${temp}.so; \
+		fi; \
 	done
 endif
 
