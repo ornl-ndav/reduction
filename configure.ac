@@ -23,7 +23,7 @@ dnl $Id$
 
 AC_PREREQ(2.59)
 AC_REVISION($Revision$)
-AC_INIT([SNS Common Libraries], [1.4dev], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
+AC_INIT([SNS Common Libraries], [1.4.1], [bilheuxjm@ornl.gov,petersonpf@ornl.gov,reuterma@ornl.gov], [sns_common_libs])
 AC_COPYRIGHT([This software is covered by the MIT ACADEMIC LICENSE
 see file COPYING for further information])
 
@@ -85,7 +85,7 @@ AC_SUBST(DRLIBDOCDIR)
 # Collect all the library version numbers here
 LIB_ARRAY_MANIP_VERSION='-version-info 3:0:2'
 AC_SUBST(LIB_ARRAY_MANIP_VERSION)
-LIB_AXIS_MANIP_VERSION='-version-info 4:2:3'
+LIB_AXIS_MANIP_VERSION='-version-info 4:3:3'
 AC_SUBST(LIB_AXIS_MANIP_VERSION)
 LIB_PHYS_CORR_VERSION='-version-info 1:0:0'
 AC_SUBST(LIB_PHYS_CORR_VERSION)

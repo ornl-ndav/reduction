@@ -257,6 +257,14 @@ namespace AxisManip
     length_axis_out.push_back(axis_out_1.size() - 1);
     length_axis_out.push_back(axis_out_2.size() - 1);
 
+    NumT orig_area;
+    Nessi::Vector<NumT> orig_cp_x(SIZE_QUAD + 2);
+    Nessi::Vector<NumT> orig_cp_y(SIZE_QUAD + 2);
+
+    NumT rebin_area;
+    Nessi::Vector<NumT> rebin_cp_x(SIZE_QUAD + 2);
+    Nessi::Vector<NumT> rebin_cp_y(SIZE_QUAD + 2);
+
     for(std::size_t k = 0; k < input_size; ++k)
       {
         // Get the bin boundaries in out of the original axes
@@ -269,6 +277,17 @@ namespace AxisManip
         orig_bin_y[1] = axis_in_y2[k];
         orig_bin_y[2] = axis_in_y3[k];
         orig_bin_y[3] = axis_in_y4[k];
+
+        std::copy(orig_bin_x.begin(), orig_bin_x.end(), orig_cp_x.begin());
+        orig_cp_x[4] = orig_bin_x[0];
+        orig_cp_x[5] = orig_bin_x[1];
+
+        std::copy(orig_bin_y.begin(), orig_bin_y.end(), orig_cp_y.begin());
+        orig_cp_y[4] = orig_bin_y[0];
+        orig_cp_y[5] = orig_bin_y[1];
+
+        Utils::calc_area_2D_polygon(orig_cp_x, orig_cp_y, SIZE_QUAD, false,
+                                    orig_area);
 
         // Find the minimum and maximum values for the x and y coordinates
         NumT x_min = *std::min_element(orig_bin_x.begin(), orig_bin_x.end());
@@ -325,12 +344,39 @@ namespace AxisManip
                 rebin_bin_y[1] = axis_out_2[j+1];
                 rebin_bin_y[2] = axis_out_2[j+1];
                 rebin_bin_y[3] = axis_out_2[j];
+
+                std::copy(rebin_bin_x.begin(), rebin_bin_x.end(), 
+                          rebin_cp_x.begin());
+                rebin_cp_x[4] = rebin_bin_x[0];
+                rebin_cp_x[5] = rebin_bin_x[1];
+                
+                std::copy(rebin_bin_y.begin(), rebin_bin_y.end(), 
+                          rebin_cp_y.begin());
+                rebin_cp_y[4] = rebin_bin_y[0];
+                rebin_cp_y[5] = rebin_bin_y[1];
+                
+                Utils::calc_area_2D_polygon(rebin_cp_x, rebin_cp_y, 
+                                            SIZE_QUAD, false,
+                                            rebin_area);
                 
                 try
                   {
-                    Utils::convex_polygon_intersect(orig_bin_x, orig_bin_y,
-                                                    rebin_bin_x, rebin_bin_y,
-                                                    frac_bin_x, frac_bin_y);
+                    if (Utils::compare(rebin_area, orig_area) == 1)
+                      { 
+                        Utils::convex_polygon_intersect(rebin_bin_x, 
+                                                        rebin_bin_y,
+                                                        orig_bin_x, orig_bin_y,
+                                                        frac_bin_x, 
+                                                        frac_bin_y);
+                      }
+                    else
+                      {
+                        Utils::convex_polygon_intersect(orig_bin_x, orig_bin_y,
+                                                        rebin_bin_x, 
+                                                        rebin_bin_y,
+                                                        frac_bin_x, 
+                                                        frac_bin_y);
+                      }
                   }
                 catch (std::exception &e)
                   {
