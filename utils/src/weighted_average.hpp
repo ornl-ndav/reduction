@@ -34,6 +34,7 @@
 #include "num_comparison.hpp"
 #include "size_checks.hpp"
 #include "utils.hpp"
+#include <cmath>
 #include <sstream>
 #include <stdexcept>
 
@@ -71,7 +72,9 @@ namespace Utils
 
     for(std::size_t i = bin_start; i <= bin_end; ++i)
       {
-        if(compare(input_err2[i], static_cast<NumT>(0.0)) != 0) 
+        if(compare(input_err2[i], static_cast<NumT>(0.0)) != 0 &&
+           !std::isnan(input[i]) && !std::isinf(input[i]) && 
+           !std::isnan(input_err2[i]) && !std::isinf(input_err2[i])) 
           {
             weighted_ave += (input[i] / input_err2[i]);
             weighted_ave_err2 += (static_cast<NumT>(1.) / input_err2[i]);
